@@ -24,4 +24,4 @@ Packet Format on Pipe :
 
 tlast tdata tkeep 
 
-  1    32.    4.    _> 37 bits
+ 1----    32 ----    4    -> 37 bits

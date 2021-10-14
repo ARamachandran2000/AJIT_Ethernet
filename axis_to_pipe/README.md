@@ -25,3 +25,9 @@ Packet Format on Pipe :
 tlast tdata tkeep 
 
  1----    32 ----    4    -> 37 bits
+ 
+ 
+ 
+ Bad Packet Format : 
+ 
+ pckt -> {tlast , 32'd1, 4'd0} 

@@ -22,5 +22,6 @@ tx_fifo reads from an AHIR pipe and sends it to the MAC on an AXI-s Interface
 
 Packet Format on Pipe : 
 
-tlast tdata tkeep
+tlast tdata tkeep 
+
   1    32.    4.    _> 37 bits

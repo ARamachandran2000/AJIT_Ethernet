@@ -1,0 +1,76 @@
+/////////////////////////////////////////////////////////////////////////
+
+// This module reads from the pipe to which rx_fifo.v writes to
+// and checks if it is a good or a bad packet.
+// If it is a bad packet then the buffer is flushed else it is sent to the NIC.
+
+////////////////////////////////////////////////////////////////////////
+
+
+$pipe mac_data  : $uint<37> $depth 1024  //Pipe to which rx_fifo.v writes to
+$pipe out_data  : $uint<37> $depth 1024  //Pipe which will contain only packets that are good
+
+//Miscellaneous Variables Decarations
+$storage buf_ptr : $uint<10> //Used to index into buffer
+
+$storage buffer : $array[1024] $of $uint<37>
+//Intermediate buffer that stores packets until packet validity is verified
+
+
+
+$module [rx_fifo_reader] $in() $out()
+$is
+{
+
+
+$branchblock[pckt_good_check]
+{
+	$merge $entry flush still_loading
+	//Add Phi Statements here
+	$phi buf_ptr := $zero<37> $on $entry $zero<37> $on flush
+	$endmerge
+
+	intm_data := mac_data
+	$split (intm_data 1 32 4) (tlast tdata tkeep)
+	
+	$if(tlast == 0) $then //Can't yet determine status
+		buffer[ buf_ptr ] := intm_data
+		buf_ptr := buf_ptr + 1
+		$place [still_loading]
+	$else // We are at last packet
+		$if((tdata && tkeep) == _hffff0) $then //Indicates Bad Packet is stored in buffer
+			$place [flush]
+		$else  // Good Packet received, send to NIC
+			buffer[ buf_ptr ] := intm_data
+			buf_ptr := buf_ptr + 1
+			$call send_to_nic () ()
+			$place [flush]
+		$endif
+	
+	$endif
+	
+
+}
+
+}
+
+
+$module [send_to_nic] $in() $out()
+$is
+{
+	
+$branchblock [ main] 
+{
+	$dopipeline $depth 8 $fullrate
+		$merge $entry $loopback
+			$phi I := $zero<10> $on $entry num $on $loopback
+		$endmerge
+		out_data := buffer[I]
+		num := (I+1)
+	$while(num<buf_ptr)
+
+}
+
+}	
+ 
+

@@ -28,6 +28,7 @@ $branchblock[pckt_good_check]
 	$merge $entry flush still_loading
 	//Add Phi Statements here
 	$phi buf_ptr := $zero<37> $on $entry $zero<37> $on flush
+				buf_ptr $on still_loading
 	$endmerge
 
 	intm_data := mac_data
@@ -54,6 +55,37 @@ $branchblock[pckt_good_check]
 
 }
 
+$branchblock[pckt_good_check_fast]
+{
+	$dopipeline $depth 7 $fullrate 
+
+	$merge $entry $loopback 
+		$phi intm_data := mac_data $on $entry, $loopback
+		$phi buf_ptr := $zero<37> $on $entry next_buf_ptr $on $loopback
+	$endmerge
+
+		$volatile $split (intm_data 1 32 4) (tlast tdata tkeep)
+		$volatile bad_packet := ((tlast == 1) & (tdata = _hFFFFFFFF) (tkeep == 0))
+		$volatile send_buffer := ((tlast == 1) & (tkeep != 0))
+		$volatile fill_buffer := (tlast == 0)
+
+		$guard (fill_buffer)
+			buffer[buf_ptr] := intm_data
+
+		$volatile next_buf_ptr :=
+				($prioritymux
+					(bad_packet | send_buffer) $zero<32>
+					fill_buffer (buf_ptr + 1)
+					$default buf_ptr)
+
+		$guard (send_buffer)
+			$call send_to_nic () ()
+
+	$while 1
+}
+}
+
+
 
 $module [send_to_nic] $in() $out()
 $is
@@ -66,7 +98,7 @@ $branchblock [ main]
 			$phi I := $zero<10> $on $entry num $on $loopback
 		$endmerge
 		out_data := buffer[I]
-		num := (I+1)
+		$volatile num := (I+1)
 	$while(num<buf_ptr)
 
 }

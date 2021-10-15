@@ -61,6 +61,7 @@ $branchblock[pckt_good_check_fast]
 
 	$merge $entry $loopback 
 		$phi intm_data := mac_data $on $entry, $loopback
+		// NOTE: buf_ptr is SSA!
 		$phi buf_ptr := $zero<37> $on $entry next_buf_ptr $on $loopback
 	$endmerge
 

@@ -1,0 +1,107 @@
+////////////////////////////////////////////////////////
+
+// This module is a simple connection link between tb
+//	and actual hardware.
+// Reads 64 bit wide pipe(which is written by tb),
+//	removes unwanted bits and writes to input pipe
+//	of actual hardware.
+
+////////////////////////////////////////////////////////
+$module [read_from_tb] $in() $out()
+$is
+{
+	$branchblock[loop]{
+		$dopipeline $depth 7 $fullrate
+		$merge $entry $loopback
+			$phi idata := tb_in_pipe $on $entry,$loopback
+		$endmerge
+		send_data  := ($slice idata 36 0)
+		out_data := send_data
+		//$place[loopback]
+	$while 1
+	}
+}
+////////////////////////////////////////////////////////
+
+// This module is a simple connection link between tb
+//	and actual hardware.
+// Reads 37 bit wide pipe(which is written by HW),
+//	convertes it to 64 bit data and writes to pipe 
+//	which tb reads to check integrity of data.
+
+////////////////////////////////////////////////////////
+$module [send_to_tb] $in() $out()
+$is
+{
+	$branchblock[loop]{
+		$dopipeline $depth 7 $fullrate
+		$merge $entry $loopback
+			$phi rdata := header_pipe $on $entry, $loopback
+		$endmerge
+		tb_out_pipe := ($bitcast ($uint<64>) rdata)	
+		$while 1
+	}
+}
+//////////////////////////////////////////////////////////
+
+// This module reads from input pipe and seperates header
+//	and packet.
+// Writes Header to header_pipe & entire packet to Buffer
+
+/////////////////////////////////////////////////////////
+
+$module [rx_from_mac] $in() $out()
+$is
+{
+	$branchblock[loop]{
+		$dopipeline $depth 7 $fullrate
+		$merge $entry $loopback
+			//$phi cnt_dn := ($bitcast ($uint<16>) 0) $on $entry
+			//			next_cnt_dn $on $loopback
+			$phi hdr_cnt_dn := ($bitcast ($uint<8>) 0) $on $entry
+						next_hdr_cnt_dn $on $loopback	
+			$phi data := out_data $on $entry, $loopback
+			$phi buf_ptr := ($bitcast ($uint<16>) 0) $on $entry
+						next_buf_ptr $on $loopback
+			$phi pkt_cnt := ($bitcast ($uint<16>) 1) $on $entry
+						next_pkt_cnt $on $loopback
+		$endmerge
+		//	Three states
+		//		
+		//		1.	Write Header to pipe
+		//		2.	Store Entire Packet
+		//		3.	Waiting for pkt len
+		$volatile next_pkt_cnt := (pkt_cnt + 1)
+		
+		$volatile get_len := (pkt_cnt == 4)
+		$guard(get_len)
+			$call get_lengths (data)(header_len ptk_len)
+		$volatile send_header := ((pkt_cnt <= 4) | (hdr_cnt_dn != 0))
+		$rreport(rx_from_mac check_send_header_condition pkt_cnt hdr_cnt_dn)
+		//$volatile next_cnt_dn := 0
+		$volatile next_hdr_cnt_dn := ($mux (header_len != 0)
+							($mux (pkt_cnt <= 4) 0 (header_len - 4))
+							0)
+		$guard(send_header)
+			header_pipe := data
+		// Store entire packet to buffer
+		packet_buffer[buf_ptr] := data
+		$volatile next_buf_ptr := ($mux (buf_ptr == 65535) 0 (buf_ptr + 1))		
+	$while 1
+	}
+
+}
+//
+//	Reads out data pipe 3 times and finds out 
+//		header and packet lengths
+//
+$module [get_lengths] 
+	$in (data : $uint<37>)
+	$out (header_len : $uint<8> pkt_len:$uint<16>)
+	$is
+{
+		
+	$volatile header_len := ($bitcast ($uint<8>)((($slice data 27 24)*8)-2)) //length in bytes
+	$volatile pkt_len := ($slice data 19 4)
+}		
+		

@@ -1,0 +1,140 @@
+/////////////////////////////////////////////////////////////////////////
+
+// This module reads from the pipe to which rx_fifo.v writes to
+// and checks if it is a good or a bad packet.
+// If it is a bad packet then the buffer is flushed else it is sent to the NIC.
+
+////////////////////////////////////////////////////////////////////////
+
+$pipe mac_data  : $uint<37> $depth 1024  //Pipe to which rx_fifo.v writes to
+$pipe out_data  : $uint<37> $depth 1024  //Pipe which will contain only packets that are good
+
+$storage buffer_1 : $array[1024] $of $uint<37>
+$storage buffer_2 : $array[1024] $of $uint<37>
+
+$module [rx_fifo_reader] $in() $out()
+$is
+{
+
+$branchblock[pckt_good_check_fast]
+{
+	$merge $entry b_packet
+	$endmerge
+	$dopipeline $depth 7 $fullrate
+	$merge $entry $loopback
+		$phi buf_load := $zero<1> $on $entry 
+				 (~buf_load) $on $loopback
+				 
+
+		$phi send_nic := $zero<1> $on $entry
+				 $one<1>  $on $loopback	
+
+		$phi buf_ptr :=  $zero<10> $on $entry 
+				 next_buf_ptr $on $loopback
+				 //$zero<10> $on b_packet 		
+		
+	$endmerge
+
+	
+	$parallelblock [send_load_sim]
+	{
+
+		$branchblock[send]
+		{	
+	
+			$guard (send_nic) $call send_to_nic (buf_ptr (~buf_load)) ()	
+
+		}
+
+		$branchblock[load]
+		{
+			$call load_buffer (buf_load) (next_buf_ptr_out pckt_status)
+
+		}(next_buf_ptr_out => next_buf_ptr_out pckt_status => pckt_status)
+
+			
+		//$join send load
+	}(next_buf_ptr_out => next_buf_ptr   pckt_status => pckt_status)
+	
+	
+	
+	
+	
+
+	$while (pckt_status == 1)
+
+$if(pckt_status == 0)$then
+		$place [b_packet]
+	$endif
+
+}
+}
+
+
+
+$module [send_to_nic] $in(buf_ptr : $uint<10> buf_load:$uint<1>) $out()
+$is
+{
+	
+$branchblock [main] 
+{
+	$dopipeline $depth 5 $fullrate
+		$merge $entry $loopback
+			$phi I := $zero<10> $on $entry num $on $loopback
+		$endmerge
+		$guard (buf_load) out_data := buffer_1[I]
+		$guard (~buf_load) out_data := buffer_2[I]
+		$volatile num := (I+1)
+	$while(num<buf_ptr)
+
+}
+}	
+
+
+$module [load_buffer] $in (buf_load:$uint<1>) $out(next_buf_ptr_out:$uint<10> pckt_status : $uint<1>) 
+$is
+{
+$branchblock[pckt_good_check_fast]
+{
+	$dopipeline $depth 7 $fullrate 
+		$merge $entry $loopback
+			$phi intm_data := mac_data $on $entry mac_data $on $loopback 
+						   
+			$phi buf_ptr := $zero<10> $on $entry next_buf_ptr $on $loopback
+							
+		$endmerge
+	
+	
+	$volatile $split (intm_data 1 32 4) (tlast tdata tkeep)
+
+	$volatile bad_packet := (((tlast == 1) & (tdata == _hFFFFFFFF)) & (tkeep == 0))
+	
+	$volatile good_packet := ((tlast == 1) & (tkeep != 0))
+	
+	$volatile fill_buffer := (tlast == 0)
+
+	$volatile buf_1 := ((fill_buffer==1) & (~buf_load))
+
+	$guard (buf_1) buffer_1[buf_ptr] := intm_data
+	
+	$volatile buf_2 := (fill_buffer & buf_load)
+
+	$guard (buf_2)
+			buffer_2[buf_ptr] := intm_data
+	
+	$guard (fill_buffer) next_buf_ptr := (buf_ptr + 1)
+		
+	
+	$while (fill_buffer == 1)
+
+
+$volatile next_buf_ptr_out := (buf_ptr + 1)
+
+$volatile pckt_status := ($prioritymux good_packet $one<1>
+			  	       bad_packet $zero<1> 
+				       $default $zero<1>)
+ 
+}
+
+} 
+

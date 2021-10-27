@@ -12,6 +12,12 @@ $pipe out_data  : $uint<37> $depth 1024  //Pipe which will contain only packets 
 $storage buffer_1 : $array[1024] $of $uint<37>
 $storage buffer_2 : $array[1024] $of $uint<37>
 
+//
+// whats going on?
+//    Incoming data from the MAC is stored
+//    in the ping pong buffers (buffer_1,2).
+//    
+//   
 $module [rx_fifo_reader] $in() $out()
 $is
 {
@@ -20,54 +26,22 @@ $branchblock[pckt_good_check_fast]
 {
 	$merge $entry b_packet
 	$endmerge
+
 	$dopipeline $depth 7 $fullrate
-	$merge $entry $loopback
-		$phi buf_load := $zero<1> $on $entry 
-				 (~buf_load) $on $loopback
+	$merge $entry $loopback $endmerge
+
+		$call loadBuffer1 () (last_written_pointer_1 packet_status_1))
+		$guard (packet_status_1)
+			$call sendBuffer1ToNic (last_written_pointer_1) ()
+
+
+		$call loadBuffer2 () (last_written_pointer_2 packet_status_2)
+		$guard (packet_status_2)
+			$call sendBuffer2ToNic (last_written_pointer_2) ()
 				 
 
-		$phi send_nic := $zero<1> $on $entry
-				 $one<1>  $on $loopback	
+	$while 1
 
-		$phi buf_ptr :=  $zero<10> $on $entry 
-				 next_buf_ptr $on $loopback
-				 //$zero<10> $on b_packet 		
-		
-	$endmerge
-
-	
-	$parallelblock [send_load_sim]
-	{
-
-		$branchblock[send]
-		{	
-	
-			$guard (send_nic) $call send_to_nic (buf_ptr (~buf_load)) ()	
-
-		}
-
-		$branchblock[load]
-		{
-			$call load_buffer (buf_load) (next_buf_ptr_out pckt_status)
-
-		}(next_buf_ptr_out => next_buf_ptr_out pckt_status => pckt_status)
-
-			
-		//$join send load
-	}(next_buf_ptr_out => next_buf_ptr   pckt_status => pckt_status)
-	
-	
-	
-	
-	
-
-	$while (pckt_status == 1)
-
-$if(pckt_status == 0)$then
-		$place [b_packet]
-	$endif
-
-}
 }
 
 

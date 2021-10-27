@@ -15,7 +15,7 @@ $is
 		$merge $entry $loopback
 			$phi idata := tb_in_pipe $on $entry,$loopback
 		$endmerge
-		send_data  := ($slice idata 36 0)
+		$volatile send_data  := ($slice idata 36 0)
 		out_data := send_data
 		//$place[loopback]
 	$while 1
@@ -38,18 +38,17 @@ $is
 		$merge $entry $loopback
 			$phi rdata := header_pipe $on $entry, $loopback
 		$endmerge
-		tb_out_pipe := ($bitcast ($uint<64>) rdata)	
+		$volatile to_opipe := ($bitcast ($uint<64>) rdata)
+		tb_out_pipe := to_opipe
 		$while 1
 	}
 }
-//////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////
 // This module reads from input pipe and seperates header
 //	and packet.
 // Writes Header to header_pipe & entire packet to Buffer
-
 /////////////////////////////////////////////////////////
-
 $module [rx_from_mac] $in() $out()
 $is
 {
@@ -105,3 +104,168 @@ $module [get_lengths]
 	$volatile pkt_len := ($slice data 19 4)
 }		
 		
+
+// First: write a comment about the state machine.
+//
+//   Total state:
+//          where are we in the packet.
+//             S0, S1, S2, S3, H, B
+//          src_mac_addr, dest_mac_addr
+//          header_length
+//          packet_length.
+//
+//   Start in S0, 
+//       read 1st word -> src_mac_addr [31:0]
+//       write to header_pipe, packet_pipe
+//       go to S1
+//   In S1
+//       read 2nd word -> src_mac_addr[47:32], dest_mac_addr[15:0]
+//       write to header_pipe, packet_pipe
+//       go to S2
+//   In S2
+//       read 3rd word ->  dest_mac_addr[47:16]
+//       write to header_pipe, packet_pipe
+//       go to S3
+//   In S3
+//       read 4th word -> packet_length, version, header_length.
+//       write to header_pipe, packet_pipe
+//       go to H
+//   In H
+//       read header_length words
+//       write to header_pipe, packet_pipe
+//         decrement header_length
+//       go to B after header_length reaches 1/0?
+//   In B
+//       read packet_length words
+//       write to packet_pipe
+//         decrement packet_length
+//       go to S1 (reset all lengths etc) after
+//       packet length reaches 1/0?
+
+$constant S0: $uint<3> := 0
+$constant S1: $uint<3> := 1
+$constant S2: $uint<3> := 2
+$constant S3: $uint<3> := 3
+$constant H:  $uint<3>  := 4
+$constant B:  $uint<3>  := 5
+$module [nicRxDaemon] $in () $out () $is
+{
+	$branchblock[loop] {
+		$dopipeline $depth 7 $fullrate
+
+			$merge $entry $loopback
+				//   Total state:
+				//          where are we in the packet.
+				//             S0, S1, S2, S3, H, B
+				//          src_mac_addr, dest_mac_addr
+				//          header_length
+				//          packet_length.
+				//   localstate src_mac_addr dest_mac_addr header_length packet_length
+				//       3         48              48           4           16  = 119
+				$phi TOTAL_STATE := $zero<119> $on $entry nTOTAL_STATE $on $loopback
+				$phi RX := mac_to_nic_data $on $entry, $loopback
+			$endmerge
+			$volatile $split (TOTAL_STATE 3 48 48 4 16)
+						(LSTATE SRCMAC DESTMAC HLEN PLEN)
+			$volatile $call nextLSTATE (LSTATE HLEN PLEN) (nLSTATE nHLEN nPLEN)
+			$volatile $call nextSRCMAC  (LSTATE SRCMAC RX) (nSRCMAC)
+			$volatile $call nextDESTMAC (LSTATE DESTMAC RX) (nDESTMAC)
+
+			$volatile write_to_header := ($call isWriteToHeader (LSTATE HLEN PLEN))
+			$volatile write_to_packet := ($call isWriteToPacket (LSTATE HLEN PLEN))
+		
+			$guard (write_to_header) nic_rx_to_header := RX
+			$guard (write_to_packet) nic_rx_to_packet := RX
+
+			$volatile nTOTAL_STATE := ($concat nLSTATE nSRCMAC nDESTMAC nHLEN nPLEN)
+
+		$while 1
+	}
+}
+
+////////////////////////////////////////////////////////
+// ALTERNATE
+////////////////////////////////////////////////////////
+// First: write a comment about the state machine.
+//
+//   Total state:
+//          where are we in the packet.
+//             S0, S1, S2, S3, H, B
+//          src_mac_addr, dest_mac_addr
+//          header_length
+//          packet_length.
+//
+//   Start in S0, 
+//       read 1st word -> src_mac_addr [31:0]
+//       write to header_pipe, packet_pipe
+//       go to S1
+//   In S1
+//       read 2nd word -> src_mac_addr[47:32], dest_mac_addr[15:0]
+//       write to header_pipe, packet_pipe
+//       go to S2
+//   In S2
+//       read 3rd word ->  dest_mac_addr[47:16]
+//       write to header_pipe, packet_pipe
+//       go to S3
+//   In S3
+//       read 4th word -> packet_length, version, header_length.
+//       write to header_pipe, packet_pipe
+//       go to H
+//   In H
+//       read header_length words
+//       write to header_pipe, packet_pipe
+//         decrement header_length
+//       go to B after header_length reaches 1/0?
+//   In B
+//       read packet_length words
+//       write to packet_pipe
+//         decrement packet_length
+//       go to S1 (reset all lengths etc) after
+//       packet length reaches 1/0?
+
+$constant S0: $uint<3> := 0
+$constant S1: $uint<3> := 1
+$constant S2: $uint<3> := 2
+$constant S3: $uint<3> := 3
+$constant H:  $uint<3>  := 4
+$constant B:  $uint<3>  := 5
+$module [nicRxDaemonAlt] $in () $out () $is
+{
+	$branchblock[loop] {
+
+		$merge $entry loopback $endmerge
+
+			RX0 := mac_to_nic_data
+			$volatile src_mac_addr_31_0  := RX0
+
+			RX1 := mac_to_nic_data
+			$volatile src_mac_addr_47_0  := ($concat  ($slice RX1 31 16) src_mac_addr_31_0)
+			$volatile dest_mac_addr_15_0  := ($slice RX1 15 0)
+
+			RX2 := mac_to_nic_data 
+			$volatile dest_mac_addr_47_0  := ($concat RX2 dest_mac_addr_15_0)
+
+			RX3 := mac_to_nic_data 
+			// pull out header length and packet length...
+
+
+			// read the header
+			$dopipeline $depth 7 $fullrate 
+				$merge $entry $loopback
+					$phi header_length := ....
+					$phi RX := ...
+				$endmerge 
+
+			$while hcontinue
+
+			$dopipeline $depth 7 $fullrate 
+				$merge $entry $loopback
+					$phi packet_length := ....
+					$phi RX := ...
+				$endmerge 
+
+			$while pcontinue
+
+		$place[loopback]
+	}
+}

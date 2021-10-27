@@ -1,0 +1,11 @@
+// parameters
+$parameter PIPE_DEPTH	2
+
+$pipe out_data: $uint<37> $depth PIPE_DEPTH
+$pipe header_pipe: $uint<37> $depth PIPE_DEPTH
+// will need something like pointers
+//	to store start and end of packet in bffer.
+
+$pipe tb_in_pipe:$uint<64> $depth PIPE_DEPTH
+$pipe tb_out_pipe:$uint<64> $depth PIPE_DEPTH
+$storage packet_buffer : $array[65536] $of $uint<37>

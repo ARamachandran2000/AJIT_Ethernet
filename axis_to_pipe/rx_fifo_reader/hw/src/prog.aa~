@@ -31,7 +31,7 @@ $is
 			$phi idata := tb_in_pipe $on $entry,$loopback
 		$endmerge
 		send_data  := ($slice idata 36 0)
-		mac_data   := send_data
+		mac_data := send_data
 		//$place[loopback]
 
 	$while 1
@@ -140,7 +140,7 @@ $branchblock[pckt_good_check_fast]
 	$dopipeline $depth 7 $fullrate 
 		$merge $entry $loopback
 			$phi intm_data := mac_data $on $entry mac_data $on $loopback 
-			   
+						   
 			$phi buf_ptr := $zero<10> $on $entry next_buf_ptr $on $loopback
 							
 		$endmerge

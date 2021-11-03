@@ -14,9 +14,11 @@
 
 
 #ifndef COMPILE_TEST_ONLY
-#ifndef AA2C#include "vhdlCStubs.h"
+#ifndef AA2C
+#include "vhdlCStubs.h"
 
-#else#include "aa_c_model.h"
+#else
+#include "aa_c_model.h"
 
 #endif
 #endif

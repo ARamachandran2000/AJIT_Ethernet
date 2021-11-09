@@ -1,3 +1,0 @@
-digraph control_path {
-  e_0: entry_node : n ;
-}

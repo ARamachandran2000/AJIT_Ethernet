@@ -1,0 +1,18 @@
+digraph data_path {
+  RPIPE_tb_in_pipe_526_wire [shape=ellipse];
+  idata_524 [shape=ellipse];
+  konst_536_wire_constant [shape=ellipse];
+  send_data_531 [shape=ellipse];
+  RPIPE_tb_in_pipe_526_inst [shape=rectangle];
+RPIPE_tb_in_pipe_526_inst -> RPIPE_tb_in_pipe_526_wire;
+  WPIPE_mac_data_532_inst [shape=rectangle];
+send_data_531  -> WPIPE_mac_data_532_inst;
+  do_while_stmt_522_branch [shape=rectangle];
+konst_536_wire_constant  -> do_while_stmt_522_branch;
+  slice_530_inst [shape=rectangle];
+idata_524  -> slice_530_inst;
+slice_530_inst -> send_data_531;
+  ssrc_phi_stmt_524 [shape=diamond];
+RPIPE_tb_in_pipe_526_wire  -> ssrc_phi_stmt_524;
+ssrc_phi_stmt_524 -> idata_524;
+}

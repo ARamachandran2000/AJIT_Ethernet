@@ -1,0 +1,18 @@
+digraph data_path {
+  RPIPE_nic_rx_to_header_615_wire [shape=ellipse];
+  konst_622_wire_constant [shape=ellipse];
+  rhdata_613 [shape=ellipse];
+  type_cast_619_wire [shape=ellipse];
+  RPIPE_nic_rx_to_header_615_inst [shape=rectangle];
+RPIPE_nic_rx_to_header_615_inst -> RPIPE_nic_rx_to_header_615_wire;
+  WPIPE_tb_out_pipe_617_inst [shape=rectangle];
+type_cast_619_wire  -> WPIPE_tb_out_pipe_617_inst;
+  do_while_stmt_611_branch [shape=rectangle];
+konst_622_wire_constant  -> do_while_stmt_611_branch;
+  ssrc_phi_stmt_613 [shape=diamond];
+RPIPE_nic_rx_to_header_615_wire  -> ssrc_phi_stmt_613;
+ssrc_phi_stmt_613 -> rhdata_613;
+  type_cast_619_inst [shape=rectangle];
+rhdata_613  -> type_cast_619_inst;
+type_cast_619_inst -> type_cast_619_wire;
+}

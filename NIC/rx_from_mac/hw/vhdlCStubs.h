@@ -1,0 +1,12 @@
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+#include <Pipes.h>
+#include <SocketLib.h>
+void global_storage_initializer_();
+void nicRxFromMacDaemon();
+void read_from_tb();
+void rx_fifo_reader();
+void send_header_to_tb();
+void send_packet_to_tb();

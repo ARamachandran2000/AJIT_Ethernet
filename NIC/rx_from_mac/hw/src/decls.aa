@@ -1,11 +1,13 @@
 // parameters
 $parameter PIPE_DEPTH	2
 
-$pipe out_data: $uint<37> $depth PIPE_DEPTH
-$pipe header_pipe: $uint<37> $depth PIPE_DEPTH
+$pipe mac_to_nic_data : $uint<37> $depth 65536
+$pipe nic_rx_to_header: $uint<37> $depth 2610
+$pipe nic_rx_to_packet: $uint<37> $depth 65536
 // will need something like pointers
 //	to store start and end of packet in bffer.
 
-$pipe tb_in_pipe:$uint<64> $depth PIPE_DEPTH
-$pipe tb_out_pipe:$uint<64> $depth PIPE_DEPTH
+$pipe tb_in_pipe:$uint<64> $depth 65536
+$pipe tb_out_pipe:$uint<64> $depth 65536
+$pipe tb_out_packet_pipe:$uint<64> $depth 65536
 $storage packet_buffer : $array[65536] $of $uint<37>

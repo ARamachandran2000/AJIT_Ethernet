@@ -18,120 +18,131 @@
 
 #define SIZE_OF_PACKET_IN_BITS	64
 #define MAX_PACKET_COUNT	64
+#define MIN_HEADER_LENGTH_IN_WORDS	5
+#define MIN_PACKET_LENGTH_IN_BYTES	26
 #define MAX_PACKET_LENGTH_IN_BYTES	1500
 #define MAX_HEADER_LENGTH_IN_WORDS	15
 
+int __err_flg = 0;
+
+uint64_t initial_pkts[3] = {0x0aaaaaaaaf,0x0bbbbaaaaf,0x0bbbbbbbbf};
+
 void mac_tx(){
-	int header_len_in_words = 6;
-	fprintf(stderr,"\nSending Packets....\n");
+	fprintf(stderr,"\n Sending Packets....\n");
+	char pipe_to_send[20];
+	sprintf(pipe_to_send,"tb_in_pipe");
 	int pkt_cnt = 0;
-	while(pkt_cnt < 1){
-		//fprintf(stderr,"\n:Packet length = %d\n", pkt_len);
-		int pkt_len_in_bytes = header_len_in_words*4 + 26 + 24;
+	while(1){
+		int header_len_in_words = rand()%MAX_HEADER_LENGTH_IN_WORDS;
+		header_len_in_words = (header_len_in_words < MIN_HEADER_LENGTH_IN_WORDS)? 
+						MIN_HEADER_LENGTH_IN_WORDS:header_len_in_words;
+		uint64_t pkt_len_in_bytes = rand()%MAX_PACKET_LENGTH_IN_BYTES;
+		pkt_len_in_bytes = (pkt_len_in_bytes < MIN_PACKET_LENGTH_IN_BYTES)?
+						MIN_PACKET_LENGTH_IN_BYTES:pkt_len_in_bytes;
+		// adding header length in packet length
+		pkt_len_in_bytes += (uint16_t)header_len_in_words*4; 
+		write_uint64_n(pipe_to_send,initial_pkts,3);
 		uint64_t data;
-		data = 0x0aaaaaaaaf;
-		write_uint64("tb_in_pipe", data);
-		data = 0x0bbbbaaaaf;
-		write_uint64("tb_in_pipe", data);
-		data = 0x0bbbbbbbbf;
-		write_uint64("tb_in_pipe", data);
-		//data = 0x0aa540046f; // 2e -> 46
-		data = (data & 0x1ffff0000f) | (pkt_len_in_bytes << 4);
-		write_uint64("tb_in_pipe", data);
-		data = 0x0aaaa002ef;
-		write_uint64("tb_in_pipe", data);
+		data = 0x000000000f;
+		data = data = (data & 0x100000000f) | (pkt_len_in_bytes << 4)|(header_len_in_words << 24);
+		write_uint64(pipe_to_send,data);
 		pkt_len_in_bytes -= 2;
-		while(pkt_len_in_bytes > 4){
-			data = 0x07aaaaaaaf;
-			write_uint64("tb_in_pipe", data);
+		int cnt = 1;
+		while(pkt_len_in_bytes>4){
+			data = (data & 0x100000000f) | (cnt << 4);
+			write_uint64(pipe_to_send,data);
+			cnt++;
 			pkt_len_in_bytes -= 4;
 		}
+		// for last packet tlast should be set to 1
+		//  tkeep should changed depending on number of
+		//   remaining bytes.
 		switch(pkt_len_in_bytes){
+			case 0: break;
 			case 1:
-				data = 0x1000000aa1;
-				write_uint64("tb_in_pipe", data);
+				data = 0x1000000cc1;
+				write_uint64(pipe_to_send, data);
 				break;
 			case 2:
-				data = 0x10000aaaa3;
-				write_uint64("tb_in_pipe", data);
+				data = 0x10000cccc3;
+				write_uint64(pipe_to_send, data);
 				break;
 			case 3:
-				data = 0x100aaaaaa7;
-				write_uint64("tb_in_pipe", data);
-		 		break;
+				data = 0x100cccccc7;
+				write_uint64(pipe_to_send, data);
+				break;
+			case 4:
+				data = 0x1ccccccccf;
+				write_uint64(pipe_to_send, data);
+				break;
 			default:
-				data = 0x1aaaaaaaaf;
-				write_uint64("tb_in_pipe", data);
-		}	
-		fprintf(stderr,"\npacket[%d] sent...",pkt_cnt);
+				fprintf(stderr,"\n__Some Error__\n");
+		}
 		pkt_cnt++;
 	}
 }DEFINE_THREAD(mac_tx);
 
 void readHeader(){
 	int pkt_cnt = 0;
-	while(pkt_cnt < 1){
+	char pipe_to_read[20];
+	sprintf(pipe_to_read,"tb_out_pipe");
+	while(1){
 		uint64_t header[207];
-	//	fprintf(stderr,"\nReading Header\n");
-		header[0] = read_uint64("tb_out_pipe");
-	//	fprintf(stderr,"\n0x%lx\n",header[0]);
-		header[1] = read_uint64("tb_out_pipe");
-	//	fprintf(stderr,"0x%lx\n",header[1]);
-		header[2] = read_uint64("tb_out_pipe");
-	//	fprintf(stderr,"0x%lx\n",header[2]);
-		header[3] = read_uint64("tb_out_pipe");
-	//	fprintf(stderr,"0x%lx\n",header[3]); 
-		int pkt_len = (header[3] >> 4 ) & 0xffff;
+		header[0] = read_uint64(pipe_to_read);
+		header[1] = read_uint64(pipe_to_read);
+		header[2] = read_uint64(pipe_to_read);
+		header[3] = read_uint64(pipe_to_read);
+		uint16_t pkt_len = (header[3] >> 4 ) & 0xffff;
 		int header_len = (header[3] >> 24)&0xf;
-		//header_len -=2
-	//	fprintf(stderr,"Packet_length = %d,Header_length = %d",pkt_len, header_len);
-		int i = 4;
-		int j;
-		while(header_len > 0){
-			header[i] = read_uint64("tb_out_pipe");
-	//		fprintf(stderr,"\n0x%lx,i=%d\n",header[i],i);
+		int i;
+		int cnt = 1;
+		for(i = 4; header_len > 0; i++,cnt++){
+			header[i] = read_uint64(pipe_to_read);
 			header_len -= 1;
-				i++;
-		} 
-		fprintf(stderr,"\nHeader[%d]:\n",pkt_cnt);
-		for(j = 0; j < i; j++){
-			fprintf(stderr,"0x%lx\t",header[j]);
+			if(((header[i] >> 4)& 0xffffffff) != cnt){
+				__err_flg = 1;
+				break;
+			}
 		}
-		fprintf(stderr,"\n");
+		if(__err_flg){
+			fprintf(stderr,"\nError in Received header : MISSMATCH\n");
+			break;
+		}
+		fprintf(stderr,"\nReceived Header[%d]",pkt_cnt);
 		pkt_cnt++;
 	}
 }DEFINE_THREAD(readHeader);
 
 void readPacket(){
 	int pkt_cnt = 0;
-	while(pkt_cnt < 1){
+	char pipe_to_read[20];
+	sprintf(pipe_to_read,"tb_out_packet_pipe");
+	while(1){
 		uint64_t packet[65535];
-	//	fprintf(stderr,"\nReading Packet\n");
-		packet[0] = read_uint64("tb_out_packet_pipe");
-	//	fprintf(stderr,"\n0x%lx\n", packet[0]);
-		packet[1] = read_uint64("tb_out_packet_pipe");	
-	//	fprintf(stderr,"\n0x%lx\n", packet[1]);	
-		packet[2] = read_uint64("tb_out_packet_pipe");	
-	//	fprintf(stderr,"\n0x%lx\n", packet[2]);	
-		packet[3] = read_uint64("tb_out_packet_pipe");	
-	//	fprintf(stderr,"\n0x%lx\n", packet[3]);
-		int pkt_len = (packet[3] >> 4 ) & 0xffff;
-		int i = 4;
-		int j;
-		while(pkt_len > 0){
-			packet[i] = read_uint64("tb_out_packet_pipe");
-			//fprintf(stderr,"\n0x%lx",packet[i]);
+		packet[0] = read_uint64(pipe_to_read);
+		packet[1] = read_uint64(pipe_to_read);
+		packet[2] = read_uint64(pipe_to_read);
+		packet[3] = read_uint64(pipe_to_read);
+		uint16_t pkt_len = (packet[3] >> 4 ) & 0xffff;
+		pkt_len -= 2;
+		int i;
+		int cnt = 1;
+		for(i = 4; pkt_len > 4; i++,cnt++){
+			packet[i] = read_uint64(pipe_to_read);
 			pkt_len -= 4;
-			i++;
+			if(((packet[i] >> 4)& 0xffffffff) != cnt){
+				__err_flg = 1;
+				break;
+			}
 		}
-		fprintf(stderr,"\nPacket[%d]:\n",pkt_cnt);
-		for(j = 0; j < i; j++){
-			fprintf(stderr,"0x%lx\t",packet[j]);
+		packet[i] = read_uint64(pipe_to_read);
+		if(__err_flg){
+			fprintf(stderr,"\nError in Received packet : MISSMATCH\n");
+			break;
 		}
-		fprintf(stderr,"\n");
+		fprintf(stderr,"\nReceived Packet[%d]",pkt_cnt);
 		pkt_cnt++;
 	}
-
 }DEFINE_THREAD(readPacket);
 
 int main(int argc, char *argv[]){
@@ -141,7 +152,6 @@ int main(int argc, char *argv[]){
 				" for no trace, stdout for stdout\n", argv[0]);
 		return(1);
 	}
-
 	FILE* fp = NULL;
 	if(strcmp(argv[1],"stdout") == 0)
 	{
@@ -155,6 +165,7 @@ int main(int argc, char *argv[]){
 			fprintf(stderr,"Error: could not open trace file %s\n", argv[1]);
 			return(1);
 		}
+		//pkt_cnt++;
 	}		
 #ifndef COMPILE_TEST_ONLY
 #ifdef AA2C

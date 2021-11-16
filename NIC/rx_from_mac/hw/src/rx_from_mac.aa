@@ -1,5 +1,5 @@
 // 
-//
+//Algorithm:
 //	Total states:
 //		Where are we in the packet.
 //		S0	S1	S2	S3	H	B
@@ -32,14 +32,14 @@
 //		read header_length words
 //		write to header_pipe, packet_pipe
 //			decrement header_length
-//		-> go to B after header_length reaches 1/0?
+//		-> go to B after header_length reaches 1 or <1?
 
 //	In B,
 //		read packet_length words
 //		write to packet_pipe
 //			decrement packet_length
 //		-> goto to S1(reset all lengths etc) after
-//			packet_length reaches 1/0?
+//			packet_length reaches 6 or <6?
 
 $constant S0: $uint<3> := 0
 $constant S1: $uint<3> := 1
@@ -258,6 +258,15 @@ $is
 		$while 1
 	}
 }
+////////////////////////////////////////////////////////
+
+// This module is a simple connection link between tb
+//	and actual hardware.
+// Reads 37 bit wide pipe(which is written by HW),
+//	convertes it to 64 bit data and writes to pipe 
+//	which tb reads to check integrity of data.
+
+////////////////////////////////////////////////////////
 $module [send_packet_to_tb] $in() $out()
 $is
 {

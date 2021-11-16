@@ -3,7 +3,7 @@ mkdir .Aa
 #link 
 AaLinkExtMem src/decls.aa src/rx_from_mac.aa |vcFormat > .Aa/rx_from_mac.linked.aa
 #aa2c model
-TOPMODULES="-T nicRxFromMacDaemon -T read_from_tb -T send_header_to_tb -T send_packet_to_tb -T rx_fifo_reader"
+TOPMODULES="-T nicRxFromMacDaemon -T read_from_tb -T send_header_to_tb -T send_packet_to_tb"
 rm -rf aa2c
 mkdir aa2c
 Aa2C $TOPMODULES .Aa/rx_from_mac.linked.aa -o aa2c/

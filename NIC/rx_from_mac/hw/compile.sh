@@ -23,7 +23,7 @@ Aa2VC -O -C .Aa/rx_from_mac.opt.aa | vcFormat > .vC/rx_from_mac.vc
 rm -rf vhdl/
 mkdir vhdl/
 vc2vhdl -U -O -v -a -C -e ahir_system -w -s modelsim $TOPMODULES -f .vC/rx_from_mac.vc
-vhdlFormat < ahir_system_global_package.unformatted_vhdl > vhdl/ahir_system_global_pakage.vhdl
+vhdlFormat < ahir_system_global_package.unformatted_vhdl > vhdl/ahir_system_global_package.vhdl
 vhdlFormat < ahir_system.unformatted_vhdl > vhdl/ahir_system.vhdl
 vhdlFormat < ahir_system_test_bench.unformatted_vhdl > vhdl/ahir_system_test_bench.vhdl
 rm -f *.unformatted_vhdl

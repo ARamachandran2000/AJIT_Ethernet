@@ -1,0 +1,8 @@
+Interfaces to MacIf on one side (receives packets).
+
+Parse packets, and store header in external memory
+and data in local memory.
+
+Wait for instructions from external world, and
+execute these instructions.
+

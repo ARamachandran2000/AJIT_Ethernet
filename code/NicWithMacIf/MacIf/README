@@ -1,0 +1,2 @@
+Rx, Tx Fifos and integrity checking.
+Interfaces to Mac on one side, and Nic on the other.

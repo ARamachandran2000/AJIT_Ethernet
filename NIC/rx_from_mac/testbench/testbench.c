@@ -23,16 +23,22 @@
 #define MAX_PACKET_LENGTH_IN_BYTES	1500
 #define MAX_HEADER_LENGTH_IN_WORDS	15
 
+#define TOTAL_PACKET_TO_BE_SENT		10
+
 int __err_flg = 0;
 
 uint64_t initial_pkts[3] = {0x0aaaaaaaaf,0x0bbbbaaaaf,0x0bbbbbbbbf};
 
+
+//
+//	Sends packets to tb_to_nic_parser pipe
+//
 void mac_tx(){
 	fprintf(stderr,"\n Sending Packets....\n");
 	char pipe_to_send[20];
-	sprintf(pipe_to_send,"tb_in_pipe");
+	sprintf(pipe_to_send,"tb_to_nic_parser");
 	int pkt_cnt = 0;
-	while(1){
+	while(pkt_cnt < TOTAL_PACKET_TO_BE_SENT ){
 		int header_len_in_words = rand()%MAX_HEADER_LENGTH_IN_WORDS;
 		header_len_in_words = (header_len_in_words < MIN_HEADER_LENGTH_IN_WORDS)? 
 						MIN_HEADER_LENGTH_IN_WORDS:header_len_in_words;
@@ -82,11 +88,15 @@ void mac_tx(){
 	}
 }DEFINE_THREAD(mac_tx);
 
+//
+//	Reads header data from nic_parser_to_tb_header pipe
+//		and checks if received data is correct.
+//
 void readHeader(){
 	int pkt_cnt = 0;
 	char pipe_to_read[20];
-	sprintf(pipe_to_read,"tb_out_pipe");
-	while(1){
+	sprintf(pipe_to_read,"nic_parser_to_tb_header");
+	while(pkt_cnt < TOTAL_PACKET_TO_BE_SENT ){
 		uint64_t header[207];
 		header[0] = read_uint64(pipe_to_read);
 		header[1] = read_uint64(pipe_to_read);
@@ -96,6 +106,10 @@ void readHeader(){
 		int header_len = (header[3] >> 24)&0xf;
 		int i;
 		int cnt = 1;
+		if(header_len<=0){
+			fprintf(stderr,"\nWrong header lenght = %d received\n",header_len);
+			__err_flg = 1;
+		}
 		for(i = 4; header_len > 0; i++,cnt++){
 			header[i] = read_uint64(pipe_to_read);
 			header_len -= 1;
@@ -113,11 +127,14 @@ void readHeader(){
 	}
 }DEFINE_THREAD(readHeader);
 
+//
+//	Reads packet data from nic_parser_to_tb_packet pipe
+//		and checks if received data is correct.
 void readPacket(){
 	int pkt_cnt = 0;
 	char pipe_to_read[20];
-	sprintf(pipe_to_read,"tb_out_packet_pipe");
-	while(1){
+	sprintf(pipe_to_read,"nic_parser_to_tb_packet");
+	while(pkt_cnt < TOTAL_PACKET_TO_BE_SENT ){
 		uint64_t packet[65535];
 		packet[0] = read_uint64(pipe_to_read);
 		packet[1] = read_uint64(pipe_to_read);
@@ -127,6 +144,10 @@ void readPacket(){
 		pkt_len -= 2;
 		int i;
 		int cnt = 1;
+		if(pkt_len<=4){
+			fprintf(stderr,"\nWrong packet length = %d received\n",pkt_len);
+			__err_flg = 1;
+		}
 		for(i = 4; pkt_len > 4; i++,cnt++){
 			packet[i] = read_uint64(pipe_to_read);
 			pkt_len -= 4;
@@ -183,4 +204,7 @@ int main(int argc, char *argv[]){
 	PTHREAD_JOIN(mac_tx);
 	PTHREAD_JOIN(readHeader);
 	PTHREAD_JOIN(readPacket);
+
+	if(!__err_flg)
+		fprintf(stderr,"\n\nSUCCESS...!!!\n\n");
 }

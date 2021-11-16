@@ -72,10 +72,8 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 			$volatile $call nextDESTMAC (LSTATE DESTMAC RX) (nDESTMAC)
 		
 			$volatile $call isWriteToHeader (LSTATE HLEN PLEN) (write_to_header)
-			//$volatile $call isWriteToPacket (LSTATE HLEN PLEN) (write_to_packet)
 			
-			$guard (write_to_header) nic_rx_to_header := RX 
-			//$guard (write_to_packet) 
+			$guard (write_to_header) nic_rx_to_header := RX  
 			nic_rx_to_packet := RX
 			$rreport(nicRxFromMaDaemon data2 write_to_header)
 			$volatile nTOTAL_STATE := ($concat nLSTATE nSRCMAC nDESTMAC nHLEN nPLEN)
@@ -85,6 +83,13 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 
 }
 
+//
+//	Returns 1 if recieved data is part of header.
+//	Algorithm :
+//		if LSTATE is B(packet)
+//			return 1
+//		else 
+//			return 0 
 $volatile $module [isWriteToHeader]
 	$in (LSTATE: $uint<3> HLEN: $uint<4> PLEN: $uint<16> )
 	$out(write_to_header: $uint<1>)
@@ -94,6 +99,12 @@ $is
 	write_to_header := ($mux header_not_available $zero<1>	$one<1>)
 }
 
+
+//
+//	Earlier thought that this will be needed.
+//	  But actually not needed as each part of 
+//	   the data should go to packet pipe.	
+//
 //$volatile $module [isWriteToPacket]
 //	$in (LSTATE: $uint<3> HLEN: $uint<4> PLEN: $uint<16>)
 //	$out(write_to_packet: $uint<1>)
@@ -103,6 +114,17 @@ $is
 //	write_to_packet := ($mux packet_remaining $one<1> $zero<1>)
 //}
 
+//
+//	Extracts source MAC address and stores it.
+//	
+//	Algorithm :
+//		if LSTATE = S1
+//			SRCMAC[15:0]= RX[35:20]
+//		else if LSTATE = S2
+//			SRCMAC[47:16] = RX[35:4]
+//		else
+//			SRCMAC = SRCMAC
+//
 $volatile $module [nextSRCMAC]
 	$in (LSTATE: $uint<3> SRCMAC: $uint<48> RX: $uint<37>)
 	$out(nSRCMAC: $uint<48>)
@@ -116,7 +138,17 @@ $is
 			S2_state ($concat ($slice RX 35 4) ($slice SRCMAC 15 0))
 			not_both SRCMAC)
 }
-
+//
+//	Extracts destination MAC address and stores it.
+//	
+//	Algorithm :
+//		if LSTATE = S0
+//			DESTMAC[31:0]= RX[35:4]
+//		else if LSTATE = S1
+//			DESTMAC[47:32] = RX[19:4]
+//		else
+//			DESTMAC = DESTMAC
+//
 $volatile $module [nextDESTMAC]
         $in (LSTATE: $uint<3> DESTMAC: $uint<48> RX: $uint<37>)
         $out(nDESTMAC: $uint<48>)
@@ -131,13 +163,29 @@ $is
 			not_both DESTMAC)
 }
 
+//
+//	This module finds out next state and modified lengths.
+//
+//	Algorithm :
+//		LSTATE = S0 	=> nLSTATE = S1
+//		LSTATE = S1 	=> nLSTATE = S2
+//		LSTATE = S2 	=> nLSATET = S3
+//		LSTATE = S3 	=> nLSTATE = H,	HLEN = RX[27:24], PLEN = RX[19:4]
+//		HLEN > 1	=> nLSTATE = H,	HLEN -= 1, PLEN -= 4
+//		HLEN < 1	=>
+//				LSTATE = H =>	nLSTATE = B, PLEN -= 4
+//				PLEN > 6   =>	nLSTATE = B, PLEN -= 4
+//		LSTATE = B &
+//		 PLEN < 6	=> nLSTATE = S0 
+//		
+//
 $volatile $module [nextLSTATE] 
 	$in (RX: $uint<37> LSTATE: $uint<3> HLEN: $uint<4> PLEN: $uint<16>)
 	$out(nLSTATE: $uint<3> nHLEN: $uint<4> nPLEN: $uint<16>)
 $is
 {
-	$volatile n_state_is_B := (((LSTATE == H) | (PLEN > 2)) & (HLEN <= 1)) // can be zero lets decide later
-	$volatile n_state_is_S0 := ((LSTATE == B) & (PLEN <= 2))
+	$volatile n_state_is_B := (((LSTATE == H) | (PLEN > 6)) & (HLEN <= 1))
+	$volatile n_state_is_S0 := ((LSTATE == B) & (PLEN <= 6))
 	nLSTATE := ($excmux 
 			(LSTATE == S0)			S1
 			(LSTATE == S1)			S2
@@ -150,168 +198,20 @@ $is
 			($mux	(LSTATE == S3)
 				($slice RX 27 24)
 				(HLEN - 1)) 
-			HLEN)
+			($mux n_state_is_S0 
+				$zero<4>
+				HLEN))
 	$volatile B_state := (nLSTATE == B)
 	nPLEN := ($mux (B_state | H_state)
 			($mux	(LSTATE == S3)
 				($slice RX 19 4)
 				(PLEN - 4)) 
-			PLEN)
+			($mux n_state_is_S0
+				$zero<16>
+				PLEN))
+			
 	
 }
-
-$module [rx_fifo_reader] $in() $out()
-$is
-{
-
-$branchblock[pckt_good_check_fast]
-{
-
-	
-	$merge $entry loopback $endmerge
-
-		$call load_buffer1 () (last_written_pointer_1 packet_status_1)
-		//$rreport (rx_fifo_reader packet_status_1 packet_status_1)
-		$guard (packet_status_1)
-			$call send_to_nic1 (last_written_pointer_1) ()
-
-
-		$call load_buffer2 () (last_written_pointer_2 packet_status_2)
-		//$rreport (rx_fifo_reader packet_status_2 packet_status_2)
-		$guard (packet_status_2)
-			$call send_to_nic2 (last_written_pointer_2) ()
-				 
-
-	$place [loopback]
-
-}
-
-}
-
-
-
-$module [send_to_nic1] $in(buf_ptr : $uint<10>) $out()
-$is
-{
-
-//$rreport (send_to_nic1 sending_nic1 buf_ptr)
-	
-$branchblock [main] 
-{
-	
-	$dopipeline $depth 5 $fullrate
-		$merge $entry $loopback
-			$phi I := $zero<10> $on $entry num $on $loopback
-		$endmerge
-		mac_to_nic_data := buffer_1[I]
-		$volatile num := (I+1)
-		//$rreport (send_to_nic1 num_val num)
-	$while(num<buf_ptr)
-
-}
-}
-
-$module [send_to_nic2] $in(buf_ptr : $uint<10>) $out()
-$is
-{
-
-//$rreport (send_to_nic2 sending_nic2 buf_ptr)
-	
-$branchblock [main] 
-{
-	$dopipeline $depth 5 $fullrate
-		$merge $entry $loopback
-			$phi I := $zero<10> $on $entry num $on $loopback
-		$endmerge
-		mac_to_nic_data := buffer_2[I]
-		$volatile num := (I+1)
-		//$rreport (send_to_nic2 num_val out_data)
-	$while(num<buf_ptr)
-
-}
-}
-
-
-
-$module [load_buffer1] $in () $out(next_buf_ptr_out:$uint<10> pckt_status : $uint<1>) 
-$is
-{
-$branchblock[pckt_good_check_fast]
-{
-	$dopipeline $depth 7 $fullrate 
-		$merge $entry $loopback
-			$phi intm_data := mac_data $on $entry mac_data $on $loopback 
-			   
-			$phi buf_ptr := $zero<10> $on $entry next_buf_ptr $on $loopback
-							
-		$endmerge
-	
-	
-	$volatile $split (intm_data 1 32 4) (tlast tdata tkeep)
-
-	$volatile bad_packet := (((tlast == 1) & (tdata == _hFFFFFFFF)) & (tkeep == 0))
-	
-	$volatile good_packet := ((tlast == 1) & (tkeep != 0))
-	
-	
-	buffer_1[buf_ptr] := intm_data
-	
-	 
-	$volatile next_buf_ptr := (buf_ptr + 1)
-	//$rreport (load_buffer1 fill_buffer_val fill_buffer)
-	//$rreport (load_buffer1 got_data tlast)
-	$while (tlast == 0)
-
-
-$volatile next_buf_ptr_out := next_buf_ptr
-
-$volatile pckt_status := ($prioritymux good_packet $one<1>
-			  	       bad_packet $zero<1> 
-				       $default $zero<1>)
- 
-}
-
-} 
-
-
-
-$module [load_buffer2] $in () $out(next_buf_ptr_out:$uint<10> pckt_status : $uint<1>) 
-$is
-{
-$branchblock[pckt_good_check_fast]
-{
-	$dopipeline $depth 7 $fullrate 
-		$merge $entry $loopback
-			$phi intm_data := mac_data $on $entry mac_data $on $loopback 
-						   
-			$phi buf_ptr := $zero<10> $on $entry next_buf_ptr $on $loopback
-							
-		$endmerge
-	
-	
-	$volatile $split (intm_data 1 32 4) (tlast tdata tkeep)
-
-	$volatile bad_packet := (((tlast == 1) & (tdata == _hFFFFFFFF)) & (tkeep == 0))
-	
-	$volatile good_packet := ((tlast == 1) & (tkeep != 0))
-	
-	
-	buffer_2[buf_ptr] := intm_data
-	
-	$volatile next_buf_ptr := (buf_ptr + 1)
-		
-	
-	$while (tlast == 0)
-
-
-$volatile next_buf_ptr_out := next_buf_ptr
-
-$volatile pckt_status := ($prioritymux good_packet $one<1>
-			  	       bad_packet $zero<1> 
-				       $default $zero<1>)
- 
-}
-}  
 
 
 
@@ -330,10 +230,10 @@ $is
 	$branchblock[loop]{
 		$dopipeline $depth 7 $fullrate
 			$merge $entry $loopback
-				$phi idata := tb_in_pipe $on $entry,$loopback
+				$phi idata := tb_to_nic_parser $on $entry,$loopback
 			$endmerge
 			send_data  := ($slice idata 36 0)
-			mac_data := send_data
+			mac_to_nic_data := send_data
 		$while 1
 	}
 }
@@ -354,7 +254,7 @@ $is
 			$merge $entry $loopback
 				$phi rhdata := nic_rx_to_header $on $entry, $loopback
 			$endmerge
-			tb_out_pipe := ($bitcast ($uint<64>) rhdata)	
+			nic_parser_to_tb_header := ($bitcast ($uint<64>) rhdata)	
 		$while 1
 	}
 }
@@ -366,7 +266,7 @@ $is
 			$merge $entry $loopback
 				$phi rpdata := nic_rx_to_packet $on $entry, $loopback
 			$endmerge
-			tb_out_packet_pipe := ($bitcast ($uint<64>) rpdata)
+			nic_parser_to_tb_packet := ($bitcast ($uint<64>) rpdata)
 		$while 1
 	}
 }

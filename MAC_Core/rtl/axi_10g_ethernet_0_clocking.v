@@ -28,31 +28,8 @@
 // reasonably foreseeable or Xilinx had been advised of the
 // possibility of the same.
 //
-// CRITICAL APPLICATIONS
-// Xilinx products are not designed or intended to be fail-
-// safe, or for use in any application requiring fail-safe
-// performance, such as life-support or safety devices or
-// systems, Class III medical devices, nuclear facilities,
-// applications related to the deployment of airbags, or any
-// other applications that could lead to death, personal
-// injury, or severe property or environmental damage
-// (individually and collectively, "Critical
-// Applications"). Customer assumes the sole risk and
-// liability of any use of Xilinx products in Critical
-// Applications, subject only to applicable laws and
-// regulations governing limitations on product liability.
-//
-// THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
-// PART OF THIS FILE AT ALL TIMES.
-// ----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-// Title      : Example Design clocking module
-// Project    : 10G Gigabit Ethernet
-//-----------------------------------------------------------------------------
-// File       : axi_10g_ethernet_0_clocking.v
-// Author     : Xilinx Inc.
-//-----------------------------------------------------------------------------
-// Description:  This is the clocking module for the example design logic of
+
+// Description:  This is the clocking module for the  design logic of
 //               the 10G Gigabit Ethernet core
 //-----------------------------------------------------------------------------
 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="axi_10g_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="axi_10g_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="15491799000fs"></ZoomStartTime>
+      <ZoomEndTime time="15508179001fs"></ZoomEndTime>
+      <Cursor1Time time="15498945000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="245"></NameColumnWidth>
+      <ValueColumnWidth column_width="142"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="22" />
+   <wvobject type="logic" fp_name="/axi_10g_tb/pipe_write_ack">
+      <obj_property name="ElementShortName">pipe_write_ack</obj_property>
+      <obj_property name="ObjectShortName">pipe_write_ack</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/pipe_write_req">
+      <obj_property name="ElementShortName">pipe_write_req</obj_property>
+      <obj_property name="ObjectShortName">pipe_write_req</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/pipe_write_data">
+      <obj_property name="ElementShortName">pipe_write_data[36:0]</obj_property>
+      <obj_property name="ObjectShortName">pipe_write_data[36:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/rx_axis_mac_tdata">
+      <obj_property name="ElementShortName">rx_axis_mac_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/rx_axis_mac_tkeep">
+      <obj_property name="ElementShortName">rx_axis_mac_tkeep[3:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tkeep[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/rx_axis_mac_tvalid">
+      <obj_property name="ElementShortName">rx_axis_mac_tvalid</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/rx_axis_mac_tuser">
+      <obj_property name="ElementShortName">rx_axis_mac_tuser</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tuser</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/rx_axis_mac_tlast">
+      <obj_property name="ElementShortName">rx_axis_mac_tlast</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_mac_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/rx_axis_tdata">
+      <obj_property name="ElementShortName">rx_axis_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/rx_axis_tkeep">
+      <obj_property name="ElementShortName">rx_axis_tkeep[3:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tkeep[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/rx_axis_tvalid">
+      <obj_property name="ElementShortName">rx_axis_tvalid</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/rx_axis_tuser">
+      <obj_property name="ElementShortName">rx_axis_tuser</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tuser</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/rx_axis_tlast">
+      <obj_property name="ElementShortName">rx_axis_tlast</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/fifo">
+      <obj_property name="ElementShortName">fifo[127:0][36:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo[127:0][36:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/fifo_data">
+      <obj_property name="ElementShortName">fifo_data[36:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_data[36:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/data_valid">
+      <obj_property name="ElementShortName">data_valid</obj_property>
+      <obj_property name="ObjectShortName">data_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/rx_axis_resetn">
+      <obj_property name="ElementShortName">rx_axis_resetn</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_resetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/fifo_full">
+      <obj_property name="ElementShortName">fifo_full</obj_property>
+      <obj_property name="ObjectShortName">fifo_full</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/fifo_pos_front">
+      <obj_property name="ElementShortName">fifo_pos_front[6:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_pos_front[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/fifo_pos_rear">
+      <obj_property name="ElementShortName">fifo_pos_rear[6:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_pos_rear[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/axi_10g_tb/dut/fifo_block_i/mac_fifo/axi_fifo_top_block_i/rx_fifo_0/inst/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+</wave_config>

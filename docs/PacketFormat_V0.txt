@@ -1,0 +1,24 @@
+
+	AJIT system core memory interface protocol
+
+1.  Request packet:
+	A 110-bit format.
+	
+	Request[109:0]
+		Request[109]  = lock-bit
+		Request[108]  = read/write-bar 
+		Request[107:100] = byte mask
+			write data is organized as 8-bytes. if bit 7 (MSb) of byte-mask
+			is set, the top byte of write data is written, else not.
+		Request[99:64] = address (36-bit)
+		Request[63:0]  = write-data.
+
+	
+2.  Response packet:
+	A 65-bit format.
+
+		Response[64] = Error
+		Response[63:0] = read-data
+
+
+3. For every request packet, there is a response.

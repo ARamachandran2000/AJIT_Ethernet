@@ -28,7 +28,7 @@
 int __err_flg = 0;
 
 uint64_t initial_pkts[3] = {0x0aaaaaaaaf,0x0bbbbaaaaf,0x0bbbbbbbbf};
-
+//pkt_cnt < TOTAL_PACKET_TO_BE_SENT 
 
 //
 //	Sends packets to tb_to_nic_parser pipe
@@ -38,7 +38,7 @@ void mac_tx(){
 	char pipe_to_send[20];
 	sprintf(pipe_to_send,"tb_to_nic_parser");
 	int pkt_cnt = 0;
-	while(pkt_cnt < TOTAL_PACKET_TO_BE_SENT ){
+	while(1){
 		int header_len_in_words = rand()%MAX_HEADER_LENGTH_IN_WORDS;
 		header_len_in_words = (header_len_in_words < MIN_HEADER_LENGTH_IN_WORDS)? 
 						MIN_HEADER_LENGTH_IN_WORDS:header_len_in_words;
@@ -96,7 +96,7 @@ void readHeader(){
 	int pkt_cnt = 0;
 	char pipe_to_read[20];
 	sprintf(pipe_to_read,"nic_parser_to_tb_header");
-	while(pkt_cnt < TOTAL_PACKET_TO_BE_SENT ){
+	while(1){
 		uint64_t header[207];
 		header[0] = read_uint64(pipe_to_read);
 		header[1] = read_uint64(pipe_to_read);
@@ -134,7 +134,7 @@ void readPacket(){
 	int pkt_cnt = 0;
 	char pipe_to_read[20];
 	sprintf(pipe_to_read,"nic_parser_to_tb_packet");
-	while(pkt_cnt < TOTAL_PACKET_TO_BE_SENT ){
+	while(1){
 		uint64_t packet[65535];
 		packet[0] = read_uint64(pipe_to_read);
 		packet[1] = read_uint64(pipe_to_read);

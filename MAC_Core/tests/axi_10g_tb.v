@@ -84,8 +84,8 @@ module axi_10g_tb();
 
 /////////////////AHIR Pipe Signals//////////////////////////////////
 
-reg pipe_write_ack; //input
-wire [31:0] pipe_write_data; //output
+reg pipe_write_ack = 1; //input
+wire [36:0] pipe_write_data; //output
 wire pipe_write_req;      //output
 reg read_pipe_ack;        //input
 reg [36:0]read_pipe_data; //input
@@ -540,11 +540,11 @@ parameter TB_MODE = "DEMO_TB";
         .txn                    (txn),
         .rxp                    (rxp_dut),
         .rxn                    (rxn_dut),
-        .pipe_write_ack(pipe_write_ack),
+        .pipe_write_ack(read_pipe_req),
         .pipe_write_data(pipe_write_data),
         .pipe_write_req(pipe_write_req),
-        .read_pipe_ack(read_pipe_ack),
-        .read_pipe_data(read_pipe_data),
+        .read_pipe_ack(pipe_write_req),
+        .read_pipe_data(pipe_write_data),
         .read_pipe_req(read_pipe_req)
      );
 

@@ -10,7 +10,7 @@
  AXI-s Interface :
  
  tx_axis_resetn --> Output
- tx_axis_tdata[31:0] --> Output
+ tx_axis_tdata[36:0] --> Output
  tx_axis_tkeep[3:0] --> Output
  tx_axis_tvalid --> Output
  tx_axis_tuser  --> Output
@@ -76,7 +76,7 @@ module tx_fifo(clk,
     
     
     
-    assign read_pipe_req = (req_reg == 1) ? clk : 0;
+    assign read_pipe_req = (req_reg == 1) ? 1 : 0;
     
     /////////////////////////////////////////////Reset Logic//////////////////////////////////////////////////
     always@(posedge clk)

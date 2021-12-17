@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="clk_wiz_0_synth_1" LaunchDir="/home/madhav/AjitSystemsRepo/ajit_systems_repository/boards/standalone_navic_without_adc/ip/ClkWiz80MHz/ClockingWizFor80MHz/ClockingWizFor80MHz.runs/clk_wiz_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+</Runs>
+

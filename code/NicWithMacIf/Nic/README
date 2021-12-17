@@ -1,8 +1,44 @@
-Interfaces to MacIf on one side (receives packets).
+Algorithm
 
-Parse packets, and store header in external memory
-and data in local memory.
+getFreeBufferDaemon()
+------------------
+	last_buf = 15
+	while(1) {
+		// see if last_buf + 1 is free..
+		buf  = getFreeBuffer (last_buf)
+		noblock_rx_free_buffer := ($concat $one<1> buf)
+		last_buf = buf
+	}
 
-Wait for instructions from external world, and
-execute these instructions.
+getCompletedBufferDaemon()
+------------------
+	last_buf = 15
+	while(1) {
+		buf, drop = getCompletedBuffer (last_buf)
+		rx_completed_buffer :=  buf,drop
+		buf = last_buf
+	}
+
+ReceiverDaemon
+---------------
+	while(1)
+	{
+		buf_ok, buf := noblock_rx_free_buffer
+		processPacketFromMac(buf, buf_ok)
+		setFullBit(buf, ...)
+	}
+
+
+SenderDaemon
+--------------
+	while(1)
+	{
+		buf, drop = rx_completed_buffer
+		----------------------
+		$guard (~drop)
+			sendPacketToMac (buf)
+		----------------------
+		clearBits(buf)
+		last_buf = buf
+	}
 

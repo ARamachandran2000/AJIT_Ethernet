@@ -25,11 +25,11 @@ $pipe response_pipe  : $uint<65>  $depth 128
 $pipe eth_header     : $uint<73>  $depth   5
 $pipe eth_payload    : $uint<73>  $depth 128
 
-$constant THREE: $uint<12> := 3
+$constant THREE: $uint<11> := 3
 $constant Y_LIMIT : $uint<12> := 1544
 $constant BUFFER_OFFSET : $uint<36> := 0
 
-$module [checkEmptyBuf]
+$volatile $module [checkEmptyBuf]
     $in (buf_index : $uint<9>)
     $out(done : $uint<1>)
 
@@ -42,7 +42,7 @@ $module [checkEmptyBuf]
             $endmerge
 
          	$volatile $call addr_gen (buf_index 0) (mem_addr) 
-            request_data := ($concat $zero<1> $one<1> ($bitcast ($uint<8>) _hff) mem_addr ($bitcast ($uint<64>) _h0000000000000000)) $mark WAIT
+            request_data := ($concat zero<1> one<1> _hff mem_addr _h0000000000000000) $mark WAIT
 
 			// Wait 30 clock cycles between requests            
 
@@ -56,7 +56,7 @@ $module [checkEmptyBuf]
                 $place [loopback] // put token in place "loopback"
             $endif
 
-            done := $zero<1>
+            done := ( $mux (isBufEmpty)  (one<1>) (zero<1>))
 
         }
 
@@ -73,7 +73,7 @@ $module [checkEmptyBuf]
 // Outputs : New Buffer Index (based on bad packet status)
 
 
-$module [getBufLocation] 
+$volatile $module [getBufLocation] 
     $in(bad_packet_status : $uint<1>
         prev_buffer_index : $uint<9> )
     
@@ -97,7 +97,7 @@ $module [getBufLocation]
 
 // Outputs : header_write_done
 
-$module [write_eth_header_to_mem]
+$volatile $module [write_eth_header_to_mem]
 	$in(buffer_index : $uint<9>)
 	$out(header_write_done : $uint<1>)
 $is
@@ -105,14 +105,14 @@ $is
 	$volatile $call addr_gen (buffer_index 1) (mem_addr1) 
 	data1 := eth_header
 	$split (data1 1 64 8)(tlast1 tdata1 tkeep1)
-	$volatile req_1 := ($concat $zero<1> $one<1> tkeep1 mem_addr1 tdata1 )
+	$volatile req_1 := ($concat zero<1> one<1> tkeep1 mem_addr1 tdata1 )
 	request_pipe := req_1
 	//response1 := response_pipe
 	
 	$volatile $call addr_gen (buffer_index 2) (mem_addr2) 
 	data2 := eth_header
 	$split (data2 1 64 8)(tlast2 tdata2 tkeep2)
-	$volatile req_2 := ($concat $zero<1> $one<1> tkeep2 mem_addr2 tdata2 )
+	$volatile req_2 := ($concat zero<1> one<1> tkeep2 mem_addr2 tdata2 )
 	request_pipe := req_2
 	//response2 := response_pipe
 	
@@ -127,12 +127,12 @@ $is
 
 // Outputs : done
 
-$module [write_eth_payload_to_mem]
+$volatile $module [write_eth_payload_to_mem]
 	$in(buffer_index : $uint<9>)
-	$out(end_y_index:$uint<12> done : $uint<1> bad_packet : $uint<1> last_keep : $uint<8>)
+	$out(end_y_index:$uint<12> done, bad_packet : $uint<1> last_keep : $uint<8>)
 $is
 {
-	$branchblock[main]
+	$barnchblock[main]
 	{
 		$merge $entry loopback
 			$phi y_index := THREE $on $entry y_next $on loopback
@@ -141,13 +141,13 @@ $is
 		$volatile $call addr_gen (buffer_index y_index) (mem_addr) 
 		data := eth_payload
 		$split (data 1 64 8) (tlast tdata tkeep)
-		$volatile req := ($concat $zero<1> $one<1> tkeep mem_addr tdata)
+		$volatile req := ($concat $zero<1> $one<1> tkeep mem_adder tdata)
 		request_pipe := req
 		
 		//resp := response_pipe
 		y_next :=  (y_index + 1)
 		
-		$if(~tlast) $then
+		$if(~t_last) $then
 			$place[loopback]
 		$endif
 		
@@ -173,16 +173,13 @@ $is
 // Outputs : mem_addr
 
 $volatile $module [addr_gen]
-	$in(buffer_index : $uint<9> y_index : $uint<12>)
+	$in(buffer_index : $uint<9> y_index : $uint<11>)
 	$out(mem_addr : $uint<36>)
 $is
 {
 	// Need to review this as there may some issues
 	// of size missmatch.
-	buf_index_cast := ($bitcast ($uint<12>) buffer_index)
-	intm_calc := ((buf_index_cast * Y_LIMIT) + (y_index * 8))
-	intm_calc_cast := ($bitcast ($uint<36>) intm_calc)
-	mem_addr := (BUFFER_OFFSET + intm_calc_cast)
+	mem_addr := ((BUFFER_OFFSET + (buffer_index * Y_LIMIT)) + (y_index * 8))
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,11 +200,10 @@ $volatile $module [calc_next_state]
 
     $is
     {
-	cond_1 := ((curr_state == S0) & ((done_0 == 1) | (BAD_PACKET == 1)))
-	cond_2 := ((curr_state == S1) & done_1)
-	cond_3 := ((curr_state == S2) & done_2)
-
-        next_state := ($excmux cond_1 S1 cond_2 S2 cond_3 S0)
+        next_state := ($excmux
+                ((curr_state == S0) & ((done_0 == 1) | (BAD_PACKET == 1))   S1
+                ((curr_state == S1) & done_1)   							S2
+                ((curr_state == S2) & done_2)   							S0)
 
     }
 
@@ -215,7 +211,7 @@ $volatile $module [calc_next_state]
 
 
 
-$module [writeFlag]
+$volatile $module [writeFlag]
 	$in(buf_index : $uint<9> 
 		packet_status : $uint<1> // 1 bad packet 0 good
 		y_index : $uint<12>
@@ -225,18 +221,16 @@ $module [writeFlag]
 $is
 {
 
-	flag_data :=  ($bitcast ($uint<8>) _b10000000)
-	flag := ($mux packet_status  $zero<8> flag_data)
-
+	flag := ( $mux (packet_status)  (zero<8>) (_b10000000))
 	$volatile $call addr_gen (buf_index 0) (mem_addr)
 
-	request_data := ($concat ($bitcast ($uint<36>)_h000000000) y_index last_keep flag)
+	request_data := ($concat _h000000000 y_index last_keep flag)
 
-	request_pipe :=  ($concat $zero<1> $zero<1> ($bitcast ($uint<8>) _hff) mem_addr request_data) $mark REQUEST
+	request_pipe :=  ($concat $zero<1> $zero<1> _hff mem_adder request_data) $mark REQUEST
 
 	response_data := response_pipe $synch (REQUEST)
 
-	done_2 := $zero<1>
+	done_2 := one<1>
 	
 	
 }
@@ -254,37 +248,30 @@ $module [receiverDaemon] $in () $out () $is
 			$phi buf_index := $zero<9> $on $entry new_buffer_index $on $loopback
 		$endmerge
 
-     		state0_cond_1 := (curr_state_main == S0)       
-		$guard(state0_cond_1)
-			$call getBufLocation (BAD_PACKET buf_index) (new_buffer_index)
             
-		state0_cond2 := ((curr_state_main == S0) & (~BAD_PACKET))
-		$guard (state0_cond2)
-			$call checkEmptyBuf (new_buffer_index) (done_0)
+		$guard(curr_state_main == S0)
+			$volatile $call getBufLocation (BAD_PACKET buf_index) (new_buffer_index)
+            
+		$guard ((curr_state_main == S0) & (~BAD_PACKET))
+			$volatile $call checkEmptyBuf (new_buffer_index) (done_0)
             
 
 		// State 1 here
-		state1_cond1 := (curr_state_main == S1)		
-		$guard(state1_cond1)
-			$call write_eth_header_to_mem (buf_index) (header_write_done_1)
-
-		a := (curr_state_main == S1)
-		b := header_write_done_1
-
-		state1_cond2 := (a & b)
+		$guard(curr_state_main == S1)
+			$volatile $call write_eth_header_to_mem (buf_index) (header_write_done_1)
 		
-		$guard(state1_cond2)
-			$call write_eth_payload_to_mem (buf_index) (end_y_index done_1 bad_packet_prev last_keep)	
+		$guard((curr_state_main == S1) & (header_write_done_1))
+			$volatile $call write_eth_payload_to_mem (buf_index) (end_y_index done_1 bad_packet_prev last_keep)	
 
-		state2_cond := (curr_state_main == S2)
+
 		// State 2 here
-		$guard (state2_cond)
-			$call writeFlag (buf_index BAD_PACKET end_y_index last_keep) (done_2)
+		$guard (curr_state_main == S2)
+			$volatile $call writeFlag (buf_index BAD_PACKET end_y_index last_keep) (done_2)
 		
 
 		//Calculate Next State
 
-		$volatile $call calc_next_state (BAD_PACKET done_0 done_1 done_2 curr_state_main) (next_state)
+		$call calc_next_state (BAD_PACKET done_0 done_1 done_2 curr_state_main) (next_state)
 
 		$while 1
 	}

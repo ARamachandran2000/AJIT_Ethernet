@@ -1,0 +1,220 @@
+$constant S0: $uint<2> := 0 // Check for processed Buffer
+$constant S1: $uint<2> := 1 // Read Packet from Memory
+$constant S2: $uint<2> := 2 // Reset Flag Status
+
+
+$pipe request_pipe   : $uint<110> $depth 128  
+$pipe response_pipe  : $uint<65>  $depth 128  
+
+$pipe transmit_pipe : $uint<73> $depth 128
+
+$constant THREE: $uint<11> := 3
+$constant Y_LIMIT : $uint<12> := 1544
+$constant BUFFER_OFFSET : $uint<36> := 0
+
+
+$volatile $module [addr_gen]
+	$in(buffer_index : $uint<9> y_index : $uint<12>)
+	$out(mem_addr : $uint<36>)
+    $is
+    {
+
+        buf_index_cast := ($bitcast ($uint<12>) buffer_index)
+        intm_calc := ((buf_index_cast * Y_LIMIT) + (y_index * 8))
+        intm_calc_cast := ($bitcast ($uint<36>) intm_calc)
+        mem_addr := (BUFFER_OFFSET + intm_calc_cast)
+    }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$volatile $module [calc_next_state]
+    $in (
+		 done_0 : $uint<1>
+         done_1 : $uint<1>
+         done_2 : $uint<1>
+         curr_state : $uint<2>)
+    
+    $out (next_state : $uint<2>)
+
+    $is
+    {
+	cond_1 := ((curr_state == S0) & (done_0 == 1)) 
+	cond_2 := ((curr_state == S1) & (done_1 == 1))
+	cond_3 := ((curr_state == S2) & (done_2 == 1))
+
+    next_state := ($excmux cond_1 S1 cond_2 S2 cond_3 S0)
+
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+$module [clearFlag]
+	$in(buf_index : $uint<9>)
+	$out(done_2 : $uint<1>)
+$is
+{
+
+	flag_data :=  $zero<8>
+	$volatile $call addr_gen (buf_index 0) (mem_addr)
+
+	request_data := ($concat $zero<36> $zero<12> $zero<8> flag_data)
+
+	request_pipe :=  ($concat $zero<1> $zero<1> ($bitcast ($uint<8>) _hff) mem_addr request_data) $mark REQUEST
+
+	response_data := response_pipe $synch (REQUEST)
+
+	done_2 := $zero<1>
+	
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+$module [checkProcessedBuf]
+    $in (buf_index : $uint<9>)
+    $out(done : $uint<1> 
+         tkeep_last : $uint<8>
+         last_y_index : $uint<12> )
+
+    $is
+    {
+        $branchblock [main]
+        {
+            $merge $entry loopback
+            $endmerge
+
+         	$volatile $call addr_gen (buf_index 0) (mem_addr) 
+            request_data := ($concat $zero<1> $one<1> ($bitcast ($uint<8>) _hff) mem_addr $zero<64>) $mark WAIT
+
+			// Wait 30 clock cycles between requests            
+            request_pipe := request_data $delay (WAIT 30)
+            
+            response_data := response_pipe
+			flag := ($slice response_data 7 0)
+            XMIT := (flag == _b11010000)
+
+            $if (~XMIT) $then
+                $place [loopback] // put token in place "loopback"
+            $endif
+
+            done := $zero<1>
+            tkeep_last := ($slice response_data 15 8)
+            last_y_index := ($slice response_data 27 16)
+
+        }
+
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+$module [transmitPacket]
+    $in (buf_index : $uint<9>
+         tkeep_last : $uint<8>
+         last_y_index : $uint<12>)
+    $out (done_1 : $uint<1>)
+
+    $is
+        {
+            $branchblock [main]
+            {
+                $merge $entry loopback error_read
+			        $phi y_index := THREE $on $entry 
+                                    y_next $on loopback 
+                                    y_index $on error_read
+		        $endmerge
+
+                $volatile $call addr_gen (buffer_index y_index) (mem_addr)
+
+                $volatile req := ($concat $zero<1> $one<1> ($bitcast ($uint<8>) _hff) mem_addr $zero<64>)
+
+                request_pipe := req
+
+                response_data := response_pipe
+
+                error_flag := (response_data [] 64)
+
+                $guard (error_flag)
+                    $place [error_read]
+
+                data := $slice (response_data 63 0)
+
+                $if(y_index == last_y_index) $then
+                    transmit_pipe := $concat($zero<1> tkeep_last data)
+                $else                    
+                    transmit_pipe := $concat($zero<1> ($bitcast ($uint<8>) _hff) data)
+                $endif
+                
+                y_next := y_index + 1
+
+                $if(y_next <= last_y_index) $then
+                    $place [loopback]
+                $endif
+
+
+                done_1 := $one<1>
+            }
+        }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$module [transmitDaemon] $in () $out () $is
+{
+	$branchblock[main]
+	{
+		$dopipeline $depth 7 $fullrate
+		$merge $entry $loopback
+			$phi curr_state_main := S0 $on $entry next_state $on $loopback
+			$phi buf_index := $zero<9> $on $entry new_buffer_index $on $loopback
+		$endmerge
+
+     		state0_cond := (curr_state_main == S0)       
+		$guard(state0_cond_1)
+			new_buffer_index := buf_index + 1
+            
+		$guard (state0_cond)
+			$call checkProcessedBuf (new_buffer_index) (done_0 tkeep_last last_y_index)
+            
+
+		// State 1 here
+		state1_cond1 := (curr_state_main == S1)		
+		$guard(state1_cond1)
+			$call transmitPacket (buf_index tkeep_last last_y_index) (done_1)
+
+
+		state2_cond := (curr_state_main == S2)
+		// State 2 here
+		$guard (state2_cond)
+			$call clearFlag (buf_index) (done_2)
+		
+
+		//Calculate Next State
+
+		$volatile $call calc_next_state (done_0 done_1 done_2 curr_state_main) (next_state)
+
+		$while 1
+	}
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

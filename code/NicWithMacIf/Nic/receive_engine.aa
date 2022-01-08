@@ -12,6 +12,77 @@
 // Notes : If it is a bad packet then next packet can be loaded in the same location i.e no need to send
 // request to memory.
 
+
+/*
+
+State 0 :
+
+	repeat
+		1. Find empty buffer by reading flag buffer
+		if flag == 8'd0
+			buf <- i
+			goto State 1
+
+		else
+			continue
+
+	endrepeat
+
+
+State 1 :
+	Set x <- buf and y <- 0
+	repeat
+	1. Read from header pipe and payload pipe (one after other)
+	2. Extract data ,tlast ,tkeep information from the 73-bit quantity
+	3. Calculate address to write to based on the x,y index
+	4. if not tlast
+	Package the data into the 110-bit data format with byte mask as 0xFF
+	Increment y and continue
+	5. else
+	Package the data into the 110-bit data format with byte mask set to tkeep
+	break and goto State 2
+	endrepeat
+
+
+State 2 :
+procedure
+control_word = {36’b0 + y + tkeep + 8-bit flag}
+1. Check if the last written word has the bad packet format
+2. if yes
+	Don’t set MSB flag bit in the control word
+3. else
+	Set MSB of flag bit
+
+4. Send 64-bit Control word to flag buffer index x
+	Go back to State 1
+
+endprocedure
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //////////////////////////////////Global Variables//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 $constant S0: $uint<2> := 0 // Empty Buffer Finding state

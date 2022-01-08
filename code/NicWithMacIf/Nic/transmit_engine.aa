@@ -1,4 +1,37 @@
 //
+/*
+
+State 0 :
+	1. Send a read request at ith flag buffer and check the flag bits to see if the CPU has processed the packet.
+	if flag == 11XX
+	
+	goto State 1
+
+	else
+	wait
+
+State 1 :
+1. Check DROP and TX bits in the flag.
+if flag[0] = 1 // TX
+1. Start reading ith buffer until last.
+2. Package the 64-bit quantity into a 73-bit word and send to TX_FIFO
+3. Until the last word, tkeep for both chunks is 0xFF and tlast = 0.
+
+	For last word set tkeep to value in the control buffer and tlast = 1.
+.
+	elsif flag[1] = 1 // DROP
+	discard packet, do nothing
+
+goto State2
+
+State 2 : 
+
+	Send a write request to reset the flag bits ([3:0])
+	Increment i and go back to State 0
+
+
+*/
+
 $constant S0: $uint<2> := 0 // Check for processed Buffer
 $constant S1: $uint<2> := 1 // Read Packet from Memory
 $constant S2: $uint<2> := 2 // Reset Flag Status

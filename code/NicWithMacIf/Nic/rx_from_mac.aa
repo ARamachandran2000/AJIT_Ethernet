@@ -5,33 +5,20 @@
 //		send to payload pipe
 //		goto S1
 //	S1 ->	RX := pipe
-//		payload length := RX[47:32]
 //		send to header pipe (tkeep := 00111111)
 //		send to payload pipe
-//		Payload_length = payload_length - 2
 //		goto S2
 //	S2 ->	RX := pipe
-//		if(payload_length > 8)
-//			send to payload pipe
-//			Payload_length = payload_length - 8
-//			goto S2
-//		else
-//			send to payload pipe
-//			Payload_length = 0
-//			goto S3
-//	S3 ->	RX := pipe
-//		if(RX == BAD_PAKET_FORMAT)
-//			send to payload pipe
+//		send to payload pipe
+//		if(tlast == 1)
 //			goto S0
 //		else
-//			send to header pipe
-//			send to payload pipe
-//			goto S1
+//			goto S2
 
 $constant S0: $uint<2> := 0
 $constant S1: $uint<2> := 1
 $constant S2: $uint<2> := 2
-$constant S3: $uint<2> := 3
+//$constant S3: $uint<2> := 3
 
 $module [nicRxFromMacDaemon] $in () $out () $is
 {
@@ -39,51 +26,39 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 		$dopipeline $depth 7 $fullrate
 			$merge $entry $loopback
 			// where are we in the packet
-			// S0	S1	S2	S3
-			//start	Header	Payload	Bad_packet or New_packet
-			// local_state	payload_length
-			//	2		16
-				$phi TOTAL_STATE := $zero<18> $on $entry nTOTAL_STATE $on $loopback
+			// S0	S1	S2
+			//start	Header	Payload	
+			// local_state
+			//	2
+				$phi LSTATE := $zero<2> $on $entry nLSTATE $on $loopback
 				$phi RX := mac_to_nic_data $on $entry, $loopback
 			$endmerge
 			
-			$volatile $split (TOTAL_STATE 2 16)
-				(LSTATE PLEN)
-			
-			$rreport(nicRxFromMacDaemon data_is RX TOTAL_STATE LSTATE PLEN)
-			$volatile $call nextLSTATE (RX LSTATE PLEN)
-					(nLSTATE nPLEN)
+			$rreport(nicRxFromMacDaemon data_is RX LSTATE)
+			$volatile $call nextLSTATE (RX LSTATE)	(nLSTATE)
 			
 			$volatile write_to_header := ((LSTATE == S0) | (LSTATE == S1))
+			
 			$guard (write_to_header) nic_rx_to_header := RX
 			nic_rx_to_packet := RX
 			
-			$volatile nTOTAL_STATE := ($concat nLSTATE nPLEN)
+			$volatile nTOTAL_STATE := ($concat nLSTATE)
 			$while 1
 	}
 }
 
 $volatile $module [nextLSTATE]
-	$in (RX : $uint<73> LSTATE : $uint<2> PLEN : $uint<16>)
-	$out(nLSTATE : $uint<2> nPLEN : $uint<16>)
+	$in (RX : $uint<73> LSTATE : $uint<2> )
+	$out(nLSTATE : $uint<2>)
 $is
 {
-	$volatile valid_plen := (PLEN > 8)
 	$volatile $split(RX 1 64 8) (tlast tdata tkeep)
-	$volatile bad_packet := (( (tlast == $one<1>) & (tdata == _hFFFFFFFFFFFFFFFF) ) & (tkeep == _h00) )
+	$volatile last_word := (tlast == 1)
 	nLSTATE := ($excmux
 			(LSTATE == S0) 			S1
 			(LSTATE == S1) 			S2
-			((LSTATE == S2) & valid_plen) 	S2
-			((LSTATE == S2) & (~valid_plen))S3
-			((LSTATE == S3) & bad_packet)	S0
-			((LSTATE == S3) & (~bad_packet))S1)
-			
-	nPLEN := ($mux	((nLSTATE == S2) | (nLSTATE == S3))
-			($mux (LSTATE == S1)
-				(($slice RX 47 32) - 2)
-				($mux valid_plen (PLEN - 8) 0))
-			)	
+			((LSTATE == S2) & (~last_word))	S2
+			((LSTATE == S2) & last_word)	S0)
 }
 
 

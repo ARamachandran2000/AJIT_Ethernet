@@ -1,317 +1,3 @@
-// This Module is responsible for reading the payload and the 
-// ethernet header from the parser and sends it to memory
-
-
-// States : 
-// 1. Check Empty Buffer
-// 2. Read from Parser and write to memory
-// 3. Check if it is a bad packet based on last word
-
-// TODO : Need to ask sir How memory interface works.
-
-// Notes : If it is a bad packet then next packet can be loaded in the same location i.e no need to send
-// request to memory.
-
-
-/*
-
-State 0 :
-
-	repeat
-		1. Find empty buffer by reading flag buffer
-		if flag == 8'd0
-			buf <- i
-			goto State 1
-
-		else
-			continue
-
-	endrepeat
-
-
-State 1 :
-	Set x <- buf and y <- 0
-	repeat
-	1. Read from header pipe and payload pipe (one after other)
-	2. Extract data ,tlast ,tkeep information from the 73-bit quantity
-	3. Calculate address to write to based on the x,y index
-	4. if not tlast
-	Package the data into the 110-bit data format with byte mask as 0xFF
-	Increment y and continue
-	5. else
-	Package the data into the 110-bit data format with byte mask set to tkeep
-	break and goto State 2
-	endrepeat
-
-
-State 2 :
-procedure
-control_word = {36’b0 + y + tkeep + 8-bit flag}
-1. Check if the last written word has the bad packet format
-2. if yes
-	Don’t set MSB flag bit in the control word
-3. else
-	Set MSB of flag bit
-
-4. Send 64-bit Control word to flag buffer index x
-	Go back to State 1
-
-endprocedure
-
-
-
-
-
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////////////Global Variables//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-$constant S0: $uint<2> := 0 // Empty Buffer Finding state
-$constant S1: $uint<2> := 1 // Stores payload and header in memory
-$constant S2: $uint<2> := 2 // Packet status checker and sets flag if good packet
-
-
-
-$pipe request_pipe   : $uint<110> $depth 128  
-$pipe response_pipe  : $uint<65>  $depth 128  
-$pipe eth_header     : $uint<73>  $depth   5
-$pipe eth_payload    : $uint<73>  $depth 128
-
-$constant THREE: $uint<12> := 3
-$constant Y_LIMIT : $uint<12> := 1544
-$constant BUFFER_OFFSET : $uint<36> := 0
-
-$module [checkEmptyBuf]
-    $in (buf_index : $uint<9>)
-    $out(done : $uint<1>)
-
-    $is
-    {
-        $branchblock [main]
-        {
-            $merge $entry loopback
-
-            $endmerge
-
-            $volatile $call addr_gen (buf_index 0) (mem_addr) 
-            request_data := ($concat $zero<1> $one<1> ($bitcast ($uint<8>) _hff) 
-					mem_addr ($bitcast ($uint<64>) _h0000000000000000)) 
-
-            request_pipe := request_data 
-            response_data := response_pipe
-
-	    flag := ($slice response_data 7 0)
-            isBufEmpty := (flag == 0)
-
-            $if (~isBufEmpty) $then
-                $place [loopback] // put token in place "loopback"
-            $endif
-
-            done := $zero<1>
-        }
-
-    }
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Get bufLocation
-
-// Inputs : 
-//          Bad Packet status
-//          previous buffer index
-
-// Outputs : New Buffer Index (based on bad packet status)
-
-
-$module [getBufLocation] 
-    $in(bad_packet_status : $uint<1>
-        prev_buffer_index : $uint<9> )
-    
-    $out(
-        new_buffer_index : $uint<9>    
-        )
-    $is
-    {
-        
-        $volatile new_buffer_index := ($mux bad_packet_status 
-        					prev_buffer_index 
-        					(prev_buffer_index + 1))
-
-    }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// write_eth_header_to_mem
-
-// Inputs : buffer_index
-	
-
-// Outputs : header_write_done
-
-$module [write_eth_header_to_mem]
-	$in(buffer_index : $uint<9>)
-	$out(header_write_done : $uint<1>)
-$is
-{
-	$volatile $call addr_gen (buffer_index 1) (mem_addr1) 
-	data1 := eth_header
-	$split (data1 1 64 8)(tlast1 tdata1 tkeep1)
-	$volatile req_1 := ($concat $zero<1> $one<1> tkeep1 mem_addr1 tdata1 )
-	request_pipe := req_1
-	//response1 := response_pipe
-	
-	$volatile $call addr_gen (buffer_index 2) (mem_addr2) 
-	data2 := eth_header
-	$split (data2 1 64 8)(tlast2 tdata2 tkeep2)
-	$volatile req_2 := ($concat $zero<1> $one<1> tkeep2 mem_addr2 tdata2 )
-	request_pipe := req_2
-	//response2 := response_pipe
-	
-	$volatile header_write_done := $one<1>
-} 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// write_eth_payload_to_mem
-
-// Inputs : buffer_index
-	
-
-// Outputs : done
-
-$module [write_eth_payload_to_mem]
-	$in(buffer_index : $uint<9>)
-	$out(end_y_index:$uint<12> done : $uint<1> bad_packet : $uint<1> last_keep : $uint<8>)
-$is
-{
-	$branchblock[main]
-	{
-		$merge $entry loopback
-			$phi y_index := THREE $on $entry y_next $on loopback
-		$endmerge
-		
-		$volatile $call addr_gen (buffer_index y_index) (mem_addr) 
-		data := eth_payload
-		$split (data 1 64 8) (tlast tdata tkeep)
-		$volatile req := ($concat $zero<1> $one<1> tkeep mem_addr tdata)
-		request_pipe := req
-		
-		//resp := response_pipe
-		y_next :=  (y_index + 1)
-		
-		$if(~tlast) $then
-			$place[loopback]
-		$endif
-		
-		bad_packet := ((tdata == _hffffffffffffffff) & (tkeep == 0))
-		
-		end_y_index := y_index
-
-		last_keep := tkeep
-		
-		done := $one<1>
-		 
-	}	
-}
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// addr_gen
-
-// Inputs : buffer_index
-//	    y_index
-	
-
-// Outputs : mem_addr
-
-$volatile $module [addr_gen]
-	$in(buffer_index : $uint<9> y_index : $uint<12>)
-	$out(mem_addr : $uint<36>)
-$is
-{
-	// Need to review this as there may some issues
-	// of size missmatch.
-	buf_index_cast := ($bitcast ($uint<12>) buffer_index)
-	intm_calc := ((buf_index_cast * Y_LIMIT) + (y_index * 8))
-	intm_calc_cast := ($bitcast ($uint<36>) intm_calc)
-	mem_addr := (BUFFER_OFFSET + intm_calc_cast)
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Calculate next state 
-// Inputs : Current State
-//          done_0 done_1 done_2
-// Outputs : New state
-
-$volatile $module [calc_next_state]
-    $in (BAD_PACKET : $uint<1>
-		 done_0 : $uint<1>
-         done_1 : $uint<1>
-         done_2 : $uint<1>
-         curr_state : $uint<2>)
-    
-    $out (next_state : $uint<2>)
-
-    $is
-    {
-	cond_1 := ((curr_state == S0) & ((done_0 == 1) | (BAD_PACKET == 1)))
-	cond_2 := ((curr_state == S1) & done_1)
-	cond_3 := ((curr_state == S2) & done_2)
-
-        next_state := ($excmux cond_1 S1 cond_2 S2 cond_3 S0)
-
-    }
-
-
-
-
-
-$module [writeFlag]
-	$in(buf_index : $uint<9> 
-		packet_status : $uint<1> // 1 bad packet 0 good
-		y_index : $uint<12>
-		last_keep : $uint<8>
-		)
-	$out(done_2 : $uint<1>)
-$is
-{
-
-	flag_data :=  ($bitcast ($uint<8>) _b10000000)
-	flag := ($mux packet_status  $zero<8> flag_data)
-
-	$volatile $call addr_gen (buf_index 0) (mem_addr)
-
-	request_data := ($concat ($bitcast ($uint<36>)_h000000000) y_index last_keep flag)
-
-	request_pipe :=  ($concat $zero<1> $zero<1> ($bitcast ($uint<8>) _hff) mem_addr request_data) $mark REQUEST
-
-	response_data := response_pipe $synch (REQUEST)
-
-	done_2 := $zero<1>
-	
-	
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 //
 // States
 //    INIT_STATE
@@ -328,82 +14,57 @@ $is
 //    WRITE_FLAGS
 //              In this state, we will write flags into
 //		the flag area of the buffer control word.
-//    
-$module [receiverDaemon] $in () $out () $is
+// 
+
+// Pipe Declarations
+
+
+// Pipes from Parser
+$pipe eth_header     : $uint<73>  $depth   5
+$pipe eth_payload    : $uint<73>  $depth 128
+
+
+//Pipes to Memory
+$pipe request_pipe   : $uint<110> $depth 128  
+$pipe response_pipe  : $uint<65>  $depth 128
+
+
+// Pipes to TestBench
+
+
+
+//Constant Declarations
+$constant THREE: $uint<12> := 3
+$constant Y_LIMIT : $uint<12> := 1544
+$constant BUFFER_OFFSET : $uint<36> := 0
+
+
+//Empty Buffer Location Pipe
+$pipe empty_buf_pipe : $uint<12> $depth 10
+
+
+// Storage Variables
+
+
+// Helper Modules
+
+// Address Generator
+$volatile $module [addr_gen]
+	$in(buffer_index : $uint<12> y_index : $uint<12>)
+	$out(mem_addr : $uint<36>)
+$is
 {
-	$branchblock[main]
-	{
-		$dopipeline $depth 7 $fullrate
-		$merge $entry $loopback
-			// this includes the buffer index to be read.
-			$phi check_and_get_buffer_status := _b0 $on $entry
-					$guard (call_check_empty_buf)
-							       ($call checkAndGetBuffer (buffer_index))
-
-			// make buffer_index part of load_buf_status
-			$phi load_buf_status := _b0 $on $entry
-					$guard (call_load_buf) ($call loadBuffer (buffer_index))
-
-			$phi write_flags_status := _b0 $on $entry
-					$guard (call_write_flags) 
-						($call writeFlags (load_buf_status))
-							
-			$phi curr_state_main := INIT_STATE $on $entry next_state $on $loopback
-			$phi buffer_index    := $zero<9> $on $entry next_buffer_index $on $loopback
-					
-		$endmerge
-
-		$volatile call_check_empty_buf  := 
-				((curr_state_main == CHECK_AND_GET_BUF_STATE) & (~BAD_PACKET))
-	
-		$volatile call_load_buf := 
-				(curr_state_main == LOAD_BUF_STATE)
-
-		$volatile call_write_flags := 
-				(curr_state_main == WRITE_FLAGS)
-
-		$volatile next_buffer_index := 
-				($mux call_write_flags ($call calculateNextBufferIndex(load_buf_status))
-
-		$volatile next_state :=
-				($excmux
-					(curr_state_main == INIT_STATE)
-							CHECK_AND_GET_BUF_STATE
-					(curr_state_main == CHECK_AND_GET_BUF_STATE)
-							LOAD_BUF_STATE
-					(curr_state_main == LOAD_BUF_STATE)
-							WRITE_FLAGS
-					(curr_state_main == WRITE_FLAGS)
-							CHECK_AND_GET_BUF_STATE)
-					
-		
-		$while 1
-	}
-
+	// Need to review this as there may some issues
+	// of size missmatch.
+	buf_index_cast := ($bitcast ($uint<12>) buffer_index)
+	intm_calc := ((buf_index_cast * Y_LIMIT) + (y_index * 8))
+	intm_calc_cast := ($bitcast ($uint<36>) intm_calc)
+	mem_addr := (BUFFER_OFFSET + intm_calc_cast)
 }
 
-$module [receiverDaemonAlternateForm] $in () $out () $is
-{
-	$storage buffer_index: $uint<12>
-	buffer_index := 0
-
-	$branchblock[main]
-	{
-		$dopipeline $depth 7 $fullrate
-		$merge $entry $loopback $endmerge
-
-			// Move this to daemon..
-   		       $call checkAndGetBuffer (buffer_index) (check_and_get_status)
-		       $call loadBuffer (buffer_index check_and_get_status) (load_buffer_status)
-		       $call writeFlags (buffer_index load_buf_status) (next_buffer_index)
-		       buffer_index := next_buffer_index
-
-		$while 1
-	}
-}
-
-$operator $module [countDownTimer]
-	$in (T: $uint<32>) $out () $is
+//Delay Block
+$operator $module [delay_time]
+	$in (T: $uint<32>) $out (delay_done : $uint<1>) $is
 {
 	$branchblock[loop] {
 	    $dopipeline $depth 7 $fullrate
@@ -413,8 +74,176 @@ $operator $module [countDownTimer]
 
 		$volatile nR := (R - 1)
 	   $while (R > 0)
+
+	   $volatile delay_done := 1
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//Empty Buffer Checker
+$module [CheckEmptyBuf] $in(buf_index : $uint<12>) $out(new_buf_index : $uint<12>)
+$is
+{
+	$branchblock [main]
+        {
+            $merge $entry loopback
+		$phi wait_req := $one<1> $on $entry
+			    ($call delay_time (30)) $on loopback
+            $endmerge
+
+            $volatile $call addr_gen (buf_index 0) (mem_addr) 
+            $volatile request_data := ($concat $zero<1> $one<1> ($bitcast ($uint<8>) _hff) 						mem_addr ($bitcast ($uint<64>) _h0000000000000000))
+	    
+
+	    $if(wait_req == 1) $then
+
+		request_pipe := request_data
+		response_data := response_pipe
+
+	    	$volatile flag := ($slice response_data 7 0)
+            	$volatile isBufEmpty := (flag == 0)
+
+		$if (~isBufEmpty) $then
+                	$place [loopback] 
+		$endif
+	    $endif
+
+	    new_buf_index := buf_index
+	
+
+	}
+		
+}
+
+// Write Ethernet Header to Memory
+$module [write_eth_header_to_mem]
+	$in(buffer_index : $uint<12>)
+	$out(header_write_status : $uint<1>)
+$is
+{
+	$volatile $call addr_gen (buffer_index 1) (mem_addr1) 
+	data1 := eth_header
+	$split (data1 1 64 8)(tlast1 tdata1 tkeep1)
+	$volatile req_1 := ($concat $zero<1> $one<1> tkeep1 mem_addr1 tdata1 )
+	request_pipe := req_1
+
+	
+	$volatile $call addr_gen (buffer_index 2) (mem_addr2) 
+	data2 := eth_header
+	$split (data2 1 64 8)(tlast2 tdata2 tkeep2)
+	$volatile req_2 := ($concat $zero<1> $one<1> tkeep2 mem_addr2 tdata2 )
+	request_pipe := req_2
+	
+	
+	$volatile header_write_status := $one<1>
+} 
+
+
+// Writes Payload from Parser and writes to Memory
+$module [write_eth_payload_to_mem]
+	$in(buffer_index : $uint<12>)
+	$out(end_y_index:$uint<12> 
+	     bad_packet : $uint<1> 
+	     last_keep : $uint<8>)
+$is
+{
+	$branchblock[main]
+	{
+		$merge $entry loopback
+			$phi y_index := THREE $on $entry y_next $on loopback
+		$endmerge
+		
+		$volatile $call addr_gen (buffer_index y_index) (mem_addr) 
+		data := eth_payload
+		$volatile $split (data 1 64 8) (tlast tdata tkeep)
+		$volatile req := ($concat $zero<1> $one<1> tkeep mem_addr tdata)
+		request_pipe := req
+		
+		//resp := response_pipe
+		$volatile y_next :=  (y_index + 1)
+		
+		$if(~tlast) $then
+			$place[loopback]
+		$endif
+		
+		$volatile bad_packet := ((tdata == _hffffffffffffffff) & (tkeep == 0))
+		
+		$volatile end_y_index := y_index
+
+		$volatile last_keep := tkeep
+		
+		 
+	}	
+}
+
+
+
+$module [loadBuffer] 
+	$in(buf_index : $uint<12>)
+	$out(load_buffer_status : $uint<21>)
+
+$is
+{
+
+	$call write_eth_header_to_mem (buf_index) (header_write_status)
+
+	$guard(header_write_status)
+		$call write_eth_payload_to_mem (buf_index) (end_y_index bad_packet last_keep)
+
+	$volatile load_buffer_status := ($concat end_y_index bad_packet last_keep) 
+	
+}
+
+
+$module [writeFlag]
+	$in(	buf_index : $uint<12> 
+		load_buf_status : $uint<21>
+	   )
+	$out(bad_packet : $uint<1>)
+$is
+{
+
+	$volatile $split(load_buf_status 12 1 8) (y_index packet_status last_keep)
+
+	$volatile flag_data :=  ($bitcast ($uint<8>) _b10000000)
+	$volatile flag := ($mux packet_status  $zero<8> flag_data)
+
+	$volatile $call addr_gen (buf_index 0) (mem_addr)
+
+	$volatile request_data := ($concat ($bitcast ($uint<36>)_h000000000) y_index last_keep flag)
+
+	request_pipe :=  ($concat $zero<1> $zero<1> ($bitcast ($uint<8>) _hff) mem_addr 			       request_data)
+
+	
+
+	$volatile bad_packet := packet_status
+	
+	
+}
+
+
+$module [receiverDaemon] $in () $out () $is
+{
+
+	$branchblock[main]
+	{
+		$dopipeline $depth 7 $fullrate
+		$merge $entry $loopback 
+
+			$phi buffer_index := $zero<12> $on $entry 
+					     $guard(~packet_status)
+						(buffer_index + 1)   $on $loopback  
+
+		$endmerge
+
+   		       $call CheckEmptyBuf (buffer_index) (empty_buffer_index)
+		       $call loadBuffer (empty_buffer_index) (load_buffer_status)
+		       $call writeFlag (empty_buffer_index load_buffer_status) (packet_status)
+
+		$while 1
+	}
+}
 

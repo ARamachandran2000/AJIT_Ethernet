@@ -1,54 +1,47 @@
-//
-/*
-
-State 0 :
-	1. Send a read request at ith flag buffer and check the flag bits to see if the CPU has processed the packet.
-	if flag == 11XX
-	
-	goto State 1
-
-	else
-	wait
-
-State 1 :
-1. Check DROP and TX bits in the flag.
-if flag[0] = 1 // TX
-1. Start reading ith buffer until last.
-2. Package the 64-bit quantity into a 73-bit word and send to TX_FIFO
-3. Until the last word, tkeep for both chunks is 0xFF and tlast = 0.
-
-	For last word set tkeep to value in the control buffer and tlast = 1.
-.
-	elsif flag[1] = 1 // DROP
-	discard packet, do nothing
-
-goto State2
-
-State 2 : 
-
-	Send a write request to reset the flag bits ([3:0])
-	Increment i and go back to State 0
 
 
-*/
 
-$constant S0: $uint<2> := 0 // Check for processed Buffer
-$constant S1: $uint<2> := 1 // Read Packet from Memory
-$constant S2: $uint<2> := 2 // Reset Flag Status
 
+//Pipes to Memory
 
 $pipe request_pipe   : $uint<110> $depth 128  
-$pipe response_pipe  : $uint<65>  $depth 128  
+$pipe response_pipe  : $uint<65>  $depth 128
 
+// Pipe to Tx_FIFO
 $pipe transmit_pipe : $uint<73> $depth 128
 
+
+
+
+// Constants
 $constant THREE: $uint<12> := 3
 $constant Y_LIMIT : $uint<12> := 1544
 $constant BUFFER_OFFSET : $uint<36> := 0
 
 
+// Helper Modules
+
+//Delay Block
+$operator $module [delay_time]
+	$in (T: $uint<32>) $out (delay_done : $uint<1>) $is
+{
+	$branchblock[loop] {
+	    $dopipeline $depth 7 $fullrate
+		$merge $entry $loopback
+			$phi R := T $on $entry nR $on $loopback
+		$endmerge
+
+		$volatile nR := (R - 1)
+	   $while (R > 0)
+
+	   $volatile delay_done := 1
+	}
+}
+
+// Address Generator
+
 $volatile $module [addr_gen]
-	$in(buffer_index : $uint<9> y_index : $uint<12>)
+	$in(buffer_index : $uint<12> y_index : $uint<12>)
 	$out(mem_addr : $uint<36>)
     $is
     {
@@ -60,101 +53,51 @@ $volatile $module [addr_gen]
     }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-$volatile $module [calc_next_state]
-    $in (
-		 done_0 : $uint<1>
-         done_1 : $uint<1>
-         done_2 : $uint<1>
-         curr_state : $uint<2>)
-    
-    $out (next_state : $uint<2>)
-
-    $is
-    {
-	cond_1 := ((curr_state == S0) & (done_0 == 1)) 
-	cond_2 := ((curr_state == S1) & (done_1 == 1))
-	cond_3 := ((curr_state == S2) & (done_2 == 1))
-
-    next_state := ($excmux cond_1 S1 cond_2 S2 cond_3 S0)
-
-    }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-$module [clearFlag]
-	$in(buf_index : $uint<9>)
-	$out(done_2 : $uint<1>)
-$is
-{
-
-	flag_data :=  $zero<8>
-	$volatile $call addr_gen (buf_index 0) (mem_addr)
-
-	request_data := ($concat $zero<36> $zero<12> $zero<8> flag_data)
-
-	request_pipe :=  ($concat $zero<1> $zero<1> ($bitcast ($uint<8>) _hff) mem_addr request_data) $mark REQUEST
-
-	response_data := response_pipe $synch (REQUEST)
-
-	done_2 := $zero<1>
-	
-}
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 $module [checkProcessedBuf]
-    $in (buf_index : $uint<9>)
-    $out(done : $uint<1> 
-         tkeep_last : $uint<8>
-         last_y_index : $uint<12> )
+    $in (buf_index : $uint<12>)
+    $out(processed_buf_status : $uint<20> )
 
     $is
     {
         $branchblock [main]
         {
             $merge $entry loopback
+		$phi wait_req := $one<1> $on $entry
+			    ($call delay_time (30)) $on loopback
             $endmerge
 
-         	$volatile $call addr_gen (buf_index 0) (mem_addr) 
-            request_data := ($concat $zero<1> $one<1> ($bitcast ($uint<8>) _hff) mem_addr $zero<64>) $mark WAIT
-
-			// Wait 30 clock cycles between requests            
-            request_pipe := request_data $delay (WAIT 30)
             
-            response_data := response_pipe
-			flag := ($slice response_data 7 0)
-            XMIT := (flag == _b11010000)
+	    $volatile $call addr_gen (buf_index 0) (mem_addr) 
+            $volatile request_data := ($concat $zero<1> $one<1> ($bitcast ($uint<8>) _hff) 						mem_addr $zero<64>)
 
-            $if (~XMIT) $then
-                $place [loopback] // put token in place "loopback"
-            $endif
+	    $if(wait_req == 1) $then		    
+		    request_pipe := request_data
+		    response_data := response_pipe
 
-            done := $zero<1>
-            tkeep_last := ($slice response_data 15 8)
-            last_y_index := ($slice response_data 27 16)
+		    $volatile flag := ($slice response_data 7 0)
+		    $volatile XMIT := (flag == _b11010000)
+
+		    $if (~XMIT) $then
+		        $place [loopback] // put token in place "loopback"
+		    $endif
+	    $endif
+
+            $volatile tkeep_last := ($slice response_data 15 8)
+            $volatile last_y_index := ($slice response_data 27 16)
+	    $volatile processed_buf_status := ($concat last_y_index tkeep_last)
 
         }
 
     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 $module [transmitPacket]
-    $in (buf_index : $uint<9>
-         tkeep_last : $uint<8>
-         last_y_index : $uint<12>)
-    $out (done_1 : $uint<1>)
+    $in (buf_index : $uint<12>
+	 processed_buf_status : $uint<20>)
+    $out (transmit_packet_status : $uint<12>)
 
     $is
         {
+	    $split (processed_buf_status 12 8) (last_y_index tkeep_last)
             $branchblock [main]
             {
                 $merge $entry loopback error_read
@@ -171,9 +114,8 @@ $module [transmitPacket]
 
                 response_data := response_pipe
 
-                error_flag := (response_data [] 64)
+                $volatile error_flag := (response_data [] 64)
 
-                //$guard (error_flag)
                 $if(error_flag == 1) $then
                     $place [error_read]
                 $endif
@@ -181,7 +123,7 @@ $module [transmitPacket]
                 data := ($slice response_data 63 0)
 
                 $if(y_index == last_y_index) $then
-                    transmit_pipe := ($concat $zero<1> tkeep_last data)
+                    transmit_pipe := ($concat $one<1> tkeep_last data)
                 $else                    
                     transmit_pipe := ($concat $zero<1> ($bitcast ($uint<8>) _hff) data)
                 $endif
@@ -192,12 +134,35 @@ $module [transmitPacket]
                     $place [loopback]
                 $endif
 
-
-                done_1 := $one<1>
             }
+
+		$volatile transmit_packet_status := buf_index
         }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$module [clearFlag]
+	$in(buf_index : $uint<12>)
+	$out()
+$is
+{
+
+	$volatile $call addr_gen (buf_index 0) (mem_addr)
+
+	request_data := ($concat $zero<36> $zero<12> $zero<8> $zero<8>)
+
+	request_pipe :=  ($concat $zero<1> $zero<1> ($bitcast ($uint<8>) _hff) mem_addr 			  request_data)
+
+	response_data := response_pipe
+
+	
+}
+
+
+
+
+
+
+
 
 $module [transmitDaemon] $in () $out () $is
 {
@@ -205,36 +170,20 @@ $module [transmitDaemon] $in () $out () $is
 	{
 		$dopipeline $depth 7 $fullrate
 		$merge $entry $loopback
-			$phi curr_state_main := S0 $on $entry next_state $on $loopback
-			$phi buf_index := $zero<9> $on $entry new_buffer_index $on $loopback
+			$phi buffer_index := $zero<12> $on $entry
+					     (buffer_index + 1)   $on $loopback 
 		$endmerge
 
-     		state0_cond := (curr_state_main == S0)       
-		$guard(state0_cond)
-			new_buffer_index := (buf_index + 1)
+
             
-		$guard (state0_cond)
-			$call checkProcessedBuf (new_buffer_index) (done_0 tkeep_last last_y_index)
-            
+		$call checkProcessedBuf (buffer_index) (processed_buf_status)
+            		
+		$call transmitPacket (buffer_index processed_buf_status) 					     (transmitted_packet_status)
 
-		// State 1 here
-		state1_cond1 := (curr_state_main == S1)		
-		$guard(state1_cond1)
-			$call transmitPacket (buf_index tkeep_last last_y_index) (done_1)
-
-
-		state2_cond := (curr_state_main == S2)
-		// State 2 here
-		$guard (state2_cond)
-			$call clearFlag (buf_index) (done_2)
+		$call clearFlag (transmitted_packet_status) ()
 		
-
-		//Calculate Next State
-
-		$volatile $call calc_next_state (done_0 done_1 done_2 curr_state_main) (next_state)
-
 		$while 1
 	}
 
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

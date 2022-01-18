@@ -46,10 +46,10 @@ parameter N2 = 8;
 
 
 input clk;
-output reg [N2 - 1 : 0] tx_axis_mac_tdata;    
-output reg tx_axis_mac_tvalid;
-output reg tx_axis_mac_tlast ;   
-output reg tx_axis_mac_tuser; 
+output reg [N2 - 1 : 0] tx_axis_mac_tdata = 0;    
+output reg tx_axis_mac_tvalid = 0;
+output reg tx_axis_mac_tlast = 0  ;   
+output reg tx_axis_mac_tuser = 0; 
 input tx_axis_mac_tready;
 
 input [N1 - 1 : 0] tx_axis_tdata;
@@ -57,13 +57,10 @@ input [7 : 0] tx_axis_tkeep;
 input tx_axis_tvalid;
 input tx_axis_tuser;
 input tx_axis_tlast;
-output reg tx_axis_tready;
+output reg tx_axis_tready = 0;
 
 
-
-integer cnt = -1;
-
-
+integer cnt =  -1 ;
 
 reg [N1 - 1 : 0] data_reg;
 reg [7 : 0] keep_reg;
@@ -71,13 +68,14 @@ reg last_reg;
 reg user_reg;
 
 
-always@(posedge clk)
+always @(posedge clk) 
 begin
+
     if(cnt == -1) //State to get the data
     begin
         tx_axis_tready <= 1;
         tx_axis_mac_tvalid <= 0;
-
+        tx_axis_mac_tlast <= 0;
         if(tx_axis_tvalid == 1)
         begin
             data_reg <= tx_axis_tdata;
@@ -91,180 +89,55 @@ begin
         begin
             cnt <= -1;
         end
+
     end
 
 
-    else if(cnt >= 0 && cnt < 64) // Send Data Bytes state
+    else if(cnt >= 0 && cnt < 8)
     begin
         tx_axis_tready <= 0;
         if(last_reg != 1)
         begin
-            tx_axis_mac_tdata <= data_reg[(cnt) +: 8];
+            tx_axis_mac_tdata <= data_reg[(cnt * 8) +: 8];
             tx_axis_mac_tvalid <= 1;
-            tx_axis_mac_tlast <= 0;
-            tx_axis_mac_tuser <=  0;
             if (tx_axis_mac_tready == 1) 
             begin
-                cnt <= cnt + 8;
-            end           
+                cnt <= cnt + 1;
+            end
+                       
         end
 
         else if(last_reg == 1)
         begin
-            if(keep_reg == 8'b00000001)
-            begin
-                tx_axis_mac_tdata <= data_reg [ 7 : 0];
+            
+            if(keep_reg != 0)
+            begin                
+                tx_axis_mac_tdata <= data_reg [(cnt * 8) +: 8];
                 tx_axis_mac_tvalid <= 1;
-                tx_axis_mac_tlast <= 1;
-                tx_axis_mac_tuser <=  user_reg;
+                tx_axis_mac_tlast <= keep_reg == 1 ? 1 : 0;
+                tx_axis_mac_tuser <=  keep_reg == 1 ? user_reg : 0;
 
                 if(tx_axis_mac_tready == 1)
                 begin
-                    cnt = 64;
-                end 
-            end
-
-            else if(keep_reg == 8'b00000011)
-            begin
-                tx_axis_mac_tdata <= data_reg [ cnt +: 8];
-                tx_axis_mac_tvalid <= 1;
-                tx_axis_mac_tlast <= cnt == 8 ? 1 : 0;
-                tx_axis_mac_tuser <=  cnt == 8 ? user_reg : 0;
-
-                if(tx_axis_mac_tready == 1)
-                begin
-                    cnt = cnt + 8;
-                    if(cnt == 16)
-                    cnt = 64;
+                    keep_reg <= keep_reg >> 1;
+                    
+                    if(keep_reg == 1)
+                        cnt <= 8;
+                    
+                    else
+                        cnt <= cnt + 1;
                 end
-                
             end
-
-            else if(keep_reg == 8'b00000111)
-            begin
-                    tx_axis_mac_tdata <= data_reg [ cnt +: 8];
-                    tx_axis_mac_tvalid <= 1;
-                    tx_axis_mac_tlast <= cnt == 16 ? 1 : 0;
-                    tx_axis_mac_tuser <=  cnt == 16 ? user_reg : 0;
-    
-                    if(tx_axis_mac_tready == 1)
-                    begin
-                        cnt = cnt + 8;
-                        if(cnt == 24)
-                            cnt = 64;
-                    end
-                    
-            end
-
-            else if(keep_reg == 8'b00001111)
-            begin
-                    tx_axis_mac_tdata <= data_reg [ cnt +: 8];
-                    tx_axis_mac_tvalid <= 1;
-                    tx_axis_mac_tlast <= cnt == 24 ? 1 : 0;
-                    tx_axis_mac_tuser <=  cnt == 24 ? user_reg : 0;
-    
-                    if(tx_axis_mac_tready == 1)
-                    begin
-                        cnt = cnt + 8;
-                        if(cnt == 32)
-                            cnt = 64;
-                    end
-                        
-            end
-
-
-            else if(keep_reg == 8'b00011111)
-                begin
-                        tx_axis_mac_tdata <= data_reg [ cnt +: 8];
-                        tx_axis_mac_tvalid <= 1;
-                        tx_axis_mac_tlast <= cnt == 32 ? 1 : 0;
-                        tx_axis_mac_tuser <=  cnt == 32 ? user_reg : 0;
-        
-                        if(tx_axis_mac_tready == 1)
-                        begin
-                            cnt = cnt + 8;
-                            if(cnt == 40)
-                                cnt = 64;
-                        end
-                            
-                end    
-                
-                else if(keep_reg == 8'b00111111)
-                    begin
-                            tx_axis_mac_tdata <= data_reg [ cnt +: 8];
-                            tx_axis_mac_tvalid <= 1;
-                            tx_axis_mac_tlast <= cnt == 40 ? 1 : 0;
-                            tx_axis_mac_tuser <=  cnt == 40 ? user_reg : 0;
-            
-                            if(tx_axis_mac_tready == 1)
-                            begin
-                                cnt = cnt + 8;
-                                if(cnt == 48)
-                                    cnt = 64;
-                            end
-                                
-                    end 
-                    
-                    else if(keep_reg == 8'b01111111)
-                        begin
-                                tx_axis_mac_tdata <= data_reg [ cnt +: 8];
-                                tx_axis_mac_tvalid <= 1;
-                                tx_axis_mac_tlast <= cnt == 48 ? 1 : 0;
-                                tx_axis_mac_tuser <=  cnt == 48 ? user_reg : 0;
-                                
-                
-                                if(tx_axis_mac_tready == 1)
-                                begin
-                                    cnt = cnt + 8;
-                                    if(cnt == 56)
-                                        cnt = 64;
-                                end
-                                    
-                        end
-                    
-                        
-                        else if(keep_reg == 8'b11111111)
-                            begin
-                                    tx_axis_mac_tdata <= data_reg [ cnt +: 8];
-                                    tx_axis_mac_tvalid <= 1;
-                                    tx_axis_mac_tlast <= cnt == 56 ? 1 : 0;
-                                    tx_axis_mac_tuser <=  cnt == 56 ? user_reg : 0;
-                                    
-                                    if(tx_axis_mac_tready == 1)
-                                    begin
-                                        cnt = cnt + 8;
-                                    end
-                                        
-                            end  
-
-            
-            
-        end
-            
+        end        
     end
-    
 
     else
     begin
         cnt <= -1;
-        tx_axis_mac_tvalid <= 0;    
+        tx_axis_mac_tvalid <= 0; 
+        tx_axis_mac_tlast <= 0;   
     end
-
+      
 end
 
-
-
-
-
-
-
-
-
-
-
-
 endmodule
-
-
-
-

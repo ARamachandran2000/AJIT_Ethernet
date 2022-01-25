@@ -1,25 +1,25 @@
 //
-
 //	This module implements dummy proceesor and memory.
-
+//
 //	Task 1 : read req from NIC and send responce,
 //	Task 2 : process buffers.
+//
 
-
+// pipes
 $pipe request_pipe   : $uint<110> $depth 128  
 $pipe response_pipe  : $uint<65>  $depth 128
 
-//16 buffers of 1520bytes = 194560 bits = 3040*64bits 
-$parameter MEMORY_ADDRESS_RANGE	3040 
+//16 buffers of 1544ytes = 197632 bits = 3088*64bits 
+$parameter MEMORY_ADDRESS_RANGE	3088
 $storage Memory : $array[MEMORY_ADDRESS_RANGE] $of $uint<64>
 
-$constant ZERO_4: $uint<4> := 0
+// Required constants
 $constant PROCESSED_FLAG : $uint<8> := _b11010000
 $constant Y_LIMIT : $uint<12> := 1544
 $constant BUFFER_OFFSET : $uint<36> := 0
 
-//
-//	Reads req pipe and gives responce 
+//Module : memoryManagerDaemon
+//	Reads req pipe and gives responce. 
 //	Algorithm :
 //		Read Req pipe -> REQ := req_pipe
 //		rd/wrbar,addr := REQ[108], REQ[99:64]
@@ -29,7 +29,6 @@ $constant BUFFER_OFFSET : $uint<36> := 0
 //		else
 //			write_data_to_mem_addr
 //			resp_pipe := {1,data}
-
 
 $module [memoryManagerDaemon] $in () $out () 
 $is
@@ -53,6 +52,11 @@ $is
 	}
 }
 
+
+//Module : writeToMemory
+//	writes/modifies data at given memory address
+//		 according to byte_mask.
+//	
 $module [writeToMemory]
 	$in(addr : $uint<36> byte_mask : $uint<8> data : $uint<64>)
 	$out(resp : $uint<1>)
@@ -62,17 +66,18 @@ $is
 	$branchblock [main]
 	{
 		$merge $entry loopback
-		$phi i := 0 $on $entry n_index $on loopback
+		$phi i := 0 $on $entry n_i $on loopback
 		$endmerge
 		
 		write_byte := (byte_mask [] i)
 		
+		// modify byte of data if corresponding bit in byte_mask is 1
 		data_to_write := ($mux write_byte 
 					(old_data | (data & (_h00000000000000ff << (($bitcast ($uint<64>) i)*8))))
 					data_to_write)
 		
-		n_index := (i + 1)
-		$if(n_index >= 8) $then
+		n_i := (i + 1)
+		$if(n_i >= 8) $then
 			$place [loopback]
 		$endif
 	}(data_to_write => data_to_write)

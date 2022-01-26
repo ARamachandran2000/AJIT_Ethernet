@@ -84,6 +84,20 @@ $operator $module [delay_time]
 
 
 //Empty Buffer Checker
+// Reorganization:
+// Write a flag management function..
+//     flagOperations (INDEX, OPERATION, NIC)  (RET_STATUS)
+//               1. check if free, if free, set and update (also update id's)
+//               2. set the nic filled bit.
+//               3. check the cpu done bit, and get destination NIC
+//               4. clear all the flags.
+//
+// CheckEmptyBuf
+//       for I = 0; I < MAX_PACKETS; I++) {
+//		call flagOperation (I, ALLOCATE_IF_FREE, NIC_ID) (STATUS)
+//              if (STATUS == SUCCESS)
+//                 remember and break.
+//       }
 $module [CheckEmptyBuf] $in(buf_index : $uint<12>) $out(new_buf_index : $uint<12>)
 $is
 {
@@ -230,6 +244,13 @@ $module [receiverDaemon] $in () $out () $is
 
 	$branchblock[main]
 	{
+		// spin until enabled.
+		$merge $entry control_loopback disable_loopback $endmerge
+	
+		$if (~ (CONTROL_WORD [] 0)) $then
+			$place [control_loopback]
+		$endif
+
 		$dopipeline $depth 7 $fullrate
 		$merge $entry $loopback 
 
@@ -243,7 +264,9 @@ $module [receiverDaemon] $in () $out () $is
 		       $call loadBuffer (empty_buffer_index) (load_buffer_status)
 		       $call writeFlag (empty_buffer_index load_buffer_status) (packet_status)
 
-		$while 1
+		$while (CONTROL_WORD [] 0)
+
+		$place [disable_loopback]
 	}
 }
 

@@ -1,0 +1,50 @@
+//
+// Internal addresses of the NIC registers (note: these are byte addresses)
+//    The decoding is done on the bottom 16 bits of the address.
+//
+//  CONTROL_REGISTER				0
+//  BASE_ADDRESS_OF_PACKET_STORAGE_RECORD	4
+//  MAC_ID					8
+//
+
+
+// [0] = enabled
+// [31:1] = unused
+$pipe CONTROL_REGISTER : $uint<32> $signal
+
+// base address.
+$pipe BASE_ADDRESS_OF_PACKET_STORAGE_RECORD : $uint<32> $signal
+
+// will attach to MAC
+$pipe MAC_ID	: $uint<32> $signal
+
+
+$module [executeAfbCommand] $in (..) $out (..) {
+}
+
+$module [controlDaemon] $in () $out () $is
+{
+	$branchblock[loop] {
+
+		$merge $entry loopback $endmerge
+
+			//
+			// Format of 74-bit AFB command
+			//
+			// --------------------------------
+			// bit-field          meaning
+			// --------------------------------
+			// [73]               lock
+			// [72]               read/write_bar
+			// [71:68]            byte mask
+			// [67:32]            address
+			// [31:0]             write-data
+			// --------------------------------
+			afb_command := AFB_CPU_TO_NIC_COMMAND
+			$call executeAfbCommand (afb_command) (result)
+			AFB_NIC_TO_CPU_RESPONSE := result
+
+		$place [loopback]
+	}
+}
+

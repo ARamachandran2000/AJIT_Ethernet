@@ -1,0 +1,85 @@
+//
+//flagOperations :
+//		This module performs all flag related operations.	
+//	
+//	inputs : FLAG_INDEX - flag index	
+//		 OPERATION  - 4 types of operation(see below)
+//		 NIC_ID	    - ID of NIC
+//	output : RET_STATUS - if success gives '1'
+//			      else gives '0'.
+//	OPERATIONS : // may be modified as per requirement.
+//	  	1.ALLOCATE_IF_FREE
+//		2.SET_NIC_FILLED_BIT
+//		3.CHECK_CPU_DONE_BIT
+//		4.CLEAR_FLAGS
+
+$constant ALLOCATE_IF_FREE   : $uint<2> := 0
+$constant SET_NIC_FILLED_BIT : $uint<2> := 1
+$constant CHECK_CPU_DONE_BIT : $uint<2> := 3
+$constant CLEAR_FLAGS        : $uint<2> := 4
+
+$module [flagOperations] 
+	$in(FLAG_INDEX : $uint<12> OPERATION : $uint<2> 
+		NIC_ID : $uint<8>)
+	$out(RET_STATUS : $uint<1>)
+$is
+{
+	// OUTPUT :
+	//	Destination_NIC_ID	8
+	//	...some additions are possible.
+	//	success_bit		1
+	OUTPUT := ($excmux
+			(OPERATION == ALLOCATE_IF_FREE) 
+				($call allocateIfFree (FLAG_INDEX NIC_ID))
+			(OPERATION == SET_NIC_FILLED_BIT) 
+				($call setNicFilled (FLAG_INDEX NIC_ID))
+			(OPERATION == CHECK_CPU_DONE_BIT) 
+				($call checkCpuDoneBit (FLAG_INDEX NIC_ID))
+			(OPERATION == CLEAR_FLAGS) 
+				($call clearFlags (FLAG_INDEX NIC_ID)))
+	// 0th bit of OUTPUT indicate success or failure.
+	RET_STATUS := (OUTPUT [] 0)
+}
+
+//
+//	check if flag is free
+//		if(FREE) 	set lock bit
+//				set allocated bit, and update src_nic_id
+//				return {nic_id, success}
+//		else	return {nic_id, failure}
+$module [allocateIfFree]
+	$in (FLAG_INDEX : $uint<12> NIC_ID : $uint<8>)
+	$out (OUTPUT : $uint<9>)
+$is
+{
+	
+}
+
+
+//
+//	
+//
+//
+$module [setNicFilled]
+	$in (FLAG_INDEX : $uint<12> NIC_ID : $uint<8>)
+	$out (OUTPUT : $uint<9>)
+$is
+{
+	
+}
+
+$module [checkCpuDoneBit]
+	$in (FLAG_INDEX : $uint<12> NIC_ID : $uint<8>)
+	$out (OUTPUT : $uint<9>)
+$is
+{
+	
+}
+
+$module [clearFlags]
+	$in (FLAG_INDEX : $uint<12> NIC_ID : $uint<8>)
+	$out (OUTPUT : $uint<9>)
+$is
+{
+	
+}

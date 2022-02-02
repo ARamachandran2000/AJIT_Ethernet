@@ -25,8 +25,10 @@ typedef struct __PacketStorageRecord {
 	// 0: free (0) /allocated (1)
 	uint64_t flags [ MAX_NUMBER_OF_PACKETS ];
 
-	// data array.
-	uint64_t data_array [ MAX_NUMBER_OF_PACKETS * 2048 ];
+	// data pointers to buffers in memory
+	//   buffers will be allocated by software, and pointers
+	//   to these buffers will be written here.
+	uint64_t* packet_data_pointers [ MAX_NUMBER_OF_PACKETS ];
 
 } PacketStorageRecord;
 

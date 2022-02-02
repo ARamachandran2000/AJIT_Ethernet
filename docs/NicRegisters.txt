@@ -1,0 +1,23 @@
+------------------------------------------------
+Register     address   		Description
+Id	       offset	
+------------------------------------------------
+0		0x0		control register
+------------------------------------------------
+1		0x4		number of servers
+------------------------------------------------
+2               0x8             Rx Q for server 0
+3               0xC             Rx Q for server 1
+4               0x10            Rx Q for server 2
+5               0x14            Rx Q for server 3
+6               0x18            Rx Q for server 4
+7               0x1c            Rx Q for server 5
+8               0x20            Rx Q for server 6
+9               0x24            Rx Q for server 7
+--------------------------------------------------
+Tx queues to servers (8 registers)
+---------------------------------------------------
+Address of Free Q (1 register)
+---------------------------------------------------
+MAC address 48 bits (ie, two registers)
+

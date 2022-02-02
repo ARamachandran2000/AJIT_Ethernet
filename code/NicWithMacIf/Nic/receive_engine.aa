@@ -80,6 +80,27 @@ $operator $module [delay_time]
 }
 
 
+$module [accessQueue] 
+	$in (q_pointer: $uint<32> q_w_value : $uint<32>)
+	$out (success_flag: $uint<1>  q_r_value: $uint<32>) $is
+{
+	// first try to acquire the mutex.
+	//   locked read of mutex variable
+	//   write 1 to mutex variable
+	//   if read value (above) is 0, then
+	//	proceed.
+	//   else
+	//      try to acquire mutex again.
+	//
+	$call mutexAcquireForQueue (q_pointer) (ok_flag)
+
+	// read the read/write pointers
+	// if not-empty, read/write the buffer pointer value
+	// move the read/write pointer.
+	// set success flag appropriately
+
+}
+
 
 
 

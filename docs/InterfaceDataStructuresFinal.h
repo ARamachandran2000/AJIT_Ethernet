@@ -3,11 +3,10 @@
 
 struct  __BufferQueue {
 	uint32_t acquire_mutex;
+	uint32_t number_of_entries;
+
 	uint32_t write_pointer;
 	uint32_t read_pointer;
-
-	// should be a power of 2.
-	uint32_t number_of_entries;
 
 	// software will allocate... and maybe reallocate.
 	uint32_t* buffers;

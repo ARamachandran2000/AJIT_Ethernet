@@ -1,0 +1,2 @@
+$pipe NIC_TO_MEMORY_REQUEST : $uint<110> $depth 2
+$pipe MEMORY_TO_NIC_RESPONSE : $uint<64> $depth 2

@@ -1,23 +1,35 @@
 ------------------------------------------------
-Register     address   		Description
-Id	       offset	
+Register     address         		Description
+  Id	       offset	
 ------------------------------------------------
-0		0x0		control register
+0		            0x00		        control register
 ------------------------------------------------
-1		0x4		number of servers
+1		            0x04		        number of servers
 ------------------------------------------------
-2               0x8             Rx Q for server 0
-3               0xC             Rx Q for server 1
+      Rx queues to servers (8 registers)
+2               0x08            Rx Q for server 0
+3               0x0C            Rx Q for server 1
 4               0x10            Rx Q for server 2
 5               0x14            Rx Q for server 3
 6               0x18            Rx Q for server 4
-7               0x1c            Rx Q for server 5
+7               0x1C            Rx Q for server 5
 8               0x20            Rx Q for server 6
 9               0x24            Rx Q for server 7
 --------------------------------------------------
-Tx queues to servers (8 registers)
+      Tx queues to servers (8 registers)
+10              0x28            Tx Q for server 0
+11              0x2C            Tx Q for server 1
+12              0x30            Tx Q for server 2
+13              0x34            Tx Q for server 3
+14              0x38            Tx Q for server 4
+15              0x3C            Tx Q for server 5
+16              0x40            Tx Q for server 6
+17              0x44            Tx Q for server 7
 ---------------------------------------------------
-Address of Free Q (1 register)
+      Address of Free Q (1 register)
+18              0x48            Base address of
+                                free Queue
 ---------------------------------------------------
-MAC address 48 bits (ie, two registers)
-
+      MAC address 48 bits (ie, two registers)
+19              0x4C            MAC_ADDR[31:0]
+20              0x50            {unused,MAC_ADDR[47:32]}

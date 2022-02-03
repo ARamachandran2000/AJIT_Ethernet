@@ -18,6 +18,9 @@
 $constant S0: $uint<2> := 0
 $constant S1: $uint<2> := 1
 $constant S2: $uint<2> := 2
+// upper two bytes of last word of header are unused.
+//	so modify tkeep of last word.
+$constant HEADER_TKEEP : $uint<8> := _b00111111
 
 $module [nicRxFromMacDaemon] $in () $out () $is
 {

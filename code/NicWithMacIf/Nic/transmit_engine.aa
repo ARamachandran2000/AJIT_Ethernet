@@ -1,99 +1,65 @@
+// This file includes the code for the implementation of
+// the NIC -> MAC path.
+//
+// The NIC should go through the following sequence
+//
+//  while(1) {
+//        for (I = 0; I < #servers; I++)
+//        {
+//               pkt = popFromServer(I);
+//               if (pkt != 0) transmit it
+//	  }
+//  }
+//
 
 
-
-
-//Pipes to Memory
-
-$pipe request_pipe   : $uint<110> $depth 128  
-$pipe response_pipe  : $uint<65>  $depth 128
-
-// Pipe to Tx_FIFO
-$pipe transmit_pipe : $uint<73> $depth 128
-
-
-
-
-// Constants
-$constant THREE: $uint<12> := 3
-$constant Y_LIMIT : $uint<12> := 1544
-$constant BUFFER_OFFSET : $uint<36> := 0
-
-
-// Helper Modules
-
-//Delay Block
-$operator $module [delay_time]
-	$in (T: $uint<32>) $out (delay_done : $uint<1>) $is
+// Transmit packet, given the pointer to the
+// packet.
+$module [transmitPacket]
+	$in (packet_pointer: $uint<36>) $out (status: $uint<1>) $is
 {
+	// read packet information from packet buffer.
+	
+	// calculate checksum
+
+	// transmit packet to MAC.
+}
+
+
+$module [transmitDaemon] $in () $out () $is
+{
+	// spin, reading control register until
+	// it is set.
+	
+	$call getNumberOfServers () (NSERVERS)
 	$branchblock[loop] {
-	    $dopipeline $depth 7 $fullrate
-		$merge $entry $loopback
-			$phi R := T $on $entry nR $on $loopback
-		$endmerge
+		$merge $entry outer_loopback $endmerge
 
-		$volatile nR := (R - 1)
-	   $while (R > 0)
+			// loop across the servers.
+			$merge $entry server_loopback 
+				$phi I := $zero<8> $on $entry nI $on server_loopback
+			$endmerge
+				$volatile nI := (I + 1)
+				$volatile continue_flag := (nI < NSERVERS)
 
-	   $volatile delay_done := 1
+				$call getTxPacketFromServer (I) (pkt_pointer)
+				$volatile tx_flag := (pkt_counter != 0)
+
+				$guard (tx_flag) $call transmitPacket (pkt_pointer) (ok_flag)
+			
+				$if (continue_flag) $then
+					$place [server_loopback]
+				$endif
+
+		$place [outer_loopback]
 	}
 }
 
-// Address Generator
 
-$volatile $module [addr_gen]
-	$in(buffer_index : $uint<12> y_index : $uint<12>)
-	$out(mem_addr : $uint<36>)
-    $is
-    {
-
-        buf_index_cast := ($bitcast ($uint<12>) buffer_index)
-        intm_calc := ((buf_index_cast * Y_LIMIT) + (y_index * 8))
-        intm_calc_cast := ($bitcast ($uint<36>) intm_calc)
-        mem_addr := (BUFFER_OFFSET + intm_calc_cast)
-    }
-
-
-$module [checkProcessedBuf]
-    $in (buf_index : $uint<12>)
-    $out(processed_buf_status : $uint<20> )
-
-    $is
-    {
-        $branchblock [main]
-        {
-            $merge $entry loopback
-		$phi wait_req := $one<1> $on $entry
-			    ($call delay_time (30)) $on loopback
-            $endmerge
-
-            
-	    $volatile $call addr_gen (buf_index 0) (mem_addr) 
-            $volatile request_data := ($concat $zero<1> $one<1> ($bitcast ($uint<8>) _hff) 						mem_addr $zero<64>)
-
-	    $if(wait_req == 1) $then		    
-		    request_pipe := request_data
-		    response_data := response_pipe
-
-		    $volatile flag := ($slice response_data 7 0)
-		    $volatile XMIT := (flag == _b11010000)
-
-		    $if (~XMIT) $then
-		        $place [loopback] // put token in place "loopback"
-		    $endif
-	    $endif
-
-            $volatile tkeep_last := ($slice response_data 15 8)
-            $volatile last_y_index := ($slice response_data 27 16)
-	    $volatile processed_buf_status := ($concat last_y_index tkeep_last)
-
-        }
-
-    }
 
 $module [transmitPacket]
-    $in (buf_index : $uint<12>
-	 processed_buf_status : $uint<20>)
-    $out (transmit_packet_status : $uint<12>)
+    $in (packet_pointer : $uint<36>)
+    $out (transmit_packet_status : $uint<1>)
 
     $is
         {
@@ -139,51 +105,4 @@ $module [transmitPacket]
 		$volatile transmit_packet_status := buf_index
         }
 
-
-$module [clearFlag]
-	$in(buf_index : $uint<12>)
-	$out()
-$is
-{
-
-	$volatile $call addr_gen (buf_index 0) (mem_addr)
-
-	request_data := ($concat $zero<36> $zero<12> $zero<8> $zero<8>)
-
-	request_pipe :=  ($concat $zero<1> $zero<1> ($bitcast ($uint<8>) _hff) mem_addr 			  request_data)
-
-	response_data := response_pipe
-
-	
-}
-
-
-
-
-
-
-
-
-$module [transmitDaemon] $in () $out () $is
-{
-	$branchblock[main]
-	{
-		$dopipeline $depth 7 $fullrate
-		$merge $entry $loopback
-			$phi buffer_index := $zero<12> $on $entry
-					     (buffer_index + 1)   $on $loopback 
-		$endmerge
-
-
-            
-		$call checkProcessedBuf (buffer_index) (processed_buf_status)
-            		
-		$call transmitPacket (buffer_index processed_buf_status) 					     (transmitted_packet_status)
-
-		$call clearFlag (transmitted_packet_status) ()
-		
-		$while 1
-	}
-
-}
 

@@ -18,7 +18,6 @@
 $constant S0: $uint<2> := 0
 $constant S1: $uint<2> := 1
 $constant S2: $uint<2> := 2
-//$constant S3: $uint<2> := 3
 
 $module [nicRxFromMacDaemon] $in () $out () $is
 {
@@ -62,61 +61,4 @@ $is
 }
 
 
-////////////////////////////////////////////////////////
 
-// This module is a simple connection link between tb
-//	and actual hardware.
-// Reads 64 bit wide pipe(which is written by tb),
-//	removes unwanted bits and writes to input pipe
-//	of actual hardware.
-
-////////////////////////////////////////////////////////
-$module [read_from_tb] $in() $out()
-$is
-{
-	$branchblock[loop]{
-		$dopipeline $depth 7 $fullrate
-			$merge $entry $loopback
-				$phi idata0 := tb_to_nic_parser0 $on $entry,$loopback
-				$phi idata1 := tb_to_nic_parser1 $on $entry,$loopback
-			$endmerge
-			send_data  := ($concat ($slice idata1 8 0) idata0)
-			mac_to_nic_data := send_data
-		$while 1
-	}
-}
-////////////////////////////////////////////////////////
-
-// This module is a simple connection link between tb
-//	and actual hardware.
-// Reads 37 bit wide pipe(which is written by HW),
-//	convertes it to 64 bit data and writes to pipe 
-//	which tb reads to check integrity of data.
-
-////////////////////////////////////////////////////////
-$module [send_header_to_tb] $in() $out()
-$is
-{
-	$branchblock[loop]{
-		$dopipeline $depth 7 $fullrate
-			$merge $entry $loopback
-				$phi rhdata := nic_rx_to_header $on $entry, $loopback
-			$endmerge
-			nic_parser_to_tb_header0 := ($slice rhdata 63 0)
-			nic_parser_to_tb_header1 := ($bitcast ($uint<16>) ($slice rhdata 72 64))	
-		$while 1
-	}
-}
-$module [send_packet_to_tb] $in() $out()
-$is
-{
-	$branchblock[loop1]{
-		$dopipeline $depth 7 $fullrate
-			$merge $entry $loopback
-				$phi rpdata := nic_rx_to_packet $on $entry, $loopback
-			$endmerge
-			nic_parser_to_tb_packet0 := ($slice rpdata 63 0)
-			nic_parser_to_tb_packet1 := ($bitcast ($uint<64>) ($slice rpdata 72 64))
-		$while 1
-	}
-}

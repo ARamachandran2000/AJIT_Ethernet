@@ -22,6 +22,9 @@ receive_engine.aa
 rx_from_mac.aa
 	??
 
+registers.aa
+	control and status registers in the NIC.
+
 transmit_engine.aa
 	??
 

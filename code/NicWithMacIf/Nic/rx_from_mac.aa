@@ -18,7 +18,8 @@
 $constant S0: $uint<2> := 0
 $constant S1: $uint<2> := 1
 $constant S2: $uint<2> := 2
-//$constant S3: $uint<2> := 3
+
+$constant HEADER_TKEEP : $uint<8> := _b00111111
 
 $module [nicRxFromMacDaemon] $in () $out () $is
 {
@@ -39,7 +40,9 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 			
 			$volatile write_to_header := ((LSTATE == S0) | (LSTATE == S1))
 			
-			$guard (write_to_header) nic_rx_to_header := RX
+			$guard (write_to_header) nic_rx_to_header := ($mux (LSTATE == S1)
+										($concat ($slice RX 72 8) HEADER_TKEEP)
+										RX)
 			nic_rx_to_packet := RX
 			
 			$volatile nTOTAL_STATE := ($concat nLSTATE)
@@ -66,7 +69,7 @@ $is
 
 // This module is a simple connection link between tb
 //	and actual hardware.
-// Reads 64 bit wide pipe(which is written by tb),
+// Reads 64 and 16 bit wide pipes(which are written by tb),
 //	removes unwanted bits and writes to input pipe
 //	of actual hardware.
 
@@ -89,8 +92,8 @@ $is
 
 // This module is a simple connection link between tb
 //	and actual hardware.
-// Reads 37 bit wide pipe(which is written by HW),
-//	convertes it to 64 bit data and writes to pipe 
+// Reads 73 bit wide pipe(which is written by HW),
+//	breaks it to 16,64 bit data and writes to pipes 
 //	which tb reads to check integrity of data.
 
 ////////////////////////////////////////////////////////

@@ -8,25 +8,22 @@ pipes.aa
 	pipe declarations.
 
 control.aa
-	??
+	init and communicaton with AFB.
 
 decls.aa
-	??
-
-flagoperatons.aa
-	??
+	for global constants and parameters.
 
 receive_engine.aa
-	??
+	to push header and packet in memory.
 
 rx_from_mac.aa
-	??
+	for parsing the packet.
 
 registers.aa
 	control and status registers in the NIC.
 
 transmit_engine.aa
-	??
+	to pull packet from memory and push to mac.
 
 tester.aa
 	This should not be here, but in a separate

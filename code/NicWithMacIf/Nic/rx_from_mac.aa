@@ -38,7 +38,9 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 			
 			$volatile write_to_header := ((LSTATE == S0) | (LSTATE == S1))
 			
-			$guard (write_to_header) nic_rx_to_header := RX
+			$guard (write_to_header) nic_rx_to_header := ($mux (LSTATE == S1)
+										($concat ($slice RX 72 8) HEADER_TKEEP)
+										RX)
 			nic_rx_to_packet := RX
 			
 			$volatile nTOTAL_STATE := ($concat nLSTATE)
@@ -59,6 +61,4 @@ $is
 			((LSTATE == S2) & (~last_word))	S2
 			((LSTATE == S2) & last_word)	S0)
 }
-
-
 

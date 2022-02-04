@@ -1,50 +1,184 @@
-//
-// Internal addresses of the NIC registers (note: these are byte addresses)
-//    The decoding is done on the bottom 16 bits of the address.
-//
-//  CONTROL_REGISTER				0
-//  BASE_ADDRESS_OF_PACKET_STORAGE_RECORD	4
-//  MAC_ID					8
-//
+//////////////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------
+//Register     address         		Description
+//  Id	       offset	
+//------------------------------------------------
+//  0	  	0x00		        control register
+------------------------------------------------
+//  1		0x04		        number of servers
+------------------------------------------------
+//      Rx queues to servers (8 registers)
+//2               0x08            Rx Q for server 0
+//3               0x0C            Rx Q for server 1
+//4               0x10            Rx Q for server 2
+//5               0x14            Rx Q for server 3
+//6               0x18            Rx Q for server 4
+//7               0x1C            Rx Q for server 5
+//8               0x20            Rx Q for server 6
+//9               0x24            Rx Q for server 7
+//--------------------------------------------------
+//      Tx queues to servers (8 registers)
+//10              0x28            Tx Q for server 0
+//11              0x2C            Tx Q for server 1
+//12              0x30            Tx Q for server 2
+//13              0x34            Tx Q for server 3
+//14              0x38            Tx Q for server 4
+//15              0x3C            Tx Q for server 5
+//16              0x40            Tx Q for server 6
+//17              0x44            Tx Q for server 7
+//---------------------------------------------------
+//      Address of Free Q (1 register)
+//18              0x48            Base address of
+//                                free Queue
+//---------------------------------------------------
+//      MAC address 48 bits (ie, two registers)
+//19              0x4C            MAC_ADDR[31:0]
+//20              0x50            {unused,MAC_ADDR[47:32]}
 
 
-// [0] = enabled
-// [31:1] = unused
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// Register file (depth = 64) (width = 32)
+
+$storage nic_registers: $array [64] $of $uint<32>
+
+// Control Register Port // Since it is used frequently make it a speciic port and not a
+// ReQ-Resp Access
+
 $pipe CONTROL_REGISTER : $uint<32> $signal
 
-// base address.
-$pipe BASE_ADDRESS_OF_PACKET_STORAGE_RECORD : $uint<32> $signal
+// Address of Free Q Port // Since it is used frequently make it a speciic port and not a
+// ReQ-Resp Access
 
-// will attach to MAC
-$pipe MAC_ID	: $uint<32> $signal
+$pipe FREE_Q : $uint<32> $signal
 
+// Updates the value in the register based on the byte-mask -> If a particular
+//bit in the byte mask is 1, then corresponding byte in register is updated with new value 
+// else old value is retained
 
-$module [executeAfbCommand] $in (..) $out (..) {
+$volatile $module [UpdateRegister] 
+$in (bmask: $uint<4> rval wdata: $uint<32> index : $uint<6> ) 
+$out (wval : $uint<32>) 
+$is
+{
+	$volatile $split (bmask 1 1 1 1) (b0 b1 b2 b3)
+	$volatile $split (rval  8 8 8 8) (r0 r1 r2 r3)
+	$volatile $split (wdata  8 8 8 8) (w0 w1 w2 w3)
+
+	wval := ($concat
+			($mux b0 w0 r0)
+			($mux b1 w1 r1)
+			($mux b2 w2 r2)
+			($mux b3 w3 r3))
+
+	nic_registers[index] := wval
 }
 
-$module [controlDaemon] $in () $out () $is
+
+
+// Software Register Access Daemon
+// Services Software Requests for the Registers
+
+$module [SoftwareRegisterAccessDaemon] $in () $out () $is
 {
 	$branchblock[loop] {
+		$merge $entry loopback 
 
-		$merge $entry loopback $endmerge
+			$phi INIT := $zero<1> $on $entry $one<1> $on loopback
 
-			//
-			// Format of 74-bit AFB command
-			//
-			// --------------------------------
-			// bit-field          meaning
-			// --------------------------------
-			// [73]               lock
-			// [72]               read/write_bar
-			// [71:68]            byte mask
-			// [67:32]            address
-			// [31:0]             write-data
-			// --------------------------------
-			afb_command := AFB_CPU_TO_NIC_COMMAND
-			$call executeAfbCommand (afb_command) (result)
-			AFB_NIC_TO_CPU_RESPONSE := result
+			$phi control_register := $zero<1> $on $entry 
+						 check_control_regsiter $on loopback
 
-		$place [loopback]
+			$phi free_q := $zero<1> $on $entry check_free_q $on loopback
+		$endmerge
+
+			// Initialise the value for the signals on entry and don't change
+			// until software changes the value of the corresponding register
+			$volatile update_control_register_pipe := ((~INIT) | (INIT & 										control_register))
+			$volatile update_free_q_pipe := ((~INIT) | (INIT & free_q))
+
+			// Update Values on Signal based on control signal
+
+			$guard (update_control_register_pipe)
+				CONTROL_REGISTER := nic_register[0]
+
+			$guard(update_free_q_pipe)
+				FREE_Q := nic_register[18]
+
+			req := AFB_NIC_REQUEST
+
+			$volatile $split (req 1 1 4 36 32) 
+					(lock rwbar bmask addr wdata)
+		
+			// Use bottom 6 bits to index into register file
+
+			$volatile index := ($slice addr 5 0)  // addr [5 : 0] 
+			
+			// If the software updates the value then update the pipe signals
+			$volatile check_control_regsiter := ((index == 0) & (rwbar == 0))
+			$volatile check_free_q := ((index == 18) & (rwbar == 0))
+
+			// read modify write
+
+			rval := nic_registers [index]
+
+
+			// If rwbar -> (1 = read) then don't update value else update 
+			// value based on bmask
+
+			$guard (~rwbar)
+				($call UpdateRegister (bmask rval wdata index) (wval))
+			
+
+
+
+			$volatile rdata := ($mux rwbar rval $zero<32>)
+			$volatile resp  := ($concat $zero<1> rdata) // zero<1> -> No error
+
+			
+			// Send response
+			AFB_NIC_RESPONSE := resp
+	
+			$place[loopback]
 	}
 }
 
+
+// Services NIC Requests for the Registers
+// Request Response Protocol (Similar to AFB Bus)
+// Request Packet Format -> rwbar (1) bmask(4) index (6) wdata(32)
+// Response Packet Format -> Error-bit(1) rdata(32)
+
+
+$module [NicRegisterAccessDaemon] $in () $out () $is
+{
+	$branchblock[loop] {
+		$merge $entry loopback $endmerge
+
+			req := NIC_REQUEST_REGISTER_ACCESS_PIPE
+
+			$volatile $split (req 1 4 6 32) 
+					(rwbar bmask index wdata)
+
+			// read modify write
+
+			rval := nic_registers [index]
+
+			// If rwbar -> (1 = read) then don't update value else update 
+			// value based on bmask
+
+			$guard (~rwbar)
+				($call UpdateRegister (bmask rval wdata index) ())
+			
+
+			$volatile rdata := ($mux rwbar rval $zero<32>)
+			$volatile resp  := ($concat $zero<1> rdata) // zero<1> -> No error
+			
+			// Send response
+			NIC_RESPONE_REGISTER_ACCESS_PIPE := resp
+	
+			$place[loopback]
+	}
+}

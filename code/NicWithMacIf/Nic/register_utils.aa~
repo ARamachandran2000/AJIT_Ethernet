@@ -19,7 +19,7 @@
 
 $module [AccessRegister] 
 $in (rwbar : $uint<1> bmask : $uint<4> register_index : $uint<6> wdata : $uint<32>)
-$out(rdata : $uint<32>)
+$out(status : $uint<1> rdata : $uint<32>)
 $is
 {
 

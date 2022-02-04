@@ -54,6 +54,8 @@ $pipe CONTROL_REGISTER : $uint<32> $signal
 
 $pipe FREE_Q : $uint<32> $signal
 
+$pipe NUMBER_OF_SERVERS : $uint<32> $signal
+
 // Updates the value in the register based on the byte-mask -> If a particular
 //bit in the byte mask is 1, then corresponding byte in register is updated with new value 
 // else old value is retained
@@ -92,12 +94,16 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 						 check_control_regsiter $on loopback
 
 			$phi free_q := $zero<1> $on $entry check_free_q $on loopback
+
+			$phi num_server := $zero<1> $on $entry check_num_server $on loopback
 		$endmerge
 
 			// Initialise the value for the signals on entry and don't change
 			// until software changes the value of the corresponding register
 			$volatile update_control_register_pipe := ((~INIT) | (INIT & 										control_register))
 			$volatile update_free_q_pipe := ((~INIT) | (INIT & free_q))
+
+			$volatile update_server_num := ((~INIT) | (INIT & num_server))
 
 			// Update Values on Signal based on control signal
 
@@ -106,6 +112,9 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 
 			$guard(update_free_q_pipe)
 				FREE_Q := nic_register[18]
+
+			$guard(update_server_num)
+				NUMBER_OF_SERVERS := nic_register[1]
 
 			req := AFB_NIC_REQUEST
 
@@ -119,6 +128,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			// If the software updates the value then update the pipe signals
 			$volatile check_control_regsiter := ((index == 0) & (rwbar == 0))
 			$volatile check_free_q := ((index == 18) & (rwbar == 0))
+			$volatile check_num_server := ((index == 1) & (rwbar == 0)
 
 			// read modify write
 

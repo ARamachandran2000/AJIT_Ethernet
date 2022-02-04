@@ -19,7 +19,7 @@ $is
 
 	$barrier
 	$call releaseMutex (q_base_address)
-	status := q_empty
+	status := (~q_empty) // 1 = Success, 0 = Fail
 }
 
 //
@@ -44,7 +44,7 @@ $is
 
 	$barrier
 	$call releaseMutex (q_base_address) ()
-	status := q_full
+	status := (~q_full)
 }
 
 

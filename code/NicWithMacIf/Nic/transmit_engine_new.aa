@@ -76,7 +76,7 @@ $module [getTxPacketFromServer]
 	// Request for Tx Queue Pointer of Server ID : 
 	//			queue_index Regsiter ID : queue_index + 10
 	//		     ( rwbar bmask       index	     wdata )  pointerToBuffer
-	$call AccessRegister (one<1> one<4> register_index zero<32>) (tx_queue_pointer)
+	$call AccessRegister ($one<1> $one<4> register_index zero<32>) (tx_queue_pointer)
 	$call popFromQueue (tx_queue_pointer) (pkt_pointer status)
 }
 
@@ -89,7 +89,7 @@ $module [transmitPacket]
 	$volatile control_data_addr := ($bitcast ($uint<36>) ($concat ($slice packet_pointer 31 1) $zero<3>)) 
 	$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK control_data_addr $zero<64>) (control_data)
 	
-	$volatile ($split cotrol_data 44 12 8 ) (unused packet_size last_tkeep)
+	$volatile ($split control_data 44 12 8 ) (unused packet_size last_tkeep)
 	
 	$branchblock[loop]
 	{

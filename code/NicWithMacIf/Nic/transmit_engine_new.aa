@@ -1,0 +1,125 @@
+// This file includes the code for the implementation of
+// the NIC -> MAC path.
+//
+// The NIC should go through the following sequence
+//
+//  while(1) {
+//        for (I = 0; I < #servers; I++)
+//        {
+//              pkt = popFromServer(I);
+//              if (pkt != 0) transmit it
+//		push pkt to free_queue.
+//	  }
+//  }
+//
+
+$constant FULL_BYTE_MASK : $uint<8> := _b11111111
+
+$module [transmitDaemon] $in () $out () $is
+{
+	// spin, reading control register until
+	// it is set.
+	$branchblock[main] {
+	$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
+	
+		$if (~ (CONTROL_WORD [] 0)) $then
+			$place [not_enabled_yet_loopback]
+		$endif
+		
+		$dopipeline $depth 7 $fullrate
+
+		$merge $entry local_loopack server_loopback 
+			//$phi q_index := $zero<6> $on $entry 
+			//		((q_index + 1) & (NUM_OF_SERVERS-1)) $on $loopback
+			$phi I := $zero<8> $on $entry,local_loopack 
+					nI $on server_loopback
+		
+		$endmerge
+
+			$volatile nI := (I + 1)
+			$volatile continue_flag := (nI < NUMBER_OF_SERVERS)
+			
+			// Get buffer pointer to be Xmitted
+			$call getTxPacketFromServer (I) (pkt_pointer tx_flag)
+			//$volatile tx_flag := (pkt_pointer != 0)
+
+			$guard (tx_flag) $call transmitPacket (pkt_pointer) (ok_flag)
+			
+			// push transmitted buffer's base address to free queue 
+			$guard(ok_flag)	
+				$call pushPointerBackToFreeQ (FREE_Q pkt_pointer) ()
+				
+			// keep spinning untill last tx queue
+			$if (continue_flag) $then
+				$place [server_loopback]
+			$endif
+			// if last queue but control bit is set 
+			// start loop again
+			
+			$if(CONTROL_WORD [])	$then
+				$place [local_loopback]
+			$endif
+		// else disable the engine
+		$place [disable_loopback]
+	}
+}
+
+
+$module [getTxPacketFromServer] 
+	$in (queue_index : $uint<8> )
+	$out (pkt_pointer : $uint<32> stsus : $uint<1>) $is
+{
+	// tx_queue registers starts after 10 registers 
+	$volatile register_index := (queue_index + 10)
+	
+	
+	// Request for Tx Queue Pointer of Server ID : 
+	//			queue_index Regsiter ID : queue_index + 10
+	//		     ( rwbar bmask       index	     wdata )  pointerToBuffer
+	$call AccessRegister ($one<1> $one<4> register_index zero<32>) (tx_queue_pointer)
+	$call popFromQueue (tx_queue_pointer) (pkt_pointer status)
+}
+
+// Transmit packet, given the pointer to the
+// packet.
+$module [transmitPacket]
+	$in (packet_pointer: $uint<32>) $out (status: $uint<1>) $is
+{
+	// read packet information from packet buffer.
+	$volatile control_data_addr := ($bitcast ($uint<36>) ($concat ($slice packet_pointer 31 1) $zero<3>)) 
+	$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK control_data_addr $zero<64>) (control_data)
+	
+	$volatile ($split control_data 44 12 8 ) (unused packet_size last_tkeep)
+	
+	$branchblock[loop]
+	{
+		$merge $entry loopback
+			count_down := packet_size $on $entry ncount_down $on loopback
+			// adding 16 to skip eth header as it is present in packet also.
+			mem_addr := (control_data_addr + 16) $on $entry nmem_addr $on loopback
+		$endmerge
+		// read packet data
+		$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK mem_addr $zero<64>) (data)
+		
+		// calculate checksum (will be done later)
+ 
+		// transmit packet to MAC.
+		nic_to_mac_transmit_pipe := ($concat $one<1> data FULL_BYTE_MASK)
+	
+		// ****some ambiguity in this 8 and 64****
+		$volatile ncount_down := (count_down - 8)
+		$volatile  nmem_addr := (mem_addr + 64)
+		
+		//loop till last word.
+		$if(ncount_down > 8) $then
+			$place[loopback]
+		$endif
+		
+		//last word
+		$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK nmem_addr $zero<64>) (last_word)
+		// transmt last word
+		nic_to_mac_transmit_ppe := ($concat $one<1> last_word last_tkeep)
+		status := (packet_size == ($bitcast ($uint<12>) (nmem_addr - control_data_addr)))
+	}	
+}
+

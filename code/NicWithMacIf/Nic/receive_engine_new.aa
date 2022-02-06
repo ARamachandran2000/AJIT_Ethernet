@@ -39,12 +39,15 @@ $is
 		$endmerge
 
 		// Step 1 : Pop From Free Queue -> If not empty (Success indicated by status) 
-		popFromQueue (FREE_Q) (rx_buffer_pointer status)
+		popFromQueue (FREE_Q) (rx_buffer_pointer_32 status)
 		// Get the free buffer pointer in rx_buffer_pointer
+		
+		// convert 32 bit pointer to 36 bit memory address.
+		$volatile rx_buffer_pointer_36 := ($bitcast ($uint<36>) ($slice rx_buffer_pointer_32 31 1) $zero<3>)
 		
 		// Step 2 : If pop was successful then start loading the buffer
 		$guard (status)
-			$call loadBuffer (rx_buffer_pointer) (bad_packet_identifier)
+			$call loadBuffer (rx_buffer_pointer_36) (bad_packet_identifier)
 
 		// Step 3
 		// If the packet is not a bad packet then write the rx_buffer_pointer to the 

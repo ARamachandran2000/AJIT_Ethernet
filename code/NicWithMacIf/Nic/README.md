@@ -54,7 +54,10 @@ transmit_engine.aa
 	Responsible for reading processed packet from memory and forwarding it to the MAC for transmission
 
 general_utils.aa
-   Contains utilities common to all modules
+   	Contains utilities common to all modules
+
+InterfaceDataStructure.h
+	Contains Software Interface to NIC
 ```
 
 ## AFB Bus Format

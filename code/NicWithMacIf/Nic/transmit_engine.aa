@@ -1,4 +1,4 @@
-// This file includes the code for the implementation of
+/ This file includes the code for the implementation of
 // the NIC -> MAC path.
 //
 // The NIC should go through the following sequence

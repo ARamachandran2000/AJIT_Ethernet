@@ -127,6 +127,10 @@ InterfaceDataStructure.h
 		Response[31:0] = response-data
 
 ```
+## MAC to NIC Interface Diagram
+
+![MAC to NIC Interface](https://github.com/ARamachandran2000/AJIT_Ethernet/blob/main/code/NicWithMacIf/Nic/assets/macIf.png)
+
 ## MAC to NIC Data Packet Format
 A 73-bit Quantity consisting of  64-bit data(tdata), last word bit identifier(tlast) and 8-bit byte mask(tkeep).
 ```

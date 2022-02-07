@@ -2,7 +2,7 @@
 
 ```
 MacIf : Contains all Mac Interface Files
-Nic : Contains all NIC related files
+Nic   : Contains all NIC related files
 ```
 
 

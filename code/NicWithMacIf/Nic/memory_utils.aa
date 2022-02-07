@@ -1,5 +1,5 @@
 //
-// Access memory only through this module.
+// Memory Access Module
 //
 $pipeline $depth 15 $fullrate
 $module [accessMemory]

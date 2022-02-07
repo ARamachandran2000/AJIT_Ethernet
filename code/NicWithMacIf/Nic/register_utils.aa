@@ -1,4 +1,4 @@
-// Utilities that allows the NIC to access the Registers via a Requets Response Format defined
+// Utilities that allows the NIC to access the Registers via a Request Response Format defined
 // below : 
 // 1.  Request packet:
 //	A 43-bit format.

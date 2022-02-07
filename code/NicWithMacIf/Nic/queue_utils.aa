@@ -1,6 +1,6 @@
 //
 // Utilities
-//    Pop a uint32_t from the queue.  Return status = 0 on success.
+//    Pop a uint32_t from the queue.  Return status = 1 on success.
 // 
 $module [popFromQueue] 
 	$in  (q_base_address : $uint<36> ) $out (q_r_data: $uint<32>  status: $uint<1>)
@@ -129,7 +129,8 @@ $is
 					 element_pair_address $zero<64>) (element_pair)
 
 	$volatile $split (element_pair 32 32) (e0 e1)
-	q_r_data := ($mux (read_pointer [] 0) e1 e0)
+	q_r_data := ($mux (read_pointer [] 0) e1 e0) // Access 63 : 32 when addr[2 : 0] = 0 and
+						     // Access 31:0 when addr[2 : 0] = 4
 }
 
 //

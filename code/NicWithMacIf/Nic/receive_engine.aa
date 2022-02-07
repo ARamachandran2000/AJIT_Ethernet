@@ -7,11 +7,6 @@
 // Sequentilly so that a particular server is not overburdened.
 // Step 4 : Repeat Steps 1-3 for the next packet
 
-// Constant Declarations
-$constant WAIT_TIME: $uint<10> := 10 // Wait for WAIT_TIME number of clock cycles
-$constant FULL_BYTE_MASK : $uint<8> := _b11111111 // Byte Mask to write entire word
-$constant BAD_PACKET_DATA : $uint<64> := _hffffffffffffffff // Data Identifier of Bad packet
-
 
 // Main Daemon that repeatedly executes Steps 1-3 above
 $module [ReceiveEngineDaemon] 
@@ -21,7 +16,7 @@ $is
 {
 	$branchblock[main]
 	{
-		// loop around until enabled
+		// loop around until enabled by Software
 		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
 	
 		// If not enabled yet -> Loopback
@@ -42,7 +37,11 @@ $is
 		popFromQueue (FREE_Q) (rx_buffer_pointer_32 status)
 		// Get the free buffer pointer in rx_buffer_pointer
 		
-		// convert 32 bit pointer to 36 bit memory address.
+		// convert 32 bit virtual address to 36 bit physical address.
+		// Should memory address be used with Disabled MMU ??.... 
+		// If this is the case then set MSB 4 bits to 0 to make physical address
+		// Make address DoubleWord Aligned by setting last 3 bits to 0
+		// TODO : Clarify this!!
 		$volatile rx_buffer_pointer_36 := ($bitcast ($uint<36>) ($slice rx_buffer_pointer_32 31 1) $zero<3>)
 		
 		// Step 2 : If pop was successful then start loading the buffer
@@ -172,7 +171,8 @@ $is
 	// Calculate packet size which is in multiples of 8-bit words stored
 	// Can divide by 8 to get size in 64-bit word multiples
 	// Divide by 4 to get size in 32-bit word multiples	
-	$volatile packet_size := ($bitcast ($uint<12>) ((buf_position - base_buf_pointer) + 1))
+	$volatile packet_size_8 := ($bitcast ($uint<12>) ((buf_position - base_buf_pointer) + 1))
+	//$volatile packet_size_32 := (packet_size_8 << 2)
 
 	// bmask of last word is wkeep
 	$volatile last_keep := wkeep

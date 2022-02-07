@@ -52,9 +52,13 @@ $pipe CONTROL_REGISTER : $uint<32> $signal
 // Address of Free Q Port // Since it is used frequently make it a speciic port and not a
 // ReQ-Resp Access
 
-$pipe FREE_Q : $uint<32> $signal
+
+// 36-bit Free Queue
+$pipe FREE_Q : $uint<36> $signal
+
 
 $pipe NUMBER_OF_SERVERS : $uint<32> $signal
+
 
 // Updates the value in the register based on the byte-mask -> If a particular
 //bit in the byte mask is 1, then corresponding byte in register is updated with new value 
@@ -110,8 +114,13 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			$guard (update_control_register_pipe)
 				CONTROL_REGISTER := nic_register[0]
 
+			// Get 32 bit address
 			$guard(update_free_q_pipe)
-				FREE_Q := nic_register[18]
+				FREE_Q_32 := nic_register[18]
+
+			// Convert Pointer to 36-bit physical address
+			$guard(update_free_q_pipe)
+				FREE_Q := ($bitcast ($uint<36>) ($slice FREE_Q_32 31 1) $zero<3>)
 
 			$guard(update_server_num)
 				NUMBER_OF_SERVERS := nic_register[1]

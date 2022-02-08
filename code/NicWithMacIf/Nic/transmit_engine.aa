@@ -12,9 +12,6 @@
 //	  }
 //  }
 //
-
-$constant FULL_BYTE_MASK : $uint<8> := _b11111111
-
 $module [transmitDaemon] $in () $out () $is
 {
 	// spin, reading control register until
@@ -29,11 +26,8 @@ $module [transmitDaemon] $in () $out () $is
 		$dopipeline $depth 7 $fullrate
 
 		$merge $entry local_loopack server_loopback 
-			//$phi q_index := $zero<6> $on $entry 
-			//		((q_index + 1) & (NUM_OF_SERVERS-1)) $on $loopback
 			$phi I := $zero<8> $on $entry,local_loopack 
 					nI $on server_loopback
-		
 		$endmerge
 
 			$volatile nI := (I + 1)
@@ -81,7 +75,7 @@ $module [getTxPacketFromServer]
 }
 
 // Transmit packet, given the pointer to the
-// packet.
+// packet. and return 1 if success.
 $module [transmitPacket]
 	$in (packet_pointer: $uint<32>) $out (status: $uint<1>) $is
 {
@@ -106,9 +100,9 @@ $module [transmitPacket]
 		// transmit packet to MAC.
 		nic_to_mac_transmit_pipe := ($concat $one<1> data FULL_BYTE_MASK)
 	
-		// ****some ambiguity in this 8 and 64****
+		// compute next count down and next memory address.
 		$volatile ncount_down := (count_down - 8)
-		$volatile  nmem_addr := (mem_addr + 64)
+		$volatile  nmem_addr := (mem_addr + 8)
 		
 		//loop till last word.
 		$if(ncount_down > 8) $then

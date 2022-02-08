@@ -37,20 +37,27 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 			$endmerge
 			
 			$rreport(nicRxFromMacDaemon data_is RX LSTATE)
+			// compute next state
 			$volatile $call nextLSTATE (RX LSTATE)	(nLSTATE)
 			
+			// state 0 nd state 1 contains ethernet header
 			$volatile write_to_header := ((LSTATE == S0) | (LSTATE == S1))
 			
+			// if state is S1 modify the tkeep and send to header pipe
 			$guard (write_to_header) nic_rx_to_header := ($mux (LSTATE == S1)
 										($concat ($slice RX 72 8) HEADER_TKEEP)
 										RX)
+			// send to packet pipe
 			nic_rx_to_packet := RX
-			
-			$volatile nTOTAL_STATE := ($concat nLSTATE)
 			$while 1
 	}
 }
 
+
+//
+//	this module finds out next state using present state  
+//		and input(RX)
+//	state machine is shown at start.
 $volatile $module [nextLSTATE]
 	$in (RX : $uint<73> LSTATE : $uint<2> )
 	$out(nLSTATE : $uint<2>)

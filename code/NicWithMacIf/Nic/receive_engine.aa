@@ -196,6 +196,7 @@ $is
 
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
 // Writes into the RX_Queue of server "q_index" the buffer pointer  
 // "rx_buffer_pointer"   
 $module [populateRxQueue]
@@ -234,3 +235,44 @@ $is
 	}
 
 }
+
+
+
+// Alternate Implementation of "populateRxQueue"
+// If a particular server queue is full then do not wait...
+// Go to next queue and try there
+
+$module [AlternatePopulateRxQueue]
+$in (rx_buffer_pointer : $uint<36> q_index : $uint<6>)
+$out ()
+$is
+{
+	$branchblock[PushIntoQueue]
+	{
+		$merge $entry queue_full_loopback
+
+		$phi new_q_index := q_index $on $entry
+	 	               ((new_q_index + 1) & (NUM_OF_SERVERS-1)) $on queue_full_loopback
+		
+		$endmerge
+		// Rx Queues Index in the Register File start from Index 2
+		$volatile register_index := (new_q_index + 2) 
+	
+		// Request for Rx Queue Pointer of Server ID : q_index Regsiter ID : q_index + 2
+			    	// rwbar bmask       index	     wdata        
+		$call AccessRegister (one<1> one<4> register_index zero<32>) (rx_queue_pointer)
+	
+
+		// Try to push data into the Queue
+		$call pushIntoQueue (rx_queue_pointer rx_buffer_pointer) (push_status)
+					// Queue to push into	// Data to push   
+		
+		// IF push is unsuccessful then retry with next server q 
+		$if(~push_status) $then
+			$place [queue_full_loopback]
+		$endif
+
+	}
+
+}
+/////////////////////////////////////////////////////////////////////////////////////

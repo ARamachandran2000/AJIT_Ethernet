@@ -22,6 +22,8 @@ Contains all NIC Related Files
     * Transmit the packet from the buffer to the MAC
     * Push the now empty buffer back into the free queue.
 
+## NIC, Memory and Processor block diagram
+![NIC, Memory and Processor block diagram](https://github.com/ARamachandran2000/AJIT_Ethernet/blob/main/code/NicWithMacIf/Nic/assets/NIC_Memory_Processor_Interfaces.png)
 
 
 ## Folder Organization

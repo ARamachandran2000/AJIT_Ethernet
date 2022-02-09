@@ -7,7 +7,7 @@ $constant BAD_PACKET_DATA : $uint<64> := _hffffffffffffffff // Data Identifier o
 
 // NIC Registers related
 $constant TX_QUEUES_REG_START_OFFSET : $uint<7> := 10 // tx queue registers start after 10th reg.
-$constant RX_QUEUES_REG_START_OFFSET : $uint<7> := 2 // tx queue registers start after 2nd reg.
+$constant RX_QUEUES_REG_START_OFFSET : $uint<7> := 2 // rx queue registers start after 2nd reg.
 /////////////////////////////////////////////////////////////////////////////////////
 
 

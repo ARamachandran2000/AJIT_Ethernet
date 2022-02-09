@@ -207,7 +207,7 @@ $is
 	$branchblock[PushIntoQueue]
 	{
 		// Rx Queues Index in the Register File start from Index 2
-		$volatile register_index := (q_index + 2) 
+		$volatile register_index := (q_index + RX_QUEUES_REG_START_OFFSET) 
 	
 		// Request for Rx Queue Pointer of Server ID : q_index Regsiter ID : q_index + 2
 			    	// rwbar bmask       index	     wdata        

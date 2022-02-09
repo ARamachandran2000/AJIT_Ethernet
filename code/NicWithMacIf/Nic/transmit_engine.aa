@@ -12,7 +12,7 @@
 //	  }
 //  }
 //
-$module [transmitDaemon] $in () $out () $is
+$module [transmitEngineDaemon] $in () $out () $is
 {
 	// spin, reading control register until
 	// it is set.
@@ -58,19 +58,22 @@ $module [transmitDaemon] $in () $out () $is
 	}
 }
 
-
+//
+//	Modules tries to read from tx queue
+//		given the index of queue.
+//	returns pointer to the buffer and status
 $module [getTxPacketFromServer] 
 	$in (queue_index : $uint<8> )
-	$out (pkt_pointer : $uint<32> stsus : $uint<1>) $is
+	$out (pkt_pointer : $uint<32> status : $uint<1>) $is
 {
-	// tx_queue registers starts after 10 registers 
-	$volatile register_index := (queue_index + 10)
-	
+	// tx_queue registers starts after 10(TX_QUEUES_REG_START_OFFSET) registers 
+	$volatile register_index := (queue_index + TX_QUEUES_REG_START_OFFSET)
 	
 	// Request for Tx Queue Pointer of Server ID : 
-	//			queue_index Regsiter ID : queue_index + 10
+	//			queue_index Regsiter ID : queue_index + 10(TX_QUEUES_REG_START_OFFSET)
 	//		     ( rwbar bmask       index	     wdata )  pointerToBuffer
 	$call AccessRegister ($one<1> $one<4> register_index zero<32>) (tx_queue_pointer)
+	
 	$call popFromQueue (tx_queue_pointer) (pkt_pointer status)
 }
 

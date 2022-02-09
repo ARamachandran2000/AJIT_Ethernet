@@ -255,10 +255,11 @@ $is
 	 	               ((new_q_index + 1) & (NUM_OF_SERVERS-1)) $on queue_full_loopback
 		
 		$endmerge
-		// Rx Queues Index in the Register File start from Index 2
-		$volatile register_index := (new_q_index + 2) 
+		// Rx Queues Index in the Register File start from Index 2(RX_QUEUES_REG_START_OFFSET)
+		$volatile register_index := (new_q_index + RX_QUEUES_REG_START_OFFSET) 
 	
-		// Request for Rx Queue Pointer of Server ID : q_index Regsiter ID : q_index + 2
+		// Request for Rx Queue Pointer of Server ID : 
+		//			 q_index Regsiter ID : q_index + 2(RX_QUEUES_REG_START_OFFSET)
 			    	// rwbar bmask       index	     wdata        
 		$call AccessRegister (one<1> one<4> register_index zero<32>) (rx_queue_pointer)
 	

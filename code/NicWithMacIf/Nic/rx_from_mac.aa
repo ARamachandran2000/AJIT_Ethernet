@@ -32,7 +32,7 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 			//start	Header	Payload	
 			// local_state
 			//	2
-				$phi LSTATE := $zero<2> $on $entry nLSTATE $on $loopback
+				$phi LSTATE := S0 $on $entry nLSTATE $on $loopback
 				$phi RX := mac_to_nic_data $on $entry, $loopback
 			$endmerge
 			
@@ -44,9 +44,10 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 			$volatile write_to_header := ((LSTATE == S0) | (LSTATE == S1))
 			
 			// if state is S1 modify the tkeep and send to header pipe
-			$guard (write_to_header) nic_rx_to_header := ($mux (LSTATE == S1)
-										($concat ($slice RX 72 8) HEADER_TKEEP)
-										RX)
+			$guard (write_to_header) 
+				nic_rx_to_header := ($mux (LSTATE == S1)
+								($concat ($slice RX 72 8) HEADER_TKEEP)
+								RX)
 			// send to packet pipe
 			nic_rx_to_packet := RX
 			$while 1

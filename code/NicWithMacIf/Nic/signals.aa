@@ -1,0 +1,1 @@
+$pipe LAST_WRITTEN_RX_QUEUE_INDEX: $uint<8> $signal

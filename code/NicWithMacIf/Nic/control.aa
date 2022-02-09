@@ -1,14 +1,28 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
-//------------------------------------------------
+//  BASE ADDRESS OF MEMORY ALLOCATED TO NIC IS A 36-BIT VALUE.
+//
+//  LET BA[35:0]  BE THE BASE ADDRESS
+//  WE WILL ASSUME THAT BA IS ALIGNED TO 16-byte BOUNDARY.
+//
+//  ie. BA[3:0] = 0
+//
+//  ALL ADDRESSES FOR RX Q, TX Q, FREE Q, ARE 36-bit PHYSICAL
+//  ADDRESSES ALIGNED TO 16-byte BOUNDARY.  
+// 
+//  HENCE: WE STORE ONLY [35:4] bits OF ALL ADDRESSES IN THE
+//  REGISTERS BELOW
+//
+//------------------------------------------------------------
 //Register     address         		Description
 //  Id	       offset	
-//------------------------------------------------
-//  0	  	0x00		        control register
-------------------------------------------------
-//  1		0x04		        number of servers
-------------------------------------------------
+//------------------------------------------------------------
+//  0	  	  0x00		        control register
+--------------------------------------------------------------
+//  1		  0x04		        number of servers  (we can make this a mask...)
+//         Note: specify the servers to be polled..
+--------------------------------------------------------------
 //      Rx queues to servers (8 registers)
-//2               0x08            Rx Q for server 0
+//2               0x08            Rx Q for server 0  [physical address, but we keep only [35:4] aligned to 16-byte]
 //3               0x0C            Rx Q for server 1
 //4               0x10            Rx Q for server 2
 //5               0x14            Rx Q for server 3
@@ -16,7 +30,13 @@
 //7               0x1C            Rx Q for server 5
 //8               0x20            Rx Q for server 6
 //9               0x24            Rx Q for server 7
-//--------------------------------------------------
+//
+// .... could be extended to 256 ...
+//
+//	Note: policy to be used to write packet pointer into 
+//		server queue?
+//
+//------------------------------------------------------------
 //      Tx queues to servers (8 registers)
 //10              0x28            Tx Q for server 0
 //11              0x2C            Tx Q for server 1
@@ -26,17 +46,21 @@
 //15              0x3C            Tx Q for server 5
 //16              0x40            Tx Q for server 6
 //17              0x44            Tx Q for server 7
-//---------------------------------------------------
+//
+//.... could be extended to 256 ...
+//
+//	Note:  these queues will be polled by the NIC to
+//             determine packets to be forwarded.
+//-------------------------------------------------------------
 //      Address of Free Q (1 register)
+//-------------------------------------------------------------
 //18              0x48            Base address of
 //                                free Queue
-//---------------------------------------------------
+//-------------------------------------------------------------
 //      MAC address 48 bits (ie, two registers)
+//-------------------------------------------------------------
 //19              0x4C            MAC_ADDR[31:0]
 //20              0x50            {unused,MAC_ADDR[47:32]}
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 

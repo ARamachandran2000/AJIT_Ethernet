@@ -1,3 +1,7 @@
+// Services NIC Requests for the Registers
+// Request Response Protocol (Similar to AFB Bus)
+// Request Packet Format -> rwbar (1) bmask(4) index (6) wdata(32)
+// Response Packet Format -> Error-bit(1) rdata(32)
 //////////////////////////////////////////////////////////////////////////////////////////////
 //  BASE ADDRESS OF MEMORY ALLOCATED TO NIC IS A 36-BIT VALUE.
 //
@@ -68,21 +72,6 @@
 
 $storage nic_registers: $array [64] $of $uint<32>
 
-// Control Register Port // Since it is used frequently make it a speciic port and not a
-// ReQ-Resp Access
-
-$pipe CONTROL_REGISTER : $uint<32> $signal
-
-// Address of Free Q Port // Since it is used frequently make it a speciic port and not a
-// ReQ-Resp Access
-
-
-// 36-bit Free Queue
-$pipe FREE_Q : $uint<36> $signal
-
-
-$pipe NUMBER_OF_SERVERS : $uint<32> $signal
-
 
 // Updates the value in the register based on the byte-mask -> If a particular
 //bit in the byte mask is 1, then corresponding byte in register is updated with new value 
@@ -110,6 +99,9 @@ $is
 
 // Software Register Access Daemon
 // Services Software Requests for the Registers
+
+
+
 
 $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 {
@@ -144,7 +136,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 
 			// Convert Pointer to 36-bit physical address
 			$guard(update_free_q_pipe)
-				FREE_Q := ($bitcast ($uint<36>) ($slice FREE_Q_32 31 1) $zero<3>)
+				FREE_Q := ($bitcast ($uint<36>) ($concat FREE_Q_32 $zero<3>))
 
 			$guard(update_server_num)
 				NUMBER_OF_SERVERS := nic_register[1]
@@ -161,7 +153,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			// If the software updates the value then update the pipe signals
 			$volatile check_control_regsiter := ((index == 0) & (rwbar == 0))
 			$volatile check_free_q := ((index == 18) & (rwbar == 0))
-			$volatile check_num_server := ((index == 1) & (rwbar == 0)
+			$volatile check_num_server := ((index == 1) & (rwbar == 0))
 
 			// read modify write
 
@@ -172,7 +164,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			// value based on bmask
 
 			$guard (~rwbar)
-				($call UpdateRegister (bmask rval wdata index) (wval))
+				$call UpdateRegister (bmask rval wdata index) (wval)
 			
 
 
@@ -187,13 +179,6 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			$place[loopback]
 	}
 }
-
-
-// Services NIC Requests for the Registers
-// Request Response Protocol (Similar to AFB Bus)
-// Request Packet Format -> rwbar (1) bmask(4) index (6) wdata(32)
-// Response Packet Format -> Error-bit(1) rdata(32)
-
 
 $module [NicRegisterAccessDaemon] $in () $out () $is
 {
@@ -213,7 +198,7 @@ $module [NicRegisterAccessDaemon] $in () $out () $is
 			// value based on bmask
 
 			$guard (~rwbar)
-				($call UpdateRegister (bmask rval wdata index) ())
+				$call UpdateRegister (bmask rval wdata index) ()
 			
 
 			$volatile rdata := ($mux rwbar rval $zero<32>)

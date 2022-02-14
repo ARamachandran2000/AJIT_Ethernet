@@ -1,0 +1,35 @@
+#define   REQID 0
+#include memory_access_incl.aa
+#undefine REQID 
+
+#define   REQID 1
+#include memory_access_incl.aa
+#undefine REQID 
+
+#define   REQID 2
+#include memory_access_incl.aa
+#undefine REQID 
+
+#define   REQID 3
+#include memory_access_incl.aa
+#undefine REQID 
+
+#define   REQID 4
+#include memory_access_incl.aa
+#undefine REQID 
+
+
+
+#define BANKID 0
+#include bank_access_incl.aa
+#undefine BANKID
+#define BANKID 1
+#include bank_access_incl.aa
+#undefine BANKID
+#define BANKID 2
+#include bank_access_incl.aa
+#undefine BANKID
+#define BANKID 3
+#include bank_access_incl.aa
+#undefine BANKID
+

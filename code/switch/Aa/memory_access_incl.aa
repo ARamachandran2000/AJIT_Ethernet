@@ -1,0 +1,29 @@
+$pipeline $depth 15 $fullrate 
+	$module [access_mem_##REQID ] $in (REQ : $uint<110>) $out (RESP: $uint<65>) $is
+{
+
+	$volatile $split (REQ 1 1 8 36 64) (lock rwbar bmask addr wdata)
+	$volatile dword_id := ($slice addr 5 4)
+	
+	// bank-0 is dword 0,8,16..  ie add
+	$volatile b0 := (dword_id == 0)
+	$volatile b1 := (dword_id == 0)
+	$volatile b2 := (dword_id == 0)
+	$volatile b3 := (dword_id == 0)
+
+	$guard (b0) $call access_bank_0 (REQ) (RESP_0)
+	$guard (b1) $call access_bank_1 (REQ) (RESP_1)
+	$guard (b2) $call access_bank_2 (REQ) (RESP_2)
+	$guard (b3) $call access_bank_3 (REQ) (RESP_3)
+
+	$volatile RESP := ($excmux
+				b0 RESP_0
+				b1 RESP_1
+				b2 RESP_2
+				b3 RESP_3)
+
+	$attribute delay 8
+	$attribute input_buffering 4
+	$attribute output_buffering 4
+}
+

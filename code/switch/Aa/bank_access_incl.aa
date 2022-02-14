@@ -1,0 +1,11 @@
+$pipeline $depth 15 $fullrate 
+	$module [access_bank_##BANKID ] $in (REQ : $uint<110>) $out (RESP: $uint<65>) $is
+{
+	BANK_##BANKID\_REQUEST := REQ
+	RESP := BANK_##BANKID\_RESPONSE 
+
+	$attribute delay 8
+	$attribute input_buffering 4
+	$attribute output_buffering 4
+}
+

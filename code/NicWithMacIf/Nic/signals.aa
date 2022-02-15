@@ -1,4 +1,5 @@
 $pipe LAST_WRITTEN_RX_QUEUE_INDEX: $uint<6> $signal
+$pipe LAST_READ_TX_QUEUE_INDEX: $uint<6> $signal
 
 
 // 36-bit Free Queue

@@ -24,7 +24,7 @@ $constant HEADER_TKEEP : $uint<8> := _b00111111
 
 $module [nicRxFromMacDaemon] $in () $out () $is
 {
-	$bramchblock[loop]{
+	$branchblock[loop]{
 		$dopipeline $depth 7 $fullrate
 			$merge $entry $loopback
 			// where are we in the packet

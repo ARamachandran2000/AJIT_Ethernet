@@ -24,10 +24,8 @@ $module [transmitEngineDaemon] $in () $out () $is
 			$dopipeline $depth 31 $fullrate
 		
 			$merge $entry $loopback 
-				$phi tx_q_index := (LAST_READ_TX_QUEUE_INDEX+1) $on $entry
-							ntx_q_index $on $loopback
-//				$phi tx_q_index := ((LAST_READ_TX_QUEUE_INDEX+1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
-//							$on $entry,$loopback
+				$phi tx_q_index := ((LAST_READ_TX_QUEUE_INDEX+1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
+							$on $entry,$loopback
 			$endmerge
 			
 			// Read tx_queue[tx_q_index]
@@ -44,8 +42,8 @@ $module [transmitEngineDaemon] $in () $out () $is
 				$call pushIntoQueue (FREE_Q pkt_pointer) (push_status)
 			
 			// move to next tx queue
-			ntx_q_index := ((tx_q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
 			LAST_READ_TX_QUEUE_INDEX := tx_q_index
+
 			// loop while enabled(control[0] == 1)
 			$while (CONTROL_REGISTER [] 0)
 			
@@ -88,6 +86,7 @@ $module [transmitPacket]
 	$volatile control_data_addr := ($bitcast ($uint<36>) ($concat ($slice packet_pointer 31 1) $zero<3>)) 
 	$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK control_data_addr $zero<64>) (control_data)
 	
+	// get packet_size and tkeep(bytemask) of last word
 	$volatile $split (control_data 44 12 8 ) (unused packet_size last_tkeep)
 	
 	$branchblock[loop]
@@ -95,7 +94,7 @@ $module [transmitPacket]
 		$dopipeline $depth 31 $fullrate
 		$merge $entry $loopback
 			$phi count_down := packet_size $on $entry ncount_down $on $loopback
-			// 
+			//packet starts after 3 words(64 bit) in buffer
 			$phi mem_addr := (control_data_addr + 16) $on $entry nmem_addr $on $loopback
 		$endmerge
 		// read packet data

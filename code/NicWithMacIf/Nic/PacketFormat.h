@@ -10,7 +10,13 @@ typedef struct NicPacket__ {
 	// dwords [1], dwords [2] keep the 
 	// Ethernet packet header
 	// what is the format?
-
+	//	dword[1][47:0]  = Dest_MAC_Addr[47:0] & 
+	//	dword[1][63:48] = Src_MAC_Addr[47:32]
+	//
+	//	dword[2][63:48] = unused
+	//	dword[2][47:32] = Payload_length[7:0]
+	//	dword[2][31: 0] = Src_MAC_Addr[31:0]
+	
 	// dwords[3 ... 255] keep packet data
 	// (note: last index and byte mask are
 	// stored in dwords[0] as indicated above.

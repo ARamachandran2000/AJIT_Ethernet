@@ -7,9 +7,9 @@ $pipeline $depth 15 $fullrate
 	
 	// bank-0 is dword 0,8,16..  ie add
 	$volatile b0 := (dword_id == 0)
-	$volatile b1 := (dword_id == 0)
-	$volatile b2 := (dword_id == 0)
-	$volatile b3 := (dword_id == 0)
+	$volatile b1 := (dword_id == 1)
+	$volatile b2 := (dword_id == 2)
+	$volatile b3 := (dword_id == 3)
 
 	$guard (b0) $call access_bank_0 (REQ) (RESP_0)
 	$guard (b1) $call access_bank_1 (REQ) (RESP_1)

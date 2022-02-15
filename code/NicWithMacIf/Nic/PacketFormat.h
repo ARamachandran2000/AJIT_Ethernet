@@ -20,7 +20,6 @@ typedef struct NicPacket__ {
 	// dwords[3 ... 255] keep packet data
 	// (note: last index and byte mask are
 	// stored in dwords[0] as indicated above.
-
 	uint64_t dwords[256];
 } NicPacket;
 
@@ -65,6 +64,7 @@ void getPacketControlInfo
 	*index_of_last_dword = getSliceFromWord(control_info,15,8);
 
 }
+
 void getPacketHeader (NicPacket* np, uint64_t* h0, uint64_t* h1)
 {
 	uint64_t header_0 = np->dwords[1];
@@ -75,11 +75,14 @@ void getPacketHeader (NicPacket* np, uint64_t* h0, uint64_t* h1)
 
 }
 
+// get the index'th payload dword (index starts from 0)
 uint64_t getPacketDataDword (NicPacket* np, uint8_t index)
 {
-
+	//
+	// check that no overflow of the buffer 
+	// occurs.
+	//
 	return np->dwords[index];
-
 }
 
 
@@ -95,6 +98,7 @@ void setPacketControlInfo
 	np -> dwords[0] = control_info;
 	
 }
+
 void setPacketHeader (NicPacket* np, uint64_t h0, uint64_t h1)
 {
 	
@@ -102,11 +106,10 @@ void setPacketHeader (NicPacket* np, uint64_t h0, uint64_t h1)
 	np->dwords[2] = h1;
 
 }
+
 void setPacketDataDword (NicPacket* np, uint8_t index, uint64_t wdata)
 {
-
 	np->dwords[index]  = wdata;
-
 }
 
 

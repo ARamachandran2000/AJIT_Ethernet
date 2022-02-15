@@ -132,6 +132,7 @@ $is
 		$while (nI <= 1)
 	}
 
+	$attribute delay 4
 }
 
 

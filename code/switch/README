@@ -1,2 +1,4 @@
 A memory controller with four NIC interfaces and
 one processor interface.
+
+It also has 4 independent memory banks.

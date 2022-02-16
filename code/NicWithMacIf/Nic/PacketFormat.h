@@ -5,7 +5,9 @@
 typedef struct NicPacket__ {
 	// dwords [0] is the control dword.
 	// what is the format?
-	//
+	//	dword[0][63:20] = Unused 
+	//	dword[0][19: 8] = packet_size
+	//	dword[0][ 7: 0] = last_tkeep(byte mask of last word)
 
 	// dwords [1], dwords [2] keep the 
 	// Ethernet packet header

@@ -1,6 +1,7 @@
 
 ---------------------------------------------------------------
 	AJIT system core memory interface protocol
+		Ajit Core Bus (ACB)
 ---------------------------------------------------------------
 
 1.  Request packet:
@@ -28,6 +29,7 @@
 
 ---------------------------------------------------------------
 	AJIT peripheral io memory interface protocol
+		Ajit FIFO Bus (AFB)
 ---------------------------------------------------------------
 
 1.  Request packet:

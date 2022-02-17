@@ -29,6 +29,8 @@
 //	step2:	Processor thread reads rx_queue's data and writes it to tx_queue
 //	step3:	NIC_to_MAC thread reads pipe/s and checks if the received data is same as
 //			sent data.
+//
+//  The MAC -> NIC connection should operate at full speed during the test.
 
 // Local includes
 #include "InterfaceDataStructures.h"

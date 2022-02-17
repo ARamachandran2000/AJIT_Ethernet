@@ -4,23 +4,36 @@
 // 2.
 $system v0_core $library v0_core_lib
 	$in
+		// processor side interfaces..
+		$signal  THREAD_RESET 4 $depth 1
+		$pipe SOC_MONITOR_to_DEBUG 8 $depth 2
+		$pipe CONSOLE_to_SERIAL_RX
 
+		// MAC side
 		$pipe MAC_TO_NIC_0
 		$pipe MAC_TO_NIC_1
 		$pipe MAC_TO_NIC_2
 		$pipe MAC_TO_NIC_3
 
+		// Bank side.
 		$pipe BANK_0_RESPONSE
 		$pipe BANK_1_RESPONSE
 		$pipe BANK_2_RESPONSE
 		$pipe BANK_3_RESPONSE
 
 	$out
+		// processor side
+		$pipe SOC_DEBUG_to_MONITOR 8 $depth 2
+		$pipe SERIAL_TX_to_CONSOLE 
+		$signal PROCESSOR_MODE 16 $depth 1
+
+		// MAC side
 		$pipe NIC_TO_MAC_0
 		$pipe NIC_TO_MAC_1
 		$pipe NIC_TO_MAC_2
 		$pipe NIC_TO_MAC_3
 
+		// Bank-side
 		$pipe BANK_0_REQUEST
 		$pipe BANK_1_REQUEST
 		$pipe BANK_2_REQUEST
@@ -30,8 +43,50 @@ $system v0_core $library v0_core_lib
 
 	// instances
 	//   4xNIC
+	$instance nic_0_inst   nic_lib: nic
+		// specify the pipe, signal hookups.
+		NIC_TO_MAC => NIC_TO_MAC_0
+		MAC_TO_NIC => MAC_TO_NIC_0
+		NIC_MEM_REQUEST => NIC_0_MEM_REQUEST
+		NIC_MEM_RESPONSE => NIC_0_MEM_REPONSE
+		NIC_PERIPH_REQUEST => NIC_0_PERIPH_REQUEST
+		NIC_PERIPH_RESPONSE => NIC_0_PERIPH_RESPONSE
+
+
+	$instance nic_1_inst   nic_lib: nic
+		// specify the pipe, signal hookups.
+		NIC_TO_MAC => NIC_TO_MAC_1
+		MAC_TO_NIC => MAC_TO_NIC_1
+		NIC_MEM_REQUEST => NIC_1_MEM_REQUEST
+		NIC_MEM_RESPONSE => NIC_1_MEM_REPONSE
+		NIC_PERIPH_REQUEST => NIC_2_PERIPH_REQUEST
+		NIC_PERIPH_RESPONSE => NIC_2_PERIPH_RESPONSE
+
+	$instance nic_2_inst   nic_lib: nic
+		// specify the pipe, signal hookups.
+		NIC_TO_MAC => NIC_TO_MAC_2
+		MAC_TO_NIC => MAC_TO_NIC_2
+		NIC_MEM_REQUEST => NIC_2_MEM_REQUEST
+		NIC_MEM_RESPONSE => NIC_2_MEM_REPONSE
+		NIC_PERIPH_REQUEST => NIC_2_PERIPH_REQUEST
+		NIC_PERIPH_RESPONSE => NIC_2_PERIPH_RESPONSE
+
+	$instance nic_3_inst   nic_lib: nic
+		// specify the pipe, signal hookups.
+		NIC_TO_MAC => NIC_TO_MAC_3
+		MAC_TO_NIC => MAC_TO_NIC_3
+		NIC_MEM_REQUEST => NIC_3_MEM_REQUEST
+		NIC_MEM_RESPONSE => NIC_3_MEM_REPONSE
+		NIC_PERIPH_REQUEST => NIC_3_PERIPH_REQUEST
+		NIC_PERIPH_RESPONSE => NIC_3_PERIPH_RESPONSE
+
+	
 
 	//   1xProcessor
+	$instance processor_inst ajit_processor_lib : processor_1x2x32
+		// TODO..
 
 	//   1xSwitch
+		// TODO..
+	
 }

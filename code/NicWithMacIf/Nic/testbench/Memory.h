@@ -1,7 +1,7 @@
 // Write Memory related threads, functions here
 
 #include "InterfaceDataStructures.h"
-
+uint4_t memory[MEMORY_WIDTH];
 
 // access memory utility for reading as well as writing data
 //	Output : 64 bit rdata

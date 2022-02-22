@@ -3,10 +3,10 @@
 //    Pop a uint32_t from the queue.  Return status = 1 on success.
 // 
 $module [popFromQueue] 
-	$in  (q_base_address : $uint<36> ) $out (q_r_data: $uint<32>  status: $uint<1>)
+	$in  (lock : $uint<1> q_base_address : $uint<36> ) $out (q_r_data: $uint<32>  status: $uint<1>)
 $is
 {
-	$call acquireMutex (q_base_address) (m_ok) 
+	$guard (lock) $call acquireMutex (q_base_address) (m_ok) 
 	$barrier
 
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
@@ -18,7 +18,7 @@ $is
 
 
 	$barrier
-	$call releaseMutex (q_base_address) ()
+	$guard (lock) $call releaseMutex (q_base_address) ()
 	status := (~q_empty) // 1 = Success, 0 = Fail
 }
 
@@ -28,10 +28,10 @@ $is
 //    push a uint32_t into the queue.  Return status = 0 on success.
 // 
 $module [pushIntoQueue] 
-	$in  (q_base_address : $uint<36> q_w_data: $uint<32>) $out (status: $uint<1>)
+	$in  (lock : $uint<1> q_base_address : $uint<36> q_w_data: $uint<32>) $out (status: $uint<1>)
 $is
 {
-	$call acquireMutex (q_base_address) (m_ok) 
+	$guard (lock) $call acquireMutex (q_base_address) (m_ok) 
 	$barrier
 
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
@@ -43,7 +43,7 @@ $is
 
 
 	$barrier
-	$call releaseMutex (q_base_address) ()
+	$guard (lock) $call releaseMutex (q_base_address) ()
 	status := (~q_full)
 }
 

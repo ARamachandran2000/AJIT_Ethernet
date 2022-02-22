@@ -31,7 +31,7 @@ $is
 		$merge $entry $loopback $endmerge
 
 		// Step 1 : Pop From Free Queue -> If not empty (Success indicated by status) 
-		$call popFromQueue (FREE_Q) (rx_buffer_pointer_32 status)
+		$call popFromQueue ($one<1> FREE_Q) (rx_buffer_pointer_32 status)
 
 		
 		// convert 32 bit 16-byte aligned address to 36 bit physical address.
@@ -51,7 +51,7 @@ $is
 			$call populateRxQueue (rx_buffer_pointer_36) ()
 
 		$guard (free_flag) 
-			$call pushIntoQueue (FREE_Q ($slice rx_buffer_pointer_36 35 4)) (push_status) 
+			$call pushIntoQueue ($one<1> FREE_Q ($slice rx_buffer_pointer_36 35 4)) (push_status) 
 
 		// Loop while Control word is 0
 		$while (CONTROL_REGISTER [] 0)
@@ -221,7 +221,7 @@ $is
 		$call AccessRegister ($one<1> $one<4> register_index $zero<32>) (rx_queue_pointer_32)
 	
 		$volatile rx_queue_pointer_36 :=  ($concat rx_queue_pointer_32 $zero<4>)	
-		$call pushIntoQueue (rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
+		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
 		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
 
 		// IF push is unsuccessful then wait for WAIT_TIME and retry

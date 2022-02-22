@@ -20,7 +20,7 @@ void mutex_lock(uint32_t  * mutex_var)
 	{
 		
 	};
-	
+
 	*mutex_var = 1;
 	return;
 	
@@ -35,7 +35,7 @@ void mutex_unlock(uint32_t  * mutex_var)
 
 
 *mutex_var = 0;
-
+return;
 }
 
 typedef struct __RxandTxQueues {

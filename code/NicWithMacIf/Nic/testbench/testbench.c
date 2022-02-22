@@ -34,6 +34,7 @@
 
 // Local includes
 #include "InterfaceDataStructures.h"
+#include "header.h"
 #include "MAC.h"
 #include "Memory.h"
 #include "Processor.h"

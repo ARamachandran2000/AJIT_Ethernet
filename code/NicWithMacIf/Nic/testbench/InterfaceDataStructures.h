@@ -1,7 +1,7 @@
 #ifndef InterfaceDataStructures_h____
 #define InterfaceDataStructures_h____
 
-struct  __BufferQueue {
+typedef struct  __FreeBufferQueue {
 	uint32_t acquire_mutex;
 	uint32_t number_of_entries;
 
@@ -10,9 +10,18 @@ struct  __BufferQueue {
 
 	// software will allocate... and maybe reallocate.
 	uint32_t* buffers;
-};
+}FreeBufferQueue;
 
-void initBufferQueue(BufferQueue* Q, uint32_t number_of_entries)
+typedef struct __RxandTxQueues {
+	uint32_t number_of_entries;
+	
+	uint32_t write_pointer;
+	uint32_t read_pointer;
+	
+	uint32_t* pointers;
+}RxandTxQueues;
+
+void initFreeBufferQueue(FreeBufferQueue* Q, uint32_t number_of_entries)
 {
 	Q->acquire_mutex = 0;
 	Q->write_pointer = 0;
@@ -20,41 +29,26 @@ void initBufferQueue(BufferQueue* Q, uint32_t number_of_entries)
 	Q->number_of_entries = number_of_entries;
 }
 
-// return 0 on success.
-int pushIntoBufferQueue(BufferQueue* Q, uint32_t buf_ptr)
+void initRxandTxQueues(RxandTxQueues* Q, uint32_t number_of_entries)
 {
-	int ret_val = 1;
-	__LOCK__(Q->acquire_mutex);
-	uint32_t nwp = (Q->write_pointer + 1) & (Q->number_of_entries - 1);
-	if(nwp != Q->read_pointer)
-	{
-		ret_val = 0;
-		buffers[Q->write_pointer] = buf_ptr;
-		Q->write_pointer = nwp;
-	}
-	__UNLOCK__(Q->acquire_mutex);
-
-	return(ret_val);
-}
-
-// return 0 on success.
-int popFromBufferQueue (BufferQueue* Q, uint32_t* buf)
-{
-	int ret_val = 1;
-	__LOCK__(Q->acquire_mutex);
-	if(Q->write_pointer != Q->read_pointer)
-	{
-		ret_val = 0;
-		*buf = Q->buffers[Q->read_pointer];
-		Q->read_pointer = (Q->read_pointer + 1) & (Q->number_of_entries - 1);
-	}
-	__UNLOCK__(Q->acquire_mutex);
-	return(ret_val);
+	Q->acquire_mutex = 0;
+	Q->write_pointer = 0;
+	Q->read_pointer = 0;
+	Q->number_of_entries = number_of_entries;
 }
 
 
+// return 1 on success.
+int pushIntoFreeBufferQueue(FreeBufferQueue* , uint32_t);
 
+// return 1 on success.
+int popFromFreeBufferQueue (FreeBufferQueue* , uint32_t*);
 
+// return 1 on success
+int pushIntoRxandTxQueues(RxandTxQueues*, uint32_t);
+
+// return 1 on success
+int popFromRxandTxQueues (RxandTxQueues*, uint32_t*);
 
 
 #endif

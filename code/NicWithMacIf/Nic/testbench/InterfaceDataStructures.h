@@ -39,16 +39,73 @@ void initRxandTxQueues(RxandTxQueues* Q, uint32_t number_of_entries)
 
 
 // return 1 on success.
-int pushIntoFreeBufferQueue(FreeBufferQueue* , uint32_t);
+int pushIntoFreeBufferQueue(FreeBufferQueue* Q , uint32_t  data)
+{
+	//__LOCK__(Q->acquire_mutex);
+	int ret_val = 0;
+	uint32_t next_pointer = (Q->write_pointer + 1) & (Q->number_of_entries - 1);
+	if(next_pointer != Q->read_pointer)
+	{
+		ret_val = 1;
+		buffers[Q->write_pointer] = data;
+		Q->write_pointer = next_pointer;
+	}
+	//__UNLOCK__(Q->acquire_mutex);
+
+	return(ret_val);
+
+
+};
 
 // return 1 on success.
-int popFromFreeBufferQueue (FreeBufferQueue* , uint32_t*);
+int popFromFreeBufferQueue (FreeBufferQueue* Q , uint32_t* buf_data)
+{
+	int ret_val = 0;
+	//__LOCK__(Q->acquire_mutex);
+	if(Q->write_pointer != Q->read_pointer)
+	{
+		ret_val = 1;
+		*buf_data = Q->buffers[Q->read_pointer];
+		Q->read_pointer = (Q->read_pointer + 1) & (Q->number_of_entries - 1);
+	}
+	//__UNLOCK__(Q->acquire_mutex);
+	return(ret_val);
+
+}
 
 // return 1 on success
-int pushIntoRxandTxQueues(RxandTxQueues*, uint32_t);
+int pushIntoRxandTxQueues(RxandTxQueues* Q, uint32_t data)
+{
+	//__LOCK__(Q->acquire_mutex);
+	int ret_val = 0;
+	uint32_t next_pointer = (Q->write_pointer + 1) & (Q->number_of_entries - 1);
+	if(next_pointer != Q->read_pointer)
+	{
+		ret_val = 1;
+		buffers[Q->write_pointer] = data;
+		Q->write_pointer = next_pointer;
+	}
+	//__UNLOCK__(Q->acquire_mutex);
+
+	return(ret_val);
+
+}
 
 // return 1 on success
-int popFromRxandTxQueues (RxandTxQueues*, uint32_t*);
+int popFromRxandTxQueues (RxandTxQueues* Q, uint32_t*buf_data)
+{
+
+	int ret_val = 0;
+	//__LOCK__(Q->acquire_mutex);
+	if(Q->write_pointer != Q->read_pointer)
+	{
+		ret_val = 1;
+		*buf_data = Q->buffers[Q->read_pointer];
+		Q->read_pointer = (Q->read_pointer + 1) & (Q->number_of_entries - 1);
+	}
+	//__UNLOCK__(Q->acquire_mutex);
+	return(ret_val);
+}
 
 
 #endif

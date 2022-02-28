@@ -3,4 +3,4 @@
 #include "InterfaceDataStructures.h"
 
 FreeBufferQueue free_buf_queue;
-RxandTBufferQueues rx_queue, tx_queue;
+RxandTxBufferQueues rx_queue, tx_queue;

@@ -76,15 +76,15 @@ void register_config ()
 
 		// Set Address 
 		register_address = register_addresses_array[i];
-		setSliceOfWord_64(control_word_1[i],35,0,register_address);
+		control_word_1[i] = setSliceOfWord_64(control_word_1[i],35,0,register_address);
 
 		// Set Byte Mask
 		byte_mask = 15; // 1111
-		setSliceOfWord_64(control_word_1[i],39,36,byte_mask);
+		control_word_1[i] = setSliceOfWord_64(control_word_1[i],39,36,byte_mask);
 
 		// Set Read Write-Bar and Lock bit
 		rw_lock = 1; // 01
-		setSliceOfWord_64(control_word_1[i],41,40,rw_lock);
+		control_word_1[i] = setSliceOfWord_64(control_word_1[i],41,40,rw_lock);
 
 		// Organised as control_word_1...control_word_0
 

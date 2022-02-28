@@ -64,8 +64,23 @@ void initRxandTxQueues(RxandTxQueues* Q, uint32_t number_of_entries)
 }
 
 
+int checkIf_RXandTxQueue_NotEmpty(RxandTxQueues* Q)
+{
+
+return (Q->write_pointer != Q->read_pointer);
+
+};
+
+int checkIf_FreeQueue_NotEmpty(FreeBufferQueue* Q)
+{
+
+return (Q->write_pointer != Q->read_pointer);
+
+};
+
+
 // return 1 on success.
-int pushIntoFreeBufferQueue(FreeBufferQueue* Q , uint32_t  data)
+int pushIntoFreeBufferQueue(FreeBufferQueue* Q , uint32_t * data)
 {
 	//mutex_lock(&Q->acquire_mutex);
 	int ret_val = 0;
@@ -91,7 +106,7 @@ int popFromFreeBufferQueue (FreeBufferQueue* Q , uint32_t* buf_data)
 	if(Q->write_pointer != Q->read_pointer)
 	{
 		ret_val = 1;
-		*buf_data = Q->buffers[Q->read_pointer];
+		buf_data = Q->buffers[Q->read_pointer];
 		Q->read_pointer = (Q->read_pointer + 1) & (Q->number_of_entries - 1);
 	}
 	//mutex_unlock(&Q->acquire_mutex);
@@ -100,7 +115,7 @@ int popFromFreeBufferQueue (FreeBufferQueue* Q , uint32_t* buf_data)
 }
 
 // return 1 on success
-int pushIntoRxandTxQueues(RxandTxQueues* Q, uint32_t data)
+int pushIntoRxandTxQueues(RxandTxQueues* Q, uint32_t *  data)
 {
 	
 	int ret_val = 0;

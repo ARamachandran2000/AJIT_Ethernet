@@ -1,11 +1,10 @@
 // Configs the Registers, Creates Free Buffers, swaps MAC addresses and pushes to the Queues
 
-#include "InterfaceDataStructures.h"
+#include "header.h"
 
 #define BUF_LENGTH 200
 #define QUEUE_SIZE 10
 
-<<<<<<< HEAD
 void cpu_model(FreeBufferQueue *  free, 
 				RxandTxBufferQueues * Rx, RxandTxBufferQueues * Tx)
 

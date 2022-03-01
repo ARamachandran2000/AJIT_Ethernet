@@ -5,8 +5,8 @@
 #define BUF_LENGTH 200
 #define QUEUE_SIZE 10
 
-void cpu_model(FreeBufferQueue *  free, 
-				RxandTxBufferQueues * Rx, RxandTxBufferQueues * Tx)
+void cpu_model(Queue *  free, 
+				Queue * Rx, Queue * Tx)
 
 {
 
@@ -32,6 +32,13 @@ push(free , buffer_1)
 push(free , buffer_2)
 
 // Config NIC Registers Here.....(Discuss Tomorrow)
+
+// First Transform the 48-bit addressing of this cpu to 32-bit AJIT pointer address...
+
+// TODO : Clarify with Sir, the best approach
+
+// Send these addresses to NIC Registers and configure NIC
+register_config (rx_pointer, tx_pointer, free_pointer);
 
 
 

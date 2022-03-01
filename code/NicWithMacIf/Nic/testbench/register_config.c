@@ -6,9 +6,7 @@
 
 #define NUMBER_OF_SERVERS 1
 #define NUMBER_OF_REGISTERS_TO_WRITE 5
-#define RX_Q_0_ADDRESS //TODO
-#define TX_Q_0_ADDRESS //TODO
-#define FREE_Q_ADDRESS //TODO 
+
 
 uint64_t getSliceFromWord (uint64_t word, uint8_t high, uint8_t low)
 {
@@ -49,7 +47,7 @@ uint64_t setSliceOfWord_64 (uint64_t word, uint8_t high, uint8_t low, uint64_t w
 }
 
 
-void register_config ()
+void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t FREE_Q_ADDRESS )
 {
 	uint32_t write_data;
 	uint64_t register_address;

@@ -1,8 +1,11 @@
 // Configs the Registers, Creates Free Buffers, swaps MAC addresses and pushes to the Queues
 
+#include "InterfaceDataStructures.h"
+
 #define BUF_LENGTH 200
 #define QUEUE_SIZE 10
 
+<<<<<<< HEAD
 void cpu_model(FreeBufferQueue *  free, 
 				RxandTxBufferQueues * Rx, RxandTxBufferQueues * Tx)
 
@@ -19,17 +22,15 @@ uint32_t * temp_buffer = NULL;
 
 // Initialise Free, Rx and Tx Queues
 
-initFreeBufferQueue(free, QUEUE_SIZE);
-initRxandTxQueues(Rx, QUEUE_SIZE);
-initRxandTxQueues(Tx, QUEUE_SIZE);
+initQueue(free, QUEUE_SIZE);
+initQueue(Rx, QUEUE_SIZE);
+initQueue(Tx, QUEUE_SIZE);
 
 
 // Push Buffer Pointers to Free Queue
-pushIntoFreeBufferQueue(free , buffer_0)
-pushIntoFreeBufferQueue(free , buffer_1)
-pushIntoFreeBufferQueue(free , buffer_2)
-
-
+push(free , buffer_0)
+push(free , buffer_1)
+push(free , buffer_2)
 
 // Config NIC Registers Here.....(Discuss Tomorrow)
 
@@ -38,14 +39,14 @@ pushIntoFreeBufferQueue(free , buffer_2)
 
 // 
 
-
 while(1)
 {
 
 // If Rx Queue has data then pop and push to Tx Queue (For now not swapping Addresses to reduce complexity since we are just simulating to check the NIC functionality)
-	if(popFromRxandTxQueues (Rx,temp_buffer)))
+	if(~checkEmpty(Rx)
 	{
-		pushIntoRxandTxQueues(Tx, temp_buffer);
+		pop (Rx,temp_buffer)
+		push(Tx, temp_buffer);
 	}	
 }
 

@@ -12,7 +12,10 @@
 // Each buffer is 2KB (256 x 8).
 // We use 16 buffers.
 //
-uint64_t memory_array[2*256*16];
+//
+// Allocate 8 locks.... = 1 double word.
+//
+uint64_t memory_array[(2*256*16) + 1];
 
 void writeMemory(uint32_t, uint64_t, uint8_t);
 

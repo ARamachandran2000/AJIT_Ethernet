@@ -17,6 +17,36 @@
 //
 uint64_t memory_array[(2*256*16) + 1];
 
+
+int memory_lock_status[] = {0, 0};
+
+// return 0 on success.
+int accessMemory (uint8_t requester_id,
+			uint8_t lock, 
+			uint8_t read_write_bar, 
+			uint8_t byte_mask,
+			uint64_t addr, 
+			uint64_t wdata, 
+			uint64_t* read_data)
+{
+	// acquire mutex.
+	
+	// check if nobody holds the lock or 
+	// if 
+}
+
+
+void testerMemoryServiceDaemon()
+{
+	// service memory requests from the tester.
+}
+
+void cpuMemoryServiceDaemon()
+{
+	// service memory requests from the cpu.
+}
+
+
 void writeMemory(uint32_t, uint64_t, uint8_t);
 
 // access memory utility for reading as well as writing data
@@ -27,12 +57,16 @@ void writeMemory(uint32_t, uint64_t, uint8_t);
 //		3. 8  bit byte_mask
 //		4. 36 bit memory_address(will be converted to 36 bit inside function)
 //		5. 64 bit wdata
-
 void memory_model(Queue* free, Queue* Rx, Queue* Tx)
 {
 	char mem_req_pipe_0[25], mem_req_pipe_1[25];
 	char mem_resp_pipe_0[25], mem_resp_pipe_1[25];
+
+	//
+	// 
 	// req and resp pipes.
+	//
+	getRequestFromTester(&lock_tester, &rwbar_tester, &addr_tester, &
 	sprintf(mem_req_pipe_0,"tester_to_mem_model_req0"); 	//64 bit
 	sprintf(mem_req_pipe_1,"tester_ro_mem_model_req1"); 	//64 bit
 	sprintf(mem_resp_pipe_0,"mem_model_to_tester_resp0");	//64 bit

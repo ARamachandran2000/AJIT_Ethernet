@@ -1,14 +1,9 @@
-// Write MAC related threads and declerations here.
 
 // add includes
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-
-#include<Pipes.h>
+#include "header.h"
 
 #define MAX_PACKET_LENGTH_IN_BYTES	1500
-int __err_flag_ = 0;
+
 // lets have static address for now
 uint64_t destination_mac_address = 1;
 uint64_t source_mac_address = 2; 
@@ -135,7 +130,7 @@ void nicToMacData(void)
 			data_16 = read_uint64(pipe_to_recv1);
 			if(((data_64 >> 8) & 0xff) != i){
 				fprintf(stderr,"\nData Missmatch Expected = %d, Received = %d\n", i,data_64);
-				__err_flag_ = 1;
+				__err_flg_ = 1;
 				break;
 			}
 		}
@@ -145,7 +140,7 @@ void nicToMacData(void)
 		if(((data_64 >> 8) & 0xff) != i)
 		{	
 			fprintf(stderr,"\nData Missmatch Expected = %d, Received = %d\n", i,data_64);
-			__err_flag_ = 1;
+			__err_flg_ = 1;
 			break;
 		}
 	}

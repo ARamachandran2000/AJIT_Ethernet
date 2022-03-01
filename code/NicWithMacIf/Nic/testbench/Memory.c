@@ -2,6 +2,8 @@
 
 #include "InterfaceDataStructures.h"
 
+void writeMemory(uint32_t, uint64_t, uint8_t);
+
 // access memory utility for reading as well as writing data
 //	Output : 65 bit 
 //	Input  : 110 bit
@@ -11,8 +13,7 @@
 //		4. 36 bit memory_address(will be converted to 36 bit inside function)
 //		5. 64 bit wdata
 
-void memory_model(FreeBufferQueue *  free, 
-			RxandTxBufferQueues * Rx, RxandTxBufferQueues * Tx)
+void memory_model(Queue* free, Queue* Rx, Queue* Tx)
 {
 	char mem_req_pipe_0[25], mem_req_pipe_1[25];
 	char mem_resp_pipe_0[25], mem_resp_pipe_1[25];
@@ -37,10 +38,27 @@ void memory_model(FreeBufferQueue *  free,
 			rdata = *(addr);
 		else
 			// need to add bmask logic.
-			*(addr) = req0; //req0 is wdata.
+			writeMemory(addr,req0,bmask);//req0 is wdata.
 		// responce
 		int error = 0;
 		write_uint8("mem_model_to_tester_resp1",error);
 		write_uint64("mem_model_to_tester_resp0",rdata);
 	}	
+}
+
+// function to write data to memory using bytemask.
+void writeMemory(uint32_t addr,uint64_t wdata,uint8_t bmask){
+	uint64_t rdata = *(addr);
+	uint64_t data = 0;
+	int i = 0;
+	for(i = 0; i < 8; i++){
+		// if bit is 1 modify corresponding byte.
+		if((bmsak>>i) &0x1){
+			rdata = (rdata & (0xffffffffffffff00 <<(i*8)));
+			rdata |= (wdata & (0x00000000000000ff<< (i*8))); 	
+		}
+		else
+			rdata = rdata;
+	}
+	*(addr) = rdata; // modified rdata
 }

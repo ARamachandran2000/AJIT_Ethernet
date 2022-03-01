@@ -1,7 +1,7 @@
 #include "InterfaceDataStructures.h"
 
 // configuration of nic registers.
-void register_config (void);
+void register_config (uint32_t, uint32_t, uint32_t);
 
 // MAC functions.
 //---------------
@@ -17,9 +17,7 @@ void nicToMacData(void);
 //	arg1 = base pointer of free queue
 //	arg2 = base pointer of rx queue
 //	arg3 = base pointer of tx queue
-void cpu_model(FreeBufferQueue*, 
-		RxandTxBufferQueues*, 
-		RxandTxBufferQueues*);
+void cpu_model(Queue*, Queue*, Queue*);
 
 // Memory function.
 //-----------------
@@ -27,7 +25,5 @@ void cpu_model(FreeBufferQueue*,
 //	arg1 = base pointer of free queue
 //	arg2 = base pointer of rx queue
 //	arg3 = base pointer of tx queue
-void memory_model(FreeBufferQueue *, 
-		  RxandTxBufferQueues*, 
-		  RxandTxBufferQueues*);
+void memory_model(Queue*, Queue*, Queue*);
 

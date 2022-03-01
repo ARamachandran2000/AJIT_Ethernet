@@ -1,6 +1,18 @@
 // Write Memory related threads, functions here
-
 #include "InterfaceDataStructures.h"
+//
+// We will model 16 Queues, each of which require
+// 256x8 bytes = 2KB.
+//
+// Q0 occupies 0 to 255
+// Q1 occupies 256 to 511 etc..
+//
+//
+// Also, we need to model buffers.
+// Each buffer is 2KB (256 x 8).
+// We use 16 buffers.
+//
+uint64_t memory_array[2*256*16];
 
 void writeMemory(uint32_t, uint64_t, uint8_t);
 
@@ -47,8 +59,10 @@ void memory_model(Queue* free, Queue* Rx, Queue* Tx)
 }
 
 // function to write data to memory using bytemask.
-void writeMemory(uint32_t addr,uint64_t wdata,uint8_t bmask){
-	uint64_t rdata = *(addr);
+//  addr = byte address.
+void writeMemory(uint64_t addr, uint64_t wdata,uint8_t bmask){
+	memory_array[(addr >> 3)] = wdata; // ILLUSTRATION PURPOSES..
+	uint64_t rdata = *(addr); // NO!
 	uint64_t data = 0;
 	int i = 0;
 	for(i = 0; i < 8; i++){

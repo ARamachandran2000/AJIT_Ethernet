@@ -2,13 +2,12 @@
 #define InterfaceDataStructures_h____
 
 typedef struct __Queue {
-
-	uint32_t acquire_mutex;
-	uint32_t number_of_entries;
-	uint32_t write_pointer;
-	uint32_t read_pointer;
-	uint32_t* buffers;
-}Queue;
+	uint32_t  acquire_mutex;
+	uint32_t  number_of_entries;
+	uint32_t  write_pointer;
+	uint32_t  read_pointer;
+	uint64_t  buffer_pointer;
+} Queue;
 
 void mutex_lock(uint32_t  * mutex_var)
 {

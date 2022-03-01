@@ -1,9 +1,33 @@
-// all global declerations and constants declerations are to be written here
-
 #include "InterfaceDataStructures.h"
-// consider 64KB memory
-//	64K * 8 bits = 64 * 8192 bits
-uint64_t Memory[8192];
 
-FreeBufferQueue free_buf_queue;
-RxandTxBufferQueues rx_queue, tx_queue;
+// configuration of nic registers.
+void register_config (void);
+
+// MAC functions.
+//---------------
+//  pushes packet to nic.
+void macToNicData(void);
+
+// pulls packet from nic.
+void nicToMacData(void);
+
+// Processor function.
+//----------------------
+//	models the cpu.
+//	arg1 = base pointer of free queue
+//	arg2 = base pointer of rx queue
+//	arg3 = base pointer of tx queue
+void cpu_model(FreeBufferQueue*, 
+		RxandTxBufferQueues*, 
+		RxandTxBufferQueues*);
+
+// Memory function.
+//-----------------
+//	models memory
+//	arg1 = base pointer of free queue
+//	arg2 = base pointer of rx queue
+//	arg3 = base pointer of tx queue
+void memory_model(FreeBufferQueue *, 
+		  RxandTxBufferQueues*, 
+		  RxandTxBufferQueues*);
+

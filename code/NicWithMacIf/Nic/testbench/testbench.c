@@ -32,12 +32,34 @@
 //  The MAC -> NIC connection should operate at full speed during the test.
 
 // Local includes
-#include "InterfaceDataStructures.h"
 #include "header.h"
-#include "MAC.h"
-#include "Memory.h"
-#include "Processor.h"
+#include "MAC.c"
+#include "Memory.c"
+#include "Processor.c"
+#include "register_config.c"
 
+
+FreeBufferQueue free_buf_queue;
+RxandTxBufferQueues rx_queue, tx_queue;
+// cpu thread
+void cpu_thread(){
+	cpu_model(free_buf_queue,rx_queue,tx_queue);
+}DEFINE_THREAD(cpu_thread)
+
+// meemory thread_thread(){
+	memory_model(free_buf_queue,rx_queue,tx_queue);
+}DEFINE_THREAD(memory_thread);
+
+// mac threads
+// tx thread
+void mac_tx_thread(){
+	macToNicData();
+}DEFINE_THREAD(mac_tx_thread);
+
+// rc thread
+void mac_rx_thread(){
+	nicToMacThread();
+}DEFINE_THREAD(mac_rx_thread);
 
 int __err_flg_ = 0;
 
@@ -70,27 +92,23 @@ int main(int argc, char *argv[]){
 	start_deamons(fp,0);
 #endif
 #endif
-	memoryInit();
-	configureSystem();
-	// declare and start threads
-	// mac side
-	PTHREAD_DECL(mac_tx);
-	PTHREAD_CREATE(mac_tx);
-	PTHREAD_DECL(mac_rx);
-	PTHREAD_CREATE(mac_rx);
-	
-	// cpu
+	// declare threads
 	PTHREAD_DECL(cpu_thread);
-	PTHREAD_CREATE(cpu_thread);
-
-	// memory
-	PTHREAD_DECL(memory_model);
-	PTHREAD_CREATE(memory_model);
+	PTHREAD_DECL(memory_thread);
+	PTHREAD_DECL(mac_tx_thread);
+	PTHREAD_DECL(mac_rx_thread);
 	
-	PTHREAD_JOIN(mac_rx);
-	PTHREAD_JOIN(memory_model);
+	// create threads
+	PTHREAD_CREATE(cpu_thread);
+	PTHREAD_CREATE(memory_thread);
+	PTHREAD_CREATE(mac_tx_thread);
+	PTHREAD_CREATE(mac_rx_thread);
+	
+	// wait 
+	PTHREAD_JOIN(mac_rx_thread);
+	PTHREAD_JOIN(memory_thread);
 	PTHREAD_JOIN(cpu_thread);
-	PTHREAD_JOIN(mac_rx);
+	PTHREAD_JOIN(mac_rx_thread);
 
 	if(!__err_flg)
 		fprintf(stderr,"\n\nSUCCESS...!!!\n\n");

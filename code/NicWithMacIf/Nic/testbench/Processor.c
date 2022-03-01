@@ -3,7 +3,7 @@
 #define BUF_LENGTH 200
 #define QUEUE_SIZE 10
 
-void cpu_thread(FreeBufferQueue *  free, 
+void cpu_model(FreeBufferQueue *  free, 
 				RxandTxBufferQueues * Rx, RxandTxBufferQueues * Tx)
 
 {

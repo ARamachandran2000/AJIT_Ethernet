@@ -25,7 +25,7 @@ uint64_t source_mac_address = 2;
 //
 //		2.mac_to_nic_data_0[63:0] = data[63:0]	-- 64 bit wide
 //	 	
-void MAC_To_NIC_data(void)
+void macToNIcData(void)
 {
 	char pipe_to_send0[20], pipe_to_send1[20];
 	sprintf(pipe_to_send0,"mac_to_nic_data_0");
@@ -100,7 +100,7 @@ void MAC_To_NIC_data(void)
 //
 //		2.nic_to_mac_data_0[63:0] = data[63:0]	-- 64 bit wide
 
-void NIC_to_MAC_data(void)
+void nicToMacData(void)
 {
 	char pipe_to_recv0[20], pipe_to_recv1[20];
 	sprintf(pipe_to_recv0,"nic_to_mac_data_0");

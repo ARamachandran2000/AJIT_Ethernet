@@ -9,7 +9,9 @@
 
 #define QUEUE_SIZE 16
 
-// LSB of memory Index stores lower address and MSB stores higher address (Little Endian)
+// Organization within an Index for Queue (Follow Big Endian System) Lower Word in MSB side
+// [0] Lock (63 : 32) Number Of Entries (31 : 0)
+// [1] Write Pointer (63 : 32) Number Of Entries (31 : 0)
 
 void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 {
@@ -33,8 +35,8 @@ int push(uint64_t queue_offset, uint32_t * data)
 	int ret_val = 0;
 	uint64_t pointers = memory_array [queue_offset + 1];
 
-	uint32_t write_pointer = getSliceFromWord(pointers, 31, 0);
-	uint32_t read_pointer  = getSliceFromWord(pointers, 63, 32);
+	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
+	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
 	uint32_t next_pointer = (write_pointer + 1)
 	
 	// Loop Around (Circular Queue)
@@ -45,7 +47,7 @@ int push(uint64_t queue_offset, uint32_t * data)
 	{
 		ret_val = 1;
 		memory_array[write_pointer] = data;
-		pointers = setSliceOfWord_64(pointers, 31,0,next_pointer);
+		pointers = setSliceOfWord_64(pointers, 63,32,next_pointer);
 		
 		memory_array[queue_offset + 1] = pointers;
 	}
@@ -60,8 +62,8 @@ int pop(uint64_t queue_offset , uint32_t* buf_data)
 	int ret_val = 0;
 
 	uint64_t pointers = memory_array [queue_offset + 1];
-	uint32_t write_pointer = getSliceFromWord(pointers, 31, 0);
-	uint32_t read_pointer  = getSliceFromWord(pointers, 63, 32);
+	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
+	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
 	
 	if(write_pointer != read_pointer)
 	{
@@ -73,7 +75,7 @@ int pop(uint64_t queue_offset , uint32_t* buf_data)
 		else
 			read_pointer = read_pointer + 1;
 		
-		pointers = setSliceOfWord_64(pointers, 63,32,read_pointer);
+		pointers = setSliceOfWord_64(pointers, 31,0,read_pointer);
 		
 		memory_array[queue_offset + 1] = pointers;
 			
@@ -89,8 +91,8 @@ int pop(uint64_t queue_offset , uint32_t* buf_data)
 int checkEmpty(uint64_t queue_offset)
 {
 	uint64_t pointers = memory_array [queue_offset + 1];
-	uint32_t write_pointer = getSliceFromWord(pointers, 31, 0);
-	uint32_t read_pointer  = getSliceFromWord(pointers, 63, 32);
+	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
+	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
 	
 	return (write_pointer == read_pointer);
 
@@ -99,8 +101,8 @@ int checkEmpty(uint64_t queue_offset)
 int checkFull(uint64_t queue_offset)
 {
 	uint64_t pointers = memory_array [queue_offset + 1];
-	uint32_t write_pointer = getSliceFromWord(pointers, 31, 0);
-	uint32_t read_pointer  = getSliceFromWord(pointers, 63, 32);
+	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
+	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
 	
 	uint32_t next_pointer = (write_pointer + 1)
 	

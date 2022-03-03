@@ -132,6 +132,8 @@ void sendResponceToTester(uint8_t requester_id, int error, uint64_t rdata)
 // this function reads request, performs memory operation and then sends responce. 
 void memoryServiceModel(uint8_t requester_id);
 {
+	uint8_t lock_tester,rwbar_tester,bmask_tester;
+	uint64_t addr_tester, wdata_tester, rdata;
 	while(1)
 	{
 		// reads request from pipes

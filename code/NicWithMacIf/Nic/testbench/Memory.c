@@ -118,7 +118,7 @@ void getReqFromTester(uint8_t requester_id,
 }
 
 // sends responce to pipes(corresping to requester_id)
-void sendResponceToTester(uint8_t requester_id, int error, uint64_t rdata)
+void sendResponceToTester(uint8_t requester_id, uint8_t error, uint64_t rdata)
 {	
 	// pipes
 	char resp_pipe0[30], resp_pipe1[30];
@@ -126,7 +126,7 @@ void sendResponceToTester(uint8_t requester_id, int error, uint64_t rdata)
 	sprintf(resp_pipe1,"mem_resp%d_pipe1",(int)requester_id);//  8 bit wide
 
 	write_uint64(resp_pipe0,rdata);
-	write_uint64(resp_pipe1,error);
+	write_uint8(resp_pipe1,)error); // Changed
 }
 
 // this function reads request, performs memory operation and then sends responce. 

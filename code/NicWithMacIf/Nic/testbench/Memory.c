@@ -1,5 +1,6 @@
 // Write Memory related threads, functions here
 #include "InterfaceDataStructures.h"
+#include<pthreadUtils.h>
 //
 // We will model 16 Queues, each of which require
 // 256x8 bytes = 2KB.
@@ -17,8 +18,6 @@
 //
 uint64_t memory_array[(2*256*16) + 1];
 
-void writeMemory(uint32_t, uint64_t, uint8_t);
-
 // access memory utility for reading as well as writing data
 //	Output : 65 bit 
 //	Input  : 110 bit
@@ -28,54 +27,125 @@ void writeMemory(uint32_t, uint64_t, uint8_t);
 //		4. 36 bit memory_address(will be converted to 36 bit inside function)
 //		5. 64 bit wdata
 
-void memory_model(Queue* free, Queue* Rx, Queue* Tx)
+// memory lock status, 
+// 	index -> 
+//		0 : cpu, 
+//		1 : memory.
+int memory_lock_status[] = {0,0};
+pthread_mutex_t mutex_memory_lock = PTHREAD_MUTEX_INITIALIZER;
+int accessMemory(uint8_t requerster_id,
+			uint8_t lock,
+			uint8_t read_write_bar,
+			uint8_t byte_mask,
+			uint64_t addr,
+			uint64_t wdata,
+			uint64_t* rdata);
 {
-	char mem_req_pipe_0[25], mem_req_pipe_1[25];
-	char mem_resp_pipe_0[25], mem_resp_pipe_1[25];
-	// req and resp pipes.
-	sprintf(mem_req_pipe_0,"tester_to_mem_model_req0"); 	//64 bit
-	sprintf(mem_req_pipe_1,"tester_ro_mem_model_req1"); 	//64 bit
-	sprintf(mem_resp_pipe_0,"mem_model_to_tester_resp0");	//64 bit
-	sprintf(mem_resp_pipe_1,"mem_model_to_tester_resp1");	// 8 bit
-	char memory_is_locked = 0;
-	uint64_t req0,req1,rdata;
+	int __error_flg = 0;
+	pthread_mutex_lock(&mutex_memory_lock);
+	// PERFORM MEMORY OPERATION
+	if(memory_lock_status[0] || memory_lock_status[1])
+	{
+		// memory is locked.
+		if((lock == 0) && (memory_lock_status[requester_id] == 1))
+			// unlock memory.
+			memory_lock_status[requester_id] = 0;
+		else
+			__error_flg = 1;
+	}
+	// memory is unlocked but requester requetsed to lock.
+	else if(lock == 1) 
+		// lock the memory
+		memory_lock_status[requester_id] = 1;
+	if(!__error_flg)
+	{
+		if(read_write_bar)
+			*(rdata) = memory_array[addr]; 
+		else 
+		{
+			uint64_t tmp_rdata = memory_array[addr];
+			int index = 0;
+			for(index = 0; index < 8; index++)
+			{
+				if((byte_mask>>index) & 0x1)
+				{
+					// need to rethink a bit
+					tmp_rdata = (tmp_rdata & (0xffffffffffffff00 <<(i*8)));
+					tmp_rdata |= (wdata & (0x00000000000000ff<< (i*8))); 
+				}
+				else
+					tmp_rdata = tmp_rdata;
+					
+			}
+			*(rdata) = tmp_rdata;
+		}
+	}
+	pthread_mutex_unlock(&mutex_memory_lock);
+	return(__error_flg);
+}
+
+void getReqFromTester(uint8_t requester_id,
+			uint8_t* lock,
+			uint8_t* rwbar,
+			uint8_t* bmask,
+			uint64_t* addr,
+			uint64_t* wdata)
+{
+	// pipes
+	char req_pipe0[30], req_pipe1[30];
+	sprintf(req_pipe0,"mem_req%d_pipe0",(int)requester_id);//64 bit wide
+	sprintf(req_pipe1,"mem_req%d_pipe1",(int)requester_id);//64 bit wide
+	
+	uint64_t req1;
+	*(wdata) = read_uint64(req_pipe0);
+	req1 = read_uint64(req_pipe1);
+	*(lock)  = (req1 >> 45) & 0x01; 
+	*(rwbar) = (req1 >> 44) & 0x01;
+	*(addr) = req1 & 0xfffffffff;
+	*(bmask) = (req1 >> 36) & 0xff;
+}
+
+void sendResponceToTester(uint8_t requester_id, int error, uint64_t rdata)
+{	
+	// pipes
+	char resp_pipe0[30], resp_pipe1[30];
+	sprintf(resp_pipe0,"mem_resp%d_pipe0",(int)requester_id);// 64 bit wide
+	sprintf(resp_pipe1,"mem_resp%d_pipe1",(int)requester_id);//  8 bit wide
+
+	write_uint64(resp_pipe0,rdata);
+	write_uint64(resp_pipe1,error);
+}
+void memoryServiceModel(uint8_t requester_id);
+{
 	while(1)
 	{
-		// read requests,
-		// 0 is LSB,1 is MSB
+		// reads request from pipes
+		getReqFromTester(requester_id,&lock_tester,&rwbar_tester,&bmask_tester,&addr_tester,&wdata_tester);
+		// read/write from/to memory.
+		status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tetser,&rdata);
+		// write responce
+		sendResponceToTester(requester_id,status,rdata);
+	}
+}
+
+
+void nicMemoryServiceDaemon()
+{
+	uint8_t nic_id = 1;
+	memoryServiceModel(nic_id);
+}DEFINE_THREAD(nicMemoryServiceDaemon);
+
+void cpuMemoryServiceDaemon()
+{
+	uint8_t cpu_id = 0;
+	memoryServiceModel(cpu_id);
+}DEFINE_THREAD(cpuMemoryServiceDaemon);
+/*
 		req0 = read_uint64(mem_req_pipe_0);
 		req1 = read_uint64(mem_req_pipe_1);
 		char lock  = (req1 >> 45) & 0x1; 
 		char rwbar = (req1 >> 44) & 0x1;
 		uint32_t addr = (req1 >> 4) & 0xfffffff;
 		uint8_t bmask = (req1 >> 36) & 0xff;
-		if(rwbar)
-			rdata = *(addr);
-		else
-			// need to add bmask logic.
-			writeMemory(addr,req0,bmask);//req0 is wdata.
-		// responce
-		int error = 0;
-		write_uint8("mem_model_to_tester_resp1",error);
-		write_uint64("mem_model_to_tester_resp0",rdata);
-	}	
-}
+*/
 
-// function to write data to memory using bytemask.
-//  addr = byte address.
-void writeMemory(uint64_t addr, uint64_t wdata,uint8_t bmask){
-	memory_array[(addr >> 3)] = wdata; // ILLUSTRATION PURPOSES..
-	uint64_t rdata = *(addr); // NO!
-	uint64_t data = 0;
-	int i = 0;
-	for(i = 0; i < 8; i++){
-		// if bit is 1 modify corresponding byte.
-		if((bmsak>>i) &0x1){
-			rdata = (rdata & (0xffffffffffffff00 <<(i*8)));
-			rdata |= (wdata & (0x00000000000000ff<< (i*8))); 	
-		}
-		else
-			rdata = rdata;
-	}
-	*(addr) = rdata; // modified rdata
-}

@@ -64,11 +64,11 @@ int accessMemory(uint8_t requerster_id,
 		// no error due to memory locking
 		if(read_write_bar)
 			// read data
-			*(rdata) = memory_array[addr]; 
+			*(rdata) = memory_array[addr>>4]; 
 		else 
 		{	
 			// read data so tha it will be modified based on byte_mask
-			uint64_t tmp_rdata = memory_array[addr];
+			uint64_t tmp_rdata = memory_array[addr>>4];
 			int index = 0;
 			for(index = 0; index < 8; index++)
 			{
@@ -85,7 +85,7 @@ int accessMemory(uint8_t requerster_id,
 			}
 			// write data
 			wdata = tmp_rdata;
-			memory_array[addr] = wdata;
+			memory_array[addr>>4] = wdata;
 		}
 	}
 	// UNLOCK MUTEX

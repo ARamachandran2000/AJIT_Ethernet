@@ -2,58 +2,61 @@
 
 #include "header.h"
 
-#define BUF_LENGTH 200
+
+#define BUF_LENGTH 256
 #define QUEUE_SIZE 10
 
-void cpu_model(Queue *  free, 
-				Queue * Rx, Queue * Tx)
+// Queue Offsets in Memory
+#define FREE_QUEUE 0
+#define RX_QUEUE 18
+#define TX_QUEUE 36
 
+
+// Buffers area start from index 56 and length of 256 indices
+void cpu_model()
 {
-
-// First Create a Few Buffers to Push Into Free Queue
-
-uint32_t * buffer_0 = (uint32_t*) malloc(BUF_LENGTH * sizeof(uint32_t));
-uint32_t * buffer_1 = (uint32_t*) malloc(BUF_LENGTH * sizeof(uint32_t));
-uint32_t * buffer_2 = (uint32_t*) malloc(BUF_LENGTH * sizeof(uint32_t));
-
-uint32_t * temp_buffer = NULL;
-
 
 // Initialise Free, Rx and Tx Queues
 
-initQueue(free, QUEUE_SIZE);
-initQueue(Rx, QUEUE_SIZE);
-initQueue(Tx, QUEUE_SIZE);
+initQueue(FREE_QUEUE, QUEUE_SIZE);
+initQueue(RX_QUEUE, QUEUE_SIZE);
+initQueue(TX_QUEUE, QUEUE_SIZE);
 
 
-// Push Buffer Pointers to Free Queue
-push(free , buffer_0)
-push(free , buffer_1)
-push(free , buffer_2)
-
-// Config NIC Registers Here.....(Discuss Tomorrow)
-
-// First Transform the 48-bit addressing of this cpu to 32-bit AJIT pointer address...
-
-// TODO : Clarify with Sir, the best approach
-
-// Send these addresses to NIC Registers and configure NIC
-register_config (rx_pointer, tx_pointer, free_pointer);
+// Create Buffers to store Data
+uint64_t buffer_0 = 55;
+uint64_t buffer_1 = buffer_0 + BUF_LENGTH;
+uint64_t buffer_2 = buffer_1 + BUF_LENGTH;
+uint64_t buffer_3 = buffer_2 + BUF_LENGTH;
 
 
 
+// Push Buffer Pointers to Free Queue for access by NIC
+push(FREE_QUEUE , buffer_0,0x0F)
+push(FREE_QUEUE , buffer_1,0xFF)
+push(FREE_QUEUE , buffer_2,0x0F)
+push(FREE_QUEUE , buffer_3,0xFF)
 
-// 
+
+// Config NIC Registers
+register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
+
+uint64_t buffer_with_packet = 0;
 
 while(1)
 {
 
 // If Rx Queue has data then pop and push to Tx Queue (For now not swapping Addresses to reduce complexity since we are just simulating to check the NIC functionality)
-	if(~checkEmpty(Rx)
+	if(pop (RX_QUEUE, &buffer_with_packet)))
 	{
-		pop (Rx,temp_buffer)
-		push(Tx, temp_buffer);
+		
+		push(TX_QUEUE, buffer_with_packet,,0xFF);
+	}
+
+	// If no data, then sleep for 5 seconds and try again
+	else
+	{
+		sleep(5);	
 	}	
 }
-
 }

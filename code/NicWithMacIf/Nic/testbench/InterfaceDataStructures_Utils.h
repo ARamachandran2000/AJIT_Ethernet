@@ -9,9 +9,7 @@
 
 #define QUEUE_SIZE 16
 
-// Organization within an Index for Queue (Follow Big Endian System) Lower Word in MSB side
-// [0] Lock (63 : 32) Number Of Entries (31 : 0)
-// [1] Write Pointer (63 : 32) Number Of Entries (31 : 0)
+
 void ReqRespMemory(
 			uint8_t lock,
 			uint8_t read_write_bar,
@@ -69,7 +67,7 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 
 }
 
-int push(uint64_t queue_offset, uint64_t data)
+int push(uint64_t queue_offset, uint64_t data,uint8_t bmask)
 {
 
 	int ret_val = 0;
@@ -91,7 +89,7 @@ int push(uint64_t queue_offset, uint64_t data)
 	{
 		ret_val = 1;
 		//memory_array[write_pointer] = data;
-		ReqRespMemory (0,0,0xFF,write_pointer,data,&status,&rdata);
+		ReqRespMemory (0,0,bmask,write_pointer,data,&status,&rdata);
 		pointers = setSliceOfWord_64(pointers, 63,32,next_pointer);
 		//memory_array[queue_offset + 1] = pointers;
 		ReqRespMemory (0,0,0xFF,queue_offset + 1,pointers,&status,&rdata);
@@ -102,7 +100,7 @@ int push(uint64_t queue_offset, uint64_t data)
 
 
 
-int pop(uint64_t queue_offset , uint32_t* buf_data)
+int pop(uint64_t queue_offset , uint64_t* buf_data)
 {
 	int ret_val = 0;
 	uint64_t pointers;

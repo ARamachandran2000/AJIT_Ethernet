@@ -1,5 +1,5 @@
 #include "InterfaceDataStructures.h"
-
+#include<stdio.h>
 // configuration of nic registers.
 void register_config (uint32_t, uint32_t, uint32_t);
 

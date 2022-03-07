@@ -1,22 +1,9 @@
 // Write Memory related threads, functions here
 #include "InterfaceDataStructures.h"
 #include<pthreadUtils.h>
-//
-// We will model 16 Queues, each of which require
-// 256x8 bytes = 2KB.
-//
-// Q0 occupies 0 to 255
-// Q1 occupies 256 to 511 etc..
-//
-//
-// Also, we need to model buffers.
-// Each buffer is 2KB (256 x 8).
-// We use 16 buffers.
-//
-//
-// Allocate 8 locks.... = 1 double word.
-//
-uint64_t memory_array[(2*256*16) + 1];
+
+
+uint64_t memory_array[18 * 3 + (256*16)];
 
 // access memory utility for reading as well as writing data
 //	Output : 65 bit 
@@ -33,7 +20,7 @@ uint64_t memory_array[(2*256*16) + 1];
 //		1 : memory.
 int memory_lock_status[] = {0,0};
 pthread_mutex_t mutex_memory_lock = PTHREAD_MUTEX_INITIALIZER;
-int accessMemory(uint8_t requerster_id,
+int accessMemory(uint8_t requester_id,
 			uint8_t lock,
 			uint8_t read_write_bar,
 			uint8_t byte_mask,

@@ -92,21 +92,26 @@ int main(int argc, char *argv[]){
 	start_deamons(fp,0);
 #endif
 #endif
+	// register tb pipes.
+	register_pipes();
 	// declare threads
 	PTHREAD_DECL(cpu_thread);
-	PTHREAD_DECL(memory_thread);
+	PTHREAD_DECL(nicMemoryServiceDaemon);
+	PTHREAD_DECL(cpuMemoryServiceDaemon);
 	PTHREAD_DECL(mac_tx_thread);
 	PTHREAD_DECL(mac_rx_thread);
 	
 	// create threads
 	PTHREAD_CREATE(cpu_thread);
-	PTHREAD_CREATE(memory_thread);
+	PTHREAD_CREATE(nicMemoryServiceDaemon);
+	PTHREAD_CREATE(cpuMemoryServiceDaemon);
 	PTHREAD_CREATE(mac_tx_thread);
 	PTHREAD_CREATE(mac_rx_thread);
 	
 	// wait 
 	PTHREAD_JOIN(mac_rx_thread);
-	PTHREAD_JOIN(memory_thread);
+	PTHREAD_JOIN(nicMemoryServiceDaemon);
+	PTHREAD_JOIN(cpuMemoryServiceDaemon);
 	PTHREAD_JOIN(cpu_thread);
 	PTHREAD_JOIN(mac_rx_thread);
 

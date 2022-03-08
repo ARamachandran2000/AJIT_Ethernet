@@ -10,7 +10,7 @@ $is
 				$phi rdata1 := mac_to_nic_data_1 $on $entry, $loopback
 			$endmerge
 			// 73 bit wide
-			$volatile data_to_send := ($concat ($slice rdata1 8 0) rdata0)
+			mac_to_nic_data := ($concat ($slice rdata1 8 0) rdata0)
 		$while 1
 	}
 }
@@ -45,7 +45,7 @@ $is
 				$phi rdata1 := control_word_request_pipe_1 $on $entry, $loopback
 			$endmerge
 			// 74 bit wide
-			$volatile AFB_NIC_REQUEST := ($concat ($slice rdata1 41 0) rdata0)
+			AFB_NIC_REQUEST := ($concat ($slice rdata1 41 0) rdata0)
 		$while 1
 	}
 }
@@ -78,7 +78,7 @@ $is
 				// 8 bit wide
 				$phi rdata1 := mem_resp0_pipe1 $on $entry, $loopback
 			$endmerge
-			$volatile MEMORY_TO_NIC_RESPONCE := ($concat (rdata1 [] 0) rdata0)
+			MEMORY_TO_NIC_RESPONCE := ($concat (rdata1 [] 0) rdata0)
 		$while 1
 	}
 }
@@ -93,9 +93,9 @@ $is
 				$phi rdata := NIC_TO_MEMORY_REQUEST $on $entry, $loopback
 			$endmerge
 			// 64 bit wide
-			nic_to_mac_data0 := ($slice rdata 63 0)
-			// 64 bit wide
-			nic_to_mac_data1 := ($bitcast ($uint<64>) ($slice rdata 45 0))
+			mem_req0_pipe0 := ($slice rdata 63 0)
+			// 8 bit wide
+			mem_req0_pipe1 := ($bitcast ($uint<64>) ($slice rdata 45 0))
 		$while 1
 	}
 	

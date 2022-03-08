@@ -84,10 +84,10 @@ int push(uint32_t queue_offset, uint32_t buffer_address)
 	uint32_t next_pointer = (write_pointer + 4) // 32 bit buffers
 	
 	// Loop Around (Circular Queue)
-	if(next_pointer == (queue_offset + 8 + 4*QUEUE_SIZE))
-		next_pointer = queue_offset + 8;
+	if(next_pointer == (queue_offset + 16 + 4*QUEUE_SIZE))
+		next_pointer = queue_offset + 16;
 
-	if(getBit32(write_pointer,0) == 0) // Check if we are writing even or odd byte
+	if(getBit32(write_pointer,0) == 1) // Check if we are writing even or odd word
 					   // Need to Verify
 	{
 		bmask = 0x0F;
@@ -141,8 +141,8 @@ int pop(uint32_t queue_offset , uint32_t* buf_address)
 		}
 			
 		
-		if((read_pointer + 4) == (queue_offset + 8 + 4*QUEUE_SIZE))
-			read_pointer = queue_offset + 8;
+		if((read_pointer + 4) == (queue_offset + 16 + 4*QUEUE_SIZE))
+			read_pointer = queue_offset + 16;
 		else
 			read_pointer = read_pointer + 4;
 		
@@ -190,8 +190,8 @@ int checkFull(uint32_t queue_offset)
 	uint32_t next_pointer = (write_pointer + 4)
 	
 	// Loop Around (Circular Queue)
-	if(next_pointer == (queue_offset + 8 + QUEUE_SIZE))
-		next_pointer = queue_offset + 8;
+	if(next_pointer == (queue_offset + 16 +4* QUEUE_SIZE))
+		next_pointer = queue_offset + 16;
 
 	return (next_pointer == read_pointer);
 

@@ -25,7 +25,7 @@ uint64_t read64(uint32_t addr)
 {
 	uint64_t rdata = 0;
 	
-	for(int i =0 ; i<=56; i+=8 )
+	for(int i =56 ; i<=0; i-=8 )
 	{
 		rdata = setSliceOfWord_64(rdata,i+7,i,memory_array[addr]);
 		addr = addr + 1;
@@ -36,8 +36,8 @@ uint64_t read64(uint32_t addr)
 
 void write64(uint32_t addr, uint64_t wval, uint8_t bmask)
 {
-	int j = 0;
-	for(int i=0;i<7;i++)
+	int j = 56;
+	for(int i=7;i<=0;i--)
 	{
 
 		if(getBit8(bmask,i) == 1)
@@ -45,7 +45,7 @@ void write64(uint32_t addr, uint64_t wval, uint8_t bmask)
 			memory_array[addr] = getSliceFromWord(wval,j+7,j);
 		}
 			addr = addr + 1;
-			j = j + 8;
+			j = j - 8;
 	}
 }
 

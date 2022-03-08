@@ -1,9 +1,9 @@
 // Write Memory related threads, functions here
-//#include "InterfaceDataStructures_Utils.h"
-//#include<pthreadUtils.h>
+#include "InterfaceDataStructures.h"
+#include<pthreadUtils.h>
 
 
-uint8_t memory_array[8*(18 * 3 + (256*16))];
+uint64_t memory_array[18 * 3 + (256*16)];
 
 // access memory utility for reading as well as writing data
 //	Output : 65 bit 
@@ -18,46 +18,13 @@ uint8_t memory_array[8*(18 * 3 + (256*16))];
 // 	index -> 
 //		0 : cpu, 
 //		1 : memory.
-
-
-
-uint64_t read64(uint32_t addr)
-{
-	uint64_t rdata = 0;
-	
-	for(int i =56 ; i<=0; i-=8 )
-	{
-		rdata = setSliceOfWord_64(rdata,i+7,i,memory_array[addr]);
-		addr = addr + 1;
-	}
-
-	return rdata;
-}
-
-void write64(uint32_t addr, uint64_t wval, uint8_t bmask)
-{
-	int j = 56;
-	for(int i=7;i<=0;i--)
-	{
-
-		if(getBit8(bmask,i) == 1)
-		{
-			memory_array[addr] = getSliceFromWord(wval,j+7,j);
-		}
-			addr = addr + 1;
-			j = j - 8;
-	}
-}
-
-
-
 int memory_lock_status[] = {0,0};
 pthread_mutex_t mutex_memory_lock = PTHREAD_MUTEX_INITIALIZER;
 int accessMemory(uint8_t requester_id,
 			uint8_t lock,
 			uint8_t read_write_bar,
 			uint8_t byte_mask,
-			uint32_t addr,
+			uint64_t addr,
 			uint64_t wdata,
 			uint64_t* rdata);
 {
@@ -84,11 +51,28 @@ int accessMemory(uint8_t requester_id,
 		// no error due to memory locking
 		if(read_write_bar)
 			// read data
-			*(rdata) = read64(addr>>4);
+			*(rdata) = memory_array[addr>>4]; 
 		else 
 		{	
-
-			write64(addr,wdata,byte_mask);
+			// read data so tha it will be modified based on byte_mask
+			uint64_t tmp_rdata = memory_array[addr>>4];
+			int index = 0;
+			for(index = 0; index < 8; index++)
+			{
+				// modify data depending on byte_mask
+				if((byte_mask>>index) & 0x1)
+				{
+					// need to rethink a bit
+					tmp_rdata = (tmp_rdata & (0xffffffffffffff00 <<(i*8)));
+					tmp_rdata |= (wdata & (0x00000000000000ff<< (i*8))); 
+				}
+				else
+					tmp_rdata = tmp_rdata;
+					
+			}
+			// write data
+			wdata = tmp_rdata;
+			memory_array[addr>>4] = wdata;
 		}
 	}
 	// UNLOCK MUTEX
@@ -98,11 +82,11 @@ int accessMemory(uint8_t requester_id,
 
 
 // reads request from pipes(corresping to requester_id)
-void getReqFromTester(  uint8_t requester_id,
+void getReqFromTester(uint8_t requester_id,
 			uint8_t* lock,
 			uint8_t* rwbar,
 			uint8_t* bmask,
-			uint32_t* addr,
+			uint64_t* addr,
 			uint64_t* wdata)
 {
 	// pipes
@@ -120,8 +104,8 @@ void getReqFromTester(  uint8_t requester_id,
 	*(bmask) = (req1 >> 36) & 0xff;
 }
 
-// sends response to pipes(corresping to requester_id)
-void sendResponseToTester(uint8_t requester_id, uint8_t error, uint64_t rdata)
+// sends responce to pipes(corresping to requester_id)
+void sendResponceToTester(uint8_t requester_id, uint8_t error, uint64_t rdata)
 {	
 	// pipes
 	char resp_pipe0[30], resp_pipe1[30];
@@ -136,9 +120,7 @@ void sendResponseToTester(uint8_t requester_id, uint8_t error, uint64_t rdata)
 void memoryServiceModel(uint8_t requester_id);
 {
 	uint8_t lock_tester,rwbar_tester,bmask_tester;
-	uint64_t wdata_tester, rdata;
-	uint32_t addr_tester;
-
+	uint64_t addr_tester, wdata_tester, rdata;
 	while(1)
 	{
 		// reads request from pipes
@@ -146,7 +128,7 @@ void memoryServiceModel(uint8_t requester_id);
 		// read/write from/to memory.
 		status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tetser,&rdata);
 		// write responce
-		sendResponseToTester(requester_id,status,rdata);
+		sendResponceToTester(requester_id,status,rdata);
 	}
 }
 

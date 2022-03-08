@@ -2,9 +2,9 @@
 #define InterfaceDataStructures_h____
 
 // Indicates Offsets of Queues in Memory
-#define FREE_QUEUE 0
-#define RX_QUEUE 18
-#define TX_QUEUE 36
+#define FREE_QUEUE 0  // 0-144 bytes
+#define RX_QUEUE 152  // 152-295
+#define TX_QUEUE 296  // 296-439
 
 
 #define QUEUE_SIZE 16
@@ -14,7 +14,7 @@ void ReqRespMemory(
 			uint8_t lock,
 			uint8_t read_write_bar,
 			uint8_t byte_mask,
-			uint64_t addr,
+			uint32_t addr,
 			uint64_t wdata,
 			uint8_t * status, 
 			uint64_t *  rdata)
@@ -46,7 +46,7 @@ void ReqRespMemory(
 
 
 
-void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
+void initQueue(uint32_t queue_offset,uint32_t number_of_entries)
 {
 	uint64_t rdata;
 	uint8_t status;
@@ -60,39 +60,53 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 	
 	// Set Read and Write Pointers
 	uint64_t pointers = 0;
-	pointers = setSliceOfWord_64(pointers, 31,0,queue_offset + 2);
-	pointers = setSliceOfWord_64(pointers, 63,32,queue_offset + 2);
-	//memory_array [queue_offset + 1] = pointers;
-	ReqRespMemory (0,0,0xFF,queue_offset+1,pointers,&status,&rdata);
+	pointers = setSliceOfWord_64(pointers, 31,0,queue_offset + 16);
+	pointers = setSliceOfWord_64(pointers, 63,32,queue_offset + 16);
+	//memory_array [queue_offset + 8] = pointers;
+	ReqRespMemory (0,0,0xFF,queue_offset+8,pointers,&status,&rdata);
 
 }
 
-int push(uint64_t queue_offset, uint64_t data,uint8_t bmask)
+int push(uint32_t queue_offset, uint32_t buffer_address)
 {
 
 	int ret_val = 0;
 	uint64_t pointers;
 	uint64_t rdata;
+	uint64_t wdata = 0;
 	uint8_t status;
+	uint8_t bmask = 0;
 	//uint64_t pointers = memory_array [queue_offset + 1];
-	ReqRespMemory (0,1,0xFF,queue_offset+1,0,&status,&pointers);
+	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
 
 	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
 	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
-	uint32_t next_pointer = (write_pointer + 1)
+	uint32_t next_pointer = (write_pointer + 4) // 32 bit buffers
 	
 	// Loop Around (Circular Queue)
-	if(next_pointer == (queue_offset + 2 + QUEUE_SIZE))
-		next_pointer = queue_offset + 2;
+	if(next_pointer == (queue_offset + 8 + 4*QUEUE_SIZE))
+		next_pointer = queue_offset + 8;
 
+	if(getBit32(write_pointer,0) == 0) // Check if we are writing even or odd byte
+					   // Need to Verify
+	{
+		bmask = 0x0F;
+		wdata = setSliceOfWord_64(wdata,31,0,buffer_address);
+	}
+
+	else
+	{
+		bmask = 0xF0;
+		wdata = setSliceOfWord_64(wdata,63,32,buffer_address);
+	}
 	if(next_pointer != read_pointer)
 	{
 		ret_val = 1;
 		//memory_array[write_pointer] = data;
-		ReqRespMemory (0,0,bmask,write_pointer,data,&status,&rdata);
+		ReqRespMemory (0,0,0xFF,write_pointer,wdata,&status,&rdata);
 		pointers = setSliceOfWord_64(pointers, 63,32,next_pointer);
 		//memory_array[queue_offset + 1] = pointers;
-		ReqRespMemory (0,0,0xFF,queue_offset + 1,pointers,&status,&rdata);
+		ReqRespMemory (0,0,0xFF,queue_offset + 8,pointers,&status,&rdata);
 	}
 
 	return(ret_val);
@@ -100,7 +114,7 @@ int push(uint64_t queue_offset, uint64_t data,uint8_t bmask)
 
 
 
-int pop(uint64_t queue_offset , uint64_t* buf_data)
+int pop(uint32_t queue_offset , uint32_t* buf_address)
 {
 	int ret_val = 0;
 	uint64_t pointers;
@@ -108,24 +122,34 @@ int pop(uint64_t queue_offset , uint64_t* buf_data)
 	uint8_t status;
 
 	//uint64_t pointers = memory_array [queue_offset + 1];
-	ReqRespMemory (0,1,0xFF,queue_offset+1,0,&status,&pointers);
+	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
 	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
 	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
 	
 	if(write_pointer != read_pointer)
 	{
 		ret_val = 1;
-		buf_data = memory_array[read_pointer];
-		
-		if((read_pointer + 1) == (queue_offset + 2 + QUEUE_SIZE))
-			read_pointer = queue_offset + 2;
+		ReqRespMemory (0,1,0xFF,read_pointer,0,&status,&rdata);
+		//buf_data = memory_array[read_pointer];
+		if(getBit32(read_pointer,0) == 1)
+		{
+			*buf_address = getSliceFromWord(rdata,31,0);
+		}
 		else
-			read_pointer = read_pointer + 1;
+		{
+			*buf_address = getSliceFromWord(rdata,63,32);
+		}
+			
+		
+		if((read_pointer + 4) == (queue_offset + 8 + 4*QUEUE_SIZE))
+			read_pointer = queue_offset + 8;
+		else
+			read_pointer = read_pointer + 4;
 		
 		pointers = setSliceOfWord_64(pointers, 31,0,read_pointer);
 		
-		memory_array[queue_offset + 1] = pointers;
-		ReqRespMemory (0,0,0xFF,queue_offset + 1,pointers,&status,&rdata);
+		//memory_array[queue_offset + 1] = pointers;
+		ReqRespMemory (0,0,0xFF,queue_offset + 8,pointers,&status,&rdata);
 			
 
 	}
@@ -136,14 +160,14 @@ int pop(uint64_t queue_offset , uint64_t* buf_data)
 }
 
 
-int checkEmpty(uint64_t queue_offset)
+int checkEmpty(uint32_t queue_offset)
 {
 	uint64_t pointers;
 	uint64_t rdata;
 	uint8_t status;
 
 	//uint64_t pointers = memory_array [queue_offset + 1];
-	ReqRespMemory (0,1,0xFF,queue_offset+1,0,&status,&pointers);
+	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
 	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
 	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
 	
@@ -151,23 +175,23 @@ int checkEmpty(uint64_t queue_offset)
 
 };
 
-int checkFull(uint64_t queue_offset)
+int checkFull(uint32_t queue_offset)
 {
 	uint64_t pointers;
 	uint64_t rdata;
 	uint8_t status;
 
 	//uint64_t pointers = memory_array [queue_offset + 1];
-	ReqRespMemory (0,1,0xFF,queue_offset+1,0,&status,&pointers);
+	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
 
 	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
 	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
 	
-	uint32_t next_pointer = (write_pointer + 1)
+	uint32_t next_pointer = (write_pointer + 4)
 	
 	// Loop Around (Circular Queue)
-	if(next_pointer == (queue_offset + 2 + QUEUE_SIZE))
-		next_pointer = queue_offset + 2;
+	if(next_pointer == (queue_offset + 8 + QUEUE_SIZE))
+		next_pointer = queue_offset + 8;
 
 	return (next_pointer == read_pointer);
 

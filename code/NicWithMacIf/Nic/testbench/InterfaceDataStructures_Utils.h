@@ -2,12 +2,16 @@
 //#define InterfaceDataStructures_h____
 
 // Indicates Offsets of Queues in Memory
-#define FREE_QUEUE 0  // 0-144 bytes
-#define RX_QUEUE 152  // 152-295
-#define TX_QUEUE 296  // 296-439
+//#define FREE_QUEUE 0  // 0-144 bytes
+//#define RX_QUEUE 152  // 152-295
+//#define TX_QUEUE 296  // 296-439
 
+// Indicates Offsets of Queues in Memory
+#define FREE_QUEUE 0
+#define RX_QUEUE 18
+#define TX_QUEUE 36
 
-#define QUEUE_SIZE 16
+#define QUEUE_SIZE 10 // old 16
 
 
 void ReqRespMemory(

@@ -24,8 +24,8 @@ uint8_t memory_array[8*(18 * 3 + (256*16))];
 uint64_t read64(uint32_t addr)
 {
 	uint64_t rdata = 0;
-	
-	for(int i =56 ; i<=0; i-=8 )
+	int i;	
+	for(i =56 ; i<=0; i-=8 )
 	{
 		rdata = setSliceOfWord_64(rdata,i+7,i,memory_array[addr]);
 		addr = addr + 1;
@@ -37,7 +37,8 @@ uint64_t read64(uint32_t addr)
 void write64(uint32_t addr, uint64_t wval, uint8_t bmask)
 {
 	int j = 56;
-	for(int i=7;i<=0;i--)
+	int i;
+	for(i=7;i<=0;i--)
 	{
 
 		if(getBit8(bmask,i) == 1)
@@ -59,7 +60,7 @@ int accessMemory(uint8_t requester_id,
 			uint8_t byte_mask,
 			uint32_t addr,
 			uint64_t wdata,
-			uint64_t* rdata);
+			uint64_t* rdata)
 {
 	int __error_flg = 0;
 	// LOCK MUTEX
@@ -129,11 +130,11 @@ void sendResponseToTester(uint8_t requester_id, uint8_t error, uint64_t rdata)
 	sprintf(resp_pipe1,"mem_resp%d_pipe1",(int)requester_id);//  8 bit wide
 
 	write_uint64(resp_pipe0,rdata);
-	write_uint8(resp_pipe1,)error); // Changed
+	write_uint8(resp_pipe1,error); // Changed
 }
 
 // this function reads request, performs memory operation and then sends responce. 
-void memoryServiceModel(uint8_t requester_id);
+void memoryServiceModel(uint8_t requester_id)
 {
 	uint8_t lock_tester,rwbar_tester,bmask_tester;
 	uint64_t wdata_tester, rdata;
@@ -144,7 +145,7 @@ void memoryServiceModel(uint8_t requester_id);
 		// reads request from pipes
 		getReqFromTester(requester_id,&lock_tester,&rwbar_tester,&bmask_tester,&addr_tester,&wdata_tester);
 		// read/write from/to memory.
-		status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tetser,&rdata);
+		uint8_t status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester,&rdata);
 		// write responce
 		sendResponseToTester(requester_id,status,rdata);
 	}

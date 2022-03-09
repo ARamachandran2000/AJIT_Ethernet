@@ -67,12 +67,12 @@ void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t
 
 	uint64_t register_addresses_array [] = {1,2,10,18,0};
 	uint32_t write_data_array[] =			
-			{NUMBER_OF_SERVERS,RX_Q_0_ADDRESS,TX_Q_0_ADDRESS,FREE_Q_ADDRESS,1}
+			{NUMBER_OF_SERVERS,RX_Q_0_ADDRESS,TX_Q_0_ADDRESS,FREE_Q_ADDRESS,1};
 
 
-
+	int i;
 	// Populate Control_word to send
-	for(int i = 0; i<NUMBER_OF_REGISTERS_TO_WRITE ; i++)
+	for(i = 0; i<NUMBER_OF_REGISTERS_TO_WRITE ; i++)
 	{
 		write_data = write_data_array[i];
 		control_word_0[i] = write_data;

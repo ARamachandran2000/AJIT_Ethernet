@@ -6,7 +6,9 @@
 
 // lets have static address for now
 uint64_t destination_mac_address = 1;
-uint64_t source_mac_address = 2; 
+uint64_t source_mac_address = 2;
+
+int __err_flag_ = 0; 
 // This function genreates and transmits packet from MAC to NIC
 //	actual MAC sends	73 bits 	at a time.
 //			----------------------
@@ -49,7 +51,7 @@ void macToNIcData(void)
 		//-----------------------------------------
 		//	data_64 = {IHL & version & length_in_bytes & src_mac_addr[47:15] & tkeep}
 		//	IHL(IP Header Length = 5) , version = 4
-		data_64 = ((5 << 60) | (4 << 56) | (lenght_in_bytes << 40) | ((source_mac_address & 0x0000ffffffff0000)<<8) | (0xff));
+		data_64 = (((uint64_t)5 << 60) | ((uint64_t)4 << 56) | ((uint64_t)length_in_bytes << 40) | ((source_mac_address & 0x0000ffffffff0000)<<8) | (0xff));
 		data_16 = 0; // considering type of service = 0 for now	
 		// send to pipes
 		write_uint64(pipe_to_send0,data_64);
@@ -107,7 +109,7 @@ void nicToMacData(void)
 		data_64 = read_uint64(pipe_to_recv0);
 		data_16 = read_uint64(pipe_to_recv1);
 		
-		uint64_t received_src_mac_addr, received_dest_mac_adddr;
+		uint64_t received_src_mac_addr, received_dest_mac_addr;
 	
 		// reconstruct received mac addresses.
 		received_dest_mac_addr = (data_64 >> 8) & 0x0000ffffffffffff;
@@ -118,7 +120,7 @@ void nicToMacData(void)
 		data_16 = read_uint64(pipe_to_recv1);
 		// update remaing bits of src mac addr.
 		received_src_mac_addr = (data_64 >> 8) & 0x00000000ffffffff;
-		if((received_src_mac_addres != source_mac_address) || (received_dest_mac_addr != destination_mac_address)){
+		if((received_src_mac_addr != source_mac_address) || (received_dest_mac_addr != destination_mac_address)){
 			__err_flag_ = 1; break;}
 
 		length_in_bytes = (data_64 >> 40) & 0x00000000000000ff;
@@ -130,7 +132,7 @@ void nicToMacData(void)
 			data_16 = read_uint64(pipe_to_recv1);
 			if(((data_64 >> 8) & 0xff) != i){
 				fprintf(stderr,"\nData Missmatch Expected = %d, Received = %d\n", i,data_64);
-				__err_flg_ = 1;
+				__err_flag_ = 1;
 				break;
 			}
 		}
@@ -140,7 +142,7 @@ void nicToMacData(void)
 		if(((data_64 >> 8) & 0xff) != i)
 		{	
 			fprintf(stderr,"\nData Missmatch Expected = %d, Received = %d\n", i,data_64);
-			__err_flg_ = 1;
+			__err_flag_ = 1;
 			break;
 		}
 	}

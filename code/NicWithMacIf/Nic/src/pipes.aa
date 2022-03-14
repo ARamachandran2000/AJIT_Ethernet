@@ -4,7 +4,7 @@ $pipe MEMORY_TO_NIC_RESPONSE : $uint<65> $depth 2
 ////////////////////////////////////////////////////////////////
 
 // AFB Pipes
-$pipe AFB_NIC_REQUEST  : $uint<78> $depth 2
+$pipe AFB_NIC_REQUEST  : $uint<74> $depth 2
 $pipe AFB_NIC_RESPONSE : $uint<33> $depth 2
 ///////////////////////////////////////////////////////////////
 

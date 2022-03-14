@@ -13,13 +13,13 @@
 #include<Pipes.h>
 #include<pipeHandler.h>
 
-//#ifndef COMPILE_TEST_ONLY
-//#ifndef AA2C
-//	#include "vhdlCStubs.h"
-//#else
-//	#include "aa_c_model.h"
-//#endif
-//#endif
+#ifndef COMPILE_TEST_ONLY
+#ifndef AA2C
+	#include "vhdlCStubs.h"
+#else
+	#include "aa_c_model.h"
+#endif
+#endif
 
 // Algorithm :
 //	step1:	Initialise all queues and write data to peripheral bus(algortihm) 
@@ -82,15 +82,15 @@ int main(int argc, char *argv[])
 		}
 	}
 	
-//#ifndef COMPILE_TEST_ONLY
-//#ifdef AA2C
-//	init_pipe_handler();
-//	start_deamons(fp,0);
-//#endif
-//#endif
+#ifndef COMPILE_TEST_ONLY
+#ifdef AA2C
+	init_pipe_handler();
+	start_deamons(fp,0);
+#endif
+#endif
 
 	// register tb pipes.
-	register_pipes();
+	//	register_pipes();
 	// declare threads
 	PTHREAD_DECL(cpu_thread);
 	PTHREAD_DECL(nicMemoryServiceDaemon);

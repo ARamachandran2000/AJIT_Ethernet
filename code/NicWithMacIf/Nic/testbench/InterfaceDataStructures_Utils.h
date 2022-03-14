@@ -1,6 +1,8 @@
 //#ifndef InterfaceDataStructures_h____
 //#define InterfaceDataStructures_h____
 
+#include "register_config.h"
+
 // Indicates Offsets of Queues in Memory
 //#define FREE_QUEUE 0  // 0-144 bytes
 //#define RX_QUEUE 152  // 152-295
@@ -32,7 +34,7 @@ void ReqRespMemory(
 
 	uint64_t req1 = 0;
 	uint64_t req0 = wdata;
-	req1 = setSliceOfWord_64(req1, 45,45,lock); // Lock
+	req1 = setSliceOfWord_64(req1, 45,45,(uint64_t)lock); // Lock
 	req1 = setSliceOfWord_64(req1, 44,44,read_write_bar); // Read Write Set
 	req1 = setSliceOfWord_64(req1, 43,36,byte_mask); // Byte Mask
 	req1 = setSliceOfWord_64(req1, 35,0,addr); // Addr
@@ -83,16 +85,18 @@ int push(uint32_t queue_offset, uint32_t buffer_address)
 	uint8_t bmask = 0;
 	//uint64_t pointers = memory_array [queue_offset + 1];
 	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
-
-	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
-	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
+	uint64_t  write_pointer_64,read_pointer_64;
+	write_pointer_64 = getSliceFromWord(pointers, 63, 32);
+	read_pointer_64  = getSliceFromWord(pointers, 31, 0);
+	uint32_t write_pointer = (uint32_t)write_pointer_64;
+	uint32_t read_pointer = (uint32_t)read_pointer_64;
 	uint32_t next_pointer = (write_pointer + 4); // 32 bit buffers
 	
 	// Loop Around (Circular Queue)
 	if(next_pointer == (queue_offset + 16 + 4*QUEUE_SIZE))
 		next_pointer = queue_offset + 16;
 
-	if(getBit32(write_pointer,0) == 1) // Check if we are writing even or odd word
+	if((write_pointer&0x1) == 1) // Check if we are writing even or odd word
 					   // Need to Verify
 	{
 		bmask = 0x0F;
@@ -136,7 +140,7 @@ int pop(uint32_t queue_offset , uint32_t* buf_address)
 		ret_val = 1;
 		ReqRespMemory (0,1,0xFF,read_pointer,0,&status,&rdata);
 		//buf_data = memory_array[read_pointer];
-		if(getBit32(read_pointer,0) == 1)
+		if((read_pointer & 0x1) == 1)
 		{
 			*buf_address = getSliceFromWord(rdata,31,0);
 		}

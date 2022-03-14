@@ -53,7 +53,7 @@ void mac_tx_thread(){
 
 // rc thread
 void mac_rx_thread(){
-	nicToMacThread();
+	nicToMacData();
 }DEFINE_THREAD(mac_rx_thread);
 
 int __err_flg_ = 0;

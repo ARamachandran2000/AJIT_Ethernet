@@ -22,7 +22,7 @@ int __err_flag_ = 0;
 //
 //		2.mac_to_nic_data_0[63:0] = data[63:0]	-- 64 bit wide
 //	 	
-void macToNIcData(void)
+void macToNicData(void)
 {
 	char pipe_to_send0[20], pipe_to_send1[20];
 	sprintf(pipe_to_send0,"mac_to_nic_data_0");

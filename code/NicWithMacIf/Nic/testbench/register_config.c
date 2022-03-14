@@ -32,7 +32,7 @@ uint32_t setSliceOfWord_32(uint32_t word, uint8_t high, uint8_t low, uint32_t wv
 
 	word_mask = word_mask <<low;
 	word = word & (~word_mask);
-	word = word | value;
+	word = word | wval;
 	return word;
 }
 
@@ -46,7 +46,7 @@ uint64_t setSliceOfWord_64 (uint64_t word, uint8_t high, uint8_t low, uint64_t w
 
 	word_mask = word_mask <<low;
 	word = word & (~word_mask);
-	word = word | value;
+	word = word | wval;
 	return word;
 
 }

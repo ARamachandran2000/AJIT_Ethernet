@@ -41,7 +41,7 @@ void write64(uint32_t addr, uint64_t wval, uint8_t bmask)
 	for(i=7;i<=0;i--)
 	{
 
-		if(getBit8(bmask,i) == 1)
+		if(((bmask>>i)&0x1) == 1)
 		{
 			memory_array[addr] = getSliceFromWord(wval,j+7,j);
 		}

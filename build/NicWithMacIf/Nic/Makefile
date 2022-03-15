@@ -5,7 +5,7 @@ VHDL_LIB=$(AHIR_RELEASE)/vhdl
 VHDL_VHPI_LIB=$(AHIR_RELEASE)/CtestBench/vhdl
 FUNCTIONLIB=$(AHIR_RELEASE)/functionLibrary/
 SRC=../../../code/NicWithMacIf/Nic/src
-TESTBENCH=./testbench
+TESTBENCH=$(SRC)/../testbench
 all: HW 
 TOVC:aalink aa2vc 
 VC2VHDL: vc2vhdl  vhdlsim
@@ -53,6 +53,6 @@ vhdlsim: ahir_system.vhdl ahir_system_test_bench.vhdl $(TESTBENCH)/testbench.c v
 	ghdl -m --work=work -Wl,-L$(AHIR_LIB) -Wl,-lVhpi ahir_system_test_bench 
 
 clean:
-	rm -rf *.o* *.cf *.*vhdl vhdlCStubs.* *.vcd in_data* out_data* testbench_sw testbench_hw ahir_system_test_bench vhpi.log *.aa *.vc *.lso xst *.ngc *_xmsgs *.xrpt pipeHandler.log *.srp *.ghw *.dot ahir_system.s
+	rm -rf *.o* *.cf *.*vhdl vhdlCStubs.* *.vcd in_data* out_data* testbench_sw testbench_hw ahir_system_test_bench vhpi.log *.aa *.vc *.lso xst *.ngc *_xmsgs *.xrpt pipeHandler.log *.srp *.ghw *.dot ahir_system.s *.log
 
 PHONY: all clean	

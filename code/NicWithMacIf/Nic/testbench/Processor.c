@@ -1,8 +1,6 @@
 // Configs the Registers, Creates Free Buffers, swaps MAC addresses and pushes to the Queues
 
-//#include "header.h"
-
-
+// all these will be moved to header.h
 #define BUF_LENGTH 256
 
 // Buffers area start from index 56 and length of 256 indices
@@ -23,10 +21,10 @@ void cpu_model()
 	uint64_t buffer_3 = buffer_2 + BUF_LENGTH;
 
 	// Push Buffer Pointers to Free Queue for access by NIC
-	push(FREE_QUEUE , buffer_0);//,0x0F)
-	push(FREE_QUEUE , buffer_1);//,0xFF)
-	push(FREE_QUEUE , buffer_2);//,0x0F)
-	push(FREE_QUEUE , buffer_3);//,0xFF)
+	push(FREE_QUEUE , buffer_0);
+	push(FREE_QUEUE , buffer_1);
+	push(FREE_QUEUE , buffer_2);
+	push(FREE_QUEUE , buffer_3);
 
 	// Config NIC Registers
 	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);

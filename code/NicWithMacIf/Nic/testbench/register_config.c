@@ -1,28 +1,21 @@
-//#include "header.h"
-
+// register_config.c :
 // AFB Bus -> AFB_NIC_REQUEST       AFB_NIC_RESPONSE
 // No error in configuring the register is indicated by MSB 0 in response
 
 // Need to populate atleast 7 registers
 
-
-
 #define NUMBER_OF_SERVERS 1
 #define NUMBER_OF_REGISTERS_TO_WRITE 5
 
-
-
-
+// to get slice of word when upper and lower index is given.
 uint64_t getSliceFromWord (uint64_t word, uint8_t high, uint8_t low)
 {
-
 	word = word << (63 - high); // First remove extra bits in MSB 
 	word = word >> ((63 - high) + low); // Then remove extra bits in LSB
 	return word;
-
-
 }
 
+// to set slice of word(32 bit wide) when upper and lower index is given
 uint32_t setSliceOfWord_32(uint32_t word, uint8_t high, uint8_t low, uint32_t wval)
 {
 	uint32_t word_mask = -1;
@@ -36,6 +29,7 @@ uint32_t setSliceOfWord_32(uint32_t word, uint8_t high, uint8_t low, uint32_t wv
 	return word;
 }
 
+// to set slice of word(64 bit wide) when upper and lower index is given
 uint64_t setSliceOfWord_64 (uint64_t word, uint8_t high, uint8_t low, uint64_t wval)
 {
 
@@ -51,7 +45,7 @@ uint64_t setSliceOfWord_64 (uint64_t word, uint8_t high, uint8_t low, uint64_t w
 
 }
 
-
+// configures the nic registers.
 void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t FREE_Q_ADDRESS )
 {
 	uint32_t write_data;

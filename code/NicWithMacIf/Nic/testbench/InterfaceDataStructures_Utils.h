@@ -1,12 +1,9 @@
-//#ifndef InterfaceDataStructures_h____
-//#define InterfaceDataStructures_h____
 
-#include "register_config.h"
-
-// Indicates Offsets of Queues in Memory
-//#define FREE_QUEUE 0  // 0-144 bytes
-//#define RX_QUEUE 152  // 152-295
-//#define TX_QUEUE 296  // 296-439
+// function declerations,
+//  defined in register_config.c
+uint64_t getSliceFromWord(uint64_t, uint8_t, uint8_t );
+uint32_t setSliceOfWord_32(uint32_t, uint8_t, uint8_t, uint32_t);
+uint64_t setSliceOfWord_64(uint64_t, uint8_t, uint8_t, uint64_t);
 
 // Indicates Offsets of Queues in Memory
 #define FREE_QUEUE 0
@@ -15,7 +12,7 @@
 
 #define QUEUE_SIZE 10 // old 16
 
-
+// sends requestes and reads responces(for queue functions such as pop push) 
 void ReqRespMemory(
 			uint8_t lock,
 			uint8_t read_write_bar,
@@ -52,7 +49,7 @@ void ReqRespMemory(
 
 
 
-
+// initialises queues
 void initQueue(uint32_t queue_offset,uint32_t number_of_entries)
 {
 	uint64_t rdata;
@@ -74,6 +71,7 @@ void initQueue(uint32_t queue_offset,uint32_t number_of_entries)
 
 }
 
+// push data in queue
 int push(uint32_t queue_offset, uint32_t buffer_address)
 {
 
@@ -122,7 +120,7 @@ int push(uint32_t queue_offset, uint32_t buffer_address)
 };
 
 
-
+// pop from queue
 int pop(uint32_t queue_offset , uint32_t* buf_address)
 {
 	int ret_val = 0;
@@ -168,7 +166,7 @@ int pop(uint32_t queue_offset , uint32_t* buf_address)
 
 }
 
-
+// check if queue is empty
 int checkEmpty(uint32_t queue_offset)
 {
 	uint64_t pointers;
@@ -184,6 +182,7 @@ int checkEmpty(uint32_t queue_offset)
 
 };
 
+// check if queue is full
 int checkFull(uint32_t queue_offset)
 {
 	uint64_t pointers;

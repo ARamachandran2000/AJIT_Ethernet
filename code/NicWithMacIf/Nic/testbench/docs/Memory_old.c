@@ -2,7 +2,8 @@
 #include "InterfaceDataStructures.h"
 #include<pthreadUtils.h>
 
-
+// 3 queues(free_q, tx_q, rx_q)
+// and 16 buffers.
 uint64_t memory_array[18 * 3 + (256*16)];
 
 // access memory utility for reading as well as writing data

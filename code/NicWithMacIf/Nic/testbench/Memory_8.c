@@ -3,6 +3,8 @@
 //#include<pthreadUtils.h>
 
 
+// 3 queues(free_q, tx_q, rx_q)
+// and 16 buffers.
 uint8_t memory_array[8*(18 * 3 + (256*16))];
 
 // access memory utility for reading as well as writing data
@@ -20,7 +22,7 @@ uint8_t memory_array[8*(18 * 3 + (256*16))];
 //		1 : memory.
 
 
-
+// reads 64 bits from memory for given address.
 uint64_t read64(uint32_t addr)
 {
 	uint64_t rdata = 0;
@@ -34,6 +36,7 @@ uint64_t read64(uint32_t addr)
 	return rdata;
 }
 
+// writes 64 bits to memory.
 void write64(uint32_t addr, uint64_t wval, uint8_t bmask)
 {
 	int j = 56;
@@ -50,10 +53,15 @@ void write64(uint32_t addr, uint64_t wval, uint8_t bmask)
 	}
 }
 
-
-
+// for memory locking
+//  index 0 for processor
+//  index 1 for nic
 int memory_lock_status[] = {0,0};
+
+// mutex for memory array(access_memory function).
 pthread_mutex_t mutex_memory_lock = PTHREAD_MUTEX_INITIALIZER;
+
+// reads/writes to memory
 int accessMemory(uint8_t requester_id,
 			uint8_t lock,
 			uint8_t read_write_bar,

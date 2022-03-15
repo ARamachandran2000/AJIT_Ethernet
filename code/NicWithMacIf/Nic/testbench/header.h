@@ -18,6 +18,8 @@ void nicToMacData(void);
 //	models the cpu.
 void cpu_model();
 
+
+// to register all necessary pipes.
 void register_pipes()
 {
 	// mac <-> nic interface

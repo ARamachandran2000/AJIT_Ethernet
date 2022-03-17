@@ -53,6 +53,8 @@ void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t
 	uint64_t byte_mask;
 	uint64_t rw_lock;
 	uint64_t response_word;
+	
+	fprintf(stderr,"REG_CONFIG: Started\n");
 
 // Control word_0 contains lower 32 bit write data
 // Control word_1 contains all other information -> bmask, address, rwbar etc..
@@ -87,7 +89,7 @@ void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t
 
 		// Send Data to Pipe --> Aa module will concatenate the bits to generate 74-bit
 		// response
-
+		fprintf(stderr,"REG_CONFIG: Requeting to write control word to nic\n");
 		write_uint32("control_word_request_pipe_0",control_word_0[i]);
 		write_uint64("control_word_request_pipe_1",control_word_1[i]);
 

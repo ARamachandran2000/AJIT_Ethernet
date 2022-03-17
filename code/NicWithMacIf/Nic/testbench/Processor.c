@@ -6,14 +6,15 @@
 // Buffers area start from index 56 and length of 256 indices
 void cpu_model()
 {
-
+	fprintf(stderr, "CPU_THREAD : started \n");
 	// Initialise Free, Rx and Tx Queues
 
 	initQueue(FREE_QUEUE, QUEUE_SIZE);
 	initQueue(RX_QUEUE, QUEUE_SIZE);
 	initQueue(TX_QUEUE, QUEUE_SIZE);
 
-
+	fprintf(stderr, "CPU_THREAD : Init queue done. \n");
+	
 	// Create Buffers to store Data
 	uint64_t buffer_0 = 55;
 	uint64_t buffer_1 = buffer_0 + BUF_LENGTH;
@@ -26,7 +27,9 @@ void cpu_model()
 	push(FREE_QUEUE , buffer_2);
 	push(FREE_QUEUE , buffer_3);
 
+	fprintf(stderr, "CPU_THREAD : pushed buffers to free queue \n");
 	// Config NIC Registers
+	fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
 	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
 	
 	uint32_t buffer_with_packet = 0;

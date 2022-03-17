@@ -72,7 +72,6 @@ void macToNicData(void)
 			data_16 = 0; 
 			write_uint64(pipe_to_send0, data_64);
 			write_uint16(pipe_to_send1, data_16);	
-			fprintf(stderr,"MAC_TX: in for loop\n");	
 		}
 		fprintf(stderr,"MAC_TX: out of for loop\n");	
 		// for last 64 bit word , tlast = 1;

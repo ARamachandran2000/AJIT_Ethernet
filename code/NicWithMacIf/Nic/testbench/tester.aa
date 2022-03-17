@@ -7,7 +7,7 @@ $pipe nic_to_mac_data_1 : $uint<16> $depth 2
 
 $pipe control_word_request_pipe_0 : $uint<32> $depth 2
 $pipe control_word_request_pipe_1 : $uint<64> $depth 2 
-$pipe control_word_responce_pipe : $uint<64> $depth 2
+$pipe control_word_response_pipe : $uint<64> $depth 2
 
 $pipe mem_req0_pipe0 : $uint<64>  $depth 2
 $pipe mem_req0_pipe1 : $uint<64>  $depth 2
@@ -72,6 +72,7 @@ $is
 				$phi rdata1 := control_word_request_pipe_1 $on $entry, $loopback
 			$endmerge
 			// 74 bit wide
+			$rreport(processorToNicInterface got_afb_Req rdata0 rdata1)
 			AFB_NIC_REQUEST := ($concat ($slice rdata1 41 0) rdata0)
 		$while 1
 	}

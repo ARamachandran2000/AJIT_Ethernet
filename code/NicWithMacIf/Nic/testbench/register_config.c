@@ -55,7 +55,7 @@ void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t
 	uint64_t response_word;
 
 // Control word_0 contains lower 32 bit write data
-// COntrol word_1 contains all other information -> bmask, address, rwbar etc..
+// Control word_1 contains all other information -> bmask, address, rwbar etc..
 	uint32_t control_word_0 [NUMBER_OF_REGISTERS_TO_WRITE];
 	uint64_t control_word_1 [NUMBER_OF_REGISTERS_TO_WRITE];
 

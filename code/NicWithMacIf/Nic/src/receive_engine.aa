@@ -20,11 +20,12 @@ $is
 	{
 		// loop around until enabled by Software
 		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
-	
+	//	$rreport(ReceiveEngineDaemon waiting_for_control )
 		// If not enabled yet -> Loopback
 		$if (~ (CONTROL_REGISTER [] 0)) $then
 			$place [not_enabled_yet_loopback]
 		$endif
+		$rreport(ReceiveEngineDaemon got_the__control )
 
 		// Once enabled start processing
 		$dopipeline $depth 31 $fullrate
@@ -120,12 +121,12 @@ $is
 			$phi ethernet_header := nic_rx_to_header $on $entry, $loopback
 		$endmerge
 	
-
+		$rreport(writeEthernetHeaderToMem received_eth_header_is ethernet_header)
 	// Extract individual components of the word 
 		$volatile $split (ethernet_header 1 64 8)(last_bit wdata wkeep)
 	
 	// Write the data to memory with bmask->wkeep at location buf_position
-		$call accessMemory ($zero<1> $zero<1> wkeep buf_position wdata) 				   (ignore_return) 
+		$call accessMemory ($zero<1> $zero<1> wkeep buf_position wdata)	(ignore_return) 
 		$volatile nI := (I + 1)
 
 	// If 2 words are stored, then end

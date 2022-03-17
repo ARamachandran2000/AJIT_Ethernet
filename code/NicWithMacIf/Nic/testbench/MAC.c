@@ -28,6 +28,7 @@ void macToNicData(void)
 	sprintf(pipe_to_send0,"mac_to_nic_data_0");
 	sprintf(pipe_to_send1,"mac_to_nic_data_1");
 	while(1){
+		fprintf(stderr,"MAC_TX:trying to send packet to nic\n");
 		uint64_t data_64 = 0;
 		uint16_t data_16 = 0;
 	
@@ -70,8 +71,10 @@ void macToNicData(void)
 			data_64 = (i << 8) | (0xff);
 			data_16 = 0; 
 			write_uint64(pipe_to_send0, data_64);
-			write_uint16(pipe_to_send1, data_16);		
+			write_uint16(pipe_to_send1, data_16);	
+			fprintf(stderr,"MAC_TX: in for loop\n");	
 		}
+		fprintf(stderr,"MAC_TX: out of for loop\n");	
 		// for last 64 bit word , tlast = 1;
 		// clear all bits
 		data_64 = 0; data_16 = 0;
@@ -79,8 +82,11 @@ void macToNicData(void)
 		// tlast = 1
 		data_16 = (1 << 8); 
 		// write data to pipe
+		fprintf(stderr,"MAC_TX: writing last word0\n");
 		write_uint64(pipe_to_send0, data_64);
 		write_uint16(pipe_to_send1, data_16);		
+		fprintf(stderr,"MAC_TX: written last word\n");
+		fprintf(stderr,"MAC_TX:sent packet\n");
 	}
 }
 
@@ -103,6 +109,7 @@ void nicToMacData(void)
 	sprintf(pipe_to_recv0,"nic_to_mac_data_0");
 	sprintf(pipe_to_recv1,"nic_to_mac_data_1");
 	while(1){
+		fprintf(stderr,"MAC_RX:trying to read packet from nic\n");
 		uint64_t data_64;
 		uint16_t data_16,length_in_bytes;
 		

@@ -6,7 +6,7 @@ VHDL_VHPI_LIB=$(AHIR_RELEASE)/CtestBench/vhdl
 FUNCTIONLIB=$(AHIR_RELEASE)/functionLibrary/
 SRC=../../../code/NicWithMacIf/Nic/src
 TESTBENCH=$(SRC)/../testbench
-all: HW 
+all: HW SW 
 TOVC:aalink aa2vc 
 VC2VHDL: vc2vhdl  vhdlsim
 AA2VHDLSIM: aa2vc  vc2vhdl  vhdlsim
@@ -18,13 +18,16 @@ TOPMODULES=-T ReceiveEngineDaemon -T nicRxFromMacDaemon -T transmitEngineDaemon 
 
 # five steps from C to vhdl simulator.
 HW: aalink aa2vc  vc2vhdl  vhdlsim
-
+SW: aalink aa2c aa2vc  vc2vhdl swtb
 AA2VHDL: aa2vc vc2vhdl vhdlsim
 
 # Aa to vC
 aalink: $(SRC)/*.aa $(TESTBENCH)/tester.aa 
 	AaLinkExtMem $(SRC)/decls.aa $(SRC)/pipes.aa $(SRC)/signals.aa $(SRC)/control.aa $(SRC)/general_utils.aa $(SRC)/memory_utils.aa $(SRC)/queue_utils.aa $(SRC)/register_utils.aa $(SRC)/rx_from_mac.aa $(SRC)/receive_engine.aa $(SRC)/transmit_engine.aa $(TESTBENCH)/tester.aa | vcFormat > nic.linked.aa
 #	AaOpt -B nic.linked.aa | vcFormat > nic.linked.opt.aa
+
+aa2c :aalink
+	Aa2C $(TOPMODULES) nic.linked.aa -o ./
 
 aa2vc: nic.linked.aa
 	Aa2VC -O -C nic.linked.aa | vcFormat > nic.vc
@@ -51,8 +54,12 @@ vhdlsim: ahir_system.vhdl ahir_system_test_bench.vhdl $(TESTBENCH)/testbench.c v
 	ghdl -i --work=work ahir_system.vhdl
 	ghdl -i --work=work ahir_system_test_bench.vhdl
 	ghdl -m --work=work -Wl,-L$(AHIR_LIB) -Wl,-lVhpi ahir_system_test_bench 
+swtb:  $(TESTBENCH)/testbench.c 
+	gcc -c $(TESTBENCH)/testbench.c -DAA2C -I ./ -I $(AHIR_INCLUDE) -o testbench.o
+	gcc -c aa_c_model.c -DAA2C -I ./ -I $(AHIR_INCLUDE)
+	gcc -o testbench_sw testbench.o aa_c_model.o -L$(AHIR_LIB) -lBitVectors -lSockPipes -lPipeHandlerDebugPthreads -lpthread
 
 clean:
-	rm -rf *.o* *.cf *.*vhdl vhdlCStubs.* *.vcd in_data* out_data* testbench_sw testbench_hw ahir_system_test_bench vhpi.log *.aa *.vc *.lso xst *.ngc *_xmsgs *.xrpt pipeHandler.log *.srp *.ghw *.dot ahir_system.s *.log
+	rm -rf *.o* *.cf *.*vhdl vhdlCStubs.* *.vcd in_data* out_data* testbench_sw testbench_hw ahir_system_test_bench vhpi.log *.aa *.vc *.lso xst *.ngc *_xmsgs *.xrpt pipeHandler.log *.srp *.ghw *.dot ahir_system.s *.log aa_c_model.c  aa_c_model.h  aa_c_model_internal.h PREFIX
 
 PHONY: all clean	

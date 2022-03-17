@@ -2,17 +2,17 @@
 $pipe mac_to_nic_data_0 : $uint<64> $depth 2
 $pipe mac_to_nic_data_1 : $uint<16> $depth 2
 
-$pipe nic_to_mac_data0 : $uint<64> $depth 2
-$pipe nic_to_mac_data1 : $uint<16> $depth 2
+$pipe nic_to_mac_data_0 : $uint<64> $depth 2
+$pipe nic_to_mac_data_1 : $uint<16> $depth 2
 
 $pipe control_word_request_pipe_0 : $uint<32> $depth 2
 $pipe control_word_request_pipe_1 : $uint<64> $depth 2 
 $pipe control_word_responce_pipe : $uint<64> $depth 2
 
 $pipe mem_req0_pipe0 : $uint<64>  $depth 2
-$pipe mem_req0_pipe1 : $uint<8>  $depth 2
+$pipe mem_req0_pipe1 : $uint<64>  $depth 2
 $pipe mem_req1_pipe0 : $uint<64>  $depth 2
-$pipe mem_req1_pipe1 : $uint<8>  $depth 2
+$pipe mem_req1_pipe1 : $uint<64>  $depth 2
 
 $pipe mem_resp0_pipe0 : $uint<64> $depth 2 
 $pipe mem_resp0_pipe1 : $uint<8> $depth 2 
@@ -36,6 +36,7 @@ $is
 				$phi rdata1 := mac_to_nic_data_1 $on $entry, $loopback
 			$endmerge
 			// 73 bit wide
+			$rreport(macToNicInterface writing_data rdata1 rdata0)
 			mac_to_nic_data := ($concat ($slice rdata1 8 0) rdata0)
 		$while 1
 	}
@@ -121,7 +122,7 @@ $is
 			// 64 bit wide
 			mem_req0_pipe0 := ($slice rdata 63 0)
 			// 8 bit wide
-			mem_req0_pipe1 := ($bitcast ($uint<8>) ($slice rdata 45 0))
+			mem_req0_pipe1 := ($bitcast ($uint<64>) ($slice rdata 45 0))
 		$while 1
 	}
 	

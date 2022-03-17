@@ -13,7 +13,7 @@
 #include<Pipes.h>
 #include<pipeHandler.h>
 
-/*
+
 #ifndef COMPILE_TEST_ONLY
 #ifndef AA2C
 	#include "vhdlCStubs.h"
@@ -21,7 +21,7 @@
 	#include "aa_c_model.h"
 #endif
 #endif
-*/
+
 // Algorithm :
 //	step1:	Initialise all queues and write data to peripheral bus(algortihm) 
 //	step2:	MAC_to_NIC thread generates packet and starts sending it to tester.aa(pipes)
@@ -82,16 +82,16 @@ int main(int argc, char *argv[])
 			return(1);
 		}
 	}
-/*	
+	
 #ifndef COMPILE_TEST_ONLY
 #ifdef AA2C
 	init_pipe_handler();
-	start_deamons(fp,0);
+	start_daemons(fp,0);
 #endif
 #endif
-*/
+
 	// register tb pipes.
-	register_pipes();
+	//register_pipes();
 	// declare threads
 	PTHREAD_DECL(cpu_thread);
 	PTHREAD_DECL(nicMemoryServiceDaemon);

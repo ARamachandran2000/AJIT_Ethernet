@@ -34,11 +34,14 @@ void cpu_model()
 		//	(For now not swapping Addresses to reduce 
 		//		complexity since we are just simulating 
 		//		to check the NIC functionality)
-		if(pop (RX_QUEUE, &buffer_with_packet))	
+		if(pop (RX_QUEUE, &buffer_with_packet)){
+			fprintf(stderr, "Processor : got rx queue sendint it to txx queue\n");	
 			push(TX_QUEUE, buffer_with_packet);
-
+		}
 		// If no data, then sleep for 5 seconds and try again
-		else
+		else{
+			fprintf(stderr, "Processor : Sleeping\n");	
 			sleep(5);	
+		}
 	}
 }

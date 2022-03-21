@@ -27,15 +27,16 @@ uint64_t read64(uint64_t addr)
 {
 	uint64_t rdata = 0;
 	int i;	
-	for(i =56 ; i<=0; i-=8 )
+	for(i =56 ; i>=0; i-=8 )
 	{
 		rdata = setSliceOfWord_64(rdata,i+7,i,memory_array[addr]);
+		//fprintf(stderr,"Memory : read64 : building rdata = 0x%lx and addr = 0x%lx\n", rdata, addr);
 		addr = addr + 1;
 	}
-
+	//fprintf(stderr,"Memory : read64 : final rdata = 0x%lx \n", rdata);
 	return rdata;
 }
-
+/*
 uint64_t display_memory(uint64_t addr)
 {
 
@@ -44,12 +45,12 @@ uint64_t display_memory(uint64_t addr)
 	for(i =56 ; i>=0; i =i - 8 )
 	{
 		rdata = setSliceOfWord_64(rdata,i+7,i,memory_array[addr]);
-		fprintf("Loop Memory %d",memory_array[addr]);
+		//fprintf(stderr,"Loop Memory %d\n",memory_array[addr]);
 		addr = addr + 1;
 	}
 
 	return rdata;
-}
+}*/
 
 // writes 64 bits to memory.
 void write64(uint64_t addr, uint64_t wval, uint8_t bmask)
@@ -110,15 +111,13 @@ int accessMemory(uint8_t requester_id,
 		{
 			// read data
 			*(rdata) = read64(addr);
-			fprintf(stderr, "CPU_THREAD [AccessMemory] : Read Data = %d. \n",read64(0));
+			//fprintf(stderr, "CPU_THREAD [AccessMemory] : Read Data = 0x%lx. \n",*(rdata));
 		}
 		else 
 		{	
-		fprintf(stderr, "CPU_THREAD [AccessMemory] : Writing Data = %d, Address = %d. \n",wdata, addr);
-
-		
+			//fprintf(stderr, "CPU_THREAD [AccessMemory] : Writing Data = 0x%lx, Address = 0x%lx. \n",wdata, addr);
 			write64(addr,wdata,byte_mask);
-			fprintf(stderr,"CPU_THREAD [AccessMemory] : Memory Data = %d. \n",display_memory(addr));
+			//fprintf(stderr,"CPU_THREAD [AccessMemory] : Memory Data = %d. \n",display_memory(addr));
 		}
 	}
 	// UNLOCK MUTEX
@@ -141,7 +140,7 @@ void getReqFromTester(  uint8_t requester_id,
 	sprintf(req_pipe1,"mem_req%d_pipe1",(int)requester_id);//64 bit wide
 	
 	//fprintf(stderr, "CPU_THREAD [getReqFromTester] : Request Received from Tester. \n");
-
+	
 	uint64_t req1;
 	// read pipes
 	*(wdata) = read_uint64(req_pipe0);
@@ -149,7 +148,6 @@ void getReqFromTester(  uint8_t requester_id,
 	*(lock)  = (req1 >> 45) & 0x01; 
 	*(rwbar) = (req1 >> 44) & 0x01;
 	*(addr) = req1 & 0xfffffffff;
-	fprintf(stderr, "CPU_THREAD [getReqFromTester] : Address = %d. \n",req1);
 	*(bmask) = (req1 >> 36) & 0xff;
 }
 
@@ -178,7 +176,7 @@ void memoryServiceModel(uint8_t requester_id)
 		getReqFromTester(requester_id,&lock_tester,&rwbar_tester,&bmask_tester,&addr_tester,&wdata_tester);
 		// read/write from/to memory.
 
-		fprintf(stderr, "CPU_THREAD [MemoryServiceModel] :  %d,  %d, %d, %d, %d, %d. \n",requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester);
+		//fprintf(stderr, "CPU_THREAD [MemoryServiceModel] :  %d,  %d, %d, 0x%lx, 0x%lx, 0x%lx. \n",requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester);
 		uint8_t status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester,&rdata);
 		// write responce
 		sendResponseToTester(requester_id,status,rdata);

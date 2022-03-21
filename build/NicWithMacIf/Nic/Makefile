@@ -12,7 +12,7 @@ VC2VHDL: vc2vhdl  vhdlsim
 AA2VHDLSIM: aa2vc  vc2vhdl  vhdlsim
 TOVHDL:TOVC vc2vhdl
 
-TOPMODULES=-T ReceiveEngineDaemon -T nicRxFromMacDaemon -T transmitEngineDaemon -T macToNicInterface -T nicToMacInterface -T processorToNicInterface -T nicToProcessorInterface -T memoryToNicInterface -T nicToMemoryInterface
+TOPMODULES=-T ReceiveEngineDaemon -T nicRxFromMacDaemon -T transmitEngineDaemon -T macToNicInterface -T nicToMacInterface -T processorToNicInterface -T nicToProcessorInterface -T memoryToNicInterface -T nicToMemoryInterface -T SoftwareRegisterAccessDaemon -T NicRegisterAccessDaemon 
 
 
 

@@ -19,7 +19,9 @@ receive_engine : makedirectory
 ## aalink for transmit_engine
 transmit_engine: makedirectory
 	AaLinkExtMem $(SRC)/decls.aa $(SRC)/pipes.aa $(SRC)/signals.aa $(SRC)/control.aa $(SRC)/general_utils.aa $(SRC)/memory_utils.aa $(SRC)/queue_utils.aa $(SRC)/register_utils.aa $(SRC)/transmit_engine.aa | vcFormat > .linked/transmit_engine.linked.aa
-	
+
+control : makedirectory
+	AaLinkExtMem $(SRC)/control.aa | vcFormat > .linked/control.linked.aa 	
 clean : 
 	rm -rf .linked
 	rm .gsi.aa

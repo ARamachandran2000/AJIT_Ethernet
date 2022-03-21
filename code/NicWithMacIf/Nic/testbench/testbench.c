@@ -13,7 +13,7 @@
 #include<Pipes.h>
 #include<pipeHandler.h>
 
-
+// comment this while compiling only c code.	
 #ifndef COMPILE_TEST_ONLY
 #ifndef AA2C
 	#include "vhdlCStubs.h"
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 			return(1);
 		}
 	}
-	
+// comment this while compiling only c code.	
 #ifndef COMPILE_TEST_ONLY
 #ifdef AA2C
 	init_pipe_handler();
@@ -91,6 +91,7 @@ int main(int argc, char *argv[])
 #endif
 
 	// register tb pipes.
+	// comment this while compiling only c code.	
 	//register_pipes();
 	// declare threads
 	PTHREAD_DECL(cpu_thread);

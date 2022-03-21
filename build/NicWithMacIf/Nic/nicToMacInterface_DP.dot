@@ -1,0 +1,24 @@
+digraph data_path {
+  RPIPE_nic_to_mac_transmit_pipe_1301_wire [shape=ellipse];
+  konst_1313_wire_constant [shape=ellipse];
+  nic_to_mac_data0_1306 [shape=ellipse];
+  nic_to_mac_data1_1311 [shape=ellipse];
+  rdata_1299 [shape=ellipse];
+  slice_1309_wire [shape=ellipse];
+  RPIPE_nic_to_mac_transmit_pipe_1301_inst [shape=rectangle];
+RPIPE_nic_to_mac_transmit_pipe_1301_inst -> RPIPE_nic_to_mac_transmit_pipe_1301_wire;
+  do_while_stmt_1297_branch [shape=rectangle];
+konst_1313_wire_constant  -> do_while_stmt_1297_branch;
+  slice_1305_inst [shape=rectangle];
+rdata_1299  -> slice_1305_inst;
+slice_1305_inst -> nic_to_mac_data0_1306;
+  slice_1309_inst [shape=diamond];
+rdata_1299  -> slice_1309_inst;
+slice_1309_inst -> slice_1309_wire;
+  ssrc_phi_stmt_1299 [shape=diamond];
+RPIPE_nic_to_mac_transmit_pipe_1301_wire  -> ssrc_phi_stmt_1299;
+ssrc_phi_stmt_1299 -> rdata_1299;
+  type_cast_1310_inst [shape=rectangle];
+slice_1309_wire  -> type_cast_1310_inst;
+type_cast_1310_inst -> nic_to_mac_data1_1311;
+}

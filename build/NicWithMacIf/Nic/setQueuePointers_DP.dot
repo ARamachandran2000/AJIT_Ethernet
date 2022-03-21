@@ -1,0 +1,24 @@
+digraph data_path {
+  ADD_u36_u36_427_wire [shape=ellipse];
+  CONCAT_u32_u64_430_wire [shape=ellipse];
+  NOT_u8_u8_424_wire_constant [shape=ellipse];
+  ignore_432 [shape=ellipse];
+  konst_426_wire_constant [shape=ellipse];
+  type_cast_419_wire_constant [shape=ellipse];
+  type_cast_421_wire_constant [shape=ellipse];
+  ADD_u36_u36_427_inst [shape=diamond];
+q_base_address  -> ADD_u36_u36_427_inst;
+konst_426_wire_constant  -> ADD_u36_u36_427_inst;
+ADD_u36_u36_427_inst -> ADD_u36_u36_427_wire;
+  CONCAT_u32_u64_430_inst [shape=diamond];
+wp  -> CONCAT_u32_u64_430_inst;
+rp  -> CONCAT_u32_u64_430_inst;
+CONCAT_u32_u64_430_inst -> CONCAT_u32_u64_430_wire;
+  call_stmt_432_call [shape=rectangle];
+type_cast_419_wire_constant  -> call_stmt_432_call;
+type_cast_421_wire_constant  -> call_stmt_432_call;
+NOT_u8_u8_424_wire_constant  -> call_stmt_432_call;
+ADD_u36_u36_427_wire  -> call_stmt_432_call;
+CONCAT_u32_u64_430_wire  -> call_stmt_432_call;
+call_stmt_432_call -> ignore_432;
+}

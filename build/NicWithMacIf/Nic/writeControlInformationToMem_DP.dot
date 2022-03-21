@@ -1,0 +1,22 @@
+digraph data_path {
+  CONCAT_u8_u16_643_wire [shape=ellipse];
+  R_FULL_BYTE_MASK_650_wire_constant [shape=ellipse];
+  control_data_645 [shape=ellipse];
+  ignore_return_654 [shape=ellipse];
+  type_cast_647_wire_constant [shape=ellipse];
+  type_cast_649_wire_constant [shape=ellipse];
+  CONCAT_u8_u16_643_inst [shape=diamond];
+packet_size  -> CONCAT_u8_u16_643_inst;
+last_keep  -> CONCAT_u8_u16_643_inst;
+CONCAT_u8_u16_643_inst -> CONCAT_u8_u16_643_wire;
+  call_stmt_654_call [shape=rectangle];
+type_cast_647_wire_constant  -> call_stmt_654_call;
+type_cast_649_wire_constant  -> call_stmt_654_call;
+R_FULL_BYTE_MASK_650_wire_constant  -> call_stmt_654_call;
+base_buffer_pointer  -> call_stmt_654_call;
+control_data_645  -> call_stmt_654_call;
+call_stmt_654_call -> ignore_return_654;
+  type_cast_644_inst [shape=diamond];
+CONCAT_u8_u16_643_wire  -> type_cast_644_inst;
+type_cast_644_inst -> control_data_645;
+}

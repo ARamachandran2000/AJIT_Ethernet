@@ -1,0 +1,26 @@
+digraph data_path {
+  ADD_u36_u36_348_wire [shape=ellipse];
+  NOT_u8_u8_345_wire_constant [shape=ellipse];
+  konst_347_wire_constant [shape=ellipse];
+  type_cast_340_wire_constant [shape=ellipse];
+  type_cast_342_wire_constant [shape=ellipse];
+  type_cast_350_wire_constant [shape=ellipse];
+  wp_rp_352 [shape=ellipse];
+  ADD_u36_u36_348_inst [shape=diamond];
+q_base_address  -> ADD_u36_u36_348_inst;
+konst_347_wire_constant  -> ADD_u36_u36_348_inst;
+ADD_u36_u36_348_inst -> ADD_u36_u36_348_wire;
+  call_stmt_352_call [shape=rectangle];
+type_cast_340_wire_constant  -> call_stmt_352_call;
+type_cast_342_wire_constant  -> call_stmt_352_call;
+NOT_u8_u8_345_wire_constant  -> call_stmt_352_call;
+ADD_u36_u36_348_wire  -> call_stmt_352_call;
+type_cast_350_wire_constant  -> call_stmt_352_call;
+call_stmt_352_call -> wp_rp_352;
+  slice_355_inst [shape=diamond];
+wp_rp_352  -> slice_355_inst;
+slice_355_inst -> wp;
+  slice_359_inst [shape=diamond];
+wp_rp_352  -> slice_359_inst;
+slice_359_inst -> rp;
+}

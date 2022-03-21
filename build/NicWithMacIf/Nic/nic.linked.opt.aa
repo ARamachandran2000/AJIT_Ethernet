@@ -1,0 +1,677 @@
+$pipe  AFB_NIC_REQUEST : $uint<74>  $depth 2 
+// can point into 
+$pipe  AFB_NIC_RESPONSE : $uint<33>  $depth 2 
+// can point into 
+$constant  BAD_PACKET_DATA : $uint<64>:= _hffffffffffffffff  
+$pipe  CONTROL_REGISTER : $uint<32>  $depth 1  $signal 
+// can point into 
+$pipe  FREE_Q : $uint<36>  $depth 1  $signal 
+// can point into 
+$constant  FULL_BYTE_MASK : $uint<8>:= _b11111111  
+$constant  HEADER_TKEEP : $uint<8>:= _b00111111  
+$pipe  LAST_READ_TX_QUEUE_INDEX : $uint<6>  $depth 1  $signal 
+// can point into 
+$pipe  LAST_WRITTEN_RX_QUEUE_INDEX : $uint<6>  $depth 1  $signal 
+// can point into 
+$pipe  MEMORY_TO_NIC_RESPONSE : $uint<65>  $depth 2 
+// can point into 
+$pipe  NIC_REQUEST_REGISTER_ACCESS_PIPE : $uint<43>  $depth 2 
+// can point into 
+$pipe  NIC_RESPONSE_REGISTER_ACCESS_PIPE : $uint<33>  $depth 2 
+// can point into 
+$pipe  NIC_TO_MEMORY_REQUEST : $uint<110>  $depth 2 
+// can point into 
+$pipe  NUMBER_OF_SERVERS : $uint<32>  $depth 1  $signal 
+// can point into 
+$constant  QUEUE_SIZE_MASK : $uint<32>:= 256  
+$constant  RX_QUEUES_REG_START_OFFSET : $uint<6>:= 2  
+$constant  S0 : $uint<2>:= 0  
+$constant  S1 : $uint<2>:= 1  
+$constant  S2 : $uint<2>:= 2  
+$constant  TX_QUEUES_REG_START_OFFSET : $uint<6>:= 10  
+$constant  WAIT_TIME : $uint<10>:= 10  
+$pipe  control_word_request_pipe_0 : $uint<32>  $depth 2 
+// can point into 
+$pipe  control_word_request_pipe_1 : $uint<64>  $depth 2 
+// can point into 
+$pipe  control_word_response_pipe : $uint<64>  $depth 2 
+// can point into 
+$pipe  mac_to_nic_data : $uint<73>  $depth 2 
+// can point into 
+$pipe  mac_to_nic_data_0 : $uint<64>  $depth 2 
+// can point into 
+$pipe  mac_to_nic_data_1 : $uint<16>  $depth 2 
+// can point into 
+$pipe  mem_req0_pipe0 : $uint<64>  $depth 2 
+// can point into 
+$pipe  mem_req0_pipe1 : $uint<64>  $depth 2 
+// can point into 
+$pipe  mem_req1_pipe0 : $uint<64>  $depth 2 
+// can point into 
+$pipe  mem_req1_pipe1 : $uint<64>  $depth 2 
+// can point into 
+$pipe  mem_resp0_pipe0 : $uint<64>  $depth 2 
+// can point into 
+$pipe  mem_resp0_pipe1 : $uint<8>  $depth 2 
+// can point into 
+$pipe  mem_resp1_pipe0 : $uint<64>  $depth 2 
+// can point into 
+$pipe  mem_resp1_pipe1 : $uint<8>  $depth 2 
+// can point into 
+$storage  nic_registers : $array[64] $of $uint<32> // memory space index = 0  base address = 0  word size = 32
+// can point into 
+$pipe  nic_rx_to_header : $uint<73>  $depth 2 
+// can point into 
+$pipe  nic_rx_to_packet : $uint<73>  $depth 2 
+// can point into 
+$pipe  nic_to_mac_data_0 : $uint<64>  $depth 2 
+// can point into 
+$pipe  nic_to_mac_data_1 : $uint<16>  $depth 2 
+// can point into 
+$pipe  nic_to_mac_transmit_pipe : $uint<73>  $depth 2 
+// can point into 
+$module [AccessRegister]
+$in ( rwbar : $uint<1>   bmask : $uint<4>   register_index : $uint<6>   wdata : $uint<32>  )
+$out ( rdata : $uint<32>  )
+$is
+{
+  $volatile request := ((rwbar && bmask) && (register_index && wdata)) $buffering 1
+  NIC_REQUEST_REGISTER_ACCESS_PIPE := request $buffering 1// bits of buffering = 43. 
+  response := NIC_RESPONSE_REGISTER_ACCESS_PIPE $buffering 1// bits of buffering = 33. 
+  $volatile rdata := ( $slice response 31 0 )  $buffering 1
+}
+$module [UpdateRegister]
+$in ( bmask : $uint<4>   rval : $uint<32>   wdata : $uint<32>   index : $uint<6>  )
+$out ( wval : $uint<32>  )
+$is
+{
+  $volatile b0 := ( $slice bmask 3 3 )  $buffering 1
+  $volatile b1 := ( $slice bmask 2 2 )  $buffering 1
+  $volatile b2 := ( $slice bmask 1 1 )  $buffering 1
+  $volatile b3 := ( $slice bmask 0 0 )  $buffering 1
+  $volatile r0 := ( $slice rval 31 24 )  $buffering 1
+  $volatile r1 := ( $slice rval 23 16 )  $buffering 1
+  $volatile r2 := ( $slice rval 15 8 )  $buffering 1
+  $volatile r3 := ( $slice rval 7 0 )  $buffering 1
+  $volatile w0 := ( $slice wdata 31 24 )  $buffering 1
+  $volatile w1 := ( $slice wdata 23 16 )  $buffering 1
+  $volatile w2 := ( $slice wdata 15 8 )  $buffering 1
+  $volatile w3 := ( $slice wdata 7 0 )  $buffering 1
+  wval := ((( $mux b0 w0  r0 )  && ( $mux b1 w1  r1 ) ) && (( $mux b2 w2  r2 )  && ( $mux b3 w3  r3 ) )) $buffering 1// bits of buffering = 32. 
+  nic_registers[index] := wval $buffering 1// bits of buffering = 32. 
+}
+$module [NicRegisterAccessDaemon]
+$in ()
+$out ()
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 31 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $endmerge
+    req := NIC_REQUEST_REGISTER_ACCESS_PIPE $buffering 1// bits of buffering = 43. 
+    $volatile rwbar := ( $slice req 42 42 )  $buffering 1
+    $volatile bmask := ( $slice req 41 38 )  $buffering 1
+    $volatile index := ( $slice req 37 32 )  $buffering 1
+    $volatile wdata := ( $slice req 31 0 )  $buffering 1
+    rval := nic_registers[index] $buffering 1// bits of buffering = 32. 
+    rwbar_215_delayed_5_0 := rwbar $buffering 5 $cut_through // bits of buffering = 5. 
+    bmask_216_delayed_5_0 := bmask $buffering 5 $cut_through // bits of buffering = 20. 
+    wdata_218_delayed_5_0 := wdata $buffering 5 $cut_through // bits of buffering = 160. 
+    index_219_delayed_5_0 := index $buffering 5 $cut_through // bits of buffering = 30. 
+    $guard (~rwbar_215_delayed_5_0) $call UpdateRegister (bmask_216_delayed_5_0 rval wdata_218_delayed_5_0 index_219_delayed_5_0 ) (wval ) 
+    rwbar_223_delayed_5_0 := rwbar $buffering 5 $cut_through // bits of buffering = 5. 
+    $volatile rdata := ( $mux rwbar_223_delayed_5_0 rval  ($bitcast ($uint<32>) _b0  ) )  $buffering 1
+    $volatile resp := (($bitcast ($uint<1>) _b0  ) && rdata) $buffering 1
+    $while 1 
+  }
+}
+$pipeline $depth 15 $buffering 1 $fullrate $module [accessMemory]
+$in ( lock : $uint<1>   rwbar : $uint<1>   bmask : $uint<8>   addr : $uint<36>   wdata : $uint<64>  )
+$out ( rdata : $uint<64>  )
+$is
+{
+  $volatile request := (((lock && rwbar) && bmask) && (addr && wdata)) $buffering 1
+  NIC_TO_MEMORY_REQUEST := request $buffering 1// bits of buffering = 110. 
+  response := MEMORY_TO_NIC_RESPONSE $buffering 1// bits of buffering = 65. 
+  $volatile rdata := ( $slice response 63 0 )  $buffering 1
+  $attribute delay 3
+}
+$module [acquireMutex]
+$in ( q_base_address : $uint<36>  )
+$out ( m_ok : $uint<1>  )
+$is
+{
+  $branchblock [loop]
+  {
+    $volatile mutex_address := q_base_address $buffering 1
+    $report (acquireMutex inside_acquire_mutex )
+    $merge $entry loopback 
+    $endmerge
+    $report (acquireMutex accessing_memory )
+    $call accessMemory (($bitcast ($uint<1>) _b1  ) ($bitcast ($uint<1>) _b1  ) ( ~ ($bitcast ($uint<8>) _b0  ) ) mutex_address ($bitcast ($uint<64>) _b0  ) ) (mutex_plus_nentries ) 
+    $report (acquireMutex accessed_memory )
+    $volatile mutex_val := ( $slice mutex_plus_nentries 63 32 )  $buffering 1
+    $volatile wval := (($bitcast ($uint<32>) _b1  ) && ( $slice mutex_plus_nentries 31 0 ) ) $buffering 1
+    $report (acquireMutex accessing_memory_to_release_mutex )
+    $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b0  ) ( ~ ($bitcast ($uint<8>) _b0  ) ) mutex_address wval ) (ignore ) 
+    $report (acquireMutex itertion_done 		 mutex_val mutex_val )
+    $if (mutex_val != 0 ) $then 
+    $place[loopback]
+    $endif
+  }
+  m_ok := ($bitcast ($uint<1>) _b1  ) $buffering 1// bits of buffering = 1. 
+}
+$module [getQueuePointers]
+$in ( q_base_address : $uint<36>  )
+$out ( wp : $uint<32>   rp : $uint<32>  )
+$is
+{
+  $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b1  ) ( ~ ($bitcast ($uint<8>) _b0  ) ) (q_base_address + 8 ) ($bitcast ($uint<64>) _b0  ) ) (wp_rp ) 
+  $volatile wp := ( $slice wp_rp 63 32 )  $buffering 1
+  $volatile rp := ( $slice wp_rp 31 0 )  $buffering 1
+}
+$module [getQueueElement]
+$in ( q_base_address : $uint<36>   read_pointer : $uint<32>  )
+$out ( q_r_data : $uint<32>  )
+$is
+{
+  $volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16  )) $buffering 1
+  $volatile element_pair_address := (buffer_address + ($bitcast ($uint<36>) (( $slice read_pointer 31 1 )  && ($bitcast ($uint<3>) _b0  )) )) $buffering 1
+  $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b1  ) ( ~ ($bitcast ($uint<8>) _b0  ) ) element_pair_address ($bitcast ($uint<64>) _b0  ) ) (element_pair ) 
+  $volatile e0 := ( $slice element_pair 63 32 )  $buffering 1
+  $volatile e1 := ( $slice element_pair 31 0 )  $buffering 1
+  q_r_data := ( $mux (read_pointer [] 0 ) e1  e0 )  $buffering 1// bits of buffering = 32. 
+}
+$module [setQueuePointers]
+$in ( q_base_address : $uint<36>   wp : $uint<32>   rp : $uint<32>  )
+$out ()
+$is
+{
+  $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b0  ) ( ~ ($bitcast ($uint<8>) _b0  ) ) (q_base_address + 8 ) (wp && rp) ) (ignore ) 
+}
+$module [releaseMutex]
+$in ( q_base_address : $uint<36>  )
+$out ()
+$is
+{
+  $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b0  ) (( ~ ($bitcast ($uint<4>) _b0  ) ) && ($bitcast ($uint<4>) _b0  )) q_base_address ($bitcast ($uint<64>) _b0  ) ) (ignore ) 
+}
+$module [popFromQueue]
+$in ( lock : $uint<1>   q_base_address : $uint<36>  )
+$out ( q_r_data : $uint<32>   status : $uint<1>  )
+$is
+{
+  $report (popFromQueue trying_to_acquire_mutex 	 lock lock )
+  $guard (lock) $call acquireMutex (q_base_address ) (m_ok ) 
+  $barrier
+  $call getQueuePointers (q_base_address ) (write_pointer read_pointer ) 
+  $report (popFromQueue got_queue_pointers 	 write_pointer write_pointer 	 read_pointer read_pointer )
+  $volatile q_empty := (write_pointer == read_pointer) $buffering 1
+  $volatile next_rp := ((read_pointer + 1 ) & QUEUE_SIZE_MASK) $buffering 1
+  $guard (~q_empty) $call getQueueElement (q_base_address read_pointer ) (q_r_data ) 
+  $guard (~q_empty) $call setQueuePointers (q_base_address write_pointer next_rp ) () 
+  $barrier
+  $report (popFromQueue releasing_mutex 	 lock lock )
+  $guard (lock) $call releaseMutex (q_base_address ) () 
+  status := ( ~ q_empty ) $buffering 1// bits of buffering = 1. 
+  $report (popFromQueue poping_done 	 status status 	 lock lock )
+}
+$module [writeEthernetHeaderToMem]
+$in ( buf_pointer : $uint<36>  )
+$out ( buf_position : $uint<36>  )
+$is
+{
+  $branchblock [main]
+  {
+    $dopipeline $depth 15 $buffering 1
+    $merge $entry $loopback 
+    $phi buf_position := 			  (buf_pointer + 8 ) $on   $entry 			  (buf_position + 8 ) $on   $loopback 
+    // type of target is $uint<36>
+    $phi I := 			  ($bitcast ($uint<4>) _b0  ) $on   $entry 			  nI $on   $loopback 
+    // type of target is $uint<4>
+    $phi ethernet_header := 			  nic_rx_to_header $on   $entry ,   $loopback 
+    // type of target is $uint<73>
+    $endmerge
+    $report (writeEthernetHeaderToMem received_eth_header_is 			 ethernet_header ethernet_header )
+    $volatile wdata := ( $slice ethernet_header 71 8 )  $buffering 1
+    $volatile wkeep := ( $slice ethernet_header 7 0 )  $buffering 1
+    $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b0  ) wkeep buf_position wdata ) (ignore_return ) 
+    $volatile nI := (I + 1 ) $buffering 1
+    $while (nI <= 1 )
+  }
+  $attribute delay 4
+}
+$module [writePayloadToMem]
+$in ( base_buf_pointer : $uint<36>   buf_pointer : $uint<36>  )
+$out ( packet_size_32 : $uint<8>   bad_packet_identifier : $uint<1>   last_keep : $uint<8>  )
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 15 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi buf_position := 			  (buf_position + 8 ) $on   $loopback 			  (buf_pointer + 8 ) $on   $entry 
+    // type of target is $uint<36>
+    $phi payload_data := 			  nic_rx_to_packet $on   $entry ,   $loopback 
+    // type of target is $uint<73>
+    $endmerge
+    $volatile last_bit := ( $slice payload_data 72 72 )  $buffering 1
+    $volatile wdata := ( $slice payload_data 71 8 )  $buffering 1
+    $volatile wkeep := ( $slice payload_data 7 0 )  $buffering 1
+    $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b0  ) wkeep buf_position wdata ) (ignore_return ) 
+    $while ( ~ last_bit )
+  }
+  ( buf_position => buf_position  wdata => tdata  wkeep => tkeep )
+  $volatile bad_packet_identifier := ((tdata == BAD_PACKET_DATA) & (tkeep == 0 )) $buffering 1
+  $volatile packet_size_8 := ($bitcast ($uint<8>) ((buf_position - base_buf_pointer) + 1 ) ) $buffering 1
+  $volatile packet_size_32 := (packet_size_8 << 2 ) $buffering 1
+  $volatile last_keep := tkeep $buffering 1
+}
+$module [writeControlInformationToMem]
+$in ( base_buffer_pointer : $uint<36>   packet_size : $uint<8>   last_keep : $uint<8>  )
+$out ()
+$is
+{
+  $volatile control_data := ($bitcast ($uint<64>) (packet_size && last_keep) ) $buffering 1
+  $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b0  ) FULL_BYTE_MASK base_buffer_pointer control_data ) (ignore_return ) 
+}
+$pipeline $depth 31 $buffering 1 $module [loadBuffer]
+$in ( rx_buffer_pointer : $uint<36>  )
+$out ( bad_packet_identifier : $uint<1>  )
+$is
+{
+  $call writeEthernetHeaderToMem (rx_buffer_pointer ) (new_buf_pointer ) 
+  rx_buffer_pointer_662_delayed_4_0 := rx_buffer_pointer $buffering 4 $cut_through // bits of buffering = 144. 
+  $call writePayloadToMem (rx_buffer_pointer_662_delayed_4_0 new_buf_pointer ) (packet_size bad_packet_identifier last_keep ) 
+  bad_packet_identifier_668_delayed_8_0 := bad_packet_identifier $buffering 8 $cut_through // bits of buffering = 8. 
+  rx_buffer_pointer_669_delayed_8_0 := rx_buffer_pointer $buffering 8 $cut_through // bits of buffering = 288. 
+  $guard (~bad_packet_identifier_668_delayed_8_0) $call writeControlInformationToMem (rx_buffer_pointer_669_delayed_8_0 packet_size last_keep ) () 
+  $attribute delay 10
+}
+$module [setQueueElement]
+$in ( q_base_address : $uint<36>   write_pointer : $uint<32>   q_w_data : $uint<32>  )
+$out ()
+$is
+{
+  $volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16  )) $buffering 1
+  $volatile element_pair_address := (buffer_address + ($bitcast ($uint<36>) (( $slice write_pointer 31 1 )  && ($bitcast ($uint<3>) _b0  )) )) $buffering 1
+  $volatile bmask := ( $mux (write_pointer [] 0 ) (($bitcast ($uint<4>) _b0  ) && ( ~ ($bitcast ($uint<4>) _b0  ) ))  (( ~ ($bitcast ($uint<4>) _b0  ) ) && ($bitcast ($uint<4>) _b0  )) )  $buffering 1
+  $volatile wval := ( $mux (write_pointer [] 0 ) (($bitcast ($uint<32>) _b0  ) && q_w_data)  (q_w_data && ($bitcast ($uint<32>) _b0  )) )  $buffering 1
+  $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b0  ) bmask element_pair_address wval ) (ignore ) 
+}
+$module [pushIntoQueue]
+$in ( lock : $uint<1>   q_base_address : $uint<36>   q_w_data : $uint<32>  )
+$out ( status : $uint<1>  )
+$is
+{
+  $guard (lock) $call acquireMutex (q_base_address ) (m_ok ) 
+  $barrier
+  $call getQueuePointers (q_base_address ) (write_pointer read_pointer ) 
+  $volatile next_wp := ((write_pointer + 1 ) & QUEUE_SIZE_MASK) $buffering 1
+  $volatile q_full := (next_wp == read_pointer) $buffering 1
+  $guard (~q_full) $call setQueueElement (q_base_address write_pointer q_w_data ) () 
+  $guard (~q_full) $call setQueuePointers (q_base_address write_pointer next_wp ) () 
+  $barrier
+  $guard (lock) $call releaseMutex (q_base_address ) () 
+  status := ( ~ q_full ) $buffering 1// bits of buffering = 1. 
+}
+$operator $module [delay_time]
+$in ( T : $uint<32>  )
+$out ( delay_done : $uint<1>  )
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 7 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi R := 			  T $on   $entry 			  nR $on   $loopback 
+    // type of target is $uint<32>
+    $endmerge
+    $volatile nR := (R - 1 ) $buffering 1
+    $while (R > 0 )
+    $volatile delay_done := 1  $buffering 1
+  }
+}
+$module [populateRxQueue]
+$in ( rx_buffer_pointer : $uint<36>  )
+$out ()
+$is
+{
+  $branchblock [PushIntoQueue]
+  {
+    $merge $entry loopback 
+    $phi q_index := 			  (LAST_WRITTEN_RX_QUEUE_INDEX + 1 ) $on   $entry 			  n_q_index $on   loopback 
+    // type of target is $uint<6>
+    $endmerge
+    $volatile register_index := ($bitcast ($uint<6>) (q_index + RX_QUEUES_REG_START_OFFSET) ) $buffering 1
+    $call AccessRegister (($bitcast ($uint<1>) _b1  ) ($bitcast ($uint<4>) _b1  ) register_index ($bitcast ($uint<32>) _b0  ) ) (rx_queue_pointer_32 ) 
+    $volatile rx_queue_pointer_36 := (rx_queue_pointer_32 && ($bitcast ($uint<4>) _b0  )) $buffering 1
+    $call pushIntoQueue (($bitcast ($uint<1>) _b0  ) rx_queue_pointer_36 ( $slice rx_buffer_pointer 35 4 )  ) (push_status ) 
+    n_q_index := ((q_index + 1 ) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1 ) )) $buffering 1// bits of buffering = 6. 
+    $if ( ~ push_status ) $then 
+    $call delay_time (32  ) (status ) 
+    $if (status == 0 ) $then 
+    $place[loopback]
+    $endif
+    $else 
+    LAST_WRITTEN_RX_QUEUE_INDEX := q_index $buffering 1// bits of buffering = 6. 
+    $endif
+  }
+}
+$module [ReceiveEngineDaemon]
+$in ()
+$out ()
+$is
+{
+  LAST_WRITTEN_RX_QUEUE_INDEX := 0  $buffering 1// bits of buffering = 6. 
+  $branchblock [main]
+  {
+    $merge $entry not_enabled_yet_loopback disable_loopback 
+    $endmerge
+    $report (ReceiveEngineDaemon waiting_for_control )
+    $if (CONTROL_REGISTER [] 0 ) $then 
+    $place[not_enabled_yet_loopback]
+    $endif
+    $report (ReceiveEngineDaemon got_the__control )
+    $dopipeline $depth 31 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $endmerge
+    $report (ReceiveEngineDaemon called_pop_From_queue )
+    $call popFromQueue (($bitcast ($uint<1>) _b1  ) FREE_Q ) (rx_buffer_pointer_32 status ) 
+    $volatile rx_buffer_pointer_36 := (rx_buffer_pointer_32 && ($bitcast ($uint<4>) _b0  )) $buffering 1
+    $report (ReceiveEngineDaemon calling_loadBuffer 			 status status )
+    $guard (status) $call loadBuffer (rx_buffer_pointer_36 ) (bad_packet_identifier ) 
+    status_913_delayed_10_0 := status $buffering 10 $cut_through // bits of buffering = 10. 
+    $volatile ok_flag := (status_913_delayed_10_0 & ( ~ bad_packet_identifier )) $buffering 1
+    status_919_delayed_10_0 := status $buffering 10 $cut_through // bits of buffering = 10. 
+    $volatile free_flag := (status_919_delayed_10_0 & bad_packet_identifier) $buffering 1
+    $report (ReceiveEngineDaemon populating_rx_queue 			 ok_flag ok_flag )
+    rx_buffer_pointer_36_926_delayed_10_0 := rx_buffer_pointer_36 $buffering 10 $cut_through // bits of buffering = 360. 
+    $guard (ok_flag) $call populateRxQueue (rx_buffer_pointer_36_926_delayed_10_0 ) () 
+    $report (ReceiveEngineDaemon pushing_into_free_q 			 free_flag free_flag )
+    rx_buffer_pointer_36_934_delayed_10_0 := rx_buffer_pointer_36 $buffering 10 $cut_through // bits of buffering = 360. 
+    $guard (free_flag) $call pushIntoQueue (($bitcast ($uint<1>) _b1  ) FREE_Q ( $slice rx_buffer_pointer_36_934_delayed_10_0 35 4 )  ) (push_status ) 
+    $report (ReceiveEngineDaemon complited_iteration_in_receive_engine )
+    $while ( ~ (CONTROL_REGISTER [] 0 ) )
+    $place[disable_loopback]
+  }
+}
+$module [SoftwareRegisterAccessDaemon]
+$in ()
+$out ()
+$is
+{
+  $report (SoftwareRegisterAccessDaemon started_SoftwareRegisterAccessDaemon )
+  $branchblock [loop]
+  {
+    $dopipeline $depth 31 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi INIT := 			  ($bitcast ($uint<1>) _b0  ) $on   $entry 			  ($bitcast ($uint<1>) _b1  ) $on   $loopback 
+    // type of target is $uint<1>
+    $phi control_register := 			  ($bitcast ($uint<1>) _b0  ) $on   $entry 			  check_control_regsiter $on   $loopback 
+    // type of target is $uint<1>
+    $phi free_q := 			  ($bitcast ($uint<1>) _b0  ) $on   $entry 			  check_free_q $on   $loopback 
+    // type of target is $uint<1>
+    $phi num_server := 			  ($bitcast ($uint<1>) _b0  ) $on   $entry 			  check_num_server $on   $loopback 
+    // type of target is $uint<1>
+    $endmerge
+    $report (SoftwareRegisterAccessDaemon looping_in_SoftwareRegisterAccessDaemon )
+    $volatile update_control_register_pipe := (( ~ INIT ) | (INIT & control_register)) $buffering 1
+    $volatile update_free_q_pipe := (( ~ INIT ) | (INIT & free_q)) $buffering 1
+    $volatile update_server_num := (( ~ INIT ) | (INIT & num_server)) $buffering 1
+    $guard (update_control_register_pipe) CONTROL_REGISTER := nic_registers[0 ] $buffering 1// bits of buffering = 32. 
+    $guard (update_free_q_pipe) FREE_Q_32 := nic_registers[18 ] $buffering 1// bits of buffering = 32. 
+    update_free_q_pipe_1009_delayed_5_0 := update_free_q_pipe $buffering 5 $cut_through // bits of buffering = 5. 
+    $guard (update_free_q_pipe_1009_delayed_5_0) FREE_Q := ($bitcast ($uint<36>) (FREE_Q_32 && ($bitcast ($uint<3>) _b0  )) ) $buffering 1// bits of buffering = 36. 
+    $guard (update_server_num) NUMBER_OF_SERVERS := nic_registers[1 ] $buffering 1// bits of buffering = 32. 
+    req := AFB_NIC_REQUEST $buffering 1// bits of buffering = 74. 
+    $report (SoftwareRegisterAccessDaemon got_afb_req )
+    $volatile rwbar := ( $slice req 72 72 )  $buffering 1
+    $volatile bmask := ( $slice req 71 68 )  $buffering 1
+    $volatile addr := ( $slice req 67 32 )  $buffering 1
+    $volatile wdata := ( $slice req 31 0 )  $buffering 1
+    $volatile index := ( $slice addr 5 0 )  $buffering 1
+    $volatile check_control_regsiter := ((index == 0 ) & (rwbar == 0 )) $buffering 1
+    $volatile check_free_q := ((index == 18 ) & (rwbar == 0 )) $buffering 1
+    $volatile check_num_server := ((index == 1 ) & (rwbar == 0 )) $buffering 1
+    rval := nic_registers[index] $buffering 1// bits of buffering = 32. 
+    rwbar_1081_delayed_5_0 := rwbar $buffering 5 $cut_through // bits of buffering = 5. 
+    bmask_1082_delayed_5_0 := bmask $buffering 5 $cut_through // bits of buffering = 20. 
+    wdata_1084_delayed_5_0 := wdata $buffering 5 $cut_through // bits of buffering = 160. 
+    index_1085_delayed_5_0 := index $buffering 5 $cut_through // bits of buffering = 30. 
+    $guard (~rwbar_1081_delayed_5_0) $call UpdateRegister (bmask_1082_delayed_5_0 rval wdata_1084_delayed_5_0 index_1085_delayed_5_0 ) (wval ) 
+    rwbar_1089_delayed_5_0 := rwbar $buffering 5 $cut_through // bits of buffering = 5. 
+    $volatile rdata := ( $mux rwbar_1089_delayed_5_0 rval  ($bitcast ($uint<32>) _b0  ) )  $buffering 1
+    $volatile resp := (($bitcast ($uint<1>) _b0  ) && rdata) $buffering 1
+    AFB_NIC_RESPONSE := resp $buffering 1// bits of buffering = 33. 
+    $while 1 
+  }
+}
+$pipeline $depth 7 $buffering 1 $module [getTxPacketPointerFromServer]
+$in ( queue_index : $uint<6>  )
+$out ( pkt_pointer : $uint<32>   status : $uint<1>  )
+$is
+{
+  $volatile register_index := ($bitcast ($uint<6>) (queue_index + TX_QUEUES_REG_START_OFFSET) ) $buffering 1
+  $call AccessRegister (($bitcast ($uint<1>) _b1  ) ($bitcast ($uint<4>) _b1  ) register_index ($bitcast ($uint<32>) _b0  ) ) (tx_queue_pointer_32 ) 
+  $volatile tx_queue_pointer_36 := (tx_queue_pointer_32 && ($bitcast ($uint<4>) _b0  )) $buffering 1
+  $call popFromQueue (($bitcast ($uint<1>) _b0  ) tx_queue_pointer_36 ) (pkt_pointer status ) 
+  $attribute delay 10
+}
+$module [global_storage_initializer_]
+$in ()
+$out ()
+$is
+{
+  $null
+}
+$module [macToNicInterface]
+$in ()
+$out ()
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 7 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi rdata0 := 			  mac_to_nic_data_0 $on   $entry ,   $loopback 
+    // type of target is $uint<64>
+    $phi rdata1 := 			  mac_to_nic_data_1 $on   $entry ,   $loopback 
+    // type of target is $uint<16>
+    $endmerge
+    $report (macToNicInterface writing_data 			 rdata1 rdata1 			 rdata0 rdata0 )
+    mac_to_nic_data := (( $slice rdata1 8 0 )  && rdata0) $buffering 1// bits of buffering = 73. 
+    $while 1 
+  }
+}
+$module [memoryToNicInterface]
+$in ()
+$out ()
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 7 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi rdata0 := 			  mem_resp0_pipe0 $on   $entry ,   $loopback 
+    // type of target is $uint<64>
+    $phi rdata1 := 			  mem_resp0_pipe1 $on   $entry ,   $loopback 
+    // type of target is $uint<8>
+    $endmerge
+    MEMORY_TO_NIC_RESPONSE := ((rdata1 [] 0 ) && rdata0) $buffering 1// bits of buffering = 65. 
+    $while 1 
+  }
+}
+$volatile $module [nextLSTATE]
+$in ( RX : $uint<73>   LSTATE : $uint<2>  )
+$out ( nLSTATE : $uint<2>  )
+$is
+{
+  $volatile tlast := ( $slice RX 72 72 )  $buffering 1
+  $volatile last_word := (tlast == 1 ) $buffering 1
+  nLSTATE := ((( $mux (LSTATE == S0) S1  _b0  )  | ( $mux (LSTATE == S1) S2  _b0  ) ) | (( $mux ((LSTATE == S2) & ( ~ last_word )) S2  _b0  )  | ( $mux ((LSTATE == S2) & last_word) S0  _b0  ) )) $buffering 1
+}
+$module [nicRxFromMacDaemon]
+$in ()
+$out ()
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 7 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi LSTATE := 			  nLSTATE $on   $loopback 			  S0 $on   $entry 
+    // type of target is $uint<2>
+    $phi RX := 			  mac_to_nic_data $on   $entry ,   $loopback 
+    // type of target is $uint<73>
+    $endmerge
+    $report (nicRxFromMacDaemon data_is 			 RX RX 			 LSTATE LSTATE )
+    $volatile 			$call nextLSTATE (RX LSTATE ) (nLSTATE ) 
+    $volatile write_to_header := ((LSTATE == S0) | (LSTATE == S1)) $buffering 1
+    $guard (write_to_header) nic_rx_to_header := ( $mux (LSTATE == S1) (( $slice RX 72 8 )  && HEADER_TKEEP)  RX )  $buffering 1// bits of buffering = 73. 
+    nic_rx_to_packet := RX $buffering 1// bits of buffering = 73. 
+    $report (nicRxFromMacDaemon data_written_is 			 RX RX )
+    $while 1 
+  }
+}
+$module [nicToMacInterface]
+$in ()
+$out ()
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 7 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi rdata := 			  nic_to_mac_transmit_pipe $on   $entry ,   $loopback 
+    // type of target is $uint<73>
+    $endmerge
+    $while 1 
+  }
+}
+$module [nicToMemoryInterface]
+$in ()
+$out ()
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 7 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi rdata := 			  NIC_TO_MEMORY_REQUEST $on   $entry ,   $loopback 
+    // type of target is $uint<110>
+    $endmerge
+    mem_req0_pipe0 := ( $slice rdata 63 0 )  $buffering 1// bits of buffering = 64. 
+    mem_req0_pipe1 := ($bitcast ($uint<64>) ( $slice rdata 45 0 )  ) $buffering 1// bits of buffering = 64. 
+    $while 1 
+  }
+}
+$module [nicToProcessorInterface]
+$in ()
+$out ()
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 7 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi rdata := 			  AFB_NIC_RESPONSE $on   $entry ,   $loopback 
+    // type of target is $uint<33>
+    $endmerge
+    control_word_response_pipe := ($bitcast ($uint<64>) rdata ) $buffering 1// bits of buffering = 64. 
+    $while 1 
+  }
+}
+$module [processorToNicInterface]
+$in ()
+$out ()
+$is
+{
+  $branchblock [loop]
+  {
+    $dopipeline $depth 7 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi rdata0 := 			  control_word_request_pipe_0 $on   $entry ,   $loopback 
+    // type of target is $uint<32>
+    $phi rdata1 := 			  control_word_request_pipe_1 $on   $entry ,   $loopback 
+    // type of target is $uint<64>
+    $endmerge
+    $report (processorToNicInterface got_afb_Req 			 rdata0 rdata0 			 rdata1 rdata1 )
+    AFB_NIC_REQUEST := (( $slice rdata1 41 0 )  && rdata0) $buffering 1// bits of buffering = 74. 
+    $while 1 
+  }
+}
+$module [transmitPacket]
+$in ( packet_pointer : $uint<32>  )
+$out ( status : $uint<1>  )
+$is
+{
+  $volatile control_data_addr := ($bitcast ($uint<36>) (( $slice packet_pointer 31 1 )  && ($bitcast ($uint<3>) _b0  )) ) $buffering 1
+  $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b1  ) FULL_BYTE_MASK control_data_addr ($bitcast ($uint<64>) _b0  ) ) (control_data ) 
+  $volatile packet_size := ( $slice control_data 19 8 )  $buffering 1
+  $volatile last_tkeep := ( $slice control_data 7 0 )  $buffering 1
+  $branchblock [loop]
+  {
+    $dopipeline $depth 31 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi count_down := 			  packet_size $on   $entry 			  ncount_down $on   $loopback 
+    // type of target is $uint<12>
+    $phi mem_addr := 			  (control_data_addr + 16 ) $on   $entry 			  nmem_addr $on   $loopback 
+    // type of target is $uint<36>
+    $endmerge
+    $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b1  ) FULL_BYTE_MASK mem_addr ($bitcast ($uint<64>) _b0  ) ) (data ) 
+    nic_to_mac_transmit_pipe := ((($bitcast ($uint<1>) _b1  ) && data) && FULL_BYTE_MASK) $buffering 1// bits of buffering = 73. 
+    $volatile ncount_down := (count_down - 8 ) $buffering 1
+    $volatile nmem_addr := (mem_addr + 8 ) $buffering 1
+    $volatile not_last_word := (ncount_down > 8 ) $buffering 1
+    $while not_last_word
+    $call accessMemory (($bitcast ($uint<1>) _b0  ) ($bitcast ($uint<1>) _b1  ) FULL_BYTE_MASK nmem_addr ($bitcast ($uint<64>) _b0  ) ) (last_word ) 
+    status := (packet_size == ($bitcast ($uint<12>) (nmem_addr - control_data_addr) )) $buffering 1// bits of buffering = 1. 
+  }
+}
+$module [transmitEngineDaemon]
+$in ()
+$out ()
+$is
+{
+  LAST_READ_TX_QUEUE_INDEX := 0  $buffering 1// bits of buffering = 6. 
+  $branchblock [main]
+  {
+    $merge $entry not_enabled_yet_loopback disable_loopback 
+    $endmerge
+    $if ( ~ (CONTROL_REGISTER [] 0 ) ) $then 
+    $place[not_enabled_yet_loopback]
+    $endif
+    $dopipeline $depth 31 $buffering 1
+    $fullrate 
+    $merge $entry $loopback 
+    $phi tx_q_index := 			  ((LAST_READ_TX_QUEUE_INDEX + 1 ) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1 ) )) $on   $entry ,   $loopback 
+    // type of target is $uint<6>
+    $endmerge
+    $call getTxPacketPointerFromServer (tx_q_index ) (pkt_pointer tx_flag ) 
+    $guard (tx_flag) $call transmitPacket (pkt_pointer ) (transmitted_flag ) 
+    tx_flag_1526_delayed_4_0 := tx_flag $buffering 4 $cut_through // bits of buffering = 4. 
+    $volatile push_pointer_back_to_free_Q := (tx_flag_1526_delayed_4_0 & transmitted_flag) $buffering 1
+    pkt_pointer_1534_delayed_4_0 := pkt_pointer $buffering 4 $cut_through // bits of buffering = 128. 
+    $guard (push_pointer_back_to_free_Q) $call pushIntoQueue (($bitcast ($uint<1>) _b1  ) FREE_Q pkt_pointer_1534_delayed_4_0 ) (push_status ) 
+    LAST_READ_TX_QUEUE_INDEX := tx_q_index $buffering 1// bits of buffering = 6. 
+    $while (CONTROL_REGISTER [] 0 )
+    $place[disable_loopback]
+  }
+}
+// Memory space 0: nic_registers 

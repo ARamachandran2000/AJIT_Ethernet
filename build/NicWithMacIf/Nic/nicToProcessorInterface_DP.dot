@@ -1,0 +1,18 @@
+digraph data_path {
+  RPIPE_AFB_NIC_RESPONSE_1344_wire [shape=ellipse];
+  konst_1351_wire_constant [shape=ellipse];
+  rdata_1342 [shape=ellipse];
+  type_cast_1348_wire [shape=ellipse];
+  RPIPE_AFB_NIC_RESPONSE_1344_inst [shape=rectangle];
+RPIPE_AFB_NIC_RESPONSE_1344_inst -> RPIPE_AFB_NIC_RESPONSE_1344_wire;
+  WPIPE_control_word_response_pipe_1346_inst [shape=rectangle];
+type_cast_1348_wire  -> WPIPE_control_word_response_pipe_1346_inst;
+  do_while_stmt_1340_branch [shape=rectangle];
+konst_1351_wire_constant  -> do_while_stmt_1340_branch;
+  ssrc_phi_stmt_1342 [shape=diamond];
+RPIPE_AFB_NIC_RESPONSE_1344_wire  -> ssrc_phi_stmt_1342;
+ssrc_phi_stmt_1342 -> rdata_1342;
+  type_cast_1348_inst [shape=rectangle];
+rdata_1342  -> type_cast_1348_inst;
+type_cast_1348_inst -> type_cast_1348_wire;
+}

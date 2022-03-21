@@ -41,7 +41,7 @@ void ReqRespMemory(
 	req1 = setSliceOfWord_64(req1, 43,36,byte_mask); // Byte Mask
 	req1 = setSliceOfWord_64(req1, 35,0,addr); // Addr
 
-	
+	fprintf(stderr, "Interface_Data_Structures : req_resp_mem : req0 = %lx, req1 = %lx",req0,req1);	
 	write_uint64(req_pipe0,req0);
 	write_uint64(req_pipe1,req1);
 
@@ -94,8 +94,9 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	write_pointer = getSliceFromWord(pointers, 63, 32);
 	read_pointer  = getSliceFromWord(pointers, 31, 0);
+	fprintf(stderr,"InteraceDataStructures_utils : push : pointers = %lx,write_pointer = %lx read_pointer = %lx\n",pointers,write_pointer,read_pointer);	
 
-	uint32_t next_pointer = (write_pointer + 1) & (NUMBER_OF_ENTRIES - 1);
+	uint32_t next_pointer = (write_pointer + 1) % NUMBER_OF_ENTRIES;
 
 	uint64_t element_pair_address = queue_offset + 16 + (write_pointer >> 1)<<3 ;
 	fprintf(stderr,"InteraceDataStructures_utils : push : write_pointer = %lx\n",write_pointer);	
@@ -122,6 +123,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 		ReqRespMemory (0,0,0xFF,element_pair_address,wdata,&status,&rdata);
 		fprintf(stderr,"Writing next write pointer as = %lx\n", next_pointer);
 		pointers = setSliceOfWord_64(pointers, 63,32,next_pointer);
+		fprintf(stderr,"Writing next write pointer as = %lx\n", pointers);
 		//memory_array[queue_offset + 1] = pointers;
 		ReqRespMemory (0,0,0xFF,queue_offset + 8,pointers,&status,&rdata);
 	}

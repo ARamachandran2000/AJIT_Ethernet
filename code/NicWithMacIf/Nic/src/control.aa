@@ -48,6 +48,10 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			$phi num_server := $zero<1> $on $entry check_num_server $on $loopback
 		$endmerge
 			$rreport(SoftwareRegisterAccessDaemon looping_in_SoftwareRegisterAccessDaemon)
+
+			$volatile control_data := nic_registers[0]
+
+			$rreport(SoftwareRegisterAccessDaemon control__data control_data)
 			// Initialise the value for the signals on entry and don't change
 			// until software changes the value of the corresponding register
 			$volatile update_control_register_pipe := ((~INIT) | (INIT & control_register))

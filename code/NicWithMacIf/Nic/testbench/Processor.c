@@ -25,7 +25,6 @@ void cpu_model()
 	fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
 	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
 	
-	fprintf(stderr, "CPU_THREAD : configuration of NIC registers is done.\n");
 	uint32_t buffer_with_packet = 0;
 
 	while(1)

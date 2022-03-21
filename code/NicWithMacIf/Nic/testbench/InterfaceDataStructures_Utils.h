@@ -36,18 +36,23 @@ void ReqRespMemory(
 
 	uint64_t req1 = 0;
 	uint64_t req0 = wdata;
+
 	req1 = setSliceOfWord_64(req1, 45,45,(uint64_t)lock); // Lock
 	req1 = setSliceOfWord_64(req1, 44,44,read_write_bar); // Read Write Set
 	req1 = setSliceOfWord_64(req1, 43,36,byte_mask); // Byte Mask
 	req1 = setSliceOfWord_64(req1, 35,0,addr); // Addr
 
-	fprintf(stderr, "Interface_Data_Structures : req_resp_mem : req0 = %lx, req1 = %lx",req0,req1);	
+	
 	write_uint64(req_pipe0,req0);
 	write_uint64(req_pipe1,req1);
+	
+	fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Request Sent = %d. \n",byte_mask);
 
 	
 	*(rdata) = read_uint64(resp_pipe0);
 	*status = read_uint8(resp_pipe1);
+
+	fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, %d. \n",*status,*rdata);
 
 	
 }
@@ -57,6 +62,8 @@ void ReqRespMemory(
 // initialises queues
 void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 {
+
+	fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Queue %d. \n",queue_offset);
 	uint64_t rdata;
 	uint8_t status;
 	// Set Lock and Number of Entries
@@ -64,7 +71,7 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 	lock_entries = setSliceOfWord_64(lock_entries, 31,0,number_of_entries);	
 	//memory_array [queue_offset] = lock_entries;
 	ReqRespMemory (0,0,0xFF,queue_offset,lock_entries,&status,&rdata);
-
+	fprintf(stderr, "CPU_THREAD [initQueue] : Read lock_entries = %d. \n",lock_entries);
 	
 	
 	// Set Read and Write Pointers
@@ -90,16 +97,15 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	//uint64_t pointers = memory_array [queue_offset + 1];
 	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
-
+	fprintf(stderr, "CPU_THREAD [push] : Read Pointers = %d. \n",pointers);
 
 	write_pointer = getSliceFromWord(pointers, 63, 32);
 	read_pointer  = getSliceFromWord(pointers, 31, 0);
-	fprintf(stderr,"InteraceDataStructures_utils : push : pointers = %lx,write_pointer = %lx read_pointer = %lx\n",pointers,write_pointer,read_pointer);	
 
-	uint32_t next_pointer = (write_pointer + 1) % NUMBER_OF_ENTRIES;
+	uint32_t next_pointer = (write_pointer + 1) & (NUMBER_OF_ENTRIES);
 
 	uint64_t element_pair_address = queue_offset + 16 + (write_pointer >> 1)<<3 ;
-	fprintf(stderr,"InteraceDataStructures_utils : push : write_pointer = %lx\n",write_pointer);	
+	
 	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
 
 
@@ -115,15 +121,18 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 		bmask = 0xF0;
 		wdata = setSliceOfWord_64(wdata,63,32,buffer_address);
 	}
-	if(next_pointer != read_pointer)
+
+	fprintf(stderr, "CPU_THREAD [push] : NP = %d, RP = %d. \n",next_pointer,read_pointer);
+
+	if(next_pointer != read_pointer) // Check Full Condition
 	{
 		ret_val = 1;
 		//memory_array[write_pointer] = data;
+		fprintf(stderr, "CPU_THREAD [push] : Wdata = %d. \n",wdata);
 
 		ReqRespMemory (0,0,0xFF,element_pair_address,wdata,&status,&rdata);
-		fprintf(stderr,"Writing next write pointer as = %lx\n", next_pointer);
+
 		pointers = setSliceOfWord_64(pointers, 63,32,next_pointer);
-		fprintf(stderr,"Writing next write pointer as = %lx\n", pointers);
 		//memory_array[queue_offset + 1] = pointers;
 		ReqRespMemory (0,0,0xFF,queue_offset + 8,pointers,&status,&rdata);
 	}

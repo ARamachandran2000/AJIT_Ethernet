@@ -35,7 +35,6 @@ uint64_t setSliceOfWord_64 (uint64_t word, uint8_t high, uint8_t low, uint64_t w
 
 	uint64_t word_mask = -1;
 	word_mask = word_mask >> (63 - high + low);
-	fprintf(stderr,"reg_config:setsliceofword_64: word_mask=%lx\n",word_mask);
 	wval = wval & word_mask;
 	wval = wval << low;
 
@@ -100,5 +99,4 @@ void register_config (uint64_t RX_Q_0_ADDRESS,uint64_t TX_Q_0_ADDRESS , uint64_t
 		response_word = read_uint64("control_word_response_pipe");
 
 	}
-	fprintf(stderr,"REG_CONFIG: Done writing control word to nic\n");
 }

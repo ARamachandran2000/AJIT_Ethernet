@@ -99,4 +99,5 @@ void register_config (uint64_t RX_Q_0_ADDRESS,uint64_t TX_Q_0_ADDRESS , uint64_t
 		response_word = read_uint64("control_word_response_pipe");
 
 	}
+	fprintf(stderr,"REG_CONFIG: Done writing control word to nic\n");
 }

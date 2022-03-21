@@ -32,6 +32,7 @@ $is
 		$merge $entry $loopback $endmerge
 
 		// Step 1 : Pop From Free Queue -> If not empty (Success indicated by status) 
+		$rreport(ReceiveEngineDaemon called_pop_From_queue )
 		$call popFromQueue ($one<1> FREE_Q) (rx_buffer_pointer_32 status)
 
 		
@@ -39,6 +40,8 @@ $is
 		$volatile rx_buffer_pointer_36 :=  ($concat rx_buffer_pointer_32 $zero<4>)
 		
 		// Step 2 : If pop was successful then start loading the buffer
+		
+		$rreport(ReceiveEngineDaemon calling_loadBuffer status )
 		$guard (status)
 			$call loadBuffer (rx_buffer_pointer_36) (bad_packet_identifier)
 
@@ -48,12 +51,16 @@ $is
 		// packet is not ok, free the buffer.
 		$volatile free_flag := (status & bad_packet_identifier)
 
+		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag )
 		$guard (ok_flag) 
 			$call populateRxQueue (rx_buffer_pointer_36) ()
 
+		$rreport(ReceiveEngineDaemon pushing_into_free_q free_flag )
 		$guard (free_flag) 
 			$call pushIntoQueue ($one<1> FREE_Q ($slice rx_buffer_pointer_36 35 4)) (push_status) 
 
+		$rreport(ReceiveEngineDaemon complited_iteration_in_receive_engine )
+		
 		// Loop while Control word is 0
 		$while (~(CONTROL_REGISTER [] 0))
 

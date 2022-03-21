@@ -6,10 +6,12 @@ $module [popFromQueue]
 	$in  (lock : $uint<1> q_base_address : $uint<36> ) $out (q_r_data: $uint<32>  status: $uint<1>)
 $is
 {
+	$rreport(popFromQueue trying_to_acquire_mutex lock)
 	$guard (lock) $call acquireMutex (q_base_address) (m_ok) 
 	$barrier
-
+	
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
+	$rreport(popFromQueue got_queue_pointers write_pointer read_pointer)
 	$volatile q_empty := (write_pointer == read_pointer)
 	$volatile next_rp := ((read_pointer + 1) &  QUEUE_SIZE_MASK)
 
@@ -18,8 +20,10 @@ $is
 
 
 	$barrier
+	$rreport(popFromQueue releasing_mutex lock)
 	$guard (lock) $call releaseMutex (q_base_address) ()
 	status := (~q_empty) // 1 = Success, 0 = Fail
+	$rreport(popFromQueue poping_done status lock)
 }
 
 //
@@ -57,20 +61,25 @@ $is
 	$branchblock[loop] {
 
 		$volatile mutex_address := q_base_address
-
+		$rreport(acquireMutex inside_acquire_mutex)
 		$merge $entry loopback $endmerge
 		
+		
+		$rreport(acquireMutex accessing_memory)
 		// input arguments: lock, rwbar, bytemask, address, write-data
 		// output arguments: read-data
 		$call accessMemory ($one<1> $one<1> (~$zero<8>) mutex_address $zero<64>) (mutex_plus_nentries)
-
+		
+		$rreport(acquireMutex accessed_memory)
 		$volatile mutex_val := ($slice mutex_plus_nentries 63 32)
 		$volatile wval := ($concat $one<32> ($slice mutex_plus_nentries 31 0))
 
+		$rreport(acquireMutex accessing_memory_to_release_mutex)
 		$call accessMemory ($zero<1> $zero<1> (~$zero<8>) mutex_address wval)
 						(ignore)
 		
-		$if (mutex_val == 0) $then
+		$rreport(acquireMutex itertion_done mutex_val)
+		$if (mutex_val != 0) $then
 			$place [loopback]
 		$endif
 	}

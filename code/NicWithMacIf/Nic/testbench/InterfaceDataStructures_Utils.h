@@ -98,7 +98,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 	uint32_t next_pointer = (write_pointer + 1) & (NUMBER_OF_ENTRIES - 1);
 
 	uint64_t element_pair_address = queue_offset + 16 + (write_pointer >> 1)<<3 ;
-	
+	fprintf(stderr,"InteraceDataStructures_utils : push : write_pointer = %lx\n",write_pointer);	
 	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
 
 
@@ -120,7 +120,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 		//memory_array[write_pointer] = data;
 
 		ReqRespMemory (0,0,0xFF,element_pair_address,wdata,&status,&rdata);
-
+		fprintf(stderr,"Writing next write pointer as = %lx\n", next_pointer);
 		pointers = setSliceOfWord_64(pointers, 63,32,next_pointer);
 		//memory_array[queue_offset + 1] = pointers;
 		ReqRespMemory (0,0,0xFF,queue_offset + 8,pointers,&status,&rdata);

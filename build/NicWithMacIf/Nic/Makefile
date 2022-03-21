@@ -18,7 +18,7 @@ TOPMODULES=-T ReceiveEngineDaemon -T nicRxFromMacDaemon -T transmitEngineDaemon 
 
 # five steps from C to vhdl simulator.
 HW: aalink aa2vc  vc2vhdl  vhdlsim
-SW: aalink aa2c aa2vc  vc2vhdl swtb
+SW: aalink aa2c aa2vc swtb
 AA2VHDL: aa2vc vc2vhdl vhdlsim
 
 # Aa to vC
@@ -54,7 +54,7 @@ vhdlsim: ahir_system.vhdl ahir_system_test_bench.vhdl $(TESTBENCH)/testbench.c v
 	ghdl -i --work=work ahir_system.vhdl
 	ghdl -i --work=work ahir_system_test_bench.vhdl
 	ghdl -m --work=work -Wl,-L$(AHIR_LIB) -Wl,-lVhpi ahir_system_test_bench 
-swtb:  $(TESTBENCH)/testbench.c 
+swtb:  $(TESTBENCH)/*.c 
 	gcc -c $(TESTBENCH)/testbench.c -DAA2C -I ./ -I $(AHIR_INCLUDE) -o testbench.o
 	gcc -c aa_c_model.c -DAA2C -I ./ -I $(AHIR_INCLUDE)
 	gcc -o testbench_sw testbench.o aa_c_model.o -L$(AHIR_LIB) -lBitVectors -lSockPipes -lPipeHandlerDebugPthreads -lpthread

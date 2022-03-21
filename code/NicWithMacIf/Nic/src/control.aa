@@ -31,9 +31,6 @@ $is
 // Software Register Access Daemon
 // Services Software Requests for the Registers
 
-
-
-
 $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 {
 	$rreport(SoftwareRegisterAccessDaemon started_SoftwareRegisterAccessDaemon)

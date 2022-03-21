@@ -3,7 +3,7 @@
 void register_pipes(void);
 
 // configuration of nic registers.
-void register_config (uint32_t, uint32_t, uint32_t);
+void register_config (uint64_t ,uint64_t  , uint64_t );
 
 // MAC functions.
 //---------------

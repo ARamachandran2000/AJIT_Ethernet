@@ -97,7 +97,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	uint32_t next_pointer = (write_pointer + 1) & (NUMBER_OF_ENTRIES - 1);
 
-	element_pair_address = queue_offset + 16 + (write_pointer >> 1)<<3 ;
+	uint64_t element_pair_address = queue_offset + 16 + (write_pointer >> 1)<<3 ;
 	
 	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
 
@@ -143,7 +143,7 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 
 	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
 	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
-	element_pair_address = queue_offset + 16 + (read_pointer >> 1)<<3 ;
+	uint64_t element_pair_address = queue_offset + 16 + (read_pointer >> 1)<<3 ;
 	
 	if(write_pointer != read_pointer)
 	{

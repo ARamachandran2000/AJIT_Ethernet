@@ -2,7 +2,7 @@
 
 // all these will be moved to header.h
 #define BUF_LENGTH 190
-
+#define QUEUE_SIZE 32 
 void cpu_model()
 {
 	fprintf(stderr, "CPU_THREAD : started \n");

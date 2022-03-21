@@ -18,7 +18,7 @@ TOPMODULES=-T ReceiveEngineDaemon -T nicRxFromMacDaemon -T transmitEngineDaemon 
 
 # five steps from C to vhdl simulator.
 HW: aalink aa2vc  vc2vhdl  vhdlsim
-SW: aalink aa2c aa2vc  vc2vhdl swtb
+SW: aalink aa2c aa2vc vc2vhdl swtb
 AA2VHDL: aa2vc vc2vhdl vhdlsim
 
 # Aa to vC

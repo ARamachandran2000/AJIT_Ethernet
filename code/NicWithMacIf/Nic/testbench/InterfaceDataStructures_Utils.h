@@ -41,7 +41,7 @@ void ReqRespMemory(
 	req1 = setSliceOfWord_64(req1, 43,36,byte_mask); // Byte Mask
 	req1 = setSliceOfWord_64(req1, 35,0,addr); // Addr
 
-	fprintf(stderr, "Interface_Data_Structures : req_resp_mem : req0 = %lx, req1 = %lx",req0,req1);	
+	fprintf(stderr, "Interface_Data_Structures : req_resp_mem : req0 = %lx, req1 = %lx\n",req0,req1);	
 	write_uint64(req_pipe0,req0);
 	write_uint64(req_pipe1,req1);
 

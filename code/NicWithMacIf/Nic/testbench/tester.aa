@@ -88,7 +88,7 @@ $is
 				$phi rdata := AFB_NIC_RESPONSE $on $entry, $loopback
 			$endmerge
 			// 64 bit wide
-			control_word_responce_pipe := ($bitcast ($uint<64>) rdata)
+			control_word_response_pipe := ($bitcast ($uint<64>) rdata)
 		$while 1
 	}
 	
@@ -106,7 +106,7 @@ $is
 				// 8 bit wide
 				$phi rdata1 := mem_resp0_pipe1 $on $entry, $loopback
 			$endmerge
-			MEMORY_TO_NIC_RESPONCE := ($concat (rdata1 [] 0) rdata0)
+			MEMORY_TO_NIC_RESPONSE := ($concat (rdata1 [] 0) rdata0)
 		$while 1
 	}
 }

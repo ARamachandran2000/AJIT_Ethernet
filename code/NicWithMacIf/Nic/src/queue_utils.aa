@@ -122,7 +122,8 @@ $module  [getQueueElement]
 	$out (q_r_data : $uint<32>)
 $is
 {
-	$volatile element_pair_address := (q_base_address + ($bitcast ($uint<36>) ($concat ($slice read_pointer 31 1) $zero<3>)))
+	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16) )
+	$volatile element_pair_address := (buffer_address + ($bitcast ($uint<36>) ($concat ($slice read_pointer 31 1) $zero<3>)))
 	$call accessMemory ($zero<1> $one<1>  (~$zero<8>) element_pair_address $zero<64>) (element_pair)
 
 	$volatile $split (element_pair 32 32) (e0 e1)
@@ -139,8 +140,9 @@ $module  [setQueueElement]
 	$out () 
 $is
 {
+	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16) )
 	$volatile element_pair_address := 
-		(q_base_address + ($bitcast ($uint<36>) ($concat ($slice write_pointer 31 1) $zero<3>)))
+		(buffer_address + ($bitcast ($uint<36>) ($concat ($slice write_pointer 31 1) $zero<3>)))
 	$volatile bmask := ($mux (write_pointer [] 0) 
 				($concat $zero<4> (~$zero<4>))
 				($concat (~ $zero<4>) $zero<4>)

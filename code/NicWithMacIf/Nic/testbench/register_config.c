@@ -46,7 +46,7 @@ uint64_t setSliceOfWord_64 (uint64_t word, uint8_t high, uint8_t low, uint64_t w
 }
 
 // configures the nic registers.
-void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t FREE_Q_ADDRESS )
+void register_config (uint64_t RX_Q_0_ADDRESS,uint64_t TX_Q_0_ADDRESS , uint64_t FREE_Q_ADDRESS )
 {
 	uint32_t write_data;
 	uint64_t register_address;
@@ -63,7 +63,7 @@ void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t
 
 	uint64_t register_addresses_array [] = {1,2,10,18,0};
 	uint32_t write_data_array[] =			
-			{NUMBER_OF_SERVERS,RX_Q_0_ADDRESS,TX_Q_0_ADDRESS,FREE_Q_ADDRESS,1};
+			{NUMBER_OF_SERVERS,RX_Q_0_ADDRESS>>4,TX_Q_0_ADDRESS>>4,FREE_Q_ADDRESS>>4,1};
 
 
 	int i;
@@ -89,7 +89,8 @@ void register_config (uint32_t RX_Q_0_ADDRESS,uint32_t TX_Q_0_ADDRESS , uint32_t
 
 		// Send Data to Pipe --> Aa module will concatenate the bits to generate 74-bit
 		// response
-		fprintf(stderr,"REG_CONFIG: Requeting to write control word to nic\n");
+		fprintf(stderr,"REG_CONFIG: Requesting to write control word to nic\n");
+
 		write_uint32("control_word_request_pipe_0",control_word_0[i]);
 		write_uint64("control_word_request_pipe_1",control_word_1[i]);
 

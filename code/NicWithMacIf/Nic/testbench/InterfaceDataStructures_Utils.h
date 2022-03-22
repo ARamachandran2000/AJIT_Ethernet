@@ -109,7 +109,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
 
 
-	if((write_pointer&0x1) == 1) // Check if we are writing even or odd word
+	if((write_pointer & 0x000001) == 1) // Check if we are writing even or odd word
 					   // Need to Verify
 	{
 		bmask = 0x0F;
@@ -118,11 +118,12 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	else
 	{
+		fprintf(stderr, "CPU_THREAD [push] : Buffer Writing.\n");
 		bmask = 0xF0;
 		wdata = setSliceOfWord_64(wdata,63,32,buffer_address);
 	}
 
-	fprintf(stderr, "CPU_THREAD [push] : NP = %d, RP = %d. \n",next_pointer,read_pointer);
+	fprintf(stderr, "CPU_THREAD [push] : PA = %d, Buffer Address = %d. \n",element_pair_address,buffer_address);
 
 	if(next_pointer != read_pointer) // Check Full Condition
 	{

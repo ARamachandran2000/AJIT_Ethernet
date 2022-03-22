@@ -104,9 +104,9 @@ $is
 		$dopipeline $depth 7 $fullrate
 			$merge $entry $loopback
 				// 64 bit wide
-				$phi rdata0 := mem_resp0_pipe0 $on $entry, $loopback
+				$phi rdata0 := mem_resp1_pipe0 $on $entry, $loopback
 				// 8 bit wide
-				$phi rdata1 := mem_resp0_pipe1 $on $entry, $loopback
+				$phi rdata1 := mem_resp1_pipe1 $on $entry, $loopback
 			$endmerge
 			MEMORY_TO_NIC_RESPONSE := ($concat (rdata1 [] 0) rdata0)
 		$while 1
@@ -123,9 +123,10 @@ $is
 				$phi rdata := NIC_TO_MEMORY_REQUEST $on $entry, $loopback
 			$endmerge
 			// 64 bit wide
+			$rreport(nicToMemoryInterface writing_to_mem_pipe rdata)
 			mem_req1_pipe0 := ($slice rdata 63 0)
-			// 8 bit wide
-			mem_req1_pipe1 := ($bitcast ($uint<64>) ($slice rdata 45 0))
+			// 64 bit wide
+			mem_req1_pipe1 := ($bitcast ($uint<64>) ($slice rdata 109 64))
 		$while 1
 	}
 	

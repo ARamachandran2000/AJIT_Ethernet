@@ -27,10 +27,10 @@ aalink: $(SRC)/*.aa $(TESTBENCH)/tester.aa
 	AaOpt -B nic.linked.aa | vcFormat > nic.linked.opt.aa
 
 aa2c :aalink
-	Aa2C $(TOPMODULES) nic.linked.aa -o ./
+	Aa2C $(TOPMODULES) nic.linked.opt.aa -o ./
 
-aa2vc: nic.linked.aa
-	Aa2VC -O -C nic.linked.aa | vcFormat > nic.vc
+aa2vc: nic.linked.opt.aa
+	Aa2VC -O -C nic.linked.opt.aa | vcFormat > nic.vc
 
 # vC to VHDL
 vc2vhdl: nic.vc

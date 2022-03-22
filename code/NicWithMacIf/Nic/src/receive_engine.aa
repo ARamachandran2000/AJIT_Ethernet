@@ -56,14 +56,16 @@ $is
 
 		// packet is not ok, free the buffer.
 		$volatile free_flag := ((~status) & bad_packet_identifier)
-
-		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag)
 		$volatile cond := (ok_flag == 1)
-		$guard (cond)
-			$rreport(ReceiveEngineDaemon running_ok_flag)
 
-		$guard (ok_flag) 
-			$call populateRxQueue (rx_buffer_pointer_36) ()
+
+		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag cond)
+		
+		$call populateRxQueue (rx_buffer_pointer_36) (ignore_populate)		
+		$rreport(ReceiveEngineDaemon running_ok_flag ignore_populate)	
+		
+		//$guard (ok_flag) 
+			//$call populateRxQueue (rx_buffer_pointer_36) ()
 
 		$rreport(ReceiveEngineDaemon pushing_into_free_q free_flag )
 		$guard (free_flag) 
@@ -110,7 +112,6 @@ $is
 	// for the next packet 
 	$guard(~bad_packet_identifier)
 		$call writeControlInformationToMem (rx_buffer_pointer packet_size  last_keep) ()
-
 }
 
 // Write Ethernet Header to Buffer
@@ -214,20 +215,21 @@ $is
 	$volatile control_data := ($bitcast ($uint<64>) ($concat packet_size last_keep))
 
 	// Write this control data with bmask set to all 1s to base_buffer_pointer location
-	$call accessMemory ($zero<1> $zero<1> FULL_BYTE_MASK base_buffer_pointer control_data) 				    (ignore_return)
+	$call accessMemory ($zero<1> $zero<1> FULL_BYTE_MASK base_buffer_pointer control_data) (ignore_return)
 
 
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+
 // Writes into the RX_Queue of server "q_index" the buffer pointer  
 // "rx_buffer_pointer"   
-$module [populateRxQueue] $in (rx_buffer_pointer : $uint<36>) $out ()
+$module [populateRxQueue] $in (rx_buffer_pointer : $uint<36>) $out (out : $uint<1>)
 $is
 {
 	$rreport(populateRxQueue started_populate_rx_queue_module)
 	$branchblock[PushIntoQueue]
 	{
+
 		$merge $entry loopback 
 			$phi q_index := (LAST_WRITTEN_RX_QUEUE_INDEX+1) $on $entry n_q_index $on loopback
 		$endmerge
@@ -245,15 +247,17 @@ $is
 		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
 		$rreport(populateRxQueue written_to_rx_queue)
 		// IF push is unsuccessful then wait for WAIT_TIME and retry
+		//do_loopback := (~push_status) & (status == 0)
 		$if(~push_status) $then
-			$call delay_time (32) (status)
-			$if (status == 0) $then
-				$place [loopback]
-			$endif
-		$else
-			LAST_WRITTEN_RX_QUEUE_INDEX :=  q_index
-			selected_q_index := q_index
+			$place [loopback]
 		$endif
+		$guard(push_status)
+			LAST_WRITTEN_RX_QUEUE_INDEX :=  q_index
+			
+		$guard(push_status)
+			selected_q_index := q_index
 	}
+	
+	out := 1
 }
 

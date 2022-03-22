@@ -12,7 +12,7 @@ $operator $module [delay_time]
 		$volatile nR := (R - 1)
 	   $while (R > 0)
 
-	   $volatile delay_done := 1
+	   delay_done := 1
 	}
 }
 

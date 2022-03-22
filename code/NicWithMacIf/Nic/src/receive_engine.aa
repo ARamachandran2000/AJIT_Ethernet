@@ -82,22 +82,27 @@ $is
 $module [populateRxQueue] $in (rx_buffer_pointer : $uint<36>) $out ()
 $is
 {
-	$rreport(populateRxQueue started_populate_rx_queue_module)
+	$rreport(populateRxQueue started_populate_rx_queue_module LAST_WRITTEN_RX_QUEUE_INDEX)
 	$branchblock[PushIntoQueue]
 	{
 
 		$merge $entry loopback 
-			$phi q_index := (LAST_WRITTEN_RX_QUEUE_INDEX+1) $on $entry n_q_index $on loopback
+			$phi q_index := ((LAST_WRITTEN_RX_QUEUE_INDEX+1)& ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1))) $on $entry 
+					n_q_index $on loopback
 		$endmerge
-
+		$rreport(populateRxQueue in_loop q_index)
 		// Rx Queues Index in the Register File start from Index 2
 		$volatile register_index := ($bitcast ($uint<6>) (q_index + 									RX_QUEUES_REG_START_OFFSET))
-	
+		$rreport(populateRxQueue will_be_Accessing_register register_index)
 		// Request for Rx Queue Pointer of Server ID : q_index Regsiter ID : q_index + 2
 			    	// rwbar bmask       index	     wdata        
-		$call AccessRegister ($one<1> $one<4> register_index $zero<32>) (rx_queue_pointer_32)
+		$call AccessRegister ($one<1> (~$zero<4>) register_index $zero<32>) (rx_queue_pointer_32)
 	
+	
+
 		$volatile rx_queue_pointer_36 :=  ($concat rx_queue_pointer_32 $zero<4>)	
+		$rreport(populateRxQueue got_rx_queue_pointer_pushing_to_rx_queue rx_queue_pointer_32 rx_queue_pointer_36 NUMBER_OF_SERVERS)	
+		
 		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
 
 		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))

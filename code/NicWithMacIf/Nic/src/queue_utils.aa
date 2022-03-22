@@ -35,8 +35,8 @@ $is
 	$barrier
 	$rreport(pushIntoQueue pushing_to_queue q_w_data)
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
-	$rreport(pushIntoQueue pushing_to_queue q_w_data write_pointer read_pointer)
 	$volatile next_wp := ((write_pointer + 1) &  QUEUE_SIZE_MASK)
+	$rreport(pushIntoQueue pushing_to_queue q_w_data write_pointer read_pointer next_wp)
 	$volatile q_full := (next_wp == read_pointer)
 
 	$guard (~q_full) $call setQueueElement (q_base_address write_pointer q_w_data) ()

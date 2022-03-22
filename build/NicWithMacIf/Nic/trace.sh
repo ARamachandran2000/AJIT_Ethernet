@@ -8,5 +8,7 @@ grep macToNicInterface run.log > macNicInterface.trace
 grep MAC_TX run.log > mac.trace
 grep ReceiveEngineDaemon run.log > rx_engine.trace
 grep populateRxQueue run.log > populateRxQueue.trace
-
+grep transmitEngineDaemon run.log > transmitEngineDaemon.trace
+grep NicRegisterAccessDaemon run.log > NicRegisterAccessDaemon.trace
+grep pushIntoQueue run.log > pushIntoQueue.trace
 gedit *.trace &

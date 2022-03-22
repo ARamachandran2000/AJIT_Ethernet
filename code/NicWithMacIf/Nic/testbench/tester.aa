@@ -56,7 +56,7 @@ $is
 			// 64 bit wide
 			nic_to_mac_data0 := ($slice rdata 63 0)
 			// 16 bit wide
-			nic_to_mac_data1 := ($bitcast ($uint<16>) ($slice rdata 8 0))
+			nic_to_mac_data1 := ($bitcast ($uint<16>) ($slice rdata 72 64))
 		$while 1
 	}
 }

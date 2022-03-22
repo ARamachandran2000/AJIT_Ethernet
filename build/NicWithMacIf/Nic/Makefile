@@ -24,13 +24,13 @@ AA2VHDL: aa2vc vc2vhdl vhdlsim
 # Aa to vC
 aalink: $(SRC)/*.aa $(TESTBENCH)/tester.aa 
 	AaLinkExtMem $(SRC)/decls.aa $(SRC)/pipes.aa $(SRC)/signals.aa $(SRC)/control.aa $(SRC)/general_utils.aa $(SRC)/memory_utils.aa $(SRC)/queue_utils.aa $(SRC)/register_utils.aa $(SRC)/rx_from_mac.aa $(SRC)/receive_engine.aa $(SRC)/transmit_engine.aa $(TESTBENCH)/tester.aa | vcFormat > nic.linked.aa
-	AaOpt -B nic.linked.aa | vcFormat > nic.linked.opt.aa
+	#AaOpt -B nic.linked.aa | vcFormat > nic.linked.opt.aa
 
 aa2c :aalink
-	Aa2C $(TOPMODULES) nic.linked.opt.aa -o ./
+	Aa2C $(TOPMODULES) nic.linked.aa -o ./
 
 aa2vc: nic.linked.opt.aa
-	Aa2VC -O -C nic.linked.opt.aa | vcFormat > nic.vc
+	Aa2VC -O -C nic.linked.aa | vcFormat > nic.vc
 
 # vC to VHDL
 vc2vhdl: nic.vc

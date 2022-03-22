@@ -122,13 +122,15 @@ $module [NicRegisterAccessDaemon] $in () $out () $is
 		$merge $entry $loopback $endmerge
 
 			req := NIC_REQUEST_REGISTER_ACCESS_PIPE
-
+			$rreport (NicRegisterAccessDaemon Request_Received)
 			$volatile $split (req 1 4 6 32) 
 					(rwbar bmask index wdata)
 
 			// read modify write
 
 			rval := nic_registers [index]
+
+			$rreport (NicRegisterAccessDaemon Request rval index)
 
 			// If rwbar -> (1 = read) then don't update value else update 
 			// value based on bmask
@@ -141,7 +143,7 @@ $module [NicRegisterAccessDaemon] $in () $out () $is
 			$volatile resp  := ($concat $zero<1> rdata) // zero<1> -> No error
 			
 			// Send response
-			NIC_RESPONE_REGISTER_ACCESS_PIPE := resp
+			NIC_RESPONSE_REGISTER_ACCESS_PIPE := resp
 	
 			//$place[loopback]
 			$while 1

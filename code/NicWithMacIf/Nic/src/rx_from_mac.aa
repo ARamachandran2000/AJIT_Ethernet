@@ -50,7 +50,7 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 								RX)
 			// send to packet pipe
 			nic_rx_to_packet := RX
-			$rreport(nicRxFromMacDaemon data_written_is RX)
+			$rreport(nicRxFromMacDaemon data_written_is RX nLSTATE)
 			$while 1
 	}
 }

@@ -23,7 +23,7 @@ $is
 		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
 		
 		// If not enabled yet -> Loopback
-		$if  (CONTROL_REGISTER [] 0) $then
+		$if (CONTROL_REGISTER [] 0) $then
 			$place [not_enabled_yet_loopback]
 		$endif
 
@@ -44,14 +44,15 @@ $is
 		// Step 2 : If pop was successful then start loading the buffer
 		
 		$rreport(ReceiveEngineDaemon calling_loadBuffer status )
-		$guard (status)
+		// 0 = success
+		$guard (~status)
 			$call loadBuffer (rx_buffer_pointer_36) (bad_packet_identifier)
 
 		// packet is ok, push into rx queue
-		$volatile ok_flag := (status & (~bad_packet_identifier))
+		$volatile ok_flag := ((~status) & (~bad_packet_identifier))
 
 		// packet is not ok, free the buffer.
-		$volatile free_flag := (status & bad_packet_identifier)
+		$volatile free_flag := ((~status) & bad_packet_identifier)
 
 		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag )
 		$guard (ok_flag) 
@@ -172,6 +173,7 @@ $is
 			$volatile $split (payload_data 1 64 8)(last_bit wdata wkeep)
 			
 			// Load wdata to memory with wkeep = bmask
+			$rreport(writePayloadToMem writing_payload_to_mem wdata buf_position)
 			$call accessMemory ($zero<1> $zero<1> wkeep buf_position wdata) 
 									   (ignore_return) 
 		$while (~last_bit)
@@ -216,7 +218,7 @@ $is
 $module [populateRxQueue] $in (rx_buffer_pointer : $uint<36>) $out ()
 $is
 {
-
+	$rreport(populateRxQueue started_populate_rx_queue_module)
 	$branchblock[PushIntoQueue]
 	{
 		$merge $entry loopback 
@@ -233,7 +235,7 @@ $is
 		$volatile rx_queue_pointer_36 :=  ($concat rx_queue_pointer_32 $zero<4>)	
 		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
 		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
-
+		$rreport(populateRxQueue written_to_rx_queue)
 		// IF push is unsuccessful then wait for WAIT_TIME and retry
 		$if(~push_status) $then
 			$call delay_time (32) (status)

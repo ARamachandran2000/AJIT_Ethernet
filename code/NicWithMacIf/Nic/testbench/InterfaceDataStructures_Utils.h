@@ -42,17 +42,17 @@ void ReqRespMemory(
 	req1 = setSliceOfWord_64(req1, 43,36,byte_mask); // Byte Mask
 	req1 = setSliceOfWord_64(req1, 35,0,addr); // Addr
 	
-	fprintf(stderr, "Interface_Data_Structures : req_resp_mem : req0 = %lx, req1 = %lx\n",req0,req1);	
+	//fprintf(stderr, "Interface_Data_Structures : req_resp_mem : req0 = %lx, req1 = %lx\n",req0,req1);	
 	write_uint64(req_pipe0,req0);
 	write_uint64(req_pipe1,req1);
 	
-	fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Request Sent = %d. \n",byte_mask);
+	//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Request Sent = %lx. \n",byte_mask);
 
 	
 	*(rdata) = read_uint64(resp_pipe0);
 	*status = read_uint8(resp_pipe1);
 
-	fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, %d. \n",*status,*rdata);
+	//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, 0x%lx. \n",*status,*rdata);
 
 	
 }
@@ -71,7 +71,7 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 	lock_entries = setSliceOfWord_64(lock_entries, 31,0,number_of_entries);	
 	//memory_array [queue_offset] = lock_entries;
 	ReqRespMemory (0,0,0xFF,queue_offset,lock_entries,&status,&rdata);
-	fprintf(stderr, "CPU_THREAD [initQueue] : Read lock_entries = %d. \n",lock_entries);
+	//fprintf(stderr, "CPU_THREAD [initQueue] : Read lock_entries = %d. \n",lock_entries);
 	
 	
 	// Set Read and Write Pointers
@@ -97,7 +97,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	//uint64_t pointers = memory_array [queue_offset + 1];
 	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
-	fprintf(stderr, "CPU_THREAD [push] : Read Pointers = %d. \n",pointers);
+	//fprintf(stderr, "CPU_THREAD [push] : Read Pointers = 0x%lx. \n",pointers);
 
 	write_pointer = getSliceFromWord(pointers, 63, 32);
 	read_pointer  = getSliceFromWord(pointers, 31, 0);
@@ -113,27 +113,30 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 					   // Need to Verify
 	{
 		bmask = 0x0F;
-		wdata = setSliceOfWord_64(wdata,31,0,buffer_address);
+		wdata = setSliceOfWord_64(wdata,31,0,(uint64_t)buffer_address);
 	}
 
 	else
 	{
 		fprintf(stderr, "CPU_THREAD [push] : Buffer Writing.\n");
 		bmask = 0xF0;
-		wdata = setSliceOfWord_64(wdata,63,32,buffer_address);
+		wdata = setSliceOfWord_64(wdata,63,32,(uint64_t)buffer_address);
 	}
 
-	fprintf(stderr, "CPU_THREAD [push] : PA = %d, Buffer Address = %d. \n",element_pair_address,buffer_address);
+
+	//fprintf(stderr, "CPU_THREAD [push] : NP = %d, RP = %d wdata = %lx. \n",next_pointer,read_pointer,wdata);
+
 
 	if(next_pointer != read_pointer) // Check Full Condition
 	{
 		ret_val = 1;
 		//memory_array[write_pointer] = data;
-		fprintf(stderr, "CPU_THREAD [push] : Wdata = %d. \n",wdata);
+		//fprintf(stderr, "CPU_THREAD [push] : Wdata = %lx, buffer_address = %lx. \n",wdata,buffer_address);
 
 		ReqRespMemory (0,0,0xFF,element_pair_address,wdata,&status,&rdata);
 
 		pointers = setSliceOfWord_64(pointers, 63,32,next_pointer);
+		//fprintf(stderr, "CPU_THREAD [push] : pointers = %lx. \n",pointers);
 		//memory_array[queue_offset + 1] = pointers;
 		ReqRespMemory (0,0,0xFF,queue_offset + 8,pointers,&status,&rdata);
 	}

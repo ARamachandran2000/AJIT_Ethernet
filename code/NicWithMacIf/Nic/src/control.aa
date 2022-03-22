@@ -49,7 +49,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 		$endmerge
 			$rreport(SoftwareRegisterAccessDaemon looping_in_SoftwareRegisterAccessDaemon)
 
-			$volatile control_data := nic_registers[0]
+			control_data := nic_registers[0]
 
 			$rreport(SoftwareRegisterAccessDaemon control__data control_data)
 			// Initialise the value for the signals on entry and don't change

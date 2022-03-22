@@ -42,7 +42,7 @@ void cpu_model()
 		// If no data, then sleep for 5 seconds and try again
 		else{
 			fprintf(stderr, "Processor : Sleeping\n");	
-			sleep(5);	
+			sleep(1);	
 		}
 	}
 }

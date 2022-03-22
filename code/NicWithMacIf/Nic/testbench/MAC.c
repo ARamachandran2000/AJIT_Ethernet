@@ -76,6 +76,7 @@ void macToNicData(void)
 		fprintf(stderr,"MAC_TX: out of for loop\n");	
 		// for last 64 bit word , tlast = 1;
 		// clear all bits
+		fprintf(stderr,"MAC_TX: writing last word i = %d\n", i);
 		data_64 = 0; data_16 = 0;
 		data_64 = (i << 8) | (0xff);
 		// tlast = 1

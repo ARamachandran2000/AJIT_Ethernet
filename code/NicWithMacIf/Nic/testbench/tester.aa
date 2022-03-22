@@ -1,4 +1,5 @@
 // decleration of pipes
+
 $pipe mac_to_nic_data_0 : $uint<64> $depth 16
 $pipe mac_to_nic_data_1 : $uint<16> $depth 16
 
@@ -18,6 +19,7 @@ $pipe mem_resp0_pipe0 : $uint<64> $depth 1024
 $pipe mem_resp0_pipe1 : $uint<8> $depth 1024
 $pipe mem_resp1_pipe0 : $uint<64> $depth 1024
 $pipe mem_resp1_pipe1 : $uint<8> $depth 1024
+
 
 //
 // All modules are daemons

@@ -106,9 +106,9 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	uint32_t next_pointer = (write_pointer + 1) % (NUMBER_OF_ENTRIES);
 
-	uint64_t element_pair_address = queue_offset + (uint64_t)16 + (write_pointer >> 1)<<3 ;
+	uint64_t element_pair_address = queue_offset + 16 + ((write_pointer >> 1)<<3) ;
+	fprintf(stderr, "CPU_THREAD [push] : Read Pointers = pointerss = 0x%lx, next_pointer = 0x%lx, pair_addr = 0x%lx write_pointer = 0x%lx, queue_offset = 0x%lx. \n",pointers,next_pointer,element_pair_address,write_pointer,queue_offset);
 
-		fprintf(stderr, "CPU_THREAD [push] : Read Pointers = 0x%lx, 0x%lx, 0x%lx. \n",(write_pointer >> 1)<<3,queue_offset,element_pair_address);
 	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
 
 
@@ -161,7 +161,7 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 
 	uint32_t write_pointer = getSliceFromWord(pointers, 63, 32);
 	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
-	uint64_t element_pair_address = queue_offset + 16 + (read_pointer >> 1)<<3 ;
+	uint64_t element_pair_address = queue_offset + 16 + ((read_pointer >> 1)<<3) ;
 	
 	if(write_pointer != read_pointer)
 	{

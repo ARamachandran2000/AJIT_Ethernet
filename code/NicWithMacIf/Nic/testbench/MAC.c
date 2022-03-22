@@ -86,6 +86,8 @@ void macToNicData(void)
 		write_uint16(pipe_to_send1, data_16);		
 		fprintf(stderr,"MAC_TX: written last word\n");
 		fprintf(stderr,"MAC_TX:sent packet\n");
+		break;
+
 	}
 }
 
@@ -137,7 +139,7 @@ void nicToMacData(void)
 			data_64 = read_uint64(pipe_to_recv0);
 			data_16 = read_uint64(pipe_to_recv1);
 			if(((data_64 >> 8) & 0xff) != i){
-				fprintf(stderr,"\nData Missmatch Expected = %d, Received = %d\n", i,data_64);
+				fprintf(stderr,"\nData Missmatch, Expected = %d, Received = %d\n", i,data_64);
 				__err_flag_ = 1;
 				break;
 			}

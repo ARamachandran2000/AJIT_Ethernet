@@ -51,7 +51,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 
 			control_data := nic_registers[0]
 
-			$rreport(SoftwareRegisterAccessDaemon control__data control_data)
+			$rreport(SoftwareRegisterAccessDaemon control control_data)
 			// Initialise the value for the signals on entry and don't change
 			// until software changes the value of the corresponding register
 			$volatile update_control_register_pipe := ((~INIT) | (INIT & control_register))
@@ -76,7 +76,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 				NUMBER_OF_SERVERS := nic_registers[1]
 
 			req := AFB_NIC_REQUEST
-			$rreport (SoftwareRegisterAccessDaemon got_afb_req)
+			$rreport (SoftwareRegisterAccessDaemon got_afb_req req)
 			$volatile $split (req 1 1 4 36 32) 
 					(lock rwbar bmask addr wdata)
 		

@@ -17,7 +17,7 @@ $module [transmitEngineDaemon] $in () $out () $is
 		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
 	
 		// If not enabled yet -> Loopback
-		$if (CONTROL_REGISTER [] 0) $then
+		$if (~(CONTROL_REGISTER [] 0)) $then
 			$place [not_enabled_yet_loopback]
 		$endif
 		$rreport(transmitEngineDaemon got_control)
@@ -46,7 +46,7 @@ $module [transmitEngineDaemon] $in () $out () $is
 			LAST_READ_TX_QUEUE_INDEX := tx_q_index
 
 			// loop while enabled(control[0] == 1)
-			$while (~(CONTROL_REGISTER [] 0))
+			$while (CONTROL_REGISTER [] 0)
 			
 		$place [disable_loopback]
 	}

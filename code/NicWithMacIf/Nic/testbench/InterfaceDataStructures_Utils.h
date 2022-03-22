@@ -46,10 +46,12 @@ void ReqRespMemory(
 	write_uint64(req_pipe0,req0);
 	write_uint64(req_pipe1,req1);
 	
-	//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Request Sent = %lx. \n",byte_mask);
-
+	//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Request Sent = %lx, %lx. \n",req0, req1);
+	
+	
 	
 	*(rdata) = read_uint64(resp_pipe0);
+		//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, 0x%lx. \n",*status,*rdata);
 	*status = read_uint8(resp_pipe1);
 
 	//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, 0x%lx. \n",*status,*rdata);
@@ -73,7 +75,7 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 	ReqRespMemory (0,0,0xFF,queue_offset,lock_entries,&status,&rdata);
 	//fprintf(stderr, "CPU_THREAD [initQueue] : Read lock_entries = %d. \n",lock_entries);
 	
-	
+	//fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Pointers %d. \n",queue_offset);
 	// Set Read and Write Pointers
 	uint64_t pointers = 0;
 	pointers = setSliceOfWord_64(pointers, 31,0,0);
@@ -97,15 +99,15 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	//uint64_t pointers = memory_array [queue_offset + 1];
 	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
-	//fprintf(stderr, "CPU_THREAD [push] : Read Pointers = 0x%lx. \n",pointers);
+	
 
 	write_pointer = getSliceFromWord(pointers, 63, 32);
 	read_pointer  = getSliceFromWord(pointers, 31, 0);
 
-	uint32_t next_pointer = (write_pointer + 1) & (NUMBER_OF_ENTRIES);
+	uint32_t next_pointer = (write_pointer + 1) % (NUMBER_OF_ENTRIES);
 
 	uint64_t element_pair_address = queue_offset + 16 + (write_pointer >> 1)<<3 ;
-	
+		fprintf(stderr, "CPU_THREAD [push] : Read Pointers = 0x%lx, 0x%lx, 0x%lx. \n",pointers,next_pointer,element_pair_address);
 	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
 
 
@@ -124,7 +126,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 	}
 
 
-	//fprintf(stderr, "CPU_THREAD [push] : NP = %d, RP = %d wdata = %lx. \n",next_pointer,read_pointer,wdata);
+	fprintf(stderr, "CPU_THREAD [push] : NP = %d, RP = %d wdata = %lx. \n",next_pointer,read_pointer,wdata);
 
 
 	if(next_pointer != read_pointer) // Check Full Condition
@@ -175,7 +177,7 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 		}
 			
 		
-		read_pointer = (read_pointer + 1) & (NUMBER_OF_ENTRIES - 1);
+		read_pointer = (read_pointer + 1) % (NUMBER_OF_ENTRIES);
 		
 		pointers = setSliceOfWord_64(pointers, 31,0,read_pointer);
 		

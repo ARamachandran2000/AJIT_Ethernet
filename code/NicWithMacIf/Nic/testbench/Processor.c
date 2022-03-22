@@ -7,6 +7,7 @@ void cpu_model()
 {
 	fprintf(stderr, "CPU_THREAD : started \n");
 	// Initialise Free, Rx and Tx Queues
+	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
 
 	initQueue(FREE_QUEUE, QUEUE_SIZE);
 	initQueue(RX_QUEUE, QUEUE_SIZE);
@@ -22,8 +23,8 @@ void cpu_model()
 
 	fprintf(stderr, "CPU_THREAD : pushed buffers to free queue \n");
 	// Config NIC Registers
-	fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
-	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
+	//fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
+	//register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
 	
 	uint32_t buffer_with_packet = 0;
 

@@ -15,11 +15,11 @@ $is
 
 	$guard (~q_empty) $call getQueueElement (q_base_address read_pointer) (q_r_data)
 	$guard (~q_empty) $call setQueuePointers (q_base_address  write_pointer next_rp) ()
-
+	$rreport(popFromQueue pop_data q_r_data) 
 
 	$barrier
 	$guard (lock) $call releaseMutex (q_base_address) ()
-	status := (~q_empty) // 1 = Success, 0 = Fail
+	status := q_empty // 0 = Success, 1 = Fail
 }
 
 //

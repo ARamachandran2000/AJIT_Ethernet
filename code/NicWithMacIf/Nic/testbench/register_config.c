@@ -82,14 +82,14 @@ void register_config (uint64_t RX_Q_0_ADDRESS,uint64_t TX_Q_0_ADDRESS , uint64_t
 		control_word_1[i] = setSliceOfWord_64(control_word_1[i],39,36,byte_mask);
 
 		// Set Read Write-Bar and Lock bit
-		rw_lock = 1; // 01
+		rw_lock = 0; // 01
 		control_word_1[i] = setSliceOfWord_64(control_word_1[i],41,40,rw_lock);
 
 		// Organised as control_word_1...control_word_0
 
 		// Send Data to Pipe --> Aa module will concatenate the bits to generate 74-bit
 		// response
-		fprintf(stderr,"REG_CONFIG: Requesting to write control word to nic\n");
+		fprintf(stderr,"REG_CONFIG: Requesting to write control word to nic %lx, %lx\n",control_word_0[i],control_word_1[i]);
 
 		write_uint32("control_word_request_pipe_0",control_word_0[i]);
 		write_uint64("control_word_request_pipe_1",control_word_1[i]);

@@ -1,23 +1,23 @@
 // decleration of pipes
-$pipe mac_to_nic_data_0 : $uint<64> $depth 2
-$pipe mac_to_nic_data_1 : $uint<16> $depth 2
+$pipe mac_to_nic_data_0 : $uint<64> $depth 16
+$pipe mac_to_nic_data_1 : $uint<16> $depth 16
 
-$pipe nic_to_mac_data_0 : $uint<64> $depth 2
-$pipe nic_to_mac_data_1 : $uint<16> $depth 2
+$pipe nic_to_mac_data_0 : $uint<64> $depth 16
+$pipe nic_to_mac_data_1 : $uint<16> $depth 16
 
-$pipe control_word_request_pipe_0 : $uint<32> $depth 2
-$pipe control_word_request_pipe_1 : $uint<64> $depth 2 
-$pipe control_word_response_pipe : $uint<64> $depth 2
+$pipe control_word_request_pipe_0 : $uint<32> $depth 16
+$pipe control_word_request_pipe_1 : $uint<64> $depth 16
+$pipe control_word_response_pipe : $uint<64> $depth 16
 
-$pipe mem_req0_pipe0 : $uint<64>  $depth 2
-$pipe mem_req0_pipe1 : $uint<64>  $depth 2
-$pipe mem_req1_pipe0 : $uint<64>  $depth 2
-$pipe mem_req1_pipe1 : $uint<64>  $depth 2
+$pipe mem_req0_pipe0 : $uint<64>  $depth 1024
+$pipe mem_req0_pipe1 : $uint<64>  $depth 1024
+$pipe mem_req1_pipe0 : $uint<64>  $depth 1024
+$pipe mem_req1_pipe1 : $uint<64>  $depth 1024
 
-$pipe mem_resp0_pipe0 : $uint<64> $depth 2 
-$pipe mem_resp0_pipe1 : $uint<8> $depth 2 
-$pipe mem_resp1_pipe0 : $uint<64> $depth 2 
-$pipe mem_resp1_pipe1 : $uint<8> $depth 2 
+$pipe mem_resp0_pipe0 : $uint<64> $depth 1024
+$pipe mem_resp0_pipe1 : $uint<8> $depth 1024
+$pipe mem_resp1_pipe0 : $uint<64> $depth 1024
+$pipe mem_resp1_pipe1 : $uint<8> $depth 1024
 
 //
 // All modules are daemons
@@ -121,9 +121,9 @@ $is
 				$phi rdata := NIC_TO_MEMORY_REQUEST $on $entry, $loopback
 			$endmerge
 			// 64 bit wide
-			mem_req0_pipe0 := ($slice rdata 63 0)
+			mem_req1_pipe0 := ($slice rdata 63 0)
 			// 8 bit wide
-			mem_req0_pipe1 := ($bitcast ($uint<64>) ($slice rdata 45 0))
+			mem_req1_pipe1 := ($bitcast ($uint<64>) ($slice rdata 45 0))
 		$while 1
 	}
 	

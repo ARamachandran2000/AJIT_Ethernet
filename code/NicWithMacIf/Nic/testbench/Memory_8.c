@@ -117,7 +117,7 @@ int accessMemory(uint8_t requester_id,
 		{	
 			//fprintf(stderr, "CPU_THREAD [AccessMemory] : Writing Data = 0x%lx, Address = 0x%lx. \n",wdata, addr);
 			write64(addr,wdata,byte_mask);
-			//fprintf(stderr,"CPU_THREAD [AccessMemory] : Memory Data = %d. \n",display_memory(addr));
+			fprintf(stderr,"CPU_THREAD [AccessMemory] : Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",wdata,read64(addr),byte_mask,addr);
 		}
 	}
 	// UNLOCK MUTEX
@@ -178,8 +178,9 @@ void memoryServiceModel(uint8_t requester_id)
 
 		//fprintf(stderr, "CPU_THREAD [MemoryServiceModel] :  %d,  %d, %d, 0x%lx, 0x%lx, 0x%lx. \n",requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester);
 		uint8_t status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester,&rdata);
-		// write responce
+		// write response
 		sendResponseToTester(requester_id,status,rdata);
+		//fprintf(stderr, "CPU_THREAD [MemoryServiceModel] : Sending Response \n");
 	}
 }
 

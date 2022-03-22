@@ -106,7 +106,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	uint32_t next_pointer = (write_pointer + 1) % (NUMBER_OF_ENTRIES);
 
-	uint64_t element_pair_address = queue_offset + (uint64_t)16 + (write_pointer >> 1)<<3 ;
+	uint64_t element_pair_address = queue_offset + 16 + (write_pointer >> 1)<<3 ;
 
 		fprintf(stderr, "CPU_THREAD [push] : Read Pointers = 0x%lx, 0x%lx, 0x%lx. \n",(write_pointer >> 1)<<3,queue_offset,element_pair_address);
 	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);

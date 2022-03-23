@@ -15,7 +15,7 @@ $is
 
 	$guard (~q_empty) $call getQueueElement (q_base_address read_pointer) (q_r_data)
 	$guard (~q_empty) $call setQueuePointers (q_base_address  write_pointer next_rp) ()
-	$rreport(popFromQueue pop_data q_r_data) 
+	$rreport(popFromQueue pop_data q_r_data q_empty) 
 
 	$barrier
 	$guard (lock) $call releaseMutex (q_base_address) ()

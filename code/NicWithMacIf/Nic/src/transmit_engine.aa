@@ -29,18 +29,19 @@ $module [transmitEngineDaemon] $in () $out () $is
 							$on $entry,$loopback
 			$endmerge
 			
-			$rreport(transmitEngineDaemon trying_to_get_pointer_from_tx_queue)
+			$rreport(transmitEngineDaemon trying_to_get_pointer_from_tx_queue tx_q_index)
 			// Read tx_queue[tx_q_index]
 			$call getTxPacketPointerFromServer (tx_q_index) (pkt_pointer tx_flag)
-		
-				
-			$rreport(transmitEngineDaemon got_pointer_now_transmitting_packet pkt_pointer tx_flag)
-			// if tx_flag 
-			$guard (tx_flag) $call transmitPacket (pkt_pointer) (transmitted_flag)
 			
+				
+			
+
+			// if tx_flag 
+			$guard (~tx_flag) $call transmitPacket (pkt_pointer) (transmitted_flag)
+			$rreport(transmitEngineDaemon got_pointer_now_transmitting_packet pkt_pointer tx_flag)
 			$rreport(transmitEngineDaemon packet_transmitted transmitted_flag )
 			// packet transmitted successfully
-			$volatile push_pointer_back_to_free_Q := (tx_flag & transmitted_flag)
+			$volatile push_pointer_back_to_free_Q := ((~tx_flag) & transmitted_flag)
 			
 			$rreport(transmitEngineDaemon pushing_back_to_free_queue push_pointer_back_to_free_Q)
 			// push packet pointer to free queue
@@ -75,7 +76,7 @@ $module [getTxPacketPointerFromServer]
 	//			queue_index Regsiter ID : queue_index + 10(TX_QUEUES_REG_START_OFFSET)
 	//
 	//		     ( rwbar  bmask       index	       wdata  ) (pointerToBuffer    )
-	$call AccessRegister ($one<1> $one<4> register_index $zero<32>) (tx_queue_pointer_32)
+	$call AccessRegister ($one<1> (~$zero<4>) register_index $zero<32>) (tx_queue_pointer_32)
 	
 	$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
 	

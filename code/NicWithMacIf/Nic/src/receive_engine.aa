@@ -109,13 +109,14 @@ $is
 		$rreport(populateRxQueue written_to_rx_queue n_q_index push_status)
 
 		$if(~push_status) $then
-			$place [loopback]
-		$endif
-		$guard(push_status)
+			$call delay_time (32) (status)
+			$if (status == 0) $then
+				$place [loopback]
+			$endif
+		$else
 			LAST_WRITTEN_RX_QUEUE_INDEX :=  q_index
-			
-		$guard(push_status)
 			selected_q_index := q_index
+		$endif
 	}
 	
 }

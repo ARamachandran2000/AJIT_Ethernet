@@ -1,11 +1,13 @@
 // Write Memory related threads, functions here
 //#include "InterfaceDataStructures_Utils.h"
 //#include<pthreadUtils.h>
-
+#define MEM_SIZE 8*(18 * 3 + (256*16))
 
 // 3 queues(free_q, tx_q, rx_q)
 // and 16 buffers.
 uint8_t memory_array[8*(18 * 3 + (256*16))];
+
+
 
 // access memory utility for reading as well as writing data
 //	Output : 65 bit 
@@ -196,6 +198,7 @@ void nicMemoryServiceDaemon()
 // this daemon will serve memory requests from cpu.
 void cpuMemoryServiceDaemon()
 {
+
 	uint8_t cpu_id = 0;
 	memoryServiceModel(cpu_id);
 }DEFINE_THREAD(cpuMemoryServiceDaemon);

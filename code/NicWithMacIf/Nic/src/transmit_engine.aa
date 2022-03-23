@@ -33,9 +33,8 @@ $module [transmitEngineDaemon] $in () $out () $is
 			// Read tx_queue[tx_q_index]
 			$call getTxPacketPointerFromServer (tx_q_index) (pkt_pointer tx_flag)
 			
-				
 			
-
+				
 			// if tx_flag 
 			$guard (~tx_flag) $call transmitPacket (pkt_pointer) (transmitted_flag)
 			$guard (~tx_flag) $rreport(transmitEngineDaemon got_pointer_now_transmitting_packet pkt_pointer tx_flag)
@@ -69,7 +68,9 @@ $module [getTxPacketPointerFromServer]
 	$in (queue_index : $uint<6>)
 	$out (pkt_pointer : $uint<32> status : $uint<1>) $is
 {
-	// tx_queue registers starts after 10(TX_QUEUES_REG_START_OFFSET) registers 
+	// tx_queue registers starts after 10(TX_QUEUES_REG_START_OFFSET) registers
+
+ 
 	$volatile register_index := ($bitcast ($uint<6>)(queue_index + TX_QUEUES_REG_START_OFFSET))
 
 	// Request for Tx Queue Pointer of Server ID : 
@@ -81,6 +82,8 @@ $module [getTxPacketPointerFromServer]
 	$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
 	
 	$call popFromQueue ($zero<1> tx_queue_pointer_36) (pkt_pointer status)
+
+
 	$rreport(getTxPacketPointerFromServer register_ind register_index tx_queue_pointer_36 pkt_pointer status)
 }
 

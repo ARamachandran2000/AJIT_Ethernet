@@ -234,8 +234,9 @@ $is
 	// Calculate packet size which is in multiples of 8-bit words stored
 	// Can divide by 8 to get size in 64-bit word multiples
 	// Divide by 4 to get size in 32-bit word multiples	
-	$volatile packet_size_8 := ($bitcast ($uint<8>) ((buf_position - base_buf_pointer) + 1))
-	$volatile packet_size_32 := (packet_size_8 << 2)
+	$volatile packet_size_8 := ($bitcast ($uint<8>) (buf_position - base_buf_pointer) )
+	$volatile packet_size_32 := packet_size_8
+	$rreport(writePayloadToMem packet_size_is packet_size_8 packet_size_32)
 
 	// bmask of last word is wkeep
 	$volatile last_keep := tkeep

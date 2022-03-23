@@ -1,10 +1,10 @@
 // decleration of pipes
 
-$pipe mac_to_nic_data_0 : $uint<64> $depth 16
-$pipe mac_to_nic_data_1 : $uint<16> $depth 16
+$pipe mac_to_nic_data_0 : $uint<64> $depth 2048
+$pipe mac_to_nic_data_1 : $uint<16> $depth 2048
 
-$pipe nic_to_mac_data_0 : $uint<64> $depth 16
-$pipe nic_to_mac_data_1 : $uint<16> $depth 16
+$pipe nic_to_mac_data_0 : $uint<64> $depth 2048
+$pipe nic_to_mac_data_1 : $uint<16> $depth 2048
 
 $pipe control_word_request_pipe_0 : $uint<32> $depth 16
 $pipe control_word_request_pipe_1 : $uint<64> $depth 16
@@ -54,9 +54,10 @@ $is
 				$phi rdata := nic_to_mac_transmit_pipe $on $entry, $loopback
 			$endmerge
 			// 64 bit wide
-			nic_to_mac_data0 := ($slice rdata 63 0)
+			$rreport(nicToMacInterface read_data_is rdata)
+			nic_to_mac_data_0 := ($slice rdata 63 0)
 			// 16 bit wide
-			nic_to_mac_data1 := ($bitcast ($uint<16>) ($slice rdata 72 64))
+			nic_to_mac_data_1 := ($bitcast ($uint<16>) ($slice rdata 72 64))
 		$while 1
 	}
 }

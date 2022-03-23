@@ -11,11 +11,14 @@ $is
 
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
 	$volatile q_empty := (write_pointer == read_pointer)
-	$volatile next_rp := ((read_pointer + 1) &  QUEUE_SIZE_MASK)
+	//$volatile next_rp_1 := ((read_pointer + 1) &  (QUEUE_SIZE_MASK - 1))
+
+	$volatile round_off := (read_pointer == (QUEUE_SIZE_MASK - 1))
+	$volatile next_rp := ($mux round_off 0 (read_pointer + 1))
 
 	$guard (~q_empty) $call getQueueElement (q_base_address read_pointer) (q_r_data)
 	$guard (~q_empty) $call setQueuePointers (q_base_address  write_pointer next_rp) ()
-	$rreport(popFromQueue pop_data q_r_data q_empty) 
+	$rreport(popFromQueue pop_data q_base_address q_r_data q_empty write_pointer read_pointer next_rp) 
 
 	$barrier
 	$guard (lock) $call releaseMutex (q_base_address) ()
@@ -35,7 +38,10 @@ $is
 	$barrier
 	$rreport(pushIntoQueue pushing_to_queue q_w_data q_base_address)
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
-	$volatile next_wp := ((write_pointer + 1) &  QUEUE_SIZE_MASK)
+	//$volatile next_wp := ((write_pointer + 1) &  QUEUE_SIZE_MASK)
+	
+	$volatile round_off := (write_pointer == (QUEUE_SIZE_MASK - 1))
+	$volatile next_wp := ($mux round_off 0 (write_pointer + 1))
 	
 	$volatile q_full := (next_wp == read_pointer)
 	$rreport(pushIntoQueue pushing_to_queue q_w_data write_pointer read_pointer next_wp q_full)

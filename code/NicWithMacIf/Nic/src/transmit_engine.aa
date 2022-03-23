@@ -70,16 +70,17 @@ $module [getTxPacketPointerFromServer]
 {
 	// tx_queue registers starts after 10(TX_QUEUES_REG_START_OFFSET) registers 
 	$volatile register_index := ($bitcast ($uint<6>)(queue_index + TX_QUEUES_REG_START_OFFSET))
-	
+
 	// Request for Tx Queue Pointer of Server ID : 
 	//			queue_index Regsiter ID : queue_index + 10(TX_QUEUES_REG_START_OFFSET)
 	//
 	//		     ( rwbar  bmask       index	       wdata  ) (pointerToBuffer    )
 	$call AccessRegister ($one<1> $one<4> register_index $zero<32>) (tx_queue_pointer_32)
 	
-	$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>)
+	$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
 	
 	$call popFromQueue ($zero<1> tx_queue_pointer_36) (pkt_pointer status)
+	$rreport(getTxPacketPointerFromServer register_ind register_index tx_queue_pointer_36 pkt_pointer status)
 }
 
 

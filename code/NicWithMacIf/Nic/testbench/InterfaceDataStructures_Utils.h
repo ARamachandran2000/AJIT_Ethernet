@@ -107,7 +107,7 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 	uint32_t next_pointer = (write_pointer + 1) % (NUMBER_OF_ENTRIES);
 
 	uint64_t element_pair_address = queue_offset + 16 + ((write_pointer >> 1)<<3) ;
-	fprintf(stderr, "CPU_THREAD [push] : Read Pointers = pointerss = 0x%lx, next_pointer = 0x%lx, pair_addr = 0x%lx write_pointer = 0x%lx, queue_offset = 0x%lx. \n",pointers,next_pointer,element_pair_address,write_pointer,queue_offset);
+	fprintf(stderr, "CPU_THREAD [push] : buffer_address = %lx,Queue_Offset = %lx Read Pointers = pointerss = 0x%lx, next_pointer = 0x%lx, pair_addr = 0x%lx write_pointer = 0x%lx, queue_offset = 0x%lx. \n",buffer_address,queue_offset,pointers,next_pointer,element_pair_address,write_pointer,queue_offset);
 
 	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
 
@@ -168,9 +168,10 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 	if(write_pointer != read_pointer)
 	{
 		
-		fprintf(stderr, "CPU_THREAD [pop] : queue not empty\n");
+		
 		ret_val = 1;
 		ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&rdata);
+		fprintf(stderr, "CPU_THREAD [pop] : queue not empty rdata = %lx\n",rdata);
 		//buf_data = memory_array[read_pointer];
 		if((read_pointer & 0x1) == 1)
 		{
@@ -185,7 +186,7 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 		read_pointer = (read_pointer + 1) % (NUMBER_OF_ENTRIES);
 		
 		pointers = setSliceOfWord_64(pointers, 31,0,read_pointer);
-		
+		fprintf(stderr, "CPU_THREAD [pop] : queue not empty rdata = %lx buffer address = %lx, Queue Offset = %lx\n",rdata,*buf_address,queue_offset);
 		//memory_array[queue_offset + 1] = pointers;
 		ReqRespMemory (0,0,0xFF,queue_offset + 8,pointers,&status,&rdata);
 			

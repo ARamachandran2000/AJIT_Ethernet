@@ -33,14 +33,14 @@ $is
 {
 	$guard (lock) $call acquireMutex (q_base_address) (m_ok) 
 	$barrier
-	$rreport(pushIntoQueue pushing_to_queue q_w_data)
+	$rreport(pushIntoQueue pushing_to_queue q_w_data q_base_address)
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
 	$volatile next_wp := ((write_pointer + 1) &  QUEUE_SIZE_MASK)
-	$rreport(pushIntoQueue pushing_to_queue q_w_data write_pointer read_pointer next_wp)
+	
 	$volatile q_full := (next_wp == read_pointer)
-
+	$rreport(pushIntoQueue pushing_to_queue q_w_data write_pointer read_pointer next_wp q_full)
 	$guard (~q_full) $call setQueueElement (q_base_address write_pointer q_w_data) ()
-	$guard (~q_full) $call setQueuePointers (q_base_address  write_pointer next_wp) ()
+	$guard (~q_full) $call setQueuePointers (q_base_address next_wp read_pointer) ()
 
 
 	$barrier
@@ -109,6 +109,8 @@ $module [getQueuePointers] $in (q_base_address: $uint<36>)
 //
 $module [setQueuePointers] $in (q_base_address: $uint<36> wp rp: $uint<32>) $out ()  $is
 {
+
+		$rreport(setQueuePointers set q_base_address wp rp)
 		$call accessMemory ($zero<1> $zero<1>  (~$zero<8>)
 					 (q_base_address + 8) ($concat wp rp)) (ignore)
 }
@@ -129,7 +131,10 @@ $is
 
 	$volatile $split (element_pair 32 32) (e0 e1)
 	q_r_data := ($mux (read_pointer [] 0) e1 e0) // Access 63 : 32 when addr[2 : 0] = 0 and
+
 						     // Access 31:0 when addr[2 : 0] = 4
+
+	$rreport(getQueueElement get_queue_element q_r_data q_base_address read_pointer element_pair_address)   
 }
 
 //
@@ -144,6 +149,8 @@ $is
 	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16) )
 	$volatile element_pair_address := 
 		(buffer_address + ($bitcast ($uint<36>) ($concat ($slice write_pointer 31 1) $zero<3>)))
+
+	
 	$volatile bmask := ($mux (write_pointer [] 0) 
 				($concat $zero<4> (~$zero<4>))
 				($concat (~ $zero<4>) $zero<4>)
@@ -152,6 +159,8 @@ $is
 					($concat $zero<32> q_w_data)
 					($concat q_w_data $zero<32>)
 				)
+
+	$rreport(setQueueElement addresses element_pair_address q_w_data bmask wval)
 	$call accessMemory ($zero<1> $zero<1>  bmask
 					 element_pair_address wval) (ignore)
 

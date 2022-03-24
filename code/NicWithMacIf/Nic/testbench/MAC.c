@@ -34,7 +34,7 @@ void macToNicData(void)
 		uint16_t data_16 = 0;
 	
 		// fixed length packet
-		uint16_t length_in_bytes = 20 + 30 + pkt_cnt*8; // 20 bytes is min ip header length
+		uint16_t length_in_bytes = 20 + 30 + pkt_cnt*8 + pkt_cnt; // 20 bytes is min ip header length
 		
 		// ethernet header 0
 		//-------------------
@@ -79,7 +79,7 @@ void macToNicData(void)
 		// clear all bits
 		fprintf(stderr,"MAC_TX: writing last word i = %d\n", i);
 		data_64 = 0; data_16 = 0;
-		data_64 = (i << 8) | (0xff);
+		data_64 = (i << 8) |(uint8_t)((2<<(length_in_bytes - i - 1)) - 1);
 		// tlast = 1
 		data_16 = (1 << 8); 
 		// write data to pipe
@@ -91,7 +91,7 @@ void macToNicData(void)
 		//break;
 		pkt_cnt++;
 
-		if(pkt_cnt == 3) break;
+		if(pkt_cnt == 10) break;
 
 	}
 }

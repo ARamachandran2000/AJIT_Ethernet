@@ -1,59 +1,50 @@
 // Configs the Registers, Creates Free Buffers, swaps MAC addresses and pushes to the Queues
 
-#include "header.h"
-
-#define BUF_LENGTH 200
-#define QUEUE_SIZE 10
-
-void cpu_model(Queue *  free, 
-				Queue * Rx, Queue * Tx)
-
+// all these will be moved to header.h
+#define BUF_LENGTH 190
+#define QUEUE_SIZE 3
+void cpu_model()
 {
+	fprintf(stderr, "CPU_THREAD : started \n");
+	// Initialise Free, Rx and Tx Queues
 
-// First Create a Few Buffers to Push Into Free Queue
+	initQueue(FREE_QUEUE, QUEUE_SIZE);
+	initQueue(RX_QUEUE, QUEUE_SIZE);
+	initQueue(TX_QUEUE, QUEUE_SIZE);
 
-uint32_t * buffer_0 = (uint32_t*) malloc(BUF_LENGTH * sizeof(uint32_t));
-uint32_t * buffer_1 = (uint32_t*) malloc(BUF_LENGTH * sizeof(uint32_t));
-uint32_t * buffer_2 = (uint32_t*) malloc(BUF_LENGTH * sizeof(uint32_t));
+	fprintf(stderr, "CPU_THREAD : Init queue done. \n");
+	
 
-uint32_t * temp_buffer = NULL;
+	// Push Buffer Pointers to Free Queue for access by NIC
+	push(FREE_QUEUE , BUF_0);
+	push(FREE_QUEUE , BUF_1);
+	int ret_val = push(FREE_QUEUE , BUF_2);
+	
+	fprintf(stderr, "CPU_THREAD : pushed buffers to free queue last_ret_val = %d\n",ret_val);
+	// Config NIC Registers
+	fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
+	
+	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
+	MAC_ENABLE = 1;	
+	uint32_t buffer_with_packet = 0;
 
-
-// Initialise Free, Rx and Tx Queues
-
-initQueue(free, QUEUE_SIZE);
-initQueue(Rx, QUEUE_SIZE);
-initQueue(Tx, QUEUE_SIZE);
-
-
-// Push Buffer Pointers to Free Queue
-push(free , buffer_0)
-push(free , buffer_1)
-push(free , buffer_2)
-
-// Config NIC Registers Here.....(Discuss Tomorrow)
-
-// First Transform the 48-bit addressing of this cpu to 32-bit AJIT pointer address...
-
-// TODO : Clarify with Sir, the best approach
-
-// Send these addresses to NIC Registers and configure NIC
-register_config (rx_pointer, tx_pointer, free_pointer);
-
-
-
-
-// 
-
-while(1)
-{
-
-// If Rx Queue has data then pop and push to Tx Queue (For now not swapping Addresses to reduce complexity since we are just simulating to check the NIC functionality)
-	if(~checkEmpty(Rx)
+	while(1)
 	{
-		pop (Rx,temp_buffer)
-		push(Tx, temp_buffer);
-	}	
-}
 
+		// If Rx Queue has data then pop and push to Tx Queue 
+		//	(For now not swapping Addresses to reduce 
+		//		complexity since we are just simulating 
+		//		to check the NIC functionality)
+		if(pop (RX_QUEUE, &buffer_with_packet)){
+			fprintf(stderr, "CPU_THREAD : Got RX_Q pointer sending it to TX_Q\n");	
+			push(TX_QUEUE, buffer_with_packet);
+		}
+		// If no data, then sleep for 5 seconds and try again
+		else{
+
+			fprintf(stderr, "CPU_THREAD : Sleeping\n");	
+			sleep(1);	
+
+		}
+	}
 }

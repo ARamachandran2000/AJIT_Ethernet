@@ -8,8 +8,32 @@ The testbench written in C:
 		- pop from nic->server queues.
 		- push into server->nic queues.
 
+Folder contains :
+	header.h :
+        	all declerations.
 
-You may need a tester.aa
-	to interface the "HW" with the testbench.
+	InterfaceDataStructures_Utils.h:
+        	queues related functions.
 
+	MAC.c :
+	        MAC tx and rx threads
+
+	Memory_8.c :
+	        Memory thread.
+
+	Processor.c :
+	        Processor thread.
+
+	register_config.c :
+        	functionality to configure NIC.
+
+	testbench.c :
+	        Main testbench file.
+
+	test_compile.sh:
+	        To compile testbench.
+
+	tester.aa :
+	        contains modules which merge/split pipes.
+~                                                  
 

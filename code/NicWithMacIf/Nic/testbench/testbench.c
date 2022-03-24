@@ -13,6 +13,7 @@
 #include<Pipes.h>
 #include<pipeHandler.h>
 
+// comment this while compiling only c code.	
 #ifndef COMPILE_TEST_ONLY
 #ifndef AA2C
 	#include "vhdlCStubs.h"
@@ -34,21 +35,16 @@
 // Local includes
 #include "header.h"
 #include "MAC.c"
-#include "Memory.c"
+#include "Memory_8.c"
 #include "Processor.c"
 #include "register_config.c"
+//#include "InterfaceDataStructures_Utils.h"
 
-
-FreeBufferQueue free_buf_queue;
-RxandTxBufferQueues rx_queue, tx_queue;
 // cpu thread
 void cpu_thread(){
-	cpu_model(free_buf_queue,rx_queue,tx_queue);
-}DEFINE_THREAD(cpu_thread)
+	cpu_model();
+}DEFINE_THREAD(cpu_thread);
 
-// meemory thread_thread(){
-	memory_model(free_buf_queue,rx_queue,tx_queue);
-}DEFINE_THREAD(memory_thread);
 
 // mac threads
 // tx thread
@@ -58,12 +54,13 @@ void mac_tx_thread(){
 
 // rc thread
 void mac_rx_thread(){
-	nicToMacThread();
+	nicToMacData();
 }DEFINE_THREAD(mac_rx_thread);
 
 int __err_flg_ = 0;
 
-int main(int argc, char *argv[]){	
+int main(int argc, char *argv[])
+{	
 	if(argc < 2)
 	{
 		fprintf(stderr,"Usage: %s [trace-file]\n trace-file=null,"
@@ -85,31 +82,39 @@ int main(int argc, char *argv[]){
 			return(1);
 		}
 	}
-	
+// comment this while compiling only c code.	
 #ifndef COMPILE_TEST_ONLY
 #ifdef AA2C
 	init_pipe_handler();
-	start_deamons(fp,0);
+	start_daemons(fp,0);
 #endif
 #endif
+
+	// register tb pipes.
+	// comment this while compiling only c code.	
+	//register_pipes();
 	// declare threads
 	PTHREAD_DECL(cpu_thread);
-	PTHREAD_DECL(memory_thread);
+	PTHREAD_DECL(nicMemoryServiceDaemon);
+	PTHREAD_DECL(cpuMemoryServiceDaemon);
 	PTHREAD_DECL(mac_tx_thread);
 	PTHREAD_DECL(mac_rx_thread);
 	
 	// create threads
 	PTHREAD_CREATE(cpu_thread);
-	PTHREAD_CREATE(memory_thread);
+	PTHREAD_CREATE(nicMemoryServiceDaemon);
+	PTHREAD_CREATE(cpuMemoryServiceDaemon);
 	PTHREAD_CREATE(mac_tx_thread);
 	PTHREAD_CREATE(mac_rx_thread);
 	
 	// wait 
 	PTHREAD_JOIN(mac_rx_thread);
-	PTHREAD_JOIN(memory_thread);
+	PTHREAD_JOIN(nicMemoryServiceDaemon);
+	PTHREAD_JOIN(cpuMemoryServiceDaemon);
 	PTHREAD_JOIN(cpu_thread);
 	PTHREAD_JOIN(mac_rx_thread);
 
-	if(!__err_flg)
+	if(!__err_flg_){
 		fprintf(stderr,"\n\nSUCCESS...!!!\n\n");
+	}
 }

@@ -8,8 +8,8 @@
 // Step 4 : Repeat Steps 1-3 for the next packet
 
 
-
 // Main Daemon that repeatedly executes Steps 1-3 above
+
 $module [ReceiveEngineDaemon] 
 $in ()
 $out()
@@ -18,48 +18,108 @@ $is
 	LAST_WRITTEN_RX_QUEUE_INDEX := 0
 	$branchblock[main]
 	{
+		
 		// loop around until enabled by Software
+		$rreport(ReceiveEngineDaemon waiting_for_control)
 		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
-	
+		
 		// If not enabled yet -> Loopback
-		$if (~ (CONTROL_REGISTER [] 0)) $then
+		$if (~(CONTROL_REGISTER [] 0)) $then
 			$place [not_enabled_yet_loopback]
 		$endif
+
+		$rreport(ReceiveEngineDaemon got_the__control )
 
 		// Once enabled start processing
 		$dopipeline $depth 31 $fullrate
 		$merge $entry $loopback $endmerge
 
 		// Step 1 : Pop From Free Queue -> If not empty (Success indicated by status) 
+		$rreport(ReceiveEngineDaemon called_pop_From_queue )
 		$call popFromQueue ($one<1> FREE_Q) (rx_buffer_pointer_32 status)
-
+		$rreport(ReceiveEngineDaemon rx_buffer rx_buffer_pointer_32) 
 		
 		// convert 32 bit 16-byte aligned address to 36 bit physical address.
 		$volatile rx_buffer_pointer_36 :=  ($concat rx_buffer_pointer_32 $zero<4>)
+		$rreport(ReceiveEngineDaemon rx_buffer_val rx_buffer_pointer_36)
 		
 		// Step 2 : If pop was successful then start loading the buffer
-		$guard (status)
+		$rreport(ReceiveEngineDaemon calling_loadBuffer status )
+		
+		$guard (~status)// 0 = success
 			$call loadBuffer (rx_buffer_pointer_36) (bad_packet_identifier)
 
 		// packet is ok, push into rx queue
-		$volatile ok_flag := (status & (~bad_packet_identifier))
+		$volatile ok_flag := ((~status) & (~bad_packet_identifier))
 
 		// packet is not ok, free the buffer.
-		$volatile free_flag := (status & bad_packet_identifier)
-
+		$volatile free_flag := ((~status) & bad_packet_identifier)
+		$volatile cond := (ok_flag == 1)
+		
+		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag cond)		
+		$rreport(ReceiveEngineDaemon running_ok_flag)	
+		
 		$guard (ok_flag) 
 			$call populateRxQueue (rx_buffer_pointer_36) ()
 
+		$rreport(ReceiveEngineDaemon pushing_into_free_q free_flag )
 		$guard (free_flag) 
 			$call pushIntoQueue ($one<1> FREE_Q ($slice rx_buffer_pointer_36 35 4)) (push_status) 
 
-		// Loop while Control word is 0
+		$rreport(ReceiveEngineDaemon completed_iteration_in_receive_engine )
+		
+		// Loop while Control word is 1
 		$while (CONTROL_REGISTER [] 0)
 
-			$place [disable_loopback]
+		$place [disable_loopback]
 	}
 }
 
+
+
+// Writes into the RX_Queue of server "q_index" the buffer pointer  
+// "rx_buffer_pointer"   
+$module [populateRxQueue] $in (rx_buffer_pointer : $uint<36>) $out ()
+$is
+{
+	$rreport(populateRxQueue started_populate_rx_queue_module LAST_WRITTEN_RX_QUEUE_INDEX)
+	$branchblock[PushIntoQueue]
+	{
+
+		$merge $entry loopback 
+			$phi q_index := ((LAST_WRITTEN_RX_QUEUE_INDEX+1)& ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1))) $on $entry 
+					n_q_index $on loopback
+		$endmerge
+		$rreport(populateRxQueue in_loop q_index)
+		// Rx Queues Index in the Register File start from Index 2
+		$volatile register_index := ($bitcast ($uint<6>) (q_index + 									RX_QUEUES_REG_START_OFFSET))
+		$rreport(populateRxQueue will_be_Accessing_register register_index)
+		// Request for Rx Queue Pointer of Server ID : q_index Regsiter ID : q_index + 2
+			    	// rwbar bmask       index	     wdata        
+		$call AccessRegister ($one<1> (~$zero<4>) register_index $zero<32>) (rx_queue_pointer_32)
+	
+	
+
+		$volatile rx_queue_pointer_36 :=  ($concat rx_queue_pointer_32 $zero<4>)	
+		$rreport(populateRxQueue got_rx_queue_pointer_pushing_to_rx_queue rx_queue_pointer_32 rx_queue_pointer_36 NUMBER_OF_SERVERS)	
+		
+		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
+
+		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
+		$rreport(populateRxQueue written_to_rx_queue n_q_index push_status)
+
+		$if(~push_status) $then
+			$call delay_time (32) (status)
+			$if (status == 0) $then
+				$place [loopback]
+			$endif
+		$else
+			LAST_WRITTEN_RX_QUEUE_INDEX :=  q_index
+			selected_q_index := q_index
+		$endif
+	}
+	
+}
 
 
 
@@ -92,7 +152,6 @@ $is
 	// for the next packet 
 	$guard(~bad_packet_identifier)
 		$call writeControlInformationToMem (rx_buffer_pointer packet_size  last_keep) ()
-
 }
 
 // Write Ethernet Header to Buffer
@@ -110,7 +169,7 @@ $is
 			// index = 0 i.e location buf_pointer is reserved for control
 			//information
 			$phi buf_position := (buf_pointer + 8) $on $entry
-				     	(buf_position + 8) $on $loopback
+				     	 nbuf_position $on $loopback
 					// After storing a packet increment buf_position to
 					// next index
 			$phi I := $zero<4> $on $entry nI $on $loopback 
@@ -120,14 +179,14 @@ $is
 			$phi ethernet_header := nic_rx_to_header $on $entry, $loopback
 		$endmerge
 	
-
+		$rreport(writeEthernetHeaderToMem received_eth_header_is ethernet_header buf_position)
 	// Extract individual components of the word 
 		$volatile $split (ethernet_header 1 64 8)(last_bit wdata wkeep)
 	
 	// Write the data to memory with bmask->wkeep at location buf_position
-		$call accessMemory ($zero<1> $zero<1> wkeep buf_position wdata) 				   (ignore_return) 
+		$call accessMemory ($zero<1> $zero<1> wkeep buf_position wdata)	(ignore_return) 
 		$volatile nI := (I + 1)
-
+		$volatile nbuf_position := (buf_position + 8)
 	// If 2 words are stored, then end
 		$while (nI <= 1)
 	}
@@ -141,7 +200,7 @@ $module [writePayloadToMem]
 	// Base buffer pointer is used to calculate the packet size
 	// buf_pointer -> Consists of last written buffer location
 $in (base_buf_pointer : $uint<36> buf_pointer : $uint<36>)
-$out(packet_size_64:$uint<8> bad_packet_identifier : $uint<1> last_keep : $uint<8>)
+$out(packet_size_32:$uint<8> bad_packet_identifier : $uint<1> last_keep : $uint<8>)
 $is
 {
 
@@ -162,6 +221,7 @@ $is
 			$volatile $split (payload_data 1 64 8)(last_bit wdata wkeep)
 			
 			// Load wdata to memory with wkeep = bmask
+			$rreport(writePayloadToMem writing_payload_to_mem last_bit wdata wkeep buf_position)
 			$call accessMemory ($zero<1> $zero<1> wkeep buf_position wdata) 
 									   (ignore_return) 
 		$while (~last_bit)
@@ -175,8 +235,9 @@ $is
 	// Calculate packet size which is in multiples of 8-bit words stored
 	// Can divide by 8 to get size in 64-bit word multiples
 	// Divide by 4 to get size in 32-bit word multiples	
-	$volatile packet_size_8 := ($bitcast ($uint<8>) ((buf_position - base_buf_pointer) + 1))
-	$volatile packet_size_64 := (packet_size_8 << 3)
+	$volatile packet_size_8 := ($bitcast ($uint<8>) (buf_position - base_buf_pointer) )
+	$volatile packet_size_32 := packet_size_8
+	$rreport(writePayloadToMem packet_size_is packet_size_8 packet_size_32)
 
 	// bmask of last word is wkeep
 	$volatile last_keep := tkeep
@@ -195,48 +256,10 @@ $is
 	$volatile control_data := ($bitcast ($uint<64>) ($concat packet_size last_keep))
 
 	// Write this control data with bmask set to all 1s to base_buffer_pointer location
-	$call accessMemory ($zero<1> $zero<1> FULL_BYTE_MASK base_buffer_pointer control_data) 				    (ignore_return)
+	$call accessMemory ($zero<1> $zero<1> FULL_BYTE_MASK base_buffer_pointer control_data) (ignore_return)
 
 
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-// Writes into the RX_Queue of server "q_index" the buffer pointer  
-// "rx_buffer_pointer"   
-$module [populateRxQueue] $in (rx_buffer_pointer : $uint<36>) $out ()
-$is
-{
-
-	$branchblock[PushIntoQueue]
-	{
-		$merge $entry loopback 
-			$phi q_index := (LAST_WRITTEN_RX_QUEUE_INDEX+1) $on $entry n_q_index $on loopback
-		$endmerge
-
-		// Rx Queues Index in the Register File start from Index 2
-		$volatile register_index := ($bitcast ($uint<6>) (q_index + 									RX_QUEUES_REG_START_OFFSET))
-	
-		// Request for Rx Queue Pointer of Server ID : q_index Regsiter ID : q_index + 2
-			    	// rwbar bmask       index	     wdata        
-		$call AccessRegister ($one<1> $one<4> register_index $zero<32>) (rx_queue_pointer_32)
-	
-		$volatile rx_queue_pointer_36 :=  ($concat rx_queue_pointer_32 $zero<4>)	
-		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
-		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
-
-		// IF push is unsuccessful then wait for WAIT_TIME and retry
-		$if(~push_status) $then
-			$call delay_time (32) (status)
-			$if (status == 0) $then
-				$place [loopback]
-			$endif
-		$else
-			LAST_WRITTEN_RX_QUEUE_INDEX :=  q_index
-			selected_q_index := q_index
-		$endif
-	}
-}
 
 
-
-/////////////////////////////////////////////////////////////////////////////////////

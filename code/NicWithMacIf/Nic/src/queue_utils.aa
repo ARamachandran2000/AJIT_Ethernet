@@ -11,15 +11,18 @@ $is
 
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
 	$volatile q_empty := (write_pointer == read_pointer)
-	$volatile next_rp := ((read_pointer + 1) &  QUEUE_SIZE_MASK)
+	//$volatile next_rp_1 := ((read_pointer + 1) &  (QUEUE_SIZE_MASK - 1))
+
+	$volatile round_off := (read_pointer == (QUEUE_SIZE_MASK - 1))
+	$volatile next_rp := ($mux round_off 0 (read_pointer + 1))
 
 	$guard (~q_empty) $call getQueueElement (q_base_address read_pointer) (q_r_data)
 	$guard (~q_empty) $call setQueuePointers (q_base_address  write_pointer next_rp) ()
-
+	$rreport(popFromQueue pop_data q_base_address q_r_data q_empty write_pointer read_pointer next_rp) 
 
 	$barrier
 	$guard (lock) $call releaseMutex (q_base_address) ()
-	status := (~q_empty) // 1 = Success, 0 = Fail
+	status := q_empty // 0 = Success, 1 = Fail
 }
 
 //
@@ -33,13 +36,17 @@ $is
 {
 	$guard (lock) $call acquireMutex (q_base_address) (m_ok) 
 	$barrier
-
+	$rreport(pushIntoQueue pushing_to_queue q_w_data q_base_address)
 	$call getQueuePointers (q_base_address) (write_pointer read_pointer)
-	$volatile next_wp := ((write_pointer + 1) &  QUEUE_SIZE_MASK)
+	//$volatile next_wp := ((write_pointer + 1) &  QUEUE_SIZE_MASK)
+	
+	$volatile round_off := (write_pointer == (QUEUE_SIZE_MASK - 1))
+	$volatile next_wp := ($mux round_off 0 (write_pointer + 1))
+	
 	$volatile q_full := (next_wp == read_pointer)
-
+	$rreport(pushIntoQueue pushing_to_queue q_w_data write_pointer read_pointer next_wp q_full)
 	$guard (~q_full) $call setQueueElement (q_base_address write_pointer q_w_data) ()
-	$guard (~q_full) $call setQueuePointers (q_base_address  write_pointer next_wp) ()
+	$guard (~q_full) $call setQueuePointers (q_base_address next_wp read_pointer) ()
 
 
 	$barrier
@@ -65,14 +72,14 @@ $is
 		$call accessMemory ($one<1> $one<1> (~$zero<8>) mutex_address $zero<64>) (mutex_plus_nentries)
 
 		$volatile mutex_val := ($slice mutex_plus_nentries 63 32)
-		$volatile wval := ($concat $one<32> ($slice mutex_plus_nentries 31 0))
-
-		$call accessMemory ($zero<1> $zero<1> (~$zero<8>) mutex_address wval)
-						(ignore)
 		
-		$if (mutex_val == 0) $then
+		$if (mutex_val == 1) $then
 			$place [loopback]
 		$endif
+		
+		$volatile wval := ($concat $one<32> ($slice mutex_plus_nentries 31 0))
+		$call accessMemory ($zero<1> $zero<1> (~$zero<8>) mutex_address wval)
+						(ignore)
 	}
 
 	m_ok := $one<1>
@@ -108,6 +115,8 @@ $module [getQueuePointers] $in (q_base_address: $uint<36>)
 //
 $module [setQueuePointers] $in (q_base_address: $uint<36> wp rp: $uint<32>) $out ()  $is
 {
+
+		$rreport(setQueuePointers set q_base_address wp rp)
 		$call accessMemory ($zero<1> $zero<1>  (~$zero<8>)
 					 (q_base_address + 8) ($concat wp rp)) (ignore)
 }
@@ -122,12 +131,16 @@ $module  [getQueueElement]
 	$out (q_r_data : $uint<32>)
 $is
 {
-	$volatile element_pair_address := (q_base_address + ($bitcast ($uint<36>) ($concat ($slice read_pointer 31 1) $zero<3>)))
+	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16) )
+	$volatile element_pair_address := (buffer_address + ($bitcast ($uint<36>) ($concat ($slice read_pointer 31 1) $zero<3>)))
 	$call accessMemory ($zero<1> $one<1>  (~$zero<8>) element_pair_address $zero<64>) (element_pair)
 
 	$volatile $split (element_pair 32 32) (e0 e1)
 	q_r_data := ($mux (read_pointer [] 0) e1 e0) // Access 63 : 32 when addr[2 : 0] = 0 and
+
 						     // Access 31:0 when addr[2 : 0] = 4
+
+	$rreport(getQueueElement get_queue_element q_r_data q_base_address read_pointer element_pair_address)   
 }
 
 //
@@ -139,8 +152,11 @@ $module  [setQueueElement]
 	$out () 
 $is
 {
+	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16) )
 	$volatile element_pair_address := 
-		(q_base_address + ($bitcast ($uint<36>) ($concat ($slice write_pointer 31 1) $zero<3>)))
+		(buffer_address + ($bitcast ($uint<36>) ($concat ($slice write_pointer 31 1) $zero<3>)))
+
+	
 	$volatile bmask := ($mux (write_pointer [] 0) 
 				($concat $zero<4> (~$zero<4>))
 				($concat (~ $zero<4>) $zero<4>)
@@ -149,6 +165,8 @@ $is
 					($concat $zero<32> q_w_data)
 					($concat q_w_data $zero<32>)
 				)
+
+	$rreport(setQueueElement addresses element_pair_address q_w_data bmask wval)
 	$call accessMemory ($zero<1> $zero<1>  bmask
 					 element_pair_address wval) (ignore)
 

@@ -25,6 +25,17 @@ $constant HEADER_TKEEP : $uint<8> := _b00111111
 $module [nicRxFromMacDaemon] $in () $out () $is
 {
 	$branchblock[loop]{
+		// loop around until enabled by Software
+		$rreport(nicRxFromMacDaemon waiting_for_control)
+		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
+		
+		// If not enabled yet -> Loopback
+		$if (~(CONTROL_REGISTER [] 0)) $then
+			$place [not_enabled_yet_loopback]
+		$endif
+
+		$rreport(nicRxFromMacDaemon got_the__control )
+
 		$dopipeline $depth 7 $fullrate
 			$merge $entry $loopback
 			// where are we in the packet
@@ -50,7 +61,10 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 								RX)
 			// send to packet pipe
 			nic_rx_to_packet := RX
-			$while 1
+			$rreport(nicRxFromMacDaemon data_written_is RX nLSTATE)
+			$while (CONTROL_REGISTER [] 0)
+			
+			$place [disable_loopback]
 	}
 }
 

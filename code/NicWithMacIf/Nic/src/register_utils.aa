@@ -22,16 +22,16 @@ $in (rwbar : $uint<1> bmask : $uint<4> register_index : $uint<6> wdata : $uint<3
 $out(rdata : $uint<32>)
 $is
 {
-
+	$rreport(AccessRegister In_Access_Register)
 	// Create Request Packet by concatenating all the required blocks
 	$volatile request :=  ($concat rwbar bmask register_index wdata)
-
+	$rreport(AccessRegister Request rwbar bmask register_index wdata)
         // Send Request on NIC Register Request Pipe
  	NIC_REQUEST_REGISTER_ACCESS_PIPE := request
-	
+	$rreport(AccessRegister Request_Sent)
 	// Get Response from NIC Register Response Pipe
 	response := NIC_RESPONSE_REGISTER_ACCESS_PIPE
-
+	$rreport(AccessRegister Response response)
 	// Send Received data on out-ports
 	$volatile $split (response 1 32) (status rdata)
 

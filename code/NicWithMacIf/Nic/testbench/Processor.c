@@ -25,7 +25,7 @@ void cpu_model()
 	fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
 	
 	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
-	
+	MAC_ENABLE = 1;	
 	uint32_t buffer_with_packet = 0;
 
 	while(1)
@@ -36,7 +36,7 @@ void cpu_model()
 		//		complexity since we are just simulating 
 		//		to check the NIC functionality)
 		if(pop (RX_QUEUE, &buffer_with_packet)){
-			fprintf(stderr, "CPU_THREAD : got rx queue sendint it to tx queue\n");	
+			fprintf(stderr, "CPU_THREAD : Got RX_Q pointer sending it to TX_Q\n");	
 			push(TX_QUEUE, buffer_with_packet);
 		}
 		// If no data, then sleep for 5 seconds and try again

@@ -1,0 +1,54 @@
+[14224]pushIntoQueue>	pushing_to_queue
+[14224]pushIntoQueue>		q_w_data		:= 0x00000006
+[14224]pushIntoQueue>		q_base_address		:= 0x000000020
+[14238]pushIntoQueue>	pushing_to_queue
+[14238]pushIntoQueue>		q_w_data		:= 0x00000006
+[14238]pushIntoQueue>		write_pointer		:= 0x00000000
+[14238]pushIntoQueue>		read_pointer		:= 0x00000000
+[14238]pushIntoQueue>		next_wp		:= 0x00000001
+[14238]pushIntoQueue>		q_full		:= 0x0
+[20877]pushIntoQueue>	pushing_to_queue
+[20877]pushIntoQueue>		q_w_data		:= 0x00000006
+[20877]pushIntoQueue>		q_base_address		:= 0x000000000
+[20880]pushIntoQueue>	pushing_to_queue
+[20880]pushIntoQueue>		q_w_data		:= 0x00000006
+[20880]pushIntoQueue>		write_pointer		:= 0x00000002
+[20880]pushIntoQueue>		read_pointer		:= 0x00000002
+[20880]pushIntoQueue>		next_wp		:= 0x00000000
+[20880]pushIntoQueue>		q_full		:= 0x0
+[28257]pushIntoQueue>	pushing_to_queue
+[28257]pushIntoQueue>		q_w_data		:= 0x00000012
+[28257]pushIntoQueue>		q_base_address		:= 0x000000020
+[28261]pushIntoQueue>	pushing_to_queue
+[28261]pushIntoQueue>		q_w_data		:= 0x00000012
+[28261]pushIntoQueue>		write_pointer		:= 0x00000001
+[28261]pushIntoQueue>		read_pointer		:= 0x00000001
+[28261]pushIntoQueue>		next_wp		:= 0x00000002
+[28261]pushIntoQueue>		q_full		:= 0x0
+[35112]pushIntoQueue>	pushing_to_queue
+[35112]pushIntoQueue>		q_w_data		:= 0x00000012
+[35112]pushIntoQueue>		q_base_address		:= 0x000000000
+[35115]pushIntoQueue>	pushing_to_queue
+[35115]pushIntoQueue>		q_w_data		:= 0x00000012
+[35115]pushIntoQueue>		write_pointer		:= 0x00000000
+[35115]pushIntoQueue>		read_pointer		:= 0x00000000
+[35115]pushIntoQueue>		next_wp		:= 0x00000001
+[35115]pushIntoQueue>		q_full		:= 0x0
+[41654]pushIntoQueue>	pushing_to_queue
+[41654]pushIntoQueue>		q_w_data		:= 0x00000006
+[41654]pushIntoQueue>		q_base_address		:= 0x000000020
+[41661]pushIntoQueue>	pushing_to_queue
+[41661]pushIntoQueue>		q_w_data		:= 0x00000006
+[41661]pushIntoQueue>		write_pointer		:= 0x00000002
+[41661]pushIntoQueue>		read_pointer		:= 0x00000002
+[41661]pushIntoQueue>		next_wp		:= 0x00000000
+[41661]pushIntoQueue>		q_full		:= 0x0
+[41778]pushIntoQueue>	pushing_to_queue
+[41778]pushIntoQueue>		q_w_data		:= 0x00000006
+[41778]pushIntoQueue>		q_base_address		:= 0x000000000
+[41781]pushIntoQueue>	pushing_to_queue
+[41781]pushIntoQueue>		q_w_data		:= 0x00000006
+[41781]pushIntoQueue>		write_pointer		:= 0x00000001
+[41781]pushIntoQueue>		read_pointer		:= 0x00000001
+[41781]pushIntoQueue>		next_wp		:= 0x00000002
+[41781]pushIntoQueue>		q_full		:= 0x0

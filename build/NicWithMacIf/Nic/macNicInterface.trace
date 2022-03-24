@@ -1,0 +1,91 @@
+Info:pThreadUtils: started thread macToNicInterface
+[14042]macToNicInterface>	writing_data
+[14042]macToNicInterface>		rdata1		:= 0x0000
+[14042]macToNicInterface>		rdata0		:= 0x02000000000001ff
+[14043]macToNicInterface>	writing_data
+[14043]macToNicInterface>		rdata1		:= 0x0000
+[14043]macToNicInterface>		rdata0		:= 0x54003200000000ff
+[14044]macToNicInterface>	writing_data
+[14044]macToNicInterface>		rdata1		:= 0x0000
+[14044]macToNicInterface>		rdata0		:= 0x00000000000000ff
+[14046]macToNicInterface>	writing_data
+[14046]macToNicInterface>		rdata1		:= 0x0000
+[14046]macToNicInterface>		rdata0		:= 0x00000000000008ff
+[14048]macToNicInterface>	writing_data
+[14048]macToNicInterface>		rdata1		:= 0x0000
+[14048]macToNicInterface>		rdata0		:= 0x00000000000010ff
+[14053]macToNicInterface>	writing_data
+[14053]macToNicInterface>		rdata1		:= 0x0000
+[14053]macToNicInterface>		rdata0		:= 0x00000000000018ff
+[14054]macToNicInterface>	writing_data
+[14054]macToNicInterface>		rdata1		:= 0x0000
+[14054]macToNicInterface>		rdata0		:= 0x00000000000020ff
+[14055]macToNicInterface>	writing_data
+[14055]macToNicInterface>		rdata1		:= 0x0000
+[14055]macToNicInterface>		rdata0		:= 0x00000000000028ff
+[14056]macToNicInterface>	writing_data
+[14056]macToNicInterface>		rdata1		:= 0x0100
+[14056]macToNicInterface>		rdata0		:= 0x0000000000003003
+[28057]macToNicInterface>	writing_data
+[28057]macToNicInterface>		rdata1		:= 0x0000
+[28057]macToNicInterface>		rdata0		:= 0x02000000000001ff
+[28064]macToNicInterface>	writing_data
+[28064]macToNicInterface>		rdata1		:= 0x0000
+[28064]macToNicInterface>		rdata0		:= 0x54003b00000000ff
+[28069]macToNicInterface>	writing_data
+[28069]macToNicInterface>		rdata1		:= 0x0000
+[28069]macToNicInterface>		rdata0		:= 0x00000000000000ff
+[28070]macToNicInterface>	writing_data
+[28070]macToNicInterface>		rdata1		:= 0x0000
+[28070]macToNicInterface>		rdata0		:= 0x00000000000008ff
+[28071]macToNicInterface>	writing_data
+[28071]macToNicInterface>		rdata1		:= 0x0000
+[28071]macToNicInterface>		rdata0		:= 0x00000000000010ff
+[28072]macToNicInterface>	writing_data
+[28072]macToNicInterface>		rdata1		:= 0x0000
+[28072]macToNicInterface>		rdata0		:= 0x00000000000018ff
+[28073]macToNicInterface>	writing_data
+[28073]macToNicInterface>		rdata1		:= 0x0000
+[28073]macToNicInterface>		rdata0		:= 0x00000000000020ff
+[28074]macToNicInterface>	writing_data
+[28074]macToNicInterface>		rdata1		:= 0x0000
+[28074]macToNicInterface>		rdata0		:= 0x00000000000028ff
+[28075]macToNicInterface>	writing_data
+[28075]macToNicInterface>		rdata1		:= 0x0000
+[28075]macToNicInterface>		rdata0		:= 0x00000000000030ff
+[28101]macToNicInterface>	writing_data
+[28101]macToNicInterface>		rdata1		:= 0x0100
+[28101]macToNicInterface>		rdata0		:= 0x0000000000003807
+[41491]macToNicInterface>	writing_data
+[41491]macToNicInterface>		rdata1		:= 0x0000
+[41491]macToNicInterface>		rdata0		:= 0x02000000000001ff
+[41492]macToNicInterface>	writing_data
+[41492]macToNicInterface>		rdata1		:= 0x0000
+[41492]macToNicInterface>		rdata0		:= 0x54004400000000ff
+[41493]macToNicInterface>	writing_data
+[41493]macToNicInterface>		rdata1		:= 0x0000
+[41493]macToNicInterface>		rdata0		:= 0x00000000000000ff
+[41494]macToNicInterface>	writing_data
+[41494]macToNicInterface>		rdata1		:= 0x0000
+[41494]macToNicInterface>		rdata0		:= 0x00000000000008ff
+[41495]macToNicInterface>	writing_data
+[41495]macToNicInterface>		rdata1		:= 0x0000
+[41495]macToNicInterface>		rdata0		:= 0x00000000000010ff
+[41510]macToNicInterface>	writing_data
+[41510]macToNicInterface>		rdata1		:= 0x0000
+[41510]macToNicInterface>		rdata0		:= 0x00000000000018ff
+[41513]macToNicInterface>	writing_data
+[41513]macToNicInterface>		rdata1		:= 0x0000
+[41513]macToNicInterface>		rdata0		:= 0x00000000000020ff
+[41515]macToNicInterface>	writing_data
+[41515]macToNicInterface>		rdata1		:= 0x0000
+[41515]macToNicInterface>		rdata0		:= 0x00000000000028ff
+[41516]macToNicInterface>	writing_data
+[41516]macToNicInterface>		rdata1		:= 0x0000
+[41516]macToNicInterface>		rdata0		:= 0x00000000000030ff
+[41523]macToNicInterface>	writing_data
+[41523]macToNicInterface>		rdata1		:= 0x0000
+[41523]macToNicInterface>		rdata0		:= 0x00000000000038ff
+[41526]macToNicInterface>	writing_data
+[41526]macToNicInterface>		rdata1		:= 0x0100
+[41526]macToNicInterface>		rdata0		:= 0x000000000000400f

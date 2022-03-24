@@ -1,0 +1,23 @@
+CPU_THREAD : started 
+CPU_THREAD : Init queue done. 
+CPU_THREAD : pushed buffers to free queue last_ret_val = 0
+CPU_THREAD : configuring NIC registers
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Got RX_Q pointer sending it to TX_Q
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Got RX_Q pointer sending it to TX_Q
+CPU_THREAD : Sleeping
+CPU_THREAD : Got RX_Q pointer sending it to TX_Q
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping
+CPU_THREAD : Sleeping

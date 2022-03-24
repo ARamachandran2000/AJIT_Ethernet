@@ -29,12 +29,13 @@ void macToNicData(void)
 	sprintf(pipe_to_send1,"mac_to_nic_data_1");
 	int pkt_cnt = 0;
 	while(1){
-		fprintf(stderr,"MAC_TX:trying to send packet to nic\n");
+		if(MAC_ENABLE){
+		//fprintf(stderr,"MAC_TX:trying to send packet to nic\n");
 		uint64_t data_64 = 0;
 		uint16_t data_16 = 0;
 	
 		// fixed length packet
-		uint16_t length_in_bytes = 20 + 30 + pkt_cnt*8; // 20 bytes is min ip header length
+		uint16_t length_in_bytes = 20 + 30 + pkt_cnt*8 + pkt_cnt; // 20 bytes is min ip header length
 		
 		// ethernet header 0
 		//-------------------
@@ -74,25 +75,27 @@ void macToNicData(void)
 			write_uint64(pipe_to_send0, data_64);
 			write_uint16(pipe_to_send1, data_16);	
 		}
-		fprintf(stderr,"MAC_TX: out of for loop\n");	
+		//fprintf(stderr,"MAC_TX: out of for loop\n");	
 		// for last 64 bit word , tlast = 1;
 		// clear all bits
-		fprintf(stderr,"MAC_TX: writing last word i = %d\n", i);
+		//fprintf(stderr,"MAC_TX: writing last word i = %d\n", i);
 		data_64 = 0; data_16 = 0;
-		data_64 = (i << 8) | (0xff);
+		data_64 = (i << 8) |(uint8_t)((2<<(length_in_bytes - i - 1)) - 1);
 		// tlast = 1
 		data_16 = (1 << 8); 
 		// write data to pipe
-		fprintf(stderr,"MAC_TX: writing last word0\n");
+		//fprintf(stderr,"MAC_TX: writing last word0\n");
 		write_uint64(pipe_to_send0, data_64);
 		write_uint16(pipe_to_send1, data_16);		
-		fprintf(stderr,"MAC_TX: written last word\n");
-		fprintf(stderr,"MAC_TX:sent packet\n");
+		//fprintf(stderr,"MAC_TX: written last word\n");
+		fprintf(stderr,"MAC_TX : Sent packet[%d]\n",pkt_cnt);
 		//break;
 		pkt_cnt++;
 
-		if(pkt_cnt == 8) break;
+		if(pkt_cnt == 10) break;
 
+
+	}
 	}
 }
 
@@ -114,15 +117,18 @@ void nicToMacData(void)
 	char pipe_to_recv0[20], pipe_to_recv1[20];
 	sprintf(pipe_to_recv0,"nic_to_mac_data_0");
 	sprintf(pipe_to_recv1,"nic_to_mac_data_1");
+	int pkt_cnt = 0;
+
 	while(1){
-		fprintf(stderr,"MAC_RX:trying to read packet from nic\n");
+		if(MAC_ENABLE){
+		//fprintf(stderr,"MAC_RX:trying to read packet from nic\n");
 		uint64_t data_64;
 		uint16_t data_16,length_in_bytes;
 		
 		data_64 = read_uint64(pipe_to_recv0);
 		data_16 = read_uint16(pipe_to_recv1);
 		
-		fprintf(stderr,"MAC_RX: Pipe read complete\n");
+		//fprintf(stderr,"MAC_RX: Pipe read complete\n");
 		uint64_t received_src_mac_addr, received_dest_mac_addr;
 	
 		// reconstruct received mac addresses.
@@ -132,12 +138,11 @@ void nicToMacData(void)
 		// read pipes		
 		data_64 = read_uint64(pipe_to_recv0);
 		data_16 = read_uint16(pipe_to_recv1);
-		fprintf(stderr,"MAC_RX: Pipe read complete\n");
+		
 		// update remaing bits of src mac addr.
 		received_src_mac_addr = (data_64 >> 8) & 0x00000000ffffffff;
-		//if((received_src_mac_addr == source_mac_address) || (received_dest_mac_addr == destination_mac_address)){
-		//	__err_flag_ = 1; break;}
-
+		
+		// extract length
 		length_in_bytes = (data_64 >> 40) & 0x00000000000000ff;
 	
 		int i;
@@ -145,24 +150,26 @@ void nicToMacData(void)
 		{
 			data_64 = read_uint64(pipe_to_recv0);
 			data_16 = read_uint16(pipe_to_recv1);
-			fprintf(stderr,"MAC_RX: Pipe read complete\n");
+			//fprintf(stderr,"MAC_RX: Pipe read complete\n");
 			if(((data_64 >> 8) & 0xff) != i){
-				fprintf(stderr,"MAC_RX : Data Missmatch, Expected = %d, Received = %d\n", i,data_64);
+				fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch, Expected = %d, Received = %d\n",pkt_cnt, i,data_64);
 				__err_flag_ = 1;
 				break;
 			}
 		}
 		// read last word
-		fprintf(stderr,"MAC_RX: Last read\n");
+		//fprintf(stderr,"MAC_RX: Last read\n");
 		data_64 = read_uint64(pipe_to_recv0);
 		data_16 = read_uint16(pipe_to_recv1);
-		fprintf(stderr,"MAC_RX : Packet received successufully\n", i,data_64);
 		
 		if(((data_64 >> 8) & 0xff) != i)
 		{	
-			fprintf(stderr,"MAC_RX : Data Missmatch Expected = %d, Received = %d\n", i,data_64);
+			fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch Expected = %d, Received = %d\n",pkt_cnt, i,data_64);
 			__err_flag_ = 1;
 			break;
 		}
+		fprintf(stderr,"MAC_RX : Recived Packet[%d]\n",pkt_cnt);
+		pkt_cnt++;
+	}
 	}
 }

@@ -117,7 +117,7 @@ int accessMemory(uint8_t requester_id,
 		{	
 			//fprintf(stderr, "CPU_THREAD [AccessMemory] :Req_id:%d Writing Data = 0x%lx,bmask = 0x%x Address = 0x%lx. \n",requester_id,wdata,byte_mask, addr);
 			write64(addr,wdata,byte_mask);
-			fprintf(stderr,"CPU_THREAD [AccessMemory] : %d Address = %lx Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",requester_id,addr,wdata,read64(72),byte_mask,addr);
+			//fprintf(stderr,"CPU_THREAD [AccessMemory] : %d Address = %lx Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",requester_id,addr,wdata,read64(72),byte_mask,addr);
 		}
 	}
 	// UNLOCK MUTEX

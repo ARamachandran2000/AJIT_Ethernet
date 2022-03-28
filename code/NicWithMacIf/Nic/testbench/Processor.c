@@ -43,7 +43,9 @@ void cpu_model()
 		else{
 
 			fprintf(stderr, "CPU_THREAD : Sleeping\n");	
-			sleep(1);	
+			//sleep(1);	
+			int k;
+			for(k = 0 ; k < 2500000; k++);
 
 		}
 	}

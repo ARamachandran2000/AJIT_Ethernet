@@ -30,7 +30,7 @@ void macToNicData(void)
 	int pkt_cnt = 0;
 	while(1){
 
-		sleep(2);
+		//sleep(2);
 		if(MAC_ENABLE){
 		//fprintf(stderr,"MAC_TX:trying to send packet to nic\n");
 		uint64_t data_64 = 0;
@@ -94,7 +94,7 @@ void macToNicData(void)
 		//break;
 		pkt_cnt++;
 
-		if(pkt_cnt == 3) break;
+		if(pkt_cnt == 1) break;
 
 
 	}

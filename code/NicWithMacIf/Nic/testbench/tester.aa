@@ -15,6 +15,11 @@ $pipe mem_req0_pipe1 : $uint<64>  $depth 1024
 $pipe mem_req1_pipe0 : $uint<64>  $depth 1024
 $pipe mem_req1_pipe1 : $uint<64>  $depth 1024
 
+$pipe mem_req0_pipe0_tester : $uint<64>  $depth 1024
+$pipe mem_req0_pipe1_tester : $uint<64>  $depth 1024
+$pipe mem_resp0_pipe0_tester : $uint<64> $depth 1024
+$pipe mem_resp0_pipe1_tester : $uint<8> $depth 1024
+
 $pipe mem_resp0_pipe0 : $uint<64> $depth 1024
 $pipe mem_resp0_pipe1 : $uint<8> $depth 1024
 $pipe mem_resp1_pipe0 : $uint<64> $depth 1024
@@ -131,4 +136,41 @@ $is
 		$while 1
 	}
 	
+}
+
+$module[memoryToProcessorInterface] $in() $out()
+$is
+{
+	
+	$branchblock[loop]{
+		$dopipeline $depth 7 $fullrate
+			$merge $entry $loopback
+				// 64 bit wide
+				$phi rdata0 := mem_resp0_pipe0 $on $entry, $loopback
+				// 8 bit wide
+				$phi rdata1 := mem_resp0_pipe1 $on $entry, $loopback
+			$endmerge
+			mem_resp0_pipe0_tester := rdata0
+			mem_resp0_pipe1_tester := rdata1
+		$while 1
+	}
+}
+
+$module[processorToMemoryInterface] $in() $out()
+$is
+{
+	$branchblock[loop]{
+		$dopipeline $depth 7 $fullrate
+			$merge $entry $loopback
+				//110 bit wide
+				$phi rdata0 := mem_req0_pipe0_tester $on $entry, $loopback
+				$phi rdata1 := mem_req0_pipe1_tester $on $entry, $loopback
+			$endmerge
+			// 64 bit wide
+			$rreport(ProcessorToMemoryInterface writing_to_mem_pipe rdata0 rdata1)
+			mem_req0_pipe0 := rdata0
+			// 64 bit wide
+			mem_req0_pipe1 := rdata1
+		$while 1
+	}
 }

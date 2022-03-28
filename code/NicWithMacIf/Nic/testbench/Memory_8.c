@@ -111,13 +111,13 @@ int accessMemory(uint8_t requester_id,
 		{
 			// read data
 			*(rdata) = read64(addr);
-			//fprintf(stderr, "CPU_THREAD [AccessMemory] : Read Data = 0x%lx. \n",*(rdata));
+			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] : Read Data = 0x%lx. \n",*(rdata));
 		}
 		else 
 		{	
-			//fprintf(stderr, "CPU_THREAD [AccessMemory] :Req_id:%d Writing Data = 0x%lx,bmask = 0x%x Address = 0x%lx. \n",requester_id,wdata,byte_mask, addr);
+			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] :Req_id:%d Writing Data = 0x%lx,bmask = 0x%x Address = 0x%lx. \n",requester_id,wdata,byte_mask, addr);
 			write64(addr,wdata,byte_mask);
-			//fprintf(stderr,"CPU_THREAD [AccessMemory] : %d Address = %lx Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",requester_id,addr,wdata,read64(72),byte_mask,addr);
+			(DEBUG == 1) && fprintf(stderr,"CPU_THREAD [AccessMemory] : %d Address = %lx Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",requester_id,addr,wdata,read64(72),byte_mask,addr);
 		}
 	}
 	// UNLOCK MUTEX
@@ -139,18 +139,19 @@ void getReqFromTester(  uint8_t requester_id,
 	sprintf(req_pipe0,"mem_req%d_pipe0",(int)requester_id);//64 bit wide
 	sprintf(req_pipe1,"mem_req%d_pipe1",(int)requester_id);//64 bit wide
 	
-	//fprintf(stderr, "CPU_THREAD [getReqFromTester] : Request Received from Tester. \n");
+	
 	
 	uint64_t req1;
 	// read pipes
 	*(wdata) = read_uint64(req_pipe0);
 	req1 = read_uint64(req_pipe1);
-	//fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d req1 = %lx from pipe = %s\n",requester_id,req1,req_pipe1);
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : req_id=%d : Reading request from Tester. \n",requester_id);
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d req1 = %lx from pipe = %s\n",requester_id,req1,req_pipe1);
 	*(lock)  = (req1 >> 45) & 0x01; 
 	*(rwbar) = (req1 >> 44) & 0x01;
 	*(addr) = req1 & 0xfffffffff;
 	*(bmask) = (req1 >> 36) & 0xff;
-	//fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d req1 = %lx\t wdata = 0x%lx,lock = %lx,rwbar = %lx, addr = %lx, bmask=%lx.\n",requester_id,req1,*(wdata),*(lock),*(rwbar),*(addr),*(bmask));
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d req1 = %lx\t wdata = 0x%lx,lock = %lx,rwbar = %lx, addr = %lx, bmask=%lx.\n",requester_id,req1,*(wdata),*(lock),*(rwbar),*(addr),*(bmask));
 }
 
 // sends response to pipes(corresping to requester_id)
@@ -180,11 +181,11 @@ void memoryServiceModel(uint8_t requester_id)
 		getReqFromTester(requester_id,&lock_tester,&rwbar_tester,&bmask_tester,&addr_tester,&wdata_tester);
 		// read/write from/to memory.
 
-		//fprintf(stderr, "CPU_THREAD [MemoryServiceModel] :  %d,  %d, %d, 0x%lx, 0x%lx, 0x%lx. \n",requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester);
+		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [MemoryServiceModel] :  %d,  %d, %d, 0x%lx, 0x%lx, 0x%lx. \n",requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester);
 		uint8_t status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester,&rdata);
 		// write response
 		sendResponseToTester(requester_id,status,rdata);
-		//fprintf(stderr, "CPU_THREAD [MemoryServiceModel] : Sending Response % d \n",requester_id);
+		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [MemoryServiceModel] : Sending Response % d \n",requester_id);
 	}
 }
 

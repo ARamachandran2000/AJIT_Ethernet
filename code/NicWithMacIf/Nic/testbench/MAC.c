@@ -94,7 +94,7 @@ void macToNicData(void)
 		//break;
 		pkt_cnt++;
 
-		if(pkt_cnt == 1) break;
+		if(pkt_cnt == 3) break;
 
 
 	}

@@ -42,7 +42,7 @@ $module [transmitEngineDaemon] $in () $out () $is
 			// packet transmitted successfully
 			$volatile push_pointer_back_to_free_Q := ((~tx_flag) & transmitted_flag)
 			
-			$rreport(transmitEngineDaemon pushing_back_to_free_queue push_pointer_back_to_free_Q)
+			$rreport(transmitEngineDaemon pushing_back_to_free_queue push_pointer_back_to_free_Q pkt_pointer)
 			// push packet pointer to free queue
 			$guard (push_pointer_back_to_free_Q)
 				$call pushIntoQueue ($one<1> FREE_Q pkt_pointer) (push_status)
@@ -122,7 +122,7 @@ $module [transmitPacket]
 		$volatile ncount_down := (count_down - 8)
 		$volatile  nmem_addr := (mem_addr + 8)
 		
-		$rreport(transmitPacket count_down_ count_down ncount_down mem_addr nmem_addr)
+		$rreport(transmitPacket count_down_ data count_down ncount_down mem_addr nmem_addr)
 		$volatile not_last_word := (ncount_down > 8)
 		// loop till last word
 		$while not_last_word

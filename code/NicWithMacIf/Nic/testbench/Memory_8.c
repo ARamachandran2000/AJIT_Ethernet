@@ -117,6 +117,7 @@ int accessMemory(uint8_t requester_id,
 		{	
 			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] :Req_id:%d Writing Data = 0x%lx,bmask = 0x%x Address = 0x%lx. \n",requester_id,wdata,byte_mask, addr);
 			write64(addr,wdata,byte_mask);
+			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] : Free buffers are - buf[0,1] = %lx, buf[2,?] = %lx",read64(16),read64(24));
 			(DEBUG == 1) && fprintf(stderr,"CPU_THREAD [AccessMemory] : %d Address = %lx Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",requester_id,addr,wdata,read64(72),byte_mask,addr);
 		}
 	}

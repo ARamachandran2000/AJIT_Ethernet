@@ -104,10 +104,12 @@ $module [releaseMutex] $in (q_base_address: $uint<36>) $out () $is
 $module [getQueuePointers] $in (q_base_address: $uint<36>)
 		$out (wp rp: $uint<32>) $is
 {
+		
 		$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
 					 (q_base_address + 8) $zero<64>) (wp_rp)
 
 		$volatile $split (wp_rp 32 32) (wp rp)
+		$rreport(getQueuePointers set q_base_address wp rp)
 }
 
 //

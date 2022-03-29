@@ -44,7 +44,7 @@ $is
 		$rreport(ReceiveEngineDaemon rx_buffer_val rx_buffer_pointer_36)
 		
 		// Step 2 : If pop was successful then start loading the buffer
-		$rreport(ReceiveEngineDaemon calling_loadBuffer status )
+		$rreport(ReceiveEngineDaemon calling_loadBuffer status rx_buffer_pointer_36 rx_buffer_pointer_32)
 		
 		$guard (~status)// 0 = success
 			$call loadBuffer (rx_buffer_pointer_36) (bad_packet_identifier)

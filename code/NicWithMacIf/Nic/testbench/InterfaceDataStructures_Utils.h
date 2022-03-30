@@ -1,5 +1,5 @@
 
-char DEBUG = 1; // 0 for no print and 1 for print
+char DEBUG = 0; // 0 for no print and 1 for print
 
 // function declerations,
 //  defined in register_config.c
@@ -38,26 +38,26 @@ void ReqRespMemory(
 
 	uint64_t req1 = 0;
 	uint64_t req0 = wdata;
-
+	*(status) = 1;
 	req1 = setSliceOfWord_64(req1, 45,45,(uint64_t)lock); // Lock
 	req1 = setSliceOfWord_64(req1, 44,44,read_write_bar); // Read Write Set
 	req1 = setSliceOfWord_64(req1, 43,36,byte_mask); // Byte Mask
 	req1 = setSliceOfWord_64(req1, 35,0,addr); // Addr
 	
 	(DEBUG == 1) && fprintf(stderr, "Interface_Data_Structures : req_resp_mem : req0 = %lx, req1 = %lx\n",req0,req1);	
-	write_uint64(req_pipe0,req0);
-	write_uint64(req_pipe1,req1);
+	while(*(status) == 1)
+	{
+		write_uint64(req_pipe0,req0);
+		write_uint64(req_pipe1,req1);
 	
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Request Sent = %lx, %lx. \n",req0, req1);
+		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Request Sent = %lx, %lx. \n",req0, req1);
+		
+		*(rdata) = read_uint64(resp_pipe0);
+			//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, 0x%lx. \n",*status,*rdata);
+		*status = read_uint8(resp_pipe1);
 	
-	
-	
-	*(rdata) = read_uint64(resp_pipe0);
 		//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, 0x%lx. \n",*status,*rdata);
-	*status = read_uint8(resp_pipe1);
-
-	//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, 0x%lx. \n",*status,*rdata);
-
+	}
 	
 }
 
@@ -111,30 +111,30 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 	uint64_t element_pair_address = queue_offset + 16 + ((write_pointer >> 1)<<3) ;
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [push] : buffer_address = %lx,Queue_Offset = %lx Read Pointers = pointerss = 0x%lx, next_pointer = 0x%lx, pair_addr = 0x%lx write_pointer = 0x%lx, queue_offset = 0x%lx. \n",buffer_address,queue_offset,pointers,next_pointer,element_pair_address,write_pointer,queue_offset);
 
-	ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
-
-
-	if((write_pointer & 0x000001) == 1) // Check if we are writing even or odd word
-					   // Need to Verify
-	{
-		bmask = 0x0F;
-		wdata = setSliceOfWord_64(wdata,31,0,(uint64_t)buffer_address);
-	}
-
-	else
-	{
-		//fprintf(stderr, "CPU_THREAD [push] : Buffer Writing.\n");
-		bmask = 0xF0;
-		wdata = setSliceOfWord_64(wdata,63,32,(uint64_t)buffer_address);
-	}
-
-
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [push] : NP = %d, RP = %d wdata = %lx. \n",next_pointer,read_pointer,wdata);
-
-
 	if(next_pointer != read_pointer) // Check Full Condition
 	{
 		ret_val = 1;
+		ReqRespMemory (0,1,0xFF,element_pair_address,0,&status,&wdata);
+
+
+		if((write_pointer & 0x000001) == 1) // Check if we are writing even or odd word
+						   // Need to Verify
+		{
+			bmask = 0x0F;
+			wdata = setSliceOfWord_64(wdata,31,0,(uint64_t)buffer_address);
+		}
+
+		else
+		{
+			//fprintf(stderr, "CPU_THREAD [push] : Buffer Writing.\n");
+			bmask = 0xF0;
+			wdata = setSliceOfWord_64(wdata,63,32,(uint64_t)buffer_address);
+		}
+	
+
+		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [push] : NP = %d, RP = %d wdata = %lx. \n",next_pointer,read_pointer,wdata);
+
+
 		//memory_array[write_pointer] = data;
 		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [push] : Wdata = %lx, buffer_address = %lx. \n",wdata,buffer_address);
 
@@ -166,7 +166,7 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 	uint32_t read_pointer  = getSliceFromWord(pointers, 31, 0);
 	uint64_t element_pair_address = queue_offset + 16 + ((read_pointer >> 1)<<3) ;
 	
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [pop] : write_pointer = 0x%lx, read_pointer = 0x%lx element_pair_address = 0x%lx\n", write_pointer,read_pointer,element_pair_address);
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [pop] : write_pointer = 0x%lx, read_pointer = 0x%lx element_pair_address = 0x%lx prev_Status = %lx , pointers = %lx\n", write_pointer,read_pointer,element_pair_address, status,pointers);
 	if(write_pointer != read_pointer)
 	{
 		

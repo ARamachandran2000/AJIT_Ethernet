@@ -14,4 +14,8 @@ grep transmitPacket run.log > transmitPacket.trace
 grep NicRegisterAccessDaemon run.log > NicRegisterAccessDaemon.trace
 grep pushIntoQueue run.log > pushIntoQueue.trace
 grep nicToMacInterface run.log > nicToMacInterface.trace
+grep setQueuePointers run.log > setQueuePointers.trace
+grep popFromQueue run.log > popFromQueue.trace
+grep accessMemory run.log > accessMemory.trace
+grep getTxPacketPointerFromServer run.log > getTxPacketPointerFromServer.trace
 gedit *.trace &

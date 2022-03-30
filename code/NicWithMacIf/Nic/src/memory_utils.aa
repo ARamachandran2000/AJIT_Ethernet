@@ -8,10 +8,10 @@ $module [accessMemory]
 $is
 {
 	$volatile request :=  ($concat lock rwbar bmask addr wdata)
-	$rreport(accessMemory byte_mask bmask rwbar addr wdata)
 	NIC_TO_MEMORY_REQUEST := request
 
 	response := MEMORY_TO_NIC_RESPONSE
 	$volatile $split (response 1 64) (err rdata)
+	$rreport(accessMemory byte_mask bmask rwbar addr wdata err)
 }
 

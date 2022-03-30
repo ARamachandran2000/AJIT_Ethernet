@@ -202,6 +202,11 @@ void cpuMemoryServiceDaemon()
 {
 
 	uint8_t cpu_id = 0;
+	int i;
+	for(i = 0; i < MEM_SIZE; i++ )
+	{
+		memory_array[i] = i + 1;
+	}
 	memoryServiceModel(cpu_id);
 }DEFINE_THREAD(cpuMemoryServiceDaemon);
 

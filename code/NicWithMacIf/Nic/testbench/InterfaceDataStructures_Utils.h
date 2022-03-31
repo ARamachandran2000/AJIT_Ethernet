@@ -11,7 +11,20 @@ uint64_t setSliceOfWord_64(uint64_t, uint8_t, uint8_t, uint64_t);
 #define FREE_QUEUE 0
 #define RX_QUEUE   32
 #define TX_QUEUE   64
+/* For number of buffers
+#define NUM_OF_BUFFERS	3
+#defien QUEUE_LENGTH	16 + 8*((NUM_OF_BUFFERS / 2) + (NUM_OF_BUFFERS % 2))
+#define FREE_QUEUE 	0
+#define RX_QUEUE	(FREE_QUEUE + QUEUE_LENGTH)
+#define TX_QUEUE	(RX_QUEUE + QUEUE_LENGTH)
 
+
+#define BUF_SIZE	192
+#define BUF_0 (TX_QUEUE + QUEUE_LENGTH)/16
+
+#define BUF_1 BUF_0 + (BUF_SIZE / 16) 
+#define BUF_2 BUF_1 + (BUF_SIZE / 16) 
+*/
 
 #define BUF_0 96/16
 #define BUF_1 288/16

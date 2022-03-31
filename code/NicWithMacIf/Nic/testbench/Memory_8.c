@@ -1,13 +1,13 @@
 // Write Memory related threads, functions here
 //#include "InterfaceDataStructures_Utils.h"
 //#include<pthreadUtils.h>
+// 
 #define MEM_SIZE 8*(18 * 3 + (256*16))
 
 // 3 queues(free_q, tx_q, rx_q)
 // and 16 buffers.
-uint8_t memory_array[8*(18 * 3 + (256*16))];
-
-
+uint8_t memory_array[8*(18 * 3 + (256*16))]; // 33219
+ 
 
 // access memory utility for reading as well as writing data
 //	Output : 65 bit 
@@ -177,13 +177,12 @@ void memoryServiceModel(uint8_t requester_id)
 	while(1)
 	{
 
-		
+		uint8_t status; 
 		// reads request from pipes
 		getReqFromTester(requester_id,&lock_tester,&rwbar_tester,&bmask_tester,&addr_tester,&wdata_tester);
 		// read/write from/to memory.
-
 		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [MemoryServiceModel] :  %d,  %d, %d, 0x%lx, 0x%lx, 0x%lx. \n",requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester);
-		uint8_t status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester,&rdata);
+		status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester,&rdata);
 		// write response
 		sendResponseToTester(requester_id,status,rdata);
 		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [MemoryServiceModel] : Sending Response % d \n",requester_id);
@@ -203,6 +202,8 @@ void cpuMemoryServiceDaemon()
 
 	uint8_t cpu_id = 0;
 	int i;
+	(DEBUG == 0) && fprintf(stderr, "Queue_length = %d for Num. of buffers = %d\n",QUEUE_LENGTH,NUM_OF_BUFFERS);
+	(DEBUG == 0) && fprintf(stderr, "Rx_Queue = %d, Tx_QUEUE = %d,Buffers= %d\t%d\t%d\n",RX_QUEUE,TX_QUEUE,BUF_0,BUF_1,BUF_2);
 	for(i = 0; i < MEM_SIZE; i++ )
 	{
 		memory_array[i] = i + 1;

@@ -202,12 +202,12 @@ void cpuMemoryServiceDaemon()
 
 	uint8_t cpu_id = 0;
 	int i;
-	(DEBUG == 0) && fprintf(stderr, "Queue_length = %d for Num. of buffers = %d\n",QUEUE_LENGTH,NUM_OF_BUFFERS);
-	(DEBUG == 0) && fprintf(stderr, "Rx_Queue = %d, Tx_QUEUE = %d,Buffers= %d\t%d\t%d\n",RX_QUEUE,TX_QUEUE,BUF_0,BUF_1,BUF_2);
-	for(i = 0; i < MEM_SIZE; i++ )
+	(DEBUG == 1) && fprintf(stderr, "Queue_length = %d for Num. of buffers = %d\n",QUEUE_LENGTH,NUM_OF_BUFFERS);
+	(DEBUG == 1) && fprintf(stderr, "Rx_Queue = %d, Tx_QUEUE = %d,Buffers= %d\t%d\t%d\n",RX_QUEUE,TX_QUEUE,BUF_0,BUF_1,BUF_2);
+	/*for(i = 0; i < MEM_SIZE; i++ )
 	{
 		memory_array[i] = i + 1;
-	}
+	}*/
 	memoryServiceModel(cpu_id);
 }DEFINE_THREAD(cpuMemoryServiceDaemon);
 

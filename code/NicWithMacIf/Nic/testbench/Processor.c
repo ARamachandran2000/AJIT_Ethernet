@@ -36,7 +36,7 @@ void cpu_model()
 		//		complexity since we are just simulating 
 		//		to check the NIC functionality)
 		if(pop (RX_QUEUE, &buffer_with_packet)){
-			fprintf(stderr, "CPU_THREAD : Got RX_Q = %lx and buffer_eith_packet = %lx pointer sending it to TX_Q\n", RX_QUEUE, buffer_with_packet);	
+			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD : Got RX_Q = %lx and buffer_with_packet = %lx pointer sending it to TX_Q\n", RX_QUEUE, buffer_with_packet);	
 			push(TX_QUEUE, buffer_with_packet);
 		}
 		// If no data, then sleep for 5 seconds and try again

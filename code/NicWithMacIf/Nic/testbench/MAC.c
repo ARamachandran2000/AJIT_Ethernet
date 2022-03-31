@@ -37,7 +37,7 @@ void macToNicData(void)
 		uint16_t data_16 = 0;
 	
 		// fixed length packet
-		uint16_t length_in_bytes = 20 + 10; //+ pkt_cnt*8 + pkt_cnt; // 20 bytes is min ip header length
+		uint16_t length_in_bytes = 20 + 10 + ((pkt_cnt*8 + pkt_cnt)%100); // 20 bytes is min ip header length
 		
 		// ethernet header 0
 		//-------------------
@@ -90,11 +90,11 @@ void macToNicData(void)
 		write_uint64(pipe_to_send0, data_64);
 		write_uint16(pipe_to_send1, data_16);		
 		//fprintf(stderr,"MAC_TX: written last word\n");
-		fprintf(stderr,"MAC_TX : Sent packet[%d]\n",pkt_cnt);
+		(DEBUG == 1) && fprintf(stderr,"MAC_TX : Sent packet[%d]\n",pkt_cnt);
 		//break;
 		pkt_cnt++;
 
-		if(pkt_cnt == 15) break;
+		//if(pkt_cnt == 15) break;
 
 
 	}

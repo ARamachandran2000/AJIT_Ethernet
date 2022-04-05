@@ -89,7 +89,41 @@ architecture structure of top_level is
    signal MAIN_MEM_REQUEST_pipe_read_data:std_logic_vector(109 downto 0);
    signal MAIN_MEM_REQUEST_pipe_read_req:std_logic_vector(0  downto 0);
    signal MAIN_MEM_REQUEST_pipe_read_ack:std_logic_vector(0  downto 0);
+
+   -- main tap bus signals (including buffering)
+   signal MAIN_TAP_RESPONSE_pipe_write_data:std_logic_vector(64 downto 0);
+   signal MAIN_TAP_RESPONSE_pipe_write_req:std_logic_vector(0 downto 0);
+   signal MAIN_TAP_RESPONSE_pipe_write_ack:std_logic_vector(0 downto 0);
+
+   signal MAIN_TAP_REQUEST_pipe_read_data:std_logic_vector(109 downto 0);
+   signal MAIN_TAP_REQUEST_pipe_read_req:std_logic_vector(0  downto 0);
+   signal MAIN_TAP_REQUEST_pipe_read_ack:std_logic_vector(0  downto 0);
+
+   signal MAIN_TAP_RESPONSE_BUF_pipe_write_data:std_logic_vector(64 downto 0);
+   signal MAIN_TAP_RESPONSE_BUF_pipe_write_req:std_logic_vector(0 downto 0);
+   signal MAIN_TAP_RESPONSE_BUF_pipe_write_ack:std_logic_vector(0 downto 0);
+
+   signal MAIN_TAP_REQUEST_BUF_pipe_read_data:std_logic_vector(109 downto 0);
+   signal MAIN_TAP_REQUEST_BUF_pipe_read_req:std_logic_vector(0  downto 0);
+   signal MAIN_TAP_REQUEST_BUF_pipe_read_ack:std_logic_vector(0  downto 0);
+
+   -- main through bus signals (including buffering)
+   signal MAIN_THROUGH_RESPONSE_pipe_write_data:std_logic_vector(64 downto 0);
+   signal MAIN_THROUGH_RESPONSE_pipe_write_req:std_logic_vector(0 downto 0);
+   signal MAIN_THROUGH_RESPONSE_pipe_write_ack:std_logic_vector(0 downto 0);
+
+   signal MAIN_THROUGH_REQUEST_pipe_read_data:std_logic_vector(109 downto 0);
+   signal MAIN_THROUGH_REQUEST_pipe_read_req:std_logic_vector(0  downto 0);
+   signal MAIN_THROUGH_REQUEST_pipe_read_ack:std_logic_vector(0  downto 0);
    
+   signal MAIN_THROUGH_RESPONSE_BUF_pipe_write_data:std_logic_vector(64 downto 0);
+   signal MAIN_THROUGH_RESPONSE_BUF_pipe_write_req:std_logic_vector(0 downto 0);
+   signal MAIN_THROUGH_RESPONSE_BUF_pipe_write_ack:std_logic_vector(0 downto 0);
+
+   signal MAIN_THROUGH_REQUEST_BUF_pipe_read_data:std_logic_vector(109 downto 0);
+   signal MAIN_THROUGH_REQUEST_BUF_pipe_read_req:std_logic_vector(0  downto 0);
+   signal MAIN_THROUGH_REQUEST_BUF_pipe_read_ack:std_logic_vector(0  downto 0);
+
    signal reset1,reset2,reset_sync: std_logic;
    signal EXTERNAL_INTERRUPT : std_logic_vector(0 downto 0);
    signal LOGGER_MODE : std_logic_vector(0 downto 0);
@@ -117,6 +151,9 @@ architecture structure of top_level is
    signal INVALIDATE_REQUEST_pipe_write_req  : std_logic_vector(0  downto 0);
    signal INVALIDATE_REQUEST_pipe_write_ack  : std_logic_vector(0  downto 0);
 
+    				
+   signal MAX_ADDR_TAP : std_logic_vector(35 downto 0);
+   signal MIN_ADDR_TAP : std_logic_vector(35 downto 0)
 
    -- ADDITIONAL SIGNALS FOR MAC + NIC + SWITCH 
 begin
@@ -175,6 +212,7 @@ begin
     		SERIAL_TX_to_CONSOLE_pipe_read_data => SERIAL_TX_to_CONSOLE_pipe_read_data,
     		SERIAL_TX_to_CONSOLE_pipe_read_req  => SERIAL_TX_to_CONSOLE_pipe_read_req ,
     		SERIAL_TX_to_CONSOLE_pipe_read_ack   => SERIAL_TX_to_CONSOLE_pipe_read_ack  ,
+		--  The memory interface to the processor.
       		MAIN_MEM_RESPONSE_pipe_write_data => MAIN_MEM_RESPONSE_pipe_write_data, 
       		MAIN_MEM_RESPONSE_pipe_write_req => MAIN_MEM_RESPONSE_pipe_write_req,
       		MAIN_MEM_RESPONSE_pipe_write_ack => MAIN_MEM_RESPONSE_pipe_write_ack,
@@ -185,9 +223,61 @@ begin
       		reset => reset_sync
 	);
    	CPU_MODE <= PROCESSOR_MODE(1 downto 0);
-  
-  -- TODO: introduce the acb_fast_mux with processor and nic as masters and
-  --         memory as slave.
+
+  ---------------------------------------------------------------------------
+  -- ACB fast tap!  
+  ---------------------------------------------------------------------------
+	main_tap: acb_fast_tap
+		port map (
+				clk => clock, reset => reset_sync,
+
+    				CORE_BUS_REQUEST_pipe_write_data => MAIN_MEM_REQUEST_pipe_read_data,
+    				CORE_BUS_REQUEST_pipe_write_req  => MAIN_MEM_REQUEST_pipe_read_ack,
+    				CORE_BUS_REQUEST_pipe_write_ack  => MAIN_MEM_REQUEST_pipe_read_req,
+
+    				CORE_BUS_RESPONSE_pipe_read_data => MAIN_MEM_RESPONSE_pipe_write_data,
+    				CORE_BUS_RESPONSE_pipe_read_req  => MAIN_MEM_RESPONSE_pipe_write_ack,
+    				CORE_BUS_RESPONSE_pipe_read_ack  => MAIN_MEM_RESPONSE_pipe_write_req,
+
+				-- connect to the tap.
+    				CORE_BUS_REQUEST_TAP_pipe_read_data => MAIN_TAP_REQUEST_pipe_read_data,
+									-- TODO: check this...
+    				CORE_BUS_REQUEST_TAP_pipe_read_req  => MAIN_TAP_REQUEST_pipe_read_ack,
+    				CORE_BUS_REQUEST_TAP_pipe_read_ack  => MAIN_TAP_REQUEST_pipe_read_req,
+				-- MAIN_TAP_RESPONSE
+    				CORE_BUS_RESPONSE_TAP_pipe_write_data : in std_logic_vector(64 downto 0);
+    				CORE_BUS_RESPONSE_TAP_pipe_write_req  : in std_logic_vector(0  downto 0);
+    				CORE_BUS_RESPONSE_TAP_pipe_write_ack  : out std_logic_vector(0  downto 0);
+
+				-- MAIN_THROUGH_REQUEST
+    				CORE_BUS_REQUEST_THROUGH_pipe_read_data : out std_logic_vector(109 downto 0);
+    				CORE_BUS_REQUEST_THROUGH_pipe_read_req  : in std_logic_vector(0  downto 0);
+    				CORE_BUS_REQUEST_THROUGH_pipe_read_ack  : out std_logic_vector(0  downto 0);
+				-- MAIN_THROUGH_RESPONSE
+    				CORE_BUS_RESPONSE_THROUGH_pipe_write_data : in std_logic_vector(64 downto 0);
+    				CORE_BUS_RESPONSE_THROUGH_pipe_write_req  : in std_logic_vector(0  downto 0);
+    				CORE_BUS_RESPONSE_THROUGH_pipe_write_ack  : out std_logic_vector(0  downto 0);
+
+    				MAX_ADDR_TAP : in std_logic_vector(35 downto 0);
+    				MIN_ADDR_TAP : in std_logic_vector(35 downto 0)
+			);
+
+   MAX_ADDR_TAP <= X"...";  -- 4MB + 64KB-1
+   MIN_ADDR_TAP <= X"...."; -- 4MB
+
+  -- two buffers..
+  qb: QueueBase 
+	generic map (name => "main_tap_req_buffer", queue_depth => 2,
+			data_width => 110, save_one_slot => false)
+	port map (
+			clk => clock, reset => reset_sync,
+			data_in => MAIN_TAP_REQUEST_pipe_read_data,
+			push_req => MAIN_TAP_REQUEST_pipe_read_ack/req...
+			push_ack => MAIN_TAP_REQUEST_pipe_read_req/ack...
+			data_out => MAIN_TAP_REQUEST_BUF_pipe_read_data,
+			pop_req => MAIN_TAP_REQUEST_BUF_pipe_read_ack/req...
+			pop_ack => MAIN_TAP_REQUEST_BUF_pipe_read_req/ack...
+		)
 
   -- TODO: instantiate the NIC+MAC complex.
   

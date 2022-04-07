@@ -168,7 +168,7 @@ void nicToMacData(void)
 		{	
 			fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch Expected = %d, Received = %d\n",pkt_cnt, i,data_64);
 			__err_flag_ = 1;
-			break;
+//			break;
 		}
 		fprintf(stderr,"MAC_RX : Recived Packet[%d]\n",pkt_cnt);
 		pkt_cnt++;

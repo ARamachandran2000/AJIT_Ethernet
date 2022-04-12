@@ -43,6 +43,7 @@ void macToNicData(void)
 		//-------------------
 		//	data_64 = {src_mac_addr[7:0] & dest_mac_addr[47:0] & tkeep}
 		//		src_mac_addr[7:0]				dest_mac_addr[47:0]	   tkeep
+		//		16							48		    8
 		data_64 = ((source_mac_address & 0x00000000000000ff)<<56) | (destination_mac_address<<8) | (0xff);
 		//	data_16 = {tlast & src_mac_addr[15:8]}
 		data_16 = ((source_mac_address & 0x000000000000ff00)>>8);

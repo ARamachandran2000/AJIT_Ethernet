@@ -11,6 +11,8 @@ use GlueModules.GlueModulesBaseComponents.all;
 library GenericGlueStuff;
 use GenericGlueStuff.GenericGlueStuffComponents.all;
 
+library work;
+use work.ahir_system_global_package.all;
 
 
 entity top_level is
@@ -107,6 +109,8 @@ architecture structure of top_level is
      clk_in1_n         : in     std_logic
     );
    end component;
+
+   -- TODO : One more clk wiz required for MAC in NIC
 
    signal MAIN_MEM_RESPONSE_pipe_write_data:std_logic_vector(64 downto 0);
    signal MAIN_MEM_RESPONSE_pipe_write_req:std_logic_vector(0 downto 0);
@@ -286,7 +290,6 @@ begin
 
 				-- connect to the tap.
     				CORE_BUS_REQUEST_TAP_pipe_read_data => MAIN_TAP_REQUEST_pipe_read_data,
-									-- TODO: check this...
     				CORE_BUS_REQUEST_TAP_pipe_read_req  => MAIN_TAP_REQUEST_pipe_read_ack,
     				CORE_BUS_REQUEST_TAP_pipe_read_ack  => MAIN_TAP_REQUEST_pipe_read_req,
 				-- MAIN_TAP_RESPONSE
@@ -339,7 +342,7 @@ begin
 	port map(  
 		clk => clock, reset => reset_sync,
 		AFB_BUS_RESPONSE_pipe_write_data => AFB_NIC_RESPONSE_pipe_write_data, -- TODO : will need to add these as signals
-		AFB_BUS_RESPONSE_pipe_write_req  => AFB_NIC_RESPONSE_pipe_write_ack,  -- when integration nic and mac
+		AFB_BUS_RESPONSE_pipe_write_req  => AFB_NIC_RESPONSE_pipe_write_ack,  -- when integrating nic and mac
 		AFB_BUS_RESPONSE_pipe_write_ack  => AFB_NIC_RESPONSE_pipe_write_req,
 		CORE_BUS_REQUEST_pipe_write_data => MAIN_TAP_REQUEST_BUF_pipe_read_data,
 		CORE_BUS_REQUEST_pipe_write_req  => MAIN_TAP_REQUEST_BUF_pipe_read_ack,

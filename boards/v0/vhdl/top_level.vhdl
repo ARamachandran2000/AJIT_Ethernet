@@ -226,17 +226,17 @@ architecture structure of top_level is
    signal MUX_TO_MEM_REQUEST_pipe_read_req:std_logic_vector(0 downto 0);
    signal MUX_TO_MEM_REQUEST_pipe_read_ack:std_logic_vector(0 downto 0);
    
-   signal MUX_TO_MEM_RESPONSE_pipe_read_data:std_logic_vector(64 downto 0);
-   signal MUX_TO_MEM_RESPONSE_pipe_read_req:std_logic_vector(0 downto 0);
-   signal MUX_TO_MEM_RESPONSE_pipe_read_ack:std_logic_vector(0 downto 0);
+   signal MUX_TO_MEM_RESPONSE_pipe_write_data:std_logic_vector(64 downto 0);
+   signal MUX_TO_MEM_RESPONSE_pipe_write_req:std_logic_vector(0 downto 0);
+   signal MUX_TO_MEM_RESPONSE_pipe_write_ack:std_logic_vector(0 downto 0);
    
    signal MUX_TO_MEM_REQUEST_BUF_pipe_read_data:std_logic_vector(109 downto 0);
    signal MUX_TO_MEM_REQUEST_BUF_pipe_read_req:std_logic_vector(0 downto 0);
    signal MUX_TO_MEM_REQUEST_BUF_pipe_read_ack:std_logic_vector(0 downto 0);
    
-   signal MUX_TO_MEM_RESPONSE_BUF_pipe_read_data:std_logic_vector(64 downto 0);
-   signal MUX_TO_MEM_RESPONSE_BUF_pipe_read_req:std_logic_vector(0 downto 0);
-   signal MUX_TO_MEM_RESPONSE_BUF_pipe_read_ack:std_logic_vector(0 downto 0);
+   signal MUX_TO_MEM_RESPONSE_BUF_pipe_write_data:std_logic_vector(64 downto 0);
+   signal MUX_TO_MEM_RESPONSE_BUF_pipe_write_req:std_logic_vector(0 downto 0);
+   signal MUX_TO_MEM_RESPONSE_BUF_pipe_write_ack:std_logic_vector(0 downto 0);
    
    --
    
@@ -269,8 +269,66 @@ architecture structure of top_level is
 
     				
    signal MAX_ADDR_TAP : std_logic_vector(35 downto 0);
-   signal MIN_ADDR_TAP : std_logic_vector(35 downto 0)
-
+   signal MIN_ADDR_TAP : std_logic_vector(35 downto 0);
+   
+   -- ACB to AFB bridge and queues(Dual clocked fifos)
+   signal AFB_NIC_RESPONSE_DFIFO_pipe_write_data : std_logic_vector(32 downto 0);
+   signal AFB_NIC_RESPONSE_DFIFO_pipe_write_req : std_logic_vector(0 downto 0);
+   signal AFB_NIC_RESPONSE_DFIFO_pipe_write_ack : std_logic_vector(0 downto 0);
+   
+   signal AFB_NIC_REQUEST_DFIFO_pipe_write_data : std_logic_vector(73 downto 0);
+   signal AFB_NIC_REQUEST_DFIFO_pipe_write_req : std_logic_vector(0 downto 0);
+   signal AFB_NIC_REQUEST_DFIFO_pipe_write_ack : std_logic_vector(0 downto 0);
+   
+   signal AFB_NIC_REQUEST_pipe_read_data : std_logic_vector(73 downto 0);
+   signal AFB_NIC_REQUEST_pipe_read_req : std_logic_vector(0 downto 0);
+   signal AFB_NIC_REQUEST_pipe_read_ack : std_logic_vector(0 downto 0);
+   
+   signal AFB_NIC_RESPONSE_pipe_read_data : std_logic_vector(32 downto 0);
+   signal AFB_NIC_RESPONSE_pipe_read_req : std_logic_vector(0 downto 0);
+   signal AFB_NIC_RESPONSE_pipe_read_ack : std_logic_vector(0 downto 0);
+   
+   -- NIC to mem
+   signal NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_data : std_logic_vector(109 downto 0);
+   signal NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_req : std_logic_vector(0 downto 0);
+   signal NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack : std_logic_vector(0 downto 0);
+   
+   signal NIC_TO_MEMORY_REQUEST_pipe_read_data : std_logic_vector(109 downto 0);
+   signal NIC_TO_MEMORY_REQUEST_pipe_read_req : std_logic_vector(0 downto 0);
+   signal NIC_TO_MEMORY_REQUEST_pipe_read_ack : std_logic_vector(0 downto 0);
+   
+   signal MEMORY_TO_NIC_RESPONSE_pipe_read_data : std_logic_vector(64 downto 0);
+   signal MEMORY_TO_NIC_RESPONSE_pipe_read_req : std_logic_vector(0 downto 0);
+   signal MEMORY_TO_NIC_RESPONSE_pipe_read_ack : std_logic_vector(0 downto 0);
+   
+   signal MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_data : std_logic_vector(64 downto 0);
+   signal MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_req : std_logic_vector(0 downto 0);
+   signal MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_ack : std_logic_vector(0 downto 0);
+   
+   signal RX_FIFO_pipe_read_data : std_logic_vector (72 downto 0);
+   signal RX_FIFO_pipe_read_req : std_logic_vector (72 downto 0);
+   signal RX_FIFO_pipe_read_ack : std_logic_vector (72 downto 0);
+   
+   signal TX_FIFO_pipe_write_data : std_logic_vector (72 downto 0);
+   signal RX_FIFO_pipe_write_req : std_logic_vector (72 downto 0);
+   signal RX_FIFO_pipe_write_ack : std_logic_vector (72 downto 0);
+   
+   -- mac side connections   
+   signal rx_axis_resetn : std_logic_vector (0 downto 0);
+   signal rx_axis_tdata : std_logic_vector (63 downto 0);
+   signal rx_axis_tkeep : std_logic_vector (7 downto 0);
+   signal rx_axis_tvalid : std_logic_vector (0 downto 0);
+   signal rx_axis_tuser : std_logic_vector (0 downto 0);
+   signal rx_axis_tlast : std_logic_vector (0 downto 0);
+   
+   signal tx_axis_resetn : std_logic_vector (0 downto 0);
+   signal tx_axis_tdata : std_logic_vector (63 downto 0);
+   signal tx_axis_tkeep : std_logic_vector (7 downto 0);
+   signal tx_axis_tvalid : std_logic_vector (0 downto 0);
+   signal tx_axis_tuser : std_logic_vector (0 downto 0);
+   signal tx_axis_tlast : std_logic_vector (0 downto 0);
+   signal tx_axis_tready : std_logic_vector (0 downto 0);
+   
    -- ADDITIONAL SIGNALS FOR MAC + NIC + SWITCH 
 begin
 
@@ -349,7 +407,7 @@ begin
   ---------------------------------------------------------------------------
   -- ACB fast tap!  
   ---------------------------------------------------------------------------
-	main_tap: acb_fast_tap
+	main_tap: acb_fast_tap  -- done
 		port map (
 				clk => clock, reset => reset_sync,
 
@@ -387,7 +445,7 @@ begin
    MIN_ADDR_TAP <= X"000400000"; -- 4MB
 
   -- two buffers between TAP and acb_afb_bridge
-  qb_req_tap: QueueBase 
+  qb_req_tap: QueueBase -- done
 	generic map (name => "main_tap_req_buffer", queue_depth => 2,
 			data_width => 110, save_one_slot => false)
 	port map (
@@ -399,7 +457,7 @@ begin
 			pop_req => MAIN_TAP_REQUEST_BUF_pipe_read_ack,
 			pop_ack => MAIN_TAP_REQUEST_BUF_pipe_read_req
 		);
-  qb_resp_tap: QueueBase 
+  qb_resp_tap: QueueBase -- done
 	generic map (name => "main_tap_resp_buffer", queue_depth => 2,
 			data_width => 65, save_one_slot => false)
 	port map (
@@ -407,15 +465,15 @@ begin
 			data_in => MAIN_TAP_RESPONSE_BUF_pipe_write_data,
 			push_req => MAIN_TAP_RESPONSE_BUF_pipe_write_ack,
 			push_ack => MAIN_TAP_RESPONSE_BUF_pipe_write_req,
-			data_out => MAIN_TAP_RESPONSE_pipe_read_data,
-			pop_req => MAIN_TAP_RESPONSE_pipe_read_ack,
-			pop_ack => MAIN_TAP_RESPONSE_pipe_read_req
+			data_out => MAIN_TAP_RESPONSE_pipe_write_data,
+			pop_req => MAIN_TAP_RESPONSE_pipe_write_ack,
+			pop_ack => MAIN_TAP_RESPONSE_pipe_write_req
 		);
-  acb_afb_bridge_nic: acb_afb_bridge 
+  acb_afb_bridge_nic: acb_afb_bridge  -- done
 	port map(
 		clk => clock, reset => reset_sync,
-		AFB_BUS_RESPONSE_pipe_write_data => AFB_NIC_RESPONSE_DFIFO_pipe_write_data, -- TODO : will need to add these as signals
-		AFB_BUS_RESPONSE_pipe_write_req  => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack,  -- when integrating nic and mac
+		AFB_BUS_RESPONSE_pipe_write_data => AFB_NIC_RESPONSE_DFIFO_pipe_write_data, 
+		AFB_BUS_RESPONSE_pipe_write_req  => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack, 
 		AFB_BUS_RESPONSE_pipe_write_ack  => AFB_NIC_RESPONSE_DFIFO_pipe_write_req,
 		CORE_BUS_REQUEST_pipe_write_data => MAIN_TAP_REQUEST_BUF_pipe_read_data,
 		CORE_BUS_REQUEST_pipe_write_req  => MAIN_TAP_REQUEST_BUF_pipe_read_ack,
@@ -429,7 +487,7 @@ begin
   );
   
   -- two buffers between TAP and acb_mux
-  qb_req_through: QueueBase 
+  qb_req_through: QueueBase -- done
 	generic map (name => "main_through_req_buffer", queue_depth => 2,
 			data_width => 110, save_one_slot => false)
 	port map (
@@ -441,20 +499,20 @@ begin
 			pop_req => MAIN_THROUGH_REQUEST_BUF_pipe_read_ack,
 			pop_ack => MAIN_THROUGH_REQUEST_BUF_pipe_read_req
 		);
-  qb_resp_through: QueueBase 
+  qb_resp_through: QueueBase  -- done
 	generic map (name => "main_through_resp_buffer", queue_depth => 2,
 			data_width => 65, save_one_slot => false)
 	port map (
 			clk => clock, reset => reset_sync,
-			data_in => MAIN_TAP_RESPONSE_BUF_pipe_write_data,
-			push_req => MAIN_TAP_RESPONSE_BUF_pipe_write_ack,
-			push_ack => MAIN_TAP_RESPONSE_BUF_pipe_write_req,
-			data_out => MAIN_TAP_RESPONSE_pipe_read_data,
-			pop_req => MAIN_TAP_RESPONSE_pipe_read_ack,
-			pop_ack => MAIN_TAP_RESPONSE_pipe_read_req
+			data_in => MAIN_THROUGH_RESPONSE_BUF_pipe_write_data,
+			push_req => MAIN_THROUGH_RESPONSE_BUF_pipe_write_ack,
+			push_ack => MAIN_THROUGH_RESPONSE_BUF_pipe_write_req,
+			data_out => MAIN_THROUGH_RESPONSE_pipe_write_data,
+			pop_req => MAIN_THROUGH_RESPONSE_pipe_write_ack,
+			pop_ack => MAIN_THROUGH_RESPONSE_pipe_write_req
 		);
   
-  acb_mux: acb_fast_mux  
+  acb_mux: acb_fast_mux   -- done
 	port map( 
 		clk => clock, reset => reset_sync,
 		CORE_BUS_REQUEST_HIGH_pipe_write_data => MAIN_THROUGH_REQUEST_BUF_pipe_read_data,
@@ -479,7 +537,7 @@ begin
 
 
   -- two buffers between acb_mux acb_ram
-  qb_req_mem: QueueBase 
+  qb_req_mem: QueueBase  -- done
 	generic map (name => "mux_mem_req_buffer", queue_depth => 2,
 			data_width => 110, save_one_slot => false)
 	port map (
@@ -491,22 +549,21 @@ begin
 			pop_req => MUX_TO_MEM_REQUEST_BUF_pipe_read_ack,
 			pop_ack => MUX_TO_MEM_REQUEST_BUF_pipe_read_req
 		);
-  qb_resp_mem: QueueBase 
-	generic map (name => "mux_mem_resp_buffer", queue_depth => 2,
+  qb_resp_mem: QueueBase   -- done
+	generic map (name => "mux_mem_resp_buffer", queue_depth => 2, 
 			data_width => 65, save_one_slot => false)
 	port map (
 			clk => clock, reset => reset_sync,
 			data_in => MUX_TO_MEM_RESPONSE_BUF_pipe_write_data,
 			push_req => MUX_TO_MEM_RESPONSE_BUF_pipe_write_ack,
 			push_ack => MUX_TO_MEM_RESPONSE_BUF_pipe_write_req,
-			data_out => MUX_TO_MEM_RESPONSE_pipe_read_data,
-			pop_req => MUX_TO_MEM_RESPONSE_pipe_read_ack,
-			pop_ack => MUX_TO_MEM_RESPONSE_pipe_read_req
+			data_out => MUX_TO_MEM_RESPONSE_pipe_write_data,
+			pop_req => MUX_TO_MEM_RESPONSE_pipe_write_ack,
+			pop_ack => MUX_TO_MEM_RESPONSE_pipe_write_req
 		);
-  -- TODO: instantiate the NIC+MAC complex.
   
   
-   mac_rx_instance : mac_rx_interface	-- TODO : declare all signals
+   mac_rx_instance : mac_rx_interface	-- done
 	port map(
                clk => clock_mac, reset => reset_sync,
                rx_axis_resetn => rx_axis_resetn,
@@ -519,7 +576,7 @@ begin
                RX_FIFO_pipe_read_req => RX_FIFO_pipe_read_req,
                RX_FIFO_pipe_read_ack => RX_FIFO_pipe_read_ack
 	);
-   mac_tx_instance : mac_tx_interface -- TODO : declare signals
+   mac_tx_instance : mac_tx_interface -- done
 	port map(
                clk => clock_mac, reset => reset_sync,
                tx_axis_resetn => tx_axis_resetn,
@@ -534,7 +591,7 @@ begin
                TX_FIFO_pipe_write_ack => TX_FIFO_pipe_write_ack
 	);
 	
-   mac_engine_instance : mac_engine
+   mac_engine_instance : mac_engine  -- done
    	port map(
    		clk => clock_mac,
 		m_rx_axis_resetn => rx_axis_resetn,
@@ -553,7 +610,7 @@ begin
 		s_tx_axis_tready=> tx_axis_tready
    	);
    	
-   DualClockedQueue_ACB_req_instance: DualClockedQueue_ACB_req
+   DualClockedQueue_ACB_req_instance: DualClockedQueue_ACB_req  -- done
 	port map( 
 		    -- read 
 		    read_req_in => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack,
@@ -569,7 +626,7 @@ begin
 		    
 		    reset => reset_sync);	
 	
-	DualClockedQueue_ACB_resp_inst : DualClockedQueue_ACB_resp
+	DualClockedQueue_ACB_resp_inst : DualClockedQueue_ACB_resp -- done
 		port map( 
 		    -- read
 		    read_req_in => MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_ack,
@@ -585,7 +642,7 @@ begin
 		    
 		    reset => reset_sync);
 	
-	DualClockedQueue_AFB_req_inst : DualClockedQueue_AFB_req
+	DualClockedQueue_AFB_req_inst : DualClockedQueue_AFB_req -- done
 		port map( 
 		    -- read 
 		    read_req_in => AFB_NIC_REQUEST_DFIFO_pipe_write_ack,
@@ -601,7 +658,7 @@ begin
 		    
 		    reset => reset_sync);
 	
-	DualClockedQueue_AFB_resp_inst : DualClockedQueue_AFB_resp
+	DualClockedQueue_AFB_resp_inst : DualClockedQueue_AFB_resp -- done
 		port map( 
 		    -- read
 		    read_req_in => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack,
@@ -618,7 +675,7 @@ begin
 		    reset => reset_sync);
    
   
-  nic_instance : ahir_system 			-- TODO : declare signals
+  nic_instance : ahir_system 			-- TODO : done
 	port map( 
 		clk : in std_logic;
 		reset : in std_logic;

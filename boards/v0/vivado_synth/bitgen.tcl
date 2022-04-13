@@ -11,10 +11,13 @@ read_vhdl -library ahir_ieee_proposed $AHIR_RELEASE/vhdl/aHiR_ieee_proposed.vhdl
 #read_vhdl -library GenericGlueStuff $AJIT_PROJECT_HOME/processor/Aa_v3/modules/lib/GenericGlueStuff.vhdl
 #read_vhdl -library GlueModules $AJIT_PROJECT_HOME/processor/Aa_v3/modules/lib/GlueModules.vhdl
 
+read_vhdl -library AjitCustom ../vhdl_libs/AjitCustom.vhdl
 read_vhdl -library GenericCoreAddonLib ../vhdl_libs/GenericCoreAddOnLib.vhdl
 read_vhdl -library GenericGlueStuff ../vhdl_libs/GenericGlueStuff.vhdl
 read_vhdl -library GlueModules ../vhdl_libs/GlueModules.vhdl
 
+
+## should read_vhdl be used for mac_rx,mac_tx verilog files?
 read_vhdl ../vhdl/top_level.vhdl
 ############# CONSTRAINT FILE ###########
 read_xdc ../constraints/vc709_constraints.xdc
@@ -28,6 +31,7 @@ read_edif ../ngc/processor_1x1x32.set_associative.ngc
 
 #read_ip   ../../standalone_navic_with_mock_adcs/ip/ClkWiz/ClkWiz.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 read_ip ../ip/ClkWiz80MHz/ClockingWizFor80MHz/ClockingWizFor80MHz.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+read_ip ../ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
 
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_acb_req/fifo_generator_acb_req.xci
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_acb_resp/fifo_generator_acb_resp.xci

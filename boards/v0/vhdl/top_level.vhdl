@@ -1,6 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
+library DualClockedQueuelib;
+use DualClockedQueuelib.DualClockedQueuePackage.all;
 
 library GenericCoreAddOnLib;
 use GenericCoreAddOnLib.GenericCoreAddOnPackage.all;
@@ -69,6 +71,7 @@ architecture structure of top_level is
   --
   end component processor_1x1x32;
   
+  -- NIC component
   component ahir_system is  -- system 
   port (-- 
     clk : in std_logic;
@@ -94,6 +97,58 @@ architecture structure of top_level is
     -- 
   end component;
   
+  component mac_rx_interface is
+	port(
+		clk : in std_logic;
+		reset : in std_logic;
+		rx_axis_resetn : out std_logic;
+		rx_axis_tdata : in std_logic_vector(63 downto 0);
+		rx_axis_tkeep : in std_logic_vector(7 downto 0);
+		rx_axis_tvalid : in std_logic;
+		rx_axis_tuser : in std_logic;
+		rx_axis_tlast : in std_logic;
+               
+		RX_FIFO_pipe_read_data : out std_logic_vector(72 downto 0);
+		RX_FIFO_pipe_read_req : in std_logic;
+		RX_FIFO_pipe_read_ack : out std_logic);
+  end component;
+  
+  component mac_tx_interface is
+	port(
+		clk : in std_logic;
+		reset : in std_logic;
+		tx_axis_tready : in std_logic;
+		tx_axis_resetn : out std_logic;
+		tx_axis_tdata : out std_logic_vector(63 downto 0);
+		tx_axis_tkeep : out std_logic_vector(7 downto 0);
+		tx_axis_tvalid : out std_logic;
+		tx_axis_tuser : out std_logic;
+		tx_axis_tlast : out std_logic;
+               
+		TX_FIFO_pipe_write_data : in std_logic_vector(72 downto 0);
+		TX_FIFO_pipe_write_req : out std_logic;
+		TX_FIFO_pipe_write_ack : in std_logic);
+  end component;
+
+  component mac_engine is
+  	port(
+		clk : in std_logic;
+		m_rx_axis_resetn : in std_logic;
+		m_rx_axis_tdata : out std_logic_vector(63 downto 0);
+		m_rx_axis_tkeep : out std_logic_vector(7 downto 0);
+		m_rx_axis_tvalid : out std_logic;
+		m_rx_axis_tuser : out std_logic;
+		m_rx_axis_tlast : out std_logic;
+
+		s_tx_axis_resetn : in std_logic;
+		s_tx_axis_tdata : in std_logic_vector(63 downto 0);
+		s_tx_axis_tkeep : in std_logic_vector(7 downto 0);
+		s_tx_axis_tvalid : in std_logic;
+		s_tx_axis_tuser : in std_logic;
+		s_tx_axis_tlast : in std_logic;
+		s_tx_axis_tready : out std_logic);
+
+  
   signal PROCESSOR_MODE: std_logic_vector(15 downto 0);
 
   -- to generate an 80 MHz clock.
@@ -109,8 +164,20 @@ architecture structure of top_level is
      clk_in1_n         : in     std_logic
     );
    end component;
-
-   -- TODO : One more clk wiz required for MAC in NIC
+   
+   -- to generate an 156  Mhz clock
+   component clk_wiz_1
+   port
+    (-- Clock in ports
+     -- Clock out ports
+     clk_out1          : out    std_logic;
+     -- Status and control signals
+     reset             : in     std_logic;
+     locked            : out    std_logic;
+     clk_in1_p         : in     std_logic;
+     clk_in1_n         : in     std_logic
+    );
+   end component;
 
    signal MAIN_MEM_RESPONSE_pipe_write_data:std_logic_vector(64 downto 0);
    signal MAIN_MEM_RESPONSE_pipe_write_req:std_logic_vector(0 downto 0);
@@ -176,7 +243,7 @@ architecture structure of top_level is
    signal reset1,reset2,reset_sync: std_logic;
    signal EXTERNAL_INTERRUPT : std_logic_vector(0 downto 0);
    signal LOGGER_MODE : std_logic_vector(0 downto 0);
-   signal clock,lock:std_logic;
+   signal clock,clock_mac,lock:std_logic;
 
    signal MONITOR_to_DEBUG_pipe_write_data : std_logic_vector(7 downto 0);
    signal MONITOR_to_DEBUG_pipe_write_req  : std_logic_vector(0  downto 0);
@@ -227,13 +294,19 @@ begin
          clk_in1_p => clk_p,
          clk_in1_n => clk_n
        );
-
-    -- TBD: OTHER CLOCKS FOR NIC+MAC?
-    --   MAC will run at 312.5 MHz?
-    --     Investigate if MAC can be run at 80MHz?
-    --
-    --   NIC will run at 80 MHz?
-    --      inter-clock domain synchronization?
+       
+   -- 156 MHz generator
+   clocking : clk_wiz_1
+      port map ( 
+        -- Clock out ports  
+         clk_out1 => clock_mac,
+        -- Status and control signals                
+         reset => reset_clk,
+         locked => lock,
+         -- Clock in ports
+         clk_in1_p => clk_p,
+         clk_in1_n => clk_n
+       );
  
     EXTERNAL_INTERRUPT(0) <= '0';
     LOGGER_MODE(0) <= '0';
@@ -339,11 +412,11 @@ begin
 			pop_ack => MAIN_TAP_RESPONSE_pipe_read_req
 		);
   acb_afb_bridge_nic: acb_afb_bridge 
-	port map(  
+	port map(
 		clk => clock, reset => reset_sync,
-		AFB_BUS_RESPONSE_pipe_write_data => AFB_NIC_RESPONSE_pipe_write_data, -- TODO : will need to add these as signals
-		AFB_BUS_RESPONSE_pipe_write_req  => AFB_NIC_RESPONSE_pipe_write_ack,  -- when integrating nic and mac
-		AFB_BUS_RESPONSE_pipe_write_ack  => AFB_NIC_RESPONSE_pipe_write_req,
+		AFB_BUS_RESPONSE_pipe_write_data => AFB_NIC_RESPONSE_DFIFO_pipe_write_data, -- TODO : will need to add these as signals
+		AFB_BUS_RESPONSE_pipe_write_req  => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack,  -- when integrating nic and mac
+		AFB_BUS_RESPONSE_pipe_write_ack  => AFB_NIC_RESPONSE_DFIFO_pipe_write_req,
 		CORE_BUS_REQUEST_pipe_write_data => MAIN_TAP_REQUEST_BUF_pipe_read_data,
 		CORE_BUS_REQUEST_pipe_write_req  => MAIN_TAP_REQUEST_BUF_pipe_read_ack,
 		CORE_BUS_REQUEST_pipe_write_ack  => MAIN_TAP_REQUEST_BUF_pipe_read_req,
@@ -387,9 +460,9 @@ begin
 		CORE_BUS_REQUEST_HIGH_pipe_write_data => MAIN_THROUGH_REQUEST_BUF_pipe_read_data,
 		CORE_BUS_REQUEST_HIGH_pipe_write_req  => MAIN_THROUGH_REQUEST_BUF_pipe_read_ack,
 		CORE_BUS_REQUEST_HIGH_pipe_write_ack  => MAIN_THROUGH_REQUEST_BUF_pipe_read_req,
-		CORE_BUS_REQUEST_LOW_pipe_write_data  => NIC_TO_MEMORY_REQUEST_pipe_write_data,
-		CORE_BUS_REQUEST_LOW_pipe_write_req   => NIC_TO_MEMORY_REQUEST_pipe_write_ack,
-		CORE_BUS_REQUEST_LOW_pipe_write_ack   => NIC_TO_MEMORY_REQUEST_pipe_write_req,
+		CORE_BUS_REQUEST_LOW_pipe_write_data  => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_data,
+		CORE_BUS_REQUEST_LOW_pipe_write_req   => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack,
+		CORE_BUS_REQUEST_LOW_pipe_write_ack   => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_req,
 		CORE_BUS_RESPONSE_pipe_write_data     => MUX_TO_MEM_RESPONSE_pipe_write_data,
 		CORE_BUS_RESPONSE_pipe_write_req      => MUX_TO_MEM_RESPONSE_pipe_write_ack,
 		CORE_BUS_RESPONSE_pipe_write_ack      => MUX_TO_MEM_RESPONSE_pipe_write_req,
@@ -435,8 +508,8 @@ begin
   
    mac_rx_instance : mac_rx_interface	-- TODO : declare all signals
 	port map(
-               clk => clock, reset => reset_sync,
-               rx_axis_resetn => rx_axis_resetn  ,
+               clk => clock_mac, reset => reset_sync,
+               rx_axis_resetn => rx_axis_resetn,
                rx_axis_tdata => rx_axis_tdata,
                rx_axis_tkeep => rx_axis_tkeep,
                rx_axis_tvalid => rx_axis_tvalid,
@@ -446,9 +519,9 @@ begin
                RX_FIFO_pipe_read_req => RX_FIFO_pipe_read_req,
                RX_FIFO_pipe_read_ack => RX_FIFO_pipe_read_ack
 	);
-   mac_tx_instance : module mac_tx_interface -- TODO : declare signals
+   mac_tx_instance : mac_tx_interface -- TODO : declare signals
 	port map(
-               clk => clock, reset => reset_sync,
+               clk => clock_mac, reset => reset_sync,
                tx_axis_resetn => tx_axis_resetn,
                tx_axis_tdata => tx_axis_tdata,
                tx_axis_tkeep => tx_axis_tkeep,
@@ -459,25 +532,108 @@ begin
                TX_FIFO_pipe_write_data => TX_FIFO_pipe_write_data,
                TX_FIFO_pipe_write_req => TX_FIFO_pipe_write_req,
                TX_FIFO_pipe_write_ack => TX_FIFO_pipe_write_ack
-               
-);
+	);
+	
+   mac_engine_instance : mac_engine
+   	port map(
+   		clk => clock_mac,
+		m_rx_axis_resetn => rx_axis_resetn,
+		m_rx_axis_tdata => rx_axis_tdata,
+		m_rx_axis_tkeep => rx_axis_tkeep,
+		m_rx_axis_tvalid => rx_axis_tvalid,
+		m_rx_axis_tuser => rx_axis_tuser,
+		m_rx_axis_tlast => rx_axis_tlast,
+
+		s_tx_axis_resetn => tx_axis_resetn,
+		s_tx_axis_tdata => tx_axis_tdata,
+		s_tx_axis_tkeep => tx_axis_tkeep,
+		s_tx_axis_tvalid => tx_axis_tvalid,
+		s_tx_axis_tuser => tx_axis_tuser,
+		s_tx_axis_tlast => tx_axis_tlast,
+		s_tx_axis_tready=> tx_axis_tready
+   	);
+   	
+   DualClockedQueue_ACB_req_instance: DualClockedQueue_ACB_req
+	port map( 
+		    -- read 
+		    read_req_in => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack,
+		    read_data_out => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_data,
+		    read_ack_out => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_req,
+		    -- write 
+		    write_req_out => NIC_TO_MEMORY_REQUEST_pipe_read_req,
+		    write_data_in => NIC_TO_MEMORY_REQUEST_pipe_read_data,
+		    write_ack_in => NIC_TO_MEMORY_REQUEST_pipe_read_ack,
+		
+		    read_clk => clock;
+		    write_clk => clock_mac;
+		    
+		    reset => reset_sync);	
+	
+	DualClockedQueue_ACB_resp_inst : DualClockedQueue_ACB_resp
+		port map( 
+		    -- read
+		    read_req_in => MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_ack,
+		    read_data_out =>MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_data,
+		    read_ack_out => MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_req,
+		    -- write 
+		    write_req_out => MEMORY_TO_NIC_RESPONSE_pipe_read_req,
+		    write_data_in => MEMORY_TO_NIC_RESPONSE_pipe_read_data,
+		    write_ack_in => MEMORY_TO_NIC_RESPONSE_pipe_read_ack,
+		
+		    read_clk => clock_mac;
+		    write_clk => clock;
+		    
+		    reset => reset_sync);
+	
+	DualClockedQueue_AFB_req_inst : DualClockedQueue_AFB_req
+		port map( 
+		    -- read 
+		    read_req_in => AFB_NIC_REQUEST_DFIFO_pipe_write_ack,
+		    read_data_out => AFB_NIC_REQUEST_DFIFO_pipe_write_data,
+		    read_ack_out => AFB_NIC_REQUEST_DFIFO_pipe_write_req,
+		    -- write 
+		    write_req_out => AFB_NIC_REQUEST_pipe_read_req,
+		    write_data_in => AFB_NIC_REQUEST_pipe_read_data,
+		    write_ack_in => AFB_NIC_REQUEST_pipe_read_ack,
+		
+		    read_clk => clock_mac;
+		    write_clk => clock;
+		    
+		    reset => reset_sync);
+	
+	DualClockedQueue_AFB_resp_inst : DualClockedQueue_AFB_resp
+		port map( 
+		    -- read
+		    read_req_in => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack,
+		    read_data_out => AFB_NIC_RESPONSE_DFIFO_pipe_write_data,
+		    read_ack_out => AFB_NIC_RESPONSE_DFIFO_pipe_write_req,
+		    -- write 
+		    write_req_out => AFB_NIC_RESPONSE_pipe_read_req,
+		    write_data_in => AFB_NIC_RESPONSE_pipe_read_data,
+		    write_ack_in => AFB_NIC_RESPONSE_pipe_read_ack,
+		
+		    read_clk => clock;
+		    write_clk => clock_mac;
+		    
+		    reset => reset_sync);
+   
   
   nic_instance : ahir_system 			-- TODO : declare signals
 	port map( 
 		clk : in std_logic;
 		reset : in std_logic;
-		AFB_NIC_REQUEST_pipe_write_data => AFB_NIC_REQUEST_pipe_write_data
-		AFB_NIC_REQUEST_pipe_write_req => AFB_NIC_REQUEST_pipe_write_req
-		AFB_NIC_REQUEST_pipe_write_ack => AFB_NIC_REQUEST_pipe_write_ack
-		AFB_NIC_RESPONSE_pipe_read_data => AFB_NIC_RESPONSE_pipe_read_data
-		AFB_NIC_RESPONSE_pipe_read_req => AFB_NIC_RESPONSE_pipe_read_req
-		AFB_NIC_RESPONSE_pipe_read_ack : --out std_logic_vector(0 downto 0);
-		MEMORY_TO_NIC_RESPONSE_pipe_write_data: --in std_logic_vector(64 downto 0);
-		MEMORY_TO_NIC_RESPONSE_pipe_write_req : --in std_logic_vector(0 downto 0);
-		MEMORY_TO_NIC_RESPONSE_pipe_write_ack : --out std_logic_vector(0 downto 0);
-		NIC_TO_MEMORY_REQUEST_pipe_read_data: --out std_logic_vector(109 downto 0);
-		NIC_TO_MEMORY_REQUEST_pipe_read_req : --in std_logic_vector(0 downto 0);
-		NIC_TO_MEMORY_REQUEST_pipe_read_ack : --out std_logic_vector(0 downto 0);
+		AFB_NIC_REQUEST_pipe_write_data => AFB_NIC_REQUEST_DFIFO_pipe_write_data,
+		AFB_NIC_REQUEST_pipe_write_req => AFB_NIC_REQUEST_DFIFO_pipe_write_req,
+		AFB_NIC_REQUEST_pipe_write_ack => AFB_NIC_REQUEST_DFIFO_pipe_write_ack,
+		AFB_NIC_RESPONSE_pipe_read_data => AFB_NIC_RESPONSE_pipe_read_data,
+		AFB_NIC_RESPONSE_pipe_read_req => AFB_NIC_RESPONSE_pipe_read_req,
+		AFB_NIC_RESPONSE_pipe_read_ack  => AFB_NIC_RESPONSE_pipe_read_ack,
+		MEMORY_TO_NIC_RESPONSE_pipe_write_data => MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_data,
+		MEMORY_TO_NIC_RESPONSE_pipe_write_req => MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_req,
+		MEMORY_TO_NIC_RESPONSE_pipe_write_ack => MEMORY_TO_NIC_RESPONSE_DFIFO_pipe_write_ack,
+		NIC_TO_MEMORY_REQUEST_pipe_read_data => NIC_TO_MEMORY_REQUEST_pipe_read_data,
+		NIC_TO_MEMORY_REQUEST_pipe_read_req => NIC_TO_MEMORY_REQUEST_pipe_read_req,
+		NIC_TO_MEMORY_REQUEST_pipe_read_ack => NIC_TO_MEMORY_REQUEST_pipe_read_ack,
 		mac_to_nic_data_pipe_write_data => RX_FIFO_pipe_read_data,
 		mac_to_nic_data_pipe_write_req => RX_FIFO_pipe_read_ack,
 		mac_to_nic_data_pipe_write_ack => RX_FIFO_pipe_read_req,
@@ -488,12 +644,12 @@ begin
 
   
   bram:acb_sram_stub generic map (addr_width => 22) port map (
-      CORE_BUS_REQUEST_PIPE_WRITE_DATA => MUX_TO_MEM_REQUEST_BUF_pipe_read_data,   --MAIN_MEM_REQUEST_pipe_read_data,
-      CORE_BUS_REQUEST_PIPE_WRITE_REQ  => MUX_TO_MEM_REQUEST_BUF_pipe_read_ack,    --MAIN_MEM_REQUEST_pipe_read_ack,
-      CORE_BUS_REQUEST_PIPE_WRITE_ACK  => MUX_TO_MEM_REQUEST_BUF_pipe_read_req,    --MAIN_MEM_REQUEST_pipe_read_req,
-      CORE_BUS_RESPONSE_PIPE_READ_DATA => MUX_TO_MEM_RESPONSE_BUF_pipe_write_data, --MAIN_MEM_RESPONSE_pipe_write_data,
-      CORE_BUS_RESPONSE_PIPE_READ_REQ  => MUX_TO_MEM_RESPONSE_BUF_pipe_write_ack,  --MAIN_MEM_RESPONSE_pipe_write_ack,
-      CORE_BUS_RESPONSE_PIPE_READ_ACK  => MUX_TO_MEM_RESPONSE_BUF_pipe_write_req,  --MAIN_MEM_RESPONSE_pipe_write_req,
+      CORE_BUS_REQUEST_PIPE_WRITE_DATA => MUX_TO_MEM_REQUEST_BUF_pipe_read_data,
+      CORE_BUS_REQUEST_PIPE_WRITE_REQ  => MUX_TO_MEM_REQUEST_BUF_pipe_read_ack,
+      CORE_BUS_REQUEST_PIPE_WRITE_ACK  => MUX_TO_MEM_REQUEST_BUF_pipe_read_req,
+      CORE_BUS_RESPONSE_PIPE_READ_DATA => MUX_TO_MEM_RESPONSE_BUF_pipe_write_data,
+      CORE_BUS_RESPONSE_PIPE_READ_REQ  => MUX_TO_MEM_RESPONSE_BUF_pipe_write_ack,
+      CORE_BUS_RESPONSE_PIPE_READ_ACK  => MUX_TO_MEM_RESPONSE_BUF_pipe_write_req,
       clk => clock, 
       reset => reset_sync
    );

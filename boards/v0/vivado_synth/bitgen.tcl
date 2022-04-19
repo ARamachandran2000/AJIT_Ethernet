@@ -11,7 +11,7 @@ read_vhdl -library ahir_ieee_proposed $AHIR_RELEASE/vhdl/aHiR_ieee_proposed.vhdl
 #read_vhdl -library GenericGlueStuff $AJIT_PROJECT_HOME/processor/Aa_v3/modules/lib/GenericGlueStuff.vhdl
 #read_vhdl -library GlueModules $AJIT_PROJECT_HOME/processor/Aa_v3/modules/lib/GlueModules.vhdl
 
-read_vhdl -library AjitCustom ../vhdl_libs/AjitCustom.vhdl
+read_vhdl -library AjitCustom ../vhdl_libs/simpleUartLib.vhdl
 read_vhdl -library GenericCoreAddonLib ../vhdl_libs/GenericCoreAddOnLib.vhdl
 read_vhdl -library GenericGlueStuff ../vhdl_libs/GenericGlueStuff.vhdl
 read_vhdl -library GlueModules ../vhdl_libs/GlueModules.vhdl
@@ -42,7 +42,7 @@ read_ip ../ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.sr
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_acb_req/fifo_generator_acb_req.xci
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_acb_resp/fifo_generator_acb_resp.xci
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_req/fifo_generator_afb_req.xci
-read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_req/fifo_generator_afb_resp.xci
+read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_resp/fifo_generator_afb_resp.xci
 ############### SYNTHESIZE ##############
 synth_design -top top_level -part xc7vx690tffg1761-2 
 write_checkpoint -force PostSynthCheckpoint.dcp

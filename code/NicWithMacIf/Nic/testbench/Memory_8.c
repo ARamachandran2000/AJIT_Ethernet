@@ -67,6 +67,12 @@ void write64(uint64_t addr, uint64_t wval, uint8_t bmask)
 			addr = addr + 1;
 			j = j - 8;
 	}
+	uint64_t k;
+	(DEBUG == 1) && fprintf(stderr,"****Written Memory[%d] = 0x%x****\n",addr,wval);
+	for(k = 0; k < 404;k = k + 8)
+	{
+		(DEBUG == 1) && fprintf(stderr,"MEMORY contents[%d:%d] : 0x%x%x%x%x%x%x%x%x\n",k,k+7,memory_array[k],memory_array[k+1],memory_array[k+2],memory_array[k+3],memory_array[k+4],memory_array[k+5],memory_array[k+6],memory_array[k+7]);
+	}
 }
 
 // for memory locking
@@ -93,11 +99,18 @@ int accessMemory(uint8_t requester_id,
 	if(memory_lock_status[0] || memory_lock_status[1])
 	{
 		// memory is locked.
-		if((lock == 0) && (memory_lock_status[requester_id] == 1))
-			// unlock memory.
-			memory_lock_status[requester_id] = 0;
-		else
+		if(memory_lock_status[requester_id] == 1)
+			if(lock == 0)
+				// unlock memory.
+				memory_lock_status[requester_id] = 0;
+			
+			else
+				memory_lock_status[requester_id] = 1;
+			
+		else{
+			(DEBUG == 1) && fprintf(stderr,"Memory locked for Requester = %d, lock = %d, memory_lock_status[0] = %d, memory_lock_status[1] = %d\n",requester_id,lock,memory_lock_status[0],memory_lock_status[1]);
 			__error_flg = 1;
+		}
 	}
 	// memory is unlocked but requester requetsed to lock.
 	else if(lock == 1) 
@@ -177,7 +190,7 @@ void memoryServiceModel(uint8_t requester_id)
 	while(1)
 	{
 
-		uint8_t status; 
+		uint8_t status = 1; 
 		// reads request from pipes
 		getReqFromTester(requester_id,&lock_tester,&rwbar_tester,&bmask_tester,&addr_tester,&wdata_tester);
 		// read/write from/to memory.
@@ -201,13 +214,13 @@ void cpuMemoryServiceDaemon()
 {
 
 	uint8_t cpu_id = 0;
-	int i;
+	uint64_t i;
 	(DEBUG == 1) && fprintf(stderr, "Queue_length = %d for Num. of buffers = %d\n",QUEUE_LENGTH,NUM_OF_BUFFERS);
 	(DEBUG == 1) && fprintf(stderr, "Rx_Queue = %d, Tx_QUEUE = %d,Buffers= %d\t%d\t%d\n",RX_QUEUE,TX_QUEUE,BUF_0,BUF_1,BUF_2);
-	/*for(i = 0; i < MEM_SIZE; i++ )
+	for(i = 0; i < MEM_SIZE; i++ )
 	{
 		memory_array[i] = i + 1;
-	}*/
+	}
 	memoryServiceModel(cpu_id);
 }DEFINE_THREAD(cpuMemoryServiceDaemon);
 

@@ -81,7 +81,7 @@ $module [getTxPacketPointerFromServer]
 	
 	$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
 	
-	$call popFromQueue ($zero<1> tx_queue_pointer_36) (pkt_pointer status)
+	$call popFromQueue ($one<1> tx_queue_pointer_36) (pkt_pointer status)
 
 
 	$rreport(getTxPacketPointerFromServer register_ind register_index tx_queue_pointer_36 pkt_pointer status)

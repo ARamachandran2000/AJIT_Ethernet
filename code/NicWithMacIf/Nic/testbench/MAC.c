@@ -37,8 +37,8 @@ void macToNicData(void)
 		uint16_t data_16 = 0;
 	
 		// fixed length packet
-		uint16_t length_in_bytes = 20 + 10 + ((pkt_cnt*8 + pkt_cnt)%100); // 20 bytes is min ip header length
-		
+		uint16_t length_in_bytes = 20 + 10;// + ((pkt_cnt*8 + pkt_cnt)%100); // 20 bytes is min ip header length
+		(DEBUG == 1) && fprintf(stderr,"pkt_cnt = %d : Packet_lenght =  %d\n", pkt_cnt,length_in_bytes);
 		// ethernet header 0
 		//-------------------
 		//	data_64 = {src_mac_addr[7:0] & dest_mac_addr[47:0] & tkeep}
@@ -64,11 +64,10 @@ void macToNicData(void)
 		write_uint16(pipe_to_send1,data_16);
 		// clear all bits
 		data_64 = 0; data_16 = 0;
-
+		int i;
 		// payload
 		//------------
 		//	payload remaining = 50 - 2 = 48
-		int i;
 		for(i = 0; i < (length_in_bytes-8); i+=8)
 		{
 			// send dummy data (1 to packet_len)
@@ -121,7 +120,6 @@ void nicToMacData(void)
 	sprintf(pipe_to_recv0,"nic_to_mac_data_0");
 	sprintf(pipe_to_recv1,"nic_to_mac_data_1");
 	int pkt_cnt = 0;
-
 	while(1){
 		if(MAC_ENABLE){
 		//fprintf(stderr,"MAC_RX:trying to read packet from nic\n");
@@ -147,8 +145,7 @@ void nicToMacData(void)
 		
 		// extract length
 		length_in_bytes = (data_64 >> 40) & 0x00000000000000ff;
-	
-		int i;
+		int i;	
 		for(i = 0; i < (length_in_bytes - 8); i += 8)
 		{
 			data_64 = read_uint64(pipe_to_recv0);
@@ -167,9 +164,9 @@ void nicToMacData(void)
 		
 		if(((data_64 >> 8) & 0xff) != i)
 		{	
-			fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch Expected = %d, Received = %d\n",pkt_cnt, i,data_64);
+			fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch Expected = %d, Received = %d or 0x%lx\n",pkt_cnt, i,data_64,data_64);
 			__err_flag_ = 1;
-//			break;
+			break;
 		}
 		fprintf(stderr,"MAC_RX : Recived Packet[%d]\n",pkt_cnt);
 		pkt_cnt++;

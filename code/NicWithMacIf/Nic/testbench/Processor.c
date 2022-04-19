@@ -8,9 +8,9 @@ void cpu_model()
 	fprintf(stderr, "CPU_THREAD : started \n");
 	// Initialise Free, Rx and Tx Queues
 
-	initQueue(FREE_QUEUE, QUEUE_SIZE);
-	initQueue(RX_QUEUE, QUEUE_SIZE);
-	initQueue(TX_QUEUE, QUEUE_SIZE);
+	initQueue(FREE_QUEUE, NUMBER_OF_ENTRIES);
+	initQueue(RX_QUEUE, NUMBER_OF_ENTRIES);
+	initQueue(TX_QUEUE, NUMBER_OF_ENTRIES);
 
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD : Init queue done. \n");
 	

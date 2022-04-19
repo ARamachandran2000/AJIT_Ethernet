@@ -16,8 +16,14 @@ read_vhdl -library GenericCoreAddonLib ../vhdl_libs/GenericCoreAddOnLib.vhdl
 read_vhdl -library GenericGlueStuff ../vhdl_libs/GenericGlueStuff.vhdl
 read_vhdl -library GlueModules ../vhdl_libs/GlueModules.vhdl
 
+read_vhdl -library ahir_system_global_package ../vhdl/ahir_system_global_package.vhdl
+read_vhdl -library DualClockedQueuePackage ../vhdl_libs/DualClockedQueuelib.vhdl
 
 ## should read_vhdl be used for mac_rx,mac_tx verilog files?
+read_verilog ../vhdl/mac_rx_interface.v
+read_verilog ../vhdl/mac_tx_interface.v
+read_verilog ../vhdl/mac_engine.v
+read_vhdl ../vhdl/nic.vhdl
 read_vhdl ../vhdl/top_level.vhdl
 ############# CONSTRAINT FILE ###########
 read_xdc ../constraints/vc709_constraints.xdc
@@ -36,7 +42,7 @@ read_ip ../ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.sr
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_acb_req/fifo_generator_acb_req.xci
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_acb_resp/fifo_generator_acb_resp.xci
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_req/fifo_generator_afb_req.xci
-read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_req/fifo_generator_afb_req.xci
+read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_req/fifo_generator_afb_resp.xci
 ############### SYNTHESIZE ##############
 synth_design -top top_level -part xc7vx690tffg1761-2 
 write_checkpoint -force PostSynthCheckpoint.dcp

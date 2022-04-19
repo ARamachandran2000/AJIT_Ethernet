@@ -14,7 +14,7 @@ uint64_t setSliceOfWord_64(uint64_t, uint8_t, uint8_t, uint64_t);
 #define TX_QUEUE   64
 */
 // For number of buffer
-
+// if you change NUM_OF_BUFFERS then make same change to QUEUE_SIZE_MESK in ../src/decls.aa
 #define NUM_OF_BUFFERS	8 // should be miltiple of 4 
 		 	  // 3/2 = 1		+ 3%2 = 1	= 2 * 8 = 16 + 16 = 32
 #define QUEUE_LENGTH	16 + 4*NUM_OF_BUFFERS	//32
@@ -23,7 +23,7 @@ uint64_t setSliceOfWord_64(uint64_t, uint8_t, uint8_t, uint64_t);
 #define TX_QUEUE	(RX_QUEUE + QUEUE_LENGTH) // 32 + 32 = 64
 
 
-#define BUF_SIZE	192
+#define BUF_SIZE	80//192
 #define BUF_0 (TX_QUEUE + QUEUE_LENGTH)/16 // (64 + 32)/16 = 6
 
 #define BUF_1 BUF_0 + (BUF_SIZE / 16) // 6   +   (192/16 = 12) = 18 

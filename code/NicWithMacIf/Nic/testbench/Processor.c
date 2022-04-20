@@ -12,7 +12,7 @@ void cpu_model()
 	initQueue(RX_QUEUE, NUMBER_OF_ENTRIES);
 	initQueue(TX_QUEUE, NUMBER_OF_ENTRIES);
 
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD : Init queue done. \n");
+	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : Init queue done. \n");
 	
 
 	// Push Buffer Pointers to Free Queue for access by NIC

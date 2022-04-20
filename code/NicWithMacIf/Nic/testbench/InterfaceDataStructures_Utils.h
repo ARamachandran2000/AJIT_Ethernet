@@ -22,7 +22,7 @@ uint64_t setSliceOfWord_64(uint64_t, uint8_t, uint8_t, uint64_t);
 #define RX_QUEUE	(FREE_QUEUE + QUEUE_LENGTH) // 0 + 32 = 32
 #define TX_QUEUE	(RX_QUEUE + QUEUE_LENGTH) // 32 + 32 = 64
 
-
+// should be multiple of 16
 #define BUF_SIZE	80//192
 #define BUF_0 (TX_QUEUE + QUEUE_LENGTH)/16 // (64 + 32)/16 = 6
 
@@ -84,7 +84,7 @@ void ReqRespMemory(
 void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 {
 
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Queue %d. \n",queue_offset);
+	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Queue %d. \n",queue_offset);
 	uint64_t rdata;
 	uint8_t status;
 	// Set Lock and Number of Entries
@@ -92,9 +92,9 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 	lock_entries = setSliceOfWord_64(lock_entries, 31,0,number_of_entries);	
 	//memory_array [queue_offset] = lock_entries;
 	ReqRespMemory (0,0,0xFF,queue_offset,lock_entries,&status,&rdata);
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [initQueue] : Read lock_entries = %d. \n",lock_entries);
+	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD [initQueue] : Read lock_entries = %d. \n",lock_entries);
 	
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Pointers %d. \n",queue_offset);
+	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Pointers %d. \n",queue_offset);
 	// Set Read and Write Pointers
 	uint64_t pointers = 0;
 	pointers = setSliceOfWord_64(pointers, 31,0,0);
@@ -104,6 +104,31 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 
 }
 
+void acquireMutex(uint64_t queue_offset)
+{
+	uint64_t rdata;
+	uint8_t status;
+	uint32_t mutex_val = 1;
+	while(mutex_val == 1)
+	{
+		fprintf(stderr,"acquiring mutex\n");
+		ReqRespMemory(1,1,0xff,queue_offset,0,&status,&rdata);
+		mutex_val = (rdata >> 32) & 0xffffffff;
+		fprintf(stderr,"acquiring mutex : mutex_val = %d rdata = 0x%lx\n",mutex_val,rdata);
+	}
+	fprintf(stderr,"got mutex\n");
+	mutex_val = 1;
+	rdata = rdata | ((uint64_t)mutex_val << 32);
+	ReqRespMemory(0,0,0xff,queue_offset,rdata,&status,&rdata);
+}
+
+
+void releaseMutex(uint64_t queue_offset)
+{
+	uint64_t rdata;
+	uint8_t status;
+	ReqRespMemory(0,0,0xf0,queue_offset,(uint64_t)0,&status,&rdata);
+}
 // push data in queue
 int push(uint64_t queue_offset, uint32_t buffer_address)
 {
@@ -115,6 +140,8 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 	uint8_t status;
 	uint8_t bmask = 0;
 	uint32_t  write_pointer,read_pointer;
+	
+	acquireMutex(queue_offset);
 
 	//uint64_t pointers = memory_array [queue_offset + 1];
 	ReqRespMemory (0,1,0xFF,queue_offset+8,0,&status,&pointers);
@@ -163,7 +190,9 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 		ReqRespMemory (0,0,0xFF,queue_offset + 8,pointers,&status,&rdata);
 	}
 
+	releaseMutex(queue_offset);
 	return(ret_val);
+	
 };
 
 
@@ -174,6 +203,9 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 	uint64_t pointers;
 	uint64_t rdata;
 	uint8_t status;
+	
+	acquireMutex(queue_offset);
+	
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [pop] : got pop request queue_offset = %lx\n", queue_offset);
 	//uint64_t pointers = memory_array [queue_offset + 1];
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [pop] : reading memory with (queue_offset+8) = %lx\n", (queue_offset+8));
@@ -214,6 +246,7 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 	
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [pop] : queue empty ret_val= 0x%lx\n", ret_val);
 
+	releaseMutex(queue_offset);
 	return(ret_val);
 
 }

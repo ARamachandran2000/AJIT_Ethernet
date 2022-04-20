@@ -108,7 +108,7 @@ int accessMemory(uint8_t requester_id,
 				memory_lock_status[requester_id] = 1;
 			
 		else{
-			(DEBUG == 1) && fprintf(stderr,"Memory locked for Requester = %d, lock = %d, memory_lock_status[0] = %d, memory_lock_status[1] = %d\n",requester_id,lock,memory_lock_status[0],memory_lock_status[1]);
+			(DEBUG == 0) && fprintf(stderr,"Memory locked for Requester = %d,accessing = 0x%x lock = %d, memory_lock_status[0] = %d, memory_lock_status[1] = %d\n",requester_id,addr,lock,memory_lock_status[0],memory_lock_status[1]);
 			__error_flg = 1;
 		}
 	}
@@ -219,7 +219,7 @@ void cpuMemoryServiceDaemon()
 	(DEBUG == 1) && fprintf(stderr, "Rx_Queue = %d, Tx_QUEUE = %d,Buffers= %d\t%d\t%d\n",RX_QUEUE,TX_QUEUE,BUF_0,BUF_1,BUF_2);
 	for(i = 0; i < MEM_SIZE; i++ )
 	{
-		memory_array[i] = i + 1;
+		memory_array[i] = 0;
 	}
 	memoryServiceModel(cpu_id);
 }DEFINE_THREAD(cpuMemoryServiceDaemon);

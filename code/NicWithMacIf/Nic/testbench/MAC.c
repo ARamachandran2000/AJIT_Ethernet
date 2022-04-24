@@ -69,7 +69,7 @@ void macToNicData(void)
 		// payload
 		//------------
 		//	payload remaining = 50 - 2 = 48
-		for(i; i < (length_in_bytes-8); i+=8)
+		for(i = 0; i < (length_in_bytes-8); i+=8)
 		{
 			// send dummy data (1 to packet_len)
 			// will be usefull while checking back
@@ -91,7 +91,7 @@ void macToNicData(void)
 		write_uint64(pipe_to_send0, data_64);
 		write_uint16(pipe_to_send1, data_16);		
 		//fprintf(stderr,"MAC_TX: written last word\n");
-		(DEBUG == 1) && fprintf(stderr,"MAC_TX : Sent packet[%d]\n",pkt_cnt);
+		(DEBUG == 0) && fprintf(stderr,"MAC_TX : Sent packet[%d]\n",pkt_cnt);
 		//break;
 		pkt_cnt++;
 
@@ -145,7 +145,7 @@ void nicToMacData(void)
 		
 		// extract length
 		length_in_bytes = (data_64 >> 40) & 0x00000000000000ff;	
-		for(i; i < (length_in_bytes - 8); i += 8)
+		for(i = 0; i < (length_in_bytes - 8); i += 8)
 		{
 			data_64 = read_uint64(pipe_to_recv0);
 			data_16 = read_uint16(pipe_to_recv1);

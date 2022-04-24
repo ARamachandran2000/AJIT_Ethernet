@@ -62,8 +62,8 @@ void ReqRespMemory(
 	req1 = setSliceOfWord_64(req1, 35,0,addr); // Addr
 	
 	(DEBUG == 1) && fprintf(stderr, "Interface_Data_Structures : req_resp_mem : req0 = %lx, req1 = %lx\n",req0,req1);	
-	while(*(status) == 1)
-	{
+	//while(*(status) == 1)
+	//{
 		write_uint64(req_pipe0,req0);
 		write_uint64(req_pipe1,req1);
 	
@@ -74,7 +74,7 @@ void ReqRespMemory(
 		*status = read_uint8(resp_pipe1);
 	
 		//fprintf(stderr, "CPU_THREAD [ReqRespMemory] : Response Received = %d, 0x%lx. \n",*status,*rdata);
-	}
+	//}
 	
 }
 
@@ -84,7 +84,7 @@ void ReqRespMemory(
 void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 {
 
-	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Queue %d. \n",queue_offset);
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Queue %d. \n",queue_offset);
 	uint64_t rdata;
 	uint8_t status;
 	// Set Lock and Number of Entries
@@ -92,9 +92,9 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 	lock_entries = setSliceOfWord_64(lock_entries, 31,0,number_of_entries);	
 	//memory_array [queue_offset] = lock_entries;
 	ReqRespMemory (0,0,0xFF,queue_offset,lock_entries,&status,&rdata);
-	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD [initQueue] : Read lock_entries = %d. \n",lock_entries);
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [initQueue] : Read lock_entries = %d. \n",lock_entries);
 	
-	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Pointers %d. \n",queue_offset);
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [initQueue] : Initializing Pointers %d. \n",queue_offset);
 	// Set Read and Write Pointers
 	uint64_t pointers = 0;
 	pointers = setSliceOfWord_64(pointers, 31,0,0);
@@ -106,20 +106,22 @@ void initQueue(uint64_t queue_offset,uint32_t number_of_entries)
 
 void acquireMutex(uint64_t queue_offset)
 {
-	uint64_t rdata;
+	uint64_t rdata,rdata_ignore;
 	uint8_t status;
 	uint32_t mutex_val = 1;
 	while(mutex_val == 1)
 	{
-		fprintf(stderr,"acquiring mutex\n");
+		//fprintf(stderr,"acquiring mutex\n");
 		ReqRespMemory(1,1,0xff,queue_offset,0,&status,&rdata);
 		mutex_val = (rdata >> 32) & 0xffffffff;
-		fprintf(stderr,"acquiring mutex : mutex_val = %d rdata = 0x%lx\n",mutex_val,rdata);
+		//fprintf(stderr,"acquiring mutex : mutex_val = %d rdata = 0x%lx\n",mutex_val,rdata);
+		if(mutex_val == 1)
+			ReqRespMemory(0,0,0xff,queue_offset,rdata,&status,&rdata_ignore);
 	}
-	fprintf(stderr,"got mutex\n");
+	//fprintf(stderr,"got mutex\n");
 	mutex_val = 1;
 	rdata = rdata | ((uint64_t)mutex_val << 32);
-	ReqRespMemory(0,0,0xff,queue_offset,rdata,&status,&rdata);
+	ReqRespMemory(0,0,0xff,queue_offset,rdata,&status,&rdata_ignore);
 }
 
 

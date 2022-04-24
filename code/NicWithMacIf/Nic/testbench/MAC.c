@@ -38,7 +38,7 @@ void macToNicData(void)
 		uint16_t data_16 = 0;
 	
 		// fixed length packet
-		uint16_t length_in_bytes = 20 + 10 ;// ((pkt_cnt*8 + pkt_cnt)%100); // 20 bytes is min ip header length
+		uint16_t length_in_bytes = 20 + (10 + pkt_cnt*8)%10 ;// ((pkt_cnt*8 + pkt_cnt)%100); // 20 bytes is min ip header length
 		(DEBUG == 1) && fprintf(stderr,"pkt_cnt = %d : Packet_lenght =  %d\n", pkt_cnt,length_in_bytes);
 		// ethernet header 0
 		//-------------------

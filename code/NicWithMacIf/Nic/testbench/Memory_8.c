@@ -96,7 +96,7 @@ int accessMemory(uint8_t requester_id,
 	// LOCK MUTEX
 	pthread_mutex_lock(&mutex_memory_lock);
 	// PERFORM MEMORY OPERATION
-	/*if(memory_lock_status[0] || memory_lock_status[1])
+	if(memory_lock_status[0] || memory_lock_status[1])
 	{
 		// memory is locked.
 		if(memory_lock_status[requester_id] == 1)
@@ -116,7 +116,7 @@ int accessMemory(uint8_t requester_id,
 	else if(lock == 1) 
 		// lock the memory
 		memory_lock_status[requester_id] = 1;
-	// check if there was error due memory lock*/
+	// check if there was error due memory lock
 	if(!__error_flg)
 	{
 		// no error due to memory locking
@@ -154,11 +154,11 @@ void getReqFromTester(  uint8_t requester_id,
 	sprintf(req_pipe1,"mem_req%d_pipe1",(int)requester_id);//64 bit wide
 
 	// wait for lock if not available
-	while(memory_lock_status[0] || memory_lock_status[1]){
+	/*while(memory_lock_status[0] || memory_lock_status[1]){
 		if(memory_lock_status[requester_id])
 			break;
-		//fprintf(stderr,"Memory locked for requester = %d, lost_status = {0:%d,1:%d}\n",requester_id,memory_lock_status[0],memory_lock_status[1]);
-	}	
+		(DEBUG == 1) && fprintf(stderr,"Memory locked for requester = %d, lost_status = {0:%d,1:%d}\n",requester_id,memory_lock_status[0],memory_lock_status[1]);
+	}*/
 	
 	
 	uint64_t req1;
@@ -174,7 +174,7 @@ void getReqFromTester(  uint8_t requester_id,
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d req1 = %lx\t wdata = 0x%lx,lock = %lx,rwbar = %lx, addr = %lx, bmask=%lx.\n",requester_id,req1,*(wdata),*(lock),*(rwbar),*(addr),*(bmask));
 
 	// assign lock bit
-	memory_lock_status[requester_id] = *(lock);
+	//memory_lock_status[requester_id] = *(lock);
 }
 
 // sends response to pipes(corresping to requester_id)

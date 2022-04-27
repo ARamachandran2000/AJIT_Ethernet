@@ -17,8 +17,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity AccessRegister is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -460,8 +460,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity NicRegisterAccessDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -2187,8 +2187,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity ReceiveEngineDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -4254,8 +4254,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity SoftwareRegisterAccessDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -8674,8 +8674,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity UpdateRegister is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -9327,8 +9327,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity accessMemory is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -10050,8 +10050,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity acquireMutex is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -10623,8 +10623,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity delay_time_Operator is -- 
   port ( -- 
     sample_req: in boolean;
@@ -11290,8 +11290,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity getQueueElement is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -11767,8 +11767,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity getQueuePointers is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -12148,8 +12148,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity getTxPacketPointerFromServer is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -12919,8 +12919,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity loadBuffer is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -14145,8 +14145,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity nextLSTATE_Volatile is -- 
   port ( -- 
     RX : in  std_logic_vector(72 downto 0);
@@ -14330,8 +14330,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity nicRxFromMacDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -15844,8 +15844,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity popFromQueue is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -16942,8 +16942,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity populateRxQueue is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -18419,8 +18419,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity pushIntoQueue is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -19548,8 +19548,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity releaseMutex is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -19905,8 +19905,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity setQueueElement is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -20358,8 +20358,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity setQueuePointers is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -20741,8 +20741,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity transmitEngineDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -22664,8 +22664,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity transmitPacket is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -25137,8 +25137,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity writeControlInformationToMem is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -25519,8 +25519,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity writeEthernetHeaderToMem is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -27162,8 +27162,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity writePayloadToMem is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -28629,8 +28629,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity ahir_system is  -- system 
   port (-- 
     clk : in std_logic;

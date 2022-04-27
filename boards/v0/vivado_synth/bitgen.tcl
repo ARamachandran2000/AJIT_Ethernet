@@ -16,8 +16,8 @@ read_vhdl -library GenericCoreAddonLib ../vhdl_libs/GenericCoreAddOnLib.vhdl
 read_vhdl -library GenericGlueStuff ../vhdl_libs/GenericGlueStuff.vhdl
 read_vhdl -library GlueModules ../vhdl_libs/GlueModules.vhdl
 
-read_vhdl -library ahir_system_global_package ../vhdl/ahir_system_global_package.vhdl
-read_vhdl -library DualClockedQueuePackage ../vhdl_libs/DualClockedQueuelib.vhdl
+read_vhdl -library ahir_system_global_packagelib ../vhdl/ahir_system_global_packagelib.vhdl
+read_vhdl -library DualClockedQueuelib ../vhdl_libs/DualClockedQueuelib.vhdl
 
 ## should read_vhdl be used for mac_rx,mac_tx verilog files?
 read_verilog ../vhdl/mac_rx_interface.v

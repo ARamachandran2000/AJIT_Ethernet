@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Tue Apr 26 14:34:01 2022
+# Process ID: 29632
+# Current directory: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth
+# Command line: vivado -mode batch -source bitgen.tcl
+# Log file: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth/vivado.log
+# Journal file: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth/vivado.jou
+#-----------------------------------------------------------
+source bitgen.tcl

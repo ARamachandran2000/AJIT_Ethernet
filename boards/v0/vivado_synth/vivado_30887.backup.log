@@ -1,0 +1,32 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Tue Apr 26 15:11:07 2022
+# Process ID: 30887
+# Current directory: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth
+# Command line: vivado
+# Log file: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth/vivado.log
+# Journal file: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/harshad/Project/git/AJIT_Ethernet/boards/v0/ip/ClkWiz80MHz/ClockingWizFor80MHz/ClockingWizFor80MHz.xpr
+INFO: [Project 1-313] Project file moved from '/home/madhav/AjitSystemsRepo/ajit_systems_repository/boards/standalone_navic_without_adc/ip/ClkWiz80MHz/ClockingWizFor80MHz' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/harshad/Vivado/2017.1/data/ip'.
+open_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 6064.441 ; gain = 88.207 ; free physical = 1269 ; free virtual = 13891
+update_compile_order -fileset sources_1
+close_project
+open_project /home/harshad/Project/git/AJIT_Ethernet/boards/v0/ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.xpr
+INFO: [Project 1-313] Project file moved from '/home/akshat/Documents/AJIT/AJIT_Networking/AJIT_Ethernet/boards/v0/ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/harshad/Vivado/2017.1/data/ip'.
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Apr 26 16:31:13 2022...

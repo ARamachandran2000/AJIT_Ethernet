@@ -169,26 +169,15 @@ architecture structure of top_level is
   
   signal PROCESSOR_MODE: std_logic_vector(15 downto 0);
 
-  -- to generate an 80 MHz clock.
-  component clk_wiz_0
-   port
-    (-- Clock in ports
-     -- Clock out ports
-     clk_out1          : out    std_logic;
-     -- Status and control signals
-     reset             : in     std_logic;
-     locked            : out    std_logic;
-     clk_in1_p         : in     std_logic;
-     clk_in1_n         : in     std_logic
-    );
-   end component;
+
    
-   -- to generate an 156  Mhz clock
+   -- to generate a 156 and 80  Mhz clock
    component clk_wiz_1
    port
     (-- Clock in ports
      -- Clock out ports
-     clk_out1          : out    std_logic;
+     clk_out1          : out    std_logic; // 156.25 Mhz Clock
+     clk_out2	       : out    std_logic; // 80 MHz clock
      -- Status and control signals
      reset             : in     std_logic;
      locked            : out    std_logic;
@@ -358,24 +347,14 @@ begin
    -- clock freq = 80MHz, baud-rate=115200.
    CONFIG_UART_BAUD_CONTROL_WORD <= X"0bed0048";
 
-   -- 80 MHz generator
-   clocking0 : clk_wiz_0
-      port map ( 
-        -- Clock out ports  
-         clk_out1 => clock,
-        -- Status and control signals                
-         reset => reset_clk,
-         locked => lock,
-         -- Clock in ports
-         clk_in1_p => clk_p,
-         clk_in1_n => clk_n
-       );
+
        
-   -- 156 MHz generator
+   -- 156 and 80 MHz generator
    clocking1 : clk_wiz_1
       port map ( 
         -- Clock out ports  
          clk_out1 => clock_mac,
+	 clk_out2 => clock
         -- Status and control signals                
          reset => reset_clk,
          locked => lock,

@@ -1,0 +1,818 @@
+/*
+
+Vivado v2017.1 (64-bit)
+SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+
+Process ID: 3743
+License: Customer
+
+Current time: 	4/19/22 7:46:50 PM IST
+Time zone: 	India Standard Time (Asia/Kolkata)
+
+OS: NAME="Ubuntu"
+OS Version: 4.15.0-142-generic
+OS Architecture: amd64
+Available processors (cores): 4
+
+Display: :0
+Screen size: 1366x768
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 25 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	/opt/Xilinx/Vivado/2017.1/tps/lnx64/jre
+JVM executable location: 	/opt/Xilinx/Vivado/2017.1/tps/lnx64/jre/bin/java
+Java library paths: /opt/Xilinx/Vivado/2017.1/tps/lnx64/libxslt/lib:/opt/Xilinx/Vivado/2017.1/lib/lnx64.o:/opt/Xilinx/Vivado/2017.1/tps/lnx64/jre/lib/amd64:/opt/Xilinx/Vivado/2017.1/tps/lnx64/jre/lib/amd64/server:/opt/Xilinx/Vivado/2017.1/ids_lite/ISE/lib/lin64:/opt/Xilinx/Vivado/2017.1/lnx64/tools/dot/lib:/opt/Xilinx/Vivado/2017.1/lnx64/tools/dot/lib:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+
+User name: 	root
+User home directory: /root
+User working directory: /home/akshat/axi_10g_ethernet_0_ex
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/Xilinx/Vivado
+HDI_APPROOT: /opt/Xilinx/Vivado/2017.1
+RDI_DATADIR: /opt/Xilinx/Vivado/2017.1/data
+RDI_BINDIR: /opt/Xilinx/Vivado/2017.1/bin
+
+User preferences location: /root/.Xilinx/Vivado
+Vivado preferences directory: /root/.Xilinx/Vivado/2017.1/vivado.xml
+Vivado layouts directory: /root/.Xilinx/Vivado/2017.1/layouts
+PlanAhead jar location: 	/opt/Xilinx/Vivado/2017.1/lib/classes/planAhead.jar
+Vivado Look & Feel: 	[Synthetica - the extended Synth Look and Feel. - ui.g.i.H]
+Engine tmp dir: 	./.Xil/Vivado-3743-akshat-HP-15-Notebook-PC
+
+GUI allocated memory:	187 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 941 MB
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: START_PROGRESS_DIALOG
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// bs:g (cg:JFrame):  Sourcing Tcl script '/home/akshat/Documents/10GMAC_64bit/10GMAC_64bit.srcs/sources_1/ip/axi_10g_ethernet_0/axi_10g_ethernet_0_ex.tcl' : addNotify
+// Tcl Message: source /home/akshat/Documents/10GMAC_64bit/10GMAC_64bit.srcs/sources_1/ip/axi_10g_ethernet_0/axi_10g_ethernet_0_ex.tcl -notrace 
+// Tcl Message: INFO: [open_example_project] Creating new example project... 
+// [GUI Memory]: 32 MB (+30989kb) [00:00:11]
+// [Engine Memory]: 885 MB (+776833kb) [00:00:11]
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_ADD
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 34 MB (+768kb) [00:00:14]
+// [Engine Memory]: 955 MB (+26901kb) [00:00:14]
+// [GUI Memory]: 63 MB (+28371kb) [00:00:15]
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2017.1/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,003 MB. GUI used memory: 32 MB. Current time: 4/19/22 7:46:55 PM IST
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// [Engine Memory]: 1,004 MB (+1226kb) [00:00:18]
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: RUN_MODIFY
+// TclEventType: PART_MODIFIED
+// TclEventType: BOARD_MODIFIED
+// Tcl Message: create_project: Time (s): cpu = 00:00:26 ; elapsed = 00:00:09 . Memory (MB): peak = 6069.480 ; gain = 124.512 ; free physical = 3400 ; free virtual = 6956 
+// TclEventType: BOARD_MODIFIED
+// Tcl Message: INFO: [open_example_project] Importing original IP ... 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: LOAD_FEATURE
+// Tcl Message: INFO: [open_example_project] Generating the example project IP ... 
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 1,093 MB (+40823kb) [00:00:28]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_CLOSE_DIAGRAM
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// Tcl Message: INFO: [open_example_project] Adding example synthesis HDL files ... INFO: [open_example_project] Adding example XDC files ... INFO: [open_example_project] Adding simulation HDL files ... 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// Tcl Message: INFO: [open_example_project] Rebuilding all the top level IPs ... 
+// TclEventType: PROJECT_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'axi_10g_ethernet_0'... 
+// TclEventType: PROJECT_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: STOP_PROGRESS_DIALOG
+// Tcl Message: INFO: [open_example_project] Open Example Project completed 
+dismissDialog("Sourcing Tcl script '/home/akshat/Documents/10GMAC_64bit/10GMAC_64bit.srcs/sources_1/ip/axi_10g_ethernet_0/axi_10g_ethernet_0_ex.tcl'"); // bs:g (cg:JFrame)
+// TclEventType: STOP_PROGRESS_DIALOG
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_GENERATED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,121 MB. GUI used memory: 35 MB. Current time: 4/19/22 7:47:23 PM IST
+// PAPropertyPanels.initPanels (axi_10g_ethernet_0_example_design.v) elapsed time: 0.7s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v)]", 1, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), sync_insert_error : axi_10g_ethernet_0_sync_block (axi_10g_ethernet_0_sync_block.v)]", 2, false, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click
+// Elapsed time: 11 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 1, 5); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 117, 118); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 14 seconds
+selectButton(PAResourceCommand.PACommandNames_TOGGLE_VIEW_NAV, (String) null); // B:JideButton (E:z, cg:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_TOGGLE_VIEW_NAV
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 208, 158); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 208, 158, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 235, 130); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 103, 160); // bI:J (JPanel:JComponent, cg:JFrame)
+// [Engine Memory]: 1,148 MB (+128kb) [00:01:25]
+// Elapsed time: 112 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), pattern_generator : axi_10g_ethernet_0_gen_check_wrapper (axi_10g_ethernet_0_gen_check_wrapper.v)]", 8, true); // B:i (D:JPanel, cg:JFrame) - Node
+// [GUI Memory]: 67 MB (+636kb) [00:03:19]
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 226, 77); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 465, 167); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 465, 167, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 35 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 42, 216); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 210, 247); // bI:J (JPanel:JComponent, cg:JFrame)
+// [GUI Memory]: 71 MB (+968kb) [00:04:17]
+// Elapsed time: 54 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 20, 463); // bI:J (JPanel:JComponent, cg:JFrame)
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U:JideMenu (CommandMenuBar:CommandBar, cg:JFrame)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // Z:JMenu (JPopupMenu:JComponent, Popup:JWindow)
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_PROJECT, "Open Project..."); // ac:JMenuItem (JPopupMenu:JComponent, Popup:JWindow)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U:JideMenu (CommandMenuBar:CommandBar, cg:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+setFileChooser("/home/akshat/Desktop/Final_Ethernet_Design/Final_Ethernet_Design.xpr");
+// HMemoryUtils.trashcanNow. Engine heap size: 1,180 MB. GUI used memory: 41 MB. Current time: 4/19/22 7:51:43 PM IST
+// bs:g (cg:JFrame):  Open Project : addNotify
+// Opening Vivado Project: /home/akshat/Desktop/Final_Ethernet_Design/Final_Ethernet_Design.xpr. Version: Vivado v2017.1 
+selectButton("PAResourceOtoP.PABaseTab_WOULD_YOU_LIKE_TO_CLOSE_CURRENTLY_No", "No"); // JButton:AbstractButton (JPanel:JComponent, G:JDialog)
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// Tcl Message: open_project /home/akshat/Desktop/Final_Ethernet_Design/Final_Ethernet_Design.xpr 
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 77 MB (+2087kb) [00:05:13]
+// [Engine Memory]: 1,206 MB (+474kb) [00:05:13]
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2017.1/data/ip'. 
+// Project name: Final_Ethernet_Design; location: /home/akshat/Desktop/Final_Ethernet_Design; part: xc7vx690tffg1761-2
+// 'i' command handler elapsed time: 17 seconds
+// Tcl Message: open_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:07 . Memory (MB): peak = 6301.766 ; gain = 25.105 ; free physical = 3014 ; free virtual = 6767 
+// [GUI Memory]: 90 MB (+9909kb) [00:05:14]
+dismissDialog("Open Project"); // bs:g (cg:JFrame)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// HMemoryUtils.trashcanNow. Engine heap size: 1,245 MB. GUI used memory: 50 MB. Current time: 4/19/22 7:51:58 PM IST
+// TclEventType: DG_GRAPH_GENERATED
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 11 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_top_module (axi_10g_top_module.v)]", 1); // B:i (D:JPanel, cg:JFrame)
+// PAPropertyPanels.initPanels (axi_10g_top_module.v) elapsed time: 0.2s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_top_module (axi_10g_top_module.v)]", 1, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_top_module (axi_10g_top_module.v)]", 1, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+selectCodeEditor("axi_10g_top_module.v", 300, 281); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_top_module.v", 181, 178); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_top_module.v", 274, 276); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_top_module.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_top_module.v", 276, 269); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 38 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 5, 84); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 466, 451); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 16 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 203, 221); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 203, 221, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 209, 236); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 209, 236, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 218, 278); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 200, 264); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 200, 264, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 198, 269); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 198, 269, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 197, 285); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 197, 285, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 186, 328); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 186, 328, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 361, 327); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 361, 327, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 348, 361); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 130, 254); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 130, 254, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 274, 335); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 126, 213); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 126, 213, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 127, 253); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 13 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5); // B:i (D:JPanel, cg:JFrame)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5); // B:i (D:JPanel, cg:JFrame)
+// Elapsed time: 11 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 419, 102); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 419, 102, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 19 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5, true); // B:i (D:JPanel, cg:JFrame) - Node
+// Tcl Message: current_project axi_10g_ethernet_0_ex 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+// [GUI Memory]: 97 MB (+2677kb) [00:07:57]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,265 MB. GUI used memory: 50 MB. Current time: 4/19/22 7:54:38 PM IST
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 30, 390); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 588, 407); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 588, 407); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 24 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5); // B:i (D:JPanel, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 207, 215); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 182, 244); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 12 seconds
+selectButton(PAResourceCommand.PACommandNames_ADD_SOURCES, "Sources_add_sources"); // B:JideButton (f:CommandBar, cg:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c:g (cg:JFrame): Add Sources: addNotify
+selectButton("NEXT", "Next >"); // JButton:AbstractButton (ButtonPanel:JPanel, c:g)
+// [Engine Memory]: 1,267 MB (+683kb) [00:08:54]
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a:JButton (C:JPanel, c:g)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,292 MB. GUI used memory: 52 MB. Current time: 4/19/22 7:55:38 PM IST
+// Elapsed time: 45 seconds
+String[] filenames31467 = {"/home/akshat/Documents/AJIT/AJIT_Networking/AJIT_Ethernet/boards/v0/verilog_mac_if/mac_rx_interface.v", "/home/akshat/Documents/AJIT/AJIT_Networking/AJIT_Ethernet/boards/v0/verilog_mac_if/mac_tx_interface.v"};
+setFileChooser(filenames31467);
+selectButton("FINISH", "Finish"); // JButton:AbstractButton (ButtonPanel:JPanel, c:g)
+// 'h' command handler elapsed time: 51 seconds
+dismissDialog("Add Sources"); // c:g (cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: import_files -norecurse {/home/akshat/Documents/AJIT/AJIT_Networking/AJIT_Ethernet/boards/v0/verilog_mac_if/mac_tx_interface.v /home/akshat/Documents/AJIT/AJIT_Networking/AJIT_Ethernet/boards/v0/verilog_mac_if/mac_rx_interface.v} 
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// [GUI Memory]: 104 MB (+1815kb) [00:09:47]
+// TclEventType: DG_ANALYSIS_MSG_RESET
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_rx_interface (mac_rx_interface.v)]", 9, false); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_rx_interface (mac_rx_interface.v)]", 9, false, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click
+// TclEventType: DG_GRAPH_GENERATED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 53 MB. Current time: 4/19/22 7:56:28 PM IST
+selectCodeEditor("mac_rx_interface.v", 218, 124); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 218, 124, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 472, 219); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 472, 219, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 18 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 39, 215); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 44, 219); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 67, 390, true, false, false, false, false); // bI:J (JPanel:JComponent, cg:JFrame) - Shift Key
+selectButton(RDIResourceCommand.RDICommands_LINE_COMMENT, (String) null); // B:JideButton (f:CommandBar, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 186, 320); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [Engine Memory]: 1,341 MB (+11502kb) [00:10:38]
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v)]", 1); // B:i (D:JPanel, cg:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,358 MB. GUI used memory: 52 MB. Current time: 4/19/22 7:57:22 PM IST
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_gen_check_wrapper (axi_10g_ethernet_0_gen_check_wrapper.v)]", 2); // B:i (D:JPanel, cg:JFrame)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_gen_check_wrapper (axi_10g_ethernet_0_gen_check_wrapper.v)]", 2); // B:i (D:JPanel, cg:JFrame)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v)]", 1); // B:i (D:JPanel, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 84, 74); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 331, 344); // bI:J (JPanel:JComponent, cg:JFrame)
+selectButton(PAResourceCommand.PACommandNames_ADD_SOURCES, "Sources_add_sources"); // B:JideButton (f:CommandBar, cg:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c:g (cg:JFrame): Add Sources: addNotify
+selectButton("NEXT", "Next >"); // JButton:AbstractButton (ButtonPanel:JPanel, c:g)
+selectButton(PAResourceQtoS.SrcChooserPanel_CREATE_FILE, "Create File"); // a:JButton (C:JPanel, c:g)
+// F:p (c:g): Create Source File: addNotify
+setText(PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, "mac_to_nic_interface"); // X:JTextField (JPanel:JComponent, F:p)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, F:p)
+// Tcl Command: 'file mkdir /home/akshat/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new'
+dismissDialog("Create Source File"); // F:p (c:g)
+// Tcl Message: file mkdir /home/akshat/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new 
+selectButton("FINISH", "Finish"); // JButton:AbstractButton (ButtonPanel:JPanel, c:g)
+// 'h' command handler elapsed time: 13 seconds
+dismissDialog("Add Sources"); // c:g (cg:JFrame)
+// Tcl Message: close [ open /home/akshat/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new/mac_to_nic_interface.v w ] 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files /home/akshat/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new/mac_to_nic_interface.v 
+// I:p (cg:JFrame): Define Module: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, I:p)
+// TclEventType: FILE_SET_CHANGE
+selectButton("PAResourceAtoD.DefineModulesDialog_YOU_HAVE_MADE_CHANGES_TO_MODULE_Yes", "Yes"); // JButton:AbstractButton (JPanel:JComponent, H:JDialog)
+dismissDialog("Define Module"); // I:p (cg:JFrame)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,391 MB. GUI used memory: 52 MB. Current time: 4/19/22 7:57:57 PM IST
+// Elapsed time: 12 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_to_nic_interface (mac_to_nic_interface.v)]", 10, false); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_to_nic_interface (mac_to_nic_interface.v)]", 10, false, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click
+selectCodeEditor("mac_to_nic_interface.v", 272, 420); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 43, 491); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_rx_interface.v", 3); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 166, 291); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 374, 391); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_rx_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 52, 425); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 148, 282); // bI:J (JPanel:JComponent, cg:JFrame)
+selectButton(RDIResource.CodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // u:JideToggleButton (f:CommandBar, cg:JFrame): TRUE
+selectCodeEditor("mac_to_nic_interface.v", 128, 159); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 123, 175); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 252, 427); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed time: 17 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_tx_interface (mac_tx_interface.v)]", 11, false); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_tx_interface (mac_tx_interface.v)]", 11, false, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click
+// [Engine Memory]: 1,409 MB (+63kb) [00:12:32]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,419 MB. GUI used memory: 52 MB. Current time: 4/19/22 7:59:12 PM IST
+selectCodeEditor("mac_tx_interface.v", 384, 408); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_tx_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 265, 327); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey(null, null, 'z');
+selectButton(RDIResource.CodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // u:JideToggleButton (f:CommandBar, cg:JFrame): FALSE
+selectCodeEditor("mac_to_nic_interface.v", 229, 205); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 216, 212); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 190, 256); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 1, 467); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_tx_interface.v", 5); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_tx_interface.v", 260, 303); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_tx_interface.v", 550, 376); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_tx_interface.v", 3, 108, true, false, false, false, false); // bI:J (JPanel:JComponent, cg:JFrame) - Shift Key
+typeControlKey((HResource) null, "mac_tx_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 74, 403); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_rx_interface.v", 3); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 404, 351); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 15, 150, true, false, false, false, false); // bI:J (JPanel:JComponent, cg:JFrame) - Shift Key
+selectCodeEditor("mac_rx_interface.v", 1, 152, true, false, false, false, false); // bI:J (JPanel:JComponent, cg:JFrame) - Shift Key
+typeControlKey((HResource) null, "mac_rx_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_tx_interface.v", 5); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 80, 199); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 395, 465); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 131, 196); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 131, 196, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("mac_to_nic_interface.v", 143, 201); // bI:J (JPanel:JComponent, cg:JFrame)
+selectButton(RDIResource.CodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // u:JideToggleButton (f:CommandBar, cg:JFrame): TRUE
+selectCodeEditor("mac_to_nic_interface.v", 185, 325); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 300, 257); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 372, 292); // bI:J (JPanel:JComponent, cg:JFrame)
+selectButton(RDIResource.CodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // u:JideToggleButton (f:CommandBar, cg:JFrame): FALSE
+selectCodeEditor("mac_to_nic_interface.v", 128, 291); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 128, 291, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("mac_to_nic_interface.v", 122, 428); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 122, 428, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("mac_to_nic_interface.v", 534, 465); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,441 MB. GUI used memory: 53 MB. Current time: 4/19/22 8:01:02 PM IST
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_rx_interface.v", 3); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 154, 296); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 34, 464); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_rx_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+// [GUI Memory]: 109 MB (+189kb) [00:14:34]
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 203, 182); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 87, 457); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_tx_interface.v", 5); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_tx_interface.v", 164, 146); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_tx_interface.v", 32, 388); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_tx_interface.v", 70, 108, true, false, false, false, false); // bI:J (JPanel:JComponent, cg:JFrame) - Shift Key
+typeControlKey((HResource) null, "mac_tx_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 76, 362); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 213, 87); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 213, 107); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [Engine Memory]: 1,492 MB (+13762kb) [00:15:04]
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_GENERATED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,492 MB. GUI used memory: 53 MB. Current time: 4/19/22 8:01:42 PM IST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,492 MB. GUI used memory: 53 MB. Current time: 4/20/22 9:08:36 AM IST
+// Elapsed time: 47235 seconds
+selectCodeEditor("mac_to_nic_interface.v", 256, 154); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 13 seconds
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+selectCodeEditor("mac_to_nic_interface.v", 264, 225); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 10 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v)]", 1); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v)]", 1, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v)]", 1, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 336, 127); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 13 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 272, 124); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 69, 189); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 69, 201); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 254, 243); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 263, 433); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 67, 294); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 255, 331); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 538, 66); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 197, 179); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 83, 179); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 154, 307); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 22 seconds
+selectCodeEditor("mac_to_nic_interface.v", 546, 201); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 101, 140); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 273, 332); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 38, 294); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 174, 290); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 174, 290, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 251, 292, true, false, false, false, false); // bI:J (JPanel:JComponent, cg:JFrame) - Shift Key
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 307, 274); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 457, 299); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 132, 294); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 300, 311); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 301, 332); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 240, 302); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 545, 405); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 254, 238); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 39, 195); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 157, 192); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 167, 194); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 167, 194, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 424, 195); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 298, 216); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 395, 219); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 299, 233); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 418, 230); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 162, 273); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 10 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 404, 278); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 81, 202); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 149, 294); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 277, 275); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 19 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 191, 356); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 298, 128); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 28 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 203, 216); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 266, 425); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 0, 135, true, false, false, false, false); // bI:J (JPanel:JComponent, cg:JFrame) - Shift Key
+typeControlKey((HResource) null, "mac_to_nic_interface.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 76, 228); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 122, 331); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 29, 352); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 34, 383); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 30, 426); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 31, 444); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 29, 466); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 30, 487); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 32, 503); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 30, 404); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 31, 448); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 32, 466); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 31, 478); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 32, 404); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 27, 449); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 28, 242); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 32, 259); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 31, 274); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 31, 287); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 31, 313); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 31, 330); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 31, 374); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 32, 408); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 28, 424); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 37, 445); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 48, 360); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 150, 404); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 150, 404, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 106, 181); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 106, 181, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 481, 311); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 481, 311, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 150, 148); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 150, 148, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_to_nic_interface (mac_to_nic_interface.v)]", 9); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_to_nic_interface (mac_to_nic_interface.v), rxi : mac_rx_interface (mac_rx_interface.v)]", 10, false); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_to_nic_interface (mac_to_nic_interface.v), rxi : mac_rx_interface (mac_rx_interface.v)]", 10, false, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click
+selectCodeEditor("mac_rx_interface.v", 178, 180); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 178, 180, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("mac_rx_interface.v", 250, 385); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 261, 137); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 261, 137, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 150, 288); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_rx_interface.v", 3); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 233, 276); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 233, 276, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+// Elapsed time: 10 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 250, 252); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 225, 332); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 170, 332); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 170, 332, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 225, 343); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 241, 254); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 246, 254); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 484, 310); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 484, 310, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 142, 261); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 142, 261, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_rx_interface.v", 3); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 192, 214); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 185, 191); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 185, 189, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("mac_rx_interface.v", 190, 203); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_rx_interface.v", 190, 203, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 265, 183); // bI:J (JPanel:JComponent, cg:JFrame)
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 151, 295); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 151, 295, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 23 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 230, 138); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 230, 138, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 232, 165); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 232, 165, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 233, 177); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 233, 177, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 219, 196); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 219, 196, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 220, 220); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 220, 220, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+// Elapsed time: 13 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 5); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 7, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 7, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 319, 344); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 457, 344); // bI:J (JPanel:JComponent, cg:JFrame)
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "user"); // l:X (ax:e, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 254, 371); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 254, 371, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 13 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_rx_interface.v", 3); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 339, 274); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 10 seconds
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "user"); // l:X (ax:e, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 208, 380); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 221, 291); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 134, 275); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 17 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 7, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 7, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+// Elapsed time: 17 seconds
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 274, 434); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 274, 434, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 11 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 7); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v), rx_fifo_inst : axi_10g_ethernet_0_axi_fifo (axi_10g_ethernet_0_axi_fifo.v)]", 9, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v), rx_fifo_inst : axi_10g_ethernet_0_axi_fifo (axi_10g_ethernet_0_axi_fifo.v), wr_reset_gen : axi_10g_ethernet_0_sync_reset (axi_10g_ethernet_0_sync_reset.v)]", 10, false, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_axi_fifo.v", 472, 261); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_axi_fifo.v", 472, 261, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 39 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_xgmac_fifo.v", 5); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+// Elapsed time: 82 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 169, 168); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 194, 179); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 194, 178, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 37 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 7, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 7, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+// Elapsed time: 10 seconds
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 382, 409); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 15 seconds
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "user"); // l:X (ax:e, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 296, 332); // bI:J (JPanel:JComponent, cg:JFrame)
+// Elapsed time: 26 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_rx_interface.v", 3); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 129, 210); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 141, 394); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 141, 394, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_to_nic_interface (mac_to_nic_interface.v), txi : mac_tx_interface (mac_tx_interface.v)]", 13, false); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mac_to_nic_interface (mac_to_nic_interface.v), txi : mac_tx_interface (mac_tx_interface.v)]", 13, false, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click
+selectCodeEditor("mac_tx_interface.v", 236, 311); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_tx_interface.v", 236, 311, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 1,521 MB. GUI used memory: 54 MB. Current time: 4/20/22 9:23:31 AM IST
+selectCodeEditor("mac_tx_interface.v", 304, 217); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_tx_interface.v", 289, 331); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+// TclEventType: DG_GRAPH_GENERATED
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+// HMemoryUtils.trashcanNow. Engine heap size: 1,542 MB. GUI used memory: 53 MB. Current time: 4/20/22 9:23:51 AM IST
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "mac_to_nic_interface.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 181, 389); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 335, 315); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("mac_to_nic_interface.v", 272, 142); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // A:b
+// Elapsed time: 20 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 227, 202); // bI:J (JPanel:JComponent, cg:JFrame)
+selectComboBox(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "tx_axis_tdata", 2); // ax:e (NullPanel:JPanel, cg:JFrame)
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "tx_axis_tuser"); // l:X (ax:e, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 509, 142); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 140, 106); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 140, 106, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 12 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 375, 313); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed time: 26 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 483, 407); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 483, 407, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 6, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 6, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 418, 291); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 418, 291, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+// Elapsed time: 14 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 149, 121); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 148, 120, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 180, 256); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 180, 256, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 182, 340); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 106, 199); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 106, 199, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 135, 193); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+// Elapsed time: 13 seconds
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 428, 408); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 428, 408, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 16 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v)]", 6); // B:i (D:JPanel, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 8, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v)]", 8, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 311, 205); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 311, 205, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v), rx_fifo_inst : axi_10g_ethernet_0_axi_fifo (axi_10g_ethernet_0_axi_fifo.v)]", 10, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v), rx_fifo_inst : axi_10g_ethernet_0_axi_fifo (axi_10g_ethernet_0_axi_fifo.v), wr_reset_gen : axi_10g_ethernet_0_sync_reset (axi_10g_ethernet_0_sync_reset.v)]", 11, false, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_axi_fifo.v", 455, 387); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_axi_fifo.v", 455, 387, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_xgmac_fifo.v", 3); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 294, 308); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 296, 308, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 324, 164); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 324, 163, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 10 seconds
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 305, 256); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_xgmac_fifo.v", 305, 256, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_axi_fifo.v", 4); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v), rx_fifo_inst : axi_10g_ethernet_0_axi_fifo (axi_10g_ethernet_0_axi_fifo.v)]", 10, true); // B:i (D:JPanel, cg:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, axi_10g_ethernet_0_example_design (axi_10g_ethernet_0_example_design.v), fifo_block_i : axi_10g_ethernet_0_fifo_block (axi_10g_ethernet_0_fifo_block.v), ethernet_mac_fifo_i : axi_10g_ethernet_0_xgmac_fifo (axi_10g_ethernet_0_xgmac_fifo.v), rx_fifo_inst : axi_10g_ethernet_0_axi_fifo (axi_10g_ethernet_0_axi_fifo.v)]", 10, true, false, false, false, false, true); // B:i (D:JPanel, cg:JFrame) - Double Click - Node
+selectCodeEditor("axi_10g_ethernet_0_axi_fifo.v", 448, 140); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_axi_fifo.v", 448, 140, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 18 seconds
+selectCodeEditor("axi_10g_ethernet_0_axi_fifo.v", 242, 296); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_axi_fifo.v", 242, 296, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 10 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 90, 201); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 90, 201, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 448, 253); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 448, 253, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+// Elapsed time: 31 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 139, 183); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 139, 183, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 436, 253); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 436, 253, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'c'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 97, 137); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 97, 137, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+typeControlKey((HResource) null, "axi_10g_ethernet_0_example_design.v", 'v'); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 155, 220); // bI:J (JPanel:JComponent, cg:JFrame)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_fifo_block.v", 2); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 430, 252); // bI:J (JPanel:JComponent, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_fifo_block.v", 431, 252, false, false, false, false, true); // bI:J (JPanel:JComponent, cg:JFrame) - Double Click
+// Elapsed time: 10 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_10g_ethernet_0_example_design.v", 1); // k:TdiGroup (j:CodeEditorDocumentPane, cg:JFrame)
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 280, 71); // bI:J (JPanel:JComponent, cg:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [Engine Memory]: 1,577 MB (+10986kb) [13:43:20]
+// TclEventType: DG_GRAPH_GENERATED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,582 MB. GUI used memory: 53 MB. Current time: 4/20/22 9:30:00 AM IST
+// Elapsed time: 14 seconds
+selectCodeEditor("axi_10g_ethernet_0_example_design.v", 502, 36); // bI:J (JPanel:JComponent, cg:JFrame)

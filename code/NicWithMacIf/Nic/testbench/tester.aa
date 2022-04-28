@@ -1,29 +1,29 @@
 // decleration of pipes
 
-$pipe mac_to_nic_data_0 : $uint<64> $depth 16
-$pipe mac_to_nic_data_1 : $uint<16> $depth 16
+$pipe mac_to_nic_data_0 : $uint<64> $depth 2//16
+$pipe mac_to_nic_data_1 : $uint<16> $depth 2//16
 
-$pipe nic_to_mac_data_0 : $uint<64> $depth 16
-$pipe nic_to_mac_data_1 : $uint<16> $depth 16
+$pipe nic_to_mac_data_0 : $uint<64> $depth 2//16
+$pipe nic_to_mac_data_1 : $uint<16> $depth 2//16
 
 $pipe control_word_request_pipe_0 : $uint<32> $depth 2
 $pipe control_word_request_pipe_1 : $uint<64> $depth 2
 $pipe control_word_response_pipe : $uint<64> $depth 2
 
-$pipe mem_req0_pipe0 : $uint<64>  $depth 16
-$pipe mem_req0_pipe1 : $uint<64>  $depth 16
-$pipe mem_req1_pipe0 : $uint<64>  $depth 16
-$pipe mem_req1_pipe1 : $uint<64>  $depth 16
+$pipe mem_req0_pipe0 : $uint<64>  $depth 2//16
+$pipe mem_req0_pipe1 : $uint<64>  $depth 2//16
+$pipe mem_req1_pipe0 : $uint<64>  $depth 2//16
+$pipe mem_req1_pipe1 : $uint<64>  $depth 2//16
 
-$pipe mem_req0_pipe0_tester : $uint<64>  $depth 16
-$pipe mem_req0_pipe1_tester : $uint<64>  $depth 16
-$pipe mem_resp0_pipe0_tester : $uint<64> $depth 16
-$pipe mem_resp0_pipe1_tester : $uint<8> $depth 16
+$pipe mem_req0_pipe0_tester : $uint<64>  $depth 2//16
+$pipe mem_req0_pipe1_tester : $uint<64>  $depth 2//16
+$pipe mem_resp0_pipe0_tester : $uint<64> $depth 2//16
+$pipe mem_resp0_pipe1_tester : $uint<8> $depth 2//16
 
-$pipe mem_resp0_pipe0 : $uint<64> $depth 16
-$pipe mem_resp0_pipe1 : $uint<8> $depth 16
-$pipe mem_resp1_pipe0 : $uint<64> $depth 16
-$pipe mem_resp1_pipe1 : $uint<8> $depth 16
+$pipe mem_resp0_pipe0 : $uint<64> $depth 2//16
+$pipe mem_resp0_pipe1 : $uint<8> $depth 2//16
+$pipe mem_resp1_pipe0 : $uint<64> $depth 2//16
+$pipe mem_resp1_pipe1 : $uint<8> $depth 2//16
 
 
 //

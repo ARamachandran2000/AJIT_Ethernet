@@ -71,7 +71,9 @@ void write64(uint64_t addr, uint64_t wval, uint8_t bmask)
 	(DEBUG == 1) && fprintf(stderr,"****Written Memory[%d] = 0x%x****\n",addr,wval);
 	for(k = 0; k < 404;k = k + 8)
 	{
-		(DEBUG == 1) && fprintf(stderr,"MEMORY contents[%d:%d] : 0x%x%x%x%x%x%x%x%x\n",k,k+7,memory_array[k],memory_array[k+1],memory_array[k+2],memory_array[k+3],memory_array[k+4],memory_array[k+5],memory_array[k+6],memory_array[k+7]);
+		(DEBUG == 1) && fprintf(stderr,"MEMORY contents[%d:%d] : ,"
+			"0x%x%x%x%x%x%x%x%x\n",k,k+7,memory_array[k],memory_array[k+1],memory_array[k+2],
+			memory_array[k+3],memory_array[k+4],memory_array[k+5],memory_array[k+6],memory_array[k+7]);
 	}
 }
 
@@ -82,6 +84,8 @@ int memory_lock_status[] = {0,0};
 
 // mutex for memory array(access_memory function).
 pthread_mutex_t mutex_memory_lock = PTHREAD_MUTEX_INITIALIZER;
+
+pthread_mutex_t mutex_acb_mux = PTHREAD_MUTEX_INITIALIZER;
 
 // reads/writes to memory
 int accessMemory(uint8_t requester_id,
@@ -108,7 +112,9 @@ int accessMemory(uint8_t requester_id,
 				memory_lock_status[requester_id] = 1;
 			
 		else{
-			(DEBUG == 1) && fprintf(stderr,"Memory locked for Requester = %d,accessing = 0x%x lock = %d, memory_lock_status[0] = %d, memory_lock_status[1] = %d\n",requester_id,addr,lock,memory_lock_status[0],memory_lock_status[1]);
+			(DEBUG == 1) && fprintf(stderr,"Memory locked for Requester = %d,accessing = 0x%x lock = %d,"
+			" memory_lock_status[0] = %d, memory_lock_status[1] = %d\n",requester_id,addr,
+			lock,memory_lock_status[0],memory_lock_status[1]);
 			__error_flg = 1;
 		}
 	}
@@ -128,10 +134,16 @@ int accessMemory(uint8_t requester_id,
 		}
 		else 
 		{	
-			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] :Req_id:%d Writing Data = 0x%lx,bmask = 0x%x Address = 0x%lx. \n",requester_id,wdata,byte_mask, addr);
+			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] :Req_id:%d,"
+					" Writing Data = 0x%lx,bmask = 0x%x Address = 0x%lx. \n",requester_id,wdata,byte_mask, addr);
+					
 			write64(addr,wdata,byte_mask);
-			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] : Free buffers are - buf[0,1] = %lx, buf[2,?] = %lx",read64(16),read64(24));
-			(DEBUG == 1) && fprintf(stderr,"CPU_THREAD [AccessMemory] : %d Address = %lx Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",requester_id,addr,wdata,read64(72),byte_mask,addr);
+			
+			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] : Free buffers,"
+					" are - buf[0,1] = %lx, buf[2,?] = %lx",read64(16),read64(24));
+			(DEBUG == 1) && fprintf(stderr,"CPU_THREAD [AccessMemory] : %d Address = %lx,"
+					" Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",requester_id,
+					addr,wdata,read64(72),byte_mask,addr);
 		}
 	}
 	// UNLOCK MUTEX
@@ -157,7 +169,8 @@ void getReqFromTester(  uint8_t requester_id,
 	/*while(memory_lock_status[0] || memory_lock_status[1]){
 		if(memory_lock_status[requester_id])
 			break;
-		(DEBUG == 1) && fprintf(stderr,"Memory locked for requester = %d, lost_status = {0:%d,1:%d}\n",requester_id,memory_lock_status[0],memory_lock_status[1]);
+		(DEBUG == 1) && fprintf(stderr,"Memory locked for requester = %d,,"
+		" lost_status = {0:%d,1:%d}\n",requester_id,memory_lock_status[0],memory_lock_status[1]);
 	}*/
 	
 	
@@ -165,16 +178,22 @@ void getReqFromTester(  uint8_t requester_id,
 	// read pipes
 	*(wdata) = read_uint64(req_pipe0);
 	req1 = read_uint64(req_pipe1);
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : req_id=%d : Reading request from Tester. \n",requester_id);
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d req1 = %lx from pipe = %s\n",requester_id,req1,req_pipe1);
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : req_id=%d"
+			" : Reading request from Tester. \n",requester_id);
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d"
+			" req1 = %lx from pipe = %s\n",requester_id,req1,req_pipe1);
 	*(lock)  = (req1 >> 45) & 0x01; 
 	*(rwbar) = (req1 >> 44) & 0x01;
 	*(addr) = req1 & 0xfffffffff;
 	*(bmask) = (req1 >> 36) & 0xff;
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d req1 = %lx\t wdata = 0x%lx,lock = %lx,rwbar = %lx, addr = %lx, bmask=%lx.\n",requester_id,req1,*(wdata),*(lock),*(rwbar),*(addr),*(bmask));
+	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d"
+			" req1 = %lx\t wdata = 0x%lx,lock = %lx,rwbar = %lx, addr = %lx,"
+			" bmask=%lx.\n",requester_id,req1,*(wdata),*(lock),*(rwbar),*(addr),*(bmask));
 
 	// assign lock bit
+	//pthread_mutex_lock(&mutex_acb_mux);
 	//memory_lock_status[requester_id] = *(lock);
+	//pthread_mutex_unlock(&mutex_acb_mux);
 }
 
 // sends response to pipes(corresping to requester_id)
@@ -203,7 +222,10 @@ void memoryServiceModel(uint8_t requester_id)
 		// reads request from pipes
 		getReqFromTester(requester_id,&lock_tester,&rwbar_tester,&bmask_tester,&addr_tester,&wdata_tester);
 		// read/write from/to memory.
-		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [MemoryServiceModel] :  %d,  %d, %d, 0x%lx, 0x%lx, 0x%lx. \n",requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester);
+		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [MemoryServiceModel] :  %d,"
+				"  %d, %d, 0x%lx, 0x%lx, 0x%lx. \n",requester_id,lock_tester,
+				rwbar_tester,bmask_tester,addr_tester,wdata_tester);
+				
 		status = accessMemory(requester_id,lock_tester,rwbar_tester,bmask_tester,addr_tester,wdata_tester,&rdata);
 		// write response
 		sendResponseToTester(requester_id,status,rdata);

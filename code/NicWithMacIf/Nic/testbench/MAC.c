@@ -38,14 +38,17 @@ void macToNicData(void)
 		uint16_t data_16 = 0;
 	
 		// fixed length packet
-		uint16_t length_in_bytes = 20 + (10 + pkt_cnt*8)%10 ;// ((pkt_cnt*8 + pkt_cnt)%100); // 20 bytes is min ip header length
+		uint16_t length_in_bytes = 20 + (10 + pkt_cnt*8)%10;// 20 bytes is min ip header length
+		
 		(DEBUG == 1) && fprintf(stderr,"pkt_cnt = %d : Packet_lenght =  %d\n", pkt_cnt,length_in_bytes);
+		
 		// ethernet header 0
 		//-------------------
 		//	data_64 = {src_mac_addr[7:0] & dest_mac_addr[47:0] & tkeep}
 		//		src_mac_addr[7:0]				dest_mac_addr[47:0]	   tkeep
 		//		16							48		    8
 		data_64 = ((source_mac_address & 0x00000000000000ff)<<56) | (destination_mac_address<<8) | (0xff);
+		
 		//	data_16 = {tlast & src_mac_addr[15:8]}
 		data_16 = ((source_mac_address & 0x000000000000ff00)>>8);
 		// send to pipes
@@ -58,14 +61,18 @@ void macToNicData(void)
 		//-----------------------------------------
 		//	data_64 = {IHL & version & length_in_bytes & src_mac_addr[47:15] & tkeep}
 		//	IHL(IP Header Length = 5) , version = 4
-		data_64 = (((uint64_t)5 << 60) | ((uint64_t)4 << 56) | ((uint64_t)length_in_bytes << 40) | ((source_mac_address & 0x0000ffffffff0000)<<8) | (0xff));
+		data_64 = (((uint64_t)5 << 60) | ((uint64_t)4 << 56) 
+				| ((uint64_t)length_in_bytes << 40) 
+				| ((source_mac_address & 0x0000ffffffff0000)<<8) | (0xff));
 		data_16 = 0; // considering type of service = 0 for now	
+		
 		// send to pipes
 		write_uint64(pipe_to_send0,data_64);
 		write_uint16(pipe_to_send1,data_16);
+		
 		// clear all bits
 		data_64 = 0; data_16 = 0;
-		//int i;
+
 		// payload
 		//------------
 		//	payload remaining = 50 - 2 = 48
@@ -73,30 +80,30 @@ void macToNicData(void)
 		{
 			// send dummy data (1 to packet_len)
 			// will be usefull while checking back
-			data_64 = (i << 8) | (0xff);
+			data_64 = ((i+pkt_cnt) << 8) | (0xff);
 			data_16 = 0; 
 			write_uint64(pipe_to_send0, data_64);
 			write_uint16(pipe_to_send1, data_16);	
 		}
-		//fprintf(stderr,"MAC_TX: out of for loop\n");	
+		
 		// for last 64 bit word , tlast = 1;
 		// clear all bits
-		//fprintf(stderr,"MAC_TX: writing last word i = %d\n", i);
 		data_64 = 0; data_16 = 0;
-		data_64 = (i << 8) |(uint8_t)((2<<(length_in_bytes - i - 1)) - 1);
+		data_64 = ((i+pkt_cnt) << 8) |(uint8_t)((2<<(length_in_bytes - i - 1)) - 1);
+		
 		// tlast = 1
 		data_16 = (1 << 8); 
+		
 		// write data to pipe
 		//fprintf(stderr,"MAC_TX: writing last word0\n");
 		write_uint64(pipe_to_send0, data_64);
 		write_uint16(pipe_to_send1, data_16);		
-		//fprintf(stderr,"MAC_TX: written last word\n");
+		
 		(DEBUG == 0) && fprintf(stderr,"MAC_TX : Sent packet[%d]\n",pkt_cnt);
-		//break;
 		pkt_cnt++;
 
 		//if(pkt_cnt == 15) break;
-	}
+		}
 	}
 }
 
@@ -150,8 +157,9 @@ void nicToMacData(void)
 			data_64 = read_uint64(pipe_to_recv0);
 			data_16 = read_uint16(pipe_to_recv1);
 			//fprintf(stderr,"MAC_RX: Pipe read complete\n");
-			if(((data_64 >> 8) & 0xff) != i){
-				fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch, Expected = %d, Received = %d\n",pkt_cnt, i,data_64);
+			if(((data_64 >> 8) & 0xffffffffffffffff) != (i+pkt_cnt)){
+				fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch, Expected = %d,"
+						" Received = %d\n",pkt_cnt, (i+pkt_cnt),data_64);
 				__err_flag_ = 1;
 				i += 8;
 				break;
@@ -162,11 +170,12 @@ void nicToMacData(void)
 		data_64 = read_uint64(pipe_to_recv0);
 		data_16 = read_uint16(pipe_to_recv1);
 		
-		if(((data_64 >> 8) & 0xff) != i)
+		if(((data_64 >> 8) & 0xffffffffffffffff) != (i+pkt_cnt))
 		{	
-			fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch Expected = %d, Received = %d or 0x%lx\n",pkt_cnt, i,data_64,data_64);
+			fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch Expected = %d,"
+					" Received = %d or 0x%lx\n",pkt_cnt, (i+pkt_cnt),data_64,data_64);
 			__err_flag_ = 1;
-			//break;
+			break;
 		}
 		fprintf(stderr,"MAC_RX : Recived Packet[%d]\n",pkt_cnt);
 		pkt_cnt++;

@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Tue Apr 19 19:46:20 2022
+# Process ID: 3743
+# Current directory: /home/akshat/axi_10g_ethernet_0_ex
+# Command line: vivado -notrace -source /home/akshat/Documents/10GMAC_64bit/10GMAC_64bit.srcs/sources_1/ip/axi_10g_ethernet_0/axi_10g_ethernet_0_ex.tcl
+# Log file: /home/akshat/axi_10g_ethernet_0_ex/vivado.log
+# Journal file: /home/akshat/axi_10g_ethernet_0_ex/vivado.jou
+#-----------------------------------------------------------
+start_gui
+source /home/akshat/Documents/10GMAC_64bit/10GMAC_64bit.srcs/sources_1/ip/axi_10g_ethernet_0/axi_10g_ethernet_0_ex.tcl -notrace
+update_compile_order -fileset sources_1
+open_project /home/akshat/Desktop/Final_Ethernet_Design/Final_Ethernet_Design.xpr
+update_compile_order -fileset sources_1
+current_project axi_10g_ethernet_0_ex
+import_files -norecurse {/home/akshat/Documents/AJIT/AJIT_Networking/AJIT_Ethernet/boards/v0/verilog_mac_if/mac_tx_interface.v /home/akshat/Documents/AJIT/AJIT_Networking/AJIT_Ethernet/boards/v0/verilog_mac_if/mac_rx_interface.v}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+file mkdir /home/akshat/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new
+close [ open /home/akshat/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new/mac_to_nic_interface.v w ]
+add_files /home/akshat/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new/mac_to_nic_interface.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1

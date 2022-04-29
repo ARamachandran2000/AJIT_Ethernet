@@ -33,7 +33,7 @@ set_property part xc7vx690tffg1761-2 [current_project]
 set_property board_part xilinx.com:vc709:part0:1.5 [current_project]
 
 # set up the link to the processor ngc.
-read_edif ../ngc/processor_1x1x32.set_associative.ngc
+read_edif ../ngc/processor_1x1x32.ngc
 
 #read_ip   ../../standalone_navic_with_mock_adcs/ip/ClkWiz/ClkWiz.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 #read_ip ../ip/ClkWiz80MHz/ClockingWizFor80MHz/ClockingWizFor80MHz.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci

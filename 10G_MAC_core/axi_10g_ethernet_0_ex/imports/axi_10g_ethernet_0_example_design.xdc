@@ -50,3 +50,12 @@ set_false_path -to [get_ports gen_active_flash]
 set_false_path -to [get_ports check_active_flash]
 set_false_path -to [get_ports serialized_stats]
 
+# nic side interfaces are set to false
+set_false_path -to [get_ports RX_FIFO_pipe_read_data]
+set_false_path -to [get_ports RX_FIFO_pipe_read_ack]
+set_false_path -from [get_ports RX_FIFO_pipe_read_req]
+
+set_false_path -from [get_ports TX_FIFO_pipe_write_data]
+set_false_path -from [get_ports TX_FIFO_pipe_write_req]
+set_false_path -to [get_ports TX_FIFO_pipe_write_ack]
+

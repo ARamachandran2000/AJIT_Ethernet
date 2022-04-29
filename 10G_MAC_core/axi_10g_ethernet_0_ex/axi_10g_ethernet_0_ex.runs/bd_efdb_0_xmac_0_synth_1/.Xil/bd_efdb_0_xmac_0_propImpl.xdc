@@ -1,0 +1,3 @@
+set_property SRC_FILE_INFO {cfile:/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/ip/axi_10g_ethernet_0/bd_0/ip/ip_0/synth/bd_efdb_0_xmac_0.xdc rfile:../../../axi_10g_ethernet_0_ex.srcs/sources_1/ip/axi_10g_ethernet_0/bd_0/ip/ip_0/synth/bd_efdb_0_xmac_0.xdc id:1 order:EARLY scoped_inst:inst} [current_design]
+set_property src_info {type:SCOPED_XDC file:1 line:11 export:INPUT save:INPUT read:READ} [current_design]
+set_max_delay 6.4000 -datapath_only -from [get_cells bd_efdb_0_xmac_0_core/rx/rx_pause_control/pause_quanta_reg[*]] -to [get_cells bd_efdb_0_xmac_0_core/tx/tx_cntl/pause_tx_quanta_reg[*]]

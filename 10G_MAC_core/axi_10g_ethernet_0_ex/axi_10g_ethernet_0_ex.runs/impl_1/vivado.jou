@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Thu Apr 28 19:13:50 2022
+# Process ID: 44521
+# Current directory: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/impl_1
+# Command line: vivado -log axi_10g_ethernet_0_example_design.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source axi_10g_ethernet_0_example_design.tcl -notrace
+# Log file: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/impl_1/axi_10g_ethernet_0_example_design.vdi
+# Journal file: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source axi_10g_ethernet_0_example_design.tcl -notrace

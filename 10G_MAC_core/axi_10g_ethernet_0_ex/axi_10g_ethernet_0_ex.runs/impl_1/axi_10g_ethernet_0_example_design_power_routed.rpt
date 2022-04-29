@@ -1,0 +1,365 @@
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
+| Date             : Thu Apr 28 19:18:07 2022
+| Host             : ajit4-ProLiant-ML10 running 64-bit Ubuntu 16.04.7 LTS
+| Command          : report_power -file axi_10g_ethernet_0_example_design_power_routed.rpt -pb axi_10g_ethernet_0_example_design_power_summary_routed.pb -rpx axi_10g_ethernet_0_example_design_power_routed.rpx
+| Design           : axi_10g_ethernet_0_example_design
+| Device           : xc7vx690tffg1761-2
+| Design State     : routed
+| Grade            : commercial
+| Process          : typical
+| Characterization : Production
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+
+1. Summary
+----------
+
++--------------------------+-------+
+| Total On-Chip Power (W)  | 0.996 |
+| Dynamic (W)              | 0.627 |
+| Device Static (W)        | 0.370 |
+| Effective TJA (C/W)      | 1.1   |
+| Max Ambient (C)          | 83.9  |
+| Junction Temperature (C) | 26.1  |
+| Confidence Level         | Low   |
+| Setting File             | ---   |
+| Simulation Activity File | ---   |
+| Design Nets Matched      | NA    |
++--------------------------+-------+
+
+
+1.1 On-Chip Components
+----------------------
+
++--------------------------+-----------+----------+-----------+-----------------+
+| On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
++--------------------------+-----------+----------+-----------+-----------------+
+| Clocks                   |     0.058 |        8 |       --- |             --- |
+| Slice Logic              |     0.047 |    10556 |       --- |             --- |
+|   LUT as Logic           |     0.043 |     4059 |    433200 |            0.94 |
+|   Register               |     0.002 |     5089 |    866400 |            0.59 |
+|   LUT as Distributed RAM |     0.002 |      148 |    174200 |            0.08 |
+|   CARRY4                 |    <0.001 |       87 |    108300 |            0.08 |
+|   F7/F8 Muxes            |    <0.001 |       55 |    433200 |            0.01 |
+|   LUT as Shift Register  |    <0.001 |        8 |    174200 |           <0.01 |
+|   Others                 |     0.000 |      300 |       --- |             --- |
+| Signals                  |     0.058 |     8159 |       --- |             --- |
+| Block RAM                |     0.004 |        4 |      1470 |            0.27 |
+| MMCM                     |     0.107 |        1 |        20 |            5.00 |
+| I/O                      |     0.013 |      165 |       850 |           19.41 |
+| GTH                      |     0.339 |        1 |       --- |             --- |
+| Static Power             |     0.370 |          |           |                 |
+| Total                    |     0.996 |          |           |                 |
++--------------------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++-----------+-------------+-----------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
++-----------+-------------+-----------+-------------+------------+
+| Vccint    |       1.000 |     0.411 |       0.216 |      0.194 |
+| Vccaux    |       1.800 |     0.114 |       0.061 |      0.053 |
+| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
+| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
+| Vcco18    |       1.800 |     0.005 |       0.004 |      0.001 |
+| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.005 |       0.000 |      0.005 |
+| MGTAVcc   |       1.000 |     0.225 |       0.197 |      0.028 |
+| MGTAVtt   |       1.200 |     0.071 |       0.064 |      0.008 |
+| MGTVccaux |       1.800 |     0.010 |       0.010 |      0.000 |
+| MGTZVccl  |       1.075 |     0.000 |       0.000 |      0.000 |
+| MGTZAVcc  |       1.075 |     0.000 |       0.000 |      0.000 |
+| MGTZVcch  |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
++-----------+-------------+-----------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                                | Action                                                                                                     |
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                                       |                                                                                                            |
+| Clock nodes activity        | High       | User specified more than 95% of clocks                 |                                                                                                            |
+| I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view   |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views |
+| Device models               | High       | Device models are Production                           |                                                                                                            |
+|                             |            |                                                        |                                                                                                            |
+| Overall confidence level    | Low        |                                                        |                                                                                                            |
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 1.1                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 2.2                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+| Clock                                                                                                                                                 | Domain                                                                                                                                            | Constraint (ns) |
++-------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+| clk_in_p                                                                                                                                              | clk_in_p                                                                                                                                          |             5.0 |
+| clkfbout                                                                                                                                              | axi_lite_clocking_i/clkfbout                                                                                                                      |             5.0 |
+| fifo_block_i/ethernet_core_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK | fifo_block_i/ethernet_core_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/rxrecclk_out |             3.1 |
+| fifo_block_i/ethernet_core_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK | fifo_block_i/ethernet_core_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/txoutclk     |             3.1 |
+| refclk_p                                                                                                                                              | refclk_p                                                                                                                                          |             6.4 |
+| s_axi_dcm_aclk0                                                                                                                                       | axi_lite_clocking_i/s_axi_dcm_aclk0                                                                                                               |             8.0 |
++-------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++----------------------------------------------------------------+-----------+
+| Name                                                           | Power (W) |
++----------------------------------------------------------------+-----------+
+| axi_10g_ethernet_0_example_design                              |     0.627 |
+|   axi_lite_clocking_i                                          |     0.111 |
+|   fifo_block_i                                                 |     0.495 |
+|     ethernet_core_i                                            |     0.481 |
+|       inst                                                     |     0.481 |
+|         xmac                                                   |     0.085 |
+|           inst                                                 |     0.085 |
+|             bd_efdb_0_xmac_0_core                              |     0.085 |
+|               reset_gen                                        |    <0.001 |
+|                 sync_rx_rst                                    |    <0.001 |
+|                 sync_tx_rst                                    |    <0.001 |
+|               rs_sm                                            |    <0.001 |
+|               rx                                               |     0.028 |
+|                 rx_config_sync                                 |    <0.001 |
+|                 rx_crc                                         |     0.003 |
+|                 rx_decode                                      |     0.001 |
+|                 rx_detect                                      |    <0.001 |
+|                 rx_fsm                                         |     0.018 |
+|                 rx_info                                        |    <0.001 |
+|                 rx_pause_control                               |    <0.001 |
+|                 rx_size                                        |    <0.001 |
+|                 rx_user                                        |     0.003 |
+|               tx                                               |     0.057 |
+|                 pfc_tx_cntl                                    |    <0.001 |
+|                 tx_cntl                                        |     0.001 |
+|                   rx_to_tx_pause_req                           |    <0.001 |
+|                 tx_config_sync                                 |    <0.001 |
+|                 tx_crc                                         |     0.022 |
+|                 tx_crc_control                                 |     0.004 |
+|                 tx_decode                                      |    <0.001 |
+|                 tx_frame_size                                  |     0.001 |
+|                 tx_ifg                                         |    <0.001 |
+|                 tx_mux_1                                       |     0.013 |
+|                 tx_mux_2                                       |     0.004 |
+|                 tx_mux_final                                   |     0.003 |
+|                   rs_disable_s                                 |    <0.001 |
+|                   rs_link_intr_fault_s                         |    <0.001 |
+|                   rs_local_fault_s                             |    <0.001 |
+|                   rs_remote_fault_s                            |    <0.001 |
+|                 tx_sm                                          |     0.007 |
+|                   tx_fifo_reg_0_3_0_5                          |    <0.001 |
+|                   tx_fifo_reg_0_3_12_17                        |    <0.001 |
+|                   tx_fifo_reg_0_3_18_23                        |    <0.001 |
+|                   tx_fifo_reg_0_3_24_29                        |    <0.001 |
+|                   tx_fifo_reg_0_3_30_35                        |    <0.001 |
+|                   tx_fifo_reg_0_3_36_41                        |    <0.001 |
+|                   tx_fifo_reg_0_3_42_47                        |    <0.001 |
+|                   tx_fifo_reg_0_3_48_53                        |    <0.001 |
+|                   tx_fifo_reg_0_3_54_59                        |    <0.001 |
+|                   tx_fifo_reg_0_3_60_65                        |    <0.001 |
+|                   tx_fifo_reg_0_3_66_71                        |    <0.001 |
+|                   tx_fifo_reg_0_3_6_11                         |    <0.001 |
+|                   tx_fifo_reg_0_3_72_72                        |    <0.001 |
+|         xpcs                                                   |     0.396 |
+|           inst                                                 |     0.396 |
+|             ten_gig_eth_pcs_pma_block_i                        |     0.393 |
+|               bd_efdb_0_xpcs_0_core                            |     0.048 |
+|                 ten_gig_eth_pcs_pma_inst                       |     0.048 |
+|                   G_IS_BASER.ten_gig_eth_pcs_pma_inst          |     0.048 |
+|                     BASER.ten_gig_eth_pcs_pma_inst             |     0.048 |
+|                       G_7SERIES_RXRATECOUNTER.rxratecounter_i  |    <0.001 |
+|                       G_7SERIES_TXFIFO.txratefifo_i            |     0.011 |
+|                         asynch_fifo_i                          |     0.009 |
+|                           dp_ram_i                             |     0.006 |
+|                             ten_gig_disti_ram_reg_0_31_0_5     |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_12_17   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_18_23   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_24_29   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_30_35   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_36_41   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_42_47   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_48_53   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_54_59   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_60_65   |    <0.001 |
+|                             ten_gig_disti_ram_reg_0_31_6_11    |    <0.001 |
+|                       coreclk_rxusrclk2_resets_resyncs_i       |    <0.001 |
+|                       coreclk_rxusrclk2_resyncs2_i             |    <0.001 |
+|                         resynch[0].synch_inst                  |    <0.001 |
+|                       coreclk_rxusrclk2_resyncs_i              |    <0.001 |
+|                         resynch[3].synchc_inst                 |    <0.001 |
+|                       coreclk_txusrclk2_resyncs_i              |    <0.001 |
+|                         resynch[0].synch_inst                  |     0.000 |
+|                         resynch[1].synch_inst                  |    <0.001 |
+|                       ebuff_gen.rx_elastic_buffer_i            |     0.008 |
+|                         rx_elastic_buffer_i                    |     0.008 |
+|                           asynch_fifo_i                        |     0.003 |
+|                             dp_ram_i                           |     0.002 |
+|                               ten_gig_disti_ram_reg_0_31_0_5   |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_12_17 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_18_23 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_24_29 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_30_35 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_36_41 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_42_47 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_48_53 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_54_59 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_60_65 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_66_71 |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_6_11  |    <0.001 |
+|                               ten_gig_disti_ram_reg_0_31_72_73 |    <0.001 |
+|                           can_insert_synch                     |    <0.001 |
+|                           idle_delete_i                        |     0.001 |
+|                             idle_detect_i0                     |    <0.001 |
+|                             idle_detect_i1                     |    <0.001 |
+|                             seq_detect_i0                      |    <0.001 |
+|                             seq_detect_i1                      |    <0.001 |
+|                           idle_insert_i                        |     0.003 |
+|                       management_inst                          |     0.001 |
+|                         drp_ipif_i                             |     0.001 |
+|                           synch_1                              |    <0.001 |
+|                             toggle_sync                        |    <0.001 |
+|                           synch_2                              |    <0.001 |
+|                             toggle_sync                        |    <0.001 |
+|                         ieee_registers_i                       |    <0.001 |
+|                           common_reg_block                     |    <0.001 |
+|                             reg_3_0_15                         |    <0.001 |
+|                         management_cs_i                        |    <0.001 |
+|                           ipif_access_inst                     |    <0.001 |
+|                       pcs_top_i                                |     0.020 |
+|                         coreclk_rxusrclk2_timer_125us_resync   |    <0.001 |
+|                         rx_pcs_i                               |     0.004 |
+|                           pcs_descramble_i                     |    <0.001 |
+|                           rx_ber_mon_fsm_i                     |    <0.001 |
+|                           rx_block_lock_fsm_i                  |    <0.001 |
+|                           rx_decoder_i                         |     0.002 |
+|                           rx_pcs_fsm_i                         |    <0.001 |
+|                           synch_signal_ok                      |    <0.001 |
+|                         tx_pcs_i                               |     0.016 |
+|                           pcs_scramble_i                       |     0.003 |
+|                           tx_encoder_i                         |     0.011 |
+|                           tx_pcs_fsm_i                         |     0.001 |
+|                       rxusrclk2_coreclk_resyncs_i              |    <0.001 |
+|                         resynch[0].synch_inst                  |    <0.001 |
+|                       synch_4                                  |     0.000 |
+|               bd_efdb_0_xpcs_0_local_clock_reset_block         |     0.003 |
+|                 areset_rxusrclk2_sync_i                        |    <0.001 |
+|                 coreclk_areset_sync_i                          |    <0.001 |
+|                 coreclk_reset_rx_sync_i                        |    <0.001 |
+|                 coreclk_reset_tx_sync_i                        |    <0.001 |
+|                 dclk_areset_sync_i                             |    <0.001 |
+|                 dclk_reset_rx_sync_i                           |    <0.001 |
+|                 gtrxreset_rxusrclk2_sync_i                     |    <0.001 |
+|                 pma_resetout_rising_rxusrclk2_sync_i           |    <0.001 |
+|                 rxreset_rxusrclk2_sync_i                       |    <0.001 |
+|                 rxresetdone_dclk_sync_i                        |    <0.001 |
+|                 signal_detect_coreclk_sync_i                   |    <0.001 |
+|                 signal_detect_dclk_sync_i                      |    <0.001 |
+|                 sim_speedup_controller_inst                    |    <0.001 |
+|                 txreset_txusrclk2_sync_i                       |    <0.001 |
+|               cable_pull_logic_i                               |     0.001 |
+|                 cable_pull_reset_rising_rxusrclk2_sync_i       |    <0.001 |
+|                 cable_pull_reset_sync_i                        |    <0.001 |
+|                 cable_unpull_reset_rising_rxusrclk2_sync_i     |    <0.001 |
+|                 cable_unpull_reset_sync_i                      |    <0.001 |
+|               gt0_gtwizard_10gbaser_multi_gt_i                 |     0.339 |
+|                 gt0_gtwizard_gth_10gbaser_i                    |     0.339 |
+|               gt0_rxresetdone_i_reg_rxusrclk2_sync_i           |    <0.001 |
+|               gt0_rxresetdone_i_sync_i                         |    <0.001 |
+|               gt0_txresetdone_i_sync_i                         |    <0.001 |
+|               gtrxreset_coreclk_sync_i                         |    <0.001 |
+|               qplllock_coreclk_sync_i                          |    <0.001 |
+|               qplllock_rxusrclk2_sync_i                        |    <0.001 |
+|               qplllock_txusrclk2_sync_i                        |    <0.001 |
+|               signal_detect_coreclk_sync_i                     |    <0.001 |
+|               signal_detect_rxusrclk2_sync_i                   |    <0.001 |
+|             ten_gig_eth_pcs_pma_gt_common_block                |    <0.001 |
+|             ten_gig_eth_pcs_pma_shared_clock_reset_block       |     0.002 |
+|               areset_coreclk_sync_i                            |    <0.001 |
+|               gttxreset_txusrclk2_sync_i                       |    <0.001 |
+|               qplllock_txusrclk2_sync_i                        |    <0.001 |
+|     ethernet_mac_fifo_i                                        |     0.013 |
+|       i_tx_fifo                                                |     0.010 |
+|         GRAY_SYNC[0].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[1].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[2].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[3].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[4].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[5].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[6].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[7].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[8].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[9].sync_gray_addr                            |    <0.001 |
+|         fifo_ram_inst                                          |     0.005 |
+|         rd_reset_gen                                           |    <0.001 |
+|         rd_store_sync                                          |    <0.001 |
+|         wr_reset_gen                                           |    <0.001 |
+|       rx_fifo_inst                                             |     0.004 |
+|         GRAY_SYNC[0].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[1].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[2].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[3].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[4].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[5].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[6].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[7].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[8].sync_gray_addr                            |    <0.001 |
+|         GRAY_SYNC[9].sync_gray_addr                            |    <0.001 |
+|         fifo_ram_inst                                          |    <0.001 |
+|         rd_reset_gen                                           |    <0.001 |
+|         rd_store_sync                                          |    <0.001 |
+|         wr_reset_gen                                           |    <0.001 |
+|   mni                                                          |     0.003 |
+|     rxi                                                        |     0.001 |
+|     txi                                                        |     0.002 |
+|   reset_error_sync_reg                                         |    <0.001 |
+|   sync_coreclk_enable_custom_preamble                          |    <0.001 |
+|   sync_insert_error                                            |    <0.001 |
+|   sync_pcs_loopback                                            |    <0.001 |
++----------------------------------------------------------------+-----------+
+
+

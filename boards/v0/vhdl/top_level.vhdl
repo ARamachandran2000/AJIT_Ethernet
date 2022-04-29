@@ -176,8 +176,8 @@ architecture structure of top_level is
    port
     (-- Clock in ports
      -- Clock out ports
-     clk_out1          : out    std_logic; // 156.25 Mhz Clock
-     clk_out2	       : out    std_logic; // 80 MHz clock
+     clk_out1          : out    std_logic; -- 156.25 Mhz Clock
+     clk_out2	       : out    std_logic; -- 80 MHz clock
      -- Status and control signals
      reset             : in     std_logic;
      locked            : out    std_logic;
@@ -354,7 +354,7 @@ begin
       port map ( 
         -- Clock out ports  
          clk_out1 => clock_mac,
-	 clk_out2 => clock
+	 clk_out2 => clock,
         -- Status and control signals                
          reset => reset_clk,
          locked => lock,

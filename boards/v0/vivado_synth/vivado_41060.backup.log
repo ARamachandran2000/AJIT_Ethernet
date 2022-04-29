@@ -1,0 +1,134 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Thu Apr 28 18:09:09 2022
+# Process ID: 41060
+# Current directory: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth
+# Command line: vivado -mode batch -source bitgen.tcl
+# Log file: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth/vivado.log
+# Journal file: /home/harshad/Project/git/AJIT_Ethernet/boards/v0/vivado_synth/vivado.jou
+#-----------------------------------------------------------
+source bitgen.tcl
+# set AHIR_RELEASE $::env(AHIR_RELEASE)
+# read_vhdl -library ahir $AHIR_RELEASE/vhdl/ahir.vhdl
+# read_vhdl -library ahir_ieee_proposed $AHIR_RELEASE/vhdl/aHiR_ieee_proposed.vhdl
+# read_vhdl -library simpleUartLib ../vhdl_libs/simpleUartLib.vhdl
+# read_vhdl -library GenericCoreAddonLib ../vhdl_libs/GenericCoreAddOnLib.vhdl
+# read_vhdl -library GenericGlueStuff ../vhdl_libs/GenericGlueStuff.vhdl
+# read_vhdl -library GlueModules ../vhdl_libs/GlueModules.vhdl
+# read_vhdl -library ahir_system_global_packagelib ../vhdl/ahir_system_global_packagelib.vhdl
+# read_vhdl -library DualClockedQueuelib ../vhdl_libs/DualClockedQueuelib.vhdl
+# read_verilog ../vhdl/mac_rx_interface.v
+# read_verilog ../vhdl/mac_tx_interface.v
+# read_verilog ../vhdl/mac_engine.v
+# read_vhdl ../vhdl/nic.vhdl
+# read_vhdl ../vhdl/top_level.vhdl
+# read_xdc ../constraints/vc709_constraints.xdc
+# set_property part xc7vx690tffg1761-2 [current_project]
+# set_property board_part xilinx.com:vc709:part0:1.5 [current_project]
+# read_edif ../ngc/processor_1x1x32.set_associative.ngc
+# read_ip ../ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/harshad/Vivado/2017.1/data/ip'.
+# read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_acb_req/fifo_generator_acb_req.xci
+# read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_acb_resp/fifo_generator_acb_resp.xci
+# read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_req/fifo_generator_afb_req.xci
+# read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_resp/fifo_generator_afb_resp.xci
+# synth_design -top top_level -part xc7vx690tffg1761-2 
+Command: synth_design -top top_level -part xc7vx690tffg1761-2
+Starting synth_design
+WARNING: [Vivado_Tcl 4-393] The 'Implementation' target of the following IPs are stale, please generate the output products using the generate_target or synth_ip command before running synth_design.
+/home/harshad/Project/git/AJIT_Ethernet/boards/v0/ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
+
+WARNING: [IP_Flow 19-2162] IP 'clk_wiz_1' is locked:
+* This IP has board specific outputs. Current project board 'xilinx.com:vc709:part0:1.5' and the board 'xilinx.com:vc709:part0:1.8' used to customize the IP 'clk_wiz_1' do not match.
+Please select 'Report IP Status' from the 'Tools/Report' menu or run Tcl command 'report_ip_status' for more information.
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7vx690t-ffg1761'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7vx690t-ffg1761'
+INFO: [Common 17-1223] The version limit for your license is '2017.07' and will expire in -1732 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 41091 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1293.020 ; gain = 76.000 ; free physical = 510 ; free virtual = 11388
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'top_level' [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/vhdl/top_level.vhdl:58]
+INFO: [Synth 8-3491] module 'clk_wiz_1' declared at '/home/harshad/Project/git/AJIT_Ethernet/boards/v0/ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.v:70' bound to instance 'clocking1' of component 'clk_wiz_1' [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/vhdl/top_level.vhdl:353]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_1' [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.v:70]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_1_clk_wiz' [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_clk_wiz.v:68]
+INFO: [Synth 8-638] synthesizing module 'IBUFDS' [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:14485]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter DIFF_TERM bound to: FALSE - type: string 
+	Parameter DQS_BIAS bound to: FALSE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-256] done synthesizing module 'IBUFDS' (1#1) [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:14485]
+INFO: [Synth 8-638] synthesizing module 'MMCME2_ADV' [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20759]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 40.625000 - type: float 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKFBOUT_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKIN1_PERIOD bound to: 5.000000 - type: float 
+	Parameter CLKIN2_PERIOD bound to: 0.000000 - type: float 
+	Parameter CLKOUT0_DIVIDE_F bound to: 6.500000 - type: float 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT0_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT1_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT1_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT2_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT3_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT4_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT5_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT6_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter COMPENSATION bound to: ZHOLD - type: string 
+	Parameter DIVCLK_DIVIDE bound to: 8 - type: integer 
+	Parameter IS_CLKINSEL_INVERTED bound to: 1'b0 
+	Parameter IS_PSEN_INVERTED bound to: 1'b0 
+	Parameter IS_PSINCDEC_INVERTED bound to: 1'b0 
+	Parameter IS_PWRDWN_INVERTED bound to: 1'b0 
+	Parameter IS_RST_INVERTED bound to: 1'b0 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: float 
+	Parameter REF_JITTER2 bound to: 0.010000 - type: float 
+	Parameter SS_EN bound to: FALSE - type: string 
+	Parameter SS_MODE bound to: CENTER_HIGH - type: string 
+	Parameter SS_MOD_PERIOD bound to: 10000 - type: integer 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-256] done synthesizing module 'MMCME2_ADV' (2#1) [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20759]
+INFO: [Synth 8-638] synthesizing module 'BUFG' [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:607]
+INFO: [Synth 8-256] done synthesizing module 'BUFG' (3#1) [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:607]
+INFO: [Synth 8-256] done synthesizing module 'clk_wiz_1_clk_wiz' (4#1) [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1_clk_wiz.v:68]
+INFO: [Synth 8-256] done synthesizing module 'clk_wiz_1' (5#1) [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.v:70]
+ERROR: [Synth 8-485] no port 'clk_out2' on instance [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/vhdl/top_level.vhdl:353]
+ERROR: [Synth 8-485] no port 'clk_out2' on instance [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/vhdl/top_level.vhdl:353]
+ERROR: [Synth 8-485] no port 'clk_out2' on instance [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/vhdl/top_level.vhdl:180]
+ERROR: [Synth 8-285] failed synthesizing module 'top_level' [/home/harshad/Project/git/AJIT_Ethernet/boards/v0/vhdl/top_level.vhdl:58]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1472.520 ; gain = 255.500 ; free physical = 512 ; free virtual = 11391
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+14 Infos, 2 Warnings, 0 Critical Warnings and 5 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Thu Apr 28 18:10:31 2022...

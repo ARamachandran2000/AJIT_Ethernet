@@ -1,11 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
-
-
 library std;
 use std.standard.all;
-library ieee;
-use ieee.std_logic_1164.all;
 library aHiR_ieee_proposed;
 use aHiR_ieee_proposed.math_utility_pkg.all;
 use aHiR_ieee_proposed.fixed_pkg.all;

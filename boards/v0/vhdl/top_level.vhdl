@@ -472,8 +472,8 @@ begin
 		CORE_BUS_REQUEST_pipe_write_req  => MAIN_TAP_REQUEST_BUF_pipe_read_ack,
 		CORE_BUS_REQUEST_pipe_write_ack  => MAIN_TAP_REQUEST_BUF_pipe_read_req,
 		AFB_BUS_REQUEST_pipe_read_data 	 => AFB_NIC_REQUEST_pipe_read_data,
-		AFB_BUS_REQUEST_pipe_read_req    => AFB_NIC_REQUEST_pipe_read_ack,
-		AFB_BUS_REQUEST_pipe_read_ack    => AFB_NIC_REQUEST_pipe_read_req,
+		AFB_BUS_REQUEST_pipe_read_req    => AFB_NIC_REQUEST_pipe_read_req,
+		AFB_BUS_REQUEST_pipe_read_ack    => AFB_NIC_REQUEST_pipe_read_ack,
 		CORE_BUS_RESPONSE_pipe_read_data => MAIN_TAP_RESPONSE_BUF_pipe_write_data,
 		CORE_BUS_RESPONSE_pipe_read_req  => MAIN_TAP_RESPONSE_BUF_pipe_write_ack,
 		CORE_BUS_RESPONSE_pipe_read_ack  => MAIN_TAP_RESPONSE_BUF_pipe_write_req
@@ -512,8 +512,8 @@ begin
 		CORE_BUS_REQUEST_HIGH_pipe_write_req  => MAIN_THROUGH_REQUEST_BUF_pipe_read_ack,
 		CORE_BUS_REQUEST_HIGH_pipe_write_ack  => MAIN_THROUGH_REQUEST_BUF_pipe_read_req,
 		CORE_BUS_REQUEST_LOW_pipe_write_data  => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_data,
-		CORE_BUS_REQUEST_LOW_pipe_write_req   => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack,
-		CORE_BUS_REQUEST_LOW_pipe_write_ack   => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_req,
+		CORE_BUS_REQUEST_LOW_pipe_write_req   => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack,-- in
+		CORE_BUS_REQUEST_LOW_pipe_write_ack   => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_req, -- out
 		CORE_BUS_RESPONSE_pipe_write_data     => MUX_TO_MEM_RESPONSE_pipe_write_data,
 		CORE_BUS_RESPONSE_pipe_write_req      => MUX_TO_MEM_RESPONSE_pipe_write_ack,
 		CORE_BUS_RESPONSE_pipe_write_ack      => MUX_TO_MEM_RESPONSE_pipe_write_req,
@@ -524,8 +524,8 @@ begin
 		CORE_BUS_RESPONSE_HIGH_pipe_read_req  => MAIN_THROUGH_RESPONSE_BUF_pipe_write_ack,
 		CORE_BUS_RESPONSE_HIGH_pipe_read_ack  => MAIN_THROUGH_RESPONSE_BUF_pipe_write_req,
 		CORE_BUS_RESPONSE_LOW_pipe_read_data  => MEMORY_TO_NIC_RESPONSE_pipe_read_data,
-		CORE_BUS_RESPONSE_LOW_pipe_read_req   => MEMORY_TO_NIC_RESPONSE_pipe_read_ack,
-		CORE_BUS_RESPONSE_LOW_pipe_read_ack   => MEMORY_TO_NIC_RESPONSE_pipe_read_req
+		CORE_BUS_RESPONSE_LOW_pipe_read_req   => MEMORY_TO_NIC_RESPONSE_pipe_read_req,
+		CORE_BUS_RESPONSE_LOW_pipe_read_ack   => MEMORY_TO_NIC_RESPONSE_pipe_read_ack
 	);
 
 
@@ -606,9 +606,9 @@ begin
    DualClockedQueue_ACB_req_instance: DualClockedQueue_ACB_req  -- done
 	port map( 
 		    -- read 
-		    read_req_in => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack(0),
+		    read_req_in => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_req(0),
 		    read_data_out => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_data,
-		    read_ack_out => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_req(0),
+		    read_ack_out => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack(0),
 		    -- write 
 		    write_req_out => NIC_TO_MEMORY_REQUEST_pipe_read_req(0),
 		    write_data_in => NIC_TO_MEMORY_REQUEST_pipe_read_data,
@@ -654,9 +654,9 @@ begin
 	DualClockedQueue_AFB_resp_inst : DualClockedQueue_AFB_resp -- done
 		port map( 
 		    -- read
-		    read_req_in => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack(0),
+		    read_req_in => AFB_NIC_RESPONSE_DFIFO_pipe_write_req(0),
 		    read_data_out => AFB_NIC_RESPONSE_DFIFO_pipe_write_data,
-		    read_ack_out => AFB_NIC_RESPONSE_DFIFO_pipe_write_req(0),
+		    read_ack_out => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack(0),
 		    -- write 
 		    write_req_out => AFB_NIC_RESPONSE_pipe_read_req(0),
 		    write_data_in => AFB_NIC_RESPONSE_pipe_read_data,

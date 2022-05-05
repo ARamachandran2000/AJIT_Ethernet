@@ -1,10 +1,15 @@
 set AHIR_RELEASE $::env(AHIR_RELEASE)
+#set AJIT_PROJECT_HOME $::env(AJIT_PROJECT_HOME)
 
 #create_project -in memory 
 
 read_vhdl -library ahir $AHIR_RELEASE/vhdl/ahir.vhdl
 read_vhdl -library ahir_ieee_proposed $AHIR_RELEASE/vhdl/aHiR_ieee_proposed.vhdl
 #read_vhdl -library AjitCustom $AJIT_PROJECT_HOME/processor/vhdl/lib/AjitCustom.vhdl
+#read_vhdl -library simpleUartLib $AJIT_PROJECT_HOME/processor/vhdl/lib/simpleUartLib.vhdl
+#read_vhdl -library GenericCoreAddonLib $AJIT_PROJECT_HOME/cores/building_blocks/outside_sys/lib/GenericCoreAddOnLib.vhdl
+#read_vhdl -library GenericGlueStuff $AJIT_PROJECT_HOME/processor/Aa_v3/modules/lib/GenericGlueStuff.vhdl
+#read_vhdl -library GlueModules $AJIT_PROJECT_HOME/processor/Aa_v3/modules/lib/GlueModules.vhdl
 
 read_vhdl -library simpleUartLib ../vhdl_libs/simpleUartLib.vhdl
 read_vhdl -library GenericCoreAddonLib ../vhdl_libs/GenericCoreAddOnLib.vhdl
@@ -14,6 +19,8 @@ read_vhdl -library GlueModules ../vhdl_libs/GlueModules.vhdl
 read_vhdl -library ahir_system_global_packagelib ../vhdl/ahir_system_global_packagelib.vhdl
 read_vhdl -library DualClockedQueuelib ../vhdl_libs/DualClockedQueuelib.vhdl
 
+## should read_vhdl be used for mac_rx,mac_tx verilog files?
+read_verilog ../vhdl/mac_rx_interface.v
 read_verilog ../vhdl/mac_tx_interface.v
 read_verilog ../vhdl/mac_engine.v
 read_vhdl ../vhdl/nic.vhdl
@@ -25,8 +32,11 @@ read_xdc ../constraints/vc709_constraints.xdc
 set_property part xc7vx690tffg1761-2 [current_project]
 set_property board_part xilinx.com:vc709:part0:1.5 [current_project]
 
-# set up the link to the processor ngc.
+# set:q up the link to the processor ngc.
 read_edif ../ngc/processor_1x1x32.ngc
+
+#read_ip   ../../standalone_navic_with_mock_adcs/ip/ClkWiz/ClkWiz.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+#read_ip ../ip/ClkWiz80MHz/ClockingWizFor80MHz/ClockingWizFor80MHz.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 
 read_ip ../ip/ClkWiz156_25MHz/ClockingWizFor156_25MHz/ClockingWizFor156_25MHz.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
 

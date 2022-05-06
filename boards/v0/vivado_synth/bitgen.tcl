@@ -1,16 +1,10 @@
-set AHIR_RELEASE $::env(AHIR_RELEASE)
+#set AHIR_RELEASE $::env(AHIR_RELEASE)
 #set AJIT_PROJECT_HOME $::env(AJIT_PROJECT_HOME)
 
 #create_project -in memory 
 
-read_vhdl -library ahir $AHIR_RELEASE/vhdl/ahir.vhdl
-read_vhdl -library ahir_ieee_proposed $AHIR_RELEASE/vhdl/aHiR_ieee_proposed.vhdl
-#read_vhdl -library AjitCustom $AJIT_PROJECT_HOME/processor/vhdl/lib/AjitCustom.vhdl
-#read_vhdl -library simpleUartLib $AJIT_PROJECT_HOME/processor/vhdl/lib/simpleUartLib.vhdl
-#read_vhdl -library GenericCoreAddonLib $AJIT_PROJECT_HOME/cores/building_blocks/outside_sys/lib/GenericCoreAddOnLib.vhdl
-#read_vhdl -library GenericGlueStuff $AJIT_PROJECT_HOME/processor/Aa_v3/modules/lib/GenericGlueStuff.vhdl
-#read_vhdl -library GlueModules $AJIT_PROJECT_HOME/processor/Aa_v3/modules/lib/GlueModules.vhdl
-
+read_vhdl -library ahir ../vhdl_libs/ahir.vhdl
+read_vhdl -library ahir_ieee_proposed ../vhdl_libs/aHiR_ieee_proposed.vhdl
 read_vhdl -library simpleUartLib ../vhdl_libs/simpleUartLib.vhdl
 read_vhdl -library GenericCoreAddonLib ../vhdl_libs/GenericCoreAddOnLib.vhdl
 read_vhdl -library GenericGlueStuff ../vhdl_libs/GenericGlueStuff.vhdl

@@ -17,8 +17,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity AccessRegister is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -460,8 +460,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity NicRegisterAccessDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -2187,8 +2187,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity ReceiveEngineDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -4254,8 +4254,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity SoftwareRegisterAccessDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -4697,7 +4697,7 @@ begin --
       generic map(name => " condition_evaluated_1918_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(10), ack => do_while_stmt_1064_branch_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_10: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 63,1 => 63);
+      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 31);
       constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 0);
       constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_10"; 
@@ -4724,7 +4724,7 @@ begin --
       -- CP-element group 11: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1066_sample_start__ps
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_11: block -- 
-      constant place_capacities: IntegerArray(0 to 4) := (0 => 63,1 => 63,2 => 63,3 => 63,4 => 1);
+      constant place_capacities: IntegerArray(0 to 4) := (0 => 31,1 => 31,2 => 31,3 => 31,4 => 1);
       constant place_markings: IntegerArray(0 to 4)  := (0 => 0,1 => 0,2 => 0,3 => 0,4 => 1);
       constant place_delays: IntegerArray(0 to 4) := (0 => 0,1 => 0,2 => 0,3 => 0,4 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_11"; 
@@ -4756,7 +4756,7 @@ begin --
       -- CP-element group 12: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1082_sample_completed_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_12: block -- 
-      constant place_capacities: IntegerArray(0 to 3) := (0 => 63,1 => 63,2 => 63,3 => 63);
+      constant place_capacities: IntegerArray(0 to 3) := (0 => 31,1 => 31,2 => 31,3 => 31);
       constant place_markings: IntegerArray(0 to 3)  := (0 => 0,1 => 0,2 => 0,3 => 0);
       constant place_delays: IntegerArray(0 to 3) := (0 => 0,1 => 0,2 => 0,3 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_12"; 
@@ -4781,7 +4781,7 @@ begin --
       -- CP-element group 13: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1066_update_start__ps
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_13: block -- 
-      constant place_capacities: IntegerArray(0 to 3) := (0 => 63,1 => 63,2 => 63,3 => 63);
+      constant place_capacities: IntegerArray(0 to 3) := (0 => 31,1 => 31,2 => 31,3 => 31);
       constant place_markings: IntegerArray(0 to 3)  := (0 => 0,1 => 0,2 => 0,3 => 0);
       constant place_delays: IntegerArray(0 to 3) := (0 => 0,1 => 0,2 => 0,3 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_13"; 
@@ -4805,7 +4805,7 @@ begin --
       -- CP-element group 14: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/aggregated_phi_update_ack
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_14: block -- 
-      constant place_capacities: IntegerArray(0 to 3) := (0 => 63,1 => 63,2 => 63,3 => 63);
+      constant place_capacities: IntegerArray(0 to 3) := (0 => 31,1 => 31,2 => 31,3 => 31);
       constant place_markings: IntegerArray(0 to 3)  := (0 => 0,1 => 0,2 => 0,3 => 0);
       constant place_delays: IntegerArray(0 to 3) := (0 => 0,1 => 0,2 => 0,3 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_14"; 
@@ -4826,7 +4826,7 @@ begin --
       -- CP-element group 15: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1066_sample_start_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_15: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 63,1 => 1);
+      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
       constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
       constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_15"; 
@@ -4852,7 +4852,7 @@ begin --
       -- CP-element group 16: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1066_update_start_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_16: block -- 
-      constant place_capacities: IntegerArray(0 to 6) := (0 => 63,1 => 1,2 => 1,3 => 1,4 => 1,5 => 1,6 => 1);
+      constant place_capacities: IntegerArray(0 to 6) := (0 => 31,1 => 1,2 => 1,3 => 1,4 => 1,5 => 1,6 => 1);
       constant place_markings: IntegerArray(0 to 6)  := (0 => 0,1 => 1,2 => 1,3 => 1,4 => 1,5 => 1,6 => 1);
       constant place_delays: IntegerArray(0 to 6) := (0 => 0,1 => 0,2 => 0,3 => 0,4 => 0,5 => 0,6 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_16"; 
@@ -5019,7 +5019,7 @@ begin --
       -- CP-element group 32: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1072_sample_start_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_32: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 63,1 => 1,2 => 1);
+      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 1,2 => 1);
       constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
       constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 1,2 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_32"; 
@@ -5041,7 +5041,7 @@ begin --
       -- CP-element group 33: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1072_update_start_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_33: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 63,1 => 1,2 => 1);
+      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 1,2 => 1);
       constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
       constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 0,2 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_33"; 
@@ -5237,7 +5237,7 @@ begin --
       -- CP-element group 51: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1077_sample_start_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_51: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 63,1 => 1,2 => 1);
+      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 1,2 => 1);
       constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
       constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 1,2 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_51"; 
@@ -5259,7 +5259,7 @@ begin --
       -- CP-element group 52: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1077_update_start_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_52: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 63,1 => 1,2 => 1);
+      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 1,2 => 1);
       constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
       constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 0,2 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_52"; 
@@ -5455,7 +5455,7 @@ begin --
       -- CP-element group 70: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1082_sample_start_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_70: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 63,1 => 1,2 => 1);
+      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 1,2 => 1);
       constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
       constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 1,2 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_70"; 
@@ -5477,7 +5477,7 @@ begin --
       -- CP-element group 71: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/phi_stmt_1082_update_start_
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_71: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 63,1 => 1,2 => 1);
+      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 1,2 => 1);
       constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
       constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 0,2 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_71"; 
@@ -5680,7 +5680,7 @@ begin --
       generic map(name => " rr_2106_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(89), ack => array_obj_ref_1091_load_0_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_89: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 63,1 => 1,2 => 1);
+      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 1,2 => 1);
       constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
       constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 1,2 => 1);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_89"; 
@@ -5776,7 +5776,7 @@ begin --
       generic map(name => " rr_2140_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(93), ack => array_obj_ref_1122_load_0_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_93: block -- 
-      constant place_capacities: IntegerArray(0 to 4) := (0 => 63,1 => 63,2 => 63,3 => 1,4 => 1);
+      constant place_capacities: IntegerArray(0 to 4) := (0 => 31,1 => 31,2 => 31,3 => 1,4 => 1);
       constant place_markings: IntegerArray(0 to 4)  := (0 => 0,1 => 0,2 => 0,3 => 1,4 => 1);
       constant place_delays: IntegerArray(0 to 4) := (0 => 0,1 => 0,2 => 0,3 => 1,4 => 1);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_93"; 
@@ -5869,7 +5869,7 @@ begin --
       generic map(name => " req_2165_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(97), ack => WPIPE_CONTROL_REGISTER_1120_inst_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_97: block -- 
-      constant place_capacities: IntegerArray(0 to 3) := (0 => 63,1 => 63,2 => 1,3 => 1);
+      constant place_capacities: IntegerArray(0 to 3) := (0 => 31,1 => 31,2 => 1,3 => 1);
       constant place_markings: IntegerArray(0 to 3)  := (0 => 0,1 => 0,2 => 0,3 => 1);
       constant place_delays: IntegerArray(0 to 3) := (0 => 0,1 => 0,2 => 0,3 => 0);
       constant joinName: string(1 to 48) := "SoftwareRegisterAccessDaemon_cp_element_group_97"; 
@@ -5938,7 +5938,7 @@ begin --
       generic map(name => " rr_2188_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(100), ack => array_obj_ref_1127_load_0_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_100: block -- 
-      constant place_capacities: IntegerArray(0 to 4) := (0 => 63,1 => 63,2 => 63,3 => 1,4 => 1);
+      constant place_capacities: IntegerArray(0 to 4) := (0 => 31,1 => 31,2 => 31,3 => 1,4 => 1);
       constant place_markings: IntegerArray(0 to 4)  := (0 => 0,1 => 0,2 => 0,3 => 1,4 => 1);
       constant place_delays: IntegerArray(0 to 4) := (0 => 0,1 => 0,2 => 0,3 => 1,4 => 1);
       constant joinName: string(1 to 49) := "SoftwareRegisterAccessDaemon_cp_element_group_100"; 
@@ -6030,7 +6030,7 @@ begin --
       generic map(name => " req_2213_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(104), ack => W_update_free_q_pipe_1104_delayed_5_0_1129_inst_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_104: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 63,1 => 63,2 => 1);
+      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 31,2 => 1);
       constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 0,2 => 1);
       constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 0,2 => 1);
       constant joinName: string(1 to 49) := "SoftwareRegisterAccessDaemon_cp_element_group_104"; 
@@ -6262,7 +6262,7 @@ begin --
       generic map(name => " rr_2264_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(115), ack => array_obj_ref_1143_load_0_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_115: block -- 
-      constant place_capacities: IntegerArray(0 to 4) := (0 => 63,1 => 63,2 => 63,3 => 1,4 => 1);
+      constant place_capacities: IntegerArray(0 to 4) := (0 => 31,1 => 31,2 => 31,3 => 1,4 => 1);
       constant place_markings: IntegerArray(0 to 4)  := (0 => 0,1 => 0,2 => 0,3 => 1,4 => 1);
       constant place_delays: IntegerArray(0 to 4) := (0 => 0,1 => 0,2 => 0,3 => 1,4 => 1);
       constant joinName: string(1 to 49) := "SoftwareRegisterAccessDaemon_cp_element_group_115"; 
@@ -6355,7 +6355,7 @@ begin --
       generic map(name => " req_2289_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(119), ack => WPIPE_NUMBER_OF_SERVERS_1141_inst_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_119: block -- 
-      constant place_capacities: IntegerArray(0 to 3) := (0 => 63,1 => 1,2 => 63,3 => 1);
+      constant place_capacities: IntegerArray(0 to 3) := (0 => 31,1 => 1,2 => 31,3 => 1);
       constant place_markings: IntegerArray(0 to 3)  := (0 => 0,1 => 0,2 => 0,3 => 1);
       constant place_delays: IntegerArray(0 to 3) := (0 => 0,1 => 0,2 => 0,3 => 0);
       constant joinName: string(1 to 49) := "SoftwareRegisterAccessDaemon_cp_element_group_119"; 
@@ -6419,7 +6419,7 @@ begin --
       generic map(name => " rr_2303_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(122), ack => RPIPE_AFB_NIC_REQUEST_1146_inst_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_122: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 63,1 => 1);
+      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
       constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
       constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
       constant joinName: string(1 to 49) := "SoftwareRegisterAccessDaemon_cp_element_group_122"; 
@@ -6451,7 +6451,7 @@ begin --
       generic map(name => " cr_2308_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(123), ack => RPIPE_AFB_NIC_REQUEST_1146_inst_req_1); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_123: block -- 
-      constant place_capacities: IntegerArray(0 to 7) := (0 => 63,1 => 1,2 => 1,3 => 1,4 => 1,5 => 1,6 => 1,7 => 1);
+      constant place_capacities: IntegerArray(0 to 7) := (0 => 31,1 => 1,2 => 1,3 => 1,4 => 1,5 => 1,6 => 1,7 => 1);
       constant place_markings: IntegerArray(0 to 7)  := (0 => 0,1 => 0,2 => 1,3 => 1,4 => 1,5 => 1,6 => 1,7 => 1);
       constant place_delays: IntegerArray(0 to 7) := (0 => 0,1 => 0,2 => 0,3 => 0,4 => 0,5 => 0,6 => 0,7 => 0);
       constant joinName: string(1 to 49) := "SoftwareRegisterAccessDaemon_cp_element_group_123"; 
@@ -6959,7 +6959,7 @@ begin --
       generic map(name => " crr_2436_symbol_delay",delay_value => 0)
       port map(clk => clk, reset => reset, req => SoftwareRegisterAccessDaemon_CP_1894_elements(146), ack => call_stmt_1219_call_req_0); -- 
     SoftwareRegisterAccessDaemon_cp_element_group_146: block -- 
-      constant place_capacities: IntegerArray(0 to 10) := (0 => 63,1 => 63,2 => 63,3 => 63,4 => 63,5 => 1,6 => 1,7 => 1,8 => 1,9 => 1,10 => 1);
+      constant place_capacities: IntegerArray(0 to 10) := (0 => 31,1 => 31,2 => 31,3 => 31,4 => 31,5 => 1,6 => 1,7 => 1,8 => 1,9 => 1,10 => 1);
       constant place_markings: IntegerArray(0 to 10)  := (0 => 0,1 => 0,2 => 0,3 => 0,4 => 0,5 => 0,6 => 0,7 => 0,8 => 0,9 => 0,10 => 1);
       constant place_delays: IntegerArray(0 to 10) := (0 => 0,1 => 0,2 => 0,3 => 0,4 => 0,5 => 0,6 => 0,7 => 0,8 => 0,9 => 0,10 => 1);
       constant joinName: string(1 to 49) := "SoftwareRegisterAccessDaemon_cp_element_group_146"; 
@@ -7252,7 +7252,7 @@ begin --
       -- CP-element group 163: 	 branch_block_stmt_1063/do_while_stmt_1064/do_while_stmt_1064_loop_body/$exit
       -- 
     SoftwareRegisterAccessDaemon_cp_element_group_163: block -- 
-      constant place_capacities: IntegerArray(0 to 6) := (0 => 63,1 => 63,2 => 63,3 => 63,4 => 63,5 => 63,6 => 63);
+      constant place_capacities: IntegerArray(0 to 6) := (0 => 31,1 => 31,2 => 31,3 => 31,4 => 31,5 => 31,6 => 31);
       constant place_markings: IntegerArray(0 to 6)  := (0 => 0,1 => 0,2 => 0,3 => 0,4 => 0,5 => 0,6 => 0);
       constant place_delays: IntegerArray(0 to 6) := (0 => 0,1 => 0,2 => 0,3 => 0,4 => 0,5 => 0,6 => 0);
       constant joinName: string(1 to 49) := "SoftwareRegisterAccessDaemon_cp_element_group_163"; 
@@ -7294,7 +7294,7 @@ begin --
       -- 
     SoftwareRegisterAccessDaemon_CP_1894_elements(166) <= SoftwareRegisterAccessDaemon_CP_1894_elements(3);
     SoftwareRegisterAccessDaemon_do_while_stmt_1064_terminator_2486: loop_terminator -- 
-      generic map (name => " SoftwareRegisterAccessDaemon_do_while_stmt_1064_terminator_2486", max_iterations_in_flight =>63) 
+      generic map (name => " SoftwareRegisterAccessDaemon_do_while_stmt_1064_terminator_2486", max_iterations_in_flight =>31) 
       port map(loop_body_exit => SoftwareRegisterAccessDaemon_CP_1894_elements(6),loop_continue => SoftwareRegisterAccessDaemon_CP_1894_elements(165),loop_terminate => SoftwareRegisterAccessDaemon_CP_1894_elements(164),loop_back => SoftwareRegisterAccessDaemon_CP_1894_elements(4),loop_exit => SoftwareRegisterAccessDaemon_CP_1894_elements(3),clk => clk, reset => reset); -- 
     phi_stmt_1066_phi_seq_1957_block : block -- 
       signal triggers, src_sample_reqs, src_sample_acks, src_update_reqs, src_update_acks : BooleanArray(0 to 1);
@@ -7313,7 +7313,7 @@ begin --
       src_update_acks(1)  <= SoftwareRegisterAccessDaemon_CP_1894_elements(30);
       SoftwareRegisterAccessDaemon_CP_1894_elements(20) <= phi_mux_reqs(1);
       phi_stmt_1066_phi_seq_1957 : phi_sequencer_v2-- 
-        generic map (place_capacity => 63, ntriggers => 2, name => "phi_stmt_1066_phi_seq_1957") 
+        generic map (place_capacity => 31, ntriggers => 2, name => "phi_stmt_1066_phi_seq_1957") 
         port map ( -- 
           triggers => triggers, src_sample_starts => src_sample_reqs, 
           src_sample_completes => src_sample_acks, src_update_starts => src_update_reqs, 
@@ -7345,7 +7345,7 @@ begin --
       src_update_acks(1)  <= SoftwareRegisterAccessDaemon_CP_1894_elements(50);
       SoftwareRegisterAccessDaemon_CP_1894_elements(39) <= phi_mux_reqs(1);
       phi_stmt_1072_phi_seq_2001 : phi_sequencer_v2-- 
-        generic map (place_capacity => 63, ntriggers => 2, name => "phi_stmt_1072_phi_seq_2001") 
+        generic map (place_capacity => 31, ntriggers => 2, name => "phi_stmt_1072_phi_seq_2001") 
         port map ( -- 
           triggers => triggers, src_sample_starts => src_sample_reqs, 
           src_sample_completes => src_sample_acks, src_update_starts => src_update_reqs, 
@@ -7377,7 +7377,7 @@ begin --
       src_update_acks(1)  <= SoftwareRegisterAccessDaemon_CP_1894_elements(69);
       SoftwareRegisterAccessDaemon_CP_1894_elements(58) <= phi_mux_reqs(1);
       phi_stmt_1077_phi_seq_2045 : phi_sequencer_v2-- 
-        generic map (place_capacity => 63, ntriggers => 2, name => "phi_stmt_1077_phi_seq_2045") 
+        generic map (place_capacity => 31, ntriggers => 2, name => "phi_stmt_1077_phi_seq_2045") 
         port map ( -- 
           triggers => triggers, src_sample_starts => src_sample_reqs, 
           src_sample_completes => src_sample_acks, src_update_starts => src_update_reqs, 
@@ -7409,7 +7409,7 @@ begin --
       src_update_acks(1)  <= SoftwareRegisterAccessDaemon_CP_1894_elements(88);
       SoftwareRegisterAccessDaemon_CP_1894_elements(77) <= phi_mux_reqs(1);
       phi_stmt_1082_phi_seq_2089 : phi_sequencer_v2-- 
-        generic map (place_capacity => 63, ntriggers => 2, name => "phi_stmt_1082_phi_seq_2089") 
+        generic map (place_capacity => 31, ntriggers => 2, name => "phi_stmt_1082_phi_seq_2089") 
         port map ( -- 
           triggers => triggers, src_sample_starts => src_sample_reqs, 
           src_sample_completes => src_sample_acks, src_update_starts => src_update_reqs, 
@@ -8674,8 +8674,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity UpdateRegister is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -9327,8 +9327,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity accessMemory is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -10050,8 +10050,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity acquireMutex is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -10690,8 +10690,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity delay_time_Operator is -- 
   port ( -- 
     sample_req: in boolean;
@@ -11357,8 +11357,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity getQueueElement is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -11834,8 +11834,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity getQueuePointers is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -12215,8 +12215,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity getTxPacketPointerFromServer is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -12986,8 +12986,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity loadBuffer is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -14212,8 +14212,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity nextLSTATE_Volatile is -- 
   port ( -- 
     RX : in  std_logic_vector(72 downto 0);
@@ -14397,8 +14397,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity nicRxFromMacDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -15911,8 +15911,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity popFromQueue is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -17009,8 +17009,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity populateRxQueue is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -18486,8 +18486,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity pushIntoQueue is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -19615,8 +19615,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity releaseMutex is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -19972,8 +19972,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity setQueueElement is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -20425,8 +20425,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity setQueuePointers is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -20808,8 +20808,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity transmitEngineDaemon is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -23550,2481 +23550,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
-entity transmitPacket is -- 
-  generic (tag_length : integer); 
-  port ( -- 
-    packet_pointer : in  std_logic_vector(31 downto 0);
-    status : out  std_logic_vector(0 downto 0);
-    nic_to_mac_transmit_pipe_pipe_write_req : out  std_logic_vector(1 downto 0);
-    nic_to_mac_transmit_pipe_pipe_write_ack : in   std_logic_vector(1 downto 0);
-    nic_to_mac_transmit_pipe_pipe_write_data : out  std_logic_vector(145 downto 0);
-    accessMemory_call_reqs : out  std_logic_vector(1 downto 0);
-    accessMemory_call_acks : in   std_logic_vector(1 downto 0);
-    accessMemory_call_data : out  std_logic_vector(219 downto 0);
-    accessMemory_call_tag  :  out  std_logic_vector(3 downto 0);
-    accessMemory_return_reqs : out  std_logic_vector(1 downto 0);
-    accessMemory_return_acks : in   std_logic_vector(1 downto 0);
-    accessMemory_return_data : in   std_logic_vector(127 downto 0);
-    accessMemory_return_tag :  in   std_logic_vector(3 downto 0);
-    tag_in: in std_logic_vector(tag_length-1 downto 0);
-    tag_out: out std_logic_vector(tag_length-1 downto 0) ;
-    clk : in std_logic;
-    reset : in std_logic;
-    start_req : in std_logic;
-    start_ack : out std_logic;
-    fin_req : in std_logic;
-    fin_ack   : out std_logic-- 
-  );
-  -- 
-end entity transmitPacket;
-architecture transmitPacket_arch of transmitPacket is -- 
-  -- always true...
-  signal always_true_symbol: Boolean;
-  signal in_buffer_data_in, in_buffer_data_out: std_logic_vector((tag_length + 32)-1 downto 0);
-  signal default_zero_sig: std_logic;
-  signal in_buffer_write_req: std_logic;
-  signal in_buffer_write_ack: std_logic;
-  signal in_buffer_unload_req_symbol: Boolean;
-  signal in_buffer_unload_ack_symbol: Boolean;
-  signal out_buffer_data_in, out_buffer_data_out: std_logic_vector((tag_length + 1)-1 downto 0);
-  signal out_buffer_read_req: std_logic;
-  signal out_buffer_read_ack: std_logic;
-  signal out_buffer_write_req_symbol: Boolean;
-  signal out_buffer_write_ack_symbol: Boolean;
-  signal tag_ub_out, tag_ilock_out: std_logic_vector(tag_length-1 downto 0);
-  signal tag_push_req, tag_push_ack, tag_pop_req, tag_pop_ack: std_logic;
-  signal tag_unload_req_symbol, tag_unload_ack_symbol, tag_write_req_symbol, tag_write_ack_symbol: Boolean;
-  signal tag_ilock_write_req_symbol, tag_ilock_write_ack_symbol, tag_ilock_read_req_symbol, tag_ilock_read_ack_symbol: Boolean;
-  signal start_req_sig, fin_req_sig, start_ack_sig, fin_ack_sig: std_logic; 
-  signal input_sample_reenable_symbol: Boolean;
-  -- input port buffer signals
-  signal packet_pointer_buffer :  std_logic_vector(31 downto 0);
-  signal packet_pointer_update_enable: Boolean;
-  -- output port buffer signals
-  signal status_buffer :  std_logic_vector(0 downto 0);
-  signal status_update_enable: Boolean;
-  signal transmitPacket_CP_2769_start: Boolean;
-  signal transmitPacket_CP_2769_symbol: Boolean;
-  -- volatile/operator module components. 
-  component accessMemory is -- 
-    generic (tag_length : integer); 
-    port ( -- 
-      lock : in  std_logic_vector(0 downto 0);
-      rwbar : in  std_logic_vector(0 downto 0);
-      bmask : in  std_logic_vector(7 downto 0);
-      addr : in  std_logic_vector(35 downto 0);
-      wdata : in  std_logic_vector(63 downto 0);
-      rdata : out  std_logic_vector(63 downto 0);
-      MEMORY_TO_NIC_RESPONSE_pipe_read_req : out  std_logic_vector(0 downto 0);
-      MEMORY_TO_NIC_RESPONSE_pipe_read_ack : in   std_logic_vector(0 downto 0);
-      MEMORY_TO_NIC_RESPONSE_pipe_read_data : in   std_logic_vector(64 downto 0);
-      NIC_TO_MEMORY_REQUEST_pipe_write_req : out  std_logic_vector(0 downto 0);
-      NIC_TO_MEMORY_REQUEST_pipe_write_ack : in   std_logic_vector(0 downto 0);
-      NIC_TO_MEMORY_REQUEST_pipe_write_data : out  std_logic_vector(109 downto 0);
-      tag_in: in std_logic_vector(tag_length-1 downto 0);
-      tag_out: out std_logic_vector(tag_length-1 downto 0) ;
-      clk : in std_logic;
-      reset : in std_logic;
-      start_req : in std_logic;
-      start_ack : out std_logic;
-      fin_req : in std_logic;
-      fin_ack   : out std_logic-- 
-    );
-    -- 
-  end component;
-  -- links between control-path and data-path
-  signal nmem_addr_1473_1441_buf_ack_0 : boolean;
-  signal SUB_u8_u8_1437_inst_ack_1 : boolean;
-  signal phi_stmt_1439_req_0 : boolean;
-  signal nmem_addr_1473_1441_buf_req_0 : boolean;
-  signal call_stmt_1455_call_ack_1 : boolean;
-  signal call_stmt_1418_call_req_1 : boolean;
-  signal call_stmt_1418_call_ack_0 : boolean;
-  signal ADD_u36_u36_1444_inst_ack_1 : boolean;
-  signal nmem_addr_1473_1441_buf_req_1 : boolean;
-  signal nmem_addr_1473_1441_buf_ack_1 : boolean;
-  signal phi_stmt_1433_req_1 : boolean;
-  signal ncount_down_1468_1438_buf_req_0 : boolean;
-  signal ncount_down_1468_1438_buf_ack_0 : boolean;
-  signal ADD_u36_u36_1444_inst_req_1 : boolean;
-  signal SUB_u8_u8_1437_inst_req_1 : boolean;
-  signal CONCAT_u65_u73_1462_inst_req_0 : boolean;
-  signal phi_stmt_1433_req_0 : boolean;
-  signal SUB_u8_u8_1437_inst_req_0 : boolean;
-  signal call_stmt_1455_call_req_0 : boolean;
-  signal phi_stmt_1439_req_1 : boolean;
-  signal call_stmt_1455_call_req_1 : boolean;
-  signal SUB_u8_u8_1437_inst_ack_0 : boolean;
-  signal do_while_stmt_1431_branch_req_0 : boolean;
-  signal call_stmt_1418_call_req_0 : boolean;
-  signal phi_stmt_1433_ack_0 : boolean;
-  signal CONCAT_u65_u73_1462_inst_ack_0 : boolean;
-  signal phi_stmt_1439_ack_0 : boolean;
-  signal ncount_down_1468_1438_buf_ack_1 : boolean;
-  signal ncount_down_1468_1438_buf_req_1 : boolean;
-  signal ADD_u36_u36_1444_inst_req_0 : boolean;
-  signal ADD_u36_u36_1444_inst_ack_0 : boolean;
-  signal call_stmt_1418_call_ack_1 : boolean;
-  signal call_stmt_1455_call_ack_0 : boolean;
-  signal CONCAT_u65_u73_1462_inst_ack_1 : boolean;
-  signal CONCAT_u65_u73_1462_inst_req_1 : boolean;
-  signal WPIPE_nic_to_mac_transmit_pipe_1456_inst_req_0 : boolean;
-  signal WPIPE_nic_to_mac_transmit_pipe_1456_inst_ack_0 : boolean;
-  signal WPIPE_nic_to_mac_transmit_pipe_1456_inst_req_1 : boolean;
-  signal WPIPE_nic_to_mac_transmit_pipe_1456_inst_ack_1 : boolean;
-  signal do_while_stmt_1431_branch_ack_0 : boolean;
-  signal do_while_stmt_1431_branch_ack_1 : boolean;
-  signal call_stmt_1498_call_req_0 : boolean;
-  signal call_stmt_1498_call_ack_0 : boolean;
-  signal call_stmt_1498_call_req_1 : boolean;
-  signal call_stmt_1498_call_ack_1 : boolean;
-  signal CONCAT_u65_u73_1507_inst_req_0 : boolean;
-  signal CONCAT_u65_u73_1507_inst_ack_0 : boolean;
-  signal CONCAT_u65_u73_1507_inst_req_1 : boolean;
-  signal CONCAT_u65_u73_1507_inst_ack_1 : boolean;
-  signal WPIPE_nic_to_mac_transmit_pipe_1501_inst_req_0 : boolean;
-  signal WPIPE_nic_to_mac_transmit_pipe_1501_inst_ack_0 : boolean;
-  signal WPIPE_nic_to_mac_transmit_pipe_1501_inst_req_1 : boolean;
-  signal WPIPE_nic_to_mac_transmit_pipe_1501_inst_ack_1 : boolean;
-  signal EQ_u8_u1_1515_inst_req_0 : boolean;
-  signal EQ_u8_u1_1515_inst_ack_0 : boolean;
-  signal EQ_u8_u1_1515_inst_req_1 : boolean;
-  signal EQ_u8_u1_1515_inst_ack_1 : boolean;
-  -- 
-begin --  
-  -- input handling ------------------------------------------------
-  in_buffer: UnloadBuffer -- 
-    generic map(name => "transmitPacket_input_buffer", -- 
-      buffer_size => 1,
-      bypass_flag => false,
-      data_width => tag_length + 32) -- 
-    port map(write_req => in_buffer_write_req, -- 
-      write_ack => in_buffer_write_ack, 
-      write_data => in_buffer_data_in,
-      unload_req => in_buffer_unload_req_symbol, 
-      unload_ack => in_buffer_unload_ack_symbol, 
-      read_data => in_buffer_data_out,
-      clk => clk, reset => reset); -- 
-  in_buffer_data_in(31 downto 0) <= packet_pointer;
-  packet_pointer_buffer <= in_buffer_data_out(31 downto 0);
-  in_buffer_data_in(tag_length + 31 downto 32) <= tag_in;
-  tag_ub_out <= in_buffer_data_out(tag_length + 31 downto 32);
-  in_buffer_write_req <= start_req;
-  start_ack <= in_buffer_write_ack;
-  in_buffer_unload_req_symbol_join: block -- 
-    constant place_capacities: IntegerArray(0 to 1) := (0 => 1,1 => 1);
-    constant place_markings: IntegerArray(0 to 1)  := (0 => 1,1 => 1);
-    constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
-    constant joinName: string(1 to 32) := "in_buffer_unload_req_symbol_join"; 
-    signal preds: BooleanArray(1 to 2); -- 
-  begin -- 
-    preds <= in_buffer_unload_ack_symbol & input_sample_reenable_symbol;
-    gj_in_buffer_unload_req_symbol_join : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-      port map(preds => preds, symbol_out => in_buffer_unload_req_symbol, clk => clk, reset => reset); --
-  end block;
-  -- join of all unload_ack_symbols.. used to trigger CP.
-  transmitPacket_CP_2769_start <= in_buffer_unload_ack_symbol;
-  -- output handling  -------------------------------------------------------
-  out_buffer: ReceiveBuffer -- 
-    generic map(name => "transmitPacket_out_buffer", -- 
-      buffer_size => 1,
-      full_rate => false,
-      data_width => tag_length + 1) --
-    port map(write_req => out_buffer_write_req_symbol, -- 
-      write_ack => out_buffer_write_ack_symbol, 
-      write_data => out_buffer_data_in,
-      read_req => out_buffer_read_req, 
-      read_ack => out_buffer_read_ack, 
-      read_data => out_buffer_data_out,
-      clk => clk, reset => reset); -- 
-  out_buffer_data_in(0 downto 0) <= status_buffer;
-  status <= out_buffer_data_out(0 downto 0);
-  out_buffer_data_in(tag_length + 0 downto 1) <= tag_ilock_out;
-  tag_out <= out_buffer_data_out(tag_length + 0 downto 1);
-  out_buffer_write_req_symbol_join: block -- 
-    constant place_capacities: IntegerArray(0 to 2) := (0 => 1,1 => 1,2 => 1);
-    constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 0);
-    constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 1,2 => 0);
-    constant joinName: string(1 to 32) := "out_buffer_write_req_symbol_join"; 
-    signal preds: BooleanArray(1 to 3); -- 
-  begin -- 
-    preds <= transmitPacket_CP_2769_symbol & out_buffer_write_ack_symbol & tag_ilock_read_ack_symbol;
-    gj_out_buffer_write_req_symbol_join : generic_join generic map(name => joinName, number_of_predecessors => 3, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-      port map(preds => preds, symbol_out => out_buffer_write_req_symbol, clk => clk, reset => reset); --
-  end block;
-  -- write-to output-buffer produces  reenable input sampling
-  input_sample_reenable_symbol <= out_buffer_write_ack_symbol;
-  -- fin-req/ack level protocol..
-  out_buffer_read_req <= fin_req;
-  fin_ack <= out_buffer_read_ack;
-  ----- tag-queue --------------------------------------------------
-  -- interlock buffer for TAG.. to provide required buffering.
-  tagIlock: InterlockBuffer -- 
-    generic map(name => "tag-interlock-buffer", -- 
-      buffer_size => 1,
-      bypass_flag => false,
-      in_data_width => tag_length,
-      out_data_width => tag_length) -- 
-    port map(write_req => tag_ilock_write_req_symbol, -- 
-      write_ack => tag_ilock_write_ack_symbol, 
-      write_data => tag_ub_out,
-      read_req => tag_ilock_read_req_symbol, 
-      read_ack => tag_ilock_read_ack_symbol, 
-      read_data => tag_ilock_out, 
-      clk => clk, reset => reset); -- 
-  -- tag ilock-buffer control logic. 
-  tag_ilock_write_req_symbol_join: block -- 
-    constant place_capacities: IntegerArray(0 to 1) := (0 => 1,1 => 1);
-    constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-    constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
-    constant joinName: string(1 to 31) := "tag_ilock_write_req_symbol_join"; 
-    signal preds: BooleanArray(1 to 2); -- 
-  begin -- 
-    preds <= transmitPacket_CP_2769_start & tag_ilock_write_ack_symbol;
-    gj_tag_ilock_write_req_symbol_join : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-      port map(preds => preds, symbol_out => tag_ilock_write_req_symbol, clk => clk, reset => reset); --
-  end block;
-  tag_ilock_read_req_symbol_join: block -- 
-    constant place_capacities: IntegerArray(0 to 2) := (0 => 1,1 => 1,2 => 1);
-    constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
-    constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 0,2 => 0);
-    constant joinName: string(1 to 30) := "tag_ilock_read_req_symbol_join"; 
-    signal preds: BooleanArray(1 to 3); -- 
-  begin -- 
-    preds <= transmitPacket_CP_2769_start & tag_ilock_read_ack_symbol & out_buffer_write_ack_symbol;
-    gj_tag_ilock_read_req_symbol_join : generic_join generic map(name => joinName, number_of_predecessors => 3, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-      port map(preds => preds, symbol_out => tag_ilock_read_req_symbol, clk => clk, reset => reset); --
-  end block;
-  -- the control path --------------------------------------------------
-  always_true_symbol <= true; 
-  default_zero_sig <= '0';
-  transmitPacket_CP_2769: Block -- control-path 
-    signal transmitPacket_CP_2769_elements: BooleanArray(81 downto 0);
-    -- 
-  begin -- 
-    transmitPacket_CP_2769_elements(0) <= transmitPacket_CP_2769_start;
-    transmitPacket_CP_2769_symbol <= transmitPacket_CP_2769_elements(81);
-    -- CP-element group 0:  fork  transition  output  bypass 
-    -- CP-element group 0: predecessors 
-    -- CP-element group 0: successors 
-    -- CP-element group 0: 	1 
-    -- CP-element group 0: 	2 
-    -- CP-element group 0:  members (8) 
-      -- CP-element group 0: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_update_start_
-      -- CP-element group 0: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_Update/ccr
-      -- CP-element group 0: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_Update/$entry
-      -- CP-element group 0: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_Sample/$entry
-      -- CP-element group 0: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_Sample/crr
-      -- CP-element group 0: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_sample_start_
-      -- CP-element group 0: 	 $entry
-      -- CP-element group 0: 	 assign_stmt_1405_to_assign_stmt_1426/$entry
-      -- 
-    ccr_2787_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " ccr_2787_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(0), ack => call_stmt_1418_call_req_1); -- 
-    crr_2782_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " crr_2782_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(0), ack => call_stmt_1418_call_req_0); -- 
-    -- CP-element group 1:  transition  input  bypass 
-    -- CP-element group 1: predecessors 
-    -- CP-element group 1: 	0 
-    -- CP-element group 1: successors 
-    -- CP-element group 1:  members (3) 
-      -- CP-element group 1: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_Sample/$exit
-      -- CP-element group 1: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_Sample/cra
-      -- CP-element group 1: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_sample_completed_
-      -- 
-    cra_2783_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 1_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => call_stmt_1418_call_ack_0, ack => transmitPacket_CP_2769_elements(1)); -- 
-    -- CP-element group 2:  transition  place  input  bypass 
-    -- CP-element group 2: predecessors 
-    -- CP-element group 2: 	0 
-    -- CP-element group 2: successors 
-    -- CP-element group 2: 	4 
-    -- CP-element group 2:  members (7) 
-      -- CP-element group 2: 	 assign_stmt_1405_to_assign_stmt_1426/$exit
-      -- CP-element group 2: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_update_completed_
-      -- CP-element group 2: 	 branch_block_stmt_1430/branch_block_stmt_1430__entry__
-      -- CP-element group 2: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_Update/$exit
-      -- CP-element group 2: 	 branch_block_stmt_1430/do_while_stmt_1431__entry__
-      -- CP-element group 2: 	 assign_stmt_1405_to_assign_stmt_1426/call_stmt_1418_Update/cca
-      -- CP-element group 2: 	 branch_block_stmt_1430/$entry
-      -- 
-    cca_2788_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 2_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => call_stmt_1418_call_ack_1, ack => transmitPacket_CP_2769_elements(2)); -- 
-    -- CP-element group 3:  fork  transition  place  output  bypass 
-    -- CP-element group 3: predecessors 
-    -- CP-element group 3: 	72 
-    -- CP-element group 3: successors 
-    -- CP-element group 3: 	76 
-    -- CP-element group 3: 	79 
-    -- CP-element group 3: 	80 
-    -- CP-element group 3: 	73 
-    -- CP-element group 3: 	74 
-    -- CP-element group 3:  members (18) 
-      -- CP-element group 3: 	 branch_block_stmt_1430/do_while_stmt_1431__exit__
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516__entry__
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/$entry
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_sample_start_
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_update_start_
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_Sample/$entry
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_Sample/crr
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_Update/$entry
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_Update/ccr
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_update_start_
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_Update/$entry
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_Update/cr
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_sample_start_
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_update_start_
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_Sample/$entry
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_Sample/rr
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_Update/$entry
-      -- CP-element group 3: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_Update/cr
-      -- 
-    crr_2988_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " crr_2988_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(3), ack => call_stmt_1498_call_req_0); -- 
-    ccr_2993_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " ccr_2993_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(3), ack => call_stmt_1498_call_req_1); -- 
-    cr_3007_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " cr_3007_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(3), ack => CONCAT_u65_u73_1507_inst_req_1); -- 
-    rr_3030_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " rr_3030_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(3), ack => EQ_u8_u1_1515_inst_req_0); -- 
-    cr_3035_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " cr_3035_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(3), ack => EQ_u8_u1_1515_inst_req_1); -- 
-    transmitPacket_CP_2769_elements(3) <= transmitPacket_CP_2769_elements(72);
-    -- CP-element group 4:  transition  place  bypass  pipeline-parent 
-    -- CP-element group 4: predecessors 
-    -- CP-element group 4: 	2 
-    -- CP-element group 4: successors 
-    -- CP-element group 4: 	10 
-    -- CP-element group 4:  members (2) 
-      -- CP-element group 4: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431__entry__
-      -- CP-element group 4: 	 branch_block_stmt_1430/do_while_stmt_1431/$entry
-      -- 
-    transmitPacket_CP_2769_elements(4) <= transmitPacket_CP_2769_elements(2);
-    -- CP-element group 5:  merge  place  bypass  pipeline-parent 
-    -- CP-element group 5: predecessors 
-    -- CP-element group 5: successors 
-    -- CP-element group 5: 	72 
-    -- CP-element group 5:  members (1) 
-      -- CP-element group 5: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431__exit__
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(5) is bound as output of CP function.
-    -- CP-element group 6:  merge  place  bypass  pipeline-parent 
-    -- CP-element group 6: predecessors 
-    -- CP-element group 6: successors 
-    -- CP-element group 6: 	9 
-    -- CP-element group 6:  members (1) 
-      -- CP-element group 6: 	 branch_block_stmt_1430/do_while_stmt_1431/loop_back
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(6) is bound as output of CP function.
-    -- CP-element group 7:  branch  transition  place  bypass  pipeline-parent 
-    -- CP-element group 7: predecessors 
-    -- CP-element group 7: 	12 
-    -- CP-element group 7: successors 
-    -- CP-element group 7: 	70 
-    -- CP-element group 7: 	71 
-    -- CP-element group 7:  members (3) 
-      -- CP-element group 7: 	 branch_block_stmt_1430/do_while_stmt_1431/condition_done
-      -- CP-element group 7: 	 branch_block_stmt_1430/do_while_stmt_1431/loop_exit/$entry
-      -- CP-element group 7: 	 branch_block_stmt_1430/do_while_stmt_1431/loop_taken/$entry
-      -- 
-    transmitPacket_CP_2769_elements(7) <= transmitPacket_CP_2769_elements(12);
-    -- CP-element group 8:  branch  place  bypass  pipeline-parent 
-    -- CP-element group 8: predecessors 
-    -- CP-element group 8: 	69 
-    -- CP-element group 8: successors 
-    -- CP-element group 8:  members (1) 
-      -- CP-element group 8: 	 branch_block_stmt_1430/do_while_stmt_1431/loop_body_done
-      -- 
-    transmitPacket_CP_2769_elements(8) <= transmitPacket_CP_2769_elements(69);
-    -- CP-element group 9:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 9: predecessors 
-    -- CP-element group 9: 	6 
-    -- CP-element group 9: successors 
-    -- CP-element group 9: 	42 
-    -- CP-element group 9: 	23 
-    -- CP-element group 9:  members (1) 
-      -- CP-element group 9: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/back_edge_to_loop_body
-      -- 
-    transmitPacket_CP_2769_elements(9) <= transmitPacket_CP_2769_elements(6);
-    -- CP-element group 10:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 10: predecessors 
-    -- CP-element group 10: 	4 
-    -- CP-element group 10: successors 
-    -- CP-element group 10: 	25 
-    -- CP-element group 10: 	44 
-    -- CP-element group 10:  members (1) 
-      -- CP-element group 10: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/first_time_through_loop_body
-      -- 
-    transmitPacket_CP_2769_elements(10) <= transmitPacket_CP_2769_elements(4);
-    -- CP-element group 11:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 11: predecessors 
-    -- CP-element group 11: successors 
-    -- CP-element group 11: 	17 
-    -- CP-element group 11: 	68 
-    -- CP-element group 11: 	18 
-    -- CP-element group 11: 	38 
-    -- CP-element group 11: 	39 
-    -- CP-element group 11:  members (2) 
-      -- CP-element group 11: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/loop_body_start
-      -- CP-element group 11: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/$entry
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(11) is bound as output of CP function.
-    -- CP-element group 12:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 12: predecessors 
-    -- CP-element group 12: 	16 
-    -- CP-element group 12: 	68 
-    -- CP-element group 12: 	22 
-    -- CP-element group 12: successors 
-    -- CP-element group 12: 	7 
-    -- CP-element group 12:  members (1) 
-      -- CP-element group 12: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/condition_evaluated
-      -- 
-    condition_evaluated_2812_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " condition_evaluated_2812_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(12), ack => do_while_stmt_1431_branch_req_0); -- 
-    transmitPacket_cp_element_group_12: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 31,2 => 31);
-      constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 0,2 => 0);
-      constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 0,2 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_12"; 
-      signal preds: BooleanArray(1 to 3); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(16) & transmitPacket_CP_2769_elements(68) & transmitPacket_CP_2769_elements(22);
-      gj_transmitPacket_cp_element_group_12 : generic_join generic map(name => joinName, number_of_predecessors => 3, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(12), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 13:  join  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 13: predecessors 
-    -- CP-element group 13: 	17 
-    -- CP-element group 13: 	38 
-    -- CP-element group 13: marked-predecessors 
-    -- CP-element group 13: 	16 
-    -- CP-element group 13: successors 
-    -- CP-element group 13: 	19 
-    -- CP-element group 13:  members (2) 
-      -- CP-element group 13: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/aggregated_phi_sample_req
-      -- CP-element group 13: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_sample_start__ps
-      -- 
-    transmitPacket_cp_element_group_13: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 31,2 => 1);
-      constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 0,2 => 1);
-      constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 0,2 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_13"; 
-      signal preds: BooleanArray(1 to 3); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(17) & transmitPacket_CP_2769_elements(38) & transmitPacket_CP_2769_elements(16);
-      gj_transmitPacket_cp_element_group_13 : generic_join generic map(name => joinName, number_of_predecessors => 3, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(13), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 14:  join  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 14: predecessors 
-    -- CP-element group 14: 	40 
-    -- CP-element group 14: 	20 
-    -- CP-element group 14: successors 
-    -- CP-element group 14: 	69 
-    -- CP-element group 14: marked-successors 
-    -- CP-element group 14: 	17 
-    -- CP-element group 14: 	38 
-    -- CP-element group 14:  members (3) 
-      -- CP-element group 14: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_sample_completed_
-      -- CP-element group 14: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/aggregated_phi_sample_ack
-      -- CP-element group 14: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_sample_completed_
-      -- 
-    transmitPacket_cp_element_group_14: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 31);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 0);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_14"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(40) & transmitPacket_CP_2769_elements(20);
-      gj_transmitPacket_cp_element_group_14 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(14), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 15:  join  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 15: predecessors 
-    -- CP-element group 15: 	18 
-    -- CP-element group 15: 	39 
-    -- CP-element group 15: successors 
-    -- CP-element group 15: 	21 
-    -- CP-element group 15:  members (2) 
-      -- CP-element group 15: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_update_start__ps
-      -- CP-element group 15: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/aggregated_phi_update_req
-      -- 
-    transmitPacket_cp_element_group_15: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 31);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 0);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_15"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(18) & transmitPacket_CP_2769_elements(39);
-      gj_transmitPacket_cp_element_group_15 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(15), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 16:  join  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 16: predecessors 
-    -- CP-element group 16: 	41 
-    -- CP-element group 16: 	22 
-    -- CP-element group 16: successors 
-    -- CP-element group 16: 	12 
-    -- CP-element group 16: marked-successors 
-    -- CP-element group 16: 	13 
-    -- CP-element group 16:  members (1) 
-      -- CP-element group 16: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/aggregated_phi_update_ack
-      -- 
-    transmitPacket_cp_element_group_16: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 31);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 0);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_16"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(41) & transmitPacket_CP_2769_elements(22);
-      gj_transmitPacket_cp_element_group_16 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(16), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 17:  join  transition  bypass  pipeline-parent 
-    -- CP-element group 17: predecessors 
-    -- CP-element group 17: 	11 
-    -- CP-element group 17: marked-predecessors 
-    -- CP-element group 17: 	14 
-    -- CP-element group 17: successors 
-    -- CP-element group 17: 	13 
-    -- CP-element group 17:  members (1) 
-      -- CP-element group 17: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_sample_start_
-      -- 
-    transmitPacket_cp_element_group_17: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_17"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(11) & transmitPacket_CP_2769_elements(14);
-      gj_transmitPacket_cp_element_group_17 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(17), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 18:  join  transition  bypass  pipeline-parent 
-    -- CP-element group 18: predecessors 
-    -- CP-element group 18: 	11 
-    -- CP-element group 18: marked-predecessors 
-    -- CP-element group 18: 	22 
-    -- CP-element group 18: successors 
-    -- CP-element group 18: 	15 
-    -- CP-element group 18:  members (1) 
-      -- CP-element group 18: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_update_start_
-      -- 
-    transmitPacket_cp_element_group_18: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_18"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(11) & transmitPacket_CP_2769_elements(22);
-      gj_transmitPacket_cp_element_group_18 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(18), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 19:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 19: predecessors 
-    -- CP-element group 19: 	13 
-    -- CP-element group 19: successors 
-    -- CP-element group 19:  members (1) 
-      -- CP-element group 19: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_sample_start__ps
-      -- 
-    transmitPacket_CP_2769_elements(19) <= transmitPacket_CP_2769_elements(13);
-    -- CP-element group 20:  join  transition  bypass  pipeline-parent 
-    -- CP-element group 20: predecessors 
-    -- CP-element group 20: successors 
-    -- CP-element group 20: 	14 
-    -- CP-element group 20:  members (1) 
-      -- CP-element group 20: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_sample_completed__ps
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(20) is bound as output of CP function.
-    -- CP-element group 21:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 21: predecessors 
-    -- CP-element group 21: 	15 
-    -- CP-element group 21: successors 
-    -- CP-element group 21:  members (1) 
-      -- CP-element group 21: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_update_start__ps
-      -- 
-    transmitPacket_CP_2769_elements(21) <= transmitPacket_CP_2769_elements(15);
-    -- CP-element group 22:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 22: predecessors 
-    -- CP-element group 22: successors 
-    -- CP-element group 22: 	16 
-    -- CP-element group 22: 	12 
-    -- CP-element group 22: marked-successors 
-    -- CP-element group 22: 	18 
-    -- CP-element group 22:  members (2) 
-      -- CP-element group 22: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_update_completed_
-      -- CP-element group 22: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_update_completed__ps
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(22) is bound as output of CP function.
-    -- CP-element group 23:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 23: predecessors 
-    -- CP-element group 23: 	9 
-    -- CP-element group 23: successors 
-    -- CP-element group 23:  members (1) 
-      -- CP-element group 23: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_loopback_trigger
-      -- 
-    transmitPacket_CP_2769_elements(23) <= transmitPacket_CP_2769_elements(9);
-    -- CP-element group 24:  fork  transition  output  bypass  pipeline-parent 
-    -- CP-element group 24: predecessors 
-    -- CP-element group 24: successors 
-    -- CP-element group 24:  members (2) 
-      -- CP-element group 24: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_loopback_sample_req
-      -- CP-element group 24: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_loopback_sample_req_ps
-      -- 
-    phi_stmt_1433_loopback_sample_req_2827_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " phi_stmt_1433_loopback_sample_req_2827_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(24), ack => phi_stmt_1433_req_1); -- 
-    -- Element group transmitPacket_CP_2769_elements(24) is bound as output of CP function.
-    -- CP-element group 25:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 25: predecessors 
-    -- CP-element group 25: 	10 
-    -- CP-element group 25: successors 
-    -- CP-element group 25:  members (1) 
-      -- CP-element group 25: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_entry_trigger
-      -- 
-    transmitPacket_CP_2769_elements(25) <= transmitPacket_CP_2769_elements(10);
-    -- CP-element group 26:  fork  transition  output  bypass  pipeline-parent 
-    -- CP-element group 26: predecessors 
-    -- CP-element group 26: successors 
-    -- CP-element group 26:  members (2) 
-      -- CP-element group 26: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_entry_sample_req
-      -- CP-element group 26: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_entry_sample_req_ps
-      -- 
-    phi_stmt_1433_entry_sample_req_2830_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " phi_stmt_1433_entry_sample_req_2830_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(26), ack => phi_stmt_1433_req_0); -- 
-    -- Element group transmitPacket_CP_2769_elements(26) is bound as output of CP function.
-    -- CP-element group 27:  join  transition  input  bypass  pipeline-parent 
-    -- CP-element group 27: predecessors 
-    -- CP-element group 27: successors 
-    -- CP-element group 27:  members (2) 
-      -- CP-element group 27: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_phi_mux_ack
-      -- CP-element group 27: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1433_phi_mux_ack_ps
-      -- 
-    phi_stmt_1433_phi_mux_ack_2833_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 27_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => phi_stmt_1433_ack_0, ack => transmitPacket_CP_2769_elements(27)); -- 
-    -- CP-element group 28:  join  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 28: predecessors 
-    -- CP-element group 28: successors 
-    -- CP-element group 28: 	30 
-    -- CP-element group 28:  members (1) 
-      -- CP-element group 28: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_sample_start__ps
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(28) is bound as output of CP function.
-    -- CP-element group 29:  join  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 29: predecessors 
-    -- CP-element group 29: successors 
-    -- CP-element group 29: 	31 
-    -- CP-element group 29:  members (1) 
-      -- CP-element group 29: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_update_start__ps
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(29) is bound as output of CP function.
-    -- CP-element group 30:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 30: predecessors 
-    -- CP-element group 30: 	28 
-    -- CP-element group 30: marked-predecessors 
-    -- CP-element group 30: 	32 
-    -- CP-element group 30: successors 
-    -- CP-element group 30: 	32 
-    -- CP-element group 30:  members (3) 
-      -- CP-element group 30: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_Sample/rr
-      -- CP-element group 30: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_sample_start_
-      -- CP-element group 30: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_Sample/$entry
-      -- 
-    rr_2846_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " rr_2846_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(30), ack => SUB_u8_u8_1437_inst_req_0); -- 
-    transmitPacket_cp_element_group_30: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_30"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(28) & transmitPacket_CP_2769_elements(32);
-      gj_transmitPacket_cp_element_group_30 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(30), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 31:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 31: predecessors 
-    -- CP-element group 31: 	29 
-    -- CP-element group 31: marked-predecessors 
-    -- CP-element group 31: 	33 
-    -- CP-element group 31: successors 
-    -- CP-element group 31: 	33 
-    -- CP-element group 31:  members (3) 
-      -- CP-element group 31: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_Update/cr
-      -- CP-element group 31: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_Update/$entry
-      -- CP-element group 31: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_update_start_
-      -- 
-    cr_2851_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " cr_2851_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(31), ack => SUB_u8_u8_1437_inst_req_1); -- 
-    transmitPacket_cp_element_group_31: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_31"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(29) & transmitPacket_CP_2769_elements(33);
-      gj_transmitPacket_cp_element_group_31 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(31), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 32:  join  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 32: predecessors 
-    -- CP-element group 32: 	30 
-    -- CP-element group 32: successors 
-    -- CP-element group 32: marked-successors 
-    -- CP-element group 32: 	30 
-    -- CP-element group 32:  members (4) 
-      -- CP-element group 32: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_Sample/ra
-      -- CP-element group 32: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_sample_completed__ps
-      -- CP-element group 32: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_sample_completed_
-      -- CP-element group 32: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_Sample/$exit
-      -- 
-    ra_2847_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 32_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => SUB_u8_u8_1437_inst_ack_0, ack => transmitPacket_CP_2769_elements(32)); -- 
-    -- CP-element group 33:  join  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 33: predecessors 
-    -- CP-element group 33: 	31 
-    -- CP-element group 33: successors 
-    -- CP-element group 33: marked-successors 
-    -- CP-element group 33: 	31 
-    -- CP-element group 33:  members (4) 
-      -- CP-element group 33: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_Update/ca
-      -- CP-element group 33: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_Update/$exit
-      -- CP-element group 33: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_update_completed__ps
-      -- CP-element group 33: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/SUB_u8_u8_1437_update_completed_
-      -- 
-    ca_2852_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 33_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => SUB_u8_u8_1437_inst_ack_1, ack => transmitPacket_CP_2769_elements(33)); -- 
-    -- CP-element group 34:  join  fork  transition  output  bypass  pipeline-parent 
-    -- CP-element group 34: predecessors 
-    -- CP-element group 34: successors 
-    -- CP-element group 34: 	36 
-    -- CP-element group 34:  members (4) 
-      -- CP-element group 34: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_Sample/$entry
-      -- CP-element group 34: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_sample_start__ps
-      -- CP-element group 34: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_sample_start_
-      -- CP-element group 34: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_Sample/req
-      -- 
-    req_2864_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " req_2864_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(34), ack => ncount_down_1468_1438_buf_req_0); -- 
-    -- Element group transmitPacket_CP_2769_elements(34) is bound as output of CP function.
-    -- CP-element group 35:  join  fork  transition  output  bypass  pipeline-parent 
-    -- CP-element group 35: predecessors 
-    -- CP-element group 35: successors 
-    -- CP-element group 35: 	37 
-    -- CP-element group 35:  members (4) 
-      -- CP-element group 35: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_update_start_
-      -- CP-element group 35: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_update_start__ps
-      -- CP-element group 35: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_Update/$entry
-      -- CP-element group 35: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_Update/req
-      -- 
-    req_2869_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " req_2869_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(35), ack => ncount_down_1468_1438_buf_req_1); -- 
-    -- Element group transmitPacket_CP_2769_elements(35) is bound as output of CP function.
-    -- CP-element group 36:  join  transition  input  bypass  pipeline-parent 
-    -- CP-element group 36: predecessors 
-    -- CP-element group 36: 	34 
-    -- CP-element group 36: successors 
-    -- CP-element group 36:  members (4) 
-      -- CP-element group 36: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_sample_completed_
-      -- CP-element group 36: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_sample_completed__ps
-      -- CP-element group 36: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_Sample/$exit
-      -- CP-element group 36: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_Sample/ack
-      -- 
-    ack_2865_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 36_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => ncount_down_1468_1438_buf_ack_0, ack => transmitPacket_CP_2769_elements(36)); -- 
-    -- CP-element group 37:  join  transition  input  bypass  pipeline-parent 
-    -- CP-element group 37: predecessors 
-    -- CP-element group 37: 	35 
-    -- CP-element group 37: successors 
-    -- CP-element group 37:  members (4) 
-      -- CP-element group 37: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_update_completed_
-      -- CP-element group 37: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_update_completed__ps
-      -- CP-element group 37: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_Update/$exit
-      -- CP-element group 37: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_ncount_down_1438_Update/ack
-      -- 
-    ack_2870_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 37_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => ncount_down_1468_1438_buf_ack_1, ack => transmitPacket_CP_2769_elements(37)); -- 
-    -- CP-element group 38:  join  transition  bypass  pipeline-parent 
-    -- CP-element group 38: predecessors 
-    -- CP-element group 38: 	11 
-    -- CP-element group 38: marked-predecessors 
-    -- CP-element group 38: 	14 
-    -- CP-element group 38: successors 
-    -- CP-element group 38: 	13 
-    -- CP-element group 38:  members (1) 
-      -- CP-element group 38: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_sample_start_
-      -- 
-    transmitPacket_cp_element_group_38: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_38"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(11) & transmitPacket_CP_2769_elements(14);
-      gj_transmitPacket_cp_element_group_38 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(38), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 39:  join  transition  bypass  pipeline-parent 
-    -- CP-element group 39: predecessors 
-    -- CP-element group 39: 	11 
-    -- CP-element group 39: marked-predecessors 
-    -- CP-element group 39: 	59 
-    -- CP-element group 39: 	41 
-    -- CP-element group 39: successors 
-    -- CP-element group 39: 	15 
-    -- CP-element group 39:  members (1) 
-      -- CP-element group 39: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_update_start_
-      -- 
-    transmitPacket_cp_element_group_39: block -- 
-      constant place_capacities: IntegerArray(0 to 2) := (0 => 31,1 => 1,2 => 1);
-      constant place_markings: IntegerArray(0 to 2)  := (0 => 0,1 => 1,2 => 1);
-      constant place_delays: IntegerArray(0 to 2) := (0 => 0,1 => 0,2 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_39"; 
-      signal preds: BooleanArray(1 to 3); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(11) & transmitPacket_CP_2769_elements(59) & transmitPacket_CP_2769_elements(41);
-      gj_transmitPacket_cp_element_group_39 : generic_join generic map(name => joinName, number_of_predecessors => 3, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(39), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 40:  join  transition  bypass  pipeline-parent 
-    -- CP-element group 40: predecessors 
-    -- CP-element group 40: successors 
-    -- CP-element group 40: 	14 
-    -- CP-element group 40:  members (1) 
-      -- CP-element group 40: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_sample_completed__ps
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(40) is bound as output of CP function.
-    -- CP-element group 41:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 41: predecessors 
-    -- CP-element group 41: successors 
-    -- CP-element group 41: 	16 
-    -- CP-element group 41: 	57 
-    -- CP-element group 41: marked-successors 
-    -- CP-element group 41: 	39 
-    -- CP-element group 41:  members (2) 
-      -- CP-element group 41: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_update_completed__ps
-      -- CP-element group 41: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_update_completed_
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(41) is bound as output of CP function.
-    -- CP-element group 42:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 42: predecessors 
-    -- CP-element group 42: 	9 
-    -- CP-element group 42: successors 
-    -- CP-element group 42:  members (1) 
-      -- CP-element group 42: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_loopback_trigger
-      -- 
-    transmitPacket_CP_2769_elements(42) <= transmitPacket_CP_2769_elements(9);
-    -- CP-element group 43:  fork  transition  output  bypass  pipeline-parent 
-    -- CP-element group 43: predecessors 
-    -- CP-element group 43: successors 
-    -- CP-element group 43:  members (2) 
-      -- CP-element group 43: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_loopback_sample_req
-      -- CP-element group 43: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_loopback_sample_req_ps
-      -- 
-    phi_stmt_1439_loopback_sample_req_2881_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " phi_stmt_1439_loopback_sample_req_2881_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(43), ack => phi_stmt_1439_req_0); -- 
-    -- Element group transmitPacket_CP_2769_elements(43) is bound as output of CP function.
-    -- CP-element group 44:  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 44: predecessors 
-    -- CP-element group 44: 	10 
-    -- CP-element group 44: successors 
-    -- CP-element group 44:  members (1) 
-      -- CP-element group 44: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_entry_trigger
-      -- 
-    transmitPacket_CP_2769_elements(44) <= transmitPacket_CP_2769_elements(10);
-    -- CP-element group 45:  fork  transition  output  bypass  pipeline-parent 
-    -- CP-element group 45: predecessors 
-    -- CP-element group 45: successors 
-    -- CP-element group 45:  members (2) 
-      -- CP-element group 45: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_entry_sample_req
-      -- CP-element group 45: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_entry_sample_req_ps
-      -- 
-    phi_stmt_1439_entry_sample_req_2884_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " phi_stmt_1439_entry_sample_req_2884_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(45), ack => phi_stmt_1439_req_1); -- 
-    -- Element group transmitPacket_CP_2769_elements(45) is bound as output of CP function.
-    -- CP-element group 46:  join  transition  input  bypass  pipeline-parent 
-    -- CP-element group 46: predecessors 
-    -- CP-element group 46: successors 
-    -- CP-element group 46:  members (2) 
-      -- CP-element group 46: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_phi_mux_ack
-      -- CP-element group 46: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/phi_stmt_1439_phi_mux_ack_ps
-      -- 
-    phi_stmt_1439_phi_mux_ack_2887_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 46_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => phi_stmt_1439_ack_0, ack => transmitPacket_CP_2769_elements(46)); -- 
-    -- CP-element group 47:  join  fork  transition  output  bypass  pipeline-parent 
-    -- CP-element group 47: predecessors 
-    -- CP-element group 47: successors 
-    -- CP-element group 47: 	49 
-    -- CP-element group 47:  members (4) 
-      -- CP-element group 47: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_Sample/$entry
-      -- CP-element group 47: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_sample_start_
-      -- CP-element group 47: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_Sample/req
-      -- CP-element group 47: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_sample_start__ps
-      -- 
-    req_2900_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " req_2900_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(47), ack => nmem_addr_1473_1441_buf_req_0); -- 
-    -- Element group transmitPacket_CP_2769_elements(47) is bound as output of CP function.
-    -- CP-element group 48:  join  fork  transition  output  bypass  pipeline-parent 
-    -- CP-element group 48: predecessors 
-    -- CP-element group 48: successors 
-    -- CP-element group 48: 	50 
-    -- CP-element group 48:  members (4) 
-      -- CP-element group 48: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_update_start_
-      -- CP-element group 48: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_Update/$entry
-      -- CP-element group 48: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_Update/req
-      -- CP-element group 48: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_update_start__ps
-      -- 
-    req_2905_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " req_2905_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(48), ack => nmem_addr_1473_1441_buf_req_1); -- 
-    -- Element group transmitPacket_CP_2769_elements(48) is bound as output of CP function.
-    -- CP-element group 49:  join  transition  input  bypass  pipeline-parent 
-    -- CP-element group 49: predecessors 
-    -- CP-element group 49: 	47 
-    -- CP-element group 49: successors 
-    -- CP-element group 49:  members (4) 
-      -- CP-element group 49: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_Sample/ack
-      -- CP-element group 49: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_sample_completed_
-      -- CP-element group 49: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_Sample/$exit
-      -- CP-element group 49: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_sample_completed__ps
-      -- 
-    ack_2901_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 49_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => nmem_addr_1473_1441_buf_ack_0, ack => transmitPacket_CP_2769_elements(49)); -- 
-    -- CP-element group 50:  join  transition  input  bypass  pipeline-parent 
-    -- CP-element group 50: predecessors 
-    -- CP-element group 50: 	48 
-    -- CP-element group 50: successors 
-    -- CP-element group 50:  members (4) 
-      -- CP-element group 50: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_Update/$exit
-      -- CP-element group 50: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_update_completed__ps
-      -- CP-element group 50: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_update_completed_
-      -- CP-element group 50: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/R_nmem_addr_1441_Update/ack
-      -- 
-    ack_2906_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 50_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => nmem_addr_1473_1441_buf_ack_1, ack => transmitPacket_CP_2769_elements(50)); -- 
-    -- CP-element group 51:  join  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 51: predecessors 
-    -- CP-element group 51: successors 
-    -- CP-element group 51: 	53 
-    -- CP-element group 51:  members (1) 
-      -- CP-element group 51: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_sample_start__ps
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(51) is bound as output of CP function.
-    -- CP-element group 52:  join  fork  transition  bypass  pipeline-parent 
-    -- CP-element group 52: predecessors 
-    -- CP-element group 52: successors 
-    -- CP-element group 52: 	54 
-    -- CP-element group 52:  members (1) 
-      -- CP-element group 52: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_update_start__ps
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(52) is bound as output of CP function.
-    -- CP-element group 53:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 53: predecessors 
-    -- CP-element group 53: 	51 
-    -- CP-element group 53: marked-predecessors 
-    -- CP-element group 53: 	55 
-    -- CP-element group 53: successors 
-    -- CP-element group 53: 	55 
-    -- CP-element group 53:  members (3) 
-      -- CP-element group 53: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_sample_start_
-      -- CP-element group 53: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_Sample/$entry
-      -- CP-element group 53: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_Sample/rr
-      -- 
-    rr_2918_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " rr_2918_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(53), ack => ADD_u36_u36_1444_inst_req_0); -- 
-    transmitPacket_cp_element_group_53: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_53"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(51) & transmitPacket_CP_2769_elements(55);
-      gj_transmitPacket_cp_element_group_53 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(53), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 54:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 54: predecessors 
-    -- CP-element group 54: 	52 
-    -- CP-element group 54: marked-predecessors 
-    -- CP-element group 54: 	56 
-    -- CP-element group 54: successors 
-    -- CP-element group 54: 	56 
-    -- CP-element group 54:  members (3) 
-      -- CP-element group 54: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_Update/cr
-      -- CP-element group 54: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_update_start_
-      -- CP-element group 54: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_Update/$entry
-      -- 
-    cr_2923_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " cr_2923_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(54), ack => ADD_u36_u36_1444_inst_req_1); -- 
-    transmitPacket_cp_element_group_54: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_54"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(52) & transmitPacket_CP_2769_elements(56);
-      gj_transmitPacket_cp_element_group_54 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(54), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 55:  join  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 55: predecessors 
-    -- CP-element group 55: 	53 
-    -- CP-element group 55: successors 
-    -- CP-element group 55: marked-successors 
-    -- CP-element group 55: 	53 
-    -- CP-element group 55:  members (4) 
-      -- CP-element group 55: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_sample_completed__ps
-      -- CP-element group 55: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_sample_completed_
-      -- CP-element group 55: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_Sample/$exit
-      -- CP-element group 55: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_Sample/ra
-      -- 
-    ra_2919_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 55_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => ADD_u36_u36_1444_inst_ack_0, ack => transmitPacket_CP_2769_elements(55)); -- 
-    -- CP-element group 56:  join  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 56: predecessors 
-    -- CP-element group 56: 	54 
-    -- CP-element group 56: successors 
-    -- CP-element group 56: marked-successors 
-    -- CP-element group 56: 	54 
-    -- CP-element group 56:  members (4) 
-      -- CP-element group 56: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_Update/ca
-      -- CP-element group 56: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_Update/$exit
-      -- CP-element group 56: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_update_completed__ps
-      -- CP-element group 56: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/ADD_u36_u36_1444_update_completed_
-      -- 
-    ca_2924_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 56_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => ADD_u36_u36_1444_inst_ack_1, ack => transmitPacket_CP_2769_elements(56)); -- 
-    -- CP-element group 57:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 57: predecessors 
-    -- CP-element group 57: 	41 
-    -- CP-element group 57: marked-predecessors 
-    -- CP-element group 57: 	59 
-    -- CP-element group 57: successors 
-    -- CP-element group 57: 	59 
-    -- CP-element group 57:  members (3) 
-      -- CP-element group 57: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_sample_start_
-      -- CP-element group 57: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_Sample/$entry
-      -- CP-element group 57: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_Sample/crr
-      -- 
-    crr_2933_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " crr_2933_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(57), ack => call_stmt_1455_call_req_0); -- 
-    transmitPacket_cp_element_group_57: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_57"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(41) & transmitPacket_CP_2769_elements(59);
-      gj_transmitPacket_cp_element_group_57 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(57), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 58:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 58: predecessors 
-    -- CP-element group 58: marked-predecessors 
-    -- CP-element group 58: 	60 
-    -- CP-element group 58: 	63 
-    -- CP-element group 58: successors 
-    -- CP-element group 58: 	60 
-    -- CP-element group 58:  members (3) 
-      -- CP-element group 58: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_update_start_
-      -- CP-element group 58: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_Update/ccr
-      -- CP-element group 58: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_Update/$entry
-      -- 
-    ccr_2938_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " ccr_2938_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(58), ack => call_stmt_1455_call_req_1); -- 
-    transmitPacket_cp_element_group_58: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 1,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 1,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_58"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(60) & transmitPacket_CP_2769_elements(63);
-      gj_transmitPacket_cp_element_group_58 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(58), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 59:  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 59: predecessors 
-    -- CP-element group 59: 	57 
-    -- CP-element group 59: successors 
-    -- CP-element group 59: marked-successors 
-    -- CP-element group 59: 	57 
-    -- CP-element group 59: 	39 
-    -- CP-element group 59:  members (3) 
-      -- CP-element group 59: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_Sample/$exit
-      -- CP-element group 59: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_sample_completed_
-      -- CP-element group 59: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_Sample/cra
-      -- 
-    cra_2934_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 59_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => call_stmt_1455_call_ack_0, ack => transmitPacket_CP_2769_elements(59)); -- 
-    -- CP-element group 60:  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 60: predecessors 
-    -- CP-element group 60: 	58 
-    -- CP-element group 60: successors 
-    -- CP-element group 60: 	61 
-    -- CP-element group 60: marked-successors 
-    -- CP-element group 60: 	58 
-    -- CP-element group 60:  members (3) 
-      -- CP-element group 60: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_Update/cca
-      -- CP-element group 60: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_Update/$exit
-      -- CP-element group 60: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/call_stmt_1455_update_completed_
-      -- 
-    cca_2939_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 60_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => call_stmt_1455_call_ack_1, ack => transmitPacket_CP_2769_elements(60)); -- 
-    -- CP-element group 61:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 61: predecessors 
-    -- CP-element group 61: 	60 
-    -- CP-element group 61: marked-predecessors 
-    -- CP-element group 61: 	63 
-    -- CP-element group 61: successors 
-    -- CP-element group 61: 	63 
-    -- CP-element group 61:  members (3) 
-      -- CP-element group 61: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_Sample/rr
-      -- CP-element group 61: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_sample_start_
-      -- CP-element group 61: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_Sample/$entry
-      -- 
-    rr_2947_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " rr_2947_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(61), ack => CONCAT_u65_u73_1462_inst_req_0); -- 
-    transmitPacket_cp_element_group_61: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 1,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 1);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_61"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(60) & transmitPacket_CP_2769_elements(63);
-      gj_transmitPacket_cp_element_group_61 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(61), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 62:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 62: predecessors 
-    -- CP-element group 62: marked-predecessors 
-    -- CP-element group 62: 	66 
-    -- CP-element group 62: 	64 
-    -- CP-element group 62: successors 
-    -- CP-element group 62: 	64 
-    -- CP-element group 62:  members (3) 
-      -- CP-element group 62: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_Update/$entry
-      -- CP-element group 62: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_update_start_
-      -- CP-element group 62: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_Update/cr
-      -- 
-    cr_2952_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " cr_2952_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(62), ack => CONCAT_u65_u73_1462_inst_req_1); -- 
-    transmitPacket_cp_element_group_62: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 1,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 1,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_62"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(66) & transmitPacket_CP_2769_elements(64);
-      gj_transmitPacket_cp_element_group_62 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(62), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 63:  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 63: predecessors 
-    -- CP-element group 63: 	61 
-    -- CP-element group 63: successors 
-    -- CP-element group 63: marked-successors 
-    -- CP-element group 63: 	58 
-    -- CP-element group 63: 	61 
-    -- CP-element group 63:  members (3) 
-      -- CP-element group 63: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_Sample/$exit
-      -- CP-element group 63: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_Sample/ra
-      -- CP-element group 63: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_sample_completed_
-      -- 
-    ra_2948_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 63_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => CONCAT_u65_u73_1462_inst_ack_0, ack => transmitPacket_CP_2769_elements(63)); -- 
-    -- CP-element group 64:  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 64: predecessors 
-    -- CP-element group 64: 	62 
-    -- CP-element group 64: successors 
-    -- CP-element group 64: 	65 
-    -- CP-element group 64: marked-successors 
-    -- CP-element group 64: 	62 
-    -- CP-element group 64:  members (3) 
-      -- CP-element group 64: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_Update/$exit
-      -- CP-element group 64: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_update_completed_
-      -- CP-element group 64: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/CONCAT_u65_u73_1462_Update/ca
-      -- 
-    ca_2953_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 64_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => CONCAT_u65_u73_1462_inst_ack_1, ack => transmitPacket_CP_2769_elements(64)); -- 
-    -- CP-element group 65:  join  transition  output  bypass  pipeline-parent 
-    -- CP-element group 65: predecessors 
-    -- CP-element group 65: 	64 
-    -- CP-element group 65: marked-predecessors 
-    -- CP-element group 65: 	67 
-    -- CP-element group 65: successors 
-    -- CP-element group 65: 	66 
-    -- CP-element group 65:  members (3) 
-      -- CP-element group 65: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_sample_start_
-      -- CP-element group 65: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_Sample/$entry
-      -- CP-element group 65: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_Sample/req
-      -- 
-    req_2961_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " req_2961_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(65), ack => WPIPE_nic_to_mac_transmit_pipe_1456_inst_req_0); -- 
-    transmitPacket_cp_element_group_65: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 1,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 1);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_65"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(64) & transmitPacket_CP_2769_elements(67);
-      gj_transmitPacket_cp_element_group_65 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(65), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 66:  fork  transition  input  output  bypass  pipeline-parent 
-    -- CP-element group 66: predecessors 
-    -- CP-element group 66: 	65 
-    -- CP-element group 66: successors 
-    -- CP-element group 66: 	67 
-    -- CP-element group 66: marked-successors 
-    -- CP-element group 66: 	62 
-    -- CP-element group 66:  members (6) 
-      -- CP-element group 66: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_sample_completed_
-      -- CP-element group 66: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_update_start_
-      -- CP-element group 66: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_Sample/$exit
-      -- CP-element group 66: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_Sample/ack
-      -- CP-element group 66: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_Update/$entry
-      -- CP-element group 66: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_Update/req
-      -- 
-    ack_2962_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 66_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => WPIPE_nic_to_mac_transmit_pipe_1456_inst_ack_0, ack => transmitPacket_CP_2769_elements(66)); -- 
-    req_2966_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " req_2966_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(66), ack => WPIPE_nic_to_mac_transmit_pipe_1456_inst_req_1); -- 
-    -- CP-element group 67:  fork  transition  input  bypass  pipeline-parent 
-    -- CP-element group 67: predecessors 
-    -- CP-element group 67: 	66 
-    -- CP-element group 67: successors 
-    -- CP-element group 67: 	69 
-    -- CP-element group 67: marked-successors 
-    -- CP-element group 67: 	65 
-    -- CP-element group 67:  members (3) 
-      -- CP-element group 67: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_update_completed_
-      -- CP-element group 67: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_Update/$exit
-      -- CP-element group 67: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/WPIPE_nic_to_mac_transmit_pipe_1456_Update/ack
-      -- 
-    ack_2967_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 67_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => WPIPE_nic_to_mac_transmit_pipe_1456_inst_ack_1, ack => transmitPacket_CP_2769_elements(67)); -- 
-    -- CP-element group 68:  transition  delay-element  bypass  pipeline-parent 
-    -- CP-element group 68: predecessors 
-    -- CP-element group 68: 	11 
-    -- CP-element group 68: successors 
-    -- CP-element group 68: 	12 
-    -- CP-element group 68:  members (1) 
-      -- CP-element group 68: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/loop_body_delay_to_condition_start
-      -- 
-    -- Element group transmitPacket_CP_2769_elements(68) is a control-delay.
-    cp_element_68_delay: control_delay_element  generic map(name => " 68_delay", delay_value => 1)  port map(req => transmitPacket_CP_2769_elements(11), ack => transmitPacket_CP_2769_elements(68), clk => clk, reset =>reset);
-    -- CP-element group 69:  join  transition  bypass  pipeline-parent 
-    -- CP-element group 69: predecessors 
-    -- CP-element group 69: 	14 
-    -- CP-element group 69: 	67 
-    -- CP-element group 69: successors 
-    -- CP-element group 69: 	8 
-    -- CP-element group 69:  members (1) 
-      -- CP-element group 69: 	 branch_block_stmt_1430/do_while_stmt_1431/do_while_stmt_1431_loop_body/$exit
-      -- 
-    transmitPacket_cp_element_group_69: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 31,1 => 31);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 0);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_69"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(14) & transmitPacket_CP_2769_elements(67);
-      gj_transmitPacket_cp_element_group_69 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(69), clk => clk, reset => reset); --
-    end block;
-    -- CP-element group 70:  transition  input  bypass  pipeline-parent 
-    -- CP-element group 70: predecessors 
-    -- CP-element group 70: 	7 
-    -- CP-element group 70: successors 
-    -- CP-element group 70:  members (2) 
-      -- CP-element group 70: 	 branch_block_stmt_1430/do_while_stmt_1431/loop_exit/$exit
-      -- CP-element group 70: 	 branch_block_stmt_1430/do_while_stmt_1431/loop_exit/ack
-      -- 
-    ack_2972_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 70_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => do_while_stmt_1431_branch_ack_0, ack => transmitPacket_CP_2769_elements(70)); -- 
-    -- CP-element group 71:  transition  input  bypass  pipeline-parent 
-    -- CP-element group 71: predecessors 
-    -- CP-element group 71: 	7 
-    -- CP-element group 71: successors 
-    -- CP-element group 71:  members (2) 
-      -- CP-element group 71: 	 branch_block_stmt_1430/do_while_stmt_1431/loop_taken/$exit
-      -- CP-element group 71: 	 branch_block_stmt_1430/do_while_stmt_1431/loop_taken/ack
-      -- 
-    ack_2976_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 71_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => do_while_stmt_1431_branch_ack_1, ack => transmitPacket_CP_2769_elements(71)); -- 
-    -- CP-element group 72:  transition  bypass  pipeline-parent 
-    -- CP-element group 72: predecessors 
-    -- CP-element group 72: 	5 
-    -- CP-element group 72: successors 
-    -- CP-element group 72: 	3 
-    -- CP-element group 72:  members (1) 
-      -- CP-element group 72: 	 branch_block_stmt_1430/do_while_stmt_1431/$exit
-      -- 
-    transmitPacket_CP_2769_elements(72) <= transmitPacket_CP_2769_elements(5);
-    -- CP-element group 73:  transition  input  bypass 
-    -- CP-element group 73: predecessors 
-    -- CP-element group 73: 	3 
-    -- CP-element group 73: successors 
-    -- CP-element group 73:  members (3) 
-      -- CP-element group 73: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_sample_completed_
-      -- CP-element group 73: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_Sample/$exit
-      -- CP-element group 73: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_Sample/cra
-      -- 
-    cra_2989_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 73_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => call_stmt_1498_call_ack_0, ack => transmitPacket_CP_2769_elements(73)); -- 
-    -- CP-element group 74:  transition  input  output  bypass 
-    -- CP-element group 74: predecessors 
-    -- CP-element group 74: 	3 
-    -- CP-element group 74: successors 
-    -- CP-element group 74: 	75 
-    -- CP-element group 74:  members (6) 
-      -- CP-element group 74: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_update_completed_
-      -- CP-element group 74: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_Update/$exit
-      -- CP-element group 74: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/call_stmt_1498_Update/cca
-      -- CP-element group 74: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_sample_start_
-      -- CP-element group 74: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_Sample/$entry
-      -- CP-element group 74: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_Sample/rr
-      -- 
-    cca_2994_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 74_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => call_stmt_1498_call_ack_1, ack => transmitPacket_CP_2769_elements(74)); -- 
-    rr_3002_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " rr_3002_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(74), ack => CONCAT_u65_u73_1507_inst_req_0); -- 
-    -- CP-element group 75:  transition  input  bypass 
-    -- CP-element group 75: predecessors 
-    -- CP-element group 75: 	74 
-    -- CP-element group 75: successors 
-    -- CP-element group 75:  members (3) 
-      -- CP-element group 75: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_sample_completed_
-      -- CP-element group 75: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_Sample/$exit
-      -- CP-element group 75: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_Sample/ra
-      -- 
-    ra_3003_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 75_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => CONCAT_u65_u73_1507_inst_ack_0, ack => transmitPacket_CP_2769_elements(75)); -- 
-    -- CP-element group 76:  transition  input  output  bypass 
-    -- CP-element group 76: predecessors 
-    -- CP-element group 76: 	3 
-    -- CP-element group 76: successors 
-    -- CP-element group 76: 	77 
-    -- CP-element group 76:  members (6) 
-      -- CP-element group 76: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_update_completed_
-      -- CP-element group 76: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_Update/$exit
-      -- CP-element group 76: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/CONCAT_u65_u73_1507_Update/ca
-      -- CP-element group 76: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_sample_start_
-      -- CP-element group 76: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_Sample/$entry
-      -- CP-element group 76: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_Sample/req
-      -- 
-    ca_3008_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 76_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => CONCAT_u65_u73_1507_inst_ack_1, ack => transmitPacket_CP_2769_elements(76)); -- 
-    req_3016_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " req_3016_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(76), ack => WPIPE_nic_to_mac_transmit_pipe_1501_inst_req_0); -- 
-    -- CP-element group 77:  transition  input  output  bypass 
-    -- CP-element group 77: predecessors 
-    -- CP-element group 77: 	76 
-    -- CP-element group 77: successors 
-    -- CP-element group 77: 	78 
-    -- CP-element group 77:  members (6) 
-      -- CP-element group 77: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_sample_completed_
-      -- CP-element group 77: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_update_start_
-      -- CP-element group 77: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_Sample/$exit
-      -- CP-element group 77: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_Sample/ack
-      -- CP-element group 77: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_Update/$entry
-      -- CP-element group 77: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_Update/req
-      -- 
-    ack_3017_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 77_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => WPIPE_nic_to_mac_transmit_pipe_1501_inst_ack_0, ack => transmitPacket_CP_2769_elements(77)); -- 
-    req_3021_symbol_link_to_dp: control_delay_element -- 
-      generic map(name => " req_3021_symbol_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => transmitPacket_CP_2769_elements(77), ack => WPIPE_nic_to_mac_transmit_pipe_1501_inst_req_1); -- 
-    -- CP-element group 78:  transition  input  bypass 
-    -- CP-element group 78: predecessors 
-    -- CP-element group 78: 	77 
-    -- CP-element group 78: successors 
-    -- CP-element group 78: 	81 
-    -- CP-element group 78:  members (3) 
-      -- CP-element group 78: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_update_completed_
-      -- CP-element group 78: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_Update/$exit
-      -- CP-element group 78: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/WPIPE_nic_to_mac_transmit_pipe_1501_Update/ack
-      -- 
-    ack_3022_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 78_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => WPIPE_nic_to_mac_transmit_pipe_1501_inst_ack_1, ack => transmitPacket_CP_2769_elements(78)); -- 
-    -- CP-element group 79:  transition  input  bypass 
-    -- CP-element group 79: predecessors 
-    -- CP-element group 79: 	3 
-    -- CP-element group 79: successors 
-    -- CP-element group 79:  members (3) 
-      -- CP-element group 79: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_sample_completed_
-      -- CP-element group 79: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_Sample/$exit
-      -- CP-element group 79: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_Sample/ra
-      -- 
-    ra_3031_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 79_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => EQ_u8_u1_1515_inst_ack_0, ack => transmitPacket_CP_2769_elements(79)); -- 
-    -- CP-element group 80:  transition  input  bypass 
-    -- CP-element group 80: predecessors 
-    -- CP-element group 80: 	3 
-    -- CP-element group 80: successors 
-    -- CP-element group 80: 	81 
-    -- CP-element group 80:  members (3) 
-      -- CP-element group 80: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_update_completed_
-      -- CP-element group 80: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_Update/$exit
-      -- CP-element group 80: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/EQ_u8_u1_1515_Update/ca
-      -- 
-    ca_3036_symbol_link_from_dp: control_delay_element -- 
-      generic map(name => " 80_delay",delay_value => 0)
-      port map(clk => clk, reset => reset, req => EQ_u8_u1_1515_inst_ack_1, ack => transmitPacket_CP_2769_elements(80)); -- 
-    -- CP-element group 81:  join  transition  place  bypass 
-    -- CP-element group 81: predecessors 
-    -- CP-element group 81: 	80 
-    -- CP-element group 81: 	78 
-    -- CP-element group 81: successors 
-    -- CP-element group 81:  members (5) 
-      -- CP-element group 81: 	 branch_block_stmt_1430/$exit
-      -- CP-element group 81: 	 branch_block_stmt_1430/branch_block_stmt_1430__exit__
-      -- CP-element group 81: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516__exit__
-      -- CP-element group 81: 	 $exit
-      -- CP-element group 81: 	 branch_block_stmt_1430/call_stmt_1498_to_assign_stmt_1516/$exit
-      -- 
-    transmitPacket_cp_element_group_81: block -- 
-      constant place_capacities: IntegerArray(0 to 1) := (0 => 1,1 => 1);
-      constant place_markings: IntegerArray(0 to 1)  := (0 => 0,1 => 0);
-      constant place_delays: IntegerArray(0 to 1) := (0 => 0,1 => 0);
-      constant joinName: string(1 to 34) := "transmitPacket_cp_element_group_81"; 
-      signal preds: BooleanArray(1 to 2); -- 
-    begin -- 
-      preds <= transmitPacket_CP_2769_elements(80) & transmitPacket_CP_2769_elements(78);
-      gj_transmitPacket_cp_element_group_81 : generic_join generic map(name => joinName, number_of_predecessors => 2, place_capacities => place_capacities, place_markings => place_markings, place_delays => place_delays) -- 
-        port map(preds => preds, symbol_out => transmitPacket_CP_2769_elements(81), clk => clk, reset => reset); --
-    end block;
-    transmitPacket_do_while_stmt_1431_terminator_2977: loop_terminator -- 
-      generic map (name => " transmitPacket_do_while_stmt_1431_terminator_2977", max_iterations_in_flight =>31) 
-      port map(loop_body_exit => transmitPacket_CP_2769_elements(8),loop_continue => transmitPacket_CP_2769_elements(71),loop_terminate => transmitPacket_CP_2769_elements(70),loop_back => transmitPacket_CP_2769_elements(6),loop_exit => transmitPacket_CP_2769_elements(5),clk => clk, reset => reset); -- 
-    phi_stmt_1433_phi_seq_2871_block : block -- 
-      signal triggers, src_sample_reqs, src_sample_acks, src_update_reqs, src_update_acks : BooleanArray(0 to 1);
-      signal phi_mux_reqs : BooleanArray(0 to 1); -- 
-    begin -- 
-      triggers(0)  <= transmitPacket_CP_2769_elements(25);
-      transmitPacket_CP_2769_elements(28)<= src_sample_reqs(0);
-      src_sample_acks(0)  <= transmitPacket_CP_2769_elements(32);
-      transmitPacket_CP_2769_elements(29)<= src_update_reqs(0);
-      src_update_acks(0)  <= transmitPacket_CP_2769_elements(33);
-      transmitPacket_CP_2769_elements(26) <= phi_mux_reqs(0);
-      triggers(1)  <= transmitPacket_CP_2769_elements(23);
-      transmitPacket_CP_2769_elements(34)<= src_sample_reqs(1);
-      src_sample_acks(1)  <= transmitPacket_CP_2769_elements(36);
-      transmitPacket_CP_2769_elements(35)<= src_update_reqs(1);
-      src_update_acks(1)  <= transmitPacket_CP_2769_elements(37);
-      transmitPacket_CP_2769_elements(24) <= phi_mux_reqs(1);
-      phi_stmt_1433_phi_seq_2871 : phi_sequencer_v2-- 
-        generic map (place_capacity => 31, ntriggers => 2, name => "phi_stmt_1433_phi_seq_2871") 
-        port map ( -- 
-          triggers => triggers, src_sample_starts => src_sample_reqs, 
-          src_sample_completes => src_sample_acks, src_update_starts => src_update_reqs, 
-          src_update_completes => src_update_acks,
-          phi_mux_select_reqs => phi_mux_reqs, 
-          phi_sample_req => transmitPacket_CP_2769_elements(19), 
-          phi_sample_ack => transmitPacket_CP_2769_elements(20), 
-          phi_update_req => transmitPacket_CP_2769_elements(21), 
-          phi_update_ack => transmitPacket_CP_2769_elements(22), 
-          phi_mux_ack => transmitPacket_CP_2769_elements(27), 
-          clk => clk, reset => reset -- 
-        );
-        -- 
-    end block;
-    phi_stmt_1439_phi_seq_2925_block : block -- 
-      signal triggers, src_sample_reqs, src_sample_acks, src_update_reqs, src_update_acks : BooleanArray(0 to 1);
-      signal phi_mux_reqs : BooleanArray(0 to 1); -- 
-    begin -- 
-      triggers(0)  <= transmitPacket_CP_2769_elements(42);
-      transmitPacket_CP_2769_elements(47)<= src_sample_reqs(0);
-      src_sample_acks(0)  <= transmitPacket_CP_2769_elements(49);
-      transmitPacket_CP_2769_elements(48)<= src_update_reqs(0);
-      src_update_acks(0)  <= transmitPacket_CP_2769_elements(50);
-      transmitPacket_CP_2769_elements(43) <= phi_mux_reqs(0);
-      triggers(1)  <= transmitPacket_CP_2769_elements(44);
-      transmitPacket_CP_2769_elements(51)<= src_sample_reqs(1);
-      src_sample_acks(1)  <= transmitPacket_CP_2769_elements(55);
-      transmitPacket_CP_2769_elements(52)<= src_update_reqs(1);
-      src_update_acks(1)  <= transmitPacket_CP_2769_elements(56);
-      transmitPacket_CP_2769_elements(45) <= phi_mux_reqs(1);
-      phi_stmt_1439_phi_seq_2925 : phi_sequencer_v2-- 
-        generic map (place_capacity => 31, ntriggers => 2, name => "phi_stmt_1439_phi_seq_2925") 
-        port map ( -- 
-          triggers => triggers, src_sample_starts => src_sample_reqs, 
-          src_sample_completes => src_sample_acks, src_update_starts => src_update_reqs, 
-          src_update_completes => src_update_acks,
-          phi_mux_select_reqs => phi_mux_reqs, 
-          phi_sample_req => transmitPacket_CP_2769_elements(13), 
-          phi_sample_ack => transmitPacket_CP_2769_elements(40), 
-          phi_update_req => transmitPacket_CP_2769_elements(15), 
-          phi_update_ack => transmitPacket_CP_2769_elements(41), 
-          phi_mux_ack => transmitPacket_CP_2769_elements(46), 
-          clk => clk, reset => reset -- 
-        );
-        -- 
-    end block;
-    entry_tmerge_2813_block : block -- 
-      signal preds : BooleanArray(0 to 1);
-      begin -- 
-        preds(0)  <= transmitPacket_CP_2769_elements(9);
-        preds(1)  <= transmitPacket_CP_2769_elements(10);
-        entry_tmerge_2813 : transition_merge -- 
-          generic map(name => " entry_tmerge_2813")
-          port map (preds => preds, symbol_out => transmitPacket_CP_2769_elements(11));
-          -- 
-    end block;
-    --  hookup: inputs to control-path 
-    -- hookup: output from control-path 
-    -- 
-  end Block; -- control-path
-  -- the data path
-  data_path: Block -- 
-    signal ADD_u36_u36_1444_wire : std_logic_vector(35 downto 0);
-    signal CONCAT_u1_u65_1460_wire : std_logic_vector(64 downto 0);
-    signal CONCAT_u1_u65_1505_wire : std_logic_vector(64 downto 0);
-    signal CONCAT_u32_u36_1403_wire : std_logic_vector(35 downto 0);
-    signal CONCAT_u65_u73_1462_wire : std_logic_vector(72 downto 0);
-    signal CONCAT_u65_u73_1507_wire : std_logic_vector(72 downto 0);
-    signal R_FULL_BYTE_MASK_1413_wire_constant : std_logic_vector(7 downto 0);
-    signal R_FULL_BYTE_MASK_1450_wire_constant : std_logic_vector(7 downto 0);
-    signal R_FULL_BYTE_MASK_1461_wire_constant : std_logic_vector(7 downto 0);
-    signal R_FULL_BYTE_MASK_1493_wire_constant : std_logic_vector(7 downto 0);
-    signal SUB_u36_u36_1513_wire : std_logic_vector(35 downto 0);
-    signal SUB_u8_u8_1437_wire : std_logic_vector(7 downto 0);
-    signal control_data_1418 : std_logic_vector(63 downto 0);
-    signal control_data_addr_1405 : std_logic_vector(35 downto 0);
-    signal count_down_1433 : std_logic_vector(7 downto 0);
-    signal data_1455 : std_logic_vector(63 downto 0);
-    signal konst_1436_wire_constant : std_logic_vector(7 downto 0);
-    signal konst_1443_wire_constant : std_logic_vector(35 downto 0);
-    signal konst_1466_wire_constant : std_logic_vector(7 downto 0);
-    signal konst_1471_wire_constant : std_logic_vector(35 downto 0);
-    signal konst_1482_wire_constant : std_logic_vector(7 downto 0);
-    signal last_tkeep_1426 : std_logic_vector(7 downto 0);
-    signal last_word_1498 : std_logic_vector(63 downto 0);
-    signal mem_addr_1439 : std_logic_vector(35 downto 0);
-    signal ncount_down_1468 : std_logic_vector(7 downto 0);
-    signal ncount_down_1468_1438_buffered : std_logic_vector(7 downto 0);
-    signal nmem_addr_1473 : std_logic_vector(35 downto 0);
-    signal nmem_addr_1473_1441_buffered : std_logic_vector(35 downto 0);
-    signal not_last_word_1484 : std_logic_vector(0 downto 0);
-    signal packet_size_1422 : std_logic_vector(7 downto 0);
-    signal slice_1400_wire : std_logic_vector(31 downto 0);
-    signal type_cast_1402_wire_constant : std_logic_vector(3 downto 0);
-    signal type_cast_1410_wire_constant : std_logic_vector(0 downto 0);
-    signal type_cast_1412_wire_constant : std_logic_vector(0 downto 0);
-    signal type_cast_1416_wire_constant : std_logic_vector(63 downto 0);
-    signal type_cast_1447_wire_constant : std_logic_vector(0 downto 0);
-    signal type_cast_1449_wire_constant : std_logic_vector(0 downto 0);
-    signal type_cast_1453_wire_constant : std_logic_vector(63 downto 0);
-    signal type_cast_1458_wire_constant : std_logic_vector(0 downto 0);
-    signal type_cast_1490_wire_constant : std_logic_vector(0 downto 0);
-    signal type_cast_1492_wire_constant : std_logic_vector(0 downto 0);
-    signal type_cast_1496_wire_constant : std_logic_vector(63 downto 0);
-    signal type_cast_1503_wire_constant : std_logic_vector(0 downto 0);
-    signal type_cast_1514_wire : std_logic_vector(7 downto 0);
-    -- 
-  begin -- 
-    R_FULL_BYTE_MASK_1413_wire_constant <= "11111111";
-    R_FULL_BYTE_MASK_1450_wire_constant <= "11111111";
-    R_FULL_BYTE_MASK_1461_wire_constant <= "11111111";
-    R_FULL_BYTE_MASK_1493_wire_constant <= "11111111";
-    konst_1436_wire_constant <= "00010000";
-    konst_1443_wire_constant <= "000000000000000000000000000000011000";
-    konst_1466_wire_constant <= "00001000";
-    konst_1471_wire_constant <= "000000000000000000000000000000001000";
-    konst_1482_wire_constant <= "00001000";
-    type_cast_1402_wire_constant <= "0000";
-    type_cast_1410_wire_constant <= "0";
-    type_cast_1412_wire_constant <= "1";
-    type_cast_1416_wire_constant <= "0000000000000000000000000000000000000000000000000000000000000000";
-    type_cast_1447_wire_constant <= "0";
-    type_cast_1449_wire_constant <= "1";
-    type_cast_1453_wire_constant <= "0000000000000000000000000000000000000000000000000000000000000000";
-    type_cast_1458_wire_constant <= "0";
-    type_cast_1490_wire_constant <= "0";
-    type_cast_1492_wire_constant <= "1";
-    type_cast_1496_wire_constant <= "0000000000000000000000000000000000000000000000000000000000000000";
-    type_cast_1503_wire_constant <= "1";
-    phi_stmt_1433: Block -- phi operator 
-      signal idata: std_logic_vector(15 downto 0);
-      signal req: BooleanArray(1 downto 0);
-      --
-    begin -- 
-      idata <= SUB_u8_u8_1437_wire & ncount_down_1468_1438_buffered;
-      req <= phi_stmt_1433_req_0 & phi_stmt_1433_req_1;
-      phi: PhiBase -- 
-        generic map( -- 
-          name => "phi_stmt_1433",
-          num_reqs => 2,
-          bypass_flag => true,
-          data_width => 8) -- 
-        port map( -- 
-          req => req, 
-          ack => phi_stmt_1433_ack_0,
-          idata => idata,
-          odata => count_down_1433,
-          clk => clk,
-          reset => reset ); -- 
-      -- 
-    end Block; -- phi operator phi_stmt_1433
-    phi_stmt_1439: Block -- phi operator 
-      signal idata: std_logic_vector(71 downto 0);
-      signal req: BooleanArray(1 downto 0);
-      --
-    begin -- 
-      idata <= nmem_addr_1473_1441_buffered & ADD_u36_u36_1444_wire;
-      req <= phi_stmt_1439_req_0 & phi_stmt_1439_req_1;
-      phi: PhiBase -- 
-        generic map( -- 
-          name => "phi_stmt_1439",
-          num_reqs => 2,
-          bypass_flag => true,
-          data_width => 36) -- 
-        port map( -- 
-          req => req, 
-          ack => phi_stmt_1439_ack_0,
-          idata => idata,
-          odata => mem_addr_1439,
-          clk => clk,
-          reset => reset ); -- 
-      -- 
-    end Block; -- phi operator phi_stmt_1439
-    -- flow-through slice operator slice_1400_inst
-    slice_1400_wire <= packet_pointer_buffer(31 downto 0);
-    -- flow-through slice operator slice_1421_inst
-    packet_size_1422 <= control_data_1418(15 downto 8);
-    -- flow-through slice operator slice_1425_inst
-    last_tkeep_1426 <= control_data_1418(7 downto 0);
-    ncount_down_1468_1438_buf_block: block -- 
-      signal wreq, wack, rreq, rack: BooleanArray(0 downto 0); 
-      -- 
-    begin -- 
-      wreq(0) <= ncount_down_1468_1438_buf_req_0;
-      ncount_down_1468_1438_buf_ack_0<= wack(0);
-      rreq(0) <= ncount_down_1468_1438_buf_req_1;
-      ncount_down_1468_1438_buf_ack_1<= rack(0);
-      ncount_down_1468_1438_buf : InterlockBuffer generic map ( -- 
-        name => "ncount_down_1468_1438_buf",
-        buffer_size => 1,
-        flow_through =>  false ,
-        cut_through =>  false ,
-        in_data_width => 8,
-        out_data_width => 8,
-        bypass_flag =>  false 
-        -- 
-      )port map ( -- 
-        write_req => wreq(0), 
-        write_ack => wack(0), 
-        write_data => ncount_down_1468,
-        read_req => rreq(0),  
-        read_ack => rack(0), 
-        read_data => ncount_down_1468_1438_buffered,
-        clk => clk, reset => reset
-        -- 
-      );
-      end block; -- 
-    nmem_addr_1473_1441_buf_block: block -- 
-      signal wreq, wack, rreq, rack: BooleanArray(0 downto 0); 
-      -- 
-    begin -- 
-      wreq(0) <= nmem_addr_1473_1441_buf_req_0;
-      nmem_addr_1473_1441_buf_ack_0<= wack(0);
-      rreq(0) <= nmem_addr_1473_1441_buf_req_1;
-      nmem_addr_1473_1441_buf_ack_1<= rack(0);
-      nmem_addr_1473_1441_buf : InterlockBuffer generic map ( -- 
-        name => "nmem_addr_1473_1441_buf",
-        buffer_size => 1,
-        flow_through =>  false ,
-        cut_through =>  false ,
-        in_data_width => 36,
-        out_data_width => 36,
-        bypass_flag =>  false 
-        -- 
-      )port map ( -- 
-        write_req => wreq(0), 
-        write_ack => wack(0), 
-        write_data => nmem_addr_1473,
-        read_req => rreq(0),  
-        read_ack => rack(0), 
-        read_data => nmem_addr_1473_1441_buffered,
-        clk => clk, reset => reset
-        -- 
-      );
-      end block; -- 
-    -- interlock type_cast_1404_inst
-    process(CONCAT_u32_u36_1403_wire) -- 
-      variable tmp_var : std_logic_vector(35 downto 0); -- 
-    begin -- 
-      tmp_var := (others => '0'); 
-      tmp_var( 35 downto 0) := CONCAT_u32_u36_1403_wire(35 downto 0);
-      control_data_addr_1405 <= tmp_var; -- 
-    end process;
-    -- interlock type_cast_1514_inst
-    process(SUB_u36_u36_1513_wire) -- 
-      variable tmp_var : std_logic_vector(7 downto 0); -- 
-    begin -- 
-      tmp_var := (others => '0'); 
-      tmp_var( 7 downto 0) := SUB_u36_u36_1513_wire(7 downto 0);
-      type_cast_1514_wire <= tmp_var; -- 
-    end process;
-    do_while_stmt_1431_branch: Block -- 
-      -- branch-block
-      signal condition_sig : std_logic_vector(0 downto 0);
-      begin 
-      condition_sig <= not_last_word_1484;
-      branch_instance: BranchBase -- 
-        generic map( name => "do_while_stmt_1431_branch", condition_width => 1,  bypass_flag => true)
-        port map( -- 
-          condition => condition_sig,
-          req => do_while_stmt_1431_branch_req_0,
-          ack0 => do_while_stmt_1431_branch_ack_0,
-          ack1 => do_while_stmt_1431_branch_ack_1,
-          clk => clk,
-          reset => reset); -- 
-      --
-    end Block; -- branch-block
-    -- shared split operator group (0) : ADD_u36_u36_1444_inst 
-    ApIntAdd_group_0: Block -- 
-      signal data_in: std_logic_vector(35 downto 0);
-      signal data_out: std_logic_vector(35 downto 0);
-      signal reqR, ackR, reqL, ackL : BooleanArray( 0 downto 0);
-      signal reqR_unguarded, ackR_unguarded, reqL_unguarded, ackL_unguarded : BooleanArray( 0 downto 0);
-      signal guard_vector : std_logic_vector( 0 downto 0);
-      constant inBUFs : IntegerArray(0 downto 0) := (0 => 0);
-      constant outBUFs : IntegerArray(0 downto 0) := (0 => 1);
-      constant guardFlags : BooleanArray(0 downto 0) := (0 => false);
-      constant guardBuffering: IntegerArray(0 downto 0)  := (0 => 2);
-      -- 
-    begin -- 
-      data_in <= control_data_addr_1405;
-      ADD_u36_u36_1444_wire <= data_out(35 downto 0);
-      guard_vector(0)  <=  '1';
-      reqL_unguarded(0) <= ADD_u36_u36_1444_inst_req_0;
-      ADD_u36_u36_1444_inst_ack_0 <= ackL_unguarded(0);
-      reqR_unguarded(0) <= ADD_u36_u36_1444_inst_req_1;
-      ADD_u36_u36_1444_inst_ack_1 <= ackR_unguarded(0);
-      ApIntAdd_group_0_gI: SplitGuardInterface generic map(name => "ApIntAdd_group_0_gI", nreqs => 1, buffering => guardBuffering, use_guards => guardFlags,  sample_only => false,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => reqL_unguarded,
-        sr_out => reqL,
-        sa_in => ackL,
-        sa_out => ackL_unguarded,
-        cr_in => reqR_unguarded,
-        cr_out => reqR,
-        ca_in => ackR,
-        ca_out => ackR_unguarded,
-        guards => guard_vector); -- 
-      UnsharedOperator: UnsharedOperatorWithBuffering -- 
-        generic map ( -- 
-          operator_id => "ApIntAdd",
-          name => "ApIntAdd_group_0",
-          input1_is_int => true, 
-          input1_characteristic_width => 0, 
-          input1_mantissa_width    => 0, 
-          iwidth_1  => 36,
-          input2_is_int => true, 
-          input2_characteristic_width => 0, 
-          input2_mantissa_width => 0, 
-          iwidth_2      => 0, 
-          num_inputs    => 1,
-          output_is_int => true,
-          output_characteristic_width  => 0, 
-          output_mantissa_width => 0, 
-          owidth => 36,
-          constant_operand => "000000000000000000000000000000011000",
-          constant_width => 36,
-          buffering  => 1,
-          flow_through => false,
-          full_rate  => true,
-          use_constant  => true
-          --
-        ) 
-        port map ( -- 
-          reqL => reqL(0),
-          ackL => ackL(0),
-          reqR => reqR(0),
-          ackR => ackR(0),
-          dataL => data_in, 
-          dataR => data_out,
-          clk => clk,
-          reset => reset); -- 
-      -- 
-    end Block; -- split operator group 0
-    -- binary operator ADD_u36_u36_1472_inst
-    process(mem_addr_1439) -- 
-      variable tmp_var : std_logic_vector(35 downto 0); -- 
-    begin -- 
-      ApIntAdd_proc(mem_addr_1439, konst_1471_wire_constant, tmp_var);
-      nmem_addr_1473 <= tmp_var; --
-    end process;
-    -- binary operator CONCAT_u1_u65_1460_inst
-    process(type_cast_1458_wire_constant, data_1455) -- 
-      variable tmp_var : std_logic_vector(64 downto 0); -- 
-    begin -- 
-      ApConcat_proc(type_cast_1458_wire_constant, data_1455, tmp_var);
-      CONCAT_u1_u65_1460_wire <= tmp_var; --
-    end process;
-    -- binary operator CONCAT_u1_u65_1505_inst
-    process(type_cast_1503_wire_constant, last_word_1498) -- 
-      variable tmp_var : std_logic_vector(64 downto 0); -- 
-    begin -- 
-      ApConcat_proc(type_cast_1503_wire_constant, last_word_1498, tmp_var);
-      CONCAT_u1_u65_1505_wire <= tmp_var; --
-    end process;
-    -- binary operator CONCAT_u32_u36_1403_inst
-    process(slice_1400_wire) -- 
-      variable tmp_var : std_logic_vector(35 downto 0); -- 
-    begin -- 
-      ApConcat_proc(slice_1400_wire, type_cast_1402_wire_constant, tmp_var);
-      CONCAT_u32_u36_1403_wire <= tmp_var; --
-    end process;
-    -- shared split operator group (5) : CONCAT_u65_u73_1462_inst 
-    ApConcat_group_5: Block -- 
-      signal data_in: std_logic_vector(64 downto 0);
-      signal data_out: std_logic_vector(72 downto 0);
-      signal reqR, ackR, reqL, ackL : BooleanArray( 0 downto 0);
-      signal reqR_unguarded, ackR_unguarded, reqL_unguarded, ackL_unguarded : BooleanArray( 0 downto 0);
-      signal guard_vector : std_logic_vector( 0 downto 0);
-      constant inBUFs : IntegerArray(0 downto 0) := (0 => 0);
-      constant outBUFs : IntegerArray(0 downto 0) := (0 => 1);
-      constant guardFlags : BooleanArray(0 downto 0) := (0 => false);
-      constant guardBuffering: IntegerArray(0 downto 0)  := (0 => 2);
-      -- 
-    begin -- 
-      data_in <= CONCAT_u1_u65_1460_wire;
-      CONCAT_u65_u73_1462_wire <= data_out(72 downto 0);
-      guard_vector(0)  <=  '1';
-      reqL_unguarded(0) <= CONCAT_u65_u73_1462_inst_req_0;
-      CONCAT_u65_u73_1462_inst_ack_0 <= ackL_unguarded(0);
-      reqR_unguarded(0) <= CONCAT_u65_u73_1462_inst_req_1;
-      CONCAT_u65_u73_1462_inst_ack_1 <= ackR_unguarded(0);
-      ApConcat_group_5_gI: SplitGuardInterface generic map(name => "ApConcat_group_5_gI", nreqs => 1, buffering => guardBuffering, use_guards => guardFlags,  sample_only => false,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => reqL_unguarded,
-        sr_out => reqL,
-        sa_in => ackL,
-        sa_out => ackL_unguarded,
-        cr_in => reqR_unguarded,
-        cr_out => reqR,
-        ca_in => ackR,
-        ca_out => ackR_unguarded,
-        guards => guard_vector); -- 
-      UnsharedOperator: UnsharedOperatorWithBuffering -- 
-        generic map ( -- 
-          operator_id => "ApConcat",
-          name => "ApConcat_group_5",
-          input1_is_int => true, 
-          input1_characteristic_width => 0, 
-          input1_mantissa_width    => 0, 
-          iwidth_1  => 65,
-          input2_is_int => true, 
-          input2_characteristic_width => 0, 
-          input2_mantissa_width => 0, 
-          iwidth_2      => 0, 
-          num_inputs    => 1,
-          output_is_int => true,
-          output_characteristic_width  => 0, 
-          output_mantissa_width => 0, 
-          owidth => 73,
-          constant_operand => "11111111",
-          constant_width => 8,
-          buffering  => 1,
-          flow_through => false,
-          full_rate  => true,
-          use_constant  => true
-          --
-        ) 
-        port map ( -- 
-          reqL => reqL(0),
-          ackL => ackL(0),
-          reqR => reqR(0),
-          ackR => ackR(0),
-          dataL => data_in, 
-          dataR => data_out,
-          clk => clk,
-          reset => reset); -- 
-      -- 
-    end Block; -- split operator group 5
-    -- shared split operator group (6) : CONCAT_u65_u73_1507_inst 
-    ApConcat_group_6: Block -- 
-      signal data_in: std_logic_vector(72 downto 0);
-      signal data_out: std_logic_vector(72 downto 0);
-      signal reqR, ackR, reqL, ackL : BooleanArray( 0 downto 0);
-      signal reqR_unguarded, ackR_unguarded, reqL_unguarded, ackL_unguarded : BooleanArray( 0 downto 0);
-      signal guard_vector : std_logic_vector( 0 downto 0);
-      constant inBUFs : IntegerArray(0 downto 0) := (0 => 0);
-      constant outBUFs : IntegerArray(0 downto 0) := (0 => 1);
-      constant guardFlags : BooleanArray(0 downto 0) := (0 => false);
-      constant guardBuffering: IntegerArray(0 downto 0)  := (0 => 2);
-      -- 
-    begin -- 
-      data_in <= CONCAT_u1_u65_1505_wire & last_tkeep_1426;
-      CONCAT_u65_u73_1507_wire <= data_out(72 downto 0);
-      guard_vector(0)  <=  '1';
-      reqL_unguarded(0) <= CONCAT_u65_u73_1507_inst_req_0;
-      CONCAT_u65_u73_1507_inst_ack_0 <= ackL_unguarded(0);
-      reqR_unguarded(0) <= CONCAT_u65_u73_1507_inst_req_1;
-      CONCAT_u65_u73_1507_inst_ack_1 <= ackR_unguarded(0);
-      ApConcat_group_6_gI: SplitGuardInterface generic map(name => "ApConcat_group_6_gI", nreqs => 1, buffering => guardBuffering, use_guards => guardFlags,  sample_only => false,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => reqL_unguarded,
-        sr_out => reqL,
-        sa_in => ackL,
-        sa_out => ackL_unguarded,
-        cr_in => reqR_unguarded,
-        cr_out => reqR,
-        ca_in => ackR,
-        ca_out => ackR_unguarded,
-        guards => guard_vector); -- 
-      UnsharedOperator: UnsharedOperatorWithBuffering -- 
-        generic map ( -- 
-          operator_id => "ApConcat",
-          name => "ApConcat_group_6",
-          input1_is_int => true, 
-          input1_characteristic_width => 0, 
-          input1_mantissa_width    => 0, 
-          iwidth_1  => 65,
-          input2_is_int => true, 
-          input2_characteristic_width => 0, 
-          input2_mantissa_width => 0, 
-          iwidth_2      => 8, 
-          num_inputs    => 2,
-          output_is_int => true,
-          output_characteristic_width  => 0, 
-          output_mantissa_width => 0, 
-          owidth => 73,
-          constant_operand => "0",
-          constant_width => 1,
-          buffering  => 1,
-          flow_through => false,
-          full_rate  => false,
-          use_constant  => false
-          --
-        ) 
-        port map ( -- 
-          reqL => reqL(0),
-          ackL => ackL(0),
-          reqR => reqR(0),
-          ackR => ackR(0),
-          dataL => data_in, 
-          dataR => data_out,
-          clk => clk,
-          reset => reset); -- 
-      -- 
-    end Block; -- split operator group 6
-    -- shared split operator group (7) : EQ_u8_u1_1515_inst 
-    ApIntEq_group_7: Block -- 
-      signal data_in: std_logic_vector(15 downto 0);
-      signal data_out: std_logic_vector(0 downto 0);
-      signal reqR, ackR, reqL, ackL : BooleanArray( 0 downto 0);
-      signal reqR_unguarded, ackR_unguarded, reqL_unguarded, ackL_unguarded : BooleanArray( 0 downto 0);
-      signal guard_vector : std_logic_vector( 0 downto 0);
-      constant inBUFs : IntegerArray(0 downto 0) := (0 => 0);
-      constant outBUFs : IntegerArray(0 downto 0) := (0 => 1);
-      constant guardFlags : BooleanArray(0 downto 0) := (0 => false);
-      constant guardBuffering: IntegerArray(0 downto 0)  := (0 => 2);
-      -- 
-    begin -- 
-      data_in <= packet_size_1422 & type_cast_1514_wire;
-      status_buffer <= data_out(0 downto 0);
-      guard_vector(0)  <=  '1';
-      reqL_unguarded(0) <= EQ_u8_u1_1515_inst_req_0;
-      EQ_u8_u1_1515_inst_ack_0 <= ackL_unguarded(0);
-      reqR_unguarded(0) <= EQ_u8_u1_1515_inst_req_1;
-      EQ_u8_u1_1515_inst_ack_1 <= ackR_unguarded(0);
-      ApIntEq_group_7_gI: SplitGuardInterface generic map(name => "ApIntEq_group_7_gI", nreqs => 1, buffering => guardBuffering, use_guards => guardFlags,  sample_only => false,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => reqL_unguarded,
-        sr_out => reqL,
-        sa_in => ackL,
-        sa_out => ackL_unguarded,
-        cr_in => reqR_unguarded,
-        cr_out => reqR,
-        ca_in => ackR,
-        ca_out => ackR_unguarded,
-        guards => guard_vector); -- 
-      UnsharedOperator: UnsharedOperatorWithBuffering -- 
-        generic map ( -- 
-          operator_id => "ApIntEq",
-          name => "ApIntEq_group_7",
-          input1_is_int => true, 
-          input1_characteristic_width => 0, 
-          input1_mantissa_width    => 0, 
-          iwidth_1  => 8,
-          input2_is_int => true, 
-          input2_characteristic_width => 0, 
-          input2_mantissa_width => 0, 
-          iwidth_2      => 8, 
-          num_inputs    => 2,
-          output_is_int => true,
-          output_characteristic_width  => 0, 
-          output_mantissa_width => 0, 
-          owidth => 1,
-          constant_operand => "0",
-          constant_width => 1,
-          buffering  => 1,
-          flow_through => false,
-          full_rate  => false,
-          use_constant  => false
-          --
-        ) 
-        port map ( -- 
-          reqL => reqL(0),
-          ackL => ackL(0),
-          reqR => reqR(0),
-          ackR => ackR(0),
-          dataL => data_in, 
-          dataR => data_out,
-          clk => clk,
-          reset => reset); -- 
-      -- 
-    end Block; -- split operator group 7
-    -- binary operator SUB_u36_u36_1513_inst
-    process(nmem_addr_1473, control_data_addr_1405) -- 
-      variable tmp_var : std_logic_vector(35 downto 0); -- 
-    begin -- 
-      ApIntSub_proc(nmem_addr_1473, control_data_addr_1405, tmp_var);
-      SUB_u36_u36_1513_wire <= tmp_var; --
-    end process;
-    -- shared split operator group (9) : SUB_u8_u8_1437_inst 
-    ApIntSub_group_9: Block -- 
-      signal data_in: std_logic_vector(7 downto 0);
-      signal data_out: std_logic_vector(7 downto 0);
-      signal reqR, ackR, reqL, ackL : BooleanArray( 0 downto 0);
-      signal reqR_unguarded, ackR_unguarded, reqL_unguarded, ackL_unguarded : BooleanArray( 0 downto 0);
-      signal guard_vector : std_logic_vector( 0 downto 0);
-      constant inBUFs : IntegerArray(0 downto 0) := (0 => 0);
-      constant outBUFs : IntegerArray(0 downto 0) := (0 => 1);
-      constant guardFlags : BooleanArray(0 downto 0) := (0 => false);
-      constant guardBuffering: IntegerArray(0 downto 0)  := (0 => 2);
-      -- 
-    begin -- 
-      data_in <= packet_size_1422;
-      SUB_u8_u8_1437_wire <= data_out(7 downto 0);
-      guard_vector(0)  <=  '1';
-      reqL_unguarded(0) <= SUB_u8_u8_1437_inst_req_0;
-      SUB_u8_u8_1437_inst_ack_0 <= ackL_unguarded(0);
-      reqR_unguarded(0) <= SUB_u8_u8_1437_inst_req_1;
-      SUB_u8_u8_1437_inst_ack_1 <= ackR_unguarded(0);
-      ApIntSub_group_9_gI: SplitGuardInterface generic map(name => "ApIntSub_group_9_gI", nreqs => 1, buffering => guardBuffering, use_guards => guardFlags,  sample_only => false,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => reqL_unguarded,
-        sr_out => reqL,
-        sa_in => ackL,
-        sa_out => ackL_unguarded,
-        cr_in => reqR_unguarded,
-        cr_out => reqR,
-        ca_in => ackR,
-        ca_out => ackR_unguarded,
-        guards => guard_vector); -- 
-      UnsharedOperator: UnsharedOperatorWithBuffering -- 
-        generic map ( -- 
-          operator_id => "ApIntSub",
-          name => "ApIntSub_group_9",
-          input1_is_int => true, 
-          input1_characteristic_width => 0, 
-          input1_mantissa_width    => 0, 
-          iwidth_1  => 8,
-          input2_is_int => true, 
-          input2_characteristic_width => 0, 
-          input2_mantissa_width => 0, 
-          iwidth_2      => 0, 
-          num_inputs    => 1,
-          output_is_int => true,
-          output_characteristic_width  => 0, 
-          output_mantissa_width => 0, 
-          owidth => 8,
-          constant_operand => "00010000",
-          constant_width => 8,
-          buffering  => 1,
-          flow_through => false,
-          full_rate  => true,
-          use_constant  => true
-          --
-        ) 
-        port map ( -- 
-          reqL => reqL(0),
-          ackL => ackL(0),
-          reqR => reqR(0),
-          ackR => ackR(0),
-          dataL => data_in, 
-          dataR => data_out,
-          clk => clk,
-          reset => reset); -- 
-      -- 
-    end Block; -- split operator group 9
-    -- binary operator SUB_u8_u8_1467_inst
-    process(count_down_1433) -- 
-      variable tmp_var : std_logic_vector(7 downto 0); -- 
-    begin -- 
-      ApIntSub_proc(count_down_1433, konst_1466_wire_constant, tmp_var);
-      ncount_down_1468 <= tmp_var; --
-    end process;
-    -- binary operator UGT_u8_u1_1483_inst
-    process(ncount_down_1468) -- 
-      variable tmp_var : std_logic_vector(0 downto 0); -- 
-    begin -- 
-      ApIntUgt_proc(ncount_down_1468, konst_1482_wire_constant, tmp_var);
-      not_last_word_1484 <= tmp_var; --
-    end process;
-    -- shared outport operator group (0) : WPIPE_nic_to_mac_transmit_pipe_1456_inst 
-    OutportGroup_0: Block -- 
-      signal data_in: std_logic_vector(72 downto 0);
-      signal sample_req, sample_ack : BooleanArray( 0 downto 0);
-      signal update_req, update_ack : BooleanArray( 0 downto 0);
-      signal sample_req_unguarded, sample_ack_unguarded : BooleanArray( 0 downto 0);
-      signal update_req_unguarded, update_ack_unguarded : BooleanArray( 0 downto 0);
-      signal guard_vector : std_logic_vector( 0 downto 0);
-      constant inBUFs : IntegerArray(0 downto 0) := (0 => 0);
-      constant guardFlags : BooleanArray(0 downto 0) := (0 => false);
-      constant guardBuffering: IntegerArray(0 downto 0)  := (0 => 2);
-      -- 
-    begin -- 
-      sample_req_unguarded(0) <= WPIPE_nic_to_mac_transmit_pipe_1456_inst_req_0;
-      WPIPE_nic_to_mac_transmit_pipe_1456_inst_ack_0 <= sample_ack_unguarded(0);
-      update_req_unguarded(0) <= WPIPE_nic_to_mac_transmit_pipe_1456_inst_req_1;
-      WPIPE_nic_to_mac_transmit_pipe_1456_inst_ack_1 <= update_ack_unguarded(0);
-      guard_vector(0)  <=  '1';
-      data_in <= CONCAT_u65_u73_1462_wire;
-      nic_to_mac_transmit_pipe_write_0_gI: SplitGuardInterface generic map(name => "nic_to_mac_transmit_pipe_write_0_gI", nreqs => 1, buffering => guardBuffering, use_guards => guardFlags,  sample_only => true,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => sample_req_unguarded,
-        sr_out => sample_req,
-        sa_in => sample_ack,
-        sa_out => sample_ack_unguarded,
-        cr_in => update_req_unguarded,
-        cr_out => update_req,
-        ca_in => update_ack,
-        ca_out => update_ack_unguarded,
-        guards => guard_vector); -- 
-      nic_to_mac_transmit_pipe_write_0: OutputPortRevised -- 
-        generic map ( name => "nic_to_mac_transmit_pipe", data_width => 73, num_reqs => 1, input_buffering => inBUFs, full_rate => true,
-        no_arbitration => false)
-        port map (--
-          sample_req => sample_req , 
-          sample_ack => sample_ack , 
-          update_req => update_req , 
-          update_ack => update_ack , 
-          data => data_in, 
-          oreq => nic_to_mac_transmit_pipe_pipe_write_req(1),
-          oack => nic_to_mac_transmit_pipe_pipe_write_ack(1),
-          odata => nic_to_mac_transmit_pipe_pipe_write_data(145 downto 73),
-          clk => clk, reset => reset -- 
-        );-- 
-      -- 
-    end Block; -- outport group 0
-    -- shared outport operator group (1) : WPIPE_nic_to_mac_transmit_pipe_1501_inst 
-    OutportGroup_1: Block -- 
-      signal data_in: std_logic_vector(72 downto 0);
-      signal sample_req, sample_ack : BooleanArray( 0 downto 0);
-      signal update_req, update_ack : BooleanArray( 0 downto 0);
-      signal sample_req_unguarded, sample_ack_unguarded : BooleanArray( 0 downto 0);
-      signal update_req_unguarded, update_ack_unguarded : BooleanArray( 0 downto 0);
-      signal guard_vector : std_logic_vector( 0 downto 0);
-      constant inBUFs : IntegerArray(0 downto 0) := (0 => 0);
-      constant guardFlags : BooleanArray(0 downto 0) := (0 => false);
-      constant guardBuffering: IntegerArray(0 downto 0)  := (0 => 2);
-      -- 
-    begin -- 
-      sample_req_unguarded(0) <= WPIPE_nic_to_mac_transmit_pipe_1501_inst_req_0;
-      WPIPE_nic_to_mac_transmit_pipe_1501_inst_ack_0 <= sample_ack_unguarded(0);
-      update_req_unguarded(0) <= WPIPE_nic_to_mac_transmit_pipe_1501_inst_req_1;
-      WPIPE_nic_to_mac_transmit_pipe_1501_inst_ack_1 <= update_ack_unguarded(0);
-      guard_vector(0)  <=  '1';
-      data_in <= CONCAT_u65_u73_1507_wire;
-      nic_to_mac_transmit_pipe_write_1_gI: SplitGuardInterface generic map(name => "nic_to_mac_transmit_pipe_write_1_gI", nreqs => 1, buffering => guardBuffering, use_guards => guardFlags,  sample_only => true,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => sample_req_unguarded,
-        sr_out => sample_req,
-        sa_in => sample_ack,
-        sa_out => sample_ack_unguarded,
-        cr_in => update_req_unguarded,
-        cr_out => update_req,
-        ca_in => update_ack,
-        ca_out => update_ack_unguarded,
-        guards => guard_vector); -- 
-      nic_to_mac_transmit_pipe_write_1: OutputPortRevised -- 
-        generic map ( name => "nic_to_mac_transmit_pipe", data_width => 73, num_reqs => 1, input_buffering => inBUFs, full_rate => false,
-        no_arbitration => false)
-        port map (--
-          sample_req => sample_req , 
-          sample_ack => sample_ack , 
-          update_req => update_req , 
-          update_ack => update_ack , 
-          data => data_in, 
-          oreq => nic_to_mac_transmit_pipe_pipe_write_req(0),
-          oack => nic_to_mac_transmit_pipe_pipe_write_ack(0),
-          odata => nic_to_mac_transmit_pipe_pipe_write_data(72 downto 0),
-          clk => clk, reset => reset -- 
-        );-- 
-      -- 
-    end Block; -- outport group 1
-    -- shared call operator group (0) : call_stmt_1418_call call_stmt_1498_call 
-    accessMemory_call_group_0: Block -- 
-      signal data_in: std_logic_vector(219 downto 0);
-      signal data_out: std_logic_vector(127 downto 0);
-      signal reqR, ackR, reqL, ackL : BooleanArray( 1 downto 0);
-      signal reqR_unguarded, ackR_unguarded, reqL_unguarded, ackL_unguarded : BooleanArray( 1 downto 0);
-      signal reqL_unregulated, ackL_unregulated : BooleanArray( 1 downto 0);
-      signal guard_vector : std_logic_vector( 1 downto 0);
-      constant inBUFs : IntegerArray(1 downto 0) := (1 => 1, 0 => 1);
-      constant outBUFs : IntegerArray(1 downto 0) := (1 => 1, 0 => 1);
-      constant guardFlags : BooleanArray(1 downto 0) := (0 => false, 1 => false);
-      constant guardBuffering: IntegerArray(1 downto 0)  := (0 => 2, 1 => 2);
-      -- 
-    begin -- 
-      reqL_unguarded(1) <= call_stmt_1418_call_req_0;
-      reqL_unguarded(0) <= call_stmt_1498_call_req_0;
-      call_stmt_1418_call_ack_0 <= ackL_unguarded(1);
-      call_stmt_1498_call_ack_0 <= ackL_unguarded(0);
-      reqR_unguarded(1) <= call_stmt_1418_call_req_1;
-      reqR_unguarded(0) <= call_stmt_1498_call_req_1;
-      call_stmt_1418_call_ack_1 <= ackR_unguarded(1);
-      call_stmt_1498_call_ack_1 <= ackR_unguarded(0);
-      guard_vector(0)  <=  '1';
-      guard_vector(1)  <=  '1';
-      accessMemory_call_group_0_accessRegulator_0: access_regulator_base generic map (name => "accessMemory_call_group_0_accessRegulator_0", num_slots => 1) -- 
-        port map (req => reqL_unregulated(0), -- 
-          ack => ackL_unregulated(0),
-          regulated_req => reqL(0),
-          regulated_ack => ackL(0),
-          release_req => reqR(0),
-          release_ack => ackR(0),
-          clk => clk, reset => reset); -- 
-      accessMemory_call_group_0_accessRegulator_1: access_regulator_base generic map (name => "accessMemory_call_group_0_accessRegulator_1", num_slots => 1) -- 
-        port map (req => reqL_unregulated(1), -- 
-          ack => ackL_unregulated(1),
-          regulated_req => reqL(1),
-          regulated_ack => ackL(1),
-          release_req => reqR(1),
-          release_ack => ackR(1),
-          clk => clk, reset => reset); -- 
-      accessMemory_call_group_0_gI: SplitGuardInterface generic map(name => "accessMemory_call_group_0_gI", nreqs => 2, buffering => guardBuffering, use_guards => guardFlags,  sample_only => false,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => reqL_unguarded,
-        sr_out => reqL_unregulated,
-        sa_in => ackL_unregulated,
-        sa_out => ackL_unguarded,
-        cr_in => reqR_unguarded,
-        cr_out => reqR,
-        ca_in => ackR,
-        ca_out => ackR_unguarded,
-        guards => guard_vector); -- 
-      data_in <= type_cast_1410_wire_constant & type_cast_1412_wire_constant & R_FULL_BYTE_MASK_1413_wire_constant & control_data_addr_1405 & type_cast_1416_wire_constant & type_cast_1490_wire_constant & type_cast_1492_wire_constant & R_FULL_BYTE_MASK_1493_wire_constant & nmem_addr_1473 & type_cast_1496_wire_constant;
-      control_data_1418 <= data_out(127 downto 64);
-      last_word_1498 <= data_out(63 downto 0);
-      CallReq: InputMuxWithBuffering -- 
-        generic map (name => "InputMuxWithBuffering",
-        iwidth => 220,
-        owidth => 110,
-        buffering => inBUFs,
-        full_rate =>  false,
-        twidth => 2,
-        nreqs => 2,
-        registered_output => false,
-        no_arbitration => false)
-        port map ( -- 
-          reqL => reqL , 
-          ackL => ackL , 
-          dataL => data_in, 
-          reqR => accessMemory_call_reqs(1),
-          ackR => accessMemory_call_acks(1),
-          dataR => accessMemory_call_data(219 downto 110),
-          tagR => accessMemory_call_tag(3 downto 2),
-          clk => clk, reset => reset -- 
-        ); -- 
-      CallComplete: OutputDemuxBaseWithBuffering -- 
-        generic map ( -- 
-          iwidth => 64,
-          owidth => 128,
-          detailed_buffering_per_output => outBUFs, 
-          full_rate => false, 
-          twidth => 2,
-          name => "OutputDemuxBaseWithBuffering",
-          nreqs => 2) -- 
-        port map ( -- 
-          reqR => reqR , 
-          ackR => ackR , 
-          dataR => data_out, 
-          reqL => accessMemory_return_acks(1), -- cross-over
-          ackL => accessMemory_return_reqs(1), -- cross-over
-          dataL => accessMemory_return_data(127 downto 64),
-          tagL => accessMemory_return_tag(3 downto 2),
-          clk => clk,
-          reset => reset -- 
-        ); -- 
-      -- 
-    end Block; -- call group 0
-    -- shared call operator group (1) : call_stmt_1455_call 
-    accessMemory_call_group_1: Block -- 
-      signal data_in: std_logic_vector(109 downto 0);
-      signal data_out: std_logic_vector(63 downto 0);
-      signal reqR, ackR, reqL, ackL : BooleanArray( 0 downto 0);
-      signal reqR_unguarded, ackR_unguarded, reqL_unguarded, ackL_unguarded : BooleanArray( 0 downto 0);
-      signal reqL_unregulated, ackL_unregulated : BooleanArray( 0 downto 0);
-      signal guard_vector : std_logic_vector( 0 downto 0);
-      constant inBUFs : IntegerArray(0 downto 0) := (0 => 1);
-      constant outBUFs : IntegerArray(0 downto 0) := (0 => 1);
-      constant guardFlags : BooleanArray(0 downto 0) := (0 => false);
-      constant guardBuffering: IntegerArray(0 downto 0)  := (0 => 3);
-      -- 
-    begin -- 
-      reqL_unguarded(0) <= call_stmt_1455_call_req_0;
-      call_stmt_1455_call_ack_0 <= ackL_unguarded(0);
-      reqR_unguarded(0) <= call_stmt_1455_call_req_1;
-      call_stmt_1455_call_ack_1 <= ackR_unguarded(0);
-      guard_vector(0)  <=  '1';
-      reqL <= reqL_unregulated;
-      ackL_unregulated <= ackL;
-      accessMemory_call_group_1_gI: SplitGuardInterface generic map(name => "accessMemory_call_group_1_gI", nreqs => 1, buffering => guardBuffering, use_guards => guardFlags,  sample_only => false,  update_only => false) -- 
-        port map(clk => clk, reset => reset,
-        sr_in => reqL_unguarded,
-        sr_out => reqL_unregulated,
-        sa_in => ackL_unregulated,
-        sa_out => ackL_unguarded,
-        cr_in => reqR_unguarded,
-        cr_out => reqR,
-        ca_in => ackR,
-        ca_out => ackR_unguarded,
-        guards => guard_vector); -- 
-      data_in <= type_cast_1447_wire_constant & type_cast_1449_wire_constant & R_FULL_BYTE_MASK_1450_wire_constant & mem_addr_1439 & type_cast_1453_wire_constant;
-      data_1455 <= data_out(63 downto 0);
-      CallReq: InputMuxWithBuffering -- 
-        generic map (name => "InputMuxWithBuffering",
-        iwidth => 110,
-        owidth => 110,
-        buffering => inBUFs,
-        full_rate =>  true,
-        twidth => 2,
-        nreqs => 1,
-        registered_output => false,
-        no_arbitration => false)
-        port map ( -- 
-          reqL => reqL , 
-          ackL => ackL , 
-          dataL => data_in, 
-          reqR => accessMemory_call_reqs(0),
-          ackR => accessMemory_call_acks(0),
-          dataR => accessMemory_call_data(109 downto 0),
-          tagR => accessMemory_call_tag(1 downto 0),
-          clk => clk, reset => reset -- 
-        ); -- 
-      CallComplete: OutputDemuxBaseWithBuffering -- 
-        generic map ( -- 
-          iwidth => 64,
-          owidth => 64,
-          detailed_buffering_per_output => outBUFs, 
-          full_rate => true, 
-          twidth => 2,
-          name => "OutputDemuxBaseWithBuffering",
-          nreqs => 1) -- 
-        port map ( -- 
-          reqR => reqR , 
-          ackR => ackR , 
-          dataR => data_out, 
-          reqL => accessMemory_return_acks(0), -- cross-over
-          ackL => accessMemory_return_reqs(0), -- cross-over
-          dataL => accessMemory_return_data(63 downto 0),
-          tagL => accessMemory_return_tag(1 downto 0),
-          clk => clk,
-          reset => reset -- 
-        ); -- 
-      -- 
-    end Block; -- call group 1
-    -- 
-  end Block; -- data_path
-  -- 
-end transmitPacket_arch;
-library std;
-use std.standard.all;
-library ieee;
-use ieee.std_logic_1164.all;
-library aHiR_ieee_proposed;
-use aHiR_ieee_proposed.math_utility_pkg.all;
-use aHiR_ieee_proposed.fixed_pkg.all;
-use aHiR_ieee_proposed.float_pkg.all;
-library ahir;
-use ahir.memory_subsystem_package.all;
-use ahir.types.all;
-use ahir.subprograms.all;
-use ahir.components.all;
-use ahir.basecomponents.all;
-use ahir.operatorpackage.all;
-use ahir.floatoperatorpackage.all;
-use ahir.utilities.all;
-use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity writeControlInformationToMem is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -26405,8 +23932,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity writeEthernetHeaderToMem is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -28048,8 +25575,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity writePayloadToMem is -- 
   generic (tag_length : integer); 
   port ( -- 
@@ -29515,8 +27042,8 @@ use ahir.operatorpackage.all;
 use ahir.floatoperatorpackage.all;
 use ahir.utilities.all;
 use ahir.functionLibraryComponents.all;
-library work;
-use work.ahir_system_global_package.all;
+library ahir_system_global_packagelib;
+use ahir_system_global_packagelib.ahir_system_global_package.all;
 entity ahir_system is  -- system 
   port (-- 
     clk : in std_logic;

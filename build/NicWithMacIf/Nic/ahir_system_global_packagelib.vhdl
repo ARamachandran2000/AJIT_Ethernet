@@ -12,6 +12,6 @@ package ahir_system_global_package is --
   constant S2 : std_logic_vector(1 downto 0) := "10";
   constant TX_QUEUES_REG_START_OFFSET : std_logic_vector(5 downto 0) := "001010";
   constant WAIT_TIME : std_logic_vector(9 downto 0) := "0000001010";
-  constant nic_registers_base_address : std_logic_vector(5 downto 0) := "000000";
+  constant nic_registers_base_address : std_logic_vector(13 downto 0) := "00000000000000";
   -- 
 end package ahir_system_global_package;

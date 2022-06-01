@@ -2,11 +2,18 @@
 // Utilities
 //    Pop a uint32_t from the queue.  Return status = 1 on success.
 //
+//	1. acquire lock
+// 	2. Get read write indexs
+//	3. calculate next read index
+//	4. read queue data
+//	5. update queue indexes
+//	6. release lock
+//
 $module [popFromQueue]
 	$in (lock : $uint<1> q_base_address : $uint<36>) $out (q_r_data: $uint<32> status: $uint<1>)
 $is
 {
-	$guard (lock) $call acquireMutex(q_base_address) (m_ok)
+	$guard (lock) $call acquireLock(q_base_address) (m_ok)
 	$barrier
 	
 	$call getQueuePointers (q_base_address) (write_index read_index)
@@ -16,12 +23,12 @@ $is
 	$volatile round_off := (read_index == (Queue_Length - 1))
 	$volatile next_ri := ($mux round_off 0 (read_index + 1))
 	
-	$guard (~q_empty) $call getQueueElement (q_base_address read_index) (q_r_Data)
-	$guard (!q_empty) $call setQueuePointers (q_base_address write_index next_ri)
+	$guard (~q_empty) $call getQueueElement (q_base_address read_index) (q_r_data)
+	$guard (~q_empty) $call setQueuePointers (q_base_address write_index next_ri) ()
 	$rreport(popFromQueue pop_data q_base_address q_r_data q_empty write_index read_index next_ri)
 
 	$barrier
-	$guard(lock) $call releaseMutex (q_base_address) ()
+	$guard(lock) $call releaseLock (q_base_address) ()
 	status := q_empty // 0 = success, 1 = Fail
 	
 }
@@ -31,11 +38,18 @@ $is
 // Utilities
 //    push a uint32_t into the queue.  Return status = 0 on success.
 // 
+//	1. acquire lock
+// 	2. Get read write indexs
+//	3. calculate next write index
+//	4. write data to queue
+//	5. update queue indexes
+//	6. release lock
+//
 $module [pushIntoQueue] 
 	$in  (lock : $uint<1> q_base_address : $uint<36> q_w_data: $uint<32>) $out (status: $uint<1>)
 $is
 {
-	$guard (lock) $call acquireMutex (q_base_address) (m_ok) 
+	$guard (lock) $call acquireLock (q_base_address) (m_ok) 
 	$barrier
 	$rreport(pushIntoQueue pushing_to_queue q_w_data q_base_address)
 	$call getQueuePointers (q_base_address) (write_index read_index)
@@ -51,7 +65,7 @@ $is
 
 
 	$barrier
-	$guard (lock) $call releaseMutex (q_base_address) ()
+	$guard (lock) $call releaseLock (q_base_address) ()
 	status := (~q_full)
 }
 
@@ -64,43 +78,47 @@ $is
 {
 	$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
 				 (q_base_address + 8) $zero<64>) (wi_and_len)
-	Queue_Length = ($slice wi_and_len 31 0)
+	Queue_Length := ($slice wi_and_len 31 0)
 	
 }
 
 //
 // lock read  modify write (aka LDSTUB), spin till lock acquired.
 //
-$module [acquireMutex] $in (q_base_address: $uint<36>) $out (m_ok: $uint<1>) 
+//	1. read lock_pointer(address) from qeue(locked read)
+//	2. read data at lock_pointer(address)
+//	3. get 8bit lock data from 64bit read data (how?)
+//	4. if lock = FF -> keep checking
+//	     else set lock(queue) = FF and release memory lock
+$module [acquireLock] $in (q_base_address: $uint<36>) $out (m_ok: $uint<1>) 
 $is
 {
 	$branchblock[loop] {
 
-		$volatile mutex_address_pointer := (q_base_address + ($bitcast ($uint<36>) 20) )
+		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 20) )
 
 		$merge $entry loopback $endmerge
 		
 		// input arguments: lock, rwbar, bytemask, address, write-data
 		// output arguments: read-data
-		$call accessMemory ($one<1> $one<1> (~$zero<8>) mutex_address_pointer $zero<64>) (msg_size_plus_mutex)
-		$volatile mutex_addr_32 := ($slice msg_size_plus_mutex 31 0)
+		$call accessMemory ($one<1> $one<1> (~$zero<8>) lock_address_pointer $zero<64>) (msg_size_plus_lock)
+		$volatile lock_addr_32 := ($slice msg_size_plus_lock 31 0)
 
 		// we can either set proper bmask or split all into 8 and find the expected lock.
-		$call accessMemory ($one<1> $one<1> (~$zero<8>) ($concat mutex_addr $zero<4>) $zero<64>) (mutex_values)
+		$call accessMemory ($one<1> $one<1> (~$zero<8>) ($concat lock_addr_32 $zero<4>) $zero<64>) (lock_values)
 		
-		$volatile ($split mutex_values 8 8 8 8 8 8 8 8) (m0 m1 m2 m3 m4 m5 m6 m7)
+		$volatile $split (lock_values 8 8 8 8 8 8 8 8) (l0 l1 l2 l3 l4 l5 l6 l7)
 
-		$volatile mutex_val := //logic for selecting 8 bit lock 
+		$volatile lock_val := //logic for selecting 8 bit lock 
 		
-		$if (mutex_val == (~zero<8>)) $then
+		$if (lock_val == (~$zero<8>)) $then
 			// release lock
-			$call accessMemory ($zero<1> $one<1> (~$zero<8>) mutex_address_pointer $zero<64>)(err)
+			$call accessMemory ($zero<1> $one<1> (~$zero<8>) lock_address_pointer $zero<64>)(err)
 			$place [loopback]
 		$endif
 		
 		$volatile new_bmask := //logic_for_bmask which will set perticular lock to 11111111
-		//$volatile wval := ($concat $one<32> ($slice mutex_plus_nentries 31 0))
-		$call accessMemory ($zero<1> $zero<1> new_bmask ($concat mutex_addr $zero<4>) (~$zero<64>))
+		$call accessMemory ($zero<1> $zero<1> new_bmask ($concat lock_addr_32 $zero<4>) (~$zero<64>))
 						(ignore)
 	}
 
@@ -109,20 +127,23 @@ $is
 
 
 //
-// set mutex to 0 in queue.
+// set lock to 00000000 in queue.
 //
-$module [releaseMutex] $in (q_base_address: $uint<36>) $out () $is
+//	1. read lock pointer from queue
+//	2. create bmask(which will only update corresponding locks bits)
+//	3. write 0 to lock address with bamsk.
+$module [releaseLock] $in (q_base_address: $uint<36>) $out () $is
 {
-		$volatile mutex_address_pointer := (q_base_address + ($bitcast ($uint<36>) 20) )
+		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 20) )
 		$call accessMemory ($zero<1> $one<1> 
 					(~$zero<8>) 
-					 mutex_address_pointer $zero<64>) (msg_size_plus_mutex)
+					 lock_address_pointer $zero<64>) (msg_size_plus_lock)
 		
-		$volatile mutex_addr_32 := ($slice msg_size_plus_mutex 31 0)
+		$volatile lock_addr_32 := ($slice msg_size_plus_lock 31 0)
 	
 		$volatile new_bmask := //logic_for_bmask which will set perticular lock to 00000000
 
-		$call accessMemory ($one<1> $zero<1> new_bmask ($concat mutex_addr $zero<4>) $zero<64>) (ignore)
+		$call accessMemory ($one<1> $zero<1> new_bmask ($concat lock_addr_32 $zero<4>) $zero<64>) (ignore)
 }
 
 	

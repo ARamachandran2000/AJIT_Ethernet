@@ -1,5 +1,5 @@
-#ifndef cortos_queues_h____
-#define cortos_queues_h____
+#ifndef InterfaceDataStructures_h____
+#define InterfaceDataStructures_h____
 
 
 // 24 byte header

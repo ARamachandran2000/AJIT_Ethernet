@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
+
 package DualClockedQueuePackage is
 
 	component DualClockedQueue_ACB_req  is

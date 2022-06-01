@@ -74,6 +74,8 @@ $is
 		$volatile mutex_val := ($slice mutex_plus_nentries 63 32)
 		
 		$if (mutex_val == 1) $then
+			// release lock
+			$call accessMemory ($zero<1> $one<1> (~$zero<8>) mutex_address mutex_plus_nentries)(err)
 			$place [loopback]
 		$endif
 		

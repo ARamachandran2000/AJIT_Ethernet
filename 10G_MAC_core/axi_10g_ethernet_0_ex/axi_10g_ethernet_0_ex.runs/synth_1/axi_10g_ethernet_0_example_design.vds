@@ -1,0 +1,681 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Thu Apr 28 19:11:23 2022
+# Process ID: 44327
+# Current directory: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1
+# Command line: vivado -log axi_10g_ethernet_0_example_design.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source axi_10g_ethernet_0_example_design.tcl
+# Log file: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/axi_10g_ethernet_0_example_design.vds
+# Journal file: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source axi_10g_ethernet_0_example_design.tcl -notrace
+Command: synth_design -top axi_10g_ethernet_0_example_design -part xc7vx690tffg1761-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7vx690t-ffg1761'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7vx690t-ffg1761'
+INFO: [Common 17-1223] The version limit for your license is '2017.07' and will expire in -1732 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 44359 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1257.754 ; gain = 67.000 ; free physical = 1249 ; free virtual = 11010
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_example_design' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.v:63]
+	Parameter MAC_WIDTH bound to: 64 - type: integer 
+	Parameter TKEEP_WIDTH bound to: 8 - type: integer 
+	Parameter NIC_WIDTH bound to: 73 - type: integer 
+	Parameter FIFO_SIZE bound to: 1024 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_sync_block' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_block.v:64]
+	Parameter C_NUM_SYNC_REGS bound to: 5 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* shreg_extract = "no" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_block.v:73]
+INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_block.v:73]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_sync_block' (1#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_block.v:64]
+INFO: [Synth 8-638] synthesizing module 'mac_to_nic_interface' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new/mac_to_nic_interface.v:23]
+	Parameter MAC_WIDTH bound to: 64 - type: integer 
+	Parameter TKEEP_WIDTH bound to: 8 - type: integer 
+	Parameter NIC_WIDTH bound to: 73 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mac_rx_interface' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_rx_interface.v:23]
+	Parameter MAC_WIDTH bound to: 64 - type: integer 
+	Parameter TKEEP_WIDTH bound to: 8 - type: integer 
+	Parameter NIC_WIDTH bound to: 73 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element write_data_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_rx_interface.v:152]
+INFO: [Synth 8-256] done synthesizing module 'mac_rx_interface' (2#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_rx_interface.v:23]
+INFO: [Synth 8-638] synthesizing module 'mac_tx_interface' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_tx_interface.v:21]
+	Parameter MAC_WIDTH bound to: 64 - type: integer 
+	Parameter TKEEP_WIDTH bound to: 8 - type: integer 
+	Parameter NIC_WIDTH bound to: 73 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mac_tx_interface' (3#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_tx_interface.v:21]
+INFO: [Synth 8-256] done synthesizing module 'mac_to_nic_interface' (4#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/new/mac_to_nic_interface.v:23]
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_fifo_block' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_fifo_block.v:62]
+	Parameter FIFO_SIZE bound to: 1024 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/.Xil/Vivado-44327-ajit4-ProLiant-ML10/realtime/axi_10g_ethernet_0_stub.v:6]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0' (5#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/.Xil/Vivado-44327-ajit4-ProLiant-ML10/realtime/axi_10g_ethernet_0_stub.v:6]
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_xgmac_fifo' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_xgmac_fifo.v:102]
+	Parameter TX_FIFO_SIZE bound to: 1024 - type: integer 
+	Parameter RX_FIFO_SIZE bound to: 1024 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_axi_fifo' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:82]
+	Parameter FIFO_SIZE bound to: 1024 - type: integer 
+	Parameter IS_TX bound to: 1 - type: integer 
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter IS_RX bound to: 1'b0 
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_sync_reset' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:62]
+INFO: [Synth 8-5534] Detected attribute (* SHREG_EXTRACT = "NO" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:70]
+INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:70]
+INFO: [Synth 8-5534] Detected attribute (* SHREG_EXTRACT = "NO" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:72]
+INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:72]
+INFO: [Synth 8-5534] Detected attribute (* SHREG_EXTRACT = "NO" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:74]
+INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:74]
+INFO: [Synth 8-5534] Detected attribute (* SHREG_EXTRACT = "NO" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:76]
+INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:76]
+INFO: [Synth 8-5534] Detected attribute (* SHREG_EXTRACT = "NO" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:78]
+INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:78]
+INFO: [Synth 8-5534] Detected attribute (* SHREG_EXTRACT = "NO" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:80]
+INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:80]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_sync_reset' (6#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_sync_reset.v:62]
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_fifo_ram' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_fifo_ram.v:60]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter RAM_DEPTH bound to: 1024 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* ram_style = "block" *) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_fifo_ram.v:78]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_fifo_ram' (7#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_fifo_ram.v:60]
+WARNING: [Synth 8-6014] Unused sequential element ignore_frame_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:242]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_axi_fifo' (8#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:82]
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_axi_fifo__parameterized0' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:82]
+	Parameter FIFO_SIZE bound to: 1024 - type: integer 
+	Parameter IS_TX bound to: 0 - type: integer 
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter IS_RX bound to: 1'b1 
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_axi_fifo__parameterized0' (8#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:82]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_xgmac_fifo' (9#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_xgmac_fifo.v:102]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_fifo_block' (10#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_fifo_block.v:62]
+INFO: [Synth 8-638] synthesizing module 'axi_10g_ethernet_0_clocking' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_clocking.v:62]
+INFO: [Synth 8-638] synthesizing module 'IBUFDS' [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:14485]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter DIFF_TERM bound to: FALSE - type: string 
+	Parameter DQS_BIAS bound to: FALSE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-256] done synthesizing module 'IBUFDS' (11#1) [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:14485]
+INFO: [Synth 8-638] synthesizing module 'MMCME2_BASE' [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20879]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 5.000000 - type: float 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKIN1_PERIOD bound to: 5.000000 - type: float 
+	Parameter CLKOUT0_DIVIDE_F bound to: 8.000000 - type: float 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT1_DIVIDE bound to: 8 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: float 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter REF_JITTER1 bound to: 0.050000 - type: float 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-256] done synthesizing module 'MMCME2_BASE' (12#1) [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20879]
+INFO: [Synth 8-638] synthesizing module 'BUFG' [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:607]
+INFO: [Synth 8-256] done synthesizing module 'BUFG' (13#1) [/home/harshad/Vivado/2017.1/scripts/rt/data/unisim_comp.v:607]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_clocking' (14#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_clocking.v:62]
+WARNING: [Synth 8-3848] Net frame_error in module/entity axi_10g_ethernet_0_example_design does not have driver. [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.v:95]
+WARNING: [Synth 8-3848] Net gen_active_flash in module/entity axi_10g_ethernet_0_example_design does not have driver. [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.v:96]
+WARNING: [Synth 8-3848] Net check_active_flash in module/entity axi_10g_ethernet_0_example_design does not have driver. [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.v:97]
+WARNING: [Synth 8-3848] Net rx_axis_tready in module/entity axi_10g_ethernet_0_example_design does not have driver. [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.v:155]
+INFO: [Synth 8-256] done synthesizing module 'axi_10g_ethernet_0_example_design' (15#1) [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.v:63]
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_clocking has unconnected port tx_mmcm_reset
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port frame_error
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port gen_active_flash
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port check_active_flash
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port enable_pat_gen
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port enable_pat_check
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1298.254 ; gain = 107.500 ; free physical = 1253 ; free virtual = 11014
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+INFO: [Synth 8-3295] tying undriven pin fifo_block_i:rx_axis_fifo_tready to constant 0 [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.v:261]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1298.254 ; gain = 107.500 ; free physical = 1256 ; free virtual = 11017
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Device 21-403] Loading part xc7vx690tffg1761-2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/.Xil/Vivado-44327-ajit4-ProLiant-ML10/dcp19/axi_10g_ethernet_0_in_context.xdc] for cell 'fifo_block_i/ethernet_core_i'
+Finished Parsing XDC File [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/.Xil/Vivado-44327-ajit4-ProLiant-ML10/dcp19/axi_10g_ethernet_0_in_context.xdc] for cell 'fifo_block_i/ethernet_core_i'
+Parsing XDC File [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {NAME =~ pattern_generator*sync1_r_reg[0]}'. [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc:15]
+Finished Parsing XDC File [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/axi_10g_ethernet_0_example_design_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/axi_10g_ethernet_0_example_design_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/axi_10g_ethernet_0_example_design_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Timing 38-2] Deriving generated clocks
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  MMCME2_BASE => MMCME2_ADV: 1 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1800.090 ; gain = 0.000 ; free physical = 838 ; free virtual = 10601
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'fifo_block_i/ethernet_core_i' at clock pin 'dclk' is different from the actual clock period '8.000', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:35 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 934 ; free virtual = 10697
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7vx690tffg1761-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:35 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 934 ; free virtual = 10697
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for refclk_n. (constraint file  /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/.Xil/Vivado-44327-ajit4-ProLiant-ML10/dcp19/axi_10g_ethernet_0_in_context.xdc, line 24).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for refclk_n. (constraint file  /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/.Xil/Vivado-44327-ajit4-ProLiant-ML10/dcp19/axi_10g_ethernet_0_in_context.xdc, line 25).
+Applied set_property IO_BUFFER_TYPE = NONE for refclk_p. (constraint file  /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/.Xil/Vivado-44327-ajit4-ProLiant-ML10/dcp19/axi_10g_ethernet_0_in_context.xdc, line 26).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for refclk_p. (constraint file  /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/.Xil/Vivado-44327-ajit4-ProLiant-ML10/dcp19/axi_10g_ethernet_0_in_context.xdc, line 27).
+Applied set_property DONT_TOUCH = true for fifo_block_i/ethernet_core_i. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:35 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 935 ; free virtual = 10698
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:314]
+INFO: [Synth 8-802] inferred FSM for state register 'rd_state_reg' in module 'axi_10g_ethernet_0_axi_fifo'
+WARNING: [Synth 8-6014] Unused sequential element rd_state_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:353]
+INFO: [Synth 8-5546] ROM "wr_rem" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element rd_frames_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:311]
+WARNING: [Synth 8-6014] Unused sequential element rd_addr_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:437]
+WARNING: [Synth 8-6014] Unused sequential element wr_addr_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:555]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:314]
+INFO: [Synth 8-802] inferred FSM for state register 'rd_state_reg' in module 'axi_10g_ethernet_0_axi_fifo__parameterized0'
+WARNING: [Synth 8-6014] Unused sequential element rd_state_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:353]
+INFO: [Synth 8-5546] ROM "wr_rem" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "rd_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+WARNING: [Synth 8-6014] Unused sequential element rd_frames_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:311]
+WARNING: [Synth 8-6014] Unused sequential element rd_addr_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:437]
+WARNING: [Synth 8-6014] Unused sequential element wr_addr_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:555]
+WARNING: [Synth 8-6014] Unused sequential element rd_state_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:353]
+WARNING: [Synth 8-6014] Unused sequential element rd_state_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:353]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              000 |                              000
+                 iSTATE0 |                              001 |                              001
+                 iSTATE1 |                              010 |                              010
+                 iSTATE2 |                              011 |                              011
+                 iSTATE3 |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rd_state_reg' using encoding 'sequential' in module 'axi_10g_ethernet_0_axi_fifo'
+WARNING: [Synth 8-6014] Unused sequential element rd_state_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:353]
+WARNING: [Synth 8-6014] Unused sequential element rd_state_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:353]
+WARNING: [Synth 8-6014] Unused sequential element rd_state_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:353]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              000 |                              000
+                 iSTATE0 |                              001 |                              001
+                 iSTATE1 |                              010 |                              010
+                 iSTATE2 |                              011 |                              011
+                 iSTATE3 |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rd_state_reg' using encoding 'sequential' in module 'axi_10g_ethernet_0_axi_fifo__parameterized0'
+WARNING: [Synth 8-6014] Unused sequential element rd_state_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:353]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:35 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 927 ; free virtual = 10690
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+	   2 Input     10 Bit       Adders := 4     
+	   3 Input     10 Bit       Adders := 2     
+	   2 Input      9 Bit       Adders := 2     
++---XORs : 
+	   2 Input      1 Bit         XORs := 38    
++---Registers : 
+	               73 Bit    Registers := 3     
+	               68 Bit    Registers := 2     
+	               64 Bit    Registers := 5     
+	               32 Bit    Registers := 1     
+	               28 Bit    Registers := 1     
+	               10 Bit    Registers := 12    
+	                9 Bit    Registers := 2     
+	                8 Bit    Registers := 3     
+	                5 Bit    Registers := 26    
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 4     
+	                1 Bit    Registers := 76    
++---RAMs : 
+	              68K Bit         RAMs := 2     
++---Muxes : 
+	   2 Input     73 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     28 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 2     
+	   8 Input      8 Bit        Muxes := 2     
+	   2 Input      3 Bit        Muxes := 4     
+	   5 Input      3 Bit        Muxes := 2     
+	   6 Input      3 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 4     
+	   2 Input      2 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 22    
+	   5 Input      1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module axi_10g_ethernet_0_example_design 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	               28 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     28 Bit        Muxes := 1     
+Module axi_10g_ethernet_0_sync_block 
+Detailed RTL Component Info : 
++---Registers : 
+	                5 Bit    Registers := 1     
+Module mac_rx_interface 
+Detailed RTL Component Info : 
++---Registers : 
+	               73 Bit    Registers := 2     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input     73 Bit        Muxes := 2     
+Module mac_tx_interface 
+Detailed RTL Component Info : 
++---Registers : 
+	               73 Bit    Registers := 1     
+	               64 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 7     
+Module axi_10g_ethernet_0_sync_reset 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 7     
+Module axi_10g_ethernet_0_fifo_ram 
+Detailed RTL Component Info : 
++---Registers : 
+	               68 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	              68K Bit         RAMs := 1     
+Module axi_10g_ethernet_0_axi_fifo 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 2     
+	   3 Input     10 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 19    
++---Registers : 
+	               64 Bit    Registers := 2     
+	               10 Bit    Registers := 6     
+	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 16    
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 1     
+	   8 Input      8 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   5 Input      3 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 10    
+	   5 Input      1 Bit        Muxes := 1     
+Module axi_10g_ethernet_0_axi_fifo__parameterized0 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 2     
+	   3 Input     10 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 19    
++---Registers : 
+	               64 Bit    Registers := 2     
+	               10 Bit    Registers := 6     
+	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 17    
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 1     
+	   8 Input      8 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   5 Input      3 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 12    
+	   5 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 3600 (col length:200)
+BRAMs: 2940 (col length: RAMB18 200 RAMB36 100)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4471] merging register 'mni/rxi/reset_reg_reg' into 'mni/txi/reset_reg_reg' [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_rx_interface.v:80]
+WARNING: [Synth 8-6014] Unused sequential element mni/rxi/rx_axis_resetn_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_rx_interface.v:81]
+WARNING: [Synth 8-6014] Unused sequential element mni/rxi/reset_reg_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_rx_interface.v:80]
+WARNING: [Synth 8-6014] Unused sequential element mni/txi/tx_axis_resetn_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.srcs/sources_1/imports/verilog_mac_if/mac_tx_interface.v:86]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/wr_addr_diff_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:550]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/fifo_status_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:572]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/wr_addr_diff_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:550]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/fifo_status_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:572]
+INFO: [Synth 8-5546] ROM "fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/wr_rem" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/wr_rem" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/wr_addr_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:555]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/rd_frames_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:311]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/rd_addr_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:437]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/wr_addr_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:555]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/rd_frames_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:311]
+WARNING: [Synth 8-6014] Unused sequential element fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/rd_addr_reg was removed.  [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_axi_fifo.v:437]
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_clocking has unconnected port tx_mmcm_reset
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port frame_error
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port gen_active_flash
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port check_active_flash
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port enable_pat_gen
+WARNING: [Synth 8-3331] design axi_10g_ethernet_0_example_design has unconnected port enable_pat_check
+INFO: [Synth 8-4652] Swapped enable and write-enable on 2 RAM instances of RAM fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/fifo_ram_inst/ram_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 2 RAM instances of RAM fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/fifo_ram_inst/ram_reg to conserve power
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/drop_frame_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/rd_stall_reg )
+INFO: [Synth 8-3332] Sequential element (fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/wr_axis_tvalid_prev_reg) is unused and will be removed from module axi_10g_ethernet_0_example_design.
+INFO: [Synth 8-3332] Sequential element (fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/wr_axis_tlast_reg_reg) is unused and will be removed from module axi_10g_ethernet_0_example_design.
+INFO: [Synth 8-3332] Sequential element (fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/drop_frame_reg) is unused and will be removed from module axi_10g_ethernet_0_example_design.
+INFO: [Synth 8-3332] Sequential element (fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/rd_stall_reg) is unused and will be removed from module axi_10g_ethernet_0_example_design.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:37 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 911 ; free virtual = 10673
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping  Report (see note below)
++-----------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                  | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++-----------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|axi_10g_ethernet_0_fifo_ram: | ram_reg    | 1 K x 68               | W |   | 1 K x 68(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
+|axi_10g_ethernet_0_fifo_ram: | ram_reg    | 1 K x 68               | W |   | 1 K x 68(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
++-----------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/areset_datapathclk_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_areset_datapathclk_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/coreclk_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_coreclk_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/gtrxreset_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_gtrxreset_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/gttxreset_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_gttxreset_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/m_axis_rx_tlast' to pin 'fifo_block_i/ethernet_core_i/bbstub_m_axis_rx_tlast/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/m_axis_rx_tuser' to pin 'fifo_block_i/ethernet_core_i/bbstub_m_axis_rx_tuser/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/m_axis_rx_tvalid' to pin 'fifo_block_i/ethernet_core_i/bbstub_m_axis_rx_tvalid/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/qplllock_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_qplllock_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/qplloutclk_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_qplloutclk_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/qplloutrefclk_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_qplloutrefclk_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/reset_counter_done_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_reset_counter_done_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/resetdone_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_resetdone_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/rx_statistics_valid' to pin 'fifo_block_i/ethernet_core_i/bbstub_rx_statistics_valid/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/rxrecclk_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_rxrecclk_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/s_axis_tx_tready' to pin 'fifo_block_i/ethernet_core_i/bbstub_s_axis_tx_tready/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/tx_disable' to pin 'fifo_block_i/ethernet_core_i/bbstub_tx_disable/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/tx_statistics_valid' to pin 'fifo_block_i/ethernet_core_i/bbstub_tx_statistics_valid/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/txn' to pin 'fifo_block_i/ethernet_core_i/bbstub_txn/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/txp' to pin 'fifo_block_i/ethernet_core_i/bbstub_txp/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/txuserrdy_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_txuserrdy_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/txusrclk2_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_txusrclk2_out/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'fifo_block_i/ethernet_core_i/txusrclk_out' to pin 'fifo_block_i/ethernet_core_i/bbstub_txusrclk_out/O'
+WARNING: [Synth 8-3321] set_false_path : Empty from list for constraint at line 22 of /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc. [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc:22]
+WARNING: [Synth 8-3321] set_false_path : Empty to list for constraint at line 22 of /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc. [/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/imports/axi_10g_ethernet_0_example_design.xdc:22]
+INFO: [Synth 8-5819] Moved 22 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:43 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 784 ; free virtual = 10547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:44 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 777 ; free virtual = 10540
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4480] The timing for the instance fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/fifo_ram_inst/ram_reg_0 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance fifo_block_i/ethernet_mac_fifo_i/i_tx_fifo/fifo_ram_inst/ram_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance fifo_block_i/ethernet_mac_fifo_i/rx_fifo_inst/fifo_ram_inst/ram_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:45 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 764 ; free virtual = 10527
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 770 ; free virtual = 10534
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 770 ; free virtual = 10534
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 770 ; free virtual = 10534
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 770 ; free virtual = 10534
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 770 ; free virtual = 10534
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 770 ; free virtual = 10534
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-------------------+----------+
+|      |BlackBox name      |Instances |
++------+-------------------+----------+
+|1     |axi_10g_ethernet_0 |         1|
++------+-------------------+----------+
+
+Report Cell Usage: 
++------+-------------------+------+
+|      |Cell               |Count |
++------+-------------------+------+
+|1     |axi_10g_ethernet_0 |     1|
+|2     |BUFG               |     1|
+|3     |CARRY4             |    16|
+|4     |LUT1               |     5|
+|5     |LUT2               |    85|
+|6     |LUT3               |    39|
+|7     |LUT4               |    85|
+|8     |LUT5               |    61|
+|9     |LUT6               |    47|
+|10    |MMCME2_BASE        |     1|
+|11    |RAMB36E1           |     4|
+|12    |FDPE               |    20|
+|13    |FDRE               |  1058|
+|14    |IBUF               |    83|
+|15    |IBUFDS             |     1|
+|16    |OBUF               |    81|
+|17    |OBUFT              |     3|
++------+-------------------+------+
+
+Report Instance Areas: 
++------+--------------------------------------+--------------------------------------------+------+
+|      |Instance                              |Module                                      |Cells |
++------+--------------------------------------+--------------------------------------------+------+
+|1     |top                                   |                                            |  2199|
+|2     |  sync_insert_error                   |axi_10g_ethernet_0_sync_block__1            |     5|
+|3     |  sync_coreclk_enable_custom_preamble |axi_10g_ethernet_0_sync_block__2            |     5|
+|4     |  sync_pcs_loopback                   |axi_10g_ethernet_0_sync_block__3            |     5|
+|5     |  axi_lite_clocking_i                 |axi_10g_ethernet_0_clocking                 |     3|
+|6     |  reset_error_sync_reg                |axi_10g_ethernet_0_sync_block               |     5|
+|7     |  fifo_block_i                        |axi_10g_ethernet_0_fifo_block               |  1635|
+|8     |    ethernet_mac_fifo_i               |axi_10g_ethernet_0_xgmac_fifo               |   964|
+|9     |      i_tx_fifo                       |axi_10g_ethernet_0_axi_fifo                 |   494|
+|10    |        rd_store_sync                 |axi_10g_ethernet_0_sync_block__4            |     5|
+|11    |        \GRAY_SYNC[0].sync_gray_addr  |axi_10g_ethernet_0_sync_block__5            |     5|
+|12    |        \GRAY_SYNC[1].sync_gray_addr  |axi_10g_ethernet_0_sync_block__6            |     5|
+|13    |        \GRAY_SYNC[2].sync_gray_addr  |axi_10g_ethernet_0_sync_block__7            |     5|
+|14    |        \GRAY_SYNC[3].sync_gray_addr  |axi_10g_ethernet_0_sync_block__8            |     5|
+|15    |        \GRAY_SYNC[4].sync_gray_addr  |axi_10g_ethernet_0_sync_block__9            |     5|
+|16    |        \GRAY_SYNC[5].sync_gray_addr  |axi_10g_ethernet_0_sync_block__10           |     5|
+|17    |        \GRAY_SYNC[6].sync_gray_addr  |axi_10g_ethernet_0_sync_block__11           |     5|
+|18    |        \GRAY_SYNC[7].sync_gray_addr  |axi_10g_ethernet_0_sync_block__12           |     5|
+|19    |        \GRAY_SYNC[8].sync_gray_addr  |axi_10g_ethernet_0_sync_block__13           |     5|
+|20    |        \GRAY_SYNC[9].sync_gray_addr  |axi_10g_ethernet_0_sync_block__14           |     5|
+|21    |        fifo_ram_inst                 |axi_10g_ethernet_0_fifo_ram_1               |    88|
+|22    |        rd_reset_gen                  |axi_10g_ethernet_0_sync_reset_2             |     9|
+|23    |        wr_reset_gen                  |axi_10g_ethernet_0_sync_reset_3             |     8|
+|24    |      rx_fifo_inst                    |axi_10g_ethernet_0_axi_fifo__parameterized0 |   470|
+|25    |        rd_store_sync                 |axi_10g_ethernet_0_sync_block__15           |     5|
+|26    |        \GRAY_SYNC[0].sync_gray_addr  |axi_10g_ethernet_0_sync_block__16           |     5|
+|27    |        \GRAY_SYNC[1].sync_gray_addr  |axi_10g_ethernet_0_sync_block__17           |     5|
+|28    |        \GRAY_SYNC[2].sync_gray_addr  |axi_10g_ethernet_0_sync_block__18           |     5|
+|29    |        \GRAY_SYNC[3].sync_gray_addr  |axi_10g_ethernet_0_sync_block__19           |     5|
+|30    |        \GRAY_SYNC[4].sync_gray_addr  |axi_10g_ethernet_0_sync_block__20           |     5|
+|31    |        \GRAY_SYNC[5].sync_gray_addr  |axi_10g_ethernet_0_sync_block__21           |     5|
+|32    |        \GRAY_SYNC[6].sync_gray_addr  |axi_10g_ethernet_0_sync_block__22           |     5|
+|33    |        \GRAY_SYNC[7].sync_gray_addr  |axi_10g_ethernet_0_sync_block__23           |     5|
+|34    |        \GRAY_SYNC[8].sync_gray_addr  |axi_10g_ethernet_0_sync_block__24           |     5|
+|35    |        \GRAY_SYNC[9].sync_gray_addr  |axi_10g_ethernet_0_sync_block__25           |     5|
+|36    |        fifo_ram_inst                 |axi_10g_ethernet_0_fifo_ram                 |    84|
+|37    |        rd_reset_gen                  |axi_10g_ethernet_0_sync_reset               |     9|
+|38    |        wr_reset_gen                  |axi_10g_ethernet_0_sync_reset_0             |    10|
+|39    |  mni                                 |mac_to_nic_interface                        |   311|
+|40    |    rxi                               |mac_rx_interface                            |   149|
+|41    |    txi                               |mac_tx_interface                            |   162|
++------+--------------------------------------+--------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1800.090 ; gain = 609.336 ; free physical = 770 ; free virtual = 10534
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 35 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1800.090 ; gain = 107.500 ; free physical = 826 ; free virtual = 10590
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1800.098 ; gain = 609.336 ; free physical = 828 ; free virtual = 10593
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 105 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  MMCME2_BASE => MMCME2_ADV: 1 instances
+
+109 Infos, 50 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:01:28 . Memory (MB): peak = 1800.098 ; gain = 652.148 ; free physical = 783 ; free virtual = 10548
+INFO: [Common 17-1381] The checkpoint '/home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/synth_1/axi_10g_ethernet_0_example_design.dcp' has been generated.
+report_utilization: Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.14 . Memory (MB): peak = 1824.102 ; gain = 0.000 ; free physical = 792 ; free virtual = 10557
+INFO: [Common 17-206] Exiting Vivado at Thu Apr 28 19:13:02 2022...

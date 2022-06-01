@@ -1,0 +1,1 @@
+vopt -64 +acc -l elaborate.log -L ten_gig_eth_mac_v15_1_2 -L xil_defaultlib -L ten_gig_eth_pcs_pma_v6_0_8 -L xlconstant_v1_1_3 -L unisims_ver -L unimacro_ver -L secureip -work xil_defaultlib xil_defaultlib.axi_10g_ethernet_0 xil_defaultlib.glbl -o axi_10g_ethernet_0_opt

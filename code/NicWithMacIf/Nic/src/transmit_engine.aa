@@ -27,6 +27,7 @@ $module [transmitEngineDaemon] $in () $out () $is
 			$merge $entry $loopback 
 				$phi tx_q_index := ((LAST_READ_TX_QUEUE_INDEX+1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
 							$on $entry,$loopback
+				$phi count := $one<32> $on $entry ncount $on $loopback
 			$endmerge
 			
 			$rreport(transmitEngineDaemon trying_to_get_pointer_from_tx_queue tx_q_index)
@@ -46,7 +47,10 @@ $module [transmitEngineDaemon] $in () $out () $is
 			// push packet pointer to free queue
 			$guard (push_pointer_back_to_free_Q)
 				$call pushIntoQueue ($one<1> FREE_Q pkt_pointer) (push_status)
-			
+			$guard (push_pointer_back_to_free_Q)
+				$call AccessRegister ($zero<1> (~$zero<4>) 21 count) (ignore_resp)
+			$guard (push_pointer_back_to_free_Q)
+				$volatile ncount := (count + 1)	
 			$rreport(transmitEngineDaemon pushed_back_to_free_queue push_status)
 			// move to next tx queue
 			LAST_READ_TX_QUEUE_INDEX := tx_q_index
@@ -81,7 +85,7 @@ $module [getTxPacketPointerFromServer]
 	
 	$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
 	
-	$call popFromQueue ($zero<1> tx_queue_pointer_36) (pkt_pointer status)
+	$call popFromQueue ($one<1> tx_queue_pointer_36) (pkt_pointer status)
 
 
 	$rreport(getTxPacketPointerFromServer register_ind register_index tx_queue_pointer_36 pkt_pointer status)

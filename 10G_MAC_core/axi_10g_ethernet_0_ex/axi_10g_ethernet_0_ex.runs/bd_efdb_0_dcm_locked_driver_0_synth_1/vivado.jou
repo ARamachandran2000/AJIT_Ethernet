@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Thu Apr 28 18:59:12 2022
+# Process ID: 43547
+# Current directory: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/bd_efdb_0_dcm_locked_driver_0_synth_1
+# Command line: vivado -log bd_efdb_0_dcm_locked_driver_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_efdb_0_dcm_locked_driver_0.tcl
+# Log file: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/bd_efdb_0_dcm_locked_driver_0_synth_1/bd_efdb_0_dcm_locked_driver_0.vds
+# Journal file: /home/harshad/Project/git/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.runs/bd_efdb_0_dcm_locked_driver_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source bd_efdb_0_dcm_locked_driver_0.tcl -notrace

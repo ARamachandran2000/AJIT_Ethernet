@@ -48,9 +48,13 @@ $module [transmitEngineDaemon] $in () $out () $is
 			$guard (push_pointer_back_to_free_Q)
 				$call pushIntoQueue ($one<1> FREE_Q pkt_pointer) (push_status)
 			$guard (push_pointer_back_to_free_Q)
-				$call AccessRegister ($zero<1> (~$zero<4>) 21 count) (ignore_resp)
+				$rreport(transmitEngineDaemon writing_count_to_reg_21 count)
 			$guard (push_pointer_back_to_free_Q)
-				$volatile ncount := (count + 1)	
+				$call AccessRegister ($zero<1> (~$zero<4>) 21 count) (ignore_resp)
+			//$guard (push_pointer_back_to_free_Q)
+			//	$volatile ncount := (count + 1)	
+			$volatile ncount := ($mux push_pointer_back_to_free_Q (count + 1) count)
+
 			$rreport(transmitEngineDaemon pushed_back_to_free_queue push_status)
 			// move to next tx queue
 			LAST_READ_TX_QUEUE_INDEX := tx_q_index

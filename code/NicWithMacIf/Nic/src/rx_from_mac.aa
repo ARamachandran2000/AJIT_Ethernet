@@ -29,13 +29,14 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 		$rreport(nicRxFromMacDaemon waiting_for_control)
 		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
 		
+		$call AccessRegister ($zero<1> (~$zero<4>) 22 $zero<32>) (ignore_resp0)
 		// If not enabled yet -> Loopback
 		$if (~(CONTROL_REGISTER [] 0)) $then
 			$place [not_enabled_yet_loopback]
 		$endif
 
 		$rreport(nicRxFromMacDaemon got_the__control )
-
+		$call AccessRegister ($zero<1> (~$zero<4>) 22 $one<32>) (ignore_resp1)
 		$dopipeline $depth 7 $fullrate
 			$merge $entry $loopback
 			// where are we in the packet

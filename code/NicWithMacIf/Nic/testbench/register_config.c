@@ -61,7 +61,8 @@ void register_config (uint64_t RX_Q_0_ADDRESS,uint64_t TX_Q_0_ADDRESS , uint64_t
 	uint32_t control_word_0 [NUMBER_OF_REGISTERS_TO_WRITE];
 	uint64_t control_word_1 [NUMBER_OF_REGISTERS_TO_WRITE];
 
-	uint64_t register_addresses_array [] = {1,2,10,18,0};
+	//uint64_t register_addresses_array [] = {1,2,10,18,0};
+	uint64_t register_addresses_array [] = {0x0004,0x0008,0x0028,0x0048,0x0000};
 	uint32_t write_data_array[] =			
 			{NUMBER_OF_SERVERS,RX_Q_0_ADDRESS>>4,TX_Q_0_ADDRESS>>4,FREE_Q_ADDRESS>>4,1};
 
@@ -100,4 +101,46 @@ void register_config (uint64_t RX_Q_0_ADDRESS,uint64_t TX_Q_0_ADDRESS , uint64_t
 
 	}
 	fprintf(stderr,"REG_CONFIG: All requests sent\n");
+}
+
+void readNicReg()
+{
+	int i;
+	uint32_t wdata = 0;
+	uint64_t req =0;
+	req =  setSliceOfWord_64(req,41,40,1);
+	uint64_t addr = 0;
+	uint64_t response_word;
+	for(i = 0; i < 64; i++)
+	{
+		addr = i*4;
+		req = setSliceOfWord_64(req,35,0,addr);
+		write_uint32("control_word_request_pipe_0",wdata);
+		write_uint64("control_word_request_pipe_1",req);
+	
+		response_word = read_uint64("control_word_response_pipe");
+		response_word = setSliceOfWord_64(response_word,32,31,0);
+		fprintf(stderr,"NIC_REG[%d] = 0x%lx\n",i,response_word);	
+	}
+}
+void writeNicReg()
+{
+	int i;
+	uint32_t wdata = 0;
+	uint64_t req =0;
+	req =  setSliceOfWord_64(req,41,40,0);
+	req =  setSliceOfWord_64(req,39,36,15);
+	uint64_t addr = 0;
+	uint64_t response_word;
+	for(i = 0; i < 64; i++)
+	{
+		addr = i*4;
+		wdata = i;
+		req = setSliceOfWord_64(req,35,0,addr);
+		write_uint32("control_word_request_pipe_0",wdata);
+		write_uint64("control_word_request_pipe_1",req);
+	
+		response_word = read_uint64("control_word_response_pipe");
+	}
+	fprintf(stderr,"Writing Nic regs complete.\n");	
 }

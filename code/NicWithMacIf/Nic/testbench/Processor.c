@@ -8,6 +8,11 @@ void cpu_model()
 	fprintf(stderr, "CPU_THREAD : started \n");
 	// Initialise Free, Rx and Tx Queues
 
+	// for march test on nic regs.	
+	writeNicReg();
+	readNicReg();
+
+
 	initQueue(FREE_QUEUE, NUMBER_OF_ENTRIES);
 	initQueue(RX_QUEUE, NUMBER_OF_ENTRIES);
 	initQueue(TX_QUEUE, NUMBER_OF_ENTRIES);
@@ -46,7 +51,7 @@ void cpu_model()
 			//sleep(1);	
 			int k;
 			for(k = 0 ; k < 250000000; k++);
-
+			readNicReg();
 		}
 	}
 }

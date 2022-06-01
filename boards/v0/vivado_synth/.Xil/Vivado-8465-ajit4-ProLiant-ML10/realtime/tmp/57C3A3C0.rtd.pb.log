@@ -1,0 +1,18 @@
+xilinx rtfpga
+INFO: [Synth 8-4471] merging register 'nicRxFromMacDaemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[2].placeBlock.dly/UnitDelay.ack_reg' into 'nicRxFromMacDaemon_instance/in_buffer_unload_req_symbol_join.gj_in_buffer_unload_req_symbol_join/placegen[2].placeBlock.dly/UnitDelay.ack_reg' [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:13367]
+WARNING: [Synth 8-6014] Unused sequential element nicRxFromMacDaemon_instance/in_buffer/NotRevisedCase.ShallowCase.ulReg/noBypass.read_data_reg was removed.  [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:30118]
+WARNING: [Synth 8-6014] Unused sequential element nicRxFromMacDaemon_instance/out_buffer/notFRR.bufPipe/Shallow.notSaveSlot.queue/qD1.RB.data_reg_reg was removed.  [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:18173]
+WARNING: [Synth 8-6014] Unused sequential element nicRxFromMacDaemon_instance/tagIlock/NoFlowThrough.interlockBuf.buf/NotRevisedCase.ShallowCase.ulReg/noBypass.read_data_reg was removed.  [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:30118]
+WARNING: [Synth 8-6014] Unused sequential element nicRxFromMacDaemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[2].placeBlock.dly/UnitDelay.ack_reg was removed.  [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:13367]
+WARNING: [Synth 8-6014] Unused sequential element nicRxFromMacDaemon_instance/data_path.OutportGroup_0.nic_rx_to_header_write_0/BufGen[0].update_ack_reg was removed.  [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:27424]
+INFO: [Synth 8-5544] ROM "nicRxFromMacDaemon_instance/result" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "nicRxFromMacDaemon_instance/result" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+WARNING: [Synth 8-6014] Unused sequential element nic_rx_to_header_Pipe/DeepFifo.notShiftReg.queue/queue_size_reg was removed.  [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:20751]
+WARNING: [Synth 8-6014] Unused sequential element nic_rx_to_header_Pipe/DeepFifo.notShiftReg.queue/write_pointer_reg was removed.  [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:20742]
+WARNING: [Synth 8-6014] Unused sequential element nic_rx_to_header_Pipe/DeepFifo.notShiftReg.queue/read_pointer_reg was removed.  [/home/harshad/Project/git/IITB_AI_ML/ahir_release/vhdl/ahir.vhdl:20741]
+WARNING: [Synth 8-3331] design base_bank_dual_port_for_xst__parameterized11 has unconnected port reset
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\nicRxFromMacDaemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[1].placeBlock.pI/CapEqOne.non_zero_reg )
+WARNING: [Synth 8-3332] Sequential element (addr_reg_0_reg[3]) is unused and will be removed from module base_bank_dual_port_for_xst__parameterized11.
+WARNING: [Synth 8-3332] Sequential element (addr_reg_0_reg[2]) is unused and will be removed from module base_bank_dual_port_for_xst__parameterized11.
+WARNING: [Synth 8-3332] Sequential element (addr_reg_0_reg[1]) is unused and will be removed from module base_bank_dual_port_for_xst__parameterized11.
+WARNING: [Synth 8-3332] Sequential element (addr_reg_0_reg[0]) is unused and will be removed from module base_bank_dual_port_for_xst__parameterized11.

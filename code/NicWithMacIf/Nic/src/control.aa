@@ -2,14 +2,15 @@
 // Request Response Protocol (Similar to AFB Bus)
 // Request Packet Format -> rwbar (1) bmask(4) index (6) wdata(32)
 // Response Packet Format -> Error-bit(1) rdata(32)
-$storage nic_registers: $array [64] $of $uint<32>
+//$storage nic_registers: $array [64] $of $uint<32>
+$storage nic_registers: $array [16384] $of $uint<32>
 
 // Updates the value in the register based on the byte-mask -> If a particular
 //bit in the byte mask is 1, then corresponding byte in register is updated with new value 
 // else old value is retained
 
 $module [UpdateRegister] 
-$in (bmask: $uint<4> rval wdata: $uint<32> index : $uint<6> ) 
+$in (bmask: $uint<4> rval wdata: $uint<32> index : $uint<14> ) 
 $out (wval : $uint<32>) 
 $is
 {
@@ -46,6 +47,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			$phi free_q := $zero<1> $on $entry check_free_q $on $loopback
 
 			$phi num_server := $zero<1> $on $entry check_num_server $on $loopback
+//			$phi req := AFB_NIC_REQUEST $on $entry,$loopback
 		$endmerge
 			$rreport(SoftwareRegisterAccessDaemon looping_in_SoftwareRegisterAccessDaemon)
 
@@ -82,7 +84,8 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 		
 			// Use bottom 6 bits to index into register file
 
-			$volatile index := ($slice addr 5 0)  // addr [5 : 0] 
+			//$volatile index := ($slice addr 5 0)  // addr [5 : 0] 
+			$volatile index := ($slice addr 15 2)
 			
 			// If the software updates the value then update the pipe signals
 			$volatile check_control_regsiter := ((index == 0) & (rwbar == 0))
@@ -134,9 +137,10 @@ $module [NicRegisterAccessDaemon] $in () $out () $is
 
 			// If rwbar -> (1 = read) then don't update value else update 
 			// value based on bmask
+			$volatile index_14 := ($bitcast ($uint<14>) index)
 
 			$guard (~rwbar)
-				$call UpdateRegister (bmask rval wdata index) (wval)
+				$call UpdateRegister (bmask rval wdata index_14) (wval)
 			
 
 			$volatile rdata := ($mux rwbar rval $zero<32>)

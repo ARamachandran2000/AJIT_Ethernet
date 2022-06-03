@@ -67,7 +67,7 @@ module axi_10g_ethernet_0_example_design
    input             clk_in_n,
    input             refclk_p,       // Transceiver reference clock source
    input             refclk_n,
-   output            coreclk_out,
+   output            coreclk_out,    // Will be connected to NIC
    
    // AHIR FIFO Ports
    

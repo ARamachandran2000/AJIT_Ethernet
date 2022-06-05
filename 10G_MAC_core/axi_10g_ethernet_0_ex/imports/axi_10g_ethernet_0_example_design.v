@@ -68,6 +68,7 @@ module axi_10g_ethernet_0_example_design
    input             refclk_p,       // Transceiver reference clock source
    input             refclk_n,
    output            coreclk_out,    // Will be connected to NIC
+   output            ajit_clock_80,
    
    // AHIR FIFO Ports
    
@@ -320,6 +321,7 @@ module axi_10g_ethernet_0_example_design
       .clk_in_p                        (clk_in_p),
       .clk_in_n                        (clk_in_n),
       .s_axi_aclk                      (s_axi_aclk),
+      .ajit_clock_80                   (ajit_clock_80),
       .tx_mmcm_reset                   (tx_reset),
       .tx_mmcm_locked                  (tx_dcm_locked)
     );

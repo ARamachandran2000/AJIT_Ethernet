@@ -10,7 +10,8 @@ input             clk_in_p,       // Freerunning clock source
 input             clk_in_n,
 input             refclk_p,       // Transceiver reference clock source
 input             refclk_n,
-output            coreclk_out,    // Will be connected to NIC
+output            coreclk_out,       // Will be connected to NIC 
+output            ajit_clock_80,     // Will be connected to AJIT processor  
 input             reset,
 
 // AHIR FIFO Ports
@@ -66,6 +67,7 @@ axi_10g_ethernet_0_example_design ethernet_inst
       .refclk_p               (refclk_p),         // Transcevier reference clock source
       .refclk_n               (refclk_n),
       .coreclk_out            (coreclk_out),
+      .ajit_clock_80          (ajit_clock_80),
 
       .clk_in_p               (clk_in_p),         // Freerunning clock source
       .clk_in_n               (clk_in_n),

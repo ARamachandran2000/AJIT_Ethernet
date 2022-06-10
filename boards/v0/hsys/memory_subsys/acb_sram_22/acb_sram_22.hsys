@@ -1,0 +1,8 @@
+$system acb_sram_22 $library memory_subsys
+	$in
+		$pipe CORE_BUS_REQUEST 110 $depth 2
+	$out
+		$pipe CORE_BUS_RESPONSE 65 $depth 2
+		
+{
+}

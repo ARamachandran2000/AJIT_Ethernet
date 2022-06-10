@@ -14,7 +14,7 @@ VC2VHDL: vc2vhdl  vhdlsim
 AA2VHDLSIM: aa2vc  vc2vhdl  vhdlsim
 TOVHDL:TOVC vc2vhdl
 
-TOPMODULES=-T ReceiveEngineDaemon -T nicRxFromMacDaemon -T transmitEngineDaemon -T macToNicInterface -T nicToMacInterface -T processorToNicInterface -T nicToProcessorInterface -T memoryToNicInterface -T nicToMemoryInterface -T SoftwareRegisterAccessDaemon -T NicRegisterAccessDaemon -T memoryToProcessorInterface -T processorToMemoryInterface
+TOPMODULES=-T ReceiveEngineDaemon -T nicRxFromMacDaemon -T transmitEngineDaemon -T SoftwareRegisterAccessDaemon -T NicRegisterAccessDaemon 
 
 
 
@@ -24,26 +24,12 @@ SW: aalink aa2c aa2vc swtb
 AA2VHDL: aa2vc vc2vhdl vhdlsim
 
 # Aa to vC
-aalink: $(SRC)/*.aa $(TESTBENCH)/tester.aa 
-	AaLinkExtMem $(SRC)/decls.aa $(SRC)/pipes.aa $(SRC)/signals.aa $(SRC)/control.aa $(SRC)/general_utils.aa $(SRC)/memory_utils.aa $(SRC)/queue_utils.aa $(SRC)/register_utils.aa $(SRC)/rx_from_mac.aa $(SRC)/receive_engine.aa $(SRC)/transmit_engine.aa $(TESTBENCH)/tester.aa| vcFormat > nic.linked.aa
+aalink: $(SRC)/*.aa 
+	AaLinkExtMem $(SRC)/decls.aa $(SRC)/pipes.aa $(SRC)/signals.aa $(SRC)/control.aa $(SRC)/general_utils.aa $(SRC)/memory_utils.aa $(SRC)/queue_utils.aa $(SRC)/register_utils.aa $(SRC)/rx_from_mac.aa $(SRC)/receive_engine.aa $(SRC)/transmit_engine.aa | vcFormat > nic.linked.aa
 	AaOpt -B nic.linked.aa | vcFormat > nic.linked.opt.aa
 
-# make clean and then make ahir_system
-ahir_system: 
-	AaLinkExtMem $(SRC)/decls.aa $(SRC)/pipes.aa $(SRC)/signals.aa $(SRC)/control.aa $(SRC)/general_utils.aa $(SRC)/memory_utils.aa $(SRC)/queue_utils.aa $(SRC)/register_utils.aa $(SRC)/rx_from_mac.aa $(SRC)/receive_engine.aa $(SRC)/transmit_engine.aa | vcFormat > nic.linked.ahir.system.aa
-	AaOpt -B nic.linked.ahir.system.aa | vcFormat > nic.linked.ahir.system.opt.aa
-	Aa2C $(TOPMODULES) nic.linked.ahir.system.aa -o ./
-	Aa2VC -O -C nic.linked.ahir.system.opt.aa | vcFormat > nic.ahir.system.vc
-	vc2vhdl -U  -O -v -a -C -e ahir_system -w -s ghdl $(TOPMODULES) -f nic.ahir.system.vc -L $(FUNCTIONLIB)/fpu.list
-	vhdlFormat < ahir_system_global_package.unformatted_vhdl > ahir_system_global_package.vhdl
-	vhdlFormat < ahir_system.unformatted_vhdl > nic.vhdl
-
-copy_to_vhdl_dir:
-	cp ./ahir_system_global_package.vhdl $(SYNTHDIR)/tmp/ahir_system_global_packagelib.vhdl
-	cp ./nic.vhdl $(SYNTHDIR)/tmp/nic.vhdl
-
-aa2c :aalink
-	Aa2C $(TOPMODULES) nic.linked.aa -o ./
+aa2c :nic.linked.opt.aa 
+	Aa2C $(TOPMODULES) nic.linked.opt.aa -o ./
 
 aa2vc: nic.linked.opt.aa
 	Aa2VC -O -C nic.linked.opt.aa | vcFormat > nic.vc
@@ -51,10 +37,10 @@ aa2vc: nic.linked.opt.aa
 # vC to VHDL
 vc2vhdl: nic.vc
 	#-D -O -S 4 -I 2 -v -a -C -e
-	vc2vhdl -U  -O -v -a -C -e ahir_system -w -s ghdl $(TOPMODULES) -f nic.vc -L $(FUNCTIONLIB)/fpu.list
-	vhdlFormat < ahir_system_global_package.unformatted_vhdl > ahir_system_global_package.vhdl
-	vhdlFormat < ahir_system.unformatted_vhdl > ahir_system.vhdl
-	vhdlFormat < ahir_system_test_bench.unformatted_vhdl > ahir_system_test_bench.vhdl
+	vc2vhdl -U  -O -v -a -C -e nic -H -W nic_lib -w -s ghdl $(TOPMODULES) -f nic.vc -L $(FUNCTIONLIB)/fpu.list
+	vhdlFormat < nic_global_package.unformatted_vhdl > nic_global_package.vhdl
+	vhdlFormat < nic.unformatted_vhdl > nic.vhdl
+	vhdlFormat < nic_test_bench.unformatted_vhdl > nic_test_bench.vhdl
 
 # build testbench and ghdl executable
 # note the use of libVhpi in building the testbench.

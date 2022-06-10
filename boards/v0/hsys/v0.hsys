@@ -1,0 +1,22 @@
+$system v0_base $library v0_lib
+	$in 
+		$signal CPU_RESET  1 $depth 1
+		$signal DEBUG_MODE 1 $depth 1
+		$signal SINGLE_STEP_MODE 1 $depth 1
+		$signal DEBUG_UART_RX 1 $depth 2
+		$signal SERIAL_UART_RX 1 $depth 2
+		$pipe   MAC_TO_NIC  73 $depth 2
+
+		$signal FIRST_TAP_MIN_PA   36 $depth 1
+		$signal FIRST_TAP_MAX_PA   36 $depth 1
+	
+	$out
+		$signal CPU_MODE  1 $depth 1
+		$signal DEBUG_UART_TX 1 $depth 2
+		$signal SERIAL_UART_TX 1 $depth 2
+		$pipe   NIC_TO_MAC  73 $depth 2
+{
+	$instance processor_instance 	ajit_processor_lib:processor_1x1x32
+	$instance nic_inst           	nic_lib:nic
+	$instance memory_subsys_inst	memory_subsys_lib: memory_subsys
+}

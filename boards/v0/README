@@ -1,1 +1,33 @@
 This is for a VC709 board, configured with 4MB of RAM.
+
+Directories :
+	contraints	: Constraints files for the VC709 board.
+	docs		: Documentation.
+	ip  		: Ip source files(DualClockedFIFO and clocking_wizard).
+	ngc		: Proessor 1x1x32 ngc file.
+	testing  	: Codes for testing dsign on vc709.
+	verilog_mac_if  : axi to ahir pipes bridge.
+	vhdl  		: Design files (top_module,nic design, mac engine).
+	vhdl_libs  	: Libraries.
+	vivado_synth	: scripts to generate bitfile.
+
+System Details :
+	- Processor_1x1x32 : 75MHz
+	- RAM		   : 4MB, 75MHz
+	- NIC		   : 156.25MHz
+	- MAC_engine	   : 156.25MHz
+	- DualClocked fifos: 4
+	- clk_wiz	   : 2(156.25 and 75 MHz)	
+	- ACB_tap	   : tap addr Max = 0xFF000000, Min = 0xFFFEFFFF
+	- ACB_Mux	   : 
+	- ACB_AFB converter: for NIC slave interface.
+
+Testing Mechanism :
+	1. Processor Provies all queue pointers to nic and starts it.
+		nic writes NIC_REG[22]=1 when it starts.
+	2. A mac engine is written which will send packet to nic.
+	3. Nic does its work of sending packet to memory and 
+		reading it back after processing is done.
+	4. Nic transmits packet out and mofifies NIC_REG[21]
+			(which will keep count of packets trensmitted).
+	

@@ -2,9 +2,9 @@
 Register     address         		Description
   Id	       offset	
 ------------------------------------------------
-0		            0x00		        control register
+0	        0x00	        control register
 ------------------------------------------------
-1		            0x04		        number of servers
+1	        0x04	        number of servers
 ------------------------------------------------
       Rx queues to servers (8 registers)
 2               0x08            Rx Q for server 0
@@ -33,3 +33,15 @@ Register     address         		Description
       MAC address 48 bits (ie, two registers)
 19              0x4C            MAC_ADDR[31:0]
 20              0x50            {unused,MAC_ADDR[47:32]}
+---------------------------------------------------
+21		0x54		Count of packets transmitted
+				by NIC
+22		0x58		NIC got the control
+				(0 -> no control, 1-> got control)
+
+23		0x5c		--
+.
+.
+.
+63		0xfc		--
+

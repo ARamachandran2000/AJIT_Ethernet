@@ -8,7 +8,7 @@
 	.proc	020
 ajit_serial_init:
 .LFB0:
-	.file 1 "/home/madhav/AjitToolChain/AjitPublicResources/tools/minimal_printf_timer/src/core_portme.c"
+	.file 1 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/core_portme.c"
 	.loc 1 6 0
 	.cfi_startproc
 	save	%sp, -96, %sp
@@ -68,7 +68,7 @@ ajit_barebones_clock:
 .LFE1:
 	.size	ajit_barebones_clock, .-ajit_barebones_clock
 .Letext0:
-	.file 2 "/home/madhav/AjitToolChain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/include/stdint-gcc.h"
+	.file 2 "/home/tools_shared/ajit-toolchain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/include/stdint-gcc.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
 	.uaword	0xba
@@ -327,6 +327,8 @@ ajit_barebones_clock:
 	.asciz	"unsigned int"
 .LASF14:
 	.asciz	"ajit_barebones_clock"
+.LASF11:
+	.asciz	"/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/core_portme.c"
 .LASF10:
 	.asciz	"GNU C 4.7.4"
 .LASF6:
@@ -341,8 +343,6 @@ ajit_barebones_clock:
 	.asciz	"tick_l"
 .LASF12:
 	.asciz	"uint32_t"
-.LASF11:
-	.asciz	"/home/madhav/AjitToolChain/AjitPublicResources/tools/minimal_printf_timer/src/core_portme.c"
 .LASF4:
 	.asciz	"short unsigned int"
 .LASF0:
@@ -351,5 +351,5 @@ ajit_barebones_clock:
 	.asciz	"rval"
 .LASF1:
 	.asciz	"short int"
-	.ident	"GCC: (Buildroot 2014.08-g9d8f423-dirty) 4.7.4"
+	.ident	"GCC: (Buildroot 2014.08-ge7c9750) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits

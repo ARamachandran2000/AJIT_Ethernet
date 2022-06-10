@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="20" Path="/home/akshat/Documents/AJIT/AJIT_Networking/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.xpr">
+<Project Version="7" Minor="20" Path="/home/akshat/Documents/Project/AJIT_Ethernet/10G_MAC_core/axi_10g_ethernet_0_ex/axi_10g_ethernet_0_ex.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="d7f50b367cff41248f00bfd881afa727"/>
@@ -52,6 +52,13 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/ip/clk_wiz_0/clk_wiz_0.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/imports/axi_10g_ethernet_0_axi_fifo.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -108,13 +115,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/diff_refclk_gen.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog_mac_if/mac_rx_interface.v">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../Documents/AJIT/AJIT_Networking/AJIT_Ethernet/boards/v0/verilog_mac_if/mac_rx_interface.v"/>
@@ -142,6 +142,14 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/ethernet_top_level.v">
         <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/diff_refclk_gen.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -202,14 +210,6 @@
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PSRCDIR/constrs_1/imports/imports/axi_10g_ethernet_0_example_design.xdc">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/imports/axi_10g_ethernet_0_example_design.xdc"/>
-          <Attr Name="ImportTime" Val="1651227281"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/constrs_1/new/ethernet_mac_constraints.xdc">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -233,7 +233,6 @@
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="axi_10g_ethernet_0_demo_tb"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
-        <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SrcSet" Val="sources_1"/>
@@ -254,17 +253,17 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="axi_10g_ethernet_0.xci" FileRelPathName="ip/ip_0/bd_efdb_0_xmac_0.xci">
-          <Proxy FileSetName="bd_efdb_0_xmac_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="axi_10g_ethernet_0.xci" FileRelPathName="ip/ip_1/bd_efdb_0_xpcs_0.xci">
-          <Proxy FileSetName="bd_efdb_0_xpcs_0"/>
+        <CompFileExtendedInfo CompFileName="axi_10g_ethernet_0.xci" FileRelPathName="ip/ip_3/bd_efdb_0_pma_pmd_type_driver_0.xci">
+          <Proxy FileSetName="bd_efdb_0_pma_pmd_type_driver_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="axi_10g_ethernet_0.xci" FileRelPathName="ip/ip_2/bd_efdb_0_dcm_locked_driver_0.xci">
           <Proxy FileSetName="bd_efdb_0_dcm_locked_driver_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="axi_10g_ethernet_0.xci" FileRelPathName="ip/ip_3/bd_efdb_0_pma_pmd_type_driver_0.xci">
-          <Proxy FileSetName="bd_efdb_0_pma_pmd_type_driver_0"/>
+        <CompFileExtendedInfo CompFileName="axi_10g_ethernet_0.xci" FileRelPathName="ip/ip_1/bd_efdb_0_xpcs_0.xci">
+          <Proxy FileSetName="bd_efdb_0_xpcs_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="axi_10g_ethernet_0.xci" FileRelPathName="ip/ip_0/bd_efdb_0_xmac_0.xci">
+          <Proxy FileSetName="bd_efdb_0_xmac_0"/>
         </CompFileExtendedInfo>
       </File>
       <Config>

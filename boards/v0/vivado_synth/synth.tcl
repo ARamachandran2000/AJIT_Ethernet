@@ -39,6 +39,6 @@ read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_req/fifo_generator_afb_req.xci
 read_ip ../ip//FIFO_Generators/FIFO_Generators.srcs/sources_1/ip/fifo_generator_afb_resp/fifo_generator_afb_resp.xci
 ############### SYNTHESIZE ##############
-synth_design -top top_level -part xc7vx690tffg1761-2 
+synth_design -top top_level -part xc7vx690tffg1761-2
 write_checkpoint -force PostSynthCheckpoint.dcp
 report_timing_summary -file timing.postsynth.rpt -nworst 4

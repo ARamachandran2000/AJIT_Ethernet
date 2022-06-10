@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
-| Date         : Thu Apr 28 18:26:20 2022
+| Date         : Tue May 24 15:08:46 2022
 | Host         : ajit4-ProLiant-ML10 running 64-bit Ubuntu 16.04.7 LTS
 | Command      : report_utilization -file clk_wiz_1_utilization_synth.rpt -pb clk_wiz_1_utilization_synth.pb
 | Design       : clk_wiz_1

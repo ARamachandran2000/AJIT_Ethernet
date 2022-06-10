@@ -6,6 +6,8 @@ VHDL_VHPI_LIB=$(AHIR_RELEASE)/CtestBench/vhdl
 FUNCTIONLIB=$(AHIR_RELEASE)/functionLibrary/
 SRC=../../../code/NicWithMacIf/Nic/src
 TESTBENCH=$(SRC)/../testbench
+SYNTHDIR=../../../boards/v0/vhdl
+
 all: HW SW 
 TOVC:aalink aa2vc 
 VC2VHDL: vc2vhdl  vhdlsim
@@ -36,6 +38,9 @@ ahir_system:
 	vhdlFormat < ahir_system_global_package.unformatted_vhdl > ahir_system_global_package.vhdl
 	vhdlFormat < ahir_system.unformatted_vhdl > nic.vhdl
 
+copy_to_vhdl_dir:
+	cp ./ahir_system_global_package.vhdl $(SYNTHDIR)/tmp/ahir_system_global_packagelib.vhdl
+	cp ./nic.vhdl $(SYNTHDIR)/tmp/nic.vhdl
 
 aa2c :aalink
 	Aa2C $(TOPMODULES) nic.linked.aa -o ./

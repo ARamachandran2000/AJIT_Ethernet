@@ -8,6 +8,9 @@ set_property PACKAGE_PIN G18 [get_ports clk_n]
     set_property IOSTANDARD DIFF_SSTL15 [get_ports clk_n]
 create_clock -period 5.000 -name clk_p [get_ports clk_p] 
 
+# set false paths
+set_false_path -from [get_clocks -include_generated_clocks clk_out1*] -to [get_clocks -include_generated_clocks clk_out2*]
+set_false_path -from [get_clocks -include_generated_clocks clk_out2*] -to [get_clocks -include_generated_clocks clk_out1*]
 
 # usb UART
 set_property PACKAGE_PIN AU36 [get_ports {DEBUG_UART_TX}]

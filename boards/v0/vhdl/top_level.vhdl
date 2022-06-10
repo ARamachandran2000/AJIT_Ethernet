@@ -32,6 +32,9 @@ library ahir_system_global_packagelib;
 use ahir_system_global_packagelib.ahir_system_global_package.all;
 
 
+library UNISIM;
+use UNISIM.vcomponents.all;
+
 entity top_level is
 port(
       CPU_RESET : in std_logic_vector(0 downto 0);
@@ -173,7 +176,7 @@ architecture structure of top_level is
     (-- Clock in ports
      -- Clock out ports
      clk_out1          : out    std_logic; -- 156.25 Mhz Clock
-     clk_out2	       : out    std_logic; -- 80 MHz clock
+     clk_out2	       : out    std_logic; -- 75 MHz clock
      -- Status and control signals
      reset             : in     std_logic;
      locked            : out    std_logic;
@@ -243,7 +246,8 @@ architecture structure of top_level is
    
    --
    
-   signal reset1,reset2,reset_sync: std_logic;
+   signal reset1,reset2, reset_sync_pre_buf, reset_sync: std_logic;
+   signal reset1_mac,reset2_mac, reset_sync_pre_buf_mac, reset_sync_mac: std_logic;
    signal EXTERNAL_INTERRUPT : std_logic_vector(0 downto 0);
    signal LOGGER_MODE : std_logic_vector(0 downto 0);
    signal clock,clock_mac,lock:std_logic;
@@ -340,8 +344,12 @@ begin
    INVALIDATE_REQUEST_pipe_write_req(0) <= '0'; 
    INVALIDATE_REQUEST_pipe_write_data  <= (others => '0');
 
+   -- Info: Baudrate 115200 ClkFreq 65000000:  Baud-freq = 1152, Baud-limit= 39473 Baud-control=0x9a310480
+   -- Info: Baudrate 115200 ClkFreq 70000000:  Baud-freq = 576, Baud-limit= 21299 Baud-control=0x53330240
+   -- Info: Baudrate 115200 ClkFreq 75000000:  Baud-freq = 384, Baud-limit= 15241 Baud-control=0x3b890180
    -- clock freq = 80MHz, baud-rate=115200.
-   CONFIG_UART_BAUD_CONTROL_WORD <= X"0bed0048";
+   --CONFIG_UART_BAUD_CONTROL_WORD <= X"0bed0048";
+   CONFIG_UART_BAUD_CONTROL_WORD <= X"3b890180";
 
 
        
@@ -434,8 +442,12 @@ begin
     				MIN_ADDR_TAP => MIN_ADDR_TAP -- in
 			);
 
-   MAX_ADDR_TAP <= X"00040ffff";  -- 4MB + 64KB-1
-   MIN_ADDR_TAP <= X"000400000"; -- 4MB
+   --MAX_ADDR_TAP <= X"00040ffff";  -- 4MB + 64KB-1
+   --MIN_ADDR_TAP <= X"000400000"; -- 4MB
+   --MAX_ADDR_TAP <= X"0FFFF50FF";  -- MMIO for NIC+ 256B-1
+   --MIN_ADDR_TAP <= X"0FFFF5000"; -- MMIO for NIC
+   MAX_ADDR_TAP <= X"01FFFFFFF";  -- MMIO for NIC+ 256B-1
+   MIN_ADDR_TAP <= X"010000000"; -- MMIO for NIC
 
   -- two buffers between TAP and acb_afb_bridge
   qb_req_tap: QueueBase -- done
@@ -456,8 +468,8 @@ begin
 	port map (
 			clk => clock, reset => reset_sync,
 			data_in => MAIN_TAP_RESPONSE_BUF_pipe_write_data, -- in
-			push_req => MAIN_TAP_RESPONSE_BUF_pipe_write_ack(0), -- in
-			push_ack => MAIN_TAP_RESPONSE_BUF_pipe_write_req(0), -- out
+			push_req => MAIN_TAP_RESPONSE_BUF_pipe_write_req(0), -- in
+			push_ack => MAIN_TAP_RESPONSE_BUF_pipe_write_ack(0), -- out
 			data_out => MAIN_TAP_RESPONSE_pipe_write_data, -- out
 			pop_req => MAIN_TAP_RESPONSE_pipe_write_req(0), -- in
 			pop_ack => MAIN_TAP_RESPONSE_pipe_write_ack(0) -- out
@@ -469,8 +481,8 @@ begin
 		AFB_BUS_RESPONSE_pipe_write_req  => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack, -- in
 		AFB_BUS_RESPONSE_pipe_write_ack  => AFB_NIC_RESPONSE_DFIFO_pipe_write_req, -- out
 		CORE_BUS_REQUEST_pipe_write_data => MAIN_TAP_REQUEST_BUF_pipe_read_data, -- in
-		CORE_BUS_REQUEST_pipe_write_req  => MAIN_TAP_REQUEST_BUF_pipe_read_ack, -- in
-		CORE_BUS_REQUEST_pipe_write_ack  => MAIN_TAP_REQUEST_BUF_pipe_read_req, -- out
+		CORE_BUS_REQUEST_pipe_write_req  => MAIN_TAP_REQUEST_BUF_pipe_read_req, -- in
+		CORE_BUS_REQUEST_pipe_write_ack  => MAIN_TAP_REQUEST_BUF_pipe_read_ack, -- out
 		AFB_BUS_REQUEST_pipe_read_data 	 => AFB_NIC_REQUEST_pipe_read_data, -- out
 		AFB_BUS_REQUEST_pipe_read_req    => AFB_NIC_REQUEST_pipe_read_req, -- in
 		AFB_BUS_REQUEST_pipe_read_ack    => AFB_NIC_REQUEST_pipe_read_ack, -- out
@@ -498,8 +510,8 @@ begin
 	port map (
 			clk => clock, reset => reset_sync,
 			data_in => MAIN_THROUGH_RESPONSE_BUF_pipe_write_data, -- in
-			push_req => MAIN_THROUGH_RESPONSE_BUF_pipe_write_ack(0), -- in
-			push_ack => MAIN_THROUGH_RESPONSE_BUF_pipe_write_req(0), -- out
+			push_req => MAIN_THROUGH_RESPONSE_BUF_pipe_write_req(0), -- in
+			push_ack => MAIN_THROUGH_RESPONSE_BUF_pipe_write_ack(0), -- out
 			data_out => MAIN_THROUGH_RESPONSE_pipe_write_data, -- out
 			pop_req => MAIN_THROUGH_RESPONSE_pipe_write_ack(0), -- in
 			pop_ack => MAIN_THROUGH_RESPONSE_pipe_write_req(0) -- out
@@ -509,14 +521,14 @@ begin
 	port map( 
 		clk => clock, reset => reset_sync,
 		CORE_BUS_REQUEST_HIGH_pipe_write_data => MAIN_THROUGH_REQUEST_BUF_pipe_read_data, -- in
-		CORE_BUS_REQUEST_HIGH_pipe_write_req  => MAIN_THROUGH_REQUEST_BUF_pipe_read_ack, -- in
-		CORE_BUS_REQUEST_HIGH_pipe_write_ack  => MAIN_THROUGH_REQUEST_BUF_pipe_read_req, -- out
+		CORE_BUS_REQUEST_HIGH_pipe_write_req  => MAIN_THROUGH_REQUEST_BUF_pipe_read_req, -- in
+		CORE_BUS_REQUEST_HIGH_pipe_write_ack  => MAIN_THROUGH_REQUEST_BUF_pipe_read_ack, -- out
 		CORE_BUS_REQUEST_LOW_pipe_write_data  => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_data, -- in
 		CORE_BUS_REQUEST_LOW_pipe_write_req   => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_ack, -- in
 		CORE_BUS_REQUEST_LOW_pipe_write_ack   => NIC_TO_MEMORY_REQUEST_DFIFO_pipe_write_req, -- out
 		CORE_BUS_RESPONSE_pipe_write_data     => MUX_TO_MEM_RESPONSE_pipe_write_data, -- in
-		CORE_BUS_RESPONSE_pipe_write_req      => MUX_TO_MEM_RESPONSE_pipe_write_ack, -- in
-		CORE_BUS_RESPONSE_pipe_write_ack      => MUX_TO_MEM_RESPONSE_pipe_write_req, -- out
+		CORE_BUS_RESPONSE_pipe_write_req      => MUX_TO_MEM_RESPONSE_pipe_write_req, -- in
+		CORE_BUS_RESPONSE_pipe_write_ack      => MUX_TO_MEM_RESPONSE_pipe_write_ack, -- out
 		CORE_BUS_REQUEST_pipe_read_data       => MUX_TO_MEM_REQUEST_pipe_read_data, --out
 		CORE_BUS_REQUEST_pipe_read_req        => MUX_TO_MEM_REQUEST_pipe_read_ack, -- in
 		CORE_BUS_REQUEST_pipe_read_ack        => MUX_TO_MEM_REQUEST_pipe_read_req, -- out
@@ -536,8 +548,8 @@ begin
 	port map (
 			clk => clock, reset => reset_sync,
 			data_in => MUX_TO_MEM_REQUEST_pipe_read_data, -- in
-			push_req => MUX_TO_MEM_REQUEST_pipe_read_ack(0), -- in
-			push_ack => MUX_TO_MEM_REQUEST_pipe_read_req(0), -- out
+			push_req => MUX_TO_MEM_REQUEST_pipe_read_req(0), -- in
+			push_ack => MUX_TO_MEM_REQUEST_pipe_read_ack(0), -- out
 			data_out => MUX_TO_MEM_REQUEST_BUF_pipe_read_data, -- out
 			pop_req => MUX_TO_MEM_REQUEST_BUF_pipe_read_ack(0), -- in
 			pop_ack => MUX_TO_MEM_REQUEST_BUF_pipe_read_req(0) -- out
@@ -548,8 +560,8 @@ begin
 	port map (
 			clk => clock, reset => reset_sync,
 			data_in => MUX_TO_MEM_RESPONSE_BUF_pipe_write_data, -- in
-			push_req => MUX_TO_MEM_RESPONSE_BUF_pipe_write_ack(0), -- in
-			push_ack => MUX_TO_MEM_RESPONSE_BUF_pipe_write_req(0), -- out
+			push_req => MUX_TO_MEM_RESPONSE_BUF_pipe_write_req(0), -- in
+			push_ack => MUX_TO_MEM_RESPONSE_BUF_pipe_write_ack(0), -- out
 			data_out => MUX_TO_MEM_RESPONSE_pipe_write_data, -- out
 			pop_req => MUX_TO_MEM_RESPONSE_pipe_write_ack(0), -- in
 			pop_ack => MUX_TO_MEM_RESPONSE_pipe_write_req(0) -- out
@@ -558,7 +570,7 @@ begin
   
    mac_rx_instance : mac_rx_interface	-- done
 	port map(
-               clk => clock_mac, reset => reset_sync,
+               clk => clock_mac, reset => reset_sync_mac,
                rx_axis_resetn => rx_axis_resetn, -- out
                rx_axis_tdata => rx_axis_tdata, -- in
                rx_axis_tkeep => rx_axis_tkeep, -- in
@@ -571,7 +583,7 @@ begin
 	);
    mac_tx_instance : mac_tx_interface -- done
 	port map(
-               clk => clock_mac, reset => reset_sync,
+               clk => clock_mac, reset => reset_sync_mac,
                tx_axis_resetn => tx_axis_resetn, -- out
                tx_axis_tdata => tx_axis_tdata, -- out
                tx_axis_tkeep => tx_axis_tkeep, -- out
@@ -617,7 +629,7 @@ begin
 		    read_clk => clock,
 		    write_clk => clock_mac,
 		    
-		    reset => reset_sync);	
+		    reset => reset);	
 	
 	DualClockedQueue_ACB_resp_inst : DualClockedQueue_ACB_resp -- done
 		port map( 
@@ -633,7 +645,7 @@ begin
 		    read_clk => clock_mac,
 		    write_clk => clock,
 		    
-		    reset => reset_sync);
+		    reset => reset);
 	
 	DualClockedQueue_AFB_req_inst : DualClockedQueue_AFB_req -- done
 		port map( 
@@ -649,7 +661,7 @@ begin
 		    read_clk => clock_mac,
 		    write_clk => clock,
 		    
-		    reset => reset_sync);
+		    reset => reset);
 	
 	DualClockedQueue_AFB_resp_inst : DualClockedQueue_AFB_resp -- done
 		port map( 
@@ -665,13 +677,13 @@ begin
 		    read_clk => clock,
 		    write_clk => clock_mac,
 		    
-		    reset => reset_sync);
+		    reset => reset);
    
   
   nic_instance : ahir_system 			-- TODO : done
 	port map( 
-		clk => clock, 
-		reset => reset_sync,
+		clk => clock_mac, 
+		reset => reset_sync_mac,
 		AFB_NIC_REQUEST_pipe_write_data => AFB_NIC_REQUEST_DFIFO_pipe_write_data, -- in
 		AFB_NIC_REQUEST_pipe_write_req => AFB_NIC_REQUEST_DFIFO_pipe_write_req, -- in
 		AFB_NIC_REQUEST_pipe_write_ack => AFB_NIC_REQUEST_DFIFO_pipe_write_ack, -- out
@@ -695,8 +707,8 @@ begin
   
   bram:acb_sram_stub generic map (addr_width => 22) port map (
       CORE_BUS_REQUEST_PIPE_WRITE_DATA => MUX_TO_MEM_REQUEST_BUF_pipe_read_data, -- in
-      CORE_BUS_REQUEST_PIPE_WRITE_REQ  => MUX_TO_MEM_REQUEST_BUF_pipe_read_ack, -- in
-      CORE_BUS_REQUEST_PIPE_WRITE_ACK  => MUX_TO_MEM_REQUEST_BUF_pipe_read_req, -- out
+      CORE_BUS_REQUEST_PIPE_WRITE_REQ  => MUX_TO_MEM_REQUEST_BUF_pipe_read_req, -- in
+      CORE_BUS_REQUEST_PIPE_WRITE_ACK  => MUX_TO_MEM_REQUEST_BUF_pipe_read_ack, -- out
       CORE_BUS_RESPONSE_PIPE_READ_DATA => MUX_TO_MEM_RESPONSE_BUF_pipe_write_data, -- out
       CORE_BUS_RESPONSE_PIPE_READ_REQ  => MUX_TO_MEM_RESPONSE_BUF_pipe_write_ack, -- in
       CORE_BUS_RESPONSE_PIPE_READ_ACK  => MUX_TO_MEM_RESPONSE_BUF_pipe_write_req, -- out
@@ -736,10 +748,21 @@ begin
   process (clock)
   begin
     if (clock'event and clock = '1') then
-	reset_sync <= reset2;
+	reset_sync_pre_buf <= reset2;
 	reset2 <= reset1;
 	reset1 <= reset;
     end if;
   end process;
 
+  process (clock_mac)
+  begin
+    if (clock_mac'event and clock_mac = '1') then
+	reset_sync_pre_buf_mac <= reset2_mac;
+	reset2_mac <= reset1_mac;
+	reset1_mac <= reset;
+    end if;
+  end process;
+  -- BUFGs to help vivado out..
+  resetBufg: BUFG port map (I => reset_sync_pre_buf, O => reset_sync);
+  resetBufg_mac: BUFG port map (I => reset_sync_pre_buf_mac, O => reset_sync_mac);
 end structure;

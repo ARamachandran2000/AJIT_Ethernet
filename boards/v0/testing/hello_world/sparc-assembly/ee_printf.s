@@ -28,7 +28,7 @@ upper_digits:
 	.proc	016
 strnlen:
 .LFB3:
-	.file 1 "/home/madhav/AjitToolChain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c"
+	.file 1 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c"
 	.loc 1 64 0
 	.cfi_startproc
 	save	%sp, -104, %sp
@@ -1875,11 +1875,11 @@ uart_send_char:
 	b	.L142
 	 nop
 .L144:
-	.loc 1 616 0
+	.loc 1 620 0
 	nop
 .L142:
 .LBB2:
-	.loc 1 613 0
+	.loc 1 616 0
 	ldub	[%fp+68], %g1
 	sll	%g1, 24, %g1
 	sra	%g1, 24, %g1
@@ -1887,40 +1887,40 @@ uart_send_char:
 	call	__ajit_serial_putchar__, 0
 	 nop
 	st	%o0, [%fp-4]
-	.loc 1 614 0
+	.loc 1 618 0
 	ld	[%fp-4], %g1
 	cmp	%g1, 0
 	be	.L144
 	 nop
-	.loc 1 615 0
+	.loc 1 619 0
 	nop
 	b	.L141
 	 nop
 .L145:
 .LBE2:
-	.loc 1 627 0
+	.loc 1 635 0
 	nop
 .L141:
 .LBB3:
-	.loc 1 623 0
+	.loc 1 627 0
 	st	%g0, [%fp-8]
-	.loc 1 624 0
+	.loc 1 631 0
 	sethi	%hi(-53248), %g1
 	or	%g1, 512, %g1
 #APP
-! 624 "/home/madhav/AjitToolChain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c" 1
+! 631 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c" 1
 	lda [%g1] 32, %i5
 	
 ! 0 "" 2
 #NO_APP
 	st	%i5, [%fp-8]
-	.loc 1 625 0
+	.loc 1 633 0
 	ld	[%fp-8], %g1
 	and	%g1, 8, %g1
 	cmp	%g1, 0
 	be	.L139
 	 nop
-	.loc 1 625 0 is_stmt 0 discriminator 1
+	.loc 1 633 0 is_stmt 0 discriminator 1
 	ld	[%fp-8], %g1
 	and	%g1, 1, %g1
 	cmp	%g1, 0
@@ -1928,7 +1928,7 @@ uart_send_char:
 	 nop
 .L139:
 .LBE3:
-	.loc 1 630 0 is_stmt 1
+	.loc 1 638 0 is_stmt 1
 	restore
 	jmp	%o7+8
 	 nop
@@ -1941,27 +1941,27 @@ uart_send_char:
 	.proc	04
 ee_printf:
 .LFB10:
-	.loc 1 633 0
+	.loc 1 641 0
 	.cfi_startproc
 	save	%sp, -1136, %sp
 .LCFI7:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 638 0
+	.loc 1 646 0
 	st	%i1, [%fp+72]
 	st	%i2, [%fp+76]
 	st	%i3, [%fp+80]
 	st	%i4, [%fp+84]
 	st	%i5, [%fp+88]
-	.loc 1 633 0
+	.loc 1 641 0
 	st	%i0, [%fp+68]
-	.loc 1 636 0
+	.loc 1 644 0
 	st	%g0, [%fp-8]
-	.loc 1 638 0
+	.loc 1 646 0
 	add	%fp, 72, %g1
 	st	%g1, [%fp-1036]
-	.loc 1 639 0
+	.loc 1 647 0
 	ld	[%fp-1036], %g1
 	add	%fp, -1032, %g2
 	mov	%g2, %o0
@@ -1969,14 +1969,14 @@ ee_printf:
 	mov	%g1, %o2
 	call	ee_vsprintf, 0
 	 nop
-	.loc 1 641 0
+	.loc 1 649 0
 	add	%fp, -1032, %g1
 	st	%g1, [%fp-4]
-	.loc 1 642 0
+	.loc 1 650 0
 	b	.L147
 	 nop
 .L148:
-	.loc 1 643 0
+	.loc 1 651 0
 	ld	[%fp-4], %g1
 	ldub	[%g1], %g1
 	sll	%g1, 24, %g1
@@ -1984,16 +1984,16 @@ ee_printf:
 	mov	%g1, %o0
 	call	uart_send_char, 0
 	 nop
-	.loc 1 644 0
+	.loc 1 652 0
 	ld	[%fp-8], %g1
 	add	%g1, 1, %g1
 	st	%g1, [%fp-8]
-	.loc 1 645 0
+	.loc 1 653 0
 	ld	[%fp-4], %g1
 	add	%g1, 1, %g1
 	st	%g1, [%fp-4]
 .L147:
-	.loc 1 642 0 discriminator 1
+	.loc 1 650 0 discriminator 1
 	ld	[%fp-4], %g1
 	ldub	[%g1], %g1
 	sll	%g1, 24, %g1
@@ -2001,9 +2001,9 @@ ee_printf:
 	cmp	%g1, 0
 	bne	.L148
 	 nop
-	.loc 1 648 0
+	.loc 1 656 0
 	ld	[%fp-8], %g1
-	.loc 1 649 0
+	.loc 1 657 0
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
@@ -2012,9 +2012,9 @@ ee_printf:
 .LFE10:
 	.size	ee_printf, .-ee_printf
 .Letext0:
-	.file 2 "/home/madhav/AjitToolChain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/include/stdarg.h"
-	.file 3 "/home/madhav/AjitToolChain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/include/stddef.h"
-	.file 4 "/home/madhav/AjitToolChain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/include/stdint-gcc.h"
+	.file 2 "/home/tools_shared/ajit-toolchain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/include/stdarg.h"
+	.file 3 "/home/tools_shared/ajit-toolchain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/include/stddef.h"
+	.file 4 "/home/tools_shared/ajit-toolchain/build/buildroot-2014.08/output/host/usr/lib/gcc/sparc-buildroot-linux-uclibc/4.7.4/include/stdint-gcc.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
 	.uaword	0x541
@@ -2606,7 +2606,7 @@ ee_printf:
 	.uleb128 0x13
 	.uaword	.LASF32
 	.byte	0x1
-	.uahalf	0x265
+	.uahalf	0x268
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -2618,7 +2618,7 @@ ee_printf:
 	.uleb128 0x13
 	.uaword	.LASF33
 	.byte	0x1
-	.uahalf	0x26f
+	.uahalf	0x273
 	.uaword	0xb2
 	.byte	0x2
 	.byte	0x91
@@ -2629,7 +2629,7 @@ ee_printf:
 	.byte	0x1
 	.uaword	.LASF41
 	.byte	0x1
-	.uahalf	0x278
+	.uahalf	0x280
 	.byte	0x1
 	.uaword	0x4f
 	.uaword	.LFB10
@@ -2640,7 +2640,7 @@ ee_printf:
 	.uleb128 0x10
 	.asciz	"fmt"
 	.byte	0x1
-	.uahalf	0x278
+	.uahalf	0x280
 	.uaword	0x104
 	.byte	0x3
 	.byte	0x91
@@ -2649,7 +2649,7 @@ ee_printf:
 	.uleb128 0x12
 	.asciz	"buf"
 	.byte	0x1
-	.uahalf	0x27a
+	.uahalf	0x282
 	.uaword	0x511
 	.byte	0x3
 	.byte	0x91
@@ -2657,7 +2657,7 @@ ee_printf:
 	.uleb128 0x12
 	.asciz	"p"
 	.byte	0x1
-	.uahalf	0x27a
+	.uahalf	0x282
 	.uaword	0x95
 	.byte	0x2
 	.byte	0x91
@@ -2665,7 +2665,7 @@ ee_printf:
 	.uleb128 0x13
 	.uaword	.LASF28
 	.byte	0x1
-	.uahalf	0x27b
+	.uahalf	0x283
 	.uaword	0x32
 	.byte	0x3
 	.byte	0x91
@@ -2673,7 +2673,7 @@ ee_printf:
 	.uleb128 0x12
 	.asciz	"n"
 	.byte	0x1
-	.uahalf	0x27c
+	.uahalf	0x284
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -3209,8 +3209,6 @@ ee_printf:
 	.asciz	"ctrl_reg"
 .LASF20:
 	.asciz	"size"
-.LASF37:
-	.asciz	"/home/madhav/AjitToolChain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c"
 .LASF8:
 	.asciz	"long unsigned int"
 .LASF25:
@@ -3269,11 +3267,13 @@ ee_printf:
 	.asciz	"uint32_t"
 .LASF4:
 	.asciz	"long int"
-.LASF23:
-	.asciz	"sign"
+.LASF37:
+	.asciz	"/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/minimal_printf_timer/src/ee_printf.c"
 .LASF9:
 	.asciz	"signed char"
+.LASF23:
+	.asciz	"sign"
 .LASF41:
 	.asciz	"ee_printf"
-	.ident	"GCC: (Buildroot 2014.08-g9d8f423-dirty) 4.7.4"
+	.ident	"GCC: (Buildroot 2014.08-ge7c9750) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits

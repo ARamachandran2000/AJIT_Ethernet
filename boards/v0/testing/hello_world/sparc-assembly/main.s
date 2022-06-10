@@ -226,7 +226,7 @@ main:
 .LASF8:
 	.asciz	"long long unsigned int"
 .LASF13:
-	.asciz	"/home/madhav/AjitSystemsRepo/ajit_systems_repository/boards/ajitmp/processor_1x1x32/vc709/testing/hello_world"
+	.asciz	"/home/harshad/Project/git/AJIT_Ethernet/boards/v0/testing/hello_world"
 .LASF3:
 	.asciz	"unsigned char"
 .LASF10:
@@ -241,5 +241,5 @@ main:
 	.asciz	"short int"
 .LASF9:
 	.asciz	"sizetype"
-	.ident	"GCC: (Buildroot 2014.08-g9d8f423-dirty) 4.7.4"
+	.ident	"GCC: (Buildroot 2014.08-ge7c9750) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits

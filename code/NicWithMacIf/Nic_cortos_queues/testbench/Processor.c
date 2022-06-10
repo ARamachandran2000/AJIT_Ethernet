@@ -9,25 +9,28 @@ void cpu_model()
 	// Initialise Free, Rx and Tx Queues
 
 	// for march test on nic regs.	
-	writeNicReg();
-	readNicReg();
+	//writeNicReg();
+	//readNicReg();
 
 
-	initQueue(FREE_QUEUE, NUMBER_OF_ENTRIES);
-	initQueue(RX_QUEUE, NUMBER_OF_ENTRIES);
-	initQueue(TX_QUEUE, NUMBER_OF_ENTRIES);
+	initQueue(FREE_QUEUE, 8, 4);
+	initQueue(RX_QUEUE, 8,4);
+	initQueue(TX_QUEUE, 8,4);
 
 	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : Init queue done. \n");
 	
 
 	// Push Buffer Pointers to Free Queue for access by NIC
 	push(FREE_QUEUE , BUF_0);
+	fprintf(stderr,"pushed buffer0\n");
 	push(FREE_QUEUE , BUF_1);
+	fprintf(stderr,"pushed buffer1\n");
 	int ret_val = push(FREE_QUEUE , BUF_2);
-	
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD : pushed buffers to free queue last_ret_val = %d\n",ret_val);
+	fprintf(stderr,"pushed buffer2\n");
+
+	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : pushed buffers to free queue last_ret_val = %d\n",ret_val);
 	// Config NIC Registers
-	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
+	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
 	
 	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
 	MAC_ENABLE = 1;	
@@ -51,7 +54,7 @@ void cpu_model()
 			//sleep(1);	
 			int k;
 			for(k = 0 ; k < 250000000; k++);
-			readNicReg();
+			//readNicReg();
 		}
 	}
 }

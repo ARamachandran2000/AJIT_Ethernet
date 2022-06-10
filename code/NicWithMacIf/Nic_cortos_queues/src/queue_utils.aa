@@ -103,22 +103,47 @@ $is
 		// output arguments: read-data
 		$call accessMemory ($one<1> $one<1> (~$zero<8>) lock_address_pointer $zero<64>) (msg_size_plus_lock)
 		$volatile lock_addr_32 := ($slice msg_size_plus_lock 31 0)
-
+		$volatile sel := ($slice lock_addr_32 2 0)
 		// we can either set proper bmask or split all into 8 and find the expected lock.
-		$call accessMemory ($one<1> $one<1> (~$zero<8>) ($concat lock_addr_32 $zero<4>) $zero<64>) (lock_values)
+		$call accessMemory ($one<1> $one<1> (~$zero<8>) ($concat $zero<4> lock_addr_32) $zero<64>) (lock_values)
 		
 		$volatile $split (lock_values 8 8 8 8 8 8 8 8) (l0 l1 l2 l3 l4 l5 l6 l7)
 
-		$volatile lock_val := //logic for selecting 8 bit lock 
+		$volatile lock_val := ($excmux
+					(sel == 0) l0
+					(sel == 1) l1
+					(sel == 2) l2
+                                        (sel == 3) l3
+					(sel == 4) l4
+                                        (sel == 5) l5
+					(sel == 6) l6
+                                        (sel == 7) l7) 
 		
 		$if (lock_val == (~$zero<8>)) $then
-			// release lock
+			// release memory lock
 			$call accessMemory ($zero<1> $one<1> (~$zero<8>) lock_address_pointer $zero<64>)(err)
 			$place [loopback]
 		$endif
-		
-		$volatile new_bmask := //logic_for_bmask which will set perticular lock to 11111111
-		$call accessMemory ($zero<1> $zero<1> new_bmask ($concat lock_addr_32 $zero<4>) (~$zero<64>))
+		//logic_for_bmask which will set perticular lock to 11111111		
+		$volatile s0 := (sel == 0)
+		$volatile s1 := (sel == 1)
+		$volatile s2 := (sel == 2)
+		$volatile s3 := (sel == 3)
+		$volatile s4 := (sel == 4)
+		$volatile s5 := (sel == 5)
+		$volatile s6 := (sel == 6)
+		$volatile s7 := (sel == 7)
+		$volatile new_bmask := ($concat
+						($mux s0 $one<1> $zero<1> )
+						($mux s1 $one<1> $zero<1> )
+						($mux s2 $one<1> $zero<1> )
+						($mux s3 $one<1> $zero<1> )
+						($mux s4 $one<1> $zero<1> )
+						($mux s5 $one<1> $zero<1> )
+						($mux s6 $one<1> $zero<1> )
+						($mux s7 $one<1> $zero<1> ))
+
+		$call accessMemory ($zero<1> $zero<1> new_bmask ($concat $zero<4> lock_addr_32) (~$zero<64>))
 						(ignore)
 	}
 
@@ -140,10 +165,26 @@ $module [releaseLock] $in (q_base_address: $uint<36>) $out () $is
 					 lock_address_pointer $zero<64>) (msg_size_plus_lock)
 		
 		$volatile lock_addr_32 := ($slice msg_size_plus_lock 31 0)
-	
-		$volatile new_bmask := //logic_for_bmask which will set perticular lock to 00000000
-
-		$call accessMemory ($one<1> $zero<1> new_bmask ($concat lock_addr_32 $zero<4>) $zero<64>) (ignore)
+		$volatile sel := ($slice lock_addr_32 2 0)
+		$volatile s0 := (sel == 0)
+                $volatile s1 := (sel == 1)
+                $volatile s2 := (sel == 2)
+                $volatile s3 := (sel == 3)
+                $volatile s4 := (sel == 4)
+                $volatile s5 := (sel == 5)
+                $volatile s6 := (sel == 6)
+                $volatile s7 := (sel == 7)
+		//logic_for_bmask which will set perticular lock to 00000000
+                $volatile new_bmask := ($concat
+                                                ($mux s0 $one<1> $zero<1> )
+                                                ($mux s1 $one<1> $zero<1> )
+                                                ($mux s2 $one<1> $zero<1> )
+                                                ($mux s3 $one<1> $zero<1> )
+                                                ($mux s4 $one<1> $zero<1> )
+                                                ($mux s5 $one<1> $zero<1> )
+                                                ($mux s6 $one<1> $zero<1> )
+                                                ($mux s7 $one<1> $zero<1> ))
+		$call accessMemory ($one<1> $zero<1> new_bmask ($concat $zero<4> lock_addr_32) $zero<64>) (ignore)
 }
 
 	
@@ -158,7 +199,7 @@ $module [getQueuePointers] $in (q_base_address: $uint<36>)
 		$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
 					 (q_base_address + 4) $zero<64>) (wp_rp)
 
-		$volatile $split (wp_rp 32 32) (wp rp)
+		$volatile $split (wp_rp 32 32) (rp wp)
 		$rreport(getQueuePointers set q_base_address wp rp)
 }
 
@@ -170,7 +211,7 @@ $module [setQueuePointers] $in (q_base_address: $uint<36> wp rp: $uint<32>) $out
 
 		$rreport(setQueuePointers set q_base_address wp rp)
 		$call accessMemory ($zero<1> $zero<1>  (~$zero<8>)
-					 (q_base_address + 4) ($concat wp rp)) (ignore)
+					 (q_base_address + 4) ($concat rp wp)) (ignore)
 }
 
 	

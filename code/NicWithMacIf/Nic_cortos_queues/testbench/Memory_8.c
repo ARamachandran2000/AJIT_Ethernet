@@ -2,12 +2,23 @@
 //#include "InterfaceDataStructures_Utils.h"
 //#include<pthreadUtils.h>
 // 
-#define MEM_SIZE 8*(18 * 3 + (256*16))
+#define NUMBER_OF_LOCKS 8 // should be multiple of 8
+#define MEM_SIZE (QUEUE_LENGTH * 3) + (BUF_SIZE*NUM_OF_BUFFERS) + (2*NUMBER_OF_LOCKS) + 256 // 256 extra bytes
 
 // 3 queues(free_q, tx_q, rx_q)
 // and 16 buffers.
-uint8_t memory_array[8*(18 * 3 + (256*16))]; // 33219
- 
+uint8_t memory_array[MEM_SIZE]; // 
+
+// keep last 8*NUMBER_OF_LOCKS bytes for NUMBER_OF_LOCKS locks, 
+//			i.e. last NUMBER_OF_LOCKS index of memory_array
+//	memory_array[MEM_SIZE-NUMBER_OF_LOCKS] : memory_array[MEM_SIZE-1] 
+int lock_index = (MEM_SIZE - 2*NUMBER_OF_LOCKS);
+uint32_t reserve_lock()
+{
+	uint32_t lock_ptr = lock_index;
+	lock_index++;
+	return lock_ptr;
+}
 
 // access memory utility for reading as well as writing data
 //	Output : 65 bit 

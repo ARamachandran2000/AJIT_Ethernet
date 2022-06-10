@@ -2,11 +2,12 @@
 //#include "InterfaceDataStructures_Utils.h"
 //#include<pthreadUtils.h>
 // 
-#define MEM_SIZE 8*(18 * 3 + (256*16))
+//#define MEM_SIZE 18 * 3 + (256*16)
+#define MEM_SIZE QUEUE_LENGTH * 3 + (BUF_SIZE*NUM_OF_BUFFERS)
 
 // 3 queues(free_q, tx_q, rx_q)
 // and 16 buffers.
-uint8_t memory_array[8*(18 * 3 + (256*16))]; // 33219
+uint8_t memory_array[MEM_SIZE]; // 33219
  
 
 // access memory utility for reading as well as writing data

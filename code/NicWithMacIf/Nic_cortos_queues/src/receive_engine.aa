@@ -92,7 +92,7 @@ $is
 		$endmerge
 		$rreport(populateRxQueue in_loop q_index)
 		// Rx Queues Index in the Register File start from Index 2
-		$volatile register_index := ($bitcast ($uint<6>) (q_index + 									RX_QUEUES_REG_START_OFFSET))
+		$volatile register_index := ($bitcast ($uint<6>) (q_index + RX_QUEUES_REG_START_OFFSET))
 		$rreport(populateRxQueue will_be_Accessing_register register_index)
 		// Request for Rx Queue Pointer of Server ID : q_index Regsiter ID : q_index + 2
 			    	// rwbar bmask       index	     wdata        

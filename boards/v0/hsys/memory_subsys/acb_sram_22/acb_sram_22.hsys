@@ -5,9 +5,4 @@ $system acb_sram_22 $library memory_subsys
 		$pipe CORE_BUS_RESPONSE 65 $depth 2
 		
 {
-		// how to give generic map ? 
-	$instance acb_ram_inst		GenericCoreAddOnLib:acb_sram_stub
-						CORE_BUS_REQUEST => CORE_BUS_REQUEST
-									
-						CORE_BUS_RESPONSE => CORE_BUS_RESPONSE
 }

@@ -1,0 +1,10 @@
+$system mySelfTuningUart $library myUartLib
+	$in
+		$signal UART_RX 1 $depth 1
+		$pipe CONSOLE_to_SERIAL_RX 8 $depth 2
+	$out
+		$signal UART_TX 1 $depth 1
+		$pipe SERIAL_TX_to_CONSOLE 8 $depth 2
+		
+{
+}

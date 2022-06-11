@@ -1,8 +1,6 @@
 $system v0_base $library v0_lib
 	$in 
-		$signal CPU_RESET  1 $depth 1
-		$signal DEBUG_MODE 1 $depth 1
-		$signal SINGLE_STEP_MODE 1 $depth 1
+		$signal THREAD_RESET  4 $depth 1
 		$signal DEBUG_UART_RX 1 $depth 2
 		$signal SERIAL_UART_RX 1 $depth 2
 		$pipe   mac_to_nic_data  73 $depth 2
@@ -10,32 +8,25 @@ $system v0_base $library v0_lib
 		$signal FIRST_TAP_MIN_PA   36 $depth 1
 		$signal FIRST_TAP_MAX_PA   36 $depth 1
 	
+		$pipe MAIN_MEM_INVALIDATE 30 $depth 4
+		$signal EXTERNAL_INTERRUPT 1 $depth 1
+
 	$out
-		$signal CPU_MODE  2 $depth 1
+		$signal PROCESSOR_MODE  16 $depth 1
 		$signal DEBUG_UART_TX 1 $depth 2
 		$signal SERIAL_UART_TX 1 $depth 2
 		$pipe   nic_to_mac_transmit_pipe  73 $depth 2
 {
 
 	// is this correct?
-	CPU_MODE <= PROCESSOR_MODE(1 downto 0)
 	$instance processor_instance 	ajit_processor_lib:processor_1x1x32
-						// is this correct ?
-						THREAD_RESET(0) => CPU_RESET(0)
-						THREAD_RESET(1) => DEBUG_MODE(0)
-			 			THREAD_RESET(2) => SINGLE_STEP_MODE(0)
-						THREAD_RESET(3) => LOGGER_MODE(0)
-
 						// need to tie it off for vc709 ?
 						MAIN_MEM_INVALIDATE => MAIN_MEM_INVALIDATE
-
-						SOC_MONITOR_to_DEBUG => MONITOR_TO_DEBUG
-						CONSOLE_to_SERIAL_RX => CONSOLE_to_SERIAL_RX
 						MAIN_MEM_RESPONSE => MAIN_MEM_RESPONSE
 						EXTERNAL_INTERRUPT => EXTERNAL_INTERRUPT
+						CONSOLE_to_SERIAL_RX => CONSOLE_to_SERIAL_RX
 						
 						// outputs
-						SOC_DEBUG_to_MONITOR => DEBUG_TO_MONITOR
 						SERIAL_TX_to_CONSOLE => SERIAL_TX_to_CONSOLE
 						PROCESSOR_MODE => PROCESSOR_MODE
 						MAIN_MEM_REQUEST => MAIN_MEM_REQUEST
@@ -62,7 +53,19 @@ $system v0_base $library v0_lib
 						MEM_NIC_RESPONSE => MEMORY_TO_NIC_RESPONSE
 
 	// add serial and debug uart.
+	$instance serial_uart_inst	myUartLib:mySelfTuningUart
+						UART_RX => SERIAL_UART_RX
+						UART_TX => SERIAL_UART_TX
+						CONSOLE_to_SERIAL_RX => SERIAL_TX_to_CONSOLE
+						SERIAL_TX_to_CONSOLE => CONSOLE_to_SERIAL_RX
+
+	$instance debug_uart_inst	myUartLib:mySelfTuningUart
+						UART_RX => DEBUG_UART_RX
+						UART_TX => DEBUG_UART_TX
+						CONSOLE_to_SERIAL_RX => SOC_DEBUG_to_MONITOR
+						SERIAL_TX_to_CONSOLE => SOC_MONITOR_to_DEBUG
 }
+
 
 
 

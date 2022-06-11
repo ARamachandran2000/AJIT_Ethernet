@@ -574,7 +574,7 @@ _acquireLock_assign_stmt_372_c_macro_;
 _acquireLock_assign_stmt_376_c_macro_; 
 // 		$volatile lock_val := (((( $mux (sel == 0 ) l0  _b0  )  | ( $mux (sel == 1 ) l1  _b0  ) ) | (( $mux (sel == 2 ) l2  _b0  )  | ( $mux (sel == 3 ) l3  _b0  ) )) | ((( $mux (sel == 4 ) l4  _b0  )  | ( $mux (sel == 5 ) l5  _b0  ) ) | (( $mux (sel == 6 ) l6  _b0  )  | ( $mux (sel == 7 ) l7  _b0  ) ))) $buffering 1
 _acquireLock_assign_stmt_433_c_macro_; 
-// if statement :  file nic.linked.aa, line 257448824
+// if statement :  file nic.linked.aa, line -1071776904
 __declare_static_bit_vector(konst_436,8);\
 bit_vector_clear(&konst_436);\
 __declare_static_bit_vector(type_cast_437,8);\
@@ -945,7 +945,7 @@ _nicRxFromMacDaemon_merge_stmt_1748_c_preamble_macro_;
 _nicRxFromMacDaemon_merge_stmt_1748_c_postamble_macro_; 
 // 		$call AccessRegister (($bitcast ($uint<1>) _b0  ) ( ~ ($bitcast ($uint<4>) _b0  ) ) 22  ($bitcast ($uint<32>) _b0  ) ) (ignore_resp0 ) 
 _nicRxFromMacDaemon_call_stmt_1758_c_macro_; 
-// if statement :  file nic.linked.aa, line 13931552
+// if statement :  file nic.linked.aa, line 33715232
 __declare_static_bit_vector(RPIPE_CONTROL_REGISTER_1760,32);\
 __declare_static_bit_vector(konst_1761,32);\
 bit_vector_clear(&konst_1761);\
@@ -1484,7 +1484,7 @@ _transmitEngineDaemon_branch_block_stmt_2073_c_export_decl_macro_;
 // merge  file nic.linked.aa, line 777
 _transmitEngineDaemon_merge_stmt_2074_c_preamble_macro_; 
 _transmitEngineDaemon_merge_stmt_2074_c_postamble_macro_; 
-// if statement :  file nic.linked.aa, line 14191728
+// if statement :  file nic.linked.aa, line 33975408
 __declare_static_bit_vector(RPIPE_CONTROL_REGISTER_2076,32);\
 __declare_static_bit_vector(konst_2077,32);\
 bit_vector_clear(&konst_2077);\

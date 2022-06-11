@@ -24,7 +24,21 @@ $system memory_subsys $library memory_subsys_lib
 						CORE_BUS_REQUEST_TAP => ACB_TAP_TO_ACB_AFB_BRIDGE
 
 	$instance acb_afb_bridge_inst   GlueModules:acb_afb_bridge
+						AFB_BUS_RESPONSE => NIC_SLAVE_MEM_RESPONSE
+						CORE_BUS_REQUEST => ACB_TAP_TO_ACB_AFB_BRIDGE
+						AFB_BUS_REQUEST => MEM_NIC_SLAVE_REQUEST
+						CORE_BUS_RESPONSE => ACB_AFB_BRIDGE_TO_ACB_TAP
+
 	$instance acb_mux_inst		GlueModules:acb_fast_mux
-	$instance acb_sram_inst		memory_subsys_lib:acb_sram_22
+						CORE_BUS_REQUEST_HIGH =>  ACB_TAP_TO_ACB_MUX
+						CORE_BUS_REQUEST_LOW => NIC_MEM_REQUEST
+						CORE_BUS_RESPONSE => CORE_BUS_RESPONSE
+						CORE_BUS_RESPONSE_HIGH => ACB_MUX_TO_ACB_TAP
+						CORE_BUS_RESPONSE_LOW => MEM_NIC_RESPONSE
+						CORE_BUS_REQUEST => CORE_BUS_REQUEST
+			
+	$instance acb_sram_inst		memory_subsys:acb_sram_22
+						CORE_BUS_REQUEST => CORE_BUS_REQUEST
+						CORE_BUS_RESPONSE => CORE_BUS_RESPONSE
 }
 

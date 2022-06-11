@@ -1,0 +1,28 @@
+[1195]setQueuePointers>	set
+[1195]setQueuePointers>		q_base_address		:= 0x000000000
+[1195]setQueuePointers>		wp		:= 0x00000003
+[1195]setQueuePointers>		rp		:= 0x00000001
+[1276]setQueuePointers>	set
+[1276]setQueuePointers>		q_base_address		:= 0x000000040
+[1276]setQueuePointers>		wp		:= 0x00000001
+[1276]setQueuePointers>		rp		:= 0x00000000
+[1339]setQueuePointers>	set
+[1339]setQueuePointers>		q_base_address		:= 0x000000000
+[1339]setQueuePointers>		wp		:= 0x00000003
+[1339]setQueuePointers>		rp		:= 0x00000002
+[1474]setQueuePointers>	set
+[1474]setQueuePointers>		q_base_address		:= 0x000000040
+[1474]setQueuePointers>		wp		:= 0x00000002
+[1474]setQueuePointers>		rp		:= 0x00000000
+[1517]setQueuePointers>	set
+[1517]setQueuePointers>		q_base_address		:= 0x000000000
+[1517]setQueuePointers>		wp		:= 0x00000003
+[1517]setQueuePointers>		rp		:= 0x00000003
+[1659]setQueuePointers>	set
+[1659]setQueuePointers>		q_base_address		:= 0x000000040
+[1659]setQueuePointers>		wp		:= 0x00000003
+[1659]setQueuePointers>		rp		:= 0x00000000
+[2896]setQueuePointers>	set
+[2896]setQueuePointers>		q_base_address		:= 0x000000000
+[2896]setQueuePointers>		wp		:= 0x00000004
+[2896]setQueuePointers>		rp		:= 0x00000009

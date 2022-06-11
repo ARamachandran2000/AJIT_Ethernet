@@ -1,29 +1,74 @@
+/////////////////////////////////////////
+// v0_base pipes
+/////////////////////////////////////////
 $pipe CPU_RESET : $uint<1> $depth 1
 $pipe DEBUG_MODE : $uint<1> $depth 1
 $pipe SINGLE_STEP_MODE : $uint<1>  $depth 1
-$pipe DEBUG_UART_RX : $uint<1>  $depth 1
-$pipe SERIAL_UART_RX : $uint<1>  $depth 1
-$pipe MAC_TO_NIC : $uint<73> $depth 2
+$pipe DEBUG_UART_RX : $uint<1>  $depth 2
+$pipe SERIAL_UART_RX : $uint<1>  $depth 2
+$pipe mac_to_nic_data : $uint<73> $depth 2
+
+$pipe FIRST_TAP_MIN_PA : $uint<36> $depth 1
+$pipe FIRST_TAP_MAX_PA : $uint<36> $depth 1
+
 $pipe CPU_MODE : $uint<2>  $depth 1
 $pipe SERIAL_UART_TX: $uint<1>  $depth 2
+$pipe DEBUG_UART_TX : $uint<1> $depth 2
+$pipe nic_to_mac_transmit_pipe : $uint<73> $depth 2
 
+/////////////////////////////////////////
+// Processor
+/////////////////////////////////////////
 $pipe  THREAD_RESET : $uint<4> $depth 1 $signal
 $pipe SOC_MONITOR_to_DEBUG :$uint<8> $depth 2
-$pipe CONSOLE_to_SERIAL_RX: $uint<8> $depth 2
-		
+$pipe CONSOLE_to_SERIAL_RX: $uint<8> $depth 2		
 $pipe MAIN_MEM_RESPONSE : $uint<65> $depth  2 
 $pipe MAIN_MEM_INVALIDATE: $uint<30> $depth 4 
 $signal EXTERNAL_INTERRUPT: $uint<1> $depth 1
+
 $pipe SOC_DEBUG_to_MONITOR: $uint<8> $depth 2
 $pipe SERIAL_TX_to_CONSOLE : $uint<8> $depth 2
 $signal PROCESSOR_MODE: $uint<16> $depth 1
 $pipe MAIN_MEM_REQUEST: $uint<110> $depth 2 
 
+/////////////////////////////////////////
+// NIC
+/////////////////////////////////////////
+$pipe AFB_NIC_REQUEST : $uint<74> $depth 2 
+$pipe MEMORY_TO_NIC_RESPONSE : $uint<65> $depth 2
 
+$pipe AFB_NIC_RESPONSE : $uint<33> $depth 2
+$pipe NIC_TO_MEMORY_REQUEST : $uint<110> $depth 2 
+
+/////////////////////////////////////////
 // ACB tap to ACB_AFB_BRIDGE
+/////////////////////////////////////////
 $pipe ACB_TAP_TO_ACB_AFB_BRIDGE : $uint<110> $depth 2
 $pipe ACB_AFB_BRIDGE_TO_ACB_TAP : $uint<65>  $depth 2
 
+/////////////////////////////////////////
+// ACB_AFB_BRIDGE to NIC
+/////////////////////////////////////////
+$pipe MEM_NIC_SLAVE_REQUEST : $uint<74> $depth 2 
+$pipe NIC_SLAVE_MEM_RESPONSE : $uint<33> $depth 2
+
+/////////////////////////////////////////
+// ACB_MUX to ACB_TAP
+/////////////////////////////////////////
 $pipe ACB_TAP_TO_ACB_MUX : $uint<110> $depth 2
 $pipe ACB_MUX_TO_ACB_TAP : $uint<65>  $depth 2
+
+
+/////////////////////////////////////////
+// ACB_MUX to NIC
+/////////////////////////////////////////
+$pipe NIC_MEM_REQUEST : $uint<110> $depth 2
+$pipe MEM_NIC_RESPONSE : $uint<65> $depth 2
+
+
+/////////////////////////////////////////
+// acb_sram_22
+/////////////////////////////////////////
+$pipe CORE_BUS_REQUEST : $uint<110> $depth 2
+$pipe CORE_BUS_RESPONSE : $uint<65> $depth 2
 

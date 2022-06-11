@@ -1,0 +1,120 @@
+Info:pThreadUtils: started thread nicRxFromMacDaemon
+[5]nicRxFromMacDaemon>	waiting_for_control
+[1149]nicRxFromMacDaemon>	got_the__control
+[1169]nicRxFromMacDaemon>	data_is
+[1169]nicRxFromMacDaemon>		RX		:= 0x00002000000000001ff
+[1169]nicRxFromMacDaemon>		LSTATE		:= 0x0
+[1170]nicRxFromMacDaemon>	data_written_is
+[1170]nicRxFromMacDaemon>		RX		:= 0x00002000000000001ff
+[1170]nicRxFromMacDaemon>		nLSTATE		:= 0x1
+[1171]nicRxFromMacDaemon>	data_is
+[1171]nicRxFromMacDaemon>		RX		:= 0x00054001400000000ff
+[1171]nicRxFromMacDaemon>		LSTATE		:= 0x1
+[1172]nicRxFromMacDaemon>	data_written_is
+[1172]nicRxFromMacDaemon>		RX		:= 0x00054001400000000ff
+[1172]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1173]nicRxFromMacDaemon>	data_is
+[1173]nicRxFromMacDaemon>		RX		:= 0x00000000000000000ff
+[1173]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1218]nicRxFromMacDaemon>	data_written_is
+[1218]nicRxFromMacDaemon>		RX		:= 0x00000000000000000ff
+[1218]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1219]nicRxFromMacDaemon>	data_is
+[1219]nicRxFromMacDaemon>		RX		:= 0x00000000000000008ff
+[1219]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1220]nicRxFromMacDaemon>	data_written_is
+[1220]nicRxFromMacDaemon>		RX		:= 0x00000000000000008ff
+[1220]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1222]nicRxFromMacDaemon>	data_is
+[1222]nicRxFromMacDaemon>		RX		:= 0x100000000000000100f
+[1222]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1223]nicRxFromMacDaemon>	data_written_is
+[1223]nicRxFromMacDaemon>		RX		:= 0x100000000000000100f
+[1223]nicRxFromMacDaemon>		nLSTATE		:= 0x0
+[1227]nicRxFromMacDaemon>	data_is
+[1227]nicRxFromMacDaemon>		RX		:= 0x00002000000000001ff
+[1227]nicRxFromMacDaemon>		LSTATE		:= 0x0
+[1230]nicRxFromMacDaemon>	data_written_is
+[1230]nicRxFromMacDaemon>		RX		:= 0x00002000000000001ff
+[1230]nicRxFromMacDaemon>		nLSTATE		:= 0x1
+[1236]nicRxFromMacDaemon>	data_is
+[1236]nicRxFromMacDaemon>		RX		:= 0x00054001c00000000ff
+[1236]nicRxFromMacDaemon>		LSTATE		:= 0x1
+[1240]nicRxFromMacDaemon>	data_written_is
+[1240]nicRxFromMacDaemon>		RX		:= 0x00054001c00000000ff
+[1240]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1241]nicRxFromMacDaemon>	data_is
+[1241]nicRxFromMacDaemon>		RX		:= 0x00000000000000001ff
+[1241]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1366]nicRxFromMacDaemon>	data_written_is
+[1366]nicRxFromMacDaemon>		RX		:= 0x00000000000000001ff
+[1366]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1368]nicRxFromMacDaemon>	data_is
+[1368]nicRxFromMacDaemon>		RX		:= 0x00000000000000009ff
+[1368]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1372]nicRxFromMacDaemon>	data_written_is
+[1372]nicRxFromMacDaemon>		RX		:= 0x00000000000000009ff
+[1372]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1373]nicRxFromMacDaemon>	data_is
+[1373]nicRxFromMacDaemon>		RX		:= 0x00000000000000011ff
+[1373]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1395]nicRxFromMacDaemon>	data_written_is
+[1395]nicRxFromMacDaemon>		RX		:= 0x00000000000000011ff
+[1395]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1396]nicRxFromMacDaemon>	data_is
+[1396]nicRxFromMacDaemon>		RX		:= 0x100000000000000190f
+[1396]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1403]nicRxFromMacDaemon>	data_written_is
+[1403]nicRxFromMacDaemon>		RX		:= 0x100000000000000190f
+[1403]nicRxFromMacDaemon>		nLSTATE		:= 0x0
+[1404]nicRxFromMacDaemon>	data_is
+[1404]nicRxFromMacDaemon>		RX		:= 0x00002000000000001ff
+[1404]nicRxFromMacDaemon>		LSTATE		:= 0x0
+[1417]nicRxFromMacDaemon>	data_written_is
+[1417]nicRxFromMacDaemon>		RX		:= 0x00002000000000001ff
+[1417]nicRxFromMacDaemon>		nLSTATE		:= 0x1
+[1418]nicRxFromMacDaemon>	data_is
+[1418]nicRxFromMacDaemon>		RX		:= 0x00054001a00000000ff
+[1418]nicRxFromMacDaemon>		LSTATE		:= 0x1
+[1426]nicRxFromMacDaemon>	data_written_is
+[1426]nicRxFromMacDaemon>		RX		:= 0x00054001a00000000ff
+[1426]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1427]nicRxFromMacDaemon>	data_is
+[1427]nicRxFromMacDaemon>		RX		:= 0x00000000000000002ff
+[1427]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1539]nicRxFromMacDaemon>	data_written_is
+[1539]nicRxFromMacDaemon>		RX		:= 0x00000000000000002ff
+[1539]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1540]nicRxFromMacDaemon>	data_is
+[1540]nicRxFromMacDaemon>		RX		:= 0x0000000000000000aff
+[1540]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1547]nicRxFromMacDaemon>	data_written_is
+[1547]nicRxFromMacDaemon>		RX		:= 0x0000000000000000aff
+[1547]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1549]nicRxFromMacDaemon>	data_is
+[1549]nicRxFromMacDaemon>		RX		:= 0x00000000000000012ff
+[1549]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1552]nicRxFromMacDaemon>	data_written_is
+[1552]nicRxFromMacDaemon>		RX		:= 0x00000000000000012ff
+[1552]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1556]nicRxFromMacDaemon>	data_is
+[1556]nicRxFromMacDaemon>		RX		:= 0x1000000000000001a03
+[1556]nicRxFromMacDaemon>		LSTATE		:= 0x2
+[1566]nicRxFromMacDaemon>	data_written_is
+[1566]nicRxFromMacDaemon>		RX		:= 0x1000000000000001a03
+[1566]nicRxFromMacDaemon>		nLSTATE		:= 0x0
+[1567]nicRxFromMacDaemon>	data_is
+[1567]nicRxFromMacDaemon>		RX		:= 0x00002000000000001ff
+[1567]nicRxFromMacDaemon>		LSTATE		:= 0x0
+[1574]nicRxFromMacDaemon>	data_written_is
+[1574]nicRxFromMacDaemon>		RX		:= 0x00002000000000001ff
+[1574]nicRxFromMacDaemon>		nLSTATE		:= 0x1
+[1575]nicRxFromMacDaemon>	data_is
+[1575]nicRxFromMacDaemon>		RX		:= 0x00054001800000000ff
+[1575]nicRxFromMacDaemon>		LSTATE		:= 0x1
+[1591]nicRxFromMacDaemon>	data_written_is
+[1591]nicRxFromMacDaemon>		RX		:= 0x00054001800000000ff
+[1591]nicRxFromMacDaemon>		nLSTATE		:= 0x2
+[1592]nicRxFromMacDaemon>	data_is
+[1592]nicRxFromMacDaemon>		RX		:= 0x00000000000000003ff
+[1592]nicRxFromMacDaemon>		LSTATE		:= 0x2

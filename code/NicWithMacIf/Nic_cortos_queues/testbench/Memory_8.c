@@ -80,7 +80,7 @@ void write64(uint64_t addr, uint64_t wval, uint8_t bmask)
 	}
 	uint64_t k;
 	(DEBUG == 1) && fprintf(stderr,"****Written Memory[%d] = 0x%x****\n",addr,wval);
-	for(k = 0; k < 404;k = k + 8)
+	for(k = 0; k < MEM_SIZE;k = k + 8)
 	{
 		(DEBUG == 1) && fprintf(stderr,"MEMORY contents[%d:%d] : ,"
 			"0x%x%x%x%x%x%x%x%x\n",k,k+7,memory_array[k],memory_array[k+1],memory_array[k+2],

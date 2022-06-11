@@ -5,18 +5,71 @@ $system v0_base $library v0_lib
 		$signal SINGLE_STEP_MODE 1 $depth 1
 		$signal DEBUG_UART_RX 1 $depth 2
 		$signal SERIAL_UART_RX 1 $depth 2
-		$pipe   MAC_TO_NIC  73 $depth 2
+		$pipe   mac_to_nic_data  73 $depth 2
 
 		$signal FIRST_TAP_MIN_PA   36 $depth 1
 		$signal FIRST_TAP_MAX_PA   36 $depth 1
 	
 	$out
-		$signal CPU_MODE  1 $depth 1
+		$signal CPU_MODE  2 $depth 1
 		$signal DEBUG_UART_TX 1 $depth 2
 		$signal SERIAL_UART_TX 1 $depth 2
-		$pipe   NIC_TO_MAC  73 $depth 2
+		$pipe   nic_to_mac_transmit_pipe  73 $depth 2
 {
+
+	// is this correct?
+	CPU_MODE <= PROCESSOR_MODE(1 downto 0)
 	$instance processor_instance 	ajit_processor_lib:processor_1x1x32
+						// is this correct ?
+						THREAD_RESET(0) => CPU_RESET(0)
+						THREAD_RESET(1) => DEBUG_MODE(0)
+			 			THREAD_RESET(2) => SINGLE_STEP_MODE(0)
+						THREAD_RESET(3) => LOGGER_MODE(0)
+
+						// need to tie it off for vc709 ?
+						MAIN_MEM_INVALIDATE => MAIN_MEM_INVALIDATE
+
+						SOC_MONITOR_to_DEBUG => MONITOR_TO_DEBUG
+						CONSOLE_to_SERIAL_RX => CONSOLE_to_SERIAL_RX
+						MAIN_MEM_RESPONSE => MAIN_MEM_RESPONSE
+						EXTERNAL_INTERRUPT => EXTERNAL_INTERRUPT
+						
+						// outputs
+						SOC_DEBUG_to_MONITOR => DEBUG_TO_MONITOR
+						SERIAL_TX_to_CONSOLE => SERIAL_TX_to_CONSOLE
+						PROCESSOR_MODE => PROCESSOR_MODE
+						MAIN_MEM_REQUEST => MAIN_MEM_REQUEST
+
 	$instance nic_inst           	nic_lib:nic
+						AFB_NIC_REQUEST => MEM_NIC_SLAVE_REQUEST
+						MEMORY_TO_NIC_RESPONSE => MEMORY_TO_NIC_RESPONSE
+						mac_to_nic_data => mac_to_nic_data
+		
+						AFB_NIC_RESPONSE => NIC_SLAVE_MEM_RESPONSE
+						NIC_TO_MEMORY_REQUEST => NIC_TO_MEMORY_REQUEST
+						nic_to_mac_transmit_pipe => nic_to_mac_transmit_pipe
+
 	$instance memory_subsys_inst	memory_subsys_lib: memory_subsys
+						PROCESSOR_MEM_REQUEST => MAIN_MEM_REQUEST
+						NIC_SLAVE_MEM_RESPONSE => NIC_SLAVE_MEM_RESPONSE
+						NIC_MEM_REQUEST => NIC_TO_MEMORY_REQUEST
+		
+						FIRST_TAP_MIN_PA => FIRST_TAP_MIN_PA 
+						FIRST_TAP_MAX_PA => FIRST_TAP_MAX_PA
+
+						MEM_PROCESSOR_RESPONSE => MAIN_MEM_RESPONSE
+						MEM_NIC_SLAVE_REQUEST => MEM_NIC_SLAVE_REQUEST
+						MEM_NIC_RESPONSE => MEMORY_TO_NIC_RESPONSE
+
+	// add serial and debug uart.
 }
+
+
+
+
+
+
+
+
+
+

@@ -95,7 +95,7 @@ $is
 {
 	$branchblock[loop] {
 
-		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 20) )
+		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 16) )
 
 		$merge $entry loopback $endmerge
 		
@@ -159,7 +159,7 @@ $is
 //	3. write 0 to lock address with bamsk.
 $module [releaseLock] $in (q_base_address: $uint<36>) $out () $is
 {
-		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 20) )
+		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 16) )
 		$call accessMemory ($zero<1> $one<1> 
 					(~$zero<8>) 
 					 lock_address_pointer $zero<64>) (msg_size_plus_lock)
@@ -197,9 +197,13 @@ $module [getQueuePointers] $in (q_base_address: $uint<36>)
 {
 		
 		$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
-					 (q_base_address + 4) $zero<64>) (wp_rp)
+					 q_base_address $zero<64>) (msgs_rp)
 
-		$volatile $split (wp_rp 32 32) (rp wp)
+		$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
+					 (q_base_address + 8) $zero<64>) (wp_len)
+
+		$volatile $split (msgs_rp 32 32) (ignore rp)
+		$volatile $split (wp_len 32 32) (wp len)
 		$rreport(getQueuePointers set q_base_address wp rp)
 }
 
@@ -210,8 +214,10 @@ $module [setQueuePointers] $in (q_base_address: $uint<36> wp rp: $uint<32>) $out
 {
 
 		$rreport(setQueuePointers set q_base_address wp rp)
-		$call accessMemory ($zero<1> $zero<1>  (~$zero<8>)
-					 (q_base_address + 4) ($concat rp wp)) (ignore)
+		$call accessMemory ($zero<1> $zero<1>  ($concat $zero<4> (~$zero<4>))
+					 q_base_address ($concat rp rp)) (ignore)
+		$call accessMemory ($zero<1> $zero<1>  ($concat (~$zero<4>) $zero<4>)
+					 (q_base_address + 8) ($concat wp wp)) (ignore_1)
 }
 
 	

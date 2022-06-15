@@ -3,6 +3,9 @@
 // all these will be moved to header.h
 #define BUF_LENGTH 190
 #define QUEUE_SIZE 3
+
+void readNicReg(void);
+
 void cpu_model()
 {
 	fprintf(stderr, "CPU_THREAD : started \n");
@@ -22,12 +25,8 @@ void cpu_model()
 
 	// Push Buffer Pointers to Free Queue for access by NIC
 	push(FREE_QUEUE , BUF_0);
-	fprintf(stderr,"pushed buffer0\n");
 	push(FREE_QUEUE , BUF_1);
-	fprintf(stderr,"pushed buffer1\n");
 	int ret_val = push(FREE_QUEUE , BUF_2);
-	fprintf(stderr,"pushed buffer2\n");
-
 	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : pushed buffers to free queue last_ret_val = %d\n",ret_val);
 	// Config NIC Registers
 	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");

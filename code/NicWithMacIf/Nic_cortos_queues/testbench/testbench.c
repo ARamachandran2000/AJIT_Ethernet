@@ -109,10 +109,12 @@ int main(int argc, char *argv[])
 	
 	// wait 
 	PTHREAD_JOIN(mac_rx_thread);
+	fprintf(stderr,"mac_rx breaked\n");
+	return;
 	PTHREAD_JOIN(nicMemoryServiceDaemon);
 	PTHREAD_JOIN(cpuMemoryServiceDaemon);
 	PTHREAD_JOIN(cpu_thread);
-	PTHREAD_JOIN(mac_rx_thread);
+	PTHREAD_JOIN(mac_tx_thread);
 
 	if(!__err_flg_){
 		fprintf(stderr,"\n\nSUCCESS...!!!\n\n");

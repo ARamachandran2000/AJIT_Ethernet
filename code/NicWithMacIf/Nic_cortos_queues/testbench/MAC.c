@@ -38,7 +38,7 @@ void macToNicData(void)
 		uint16_t data_16 = 0;
 	
 		// fixed length packet
-		uint16_t length_in_bytes = 20 + 10;//(10 + pkt_cnt*8)%10;// 20 bytes is min ip header length
+		uint16_t length_in_bytes = 20 + (10 + pkt_cnt*8)%10;// 20 bytes is min ip header length
 		
 		(DEBUG == 1) && fprintf(stderr,"pkt_cnt = %d : Packet_lenght =  %d\n", pkt_cnt,length_in_bytes);
 		
@@ -160,10 +160,10 @@ void nicToMacData(void)
 			//fprintf(stderr,"MAC_RX: Pipe read complete\n");
 			if(((data_64 >> 8) & 0xffffffffffffffff) != i){ //(i+pkt_cnt)
 				fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch, Expected = %d,"
-						" Received = %d\n",pkt_cnt, (i+pkt_cnt),data_64);
+						" Received = %d or 0x%lx\n",pkt_cnt, (i+pkt_cnt),data_64,data_64);
 				__err_flag_ = 1;
 				i += 8;
-				//break;
+				break;
 			}
 		}
 		// read last word
@@ -176,7 +176,7 @@ void nicToMacData(void)
 			fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch Expected = %d,"
 					" Received = %d or 0x%lx\n",pkt_cnt, (i+pkt_cnt),data_64,data_64);
 			__err_flag_ = 1;
-			//break;
+			break;
 		}
 		fprintf(stderr,"MAC_RX : Recived Packet[%d]\n",pkt_cnt);
 		pkt_cnt++;

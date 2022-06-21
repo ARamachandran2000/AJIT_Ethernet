@@ -55,7 +55,7 @@ $is
 	$call getQueuePointers (q_base_address) (write_index read_index)
 	
 	$call getQueueLength(q_base_address) (Queue_Length)
-	$volatile round_off := (read_index == (Queue_Length - 1))
+	$volatile round_off := (write_index == (Queue_Length - 1))
 	$volatile next_wi := ($mux round_off 0 (write_index + 1))
 	
 	$volatile q_full := (next_wi == read_index)

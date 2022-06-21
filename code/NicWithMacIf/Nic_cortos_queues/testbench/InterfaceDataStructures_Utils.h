@@ -1,5 +1,5 @@
 
-char DEBUG = 0; // 0 for no print and 1 for print
+char DEBUG = 1; // 0 for no print and 1 for print
 
 // function declerations,
 //  defined in register_config.c

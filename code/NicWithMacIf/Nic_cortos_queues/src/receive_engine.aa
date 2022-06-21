@@ -38,7 +38,7 @@ $is
 		$rreport(ReceiveEngineDaemon called_pop_From_queue )
 		$call popFromQueue ($one<1> FREE_Q) (rx_buffer_pointer_32 status)
 		$rreport(ReceiveEngineDaemon rx_buffer rx_buffer_pointer_32) 
-		
+
 		// convert 32 bit 16-byte aligned address to 36 bit physical address.
 		$volatile rx_buffer_pointer_36 :=  ($concat rx_buffer_pointer_32 $zero<4>)
 		$rreport(ReceiveEngineDaemon rx_buffer_val rx_buffer_pointer_36)
@@ -58,7 +58,7 @@ $is
 		
 		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag cond)		
 		$rreport(ReceiveEngineDaemon running_ok_flag)	
-		
+		//$barrier
 		$guard (ok_flag) 
 			$call populateRxQueue (rx_buffer_pointer_36) ()
 

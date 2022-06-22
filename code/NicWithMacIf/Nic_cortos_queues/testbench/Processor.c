@@ -1,9 +1,5 @@
 // Configs the Registers, Creates Free Buffers, swaps MAC addresses and pushes to the Queues
 
-// all these will be moved to header.h
-#define BUF_LENGTH 190
-#define QUEUE_SIZE 3
-
 void readNicReg(void);
 
 void cpu_model()
@@ -16,9 +12,9 @@ void cpu_model()
 	//readNicReg();
 
 
-	initQueue(FREE_QUEUE, 8, 4);
-	initQueue(RX_QUEUE, 8,4);
-	initQueue(TX_QUEUE, 8,4);
+	initQueue(FREE_QUEUE, 4, 4);
+	initQueue(RX_QUEUE, 4,4);
+	initQueue(TX_QUEUE, 4,4);
 
 	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : Init queue done. \n");
 	
@@ -26,7 +22,8 @@ void cpu_model()
 	// Push Buffer Pointers to Free Queue for access by NIC
 	push(FREE_QUEUE , BUF_0);
 	push(FREE_QUEUE , BUF_1);
-	int ret_val = push(FREE_QUEUE , BUF_2);
+	push(FREE_QUEUE , BUF_2);
+	int ret_val = push(FREE_QUEUE , BUF_3);
 	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : pushed buffers to free queue last_ret_val = %d\n",ret_val);
 	// Config NIC Registers
 	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");

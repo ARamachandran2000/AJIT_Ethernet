@@ -1,6 +1,6 @@
 //
 // Utilities
-//    Pop a uint32_t from the queue.  Return status = 1 on success.
+//    Pop a uint32_t from the queue.  Return status = 0 on success.
 //
 //	1. acquire lock
 // 	2. Get read write indexs
@@ -87,8 +87,8 @@ $is
 //
 //	1. read lock_pointer(address) from qeue(locked read)
 //	2. read data at lock_pointer(address)
-//	3. get 8bit lock data from 64bit read data (how?)
-//	4. if lock = FF -> keep checking
+//	3. get 8bit lock data from 64bit read data
+//	4. if lock = FF -> keep checking (release mem lock and acquire again)
 //	     else set lock(queue) = FF and release memory lock
 $module [acquireLock] $in (q_base_address: $uint<36>) $out (m_ok: $uint<1>) 
 $is
@@ -108,23 +108,7 @@ $is
 		$call accessMemory ($one<1> $one<1> (~$zero<8>) ($concat $zero<4> lock_addr_32) $zero<64>) (lock_values)
 		
 		$volatile $split (lock_values 8 8 8 8 8 8 8 8) (l0 l1 l2 l3 l4 l5 l6 l7)
-
-		$volatile lock_val := ($excmux
-					(sel == 0) l0
-					(sel == 1) l1
-					(sel == 2) l2
-                                        (sel == 3) l3
-					(sel == 4) l4
-                                        (sel == 5) l5
-					(sel == 6) l6
-                                        (sel == 7) l7) 
 		
-		$if (lock_val == (~$zero<8>)) $then
-			// release memory lock
-			$call accessMemory ($zero<1> $one<1> (~$zero<8>) lock_address_pointer $zero<64>)(err)
-			$place [loopback]
-		$endif
-		//logic_for_bmask which will set perticular lock to 11111111		
 		$volatile s0 := (sel == 0)
 		$volatile s1 := (sel == 1)
 		$volatile s2 := (sel == 2)
@@ -133,6 +117,24 @@ $is
 		$volatile s5 := (sel == 5)
 		$volatile s6 := (sel == 6)
 		$volatile s7 := (sel == 7)
+		 
+		$volatile lock_val := ($excmux
+					s0 l0
+					s1 l1
+					s2 l2
+					s3 l3
+					s4 l4
+					s5 l5
+					s6 l6
+					s7 l7) 
+		
+		
+		$if (lock_val == (~$zero<8>)) $then
+			// release memory lock
+			$call accessMemory ($zero<1> $one<1> (~$zero<8>) lock_address_pointer $zero<64>)(err)
+			$place [loopback]
+		$endif
+		//logic_for_bmask which will set perticular lock to 11111111		
 		$volatile new_bmask := ($concat
 						($mux s0 $one<1> $zero<1> )
 						($mux s1 $one<1> $zero<1> )
@@ -174,7 +176,8 @@ $module [releaseLock] $in (q_base_address: $uint<36>) $out () $is
                 $volatile s5 := (sel == 5)
                 $volatile s6 := (sel == 6)
                 $volatile s7 := (sel == 7)
-		//logic_for_bmask which will set perticular lock to 00000000
+                
+		//logic_for_bmask which will set perticular lock to _b00000000
                 $volatile new_bmask := ($concat
                                                 ($mux s0 $one<1> $zero<1> )
                                                 ($mux s1 $one<1> $zero<1> )

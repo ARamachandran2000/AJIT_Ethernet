@@ -1,5 +1,5 @@
 
-char DEBUG = 1; // 0 for no print and 1 for print
+char DEBUG = 0; // 0 for no print and 1 for print
 
 // function declerations,
 //  defined in register_config.c
@@ -15,7 +15,7 @@ uint32_t reserve_lock(void);
 // For number of buffer
 // if you change NUM_OF_BUFFERS then make same change to QUEUE_SIZE_MESK in ../src/decls.aa
 
-#define NUM_OF_BUFFERS	8 // should be miltiple of 4 
+#define NUM_OF_BUFFERS	4 // should be miltiple of 4 
 
 #define QUEUE_LENGTH	(32 + 4*NUM_OF_BUFFERS)		//64
 #define FREE_QUEUE 	0		
@@ -28,6 +28,7 @@ uint32_t reserve_lock(void);
 
 #define BUF_1 BUF_0 + (BUF_SIZE / 16) 			// 12   +   (80/16 = 5) = 17 
 #define BUF_2 BUF_1 + (BUF_SIZE / 16) 			// 17  +    (80/16 = 5) = 22
+#define BUF_3 BUF_2 + (BUF_SIZE / 16) 			// 22  +    (80/16 = 5) = 27
 
 
 // sends requestes and reads responces(for queue functions such as pop push) 

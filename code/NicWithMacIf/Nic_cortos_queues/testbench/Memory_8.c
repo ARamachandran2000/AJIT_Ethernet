@@ -1,8 +1,7 @@
-// Write Memory related threads, functions here
-//#include "InterfaceDataStructures_Utils.h"
-//#include<pthreadUtils.h>
-// 
+
+
 #define NUMBER_OF_LOCKS 8 // should be multiple of 8
+
 //			64		80		8		8	
 #define MEM_SIZE ((QUEUE_LENGTH*3) + (BUF_SIZE*NUM_OF_BUFFERS) + (2*NUMBER_OF_LOCKS) + 256) // 256 extra bytes
 

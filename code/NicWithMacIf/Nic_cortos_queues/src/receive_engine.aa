@@ -58,7 +58,6 @@ $is
 		
 		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag cond)		
 		$rreport(ReceiveEngineDaemon running_ok_flag)	
-		//$barrier
 		$guard (ok_flag) 
 			$call populateRxQueue (rx_buffer_pointer_36) ()
 

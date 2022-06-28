@@ -114,12 +114,69 @@ popFromBufferQueue:
 	jmp	%o7+8
 	 st	%g0, [%g1]
 	.size	popFromBufferQueue, .-popFromBufferQueue
+	.align 4
+	.global readNicReg
+	.type	readNicReg, #function
+	.proc	016
+readNicReg:
+	sll	%o0, 2, %o0
+	sethi	%hi(NIC_REG), %g1
+	ld	[%g1+%lo(NIC_REG)], %o1
+	add	%o1, %o0, %o1
+	sra	%o1, 31, %o0
+	or	%o7, %g0, %g1
+	call	__ajit_load_word_from_physical_address__, 0
+	 or	%g1, %g0, %o7
+	.size	readNicReg, .-readNicReg
 	.section	.rodata.str1.8
 	.align 8
 .LC1:
-	.asciz	"NIC_REG[22]=0x%x\n"
+	.asciz	"NIC_REG[%d] = 0x%x\n"
+	.section	".text"
+	.align 4
+	.global readNicRegs
+	.type	readNicRegs, #function
+	.proc	020
+readNicRegs:
+	save	%sp, -96, %sp
+	sethi	%hi(.LC1), %i4
+	mov	0, %i5
+	or	%i4, %lo(.LC1), %i4
+.L28:
+	call	readNicReg, 0
+	 mov	%i5, %o0
+	mov	%i5, %o1
+	mov	%o0, %o2
+	call	ee_printf, 0
+	 mov	%i4, %o0
+	add	%i5, 1, %i5
+	cmp	%i5, 64
+	bne	.L28
+	 nop
+	jmp	%i7+8
+	 restore
+	.size	readNicRegs, .-readNicRegs
+	.align 4
+	.global writeNicReg
+	.type	writeNicReg, #function
+	.proc	020
+writeNicReg:
+	sll	%o0, 2, %g1
+	sethi	%hi(NIC_REG), %g2
+	mov	%o1, %o0
+	ld	[%g2+%lo(NIC_REG)], %o2
+	add	%o2, %g1, %o2
+	sra	%o2, 31, %o1
+	or	%o7, %g0, %g1
+	call	__ajit_store_word_to_physical_address__, 0
+	 or	%g1, %g0, %o7
+	.size	writeNicReg, .-writeNicReg
+	.section	.rodata.str1.8
 	.align 8
 .LC2:
+	.asciz	"NIC_REG[22]=0x%x\n"
+	.align 8
+.LC3:
 	.asciz	"NIC_regs: [1]=0x%x,[2]=0x%x,[10]=0x%x,[18]=0x%x,[0]=0x%x,[21]=0x%x,[22]=0x%x\n"
 	.section	".text"
 	.align 4
@@ -128,94 +185,116 @@ popFromBufferQueue:
 	.proc	020
 nicRegConfig:
 	save	%sp, -104, %sp
-	sethi	%hi(NIC_REG), %i5
-	ld	[%i5+%lo(NIC_REG)], %g1
-	sethi	%hi(.LC1), %o0
-	ld	[%g1+88], %o1
-	call	ee_printf, 0
-	 or	%o0, %lo(.LC1), %o0
-	ld	[%i5+%lo(NIC_REG)], %g1
-	mov	1, %g2
-	st	%i1, [%g1+8]
-	st	%g2, [%g1+4]
-	st	%i2, [%g1+40]
-	st	%i0, [%g1+72]
-	st	%g2, [%g1]
-	ld	[%g1+84], %g2
-	st	%g2, [%sp+92]
-	ld	[%g1+88], %g1
+	call	readNicReg, 0
+	 mov	22, %o0
+	mov	%o0, %o1
 	sethi	%hi(.LC2), %o0
-	mov	1, %o1
-	st	%g1, [%sp+96]
-	mov	%i1, %o2
-	mov	%i2, %o3
-	mov	%i0, %o4
-	mov	1, %o5
 	call	ee_printf, 0
 	 or	%o0, %lo(.LC2), %o0
+	mov	1, %o0
+	call	writeNicReg, 0
+	 mov	1, %o1
+	mov	%i1, %o1
+	call	writeNicReg, 0
+	 mov	2, %o0
+	mov	%i2, %o1
+	call	writeNicReg, 0
+	 mov	10, %o0
+	mov	%i0, %o1
+	call	writeNicReg, 0
+	 mov	18, %o0
+	mov	1, %o1
+	call	writeNicReg, 0
+	 mov	0, %o0
+	call	readNicReg, 0
+	 mov	1, %o0
+	mov	%o0, %i0
+	call	readNicReg, 0
+	 mov	2, %o0
+	mov	%o0, %i2
+	call	readNicReg, 0
+	 mov	10, %o0
+	mov	%o0, %i3
+	call	readNicReg, 0
+	 mov	18, %o0
+	mov	%o0, %i4
+	call	readNicReg, 0
+	 mov	0, %o0
+	mov	%o0, %i5
+	call	readNicReg, 0
+	 mov	21, %o0
+	mov	%o0, %i1
+	call	readNicReg, 0
+	 mov	22, %o0
+	mov	%i0, %o1
+	st	%o0, [%sp+96]
+	st	%i1, [%sp+92]
+	sethi	%hi(.LC3), %o0
+	mov	%i2, %o2
+	mov	%i3, %o3
+	mov	%i4, %o4
+	mov	%i5, %o5
+	call	ee_printf, 0
+	 or	%o0, %lo(.LC3), %o0
 	jmp	%i7+8
 	 restore
 	.size	nicRegConfig, .-nicRegConfig
 	.section	.rodata.str1.8
 	.align 8
-.LC3:
-	.asciz	"NIC_REG[%d] = 0x%x\n"
+.LC4:
+	.asciz	"data at addr = 0x%lx%lx is 0x%x\n"
 	.section	".text"
 	.align 4
-	.global readNicReg
-	.type	readNicReg, #function
+	.global readMemory
+	.type	readMemory, #function
 	.proc	020
-readNicReg:
+readMemory:
 	save	%sp, -96, %sp
-	sethi	%hi(NIC_REG), %i3
-	sethi	%hi(.LC3), %i4
-	mov	0, %i5
-	or	%i3, %lo(NIC_REG), %i3
-	or	%i4, %lo(.LC3), %i4
-	sll	%i5, 2, %g1
-.L30:
-	ld	[%i3], %g2
-	mov	%i5, %o1
-	mov	%i4, %o0
+	mov	%i0, %o0
+	mov	%i1, %o1
+	call	__ajit_load_word_from_physical_address__, 0
+	 mov	%i1, %i2
+	mov	%i0, %i1
+	mov	%i0, %i3
+	mov	%i2, %i4
+	sethi	%hi(.LC4), %i0
+	mov	%o0, %i5
 	call	ee_printf, 0
-	 ld	[%g2+%g1], %o2
-	add	%i5, 1, %i5
-	cmp	%i5, 64
-	bne	.L30
-	 sll	%i5, 2, %g1
-	jmp	%i7+8
-	 restore
-	.size	readNicReg, .-readNicReg
+	 restore %i0, %lo(.LC4), %o0
+	.size	readMemory, .-readMemory
 	.section	.rodata.str1.8
 	.align 8
-.LC4:
+.LC5:
 	.asciz	"Started\n"
 	.align 8
-.LC5:
-	.asciz	"All Addresses:\n\tBuffer[0]=0x%lx,\n\tBuffer[1]=0x%lx,\n\tBuffer[2]=0x%lx,\n\trx_queue=0x%lx,\n\ttx_queue=0x%lx,\n\tFree_Queue=0x%lx\n"
-	.align 8
 .LC6:
-	.asciz	"Initializing the Queues.\tFree_Queue=0x%lx\n"
+	.asciz	"All Addresses:\n\tBuffer[0]=0x%lx,\n\tBuffer[1]=0x%lx,\n\tBuffer[2]=0x%lx,\n\tBuffer[3]=0x%lx,\n\tBuffer[4]=0x%lx,\n\tBuffer[5]=0x%lx,\n\trx_queue=0x%lx,\n\ttx_queue=0x%lx,\n\tFree_Queue=0x%lx\n"
 	.align 8
 .LC7:
-	.asciz	"Queues Initialized,\n Pushing free buffers.\n"
+	.asciz	"Initializing the Queues.\tFree_Queue=0x%lx\n"
 	.align 8
 .LC8:
-	.asciz	"Pushed free buffers,\n Configuring NIC registers.\n"
+	.asciz	"Queues Initialized,\n Pushing free buffers.\n"
 	.align 8
 .LC9:
-	.asciz	"Configuration Done. NIC has started\n"
+	.asciz	"Pushed free buffers,\n Configuring NIC registers.\n"
 	.align 8
 .LC10:
-	.asciz	"In the loop.\n"
+	.asciz	"Configuration Done. NIC has started\n"
 	.align 8
 .LC11:
-	.asciz	"Reading Rx_Queue\n"
+	.asciz	"In the loop.\n"
 	.align 8
 .LC12:
-	.asciz	"Nothing in Rx queue.\nNIC_REG[21]=0x%x\n"
+	.asciz	"Reading Rx_Queue\n"
 	.align 8
 .LC13:
+	.asciz	"Nothing in Rx queue.\nNIC_REG[21]=0x%x\n"
+	.align 8
+.LC14:
+	.asciz	"Free Queue : mutex =%u, num_of_entries=%u, wp =%u, rp =%u.\n"
+	.align 8
+.LC15:
 	.asciz	"Written to Tx queue.\nNIC_REG[21]=0x%x\n"
 	.section	.text.startup,"ax",@progbits
 	.align 4
@@ -223,12 +302,12 @@ readNicReg:
 	.type	main, #function
 	.proc	04
 main:
-	save	%sp, -120, %sp
+	save	%sp, -128, %sp
 	call	__ajit_write_serial_control_register__, 0
 	 mov	3, %o0
-	sethi	%hi(.LC4), %o0
+	sethi	%hi(.LC5), %o0
 	call	ee_printf, 0
-	 or	%o0, %lo(.LC4), %o0
+	 or	%o0, %lo(.LC5), %o0
 	call	cortos_bget_ncram, 0
 	 mov	80, %o0
 	st	%o0, [%fp-12]
@@ -237,134 +316,144 @@ main:
 	st	%o0, [%fp-8]
 	call	cortos_bget_ncram, 0
 	 mov	80, %o0
-	sethi	%hi(NIC_REG), %g1
 	st	%o0, [%fp-4]
-	ld	[%g1+%lo(NIC_REG)], %g4
-	mov	1, %g2
-	mov	0, %g1
-.L32:
-	cmp	%g1, 22
-	be	.L33
-	 sll	%g1, 2, %g3
-	cmp	%g2, 64
-	be	.L41
-	 st	%g1, [%g4+%g3]
-.L33:
-	add	%g1, 1, %g1
-	b	.L32
-	 add	%g2, 1, %g2
-.L41:
 	call	cortos_bget_ncram, 0
 	 mov	48, %o0
-	mov	%o0, %i4
+	mov	%o0, %l4
 	call	cortos_bget_ncram, 0
 	 mov	48, %o0
-	mov	%o0, %i5
+	mov	%o0, %l3
 	call	cortos_bget_ncram, 0
 	 mov	48, %o0
-	mov	%i4, %o4
-	mov	%o0, %i3
-	mov	%i5, %o5
-	ld	[%fp-12], %i2
-	ld	[%fp-8], %i0
-	ld	[%fp-4], %i1
-	mov	%i0, %o2
-	mov	%i1, %o3
-	mov	%i2, %o1
-	st	%o0, [%sp+92]
-	sethi	%hi(.LC5), %o0
-	call	ee_printf, 0
-	 or	%o0, %lo(.LC5), %o0
-	mov	%i3, %o1
+	mov	0, %o4
+	mov	%o0, %l2
+	ld	[%fp-8], %o2
+	ld	[%fp-12], %i5
+	ld	[%fp-4], %i3
+	mov	%i5, %o1
+	mov	%i3, %o3
+	mov	0, %i4
+	st	%o0, [%sp+104]
+	mov	%i4, %o5
+	st	%g0, [%sp+92]
+	st	%l4, [%sp+96]
+	st	%l3, [%sp+100]
 	sethi	%hi(.LC6), %o0
 	call	ee_printf, 0
 	 or	%o0, %lo(.LC6), %o0
-	mov	8, %g1
-	st	%g0, [%i3]
-	st	%g1, [%i3+4]
-	st	%g0, [%i3+12]
-	st	%g0, [%i3+8]
-	st	%g1, [%i5+4]
-	st	%g0, [%i5]
-	st	%g0, [%i5+12]
-	st	%g0, [%i5+8]
-	st	%g1, [%i4+4]
-	st	%g0, [%i4]
-	st	%g0, [%i4+12]
-	st	%g0, [%i4+8]
+	mov	%l2, %o1
 	sethi	%hi(.LC7), %o0
 	call	ee_printf, 0
 	 or	%o0, %lo(.LC7), %o0
-	mov	%i2, %o1
-	call	pushIntoBufferQueue, 0
-	 mov	%i3, %o0
-	mov	%i0, %o1
-	call	pushIntoBufferQueue, 0
-	 mov	%i3, %o0
-	mov	%i1, %o1
-	call	pushIntoBufferQueue, 0
-	 mov	%i3, %o0
+	mov	8, %g1
+	st	%g0, [%l2]
+	st	%g1, [%l2+4]
+	st	%g0, [%l2+12]
+	st	%g0, [%l2+8]
+	st	%g1, [%l3+4]
+	st	%g0, [%l3]
+	st	%g0, [%l3+12]
+	st	%g0, [%l3+8]
+	st	%g1, [%l4+4]
+	st	%g0, [%l4]
+	st	%g0, [%l4+12]
+	st	%g0, [%l4+8]
 	sethi	%hi(.LC8), %o0
 	call	ee_printf, 0
 	 or	%o0, %lo(.LC8), %o0
-	call	readNicReg, 0
-	 sethi	%hi(.LC11), %l0
-	mov	%i3, %o0
+	mov	%i5, %o1
+	call	pushIntoBufferQueue, 0
+	 mov	%l2, %o0
+	mov	%i3, %o1
+	call	pushIntoBufferQueue, 0
+	 mov	%l2, %o0
 	mov	%i4, %o1
-	call	nicRegConfig, 0
-	 mov	%i5, %o2
-	call	readNicReg, 0
-	 sethi	%hi(.LC10), %i3
+	call	pushIntoBufferQueue, 0
+	 mov	%l2, %o0
 	sethi	%hi(.LC9), %o0
 	call	ee_printf, 0
 	 or	%o0, %lo(.LC9), %o0
-	mov	52, %g1
-	st	%g1, [%i2]
-	sethi	%hi(NIC_REG), %i2
-	sethi	%hi(.LC12), %i0
-	sethi	%hi(.LC13), %i1
-	st	%g0, [%fp-16]
-	or	%i2, %lo(NIC_REG), %i2
-	or	%i3, %lo(.LC10), %i3
-	or	%l0, %lo(.LC11), %l0
-	or	%i0, %lo(.LC12), %i0
-	or	%i1, %lo(.LC13), %i1
-.L40:
+	mov	%l2, %o0
+	mov	%l4, %o1
+	call	nicRegConfig, 0
+	 mov	%l3, %o2
+	sethi	%hi(.LC10), %o0
 	call	ee_printf, 0
-	 mov	%i3, %o0
-	call	readNicReg, 0
-	 nop
-	mov	%i4, %o0
+	 or	%o0, %lo(.LC10), %o0
+	mov	52, %g1
+	stb	%g1, [%i5]
+	sll	%l2, 3, %i5
+	addcc	%i5, 4, %l1
+	sra	%l2, 31, %g2
+	srl	%l2, 29, %g1
+	sll	%g2, 3, %i4
+	or	%g1, %i4, %i4
+	addx	%i4, 0, %l0
+	addcc	%i5, 8, %i1
+	sethi	%hi(.LC11), %l5
+	addx	%i4, 0, %i0
+	sethi	%hi(.LC12), %l7
+	addcc	%i5, 12, %i3
+	sethi	%hi(.LC15), %l6
+	st	%g0, [%fp-16]
+	addx	%i4, 0, %i2
+	or	%l5, %lo(.LC11), %l5
+	or	%l7, %lo(.LC12), %l7
+	or	%l6, %lo(.LC15), %l6
+.L37:
+	call	ee_printf, 0
+	 mov	%l5, %o0
+	mov	%l4, %o0
 	call	popFromBufferQueue, 0
 	 add	%fp, -16, %o1
 	cmp	%o0, 0
-	bne	.L42
-	 mov	%i5, %o0
+	bne	.L38
+	 mov	%l3, %o0
 .L35:
 	call	pushIntoBufferQueue, 0
 	 ld	[%fp-16], %o1
-	ld	[%i2], %g1
-	mov	%i1, %o0
-	call	ee_printf, 0
-	 ld	[%g1+84], %o1
-	call	ee_printf, 0
-	 mov	%i3, %o0
 	call	readNicReg, 0
-	 nop
-	mov	%i4, %o0
+	 mov	21, %o0
+	mov	%o0, %o1
+	call	ee_printf, 0
+	 mov	%l6, %o0
+	call	ee_printf, 0
+	 mov	%l5, %o0
+	mov	%l4, %o0
 	call	popFromBufferQueue, 0
 	 add	%fp, -16, %o1
 	cmp	%o0, 0
 	be	.L35
-	 mov	%i5, %o0
-.L42:
+	 mov	%l3, %o0
+.L38:
 	call	ee_printf, 0
-	 mov	%l0, %o0
-	ld	[%i2], %g1
+	 mov	%l7, %o0
+	call	readNicReg, 0
+	 mov	21, %o0
+	mov	%o0, %o1
+	sethi	%hi(.LC13), %o0
+	call	ee_printf, 0
+	 or	%o0, %lo(.LC13), %o0
+	ld	[%l2+4], %o2
+	ld	[%l2+8], %o3
+	ld	[%l2+12], %o4
+	ld	[%l2], %o1
+	sethi	%hi(.LC14), %o0
+	call	ee_printf, 0
+	 or	%o0, %lo(.LC14), %o0
+	mov	%i4, %o0
+	call	readMemory, 0
+	 mov	%i5, %o1
+	mov	%l0, %o0
+	call	readMemory, 0
+	 mov	%l1, %o1
 	mov	%i0, %o0
-	call	ee_printf, 0
-	 ld	[%g1+84], %o1
-	b,a	.L40
+	call	readMemory, 0
+	 mov	%i1, %o1
+	mov	%i2, %o0
+	call	readMemory, 0
+	 mov	%i3, %o1
+	b,a	.L37
 	.size	main, .-main
 	.global NIC_REG
 	.section	".data"

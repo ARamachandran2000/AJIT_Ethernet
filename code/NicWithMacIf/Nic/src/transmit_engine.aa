@@ -87,7 +87,8 @@ $module [getTxPacketPointerFromServer]
 	//		     ( rwbar  bmask       index	       wdata  ) (pointerToBuffer    )
 	$call AccessRegister ($one<1> (~$zero<4>) register_index $zero<32>) (tx_queue_pointer_32)
 	
-	$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
+	$volatile tx_queue_pointer_36 :=  ($concat $zero<4> tx_queue_pointer_32) 
+	//$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
 	
 	$call popFromQueue ($one<1> tx_queue_pointer_36) (pkt_pointer status)
 
@@ -103,7 +104,8 @@ $module [transmitPacket]
 	$in (packet_pointer: $uint<32>) $out (status: $uint<1>) $is
 {
 	// read packet information from packet buffer.
-	$volatile control_data_addr := ($bitcast ($uint<36>) ($concat ($slice packet_pointer 31 0) $zero<4>)) 
+	$volatile control_data_addr := ($bitcast ($uint<36>) packet_pointer) 
+	//$volatile control_data_addr := ($bitcast ($uint<36>) ($concat ($slice packet_pointer 31 0) $zero<4>)) 
 	$rreport(transmitPacket control_data_addr_is packet_pointer control_data_addr)	
 	$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK control_data_addr $zero<64>) (control_data)
 	

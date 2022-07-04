@@ -46,6 +46,7 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 			//	2
 				$phi LSTATE := S0 $on $entry nLSTATE $on $loopback
 				$phi RX := mac_to_nic_data $on $entry, $loopback
+				$phi pkt_cnt := $zero<32> $on $entry npkt_cnt $on $loopback
 			$endmerge
 			
 			$rreport(nicRxFromMacDaemon data_is RX LSTATE)
@@ -62,6 +63,11 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 								RX)
 			// send to packet pipe
 			nic_rx_to_packet := RX
+			$volatile pkt_complete := (nLSTATE == S0)
+			$guard(pkt_complete)
+				$volatile npkt_cnt := (pkt_cnt + $one<32>)
+			$guard(pkt_complete)
+				$call AccessRegister ($zero<1> (~$zero<4>) 23 pkt_cnt) (ignore_resp2)
 			$rreport(nicRxFromMacDaemon data_written_is RX nLSTATE)
 			$while (CONTROL_REGISTER [] 0)
 			

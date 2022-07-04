@@ -64,7 +64,8 @@ void register_config (uint64_t RX_Q_0_ADDRESS,uint64_t TX_Q_0_ADDRESS , uint64_t
 	//uint64_t register_addresses_array [] = {1,2,10,18,0};
 	uint64_t register_addresses_array [] = {0x0004,0x0008,0x0028,0x0048,0x0000};
 	uint32_t write_data_array[] =			
-			{NUMBER_OF_SERVERS,RX_Q_0_ADDRESS>>4,TX_Q_0_ADDRESS>>4,FREE_Q_ADDRESS>>4,1};
+			{NUMBER_OF_SERVERS,RX_Q_0_ADDRESS,TX_Q_0_ADDRESS,FREE_Q_ADDRESS,1};
+			//{NUMBER_OF_SERVERS,RX_Q_0_ADDRESS>>4,TX_Q_0_ADDRESS>>4,FREE_Q_ADDRESS>>4,1};
 
 
 	int i;

@@ -51,7 +51,7 @@ void cpu_model()
 			//sleep(1);	
 			int k;
 			for(k = 0 ; k < 250000000; k++);
-			//readNicReg();
+			readNicReg();
 		}
 	}
 }

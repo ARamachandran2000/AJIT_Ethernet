@@ -153,9 +153,11 @@ begin
                         m_rx_axis_tlast <= 0;
                         pkt_cnt <= pkt_cnt + 8;
 
-                        if(pkt_cnt >= (length_in_bytes - 8))
-                            rx_state <= LAST;               
+                        //if(pkt_cnt >= (length_in_bytes - 8))
+                        //    rx_state <= LAST;               
                     end
+		    else
+			rx_state <= LAST;
 
                     
                 end

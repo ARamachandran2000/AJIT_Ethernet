@@ -147,7 +147,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 
 			// Convert Pointer to 36-bit physical address
 			$guard(update_free_q_pipe)
-				FREE_Q := ($bitcast ($uint<36>) ($concat FREE_Q_32 $zero<3>))
+				FREE_Q := ($bitcast ($uint<36>) FREE_Q_32)
 
 			$guard(update_server_num)
 				NUMBER_OF_SERVERS := nic_registers[1]

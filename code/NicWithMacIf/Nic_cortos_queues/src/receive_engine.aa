@@ -32,15 +32,21 @@ $is
 
 		// Once enabled start processing
 		$dopipeline $depth 31 $fullrate
-		$merge $entry $loopback $endmerge
+		$merge $entry $loopback 
+			$phi pkt_cnt := $zero<32> $on $entry npkt_cnt $on $loopback
+		$endmerge
 
 		// Step 1 : Pop From Free Queue -> If not empty (Success indicated by status) 
 		$rreport(ReceiveEngineDaemon called_pop_From_queue )
 		$call popFromQueue ($one<1> FREE_Q) (rx_buffer_pointer_32 status)
 		$rreport(ReceiveEngineDaemon rx_buffer rx_buffer_pointer_32) 
 
+		// DEBUG purpose
+		$guard(~status)
+			$call AccessRegister ($zero<1> (~$zero<4>) 24 rx_buffer_pointer_32) (ignore_resp0)
+
 		// convert 32 bit 16-byte aligned address to 36 bit physical address.
-		$volatile rx_buffer_pointer_36 :=  ($concat rx_buffer_pointer_32 $zero<4>)
+		$volatile rx_buffer_pointer_36 :=  ($concat $zero<4> rx_buffer_pointer_32)
 		$rreport(ReceiveEngineDaemon rx_buffer_val rx_buffer_pointer_36)
 		
 		// Step 2 : If pop was successful then start loading the buffer
@@ -56,14 +62,21 @@ $is
 		$volatile free_flag := ((~status) & bad_packet_identifier)
 		$volatile cond := (ok_flag == 1)
 		
+		$guard(ok_flag)
+			$call AccessRegister ($zero<1> (~$zero<4>) 25 pkt_cnt) (ignore_resp1)
+
+		$guard(ok_flag)
+			$volatile npkt_cnt := (pkt_cnt + $one<32>)
+
 		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag cond)		
-		$rreport(ReceiveEngineDaemon running_ok_flag)	
+		$rreport(ReceiveEngineDaemon running_ok_flag)
+	
 		$guard (ok_flag) 
 			$call populateRxQueue (rx_buffer_pointer_36) ()
 
 		$rreport(ReceiveEngineDaemon pushing_into_free_q free_flag )
 		$guard (free_flag) 
-			$call pushIntoQueue ($one<1> FREE_Q ($slice rx_buffer_pointer_36 35 4)) (push_status) 
+			$call pushIntoQueue ($one<1> FREE_Q ($slice rx_buffer_pointer_36 31 0)) (push_status) 
 
 		$rreport(ReceiveEngineDaemon completed_iteration_in_receive_engine )
 		
@@ -99,10 +112,10 @@ $is
 	
 	
 
-		$volatile rx_queue_pointer_36 :=  ($concat rx_queue_pointer_32 $zero<4>)	
+		$volatile rx_queue_pointer_36 :=  ($concat $zero<4> rx_queue_pointer_32)	
 		$rreport(populateRxQueue got_rx_queue_pointer_pushing_to_rx_queue rx_queue_pointer_32 rx_queue_pointer_36 NUMBER_OF_SERVERS)	
 		
-		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
+		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 31 0)) (push_status)
 
 		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
 		$rreport(populateRxQueue written_to_rx_queue n_q_index push_status)

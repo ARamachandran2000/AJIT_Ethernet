@@ -223,6 +223,13 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [push] : pointers = %lx. \n",wpointer);
 		
 		ReqRespMemory (0,0,0xFF,queue_offset + 8,wpointer,&status,&rdata);
+		// update total msgs
+		ReqRespMemory (0,1,0xFF,queue_offset,(uint64_t)0,&status,&rdata);
+		uint32_t total_msgs = getSliceFromWord(rdata, 63, 32);	
+		rdata = setSliceOfWord_64(rdata, 63,32,(total_msgs + 1));
+		ReqRespMemory (0,1,0xF0,queue_offset,rdata,&status,&rdata);
+		
+		
 	}
 
 	releaseMutex(queue_offset);
@@ -283,6 +290,11 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 					" pointers = %lx\n",rdata,*buf_address,queue_offset,rpointer);
 
 		ReqRespMemory (0,0,0xFF,queue_offset,rpointer,&status,&rdata);
+		// update total msgs
+		ReqRespMemory (0,1,0xFF,queue_offset,(uint64_t)0,&status,&rdata);
+		uint32_t total_msgs = getSliceFromWord(rdata, 63, 32);	
+		rdata = setSliceOfWord_64(rdata, 63,32,(total_msgs + 1));
+		ReqRespMemory (0,1,0xF0,queue_offset,rdata,&status,&rdata);
 	}
 	
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [pop] : queue empty ret_val= 0x%lx\n", ret_val);

@@ -184,7 +184,7 @@ void getReqFromTester(  uint8_t requester_id,
 			" req1 = %lx from pipe = %s\n",requester_id,req1,req_pipe1);
 	*(lock)  = (req1 >> 45) & 0x01; 
 	*(rwbar) = (req1 >> 44) & 0x01;
-	*(addr) = (req1 & 0xffffffff8) ;
+	*(addr) = (req1 & 0xfffffffff) ;
 	*(bmask) = (req1 >> 36) & 0xff;
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d"
 			" req1 = %lx\t wdata = 0x%lx,lock = %lx,rwbar = %lx, addr = %lx,"

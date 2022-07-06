@@ -71,6 +71,13 @@
 //24		  0x60		rx_buffer_pointer
 //.
 //25		  0x64		number of packets sent to rx queue
+//
+//26		  0x68
+//.		       \
+//.			->	chuncks received by parser from mac.	
+//.                    /
+//31		  0x7c
+//.
 //.
 //63		  0xfc		--
 //

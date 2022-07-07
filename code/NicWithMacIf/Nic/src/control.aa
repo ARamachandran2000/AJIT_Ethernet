@@ -80,6 +80,17 @@
 //.                    /
 //38		  0x98
 //.
+//39		  0x9c		transmit_engine -> push_pointer_back_to_free_Q
+//.
+//40		  0xa0		transmit_engine -> control_data
+//.
+//41		  0xa4
+//.		       \
+//.			->	chunks read by transmit engine
+//.                    /
+//52		  0xb0
+//.
+//.
 //.
 //63		  0xfc		--
 //

@@ -33,7 +33,7 @@ $is
 		// Once enabled start processing
 		$dopipeline $depth 31 $fullrate
 		$merge $entry $loopback 
-			$phi pkt_cnt := $zero<32> $on $entry npkt_cnt $on $loopback
+			$phi pkt_cnt := $one<32> $on $entry npkt_cnt $on $loopback
 		$endmerge
 
 		// Step 1 : Pop From Free Queue -> If not empty (Success indicated by status) 
@@ -45,10 +45,8 @@ $is
 		$guard(~status)
 			$call AccessRegister ($zero<1> (~$zero<4>) 24 rx_buffer_pointer_32) (ignore_resp0)
 		
-		// address modifications
 		// convert 32 bit 16-byte aligned address to 36 bit physical address.
 		$volatile rx_buffer_pointer_36 :=  ($concat $zero<4> rx_buffer_pointer_32)
-		//$volatile rx_buffer_pointer_36 :=  ($concat rx_buffer_pointer_32 $zero<4>)
 		$rreport(ReceiveEngineDaemon rx_buffer_val rx_buffer_pointer_36)
 		
 		// Step 2 : If pop was successful then start loading the buffer

@@ -72,11 +72,13 @@
 //.
 //25		  0x64		number of packets sent to rx queue
 //
-//26		  0x68
+//26		  0x68		tx_buffer_pointer received by trenasmit engine
+//
+//27		  0x6c
 //.		       \
 //.			->	chuncks received by parser from mac.	
 //.                    /
-//31		  0x7c
+//38		  0x98
 //.
 //.
 //63		  0xfc		--

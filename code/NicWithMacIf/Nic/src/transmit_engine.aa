@@ -34,6 +34,8 @@ $module [transmitEngineDaemon] $in () $out () $is
 			// Read tx_queue[tx_q_index]
 			$call getTxPacketPointerFromServer (tx_q_index) (pkt_pointer tx_flag)
 			
+			$guard(~tx_flag)
+				$call AccessRegister ($zero<1> (~$zero<4>) 26 pkt_pointer) (ignore_resp0)
 			
 				
 			// if tx_flag 

@@ -136,6 +136,8 @@ $module [transmitPacket]
  
 		// transmit packet to MAC.
 		nic_to_mac_transmit_pipe := ($concat $zero<1> data FULL_BYTE_MASK)
+
+		$call AccessRegister ($zero<1> (~$zero<4>) 53 ($slice mem_addr 31 0)) (ignore_resp5)
 	
 		// compute next count down and next memory address.
 		$volatile ncount_down := (count_down - 8)

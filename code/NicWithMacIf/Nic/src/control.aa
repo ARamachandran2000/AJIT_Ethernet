@@ -91,6 +91,8 @@
 //52		  0xb0
 //.
 //.
+//53		  0xb4		number of chunks written to nic_to_mac_pipe
+//.
 //.
 //63		  0xfc		--
 //

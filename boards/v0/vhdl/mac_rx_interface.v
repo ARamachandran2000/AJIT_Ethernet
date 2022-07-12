@@ -1,25 +1,3 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 04/08/2022 03:46:22 PM
-// Design Name: 
-// Module Name: mac_rx_interface
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
 module mac_rx_interface
 (
 
@@ -33,6 +11,7 @@ module mac_rx_interface
                rx_axis_tvalid,
                rx_axis_tuser,
                rx_axis_tlast,
+	       rx_axis_tready,
                
                RX_FIFO_pipe_read_data,
                RX_FIFO_pipe_read_req,
@@ -49,15 +28,16 @@ module mac_rx_interface
     input reset;
     
     output reg rx_axis_resetn;
+    output reg rx_axis_tready;
     input  [MAC_WIDTH-1 : 0] rx_axis_tdata;
     input  [TKEEP_WIDTH-1 : 0] rx_axis_tkeep;
     input rx_axis_tvalid;
     input rx_axis_tuser;
     input rx_axis_tlast;
     
-    output reg     [NIC_WIDTH-1:0]  RX_FIFO_pipe_read_data;
+    output      [NIC_WIDTH-1:0]  RX_FIFO_pipe_read_data;
     input                      RX_FIFO_pipe_read_req;
-    output                     RX_FIFO_pipe_read_ack;
+    output       reg              RX_FIFO_pipe_read_ack;
     
     reg reset_reg                 = 0;
     reg [NIC_WIDTH-1:0] pipe_data = 0;
@@ -67,10 +47,16 @@ module mac_rx_interface
     reg req_reg                   = 0;
     
     
-    assign RX_FIFO_pipe_read_ack = (req_reg == 1) ? 1 : 0;
+    
+  
     
     
-    //////////////////////////////////////Reset Logic////////////////////////////////////////////
+    reg [NIC_WIDTH - 1 : 0] rx_fifo [0 : 512];
+    
+    integer write_pointer = 0;
+    integer read_pointer = 0;
+
+
     
     always@(posedge clk)
     begin
@@ -89,96 +75,83 @@ module mac_rx_interface
     end
     
     end
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    
-    
-    /////////////////////////////////////AXI-S Data Loading////////////////////////////////////
-    
-    always@(posedge clk)
-    begin
+
+
+
+assign RX_FIFO_pipe_read_data = rx_fifo[read_pointer];
+
+always@(posedge clk)
+begin
+
         
         if (reset_reg == 1'b1)
         begin
-            data_valid <= 1'b0;
+            data_valid <= 1'b0;    
+            write_pointer = 0;
+            read_pointer = 0;
+
         end
         
-        else
-        begin
-        if (rx_axis_tvalid == 1'b1)
-        begin
+
             
-            if (rx_axis_tlast == 1'b1 && rx_axis_tuser == 1'b1)
+        
+     
+     	 if (RX_FIFO_pipe_read_req == 1'b1 && (write_pointer != read_pointer))
+       begin
+           read_pointer = (read_pointer + 1) % 512;   
+       end
+
+	
+
+		
+
+	
+	if((write_pointer + 1) == read_pointer)
+	begin
+
+		rx_axis_tready = 1'b0;
+
+	end
+	
+	else
+		rx_axis_tready = 1'b1;
+
+
+
+	if(rx_axis_tvalid == 1 && ((write_pointer + 1) != read_pointer))
+	begin
+ if (rx_axis_tlast == 1'b1 && rx_axis_tuser == 1'b1)
             begin
-                pipe_data  <= {rx_axis_tlast ,rx_axis_tdata ,rx_axis_tkeep}; //Valid Data
-                data_valid <= 1'b1;
+                pipe_data  = {rx_axis_tlast ,rx_axis_tdata ,rx_axis_tkeep}; //Valid Data
             end
             
             else if (rx_axis_tlast == 1'b1 && rx_axis_tuser == 1'b0)
             begin
-                pipe_data  <= {rx_axis_tlast,32'd1,4'd0}; //Indicates Bad Packet format received since FCS didn't pass
-                data_valid <= 1'b1;
+                pipe_data  = {rx_axis_tlast,32'd1,4'd0}; //Indicates Bad Packet format received since FCS didn't pass
             end
         
             else
             begin
-                pipe_data  <= {rx_axis_tlast ,rx_axis_tdata ,rx_axis_tkeep}; //Valid Data
-                data_valid <= 1'b1;
+                pipe_data  = {rx_axis_tlast ,rx_axis_tdata ,rx_axis_tkeep}; //Valid Data
             end
-    
-        end
-    
-    
-    
-        else
+
+	    rx_fifo[write_pointer] = pipe_data;
+        write_pointer = (write_pointer  + 1) % 512;  
+
+
+	end
+	
+
+        if(write_pointer == read_pointer)
         begin
-            data_valid <= 1'b0;
-        end
-    
-        
-        end
-    
-    
-    
-    end
-
-
-//////////////////////////////////////////Write to AHIR Fifo//////////////////////////////////////////
-    
-    always@(posedge clk)
-    begin
-    
-        write_data = pipe_data;
-        
-        if (reset_reg == 1'b1)
-        begin          
-            req_reg    <= 1'b0;           
+            RX_FIFO_pipe_read_ack = 1'b0;
         end
         
         else
-        begin
-        
-        if (data_valid == 1'b1)
-        begin
-            req_reg <= 1'b1;
+            RX_FIFO_pipe_read_ack = 1'b1;
             
-            if (RX_FIFO_pipe_read_req == 1'b1)
-            begin
-                
-                RX_FIFO_pipe_read_data <= write_data;             
-            end          
-        end
-        
-        else
-            req_reg <= 1'b0;
-    end
-    
-    end
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
+end
 
 
 endmodule

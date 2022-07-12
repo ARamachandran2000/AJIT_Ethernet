@@ -130,8 +130,8 @@ $module [transmitPacket]
 		$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK mem_addr $zero<64>) (data)
 		
 		//DEBUG
-		$call AccessRegister ($zero<1> (~$zero<4>) (42+chunk_cnt) ($slice data 31 0)) (ignore_resp3)
-		$call AccessRegister ($zero<1> (~$zero<4>) (41+chunk_cnt) ($slice data 63 32)) (ignore_resp4)
+		//$call AccessRegister ($zero<1> (~$zero<4>) (42+chunk_cnt) ($slice data 31 0)) (ignore_resp3)
+		//$call AccessRegister ($zero<1> (~$zero<4>) (41+chunk_cnt) ($slice data 63 32)) (ignore_resp4)
 		// will require to calculate IP-header checksum in future
  
 		// transmit packet to MAC.

@@ -64,8 +64,8 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 								RX)
 			// send to packet pipe
 			nic_rx_to_packet := RX
-			$call AccessRegister ($zero<1> (~$zero<4>) (28+chunk_cnt) ($slice RX 39 8)) (ignore_resp3)
-			$call AccessRegister ($zero<1> (~$zero<4>) (27+chunk_cnt) ($slice RX 71 40)) (ignore_resp4)
+			//$call AccessRegister ($zero<1> (~$zero<4>) (28+chunk_cnt) ($slice RX 39 8)) (ignore_resp3)
+			//$call AccessRegister ($zero<1> (~$zero<4>) (27+chunk_cnt) ($slice RX 71 40)) (ignore_resp4)
 						
 
 			$volatile pkt_complete := (nLSTATE == S0)

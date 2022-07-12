@@ -97,7 +97,8 @@ $is
 	$volatile last_word := (tlast == 1)
 	nLSTATE := ($excmux
 			(LSTATE == S0) 			S1
-			(LSTATE == S1) 			S2
+			((LSTATE == S1) & (~last_word))	S2
+			((LSTATE == S1) & last_word)	S0
 			((LSTATE == S2) & (~last_word))	S2
 			((LSTATE == S2) & last_word)	S0)
 }

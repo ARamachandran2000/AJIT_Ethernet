@@ -18,6 +18,7 @@
 $constant S0: $uint<2> := 0
 $constant S1: $uint<2> := 1
 $constant S2: $uint<2> := 2
+$constant S3: $uint<2> := 3
 // upper two bytes of last word of header are unused.
 //	so modify tkeep of last word.
 $constant HEADER_TKEEP : $uint<8> := _b00111111
@@ -29,24 +30,30 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 		$rreport(nicRxFromMacDaemon waiting_for_control)
 		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
 		
-		$call AccessRegister ($zero<1> (~$zero<4>) 22 $zero<32>) (ignore_resp0)
+			// for Debug
+			$call AccessRegister ($zero<1> (~$zero<4>) 22 $zero<32>) (ignore_resp0)
+		
+		
 		// If not enabled yet -> Loopback
 		$if (~(CONTROL_REGISTER [] 0)) $then
 			$place [not_enabled_yet_loopback]
 		$endif
 
 		$rreport(nicRxFromMacDaemon got_the__control )
-		$call AccessRegister ($zero<1> (~$zero<4>) 22 $one<32>) (ignore_resp1)
-		$dopipeline $depth 7 $fullrate
+			// for Debug
+			$call AccessRegister ($zero<1> (~$zero<4>) 22 $one<32>) (ignore_resp1)
+			
+			$dopipeline $depth 7 $fullrate
 			$merge $entry $loopback
-			// where are we in the packet
-			// S0	S1	S2
-			//start	Header	Payload	
-			// local_state
-			//	2
+				// where are we in the packet
+				// S0	S1	S2
+				//start	Header	Payload	
+				// local_state
+				//	2
 				$phi LSTATE := S0 $on $entry nLSTATE $on $loopback
 				$phi RX := mac_to_nic_data $on $entry, $loopback
-				$phi pkt_cnt := $zero<32> $on $entry npkt_cnt $on $loopback
+					// for Debug
+					$phi pkt_cnt := $zero<32> $on $entry npkt_cnt $on $loopback
 			$endmerge
 			
 			$rreport(nicRxFromMacDaemon data_is RX LSTATE)
@@ -63,14 +70,13 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 								RX)
 			// send to packet pipe
 			nic_rx_to_packet := RX
-			$volatile pkt_complete := (nLSTATE == S0)
-			//$guard(pkt_complete)
-			//	$volatile npkt_cnt := (pkt_cnt + $one<32>)
 
-			$volatile npkt_cnt := ($mux pkt_complete (pkt_cnt + $one<32>) pkt_cnt)			
-
-			$guard(pkt_complete)
-				$call AccessRegister ($zero<1> (~$zero<4>) 23 pkt_cnt) (ignore_resp2)
+				// for Debug
+				$volatile pkt_complete := (nLSTATE == S0)
+				$volatile npkt_cnt := ($mux pkt_complete (pkt_cnt + $one<32>) pkt_cnt)			
+				$guard(pkt_complete)
+					$call AccessRegister ($zero<1> (~$zero<4>) 23 pkt_cnt) (ignore_resp2)
+					
 			$rreport(nicRxFromMacDaemon data_written_is RX nLSTATE)
 			$while (CONTROL_REGISTER [] 0)
 			
@@ -90,10 +96,12 @@ $is
 {
 	$volatile $split(RX 1 64 8) (tlast tdata tkeep)
 	$volatile last_word := (tlast == 1)
+	$volatile go_to_s0 := ((last_word == 1) & (LSTATE != S2))
 	nLSTATE := ($excmux
-			(LSTATE == S0) 			S1
-			(LSTATE == S1) 			S2
-			((LSTATE == S2) & (~last_word))	S2
-			((LSTATE == S2) & last_word)	S0)
+			(LSTATE == S0) 				S1
+			((LSTATE == S3) |(go_to_s0 == 1))	S0
+			(LSTATE == S1)				S2
+			((LSTATE == S2) & (~last_word))		S2
+			((LSTATE == S2) & last_word)		S0)
 }
 

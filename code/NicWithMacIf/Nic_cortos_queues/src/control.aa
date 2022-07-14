@@ -66,9 +66,6 @@
 //22		  0x58		NIC got the control
 //				(0 -> no control, 1-> got control)
 //
-//23	    	  0x5c		--
-//.
-//.
 //.
 //63		  0xfc		--
 //
@@ -192,7 +189,22 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 
 $module [NicRegisterAccessDaemon] $in () $out () $is
 {
+	
+	//$branchblock[loop1]{
+	//	$merge $entry loopback
+	//		$phi I := $zero<7> $on $entry nI $on loopback
+	//	$endmerge
+//
+//		nic_registers[I] := $zero<32>
+//		$volatile nI := (I + 1)
+	
+//		$if(I < 64) $then
+//		$place [loopback]
+//		$endif
+//	}
+	$barrier
 	$branchblock[loop] {
+
 		$dopipeline $depth 31 $fullrate
 		$merge $entry $loopback $endmerge
 

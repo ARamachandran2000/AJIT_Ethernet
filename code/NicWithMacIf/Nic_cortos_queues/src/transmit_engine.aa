@@ -138,7 +138,7 @@ $module [transmitPacket]
 		$volatile ncount_down := (count_down - 8)
 		$volatile  nmem_addr := (mem_addr + 8)
 		
-		$volatile nchunk_cnt := (chunk_cnt + 1)
+		$volatile nchunk_cnt := (chunk_cnt + 2)
 	
 		$rreport(transmitPacket count_down_ data count_down ncount_down mem_addr nmem_addr)
 		$volatile not_last_word := (ncount_down > 8)

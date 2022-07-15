@@ -78,6 +78,8 @@
 // Response Packet Format -> Error-bit(1) rdata(32)
 $storage nic_registers: $array [64] $of $uint<32>
 
+
+
 // Updates the value in the register based on the byte-mask -> If a particular
 //bit in the byte mask is 1, then corresponding byte in register is updated with new value 
 // else old value is retained
@@ -109,6 +111,16 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 {
 	$rreport(SoftwareRegisterAccessDaemon started_SoftwareRegisterAccessDaemon)
 	$branchblock[loop] {
+
+		$merge $entry not_mac_enable_loopback
+
+		$endmerge
+		$rreport(SoftwareRegisterAccessDaemon mac_not_enabled MAC_ENABLE)
+		$if(MAC_ENABLE == 0) $then 
+			$place[not_mac_enable_loopback]
+		$endif	
+
+
 		$dopipeline $depth 31 $fullrate 
 		$merge $entry $loopback 
 
@@ -177,7 +189,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 
 			$volatile rdata := ($mux rwbar rval $zero<32>)
 			$volatile resp  := ($concat $zero<1> rdata) // zero<1> -> No error
-
+	
 			
 			// Send response
 			AFB_NIC_RESPONSE := resp
@@ -190,19 +202,22 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 $module [NicRegisterAccessDaemon] $in () $out () $is
 {
 	
-	//$branchblock[loop1]{
-	//	$merge $entry loopback
-	//		$phi I := $zero<7> $on $entry nI $on loopback
-	//	$endmerge
-//
-//		nic_registers[I] := $zero<32>
-//		$volatile nI := (I + 1)
-	
-//		$if(I < 64) $then
-//		$place [loopback]
-//		$endif
-//	}
+	$branchblock[loop1]{
+		$merge $entry loopback
+			$phi I := $zero<7> $on $entry nI $on loopback
+		$endmerge
+
+		nic_registers[I] := $zero<32>
+		$volatile nI := (I + 1)
+
+		$if(I < 63) $then
+			$place [loopback]
+		$else
+			MAC_ENABLE := 1
+		$endif
+	}
 	$barrier
+
 	$branchblock[loop] {
 
 		$dopipeline $depth 31 $fullrate

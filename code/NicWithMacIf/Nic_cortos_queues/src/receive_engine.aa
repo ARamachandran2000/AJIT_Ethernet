@@ -67,9 +67,7 @@ $is
 				// for Debug
 				$guard(ok_flag)
 					$call AccessRegister ($zero<1> (~$zero<4>) 25 pkt_cnt) (ignore_resp1)
-
-				$guard(ok_flag)
-					$volatile npkt_cnt := (pkt_cnt + $one<32>)
+					$volatile npkt_cnt := ($mux ok_flag (pkt_cnt + $one<32>)  pkt_cnt) 
 
 		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag cond)		
 		$rreport(ReceiveEngineDaemon running_ok_flag)

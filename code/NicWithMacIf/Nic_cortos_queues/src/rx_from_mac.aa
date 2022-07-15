@@ -39,6 +39,8 @@ $module [nicRxFromMacDaemon] $in () $out () $is
 			$place [not_enabled_yet_loopback]
 		$endif
 
+		enable_mac := 1
+
 		$rreport(nicRxFromMacDaemon got_the__control )
 			// for Debug
 			$call AccessRegister ($zero<1> (~$zero<4>) 22 $one<32>) (ignore_resp1)

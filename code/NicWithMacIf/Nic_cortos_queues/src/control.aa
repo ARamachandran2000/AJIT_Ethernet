@@ -209,11 +209,13 @@ $module [NicRegisterAccessDaemon] $in () $out () $is
 
 		nic_registers[I] := $zero<32>
 		$volatile nI := (I + 1)
-
+		
+		MAC_ENABLE := ($mux (I == 63) 1 0)
+		
 		$if(I < 63) $then
 			$place [loopback]
-		$else
-			MAC_ENABLE := 1
+		//$else
+		//	MAC_ENABLE := 1
 		$endif
 	}
 	$barrier

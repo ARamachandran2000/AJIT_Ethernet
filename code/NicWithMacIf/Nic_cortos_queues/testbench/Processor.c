@@ -11,7 +11,7 @@ void cpu_model()
 	//writeNicReg();
 	//readNicReg();
 
-
+	readNicReg();
 	initQueue(FREE_QUEUE, 4, 4);
 	initQueue(RX_QUEUE, 4,4);
 	initQueue(TX_QUEUE, 4,4);
@@ -29,7 +29,16 @@ void cpu_model()
 	(DEBUG == 0) && fprintf(stderr, "CPU_THREAD : configuring NIC registers\n");
 	
 	register_config (RX_QUEUE, TX_QUEUE, FREE_QUEUE);
-	MAC_ENABLE = 1;	
+
+
+	//fprintf(stderr,"reading mac_enable\n");
+	//uint8_t mac_enable = 0;
+	//while(mac_enable == 0)
+	//{
+	//	mac_enable= read_uint8("mac_test_data");
+	//	fprintf(stderr,"mac_enable = %d\n",mac_enable);
+	//}
+	//MAC_ENABLE = mac_enable;	
 	uint32_t buffer_with_packet = 0;
 
 	while(1)
@@ -39,6 +48,7 @@ void cpu_model()
 		//	(For now not swapping Addresses to reduce 
 		//		complexity since we are just simulating 
 		//		to check the NIC functionality)
+		//readNicReg();
 		if(pop (RX_QUEUE, &buffer_with_packet)){
 			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD : Got RX_Q = %lx and buffer_with_packet = %lx pointer sending it to TX_Q\n", RX_QUEUE, buffer_with_packet);	
 			push(TX_QUEUE, buffer_with_packet);

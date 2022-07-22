@@ -24,11 +24,11 @@ uint32_t reserve_lock(void);
 
 // should be multiple of 16
 #define BUF_SIZE	80				//80
-#define BUF_0 (TX_QUEUE + QUEUE_LENGTH)/16 		// (128 + 64)/16 = 12
+#define BUF_0 ((TX_QUEUE + QUEUE_LENGTH)/16) 		// (128 + 64)/16 = 12
 
-#define BUF_1 BUF_0 + (BUF_SIZE / 16) 			// 12   +   (80/16 = 5) = 17 
-#define BUF_2 BUF_1 + (BUF_SIZE / 16) 			// 17  +    (80/16 = 5) = 22
-#define BUF_3 BUF_2 + (BUF_SIZE / 16) 			// 22  +    (80/16 = 5) = 27
+#define BUF_1 (BUF_0 + (BUF_SIZE / 16))			// 12   +   (80/16 = 5) = 17 
+#define BUF_2 (BUF_1 + (BUF_SIZE / 16))			// 17  +    (80/16 = 5) = 22
+#define BUF_3 (BUF_2 + (BUF_SIZE / 16))			// 22  +    (80/16 = 5) = 27
 
 
 // sends requestes and reads responces(for queue functions such as pop push) 
@@ -122,9 +122,9 @@ void acquireMutex(uint64_t queue_offset)
 		(DEBUG == 1) && fprintf(stderr,"fetching lock address[queue_offset = %d] : mutex_val = %d"
 						" rdata = 0x%lx\n",(queue_offset + 16),mutex_val,rdata);
 		lock_ptr = (rdata & 0xffffffff);
-		
-		ReqRespMemory(1,1,0xff,lock_ptr,0,&status,&rdata);
-		mutex_val = (rdata >> 56) &  0xff;
+		int lock_index = lock_ptr&0x7;
+		ReqRespMemory(1,1,0xff,(uint64_t)lock_ptr,0,&status,&rdata);
+		mutex_val = (rdata >> (56 - 8*lock_index)) &  0xff;
 		(DEBUG == 1) && fprintf(stderr,"acquiring lock[queue_offset = %d] lock_ptr=%d: mutex_val = %d"
 					" rdata = 0x%lx\n",queue_offset,lock_ptr,mutex_val,rdata);
 		lock_ptr_start = lock_ptr & (~7);
@@ -150,7 +150,7 @@ void releaseMutex(uint64_t queue_offset)
 	uint64_t rdata;
 	uint32_t lock_ptr;
 	uint8_t status;
-	ReqRespMemory(0,1,0xff,queue_offset+16,(uint64_t)0,&status,&rdata);
+	ReqRespMemory(1,1,0xff,queue_offset+16,(uint64_t)0,&status,&rdata);
 	lock_ptr = (rdata & 0xffffffff);
 	uint32_t lock_ptr_start = lock_ptr & (~7);
 	int index = lock_ptr&0x7;
@@ -179,6 +179,8 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 	write_pointer = getSliceFromWord(wpointer, 63, 32);
 	read_pointer  = getSliceFromWord(rpointer, 31, 0);
+		// Date 14/7/22	
+	uint32_t total_msgs = getSliceFromWord(rpointer, 63,32);
 	length = getSliceFromWord(wpointer, 31, 0);
 	uint32_t next_pointer = (write_pointer + 1) % (length);
 
@@ -221,7 +223,14 @@ int push(uint64_t queue_offset, uint32_t buffer_address)
 
 		wpointer = setSliceOfWord_64(wpointer, 63,32,next_pointer);
 		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [push] : pointers = %lx. \n",wpointer);
+	
+		// Date 14/7/22	
+		uint64_t tot_msg_RI = setSliceOfWord_64(tot_msg_RI,63,32,(total_msgs + 1));
 		
+		ReqRespMemory (0,0,0xF0,queue_offset,tot_msg_RI,&status,&rdata);
+		//
+
+
 		ReqRespMemory (0,0,0xFF,queue_offset + 8,wpointer,&status,&rdata);
 		// update total msgs
 		ReqRespMemory (0,1,0xFF,queue_offset,(uint64_t)0,&status,&rdata);
@@ -258,6 +267,8 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 
 	uint32_t write_pointer = getSliceFromWord(wpointer, 63, 32);
 	uint32_t read_pointer  = getSliceFromWord(rpointer, 31, 0);
+		// Date 14/7/22	
+	uint32_t total_msgs = getSliceFromWord(rpointer, 63,32);
 	uint32_t length  = getSliceFromWord(wpointer, 31, 0);
 	uint64_t element_pair_address = queue_offset + 24 + ((read_pointer >> 1)<<3) ;
 	
@@ -285,6 +296,7 @@ int pop(uint64_t queue_offset , uint32_t* buf_address)
 		read_pointer = (read_pointer + 1) % (length);
 		
 		rpointer = setSliceOfWord_64(rpointer, 31,0,read_pointer);
+		rpointer = setSliceOfWord_64(rpointer, 63,32,(total_msgs - 1));
 		(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [pop] : queue not empty rdata"
 					" = %lx buffer address = %lx, Queue Offset = %lx,"
 					" pointers = %lx\n",rdata,*buf_address,queue_offset,rpointer);

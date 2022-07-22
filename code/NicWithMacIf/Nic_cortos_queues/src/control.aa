@@ -150,6 +150,9 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			$guard (update_control_register_pipe)
 				CONTROL_REGISTER := nic_registers[0]
 
+			$guard (update_control_register_pipe)
+				enable_mac := (nic_registers[0]  == $one<32>)
+				
 			// Get 32 bit address
 			$guard(update_free_q_pipe)
 				FREE_Q_32 := nic_registers[18]

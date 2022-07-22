@@ -1,5 +1,7 @@
 // decleration of pipes
 
+$pipe mac_test_data : $uint<8> $depth 1
+
 $pipe mac_to_nic_data_0 : $uint<64> $depth 2//16
 $pipe mac_to_nic_data_1 : $uint<16> $depth 2//16
 
@@ -173,4 +175,24 @@ $is
 			mem_req0_pipe1 := rdata1
 		$while 1
 	}
+}
+
+$module [mac_enable_tester]
+	$in()
+	$out()
+$is
+{
+	$branchblock[loop]
+	{
+		$dopipeline $depth 7 $fullrate
+		$merge $entry $loopback $endmerge
+
+		$rreport(mac_enable_tester reading_mac_enable)
+		data := enable_mac 
+		$rreport(mac_enable_tester read_mac_enable data)
+		mac_test_data := ($concat $zero<7> data) 
+
+		$while 1	
+	}
+
 }

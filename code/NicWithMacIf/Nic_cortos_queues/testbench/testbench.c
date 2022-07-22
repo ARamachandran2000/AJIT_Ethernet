@@ -94,6 +94,7 @@ int main(int argc, char *argv[])
 	// comment this while compiling only c code.	
 	//register_pipes();
 	// declare threads
+	PTHREAD_DECL(mac_enable_checker);
 	PTHREAD_DECL(cpu_thread);
 	PTHREAD_DECL(nicMemoryServiceDaemon);
 	PTHREAD_DECL(cpuMemoryServiceDaemon);
@@ -101,6 +102,7 @@ int main(int argc, char *argv[])
 	PTHREAD_DECL(mac_rx_thread);
 	
 	// create threads
+	PTHREAD_CREATE(mac_enable_checker);
 	PTHREAD_CREATE(cpu_thread);
 	PTHREAD_CREATE(nicMemoryServiceDaemon);
 	PTHREAD_CREATE(cpuMemoryServiceDaemon);

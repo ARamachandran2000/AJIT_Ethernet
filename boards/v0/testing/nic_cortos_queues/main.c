@@ -23,6 +23,13 @@ void writeNicReg(uint32_t, uint32_t);
 void readMemory(uint64_t);
 void printMemory(void);
 
+void loadEthernetHeader(uint32_t* buffer_addr, uint32_t* eth_hdr)
+{
+	eth_hdr[0] = buffer_addr[2];
+	eth_hdr[1] = buffer_addr[3];
+	eth_hdr[2] = buffer_addr[4];
+	eth_hdr[3] = buffer_addr[5];
+}
 
 void nicRegConfig(CortosQueueHeader* Free_Queue, CortosQueueHeader* Rx_Queue,CortosQueueHeader* Tx_Queue)
 {
@@ -52,7 +59,7 @@ int main()
 	 __ajit_write_serial_control_register__ ( TX_ENABLE | RX_ENABLE);
 	ee_printf ("Started\n");
 	
-	readNicRegs();
+	//readNicRegs();
 	
 	uint32_t msgSizeInBytes,length,msgs_written;
 	msgSizeInBytes = 4;
@@ -74,16 +81,26 @@ int main()
 
 	msgs_written = cortos_writeMessages(free_queue, Buffers, 3);
 	
-	printMemory();	
+	//printMemory();	
 
 	nicRegConfig(free_queue,rx_queue,tx_queue);
 	
-	readNicRegs();
-	printMemory();	
+	//readNicRegs();
+	//printMemory();	
 
 	ee_printf ("Configuration Done. NIC has started\n");
 	printMemory();	
-	readNicRegs();
+	//readNicRegs();
+
+	uint32_t eth_hdr[4];
+        loadEthernetHeader(free_queue,&eth_hdr);
+        
+	ee_printf("eth_hdr[0] = 0x%x\n", eth_hdr[0]);
+	ee_printf("eth_hdr[1] = 0x%x\n", eth_hdr[1]);
+        ee_printf("eth_hdr[2] = 0x%x\n", eth_hdr[2]);
+	ee_printf("eth_hdr[3] = 0x%x\n", eth_hdr[3]);
+
+
 	uint32_t buffer_with_packet = 0;
 	while(1){
 		

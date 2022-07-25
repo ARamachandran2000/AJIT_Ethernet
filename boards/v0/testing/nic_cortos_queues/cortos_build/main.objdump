@@ -32,12 +32,12 @@ Disassembly of section .text:
       40:	9c 13 a3 a0 	or  %sp, 0x3a0, %sp	! 2bfa0 <ajit_global_interrupt_handlers+0x20cf8>
       44:	bc 10 00 00 	mov  %g0, %fp
       48:	05 00 00 28 	sethi  %hi(0xa000), %g2
-      4c:	84 10 a3 30 	or  %g2, 0x330, %g2	! a330 <INIT_BY_00_DONE>
+      4c:	84 10 a3 a0 	or  %g2, 0x3a0, %g2	! a3a0 <INIT_BY_00_DONE>
       50:	c4 00 80 00 	ld  [ %g2 ], %g2
       54:	86 10 20 00 	clr  %g3
       58:	c6 20 80 00 	st  %g3, [ %g2 ]
       5c:	05 00 00 28 	sethi  %hi(0xa000), %g2
-      60:	84 10 a3 2c 	or  %g2, 0x32c, %g2	! a32c <PT_FLAG>
+      60:	84 10 a3 9c 	or  %g2, 0x39c, %g2	! a39c <PT_FLAG>
       64:	c4 00 80 00 	ld  [ %g2 ], %g2
       68:	86 10 20 00 	clr  %g3
       6c:	c6 20 80 00 	st  %g3, [ %g2 ]
@@ -46,7 +46,7 @@ Disassembly of section .text:
       78:	40 00 15 e2 	call  5800 <page_table_setup>
       7c:	01 00 00 00 	nop 
       80:	2d 00 00 28 	sethi  %hi(0xa000), %l6
-      84:	ac 15 a3 2c 	or  %l6, 0x32c, %l6	! a32c <PT_FLAG>
+      84:	ac 15 a3 9c 	or  %l6, 0x39c, %l6	! a39c <PT_FLAG>
       88:	ec 05 80 00 	ld  [ %l6 ], %l6
       8c:	ae 10 20 01 	mov  1, %l7
       90:	ee 25 80 00 	st  %l7, [ %l6 ]
@@ -71,7 +71,7 @@ Disassembly of section .text:
       dc:	40 00 01 bd 	call  7d0 <cortos_init_logging>
       e0:	01 00 00 00 	nop 
       e4:	05 00 00 28 	sethi  %hi(0xa000), %g2
-      e8:	84 10 a3 30 	or  %g2, 0x330, %g2	! a330 <INIT_BY_00_DONE>
+      e8:	84 10 a3 a0 	or  %g2, 0x3a0, %g2	! a3a0 <INIT_BY_00_DONE>
       ec:	c4 00 80 00 	ld  [ %g2 ], %g2
       f0:	86 10 20 01 	mov  1, %g3
       f4:	c6 20 80 00 	st  %g3, [ %g2 ]
@@ -81,7 +81,7 @@ Disassembly of section .text:
 
 00000104 <AFTER_PTABLE_SETUP>:
      104:	2d 00 00 28 	sethi  %hi(0xa000), %l6
-     108:	ac 15 a3 2c 	or  %l6, 0x32c, %l6	! a32c <PT_FLAG>
+     108:	ac 15 a3 9c 	or  %l6, 0x39c, %l6	! a39c <PT_FLAG>
      10c:	ec 05 80 00 	ld  [ %l6 ], %l6
      110:	ee 05 80 00 	ld  [ %l6 ], %l7
      114:	b0 10 20 01 	mov  1, %i0
@@ -174,7 +174,7 @@ Disassembly of section .text:
 
 00000230 <__cortos_wait_for_init_by_00>:
      230:	2d 00 00 28 	sethi  %hi(0xa000), %l6
-     234:	ac 15 a3 30 	or  %l6, 0x330, %l6	! a330 <INIT_BY_00_DONE>
+     234:	ac 15 a3 a0 	or  %l6, 0x3a0, %l6	! a3a0 <INIT_BY_00_DONE>
      238:	ec 05 80 00 	ld  [ %l6 ], %l6
 
 0000023c <_CORTOS_WAIT_FOR_INIT_BY_00>:
@@ -283,7 +283,7 @@ Disassembly of section .text:
      35c:	03 00 00 28 	sethi  %hi(0xa000), %g1
      360:	03 00 00 28 	sethi  %hi(0xa000), %g1
      364:	39 00 00 2c 	sethi  %hi(0xb000), %i4
-     368:	f0 00 63 38 	ld  [ %g1 + 0x338 ], %i0
+     368:	f0 00 63 a8 	ld  [ %g1 + 0x3a8 ], %i0
      36c:	b8 17 20 68 	or  %i4, 0x68, %i4
      370:	3b 00 00 2c 	sethi  %hi(0xb000), %i5
      374:	7f ff ff d0 	call  2b4 <cortos_lock_acquire_buzy>
@@ -307,7 +307,7 @@ Disassembly of section .text:
      3bc:	81 c7 e0 08 	ret 
      3c0:	81 e8 00 00 	restore 
      3c4:	39 00 00 2c 	sethi  %hi(0xb000), %i4
-     3c8:	f0 00 63 3c 	ld  [ %g1 + 0x33c ], %i0
+     3c8:	f0 00 63 ac 	ld  [ %g1 + 0x3ac ], %i0
      3cc:	10 bf ff e9 	b  370 <cortos_reserveLock+0x20>
      3d0:	b8 17 21 68 	or  %i4, 0x168, %i4
      3d4:	b8 10 21 00 	mov  0x100, %i4
@@ -320,7 +320,7 @@ Disassembly of section .text:
 000003ec <cortos_freeLock>:
      3ec:	9d e3 bf a0 	save  %sp, -96, %sp
      3f0:	3b 00 00 28 	sethi  %hi(0xa000), %i5
-     3f4:	c2 07 63 3c 	ld  [ %i5 + 0x33c ], %g1	! a33c <lockStartAddr>
+     3f4:	c2 07 63 ac 	ld  [ %i5 + 0x3ac ], %g1	! a3ac <lockStartAddr>
      3f8:	80 a0 40 18 	cmp  %g1, %i0
      3fc:	18 80 00 05 	bgu  410 <cortos_freeLock+0x24>
      400:	82 00 61 00 	add  %g1, 0x100, %g1
@@ -332,7 +332,7 @@ Disassembly of section .text:
      418:	d0 07 60 60 	ld  [ %i5 + 0x60 ], %o0	! b060 <cortos_reservedLockAddr>
      41c:	03 00 00 28 	sethi  %hi(0xa000), %g1
      420:	05 00 00 2c 	sethi  %hi(0xb000), %g2
-     424:	c2 00 63 38 	ld  [ %g1 + 0x338 ], %g1
+     424:	c2 00 63 a8 	ld  [ %g1 + 0x3a8 ], %g1
      428:	84 10 a0 68 	or  %g2, 0x68, %g2
      42c:	82 26 00 01 	sub  %i0, %g1, %g1
      430:	f0 07 60 60 	ld  [ %i5 + 0x60 ], %i0
@@ -341,7 +341,7 @@ Disassembly of section .text:
      43c:	81 e8 00 00 	restore 
      440:	7f ff ff 9d 	call  2b4 <cortos_lock_acquire_buzy>
      444:	d0 07 20 60 	ld  [ %i4 + 0x60 ], %o0
-     448:	c2 07 63 3c 	ld  [ %i5 + 0x33c ], %g1
+     448:	c2 07 63 ac 	ld  [ %i5 + 0x3ac ], %g1
      44c:	05 00 00 2c 	sethi  %hi(0xb000), %g2
      450:	82 26 00 01 	sub  %i0, %g1, %g1
      454:	84 10 a1 68 	or  %g2, 0x168, %g2
@@ -453,7 +453,7 @@ Disassembly of section .text:
      5b4:	88 01 20 08 	add  %g4, 8, %g4
      5b8:	86 10 00 04 	mov  %g4, %g3
      5bc:	05 00 00 28 	sethi  %hi(0xa000), %g2
-     5c0:	84 10 a3 40 	or  %g2, 0x340, %g2	! a340 <freelist_ncram>
+     5c0:	84 10 a3 b0 	or  %g2, 0x3b0, %g2	! a3b0 <freelist_ncram>
      5c4:	d0 00 a0 08 	ld  [ %g2 + 8 ], %o0
      5c8:	80 a2 00 02 	cmp  %o0, %g2
      5cc:	32 80 00 08 	bne,a   5ec <bget_ncram+0x64>
@@ -496,7 +496,7 @@ Disassembly of section .text:
 
 00000660 <bpool_ncram>:
      660:	03 00 00 28 	sethi  %hi(0xa000), %g1
-     664:	82 10 63 40 	or  %g1, 0x340, %g1	! a340 <freelist_ncram>
+     664:	82 10 63 b0 	or  %g1, 0x3b0, %g1	! a3b0 <freelist_ncram>
      668:	c4 00 60 0c 	ld  [ %g1 + 0xc ], %g2
      66c:	c2 22 20 08 	st  %g1, [ %o0 + 8 ]
      670:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
@@ -539,7 +539,7 @@ Disassembly of section .text:
      6fc:	81 c3 e0 08 	retl 
      700:	c2 20 c0 00 	st  %g1, [ %g3 ]
      704:	07 00 00 28 	sethi  %hi(0xa000), %g3
-     708:	86 10 e3 40 	or  %g3, 0x340, %g3	! a340 <freelist_ncram>
+     708:	86 10 e3 b0 	or  %g3, 0x3b0, %g3	! a3b0 <freelist_ncram>
      70c:	c2 00 e0 0c 	ld  [ %g3 + 0xc ], %g1
      710:	c6 22 00 00 	st  %g3, [ %o0 ]
      714:	c2 22 20 04 	st  %g1, [ %o0 + 4 ]
@@ -655,7 +655,7 @@ Disassembly of section .text:
      8a4:	01 00 00 00 	nop 
      8a8:	11 00 00 28 	sethi  %hi(0xa000), %o0
      8ac:	40 00 04 1e 	call  1924 <ee_printf>
-     8b0:	90 12 22 c0 	or  %o0, 0x2c0, %o0	! a2c0 <main+0x22c0>
+     8b0:	90 12 23 30 	or  %o0, 0x330, %o0	! a330 <main+0x2330>
      8b4:	b0 02 00 18 	add  %o0, %i0, %i0
      8b8:	7f ff fe 99 	call  31c <cortos_lock_release>
      8bc:	d0 04 20 04 	ld  [ %l0 + 4 ], %o0
@@ -1260,7 +1260,7 @@ Disassembly of section .text:
     11f8:	92 10 00 1a 	mov  %i2, %o1
     11fc:	da 27 bf 44 	st  %o5, [ %fp + -188 ]
     1200:	90 07 bf 58 	add  %fp, -168, %o0
-    1204:	40 00 0b 18 	call  3e64 <__GI_memcpy>
+    1204:	40 00 0b 21 	call  3e88 <__GI_memcpy>
     1208:	94 10 20 08 	mov  8, %o2
     120c:	da 07 bf 44 	ld  [ %fp + -188 ], %o5
     1210:	b4 06 a0 08 	add  %i2, 8, %i2
@@ -2393,7 +2393,7 @@ Disassembly of section .text:
     22b4:	88 01 20 08 	add  %g4, 8, %g4
     22b8:	86 10 00 04 	mov  %g4, %g3
     22bc:	05 00 00 28 	sethi  %hi(0xa000), %g2
-    22c0:	84 10 a3 50 	or  %g2, 0x350, %g2	! a350 <freelist>
+    22c0:	84 10 a3 c0 	or  %g2, 0x3c0, %g2	! a3c0 <freelist>
     22c4:	d0 00 a0 08 	ld  [ %g2 + 8 ], %o0
     22c8:	80 a2 00 02 	cmp  %o0, %g2
     22cc:	32 80 00 08 	bne,a   22ec <bget+0x4c>
@@ -2436,7 +2436,7 @@ Disassembly of section .text:
 
 00002360 <bpool>:
     2360:	03 00 00 28 	sethi  %hi(0xa000), %g1
-    2364:	82 10 63 50 	or  %g1, 0x350, %g1	! a350 <freelist>
+    2364:	82 10 63 c0 	or  %g1, 0x3c0, %g1	! a3c0 <freelist>
     2368:	c4 00 60 0c 	ld  [ %g1 + 0xc ], %g2
     236c:	c2 22 20 08 	st  %g1, [ %o0 + 8 ]
     2370:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
@@ -2479,7 +2479,7 @@ Disassembly of section .text:
     23fc:	81 c3 e0 08 	retl 
     2400:	c2 20 c0 00 	st  %g1, [ %g3 ]
     2404:	07 00 00 28 	sethi  %hi(0xa000), %g3
-    2408:	86 10 e3 50 	or  %g3, 0x350, %g3	! a350 <freelist>
+    2408:	86 10 e3 c0 	or  %g3, 0x3c0, %g3	! a3c0 <freelist>
     240c:	c2 00 e0 0c 	ld  [ %g3 + 0xc ], %g1
     2410:	c6 22 00 00 	st  %g3, [ %o0 ]
     2414:	c2 22 20 04 	st  %g1, [ %o0 + 4 ]
@@ -3830,2041 +3830,2053 @@ Disassembly of section .text:
     3638:	81 c3 e0 08 	retl 
     363c:	01 00 00 00 	nop 
 
-00003640 <readNicReg>:
-    3640:	91 2a 20 02 	sll  %o0, 2, %o0
-    3644:	03 00 00 28 	sethi  %hi(0xa000), %g1
-    3648:	d2 00 63 60 	ld  [ %g1 + 0x360 ], %o1	! a360 <NIC_REG>
-    364c:	92 02 40 08 	add  %o1, %o0, %o1
-    3650:	91 3a 60 1f 	sra  %o1, 0x1f, %o0
-    3654:	82 13 c0 00 	mov  %o7, %g1
-    3658:	7f ff fc ca 	call  2980 <__ajit_load_word_from_physical_address__>
-    365c:	9e 10 40 00 	mov  %g1, %o7
+00003640 <loadEthernetHeader>:
+    3640:	c2 02 00 00 	ld  [ %o0 ], %g1
+    3644:	c2 22 40 00 	st  %g1, [ %o1 ]
+    3648:	c2 02 20 04 	ld  [ %o0 + 4 ], %g1
+    364c:	c2 22 60 04 	st  %g1, [ %o1 + 4 ]
+    3650:	c2 02 20 08 	ld  [ %o0 + 8 ], %g1
+    3654:	c2 22 60 08 	st  %g1, [ %o1 + 8 ]
+    3658:	c2 02 20 0c 	ld  [ %o0 + 0xc ], %g1
+    365c:	81 c3 e0 08 	retl 
+    3660:	c2 22 60 0c 	st  %g1, [ %o1 + 0xc ]
 
-00003660 <readNicRegs>:
-    3660:	9d e3 bf a0 	save  %sp, -96, %sp
-    3664:	39 00 00 28 	sethi  %hi(0xa000), %i4
-    3668:	ba 10 20 00 	clr  %i5
-    366c:	b8 17 20 b0 	or  %i4, 0xb0, %i4
-    3670:	7f ff ff f4 	call  3640 <readNicReg>
-    3674:	90 10 00 1d 	mov  %i5, %o0
-    3678:	92 10 00 1d 	mov  %i5, %o1
-    367c:	94 10 00 08 	mov  %o0, %o2
-    3680:	7f ff f8 a9 	call  1924 <ee_printf>
-    3684:	90 10 00 1c 	mov  %i4, %o0
-    3688:	ba 07 60 01 	inc  %i5
-    368c:	80 a7 60 40 	cmp  %i5, 0x40
-    3690:	12 bf ff f8 	bne  3670 <readNicRegs+0x10>
-    3694:	01 00 00 00 	nop 
-    3698:	81 c7 e0 08 	ret 
-    369c:	81 e8 00 00 	restore 
+00003664 <readNicReg>:
+    3664:	91 2a 20 02 	sll  %o0, 2, %o0
+    3668:	03 00 00 28 	sethi  %hi(0xa000), %g1
+    366c:	d2 00 63 d0 	ld  [ %g1 + 0x3d0 ], %o1	! a3d0 <NIC_REG>
+    3670:	92 02 40 08 	add  %o1, %o0, %o1
+    3674:	91 3a 60 1f 	sra  %o1, 0x1f, %o0
+    3678:	82 13 c0 00 	mov  %o7, %g1
+    367c:	7f ff fc c1 	call  2980 <__ajit_load_word_from_physical_address__>
+    3680:	9e 10 40 00 	mov  %g1, %o7
 
-000036a0 <writeNicReg>:
-    36a0:	83 2a 20 02 	sll  %o0, 2, %g1
-    36a4:	05 00 00 28 	sethi  %hi(0xa000), %g2
-    36a8:	90 10 00 09 	mov  %o1, %o0
-    36ac:	d4 00 a3 60 	ld  [ %g2 + 0x360 ], %o2
-    36b0:	94 02 80 01 	add  %o2, %g1, %o2
-    36b4:	93 3a a0 1f 	sra  %o2, 0x1f, %o1
-    36b8:	82 13 c0 00 	mov  %o7, %g1
-    36bc:	7f ff fc 78 	call  289c <__ajit_store_word_to_physical_address__>
-    36c0:	9e 10 40 00 	mov  %g1, %o7
+00003684 <readNicRegs>:
+    3684:	9d e3 bf a0 	save  %sp, -96, %sp
+    3688:	39 00 00 28 	sethi  %hi(0xa000), %i4
+    368c:	ba 10 20 00 	clr  %i5
+    3690:	b8 17 20 b0 	or  %i4, 0xb0, %i4
+    3694:	7f ff ff f4 	call  3664 <readNicReg>
+    3698:	90 10 00 1d 	mov  %i5, %o0
+    369c:	92 10 00 1d 	mov  %i5, %o1
+    36a0:	94 10 00 08 	mov  %o0, %o2
+    36a4:	7f ff f8 a0 	call  1924 <ee_printf>
+    36a8:	90 10 00 1c 	mov  %i4, %o0
+    36ac:	ba 07 60 01 	inc  %i5
+    36b0:	80 a7 60 40 	cmp  %i5, 0x40
+    36b4:	12 bf ff f8 	bne  3694 <readNicRegs+0x10>
+    36b8:	01 00 00 00 	nop 
+    36bc:	81 c7 e0 08 	ret 
+    36c0:	81 e8 00 00 	restore 
 
-000036c4 <nicRegConfig>:
-    36c4:	9d e3 bf 98 	save  %sp, -104, %sp
-    36c8:	7f ff ff de 	call  3640 <readNicReg>
-    36cc:	90 10 20 16 	mov  0x16, %o0
-    36d0:	92 10 00 08 	mov  %o0, %o1
-    36d4:	11 00 00 28 	sethi  %hi(0xa000), %o0
-    36d8:	7f ff f8 93 	call  1924 <ee_printf>
-    36dc:	90 12 20 c8 	or  %o0, 0xc8, %o0	! a0c8 <main+0x20c8>
-    36e0:	90 10 20 01 	mov  1, %o0
-    36e4:	7f ff ff ef 	call  36a0 <writeNicReg>
-    36e8:	92 10 20 01 	mov  1, %o1
-    36ec:	92 10 00 19 	mov  %i1, %o1
-    36f0:	7f ff ff ec 	call  36a0 <writeNicReg>
-    36f4:	90 10 20 02 	mov  2, %o0
-    36f8:	92 10 00 1a 	mov  %i2, %o1
-    36fc:	7f ff ff e9 	call  36a0 <writeNicReg>
-    3700:	90 10 20 0a 	mov  0xa, %o0
-    3704:	92 10 00 18 	mov  %i0, %o1
-    3708:	7f ff ff e6 	call  36a0 <writeNicReg>
-    370c:	90 10 20 12 	mov  0x12, %o0
-    3710:	92 10 20 01 	mov  1, %o1
-    3714:	7f ff ff e3 	call  36a0 <writeNicReg>
-    3718:	90 10 20 00 	clr  %o0
-    371c:	7f ff ff c9 	call  3640 <readNicReg>
-    3720:	90 10 20 01 	mov  1, %o0
-    3724:	b0 10 00 08 	mov  %o0, %i0
-    3728:	7f ff ff c6 	call  3640 <readNicReg>
-    372c:	90 10 20 02 	mov  2, %o0
-    3730:	b4 10 00 08 	mov  %o0, %i2
-    3734:	7f ff ff c3 	call  3640 <readNicReg>
-    3738:	90 10 20 0a 	mov  0xa, %o0
-    373c:	b6 10 00 08 	mov  %o0, %i3
-    3740:	7f ff ff c0 	call  3640 <readNicReg>
-    3744:	90 10 20 12 	mov  0x12, %o0
-    3748:	b8 10 00 08 	mov  %o0, %i4
-    374c:	7f ff ff bd 	call  3640 <readNicReg>
-    3750:	90 10 20 00 	clr  %o0
-    3754:	ba 10 00 08 	mov  %o0, %i5
-    3758:	7f ff ff ba 	call  3640 <readNicReg>
-    375c:	90 10 20 15 	mov  0x15, %o0
-    3760:	b2 10 00 08 	mov  %o0, %i1
-    3764:	7f ff ff b7 	call  3640 <readNicReg>
-    3768:	90 10 20 16 	mov  0x16, %o0
-    376c:	92 10 00 18 	mov  %i0, %o1
-    3770:	d0 23 a0 60 	st  %o0, [ %sp + 0x60 ]
-    3774:	f2 23 a0 5c 	st  %i1, [ %sp + 0x5c ]
-    3778:	11 00 00 28 	sethi  %hi(0xa000), %o0
-    377c:	94 10 00 1a 	mov  %i2, %o2
-    3780:	96 10 00 1b 	mov  %i3, %o3
-    3784:	98 10 00 1c 	mov  %i4, %o4
-    3788:	9a 10 00 1d 	mov  %i5, %o5
-    378c:	7f ff f8 66 	call  1924 <ee_printf>
-    3790:	90 12 20 e0 	or  %o0, 0xe0, %o0
-    3794:	81 c7 e0 08 	ret 
-    3798:	81 e8 00 00 	restore 
+000036c4 <writeNicReg>:
+    36c4:	83 2a 20 02 	sll  %o0, 2, %g1
+    36c8:	05 00 00 28 	sethi  %hi(0xa000), %g2
+    36cc:	90 10 00 09 	mov  %o1, %o0
+    36d0:	d4 00 a3 d0 	ld  [ %g2 + 0x3d0 ], %o2
+    36d4:	94 02 80 01 	add  %o2, %g1, %o2
+    36d8:	93 3a a0 1f 	sra  %o2, 0x1f, %o1
+    36dc:	82 13 c0 00 	mov  %o7, %g1
+    36e0:	7f ff fc 6f 	call  289c <__ajit_store_word_to_physical_address__>
+    36e4:	9e 10 40 00 	mov  %g1, %o7
 
-0000379c <readMemory>:
-    379c:	9d e3 bf a0 	save  %sp, -96, %sp
-    37a0:	90 10 00 18 	mov  %i0, %o0
-    37a4:	92 10 00 19 	mov  %i1, %o1
-    37a8:	7f ff fc 76 	call  2980 <__ajit_load_word_from_physical_address__>
-    37ac:	b4 10 00 19 	mov  %i1, %i2
-    37b0:	b2 10 00 18 	mov  %i0, %i1
-    37b4:	b6 10 00 18 	mov  %i0, %i3
-    37b8:	b8 10 00 1a 	mov  %i2, %i4
-    37bc:	31 00 00 28 	sethi  %hi(0xa000), %i0
-    37c0:	ba 10 00 08 	mov  %o0, %i5
-    37c4:	7f ff f8 58 	call  1924 <ee_printf>
-    37c8:	91 ee 21 30 	restore  %i0, 0x130, %o0
+000036e8 <nicRegConfig>:
+    36e8:	9d e3 bf 98 	save  %sp, -104, %sp
+    36ec:	7f ff ff de 	call  3664 <readNicReg>
+    36f0:	90 10 20 16 	mov  0x16, %o0
+    36f4:	92 10 00 08 	mov  %o0, %o1
+    36f8:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    36fc:	7f ff f8 8a 	call  1924 <ee_printf>
+    3700:	90 12 20 c8 	or  %o0, 0xc8, %o0	! a0c8 <main+0x20c8>
+    3704:	90 10 20 01 	mov  1, %o0
+    3708:	7f ff ff ef 	call  36c4 <writeNicReg>
+    370c:	92 10 20 01 	mov  1, %o1
+    3710:	92 10 00 19 	mov  %i1, %o1
+    3714:	7f ff ff ec 	call  36c4 <writeNicReg>
+    3718:	90 10 20 02 	mov  2, %o0
+    371c:	92 10 00 1a 	mov  %i2, %o1
+    3720:	7f ff ff e9 	call  36c4 <writeNicReg>
+    3724:	90 10 20 0a 	mov  0xa, %o0
+    3728:	92 10 00 18 	mov  %i0, %o1
+    372c:	7f ff ff e6 	call  36c4 <writeNicReg>
+    3730:	90 10 20 12 	mov  0x12, %o0
+    3734:	92 10 20 01 	mov  1, %o1
+    3738:	7f ff ff e3 	call  36c4 <writeNicReg>
+    373c:	90 10 20 00 	clr  %o0
+    3740:	7f ff ff c9 	call  3664 <readNicReg>
+    3744:	90 10 20 01 	mov  1, %o0
+    3748:	b0 10 00 08 	mov  %o0, %i0
+    374c:	7f ff ff c6 	call  3664 <readNicReg>
+    3750:	90 10 20 02 	mov  2, %o0
+    3754:	b4 10 00 08 	mov  %o0, %i2
+    3758:	7f ff ff c3 	call  3664 <readNicReg>
+    375c:	90 10 20 0a 	mov  0xa, %o0
+    3760:	b6 10 00 08 	mov  %o0, %i3
+    3764:	7f ff ff c0 	call  3664 <readNicReg>
+    3768:	90 10 20 12 	mov  0x12, %o0
+    376c:	b8 10 00 08 	mov  %o0, %i4
+    3770:	7f ff ff bd 	call  3664 <readNicReg>
+    3774:	90 10 20 00 	clr  %o0
+    3778:	ba 10 00 08 	mov  %o0, %i5
+    377c:	7f ff ff ba 	call  3664 <readNicReg>
+    3780:	90 10 20 15 	mov  0x15, %o0
+    3784:	b2 10 00 08 	mov  %o0, %i1
+    3788:	7f ff ff b7 	call  3664 <readNicReg>
+    378c:	90 10 20 16 	mov  0x16, %o0
+    3790:	92 10 00 18 	mov  %i0, %o1
+    3794:	d0 23 a0 60 	st  %o0, [ %sp + 0x60 ]
+    3798:	f2 23 a0 5c 	st  %i1, [ %sp + 0x5c ]
+    379c:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    37a0:	94 10 00 1a 	mov  %i2, %o2
+    37a4:	96 10 00 1b 	mov  %i3, %o3
+    37a8:	98 10 00 1c 	mov  %i4, %o4
+    37ac:	9a 10 00 1d 	mov  %i5, %o5
+    37b0:	7f ff f8 5d 	call  1924 <ee_printf>
+    37b4:	90 12 20 e0 	or  %o0, 0xe0, %o0
+    37b8:	81 c7 e0 08 	ret 
+    37bc:	81 e8 00 00 	restore 
 
-000037cc <printMemory>:
-    37cc:	9d e3 bf a0 	save  %sp, -96, %sp
-    37d0:	35 00 00 28 	sethi  %hi(0xa000), %i2
-    37d4:	92 10 20 00 	clr  %o1
-    37d8:	90 16 a1 58 	or  %i2, 0x158, %o0
-    37dc:	33 00 00 28 	sethi  %hi(0xa000), %i1
-    37e0:	37 00 00 28 	sethi  %hi(0xa000), %i3
-    37e4:	7f ff f8 50 	call  1924 <ee_printf>
-    37e8:	ba 10 20 00 	clr  %i5
-    37ec:	b8 10 20 00 	clr  %i4
-    37f0:	b2 16 63 64 	or  %i1, 0x364, %i1
-    37f4:	b4 16 a1 58 	or  %i2, 0x158, %i2
-    37f8:	b6 16 e1 60 	or  %i3, 0x160, %i3
-    37fc:	92 10 00 1c 	mov  %i4, %o1
-    3800:	7f ff f8 49 	call  1924 <ee_printf>
-    3804:	90 10 00 1a 	mov  %i2, %o0
-    3808:	c2 06 40 00 	ld  [ %i1 ], %g1
-    380c:	90 10 00 1b 	mov  %i3, %o0
-    3810:	92 00 40 1d 	add  %g1, %i5, %o1
-    3814:	d4 00 40 1d 	ld  [ %g1 + %i5 ], %o2
-    3818:	7f ff f8 43 	call  1924 <ee_printf>
-    381c:	d6 02 60 04 	ld  [ %o1 + 4 ], %o3
-    3820:	b8 07 20 02 	add  %i4, 2, %i4
-    3824:	80 a7 21 00 	cmp  %i4, 0x100
-    3828:	12 bf ff f5 	bne  37fc <printMemory+0x30>
-    382c:	ba 07 60 08 	add  %i5, 8, %i5
-    3830:	81 c7 e0 08 	ret 
-    3834:	81 e8 00 00 	restore 
-    3838:	80 8a 60 01 	btst  1, %o1
-    383c:	02 80 00 08 	be  385c <printMemory+0x90>
-    3840:	80 8a 60 02 	btst  2, %o1
-    3844:	c4 0a 7f ff 	ldub  [ %o1 + -1 ], %g2
-    3848:	92 22 60 01 	dec  %o1
-    384c:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
-    3850:	94 22 a0 01 	dec  %o2
-    3854:	02 80 00 1a 	be  38bc <__GI_memmove+0x3c>
-    3858:	90 22 20 01 	dec  %o0
-    385c:	c4 12 7f fe 	lduh  [ %o1 + -2 ], %g2
-    3860:	92 22 60 02 	sub  %o1, 2, %o1
-    3864:	c4 32 3f fe 	sth  %g2, [ %o0 + -2 ]
-    3868:	94 22 a0 02 	sub  %o2, 2, %o2
-    386c:	10 80 00 14 	b  38bc <__GI_memmove+0x3c>
-    3870:	90 22 20 02 	sub  %o0, 2, %o0
+000037c0 <readMemory>:
+    37c0:	9d e3 bf a0 	save  %sp, -96, %sp
+    37c4:	90 10 00 18 	mov  %i0, %o0
+    37c8:	92 10 00 19 	mov  %i1, %o1
+    37cc:	7f ff fc 6d 	call  2980 <__ajit_load_word_from_physical_address__>
+    37d0:	b4 10 00 19 	mov  %i1, %i2
+    37d4:	b2 10 00 18 	mov  %i0, %i1
+    37d8:	b6 10 00 18 	mov  %i0, %i3
+    37dc:	b8 10 00 1a 	mov  %i2, %i4
+    37e0:	31 00 00 28 	sethi  %hi(0xa000), %i0
+    37e4:	ba 10 00 08 	mov  %o0, %i5
+    37e8:	7f ff f8 4f 	call  1924 <ee_printf>
+    37ec:	91 ee 21 30 	restore  %i0, 0x130, %o0
 
-00003874 <bcopy>:
-    3874:	96 10 00 08 	mov  %o0, %o3
-    3878:	90 10 00 09 	mov  %o1, %o0
-    387c:	92 10 00 0b 	mov  %o3, %o1
+000037f0 <printMemory>:
+    37f0:	9d e3 bf a0 	save  %sp, -96, %sp
+    37f4:	35 00 00 28 	sethi  %hi(0xa000), %i2
+    37f8:	92 10 20 00 	clr  %o1
+    37fc:	90 16 a1 58 	or  %i2, 0x158, %o0
+    3800:	33 00 00 28 	sethi  %hi(0xa000), %i1
+    3804:	37 00 00 28 	sethi  %hi(0xa000), %i3
+    3808:	7f ff f8 47 	call  1924 <ee_printf>
+    380c:	ba 10 20 00 	clr  %i5
+    3810:	b8 10 20 00 	clr  %i4
+    3814:	b2 16 63 d4 	or  %i1, 0x3d4, %i1
+    3818:	b4 16 a1 58 	or  %i2, 0x158, %i2
+    381c:	b6 16 e1 60 	or  %i3, 0x160, %i3
+    3820:	92 10 00 1c 	mov  %i4, %o1
+    3824:	7f ff f8 40 	call  1924 <ee_printf>
+    3828:	90 10 00 1a 	mov  %i2, %o0
+    382c:	c2 06 40 00 	ld  [ %i1 ], %g1
+    3830:	90 10 00 1b 	mov  %i3, %o0
+    3834:	92 00 40 1d 	add  %g1, %i5, %o1
+    3838:	d4 00 40 1d 	ld  [ %g1 + %i5 ], %o2
+    383c:	7f ff f8 3a 	call  1924 <ee_printf>
+    3840:	d6 02 60 04 	ld  [ %o1 + 4 ], %o3
+    3844:	b8 07 20 02 	add  %i4, 2, %i4
+    3848:	80 a7 21 00 	cmp  %i4, 0x100
+    384c:	12 bf ff f5 	bne  3820 <printMemory+0x30>
+    3850:	ba 07 60 08 	add  %i5, 8, %i5
+    3854:	81 c7 e0 08 	ret 
+    3858:	81 e8 00 00 	restore 
+    385c:	80 8a 60 01 	btst  1, %o1
+    3860:	02 80 00 08 	be  3880 <printMemory+0x90>
+    3864:	80 8a 60 02 	btst  2, %o1
+    3868:	c4 0a 7f ff 	ldub  [ %o1 + -1 ], %g2
+    386c:	92 22 60 01 	dec  %o1
+    3870:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
+    3874:	94 22 a0 01 	dec  %o2
+    3878:	02 80 00 1a 	be  38e0 <__GI_memmove+0x3c>
+    387c:	90 22 20 01 	dec  %o0
+    3880:	c4 12 7f fe 	lduh  [ %o1 + -2 ], %g2
+    3884:	92 22 60 02 	sub  %o1, 2, %o1
+    3888:	c4 32 3f fe 	sth  %g2, [ %o0 + -2 ]
+    388c:	94 22 a0 02 	sub  %o2, 2, %o2
+    3890:	10 80 00 14 	b  38e0 <__GI_memmove+0x3c>
+    3894:	90 22 20 02 	sub  %o0, 2, %o0
 
-00003880 <__GI_memmove>:
-    3880:	80 a2 00 09 	cmp  %o0, %o1
-    3884:	d0 23 a0 40 	st  %o0, [ %sp + 0x40 ]
-    3888:	08 80 01 79 	bleu  3e6c <__GI_memcpy+0x8>
-    388c:	98 22 00 09 	sub  %o0, %o1, %o4
-    3890:	96 02 40 0a 	add  %o1, %o2, %o3
-    3894:	80 a2 c0 08 	cmp  %o3, %o0
-    3898:	08 80 01 76 	bleu  3e70 <__GI_memcpy+0xc>
-    389c:	9a 8b 20 03 	andcc  %o4, 3, %o5
-    38a0:	92 02 40 0a 	add  %o1, %o2, %o1
-    38a4:	90 02 00 0a 	add  %o0, %o2, %o0
-    38a8:	12 80 00 f9 	bne  3c8c <__GI_memmove+0x40c>
-    38ac:	80 a2 a0 0f 	cmp  %o2, 0xf
-    38b0:	08 80 00 eb 	bleu  3c5c <__GI_memmove+0x3dc>
-    38b4:	80 8a 60 03 	btst  3, %o1
-    38b8:	12 bf ff e0 	bne  3838 <printMemory+0x6c>
-    38bc:	80 8a 60 04 	btst  4, %o1
-    38c0:	02 80 00 07 	be  38dc <__GI_memmove+0x5c>
-    38c4:	82 10 00 0a 	mov  %o2, %g1
-    38c8:	d8 02 7f fc 	ld  [ %o1 + -4 ], %o4
-    38cc:	82 20 60 04 	sub  %g1, 4, %g1
-    38d0:	d8 22 3f fc 	st  %o4, [ %o0 + -4 ]
-    38d4:	92 22 60 04 	sub  %o1, 4, %o1
-    38d8:	90 22 20 04 	sub  %o0, 4, %o0
-    38dc:	8c 88 7f 80 	andcc  %g1, -128, %g6
-    38e0:	02 80 00 37 	be  39bc <__GI_memmove+0x13c>
-    38e4:	80 8a 20 04 	btst  4, %o0
-    38e8:	02 80 00 84 	be  3af8 <__GI_memmove+0x278>
-    38ec:	d4 1a 7f e0 	ldd  [ %o1 + -32 ], %o2
-    38f0:	d8 1a 7f e8 	ldd  [ %o1 + -24 ], %o4
-    38f4:	c4 1a 7f f0 	ldd  [ %o1 + -16 ], %g2
-    38f8:	c8 1a 7f f8 	ldd  [ %o1 + -8 ], %g4
-    38fc:	d4 22 3f e0 	st  %o2, [ %o0 + -32 ]
-    3900:	d6 22 3f e4 	st  %o3, [ %o0 + -28 ]
-    3904:	d8 22 3f e8 	st  %o4, [ %o0 + -24 ]
-    3908:	da 22 3f ec 	st  %o5, [ %o0 + -20 ]
-    390c:	c4 22 3f f0 	st  %g2, [ %o0 + -16 ]
-    3910:	c6 22 3f f4 	st  %g3, [ %o0 + -12 ]
-    3914:	c8 22 3f f8 	st  %g4, [ %o0 + -8 ]
-    3918:	ca 22 3f fc 	st  %g5, [ %o0 + -4 ]
-    391c:	d4 1a 7f c0 	ldd  [ %o1 + -64 ], %o2
-    3920:	d8 1a 7f c8 	ldd  [ %o1 + -56 ], %o4
-    3924:	c4 1a 7f d0 	ldd  [ %o1 + -48 ], %g2
-    3928:	c8 1a 7f d8 	ldd  [ %o1 + -40 ], %g4
-    392c:	d4 22 3f c0 	st  %o2, [ %o0 + -64 ]
-    3930:	d6 22 3f c4 	st  %o3, [ %o0 + -60 ]
-    3934:	d8 22 3f c8 	st  %o4, [ %o0 + -56 ]
-    3938:	da 22 3f cc 	st  %o5, [ %o0 + -52 ]
-    393c:	c4 22 3f d0 	st  %g2, [ %o0 + -48 ]
-    3940:	c6 22 3f d4 	st  %g3, [ %o0 + -44 ]
-    3944:	c8 22 3f d8 	st  %g4, [ %o0 + -40 ]
-    3948:	ca 22 3f dc 	st  %g5, [ %o0 + -36 ]
-    394c:	d4 1a 7f a0 	ldd  [ %o1 + -96 ], %o2
-    3950:	d8 1a 7f a8 	ldd  [ %o1 + -88 ], %o4
-    3954:	c4 1a 7f b0 	ldd  [ %o1 + -80 ], %g2
-    3958:	c8 1a 7f b8 	ldd  [ %o1 + -72 ], %g4
-    395c:	d4 22 3f a0 	st  %o2, [ %o0 + -96 ]
-    3960:	d6 22 3f a4 	st  %o3, [ %o0 + -92 ]
-    3964:	d8 22 3f a8 	st  %o4, [ %o0 + -88 ]
-    3968:	da 22 3f ac 	st  %o5, [ %o0 + -84 ]
-    396c:	c4 22 3f b0 	st  %g2, [ %o0 + -80 ]
-    3970:	c6 22 3f b4 	st  %g3, [ %o0 + -76 ]
-    3974:	c8 22 3f b8 	st  %g4, [ %o0 + -72 ]
-    3978:	ca 22 3f bc 	st  %g5, [ %o0 + -68 ]
-    397c:	d4 1a 7f 80 	ldd  [ %o1 + -128 ], %o2
-    3980:	d8 1a 7f 88 	ldd  [ %o1 + -120 ], %o4
-    3984:	c4 1a 7f 90 	ldd  [ %o1 + -112 ], %g2
-    3988:	c8 1a 7f 98 	ldd  [ %o1 + -104 ], %g4
-    398c:	d4 22 3f 80 	st  %o2, [ %o0 + -128 ]
-    3990:	d6 22 3f 84 	st  %o3, [ %o0 + -124 ]
-    3994:	d8 22 3f 88 	st  %o4, [ %o0 + -120 ]
-    3998:	da 22 3f 8c 	st  %o5, [ %o0 + -116 ]
-    399c:	c4 22 3f 90 	st  %g2, [ %o0 + -112 ]
-    39a0:	c6 22 3f 94 	st  %g3, [ %o0 + -108 ]
-    39a4:	c8 22 3f 98 	st  %g4, [ %o0 + -104 ]
-    39a8:	ca 22 3f 9c 	st  %g5, [ %o0 + -100 ]
-    39ac:	8c a1 a0 80 	subcc  %g6, 0x80, %g6
-    39b0:	92 22 60 80 	sub  %o1, 0x80, %o1
-    39b4:	12 bf ff ce 	bne  38ec <__GI_memmove+0x6c>
-    39b8:	90 22 20 80 	sub  %o0, 0x80, %o0
-    39bc:	8c 88 60 70 	andcc  %g1, 0x70, %g6
-    39c0:	02 80 00 34 	be  3a90 <__GI_memmove+0x210>
-    39c4:	80 88 60 08 	btst  8, %g1
-    39c8:	99 31 a0 01 	srl  %g6, 1, %o4
-    39cc:	84 10 00 0f 	mov  %o7, %g2
-    39d0:	98 01 80 0c 	add  %g6, %o4, %o4
-    39d4:	40 00 05 3d 	call  4ec8 <__GI_memcpy+0x1064>
-    39d8:	92 22 40 06 	sub  %o1, %g6, %o1
-    39dc:	9e 10 00 02 	mov  %g2, %o7
-    39e0:	81 c3 60 bc 	jmp  %o5 + 0xbc
-    39e4:	90 22 00 06 	sub  %o0, %g6, %o0
-    39e8:	c4 1a 60 60 	ldd  [ %o1 + 0x60 ], %g2
-    39ec:	c8 1a 60 68 	ldd  [ %o1 + 0x68 ], %g4
-    39f0:	c4 22 20 60 	st  %g2, [ %o0 + 0x60 ]
-    39f4:	c6 22 20 64 	st  %g3, [ %o0 + 0x64 ]
-    39f8:	c8 22 20 68 	st  %g4, [ %o0 + 0x68 ]
-    39fc:	ca 22 20 6c 	st  %g5, [ %o0 + 0x6c ]
-    3a00:	c4 1a 60 50 	ldd  [ %o1 + 0x50 ], %g2
-    3a04:	c8 1a 60 58 	ldd  [ %o1 + 0x58 ], %g4
-    3a08:	c4 22 20 50 	st  %g2, [ %o0 + 0x50 ]
-    3a0c:	c6 22 20 54 	st  %g3, [ %o0 + 0x54 ]
-    3a10:	c8 22 20 58 	st  %g4, [ %o0 + 0x58 ]
-    3a14:	ca 22 20 5c 	st  %g5, [ %o0 + 0x5c ]
-    3a18:	c4 1a 60 40 	ldd  [ %o1 + 0x40 ], %g2
-    3a1c:	c8 1a 60 48 	ldd  [ %o1 + 0x48 ], %g4
-    3a20:	c4 22 20 40 	st  %g2, [ %o0 + 0x40 ]
-    3a24:	c6 22 20 44 	st  %g3, [ %o0 + 0x44 ]
-    3a28:	c8 22 20 48 	st  %g4, [ %o0 + 0x48 ]
-    3a2c:	ca 22 20 4c 	st  %g5, [ %o0 + 0x4c ]
-    3a30:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    3a34:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    3a38:	c4 22 20 30 	st  %g2, [ %o0 + 0x30 ]
-    3a3c:	c6 22 20 34 	st  %g3, [ %o0 + 0x34 ]
-    3a40:	c8 22 20 38 	st  %g4, [ %o0 + 0x38 ]
-    3a44:	ca 22 20 3c 	st  %g5, [ %o0 + 0x3c ]
-    3a48:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
-    3a4c:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
-    3a50:	c4 22 20 20 	st  %g2, [ %o0 + 0x20 ]
-    3a54:	c6 22 20 24 	st  %g3, [ %o0 + 0x24 ]
-    3a58:	c8 22 20 28 	st  %g4, [ %o0 + 0x28 ]
-    3a5c:	ca 22 20 2c 	st  %g5, [ %o0 + 0x2c ]
-    3a60:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    3a64:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    3a68:	c4 22 20 10 	st  %g2, [ %o0 + 0x10 ]
-    3a6c:	c6 22 20 14 	st  %g3, [ %o0 + 0x14 ]
-    3a70:	c8 22 20 18 	st  %g4, [ %o0 + 0x18 ]
-    3a74:	ca 22 20 1c 	st  %g5, [ %o0 + 0x1c ]
-    3a78:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    3a7c:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    3a80:	c4 22 20 00 	st  %g2, [ %o0 ]
-    3a84:	c6 22 20 04 	st  %g3, [ %o0 + 4 ]
-    3a88:	c8 22 20 08 	st  %g4, [ %o0 + 8 ]
-    3a8c:	ca 22 20 0c 	st  %g5, [ %o0 + 0xc ]
-    3a90:	02 80 00 07 	be  3aac <__GI_memmove+0x22c>
-    3a94:	80 88 60 04 	btst  4, %g1
-    3a98:	c4 1a 7f f8 	ldd  [ %o1 + -8 ], %g2
-    3a9c:	90 22 20 08 	sub  %o0, 8, %o0
-    3aa0:	92 22 60 08 	sub  %o1, 8, %o1
-    3aa4:	c4 22 00 00 	st  %g2, [ %o0 ]
+00003898 <bcopy>:
+    3898:	96 10 00 08 	mov  %o0, %o3
+    389c:	90 10 00 09 	mov  %o1, %o0
+    38a0:	92 10 00 0b 	mov  %o3, %o1
+
+000038a4 <__GI_memmove>:
+    38a4:	80 a2 00 09 	cmp  %o0, %o1
+    38a8:	d0 23 a0 40 	st  %o0, [ %sp + 0x40 ]
+    38ac:	08 80 01 79 	bleu  3e90 <__GI_memcpy+0x8>
+    38b0:	98 22 00 09 	sub  %o0, %o1, %o4
+    38b4:	96 02 40 0a 	add  %o1, %o2, %o3
+    38b8:	80 a2 c0 08 	cmp  %o3, %o0
+    38bc:	08 80 01 76 	bleu  3e94 <__GI_memcpy+0xc>
+    38c0:	9a 8b 20 03 	andcc  %o4, 3, %o5
+    38c4:	92 02 40 0a 	add  %o1, %o2, %o1
+    38c8:	90 02 00 0a 	add  %o0, %o2, %o0
+    38cc:	12 80 00 f9 	bne  3cb0 <__GI_memmove+0x40c>
+    38d0:	80 a2 a0 0f 	cmp  %o2, 0xf
+    38d4:	08 80 00 eb 	bleu  3c80 <__GI_memmove+0x3dc>
+    38d8:	80 8a 60 03 	btst  3, %o1
+    38dc:	12 bf ff e0 	bne  385c <printMemory+0x6c>
+    38e0:	80 8a 60 04 	btst  4, %o1
+    38e4:	02 80 00 07 	be  3900 <__GI_memmove+0x5c>
+    38e8:	82 10 00 0a 	mov  %o2, %g1
+    38ec:	d8 02 7f fc 	ld  [ %o1 + -4 ], %o4
+    38f0:	82 20 60 04 	sub  %g1, 4, %g1
+    38f4:	d8 22 3f fc 	st  %o4, [ %o0 + -4 ]
+    38f8:	92 22 60 04 	sub  %o1, 4, %o1
+    38fc:	90 22 20 04 	sub  %o0, 4, %o0
+    3900:	8c 88 7f 80 	andcc  %g1, -128, %g6
+    3904:	02 80 00 37 	be  39e0 <__GI_memmove+0x13c>
+    3908:	80 8a 20 04 	btst  4, %o0
+    390c:	02 80 00 84 	be  3b1c <__GI_memmove+0x278>
+    3910:	d4 1a 7f e0 	ldd  [ %o1 + -32 ], %o2
+    3914:	d8 1a 7f e8 	ldd  [ %o1 + -24 ], %o4
+    3918:	c4 1a 7f f0 	ldd  [ %o1 + -16 ], %g2
+    391c:	c8 1a 7f f8 	ldd  [ %o1 + -8 ], %g4
+    3920:	d4 22 3f e0 	st  %o2, [ %o0 + -32 ]
+    3924:	d6 22 3f e4 	st  %o3, [ %o0 + -28 ]
+    3928:	d8 22 3f e8 	st  %o4, [ %o0 + -24 ]
+    392c:	da 22 3f ec 	st  %o5, [ %o0 + -20 ]
+    3930:	c4 22 3f f0 	st  %g2, [ %o0 + -16 ]
+    3934:	c6 22 3f f4 	st  %g3, [ %o0 + -12 ]
+    3938:	c8 22 3f f8 	st  %g4, [ %o0 + -8 ]
+    393c:	ca 22 3f fc 	st  %g5, [ %o0 + -4 ]
+    3940:	d4 1a 7f c0 	ldd  [ %o1 + -64 ], %o2
+    3944:	d8 1a 7f c8 	ldd  [ %o1 + -56 ], %o4
+    3948:	c4 1a 7f d0 	ldd  [ %o1 + -48 ], %g2
+    394c:	c8 1a 7f d8 	ldd  [ %o1 + -40 ], %g4
+    3950:	d4 22 3f c0 	st  %o2, [ %o0 + -64 ]
+    3954:	d6 22 3f c4 	st  %o3, [ %o0 + -60 ]
+    3958:	d8 22 3f c8 	st  %o4, [ %o0 + -56 ]
+    395c:	da 22 3f cc 	st  %o5, [ %o0 + -52 ]
+    3960:	c4 22 3f d0 	st  %g2, [ %o0 + -48 ]
+    3964:	c6 22 3f d4 	st  %g3, [ %o0 + -44 ]
+    3968:	c8 22 3f d8 	st  %g4, [ %o0 + -40 ]
+    396c:	ca 22 3f dc 	st  %g5, [ %o0 + -36 ]
+    3970:	d4 1a 7f a0 	ldd  [ %o1 + -96 ], %o2
+    3974:	d8 1a 7f a8 	ldd  [ %o1 + -88 ], %o4
+    3978:	c4 1a 7f b0 	ldd  [ %o1 + -80 ], %g2
+    397c:	c8 1a 7f b8 	ldd  [ %o1 + -72 ], %g4
+    3980:	d4 22 3f a0 	st  %o2, [ %o0 + -96 ]
+    3984:	d6 22 3f a4 	st  %o3, [ %o0 + -92 ]
+    3988:	d8 22 3f a8 	st  %o4, [ %o0 + -88 ]
+    398c:	da 22 3f ac 	st  %o5, [ %o0 + -84 ]
+    3990:	c4 22 3f b0 	st  %g2, [ %o0 + -80 ]
+    3994:	c6 22 3f b4 	st  %g3, [ %o0 + -76 ]
+    3998:	c8 22 3f b8 	st  %g4, [ %o0 + -72 ]
+    399c:	ca 22 3f bc 	st  %g5, [ %o0 + -68 ]
+    39a0:	d4 1a 7f 80 	ldd  [ %o1 + -128 ], %o2
+    39a4:	d8 1a 7f 88 	ldd  [ %o1 + -120 ], %o4
+    39a8:	c4 1a 7f 90 	ldd  [ %o1 + -112 ], %g2
+    39ac:	c8 1a 7f 98 	ldd  [ %o1 + -104 ], %g4
+    39b0:	d4 22 3f 80 	st  %o2, [ %o0 + -128 ]
+    39b4:	d6 22 3f 84 	st  %o3, [ %o0 + -124 ]
+    39b8:	d8 22 3f 88 	st  %o4, [ %o0 + -120 ]
+    39bc:	da 22 3f 8c 	st  %o5, [ %o0 + -116 ]
+    39c0:	c4 22 3f 90 	st  %g2, [ %o0 + -112 ]
+    39c4:	c6 22 3f 94 	st  %g3, [ %o0 + -108 ]
+    39c8:	c8 22 3f 98 	st  %g4, [ %o0 + -104 ]
+    39cc:	ca 22 3f 9c 	st  %g5, [ %o0 + -100 ]
+    39d0:	8c a1 a0 80 	subcc  %g6, 0x80, %g6
+    39d4:	92 22 60 80 	sub  %o1, 0x80, %o1
+    39d8:	12 bf ff ce 	bne  3910 <__GI_memmove+0x6c>
+    39dc:	90 22 20 80 	sub  %o0, 0x80, %o0
+    39e0:	8c 88 60 70 	andcc  %g1, 0x70, %g6
+    39e4:	02 80 00 34 	be  3ab4 <__GI_memmove+0x210>
+    39e8:	80 88 60 08 	btst  8, %g1
+    39ec:	99 31 a0 01 	srl  %g6, 1, %o4
+    39f0:	84 10 00 0f 	mov  %o7, %g2
+    39f4:	98 01 80 0c 	add  %g6, %o4, %o4
+    39f8:	40 00 05 3d 	call  4eec <__GI_memcpy+0x1064>
+    39fc:	92 22 40 06 	sub  %o1, %g6, %o1
+    3a00:	9e 10 00 02 	mov  %g2, %o7
+    3a04:	81 c3 60 bc 	jmp  %o5 + 0xbc
+    3a08:	90 22 00 06 	sub  %o0, %g6, %o0
+    3a0c:	c4 1a 60 60 	ldd  [ %o1 + 0x60 ], %g2
+    3a10:	c8 1a 60 68 	ldd  [ %o1 + 0x68 ], %g4
+    3a14:	c4 22 20 60 	st  %g2, [ %o0 + 0x60 ]
+    3a18:	c6 22 20 64 	st  %g3, [ %o0 + 0x64 ]
+    3a1c:	c8 22 20 68 	st  %g4, [ %o0 + 0x68 ]
+    3a20:	ca 22 20 6c 	st  %g5, [ %o0 + 0x6c ]
+    3a24:	c4 1a 60 50 	ldd  [ %o1 + 0x50 ], %g2
+    3a28:	c8 1a 60 58 	ldd  [ %o1 + 0x58 ], %g4
+    3a2c:	c4 22 20 50 	st  %g2, [ %o0 + 0x50 ]
+    3a30:	c6 22 20 54 	st  %g3, [ %o0 + 0x54 ]
+    3a34:	c8 22 20 58 	st  %g4, [ %o0 + 0x58 ]
+    3a38:	ca 22 20 5c 	st  %g5, [ %o0 + 0x5c ]
+    3a3c:	c4 1a 60 40 	ldd  [ %o1 + 0x40 ], %g2
+    3a40:	c8 1a 60 48 	ldd  [ %o1 + 0x48 ], %g4
+    3a44:	c4 22 20 40 	st  %g2, [ %o0 + 0x40 ]
+    3a48:	c6 22 20 44 	st  %g3, [ %o0 + 0x44 ]
+    3a4c:	c8 22 20 48 	st  %g4, [ %o0 + 0x48 ]
+    3a50:	ca 22 20 4c 	st  %g5, [ %o0 + 0x4c ]
+    3a54:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    3a58:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    3a5c:	c4 22 20 30 	st  %g2, [ %o0 + 0x30 ]
+    3a60:	c6 22 20 34 	st  %g3, [ %o0 + 0x34 ]
+    3a64:	c8 22 20 38 	st  %g4, [ %o0 + 0x38 ]
+    3a68:	ca 22 20 3c 	st  %g5, [ %o0 + 0x3c ]
+    3a6c:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
+    3a70:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
+    3a74:	c4 22 20 20 	st  %g2, [ %o0 + 0x20 ]
+    3a78:	c6 22 20 24 	st  %g3, [ %o0 + 0x24 ]
+    3a7c:	c8 22 20 28 	st  %g4, [ %o0 + 0x28 ]
+    3a80:	ca 22 20 2c 	st  %g5, [ %o0 + 0x2c ]
+    3a84:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    3a88:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    3a8c:	c4 22 20 10 	st  %g2, [ %o0 + 0x10 ]
+    3a90:	c6 22 20 14 	st  %g3, [ %o0 + 0x14 ]
+    3a94:	c8 22 20 18 	st  %g4, [ %o0 + 0x18 ]
+    3a98:	ca 22 20 1c 	st  %g5, [ %o0 + 0x1c ]
+    3a9c:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    3aa0:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    3aa4:	c4 22 20 00 	st  %g2, [ %o0 ]
     3aa8:	c6 22 20 04 	st  %g3, [ %o0 + 4 ]
-    3aac:	02 80 00 06 	be  3ac4 <__GI_memmove+0x244>
-    3ab0:	80 88 60 02 	btst  2, %g1
-    3ab4:	c4 02 7f fc 	ld  [ %o1 + -4 ], %g2
-    3ab8:	92 22 60 04 	sub  %o1, 4, %o1
-    3abc:	c4 22 3f fc 	st  %g2, [ %o0 + -4 ]
-    3ac0:	90 22 20 04 	sub  %o0, 4, %o0
-    3ac4:	02 80 00 06 	be  3adc <__GI_memmove+0x25c>
-    3ac8:	80 88 60 01 	btst  1, %g1
-    3acc:	c4 12 7f fe 	lduh  [ %o1 + -2 ], %g2
-    3ad0:	92 22 60 02 	sub  %o1, 2, %o1
-    3ad4:	c4 32 3f fe 	sth  %g2, [ %o0 + -2 ]
-    3ad8:	90 22 20 02 	sub  %o0, 2, %o0
-    3adc:	02 80 00 04 	be  3aec <__GI_memmove+0x26c>
-    3ae0:	01 00 00 00 	nop 
-    3ae4:	c4 0a 7f ff 	ldub  [ %o1 + -1 ], %g2
-    3ae8:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
-    3aec:	81 c3 e0 08 	retl 
-    3af0:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
-    3af4:	d4 1a 7f e0 	ldd  [ %o1 + -32 ], %o2
-    3af8:	d8 1a 7f e8 	ldd  [ %o1 + -24 ], %o4
-    3afc:	c4 1a 7f f0 	ldd  [ %o1 + -16 ], %g2
-    3b00:	c8 1a 7f f8 	ldd  [ %o1 + -8 ], %g4
-    3b04:	d4 3a 3f e0 	std  %o2, [ %o0 + -32 ]
-    3b08:	d8 3a 3f e8 	std  %o4, [ %o0 + -24 ]
-    3b0c:	c4 3a 3f f0 	std  %g2, [ %o0 + -16 ]
-    3b10:	c8 3a 3f f8 	std  %g4, [ %o0 + -8 ]
-    3b14:	d4 1a 7f c0 	ldd  [ %o1 + -64 ], %o2
-    3b18:	d8 1a 7f c8 	ldd  [ %o1 + -56 ], %o4
-    3b1c:	c4 1a 7f d0 	ldd  [ %o1 + -48 ], %g2
-    3b20:	c8 1a 7f d8 	ldd  [ %o1 + -40 ], %g4
-    3b24:	d4 3a 3f c0 	std  %o2, [ %o0 + -64 ]
-    3b28:	d8 3a 3f c8 	std  %o4, [ %o0 + -56 ]
-    3b2c:	c4 3a 3f d0 	std  %g2, [ %o0 + -48 ]
-    3b30:	c8 3a 3f d8 	std  %g4, [ %o0 + -40 ]
-    3b34:	d4 1a 7f a0 	ldd  [ %o1 + -96 ], %o2
-    3b38:	d8 1a 7f a8 	ldd  [ %o1 + -88 ], %o4
-    3b3c:	c4 1a 7f b0 	ldd  [ %o1 + -80 ], %g2
-    3b40:	c8 1a 7f b8 	ldd  [ %o1 + -72 ], %g4
-    3b44:	d4 3a 3f a0 	std  %o2, [ %o0 + -96 ]
-    3b48:	d8 3a 3f a8 	std  %o4, [ %o0 + -88 ]
-    3b4c:	c4 3a 3f b0 	std  %g2, [ %o0 + -80 ]
-    3b50:	c8 3a 3f b8 	std  %g4, [ %o0 + -72 ]
-    3b54:	d4 1a 7f 80 	ldd  [ %o1 + -128 ], %o2
-    3b58:	d8 1a 7f 88 	ldd  [ %o1 + -120 ], %o4
-    3b5c:	c4 1a 7f 90 	ldd  [ %o1 + -112 ], %g2
-    3b60:	c8 1a 7f 98 	ldd  [ %o1 + -104 ], %g4
-    3b64:	d4 3a 3f 80 	std  %o2, [ %o0 + -128 ]
-    3b68:	d8 3a 3f 88 	std  %o4, [ %o0 + -120 ]
-    3b6c:	c4 3a 3f 90 	std  %g2, [ %o0 + -112 ]
-    3b70:	c8 3a 3f 98 	std  %g4, [ %o0 + -104 ]
-    3b74:	8c a1 a0 80 	subcc  %g6, 0x80, %g6
-    3b78:	92 22 60 80 	sub  %o1, 0x80, %o1
-    3b7c:	12 bf ff de 	bne  3af4 <__GI_memmove+0x274>
-    3b80:	90 22 20 80 	sub  %o0, 0x80, %o0
-    3b84:	8c 88 60 70 	andcc  %g1, 0x70, %g6
-    3b88:	02 bf ff c2 	be  3a90 <__GI_memmove+0x210>
-    3b8c:	80 88 60 08 	btst  8, %g1
-    3b90:	99 31 a0 01 	srl  %g6, 1, %o4
-    3b94:	84 10 00 0f 	mov  %o7, %g2
-    3b98:	98 01 80 0c 	add  %g6, %o4, %o4
-    3b9c:	40 00 04 cb 	call  4ec8 <__GI_memcpy+0x1064>
-    3ba0:	92 22 40 06 	sub  %o1, %g6, %o1
-    3ba4:	9e 10 00 02 	mov  %g2, %o7
-    3ba8:	81 c3 7e f4 	jmp  %o5 + -268
-    3bac:	90 22 00 06 	sub  %o0, %g6, %o0
-    3bb0:	96 0a a0 0e 	and  %o2, 0xe, %o3
-    3bb4:	84 10 00 0f 	mov  %o7, %g2
-    3bb8:	99 2a e0 03 	sll  %o3, 3, %o4
-    3bbc:	90 22 00 0b 	sub  %o0, %o3, %o0
-    3bc0:	40 00 04 c2 	call  4ec8 <__GI_memcpy+0x1064>
-    3bc4:	92 22 40 0b 	sub  %o1, %o3, %o1
+    3aac:	c8 22 20 08 	st  %g4, [ %o0 + 8 ]
+    3ab0:	ca 22 20 0c 	st  %g5, [ %o0 + 0xc ]
+    3ab4:	02 80 00 07 	be  3ad0 <__GI_memmove+0x22c>
+    3ab8:	80 88 60 04 	btst  4, %g1
+    3abc:	c4 1a 7f f8 	ldd  [ %o1 + -8 ], %g2
+    3ac0:	90 22 20 08 	sub  %o0, 8, %o0
+    3ac4:	92 22 60 08 	sub  %o1, 8, %o1
+    3ac8:	c4 22 00 00 	st  %g2, [ %o0 ]
+    3acc:	c6 22 20 04 	st  %g3, [ %o0 + 4 ]
+    3ad0:	02 80 00 06 	be  3ae8 <__GI_memmove+0x244>
+    3ad4:	80 88 60 02 	btst  2, %g1
+    3ad8:	c4 02 7f fc 	ld  [ %o1 + -4 ], %g2
+    3adc:	92 22 60 04 	sub  %o1, 4, %o1
+    3ae0:	c4 22 3f fc 	st  %g2, [ %o0 + -4 ]
+    3ae4:	90 22 20 04 	sub  %o0, 4, %o0
+    3ae8:	02 80 00 06 	be  3b00 <__GI_memmove+0x25c>
+    3aec:	80 88 60 01 	btst  1, %g1
+    3af0:	c4 12 7f fe 	lduh  [ %o1 + -2 ], %g2
+    3af4:	92 22 60 02 	sub  %o1, 2, %o1
+    3af8:	c4 32 3f fe 	sth  %g2, [ %o0 + -2 ]
+    3afc:	90 22 20 02 	sub  %o0, 2, %o0
+    3b00:	02 80 00 04 	be  3b10 <__GI_memmove+0x26c>
+    3b04:	01 00 00 00 	nop 
+    3b08:	c4 0a 7f ff 	ldub  [ %o1 + -1 ], %g2
+    3b0c:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
+    3b10:	81 c3 e0 08 	retl 
+    3b14:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
+    3b18:	d4 1a 7f e0 	ldd  [ %o1 + -32 ], %o2
+    3b1c:	d8 1a 7f e8 	ldd  [ %o1 + -24 ], %o4
+    3b20:	c4 1a 7f f0 	ldd  [ %o1 + -16 ], %g2
+    3b24:	c8 1a 7f f8 	ldd  [ %o1 + -8 ], %g4
+    3b28:	d4 3a 3f e0 	std  %o2, [ %o0 + -32 ]
+    3b2c:	d8 3a 3f e8 	std  %o4, [ %o0 + -24 ]
+    3b30:	c4 3a 3f f0 	std  %g2, [ %o0 + -16 ]
+    3b34:	c8 3a 3f f8 	std  %g4, [ %o0 + -8 ]
+    3b38:	d4 1a 7f c0 	ldd  [ %o1 + -64 ], %o2
+    3b3c:	d8 1a 7f c8 	ldd  [ %o1 + -56 ], %o4
+    3b40:	c4 1a 7f d0 	ldd  [ %o1 + -48 ], %g2
+    3b44:	c8 1a 7f d8 	ldd  [ %o1 + -40 ], %g4
+    3b48:	d4 3a 3f c0 	std  %o2, [ %o0 + -64 ]
+    3b4c:	d8 3a 3f c8 	std  %o4, [ %o0 + -56 ]
+    3b50:	c4 3a 3f d0 	std  %g2, [ %o0 + -48 ]
+    3b54:	c8 3a 3f d8 	std  %g4, [ %o0 + -40 ]
+    3b58:	d4 1a 7f a0 	ldd  [ %o1 + -96 ], %o2
+    3b5c:	d8 1a 7f a8 	ldd  [ %o1 + -88 ], %o4
+    3b60:	c4 1a 7f b0 	ldd  [ %o1 + -80 ], %g2
+    3b64:	c8 1a 7f b8 	ldd  [ %o1 + -72 ], %g4
+    3b68:	d4 3a 3f a0 	std  %o2, [ %o0 + -96 ]
+    3b6c:	d8 3a 3f a8 	std  %o4, [ %o0 + -88 ]
+    3b70:	c4 3a 3f b0 	std  %g2, [ %o0 + -80 ]
+    3b74:	c8 3a 3f b8 	std  %g4, [ %o0 + -72 ]
+    3b78:	d4 1a 7f 80 	ldd  [ %o1 + -128 ], %o2
+    3b7c:	d8 1a 7f 88 	ldd  [ %o1 + -120 ], %o4
+    3b80:	c4 1a 7f 90 	ldd  [ %o1 + -112 ], %g2
+    3b84:	c8 1a 7f 98 	ldd  [ %o1 + -104 ], %g4
+    3b88:	d4 3a 3f 80 	std  %o2, [ %o0 + -128 ]
+    3b8c:	d8 3a 3f 88 	std  %o4, [ %o0 + -120 ]
+    3b90:	c4 3a 3f 90 	std  %g2, [ %o0 + -112 ]
+    3b94:	c8 3a 3f 98 	std  %g4, [ %o0 + -104 ]
+    3b98:	8c a1 a0 80 	subcc  %g6, 0x80, %g6
+    3b9c:	92 22 60 80 	sub  %o1, 0x80, %o1
+    3ba0:	12 bf ff de 	bne  3b18 <__GI_memmove+0x274>
+    3ba4:	90 22 20 80 	sub  %o0, 0x80, %o0
+    3ba8:	8c 88 60 70 	andcc  %g1, 0x70, %g6
+    3bac:	02 bf ff c2 	be  3ab4 <__GI_memmove+0x210>
+    3bb0:	80 88 60 08 	btst  8, %g1
+    3bb4:	99 31 a0 01 	srl  %g6, 1, %o4
+    3bb8:	84 10 00 0f 	mov  %o7, %g2
+    3bbc:	98 01 80 0c 	add  %g6, %o4, %o4
+    3bc0:	40 00 04 cb 	call  4eec <__GI_memcpy+0x1064>
+    3bc4:	92 22 40 06 	sub  %o1, %g6, %o1
     3bc8:	9e 10 00 02 	mov  %g2, %o7
-    3bcc:	81 c3 60 84 	jmp  %o5 + 0x84
-    3bd0:	80 8a a0 01 	btst  1, %o2
-    3bd4:	c4 0a 60 0c 	ldub  [ %o1 + 0xc ], %g2
-    3bd8:	c6 0a 60 0d 	ldub  [ %o1 + 0xd ], %g3
-    3bdc:	c4 2a 20 0c 	stb  %g2, [ %o0 + 0xc ]
-    3be0:	c6 2a 20 0d 	stb  %g3, [ %o0 + 0xd ]
-    3be4:	c4 0a 60 0a 	ldub  [ %o1 + 0xa ], %g2
-    3be8:	c6 0a 60 0b 	ldub  [ %o1 + 0xb ], %g3
-    3bec:	c4 2a 20 0a 	stb  %g2, [ %o0 + 0xa ]
-    3bf0:	c6 2a 20 0b 	stb  %g3, [ %o0 + 0xb ]
-    3bf4:	c4 0a 60 08 	ldub  [ %o1 + 8 ], %g2
-    3bf8:	c6 0a 60 09 	ldub  [ %o1 + 9 ], %g3
-    3bfc:	c4 2a 20 08 	stb  %g2, [ %o0 + 8 ]
-    3c00:	c6 2a 20 09 	stb  %g3, [ %o0 + 9 ]
-    3c04:	c4 0a 60 06 	ldub  [ %o1 + 6 ], %g2
-    3c08:	c6 0a 60 07 	ldub  [ %o1 + 7 ], %g3
-    3c0c:	c4 2a 20 06 	stb  %g2, [ %o0 + 6 ]
-    3c10:	c6 2a 20 07 	stb  %g3, [ %o0 + 7 ]
-    3c14:	c4 0a 60 04 	ldub  [ %o1 + 4 ], %g2
-    3c18:	c6 0a 60 05 	ldub  [ %o1 + 5 ], %g3
-    3c1c:	c4 2a 20 04 	stb  %g2, [ %o0 + 4 ]
-    3c20:	c6 2a 20 05 	stb  %g3, [ %o0 + 5 ]
-    3c24:	c4 0a 60 02 	ldub  [ %o1 + 2 ], %g2
-    3c28:	c6 0a 60 03 	ldub  [ %o1 + 3 ], %g3
-    3c2c:	c4 2a 20 02 	stb  %g2, [ %o0 + 2 ]
-    3c30:	c6 2a 20 03 	stb  %g3, [ %o0 + 3 ]
-    3c34:	c4 0a 60 00 	ldub  [ %o1 ], %g2
-    3c38:	c6 0a 60 01 	ldub  [ %o1 + 1 ], %g3
-    3c3c:	c4 2a 20 00 	stb  %g2, [ %o0 ]
-    3c40:	c6 2a 20 01 	stb  %g3, [ %o0 + 1 ]
-    3c44:	02 80 00 04 	be  3c54 <__GI_memmove+0x3d4>
-    3c48:	01 00 00 00 	nop 
-    3c4c:	c4 0a 7f ff 	ldub  [ %o1 + -1 ], %g2
-    3c50:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
-    3c54:	81 c3 e0 08 	retl 
-    3c58:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
-    3c5c:	12 bf ff d5 	bne  3bb0 <__GI_memmove+0x330>
-    3c60:	80 8a a0 08 	btst  8, %o2
-    3c64:	02 80 00 08 	be  3c84 <__GI_memmove+0x404>
-    3c68:	80 8a a0 04 	btst  4, %o2
-    3c6c:	c4 02 7f f8 	ld  [ %o1 + -8 ], %g2
-    3c70:	c6 02 7f fc 	ld  [ %o1 + -4 ], %g3
-    3c74:	92 22 60 08 	sub  %o1, 8, %o1
-    3c78:	c4 22 3f f8 	st  %g2, [ %o0 + -8 ]
-    3c7c:	c6 22 3f fc 	st  %g3, [ %o0 + -4 ]
-    3c80:	90 22 20 08 	sub  %o0, 8, %o0
-    3c84:	10 bf ff 8a 	b  3aac <__GI_memmove+0x22c>
-    3c88:	82 10 00 0a 	mov  %o2, %g1
-    3c8c:	80 a2 a0 0f 	cmp  %o2, 0xf
-    3c90:	08 bf ff c8 	bleu  3bb0 <__GI_memmove+0x330>
-    3c94:	80 8a 20 03 	btst  3, %o0
-    3c98:	02 80 00 11 	be  3cdc <__GI_memmove+0x45c>
-    3c9c:	80 8a 20 01 	btst  1, %o0
-    3ca0:	02 80 00 08 	be  3cc0 <__GI_memmove+0x440>
-    3ca4:	80 8a 20 02 	btst  2, %o0
-    3ca8:	ca 0a 7f ff 	ldub  [ %o1 + -1 ], %g5
-    3cac:	92 22 60 01 	dec  %o1
-    3cb0:	ca 2a 3f ff 	stb  %g5, [ %o0 + -1 ]
-    3cb4:	90 22 20 01 	dec  %o0
-    3cb8:	02 80 00 09 	be  3cdc <__GI_memmove+0x45c>
-    3cbc:	94 22 a0 01 	dec  %o2
-    3cc0:	ca 0a 7f ff 	ldub  [ %o1 + -1 ], %g5
-    3cc4:	92 22 60 02 	sub  %o1, 2, %o1
-    3cc8:	ca 2a 3f ff 	stb  %g5, [ %o0 + -1 ]
-    3ccc:	90 22 20 02 	sub  %o0, 2, %o0
-    3cd0:	ca 0a 40 00 	ldub  [ %o1 ], %g5
-    3cd4:	94 22 a0 02 	sub  %o2, 2, %o2
-    3cd8:	ca 2a 00 00 	stb  %g5, [ %o0 ]
-    3cdc:	84 0a 60 03 	and  %o1, 3, %g2
-    3ce0:	92 0a 7f fc 	and  %o1, -4, %o1
-    3ce4:	86 0a a0 0c 	and  %o2, 0xc, %g3
-    3ce8:	92 02 60 04 	add  %o1, 4, %o1
-    3cec:	80 a0 e0 04 	cmp  %g3, 4
-    3cf0:	89 28 a0 03 	sll  %g2, 3, %g4
-    3cf4:	84 10 20 20 	mov  0x20, %g2
-    3cf8:	02 80 00 18 	be  3d58 <__GI_memmove+0x4d8>
-    3cfc:	8c 20 80 04 	sub  %g2, %g4, %g6
-    3d00:	0a 80 00 10 	bcs  3d40 <__GI_memmove+0x4c0>
-    3d04:	80 a0 e0 08 	cmp  %g3, 8
-    3d08:	02 80 00 08 	be  3d28 <__GI_memmove+0x4a8>
-    3d0c:	87 32 a0 02 	srl  %o2, 2, %g3
-    3d10:	d6 02 7f fc 	ld  [ %o1 + -4 ], %o3
-    3d14:	90 02 3f f8 	add  %o0, -8, %o0
-    3d18:	d8 02 7f f8 	ld  [ %o1 + -8 ], %o4
-    3d1c:	92 02 7f f0 	add  %o1, -16, %o1
-    3d20:	10 80 00 1e 	b  3d98 <__GI_memmove+0x518>
-    3d24:	86 00 e0 01 	inc  %g3
-    3d28:	d8 02 7f fc 	ld  [ %o1 + -4 ], %o4
-    3d2c:	90 02 3f fc 	add  %o0, -4, %o0
-    3d30:	c2 02 7f f8 	ld  [ %o1 + -8 ], %g1
-    3d34:	92 02 7f f4 	add  %o1, -12, %o1
-    3d38:	10 80 00 1d 	b  3dac <__GI_memmove+0x52c>
-    3d3c:	86 00 e0 02 	add  %g3, 2, %g3
-    3d40:	da 02 7f fc 	ld  [ %o1 + -4 ], %o5
-    3d44:	90 02 3f f4 	add  %o0, -12, %o0
-    3d48:	d6 02 7f f8 	ld  [ %o1 + -8 ], %o3
-    3d4c:	92 02 7f ec 	add  %o1, -20, %o1
-    3d50:	10 80 00 0d 	b  3d84 <__GI_memmove+0x504>
-    3d54:	87 32 a0 02 	srl  %o2, 2, %g3
-    3d58:	c2 02 7f fc 	ld  [ %o1 + -4 ], %g1
-    3d5c:	87 32 a0 02 	srl  %o2, 2, %g3
-    3d60:	da 02 7f f8 	ld  [ %o1 + -8 ], %o5
-    3d64:	92 02 7f e8 	add  %o1, -24, %o1
-    3d68:	90 02 3f f0 	add  %o0, -16, %o0
-    3d6c:	86 00 ff ff 	add  %g3, -1, %g3
-    3d70:	d6 02 60 0c 	ld  [ %o1 + 0xc ], %o3
-    3d74:	85 2b 40 04 	sll  %o5, %g4, %g2
-    3d78:	8b 30 40 06 	srl  %g1, %g6, %g5
-    3d7c:	84 10 80 05 	or  %g2, %g5, %g2
-    3d80:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
-    3d84:	d8 02 60 08 	ld  [ %o1 + 8 ], %o4
-    3d88:	85 2a c0 04 	sll  %o3, %g4, %g2
-    3d8c:	8b 33 40 06 	srl  %o5, %g6, %g5
-    3d90:	84 10 80 05 	or  %g2, %g5, %g2
-    3d94:	c4 22 20 08 	st  %g2, [ %o0 + 8 ]
-    3d98:	c2 02 60 04 	ld  [ %o1 + 4 ], %g1
-    3d9c:	85 2b 00 04 	sll  %o4, %g4, %g2
-    3da0:	8b 32 c0 06 	srl  %o3, %g6, %g5
-    3da4:	84 10 80 05 	or  %g2, %g5, %g2
-    3da8:	c4 22 20 04 	st  %g2, [ %o0 + 4 ]
-    3dac:	da 02 40 00 	ld  [ %o1 ], %o5
-    3db0:	85 28 40 04 	sll  %g1, %g4, %g2
-    3db4:	8b 33 00 06 	srl  %o4, %g6, %g5
-    3db8:	86 80 ff fc 	addcc  %g3, -4, %g3
-    3dbc:	84 10 80 05 	or  %g2, %g5, %g2
-    3dc0:	92 02 7f f0 	add  %o1, -16, %o1
-    3dc4:	c4 22 00 00 	st  %g2, [ %o0 ]
-    3dc8:	90 02 3f f0 	add  %o0, -16, %o0
-    3dcc:	32 bf ff ea 	bne,a   3d74 <__GI_memmove+0x4f4>
-    3dd0:	d6 02 60 0c 	ld  [ %o1 + 0xc ], %o3
-    3dd4:	85 2b 40 04 	sll  %o5, %g4, %g2
-    3dd8:	8b 30 40 06 	srl  %g1, %g6, %g5
-    3ddc:	87 31 20 03 	srl  %g4, 3, %g3
+    3bcc:	81 c3 7e f4 	jmp  %o5 + -268
+    3bd0:	90 22 00 06 	sub  %o0, %g6, %o0
+    3bd4:	96 0a a0 0e 	and  %o2, 0xe, %o3
+    3bd8:	84 10 00 0f 	mov  %o7, %g2
+    3bdc:	99 2a e0 03 	sll  %o3, 3, %o4
+    3be0:	90 22 00 0b 	sub  %o0, %o3, %o0
+    3be4:	40 00 04 c2 	call  4eec <__GI_memcpy+0x1064>
+    3be8:	92 22 40 0b 	sub  %o1, %o3, %o1
+    3bec:	9e 10 00 02 	mov  %g2, %o7
+    3bf0:	81 c3 60 84 	jmp  %o5 + 0x84
+    3bf4:	80 8a a0 01 	btst  1, %o2
+    3bf8:	c4 0a 60 0c 	ldub  [ %o1 + 0xc ], %g2
+    3bfc:	c6 0a 60 0d 	ldub  [ %o1 + 0xd ], %g3
+    3c00:	c4 2a 20 0c 	stb  %g2, [ %o0 + 0xc ]
+    3c04:	c6 2a 20 0d 	stb  %g3, [ %o0 + 0xd ]
+    3c08:	c4 0a 60 0a 	ldub  [ %o1 + 0xa ], %g2
+    3c0c:	c6 0a 60 0b 	ldub  [ %o1 + 0xb ], %g3
+    3c10:	c4 2a 20 0a 	stb  %g2, [ %o0 + 0xa ]
+    3c14:	c6 2a 20 0b 	stb  %g3, [ %o0 + 0xb ]
+    3c18:	c4 0a 60 08 	ldub  [ %o1 + 8 ], %g2
+    3c1c:	c6 0a 60 09 	ldub  [ %o1 + 9 ], %g3
+    3c20:	c4 2a 20 08 	stb  %g2, [ %o0 + 8 ]
+    3c24:	c6 2a 20 09 	stb  %g3, [ %o0 + 9 ]
+    3c28:	c4 0a 60 06 	ldub  [ %o1 + 6 ], %g2
+    3c2c:	c6 0a 60 07 	ldub  [ %o1 + 7 ], %g3
+    3c30:	c4 2a 20 06 	stb  %g2, [ %o0 + 6 ]
+    3c34:	c6 2a 20 07 	stb  %g3, [ %o0 + 7 ]
+    3c38:	c4 0a 60 04 	ldub  [ %o1 + 4 ], %g2
+    3c3c:	c6 0a 60 05 	ldub  [ %o1 + 5 ], %g3
+    3c40:	c4 2a 20 04 	stb  %g2, [ %o0 + 4 ]
+    3c44:	c6 2a 20 05 	stb  %g3, [ %o0 + 5 ]
+    3c48:	c4 0a 60 02 	ldub  [ %o1 + 2 ], %g2
+    3c4c:	c6 0a 60 03 	ldub  [ %o1 + 3 ], %g3
+    3c50:	c4 2a 20 02 	stb  %g2, [ %o0 + 2 ]
+    3c54:	c6 2a 20 03 	stb  %g3, [ %o0 + 3 ]
+    3c58:	c4 0a 60 00 	ldub  [ %o1 ], %g2
+    3c5c:	c6 0a 60 01 	ldub  [ %o1 + 1 ], %g3
+    3c60:	c4 2a 20 00 	stb  %g2, [ %o0 ]
+    3c64:	c6 2a 20 01 	stb  %g3, [ %o0 + 1 ]
+    3c68:	02 80 00 04 	be  3c78 <__GI_memmove+0x3d4>
+    3c6c:	01 00 00 00 	nop 
+    3c70:	c4 0a 7f ff 	ldub  [ %o1 + -1 ], %g2
+    3c74:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
+    3c78:	81 c3 e0 08 	retl 
+    3c7c:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
+    3c80:	12 bf ff d5 	bne  3bd4 <__GI_memmove+0x330>
+    3c84:	80 8a a0 08 	btst  8, %o2
+    3c88:	02 80 00 08 	be  3ca8 <__GI_memmove+0x404>
+    3c8c:	80 8a a0 04 	btst  4, %o2
+    3c90:	c4 02 7f f8 	ld  [ %o1 + -8 ], %g2
+    3c94:	c6 02 7f fc 	ld  [ %o1 + -4 ], %g3
+    3c98:	92 22 60 08 	sub  %o1, 8, %o1
+    3c9c:	c4 22 3f f8 	st  %g2, [ %o0 + -8 ]
+    3ca0:	c6 22 3f fc 	st  %g3, [ %o0 + -4 ]
+    3ca4:	90 22 20 08 	sub  %o0, 8, %o0
+    3ca8:	10 bf ff 8a 	b  3ad0 <__GI_memmove+0x22c>
+    3cac:	82 10 00 0a 	mov  %o2, %g1
+    3cb0:	80 a2 a0 0f 	cmp  %o2, 0xf
+    3cb4:	08 bf ff c8 	bleu  3bd4 <__GI_memmove+0x330>
+    3cb8:	80 8a 20 03 	btst  3, %o0
+    3cbc:	02 80 00 11 	be  3d00 <__GI_memmove+0x45c>
+    3cc0:	80 8a 20 01 	btst  1, %o0
+    3cc4:	02 80 00 08 	be  3ce4 <__GI_memmove+0x440>
+    3cc8:	80 8a 20 02 	btst  2, %o0
+    3ccc:	ca 0a 7f ff 	ldub  [ %o1 + -1 ], %g5
+    3cd0:	92 22 60 01 	dec  %o1
+    3cd4:	ca 2a 3f ff 	stb  %g5, [ %o0 + -1 ]
+    3cd8:	90 22 20 01 	dec  %o0
+    3cdc:	02 80 00 09 	be  3d00 <__GI_memmove+0x45c>
+    3ce0:	94 22 a0 01 	dec  %o2
+    3ce4:	ca 0a 7f ff 	ldub  [ %o1 + -1 ], %g5
+    3ce8:	92 22 60 02 	sub  %o1, 2, %o1
+    3cec:	ca 2a 3f ff 	stb  %g5, [ %o0 + -1 ]
+    3cf0:	90 22 20 02 	sub  %o0, 2, %o0
+    3cf4:	ca 0a 40 00 	ldub  [ %o1 ], %g5
+    3cf8:	94 22 a0 02 	sub  %o2, 2, %o2
+    3cfc:	ca 2a 00 00 	stb  %g5, [ %o0 ]
+    3d00:	84 0a 60 03 	and  %o1, 3, %g2
+    3d04:	92 0a 7f fc 	and  %o1, -4, %o1
+    3d08:	86 0a a0 0c 	and  %o2, 0xc, %g3
+    3d0c:	92 02 60 04 	add  %o1, 4, %o1
+    3d10:	80 a0 e0 04 	cmp  %g3, 4
+    3d14:	89 28 a0 03 	sll  %g2, 3, %g4
+    3d18:	84 10 20 20 	mov  0x20, %g2
+    3d1c:	02 80 00 18 	be  3d7c <__GI_memmove+0x4d8>
+    3d20:	8c 20 80 04 	sub  %g2, %g4, %g6
+    3d24:	0a 80 00 10 	bcs  3d64 <__GI_memmove+0x4c0>
+    3d28:	80 a0 e0 08 	cmp  %g3, 8
+    3d2c:	02 80 00 08 	be  3d4c <__GI_memmove+0x4a8>
+    3d30:	87 32 a0 02 	srl  %o2, 2, %g3
+    3d34:	d6 02 7f fc 	ld  [ %o1 + -4 ], %o3
+    3d38:	90 02 3f f8 	add  %o0, -8, %o0
+    3d3c:	d8 02 7f f8 	ld  [ %o1 + -8 ], %o4
+    3d40:	92 02 7f f0 	add  %o1, -16, %o1
+    3d44:	10 80 00 1e 	b  3dbc <__GI_memmove+0x518>
+    3d48:	86 00 e0 01 	inc  %g3
+    3d4c:	d8 02 7f fc 	ld  [ %o1 + -4 ], %o4
+    3d50:	90 02 3f fc 	add  %o0, -4, %o0
+    3d54:	c2 02 7f f8 	ld  [ %o1 + -8 ], %g1
+    3d58:	92 02 7f f4 	add  %o1, -12, %o1
+    3d5c:	10 80 00 1d 	b  3dd0 <__GI_memmove+0x52c>
+    3d60:	86 00 e0 02 	add  %g3, 2, %g3
+    3d64:	da 02 7f fc 	ld  [ %o1 + -4 ], %o5
+    3d68:	90 02 3f f4 	add  %o0, -12, %o0
+    3d6c:	d6 02 7f f8 	ld  [ %o1 + -8 ], %o3
+    3d70:	92 02 7f ec 	add  %o1, -20, %o1
+    3d74:	10 80 00 0d 	b  3da8 <__GI_memmove+0x504>
+    3d78:	87 32 a0 02 	srl  %o2, 2, %g3
+    3d7c:	c2 02 7f fc 	ld  [ %o1 + -4 ], %g1
+    3d80:	87 32 a0 02 	srl  %o2, 2, %g3
+    3d84:	da 02 7f f8 	ld  [ %o1 + -8 ], %o5
+    3d88:	92 02 7f e8 	add  %o1, -24, %o1
+    3d8c:	90 02 3f f0 	add  %o0, -16, %o0
+    3d90:	86 00 ff ff 	add  %g3, -1, %g3
+    3d94:	d6 02 60 0c 	ld  [ %o1 + 0xc ], %o3
+    3d98:	85 2b 40 04 	sll  %o5, %g4, %g2
+    3d9c:	8b 30 40 06 	srl  %g1, %g6, %g5
+    3da0:	84 10 80 05 	or  %g2, %g5, %g2
+    3da4:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
+    3da8:	d8 02 60 08 	ld  [ %o1 + 8 ], %o4
+    3dac:	85 2a c0 04 	sll  %o3, %g4, %g2
+    3db0:	8b 33 40 06 	srl  %o5, %g6, %g5
+    3db4:	84 10 80 05 	or  %g2, %g5, %g2
+    3db8:	c4 22 20 08 	st  %g2, [ %o0 + 8 ]
+    3dbc:	c2 02 60 04 	ld  [ %o1 + 4 ], %g1
+    3dc0:	85 2b 00 04 	sll  %o4, %g4, %g2
+    3dc4:	8b 32 c0 06 	srl  %o3, %g6, %g5
+    3dc8:	84 10 80 05 	or  %g2, %g5, %g2
+    3dcc:	c4 22 20 04 	st  %g2, [ %o0 + 4 ]
+    3dd0:	da 02 40 00 	ld  [ %o1 ], %o5
+    3dd4:	85 28 40 04 	sll  %g1, %g4, %g2
+    3dd8:	8b 33 00 06 	srl  %o4, %g6, %g5
+    3ddc:	86 80 ff fc 	addcc  %g3, -4, %g3
     3de0:	84 10 80 05 	or  %g2, %g5, %g2
-    3de4:	92 02 40 03 	add  %o1, %g3, %o1
-    3de8:	80 8a a0 02 	btst  2, %o2
-    3dec:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
-    3df0:	02 80 00 08 	be  3e10 <__GI_memmove+0x590>
-    3df4:	80 8a a0 01 	btst  1, %o2
-    3df8:	ca 0a 60 0f 	ldub  [ %o1 + 0xf ], %g5
-    3dfc:	92 02 7f fe 	add  %o1, -2, %o1
-    3e00:	ca 2a 20 0b 	stb  %g5, [ %o0 + 0xb ]
-    3e04:	90 02 3f fe 	add  %o0, -2, %o0
-    3e08:	ca 0a 60 10 	ldub  [ %o1 + 0x10 ], %g5
-    3e0c:	ca 2a 20 0c 	stb  %g5, [ %o0 + 0xc ]
-    3e10:	02 80 00 04 	be  3e20 <__GI_memmove+0x5a0>
-    3e14:	01 00 00 00 	nop 
-    3e18:	ca 0a 60 0f 	ldub  [ %o1 + 0xf ], %g5
-    3e1c:	ca 2a 20 0b 	stb  %g5, [ %o0 + 0xb ]
-    3e20:	81 c3 e0 08 	retl 
-    3e24:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
-    3e28:	80 8a 60 01 	btst  1, %o1
-    3e2c:	02 80 00 08 	be  3e4c <__GI_memmove+0x5cc>
-    3e30:	80 8a 60 02 	btst  2, %o1
-    3e34:	c4 0a 40 00 	ldub  [ %o1 ], %g2
-    3e38:	92 02 60 01 	inc  %o1
-    3e3c:	c4 2a 00 00 	stb  %g2, [ %o0 ]
-    3e40:	94 22 a0 01 	dec  %o2
-    3e44:	12 80 00 10 	bne  3e84 <__GI_memcpy+0x20>
-    3e48:	90 02 20 01 	inc  %o0
-    3e4c:	c4 12 40 00 	lduh  [ %o1 ], %g2
-    3e50:	92 02 60 02 	add  %o1, 2, %o1
-    3e54:	c4 32 00 00 	sth  %g2, [ %o0 ]
-    3e58:	94 22 a0 02 	sub  %o2, 2, %o2
-    3e5c:	10 80 00 0a 	b  3e84 <__GI_memcpy+0x20>
-    3e60:	90 02 20 02 	add  %o0, 2, %o0
+    3de4:	92 02 7f f0 	add  %o1, -16, %o1
+    3de8:	c4 22 00 00 	st  %g2, [ %o0 ]
+    3dec:	90 02 3f f0 	add  %o0, -16, %o0
+    3df0:	32 bf ff ea 	bne,a   3d98 <__GI_memmove+0x4f4>
+    3df4:	d6 02 60 0c 	ld  [ %o1 + 0xc ], %o3
+    3df8:	85 2b 40 04 	sll  %o5, %g4, %g2
+    3dfc:	8b 30 40 06 	srl  %g1, %g6, %g5
+    3e00:	87 31 20 03 	srl  %g4, 3, %g3
+    3e04:	84 10 80 05 	or  %g2, %g5, %g2
+    3e08:	92 02 40 03 	add  %o1, %g3, %o1
+    3e0c:	80 8a a0 02 	btst  2, %o2
+    3e10:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
+    3e14:	02 80 00 08 	be  3e34 <__GI_memmove+0x590>
+    3e18:	80 8a a0 01 	btst  1, %o2
+    3e1c:	ca 0a 60 0f 	ldub  [ %o1 + 0xf ], %g5
+    3e20:	92 02 7f fe 	add  %o1, -2, %o1
+    3e24:	ca 2a 20 0b 	stb  %g5, [ %o0 + 0xb ]
+    3e28:	90 02 3f fe 	add  %o0, -2, %o0
+    3e2c:	ca 0a 60 10 	ldub  [ %o1 + 0x10 ], %g5
+    3e30:	ca 2a 20 0c 	stb  %g5, [ %o0 + 0xc ]
+    3e34:	02 80 00 04 	be  3e44 <__GI_memmove+0x5a0>
+    3e38:	01 00 00 00 	nop 
+    3e3c:	ca 0a 60 0f 	ldub  [ %o1 + 0xf ], %g5
+    3e40:	ca 2a 20 0b 	stb  %g5, [ %o0 + 0xb ]
+    3e44:	81 c3 e0 08 	retl 
+    3e48:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
+    3e4c:	80 8a 60 01 	btst  1, %o1
+    3e50:	02 80 00 08 	be  3e70 <__GI_memmove+0x5cc>
+    3e54:	80 8a 60 02 	btst  2, %o1
+    3e58:	c4 0a 40 00 	ldub  [ %o1 ], %g2
+    3e5c:	92 02 60 01 	inc  %o1
+    3e60:	c4 2a 00 00 	stb  %g2, [ %o0 ]
+    3e64:	94 22 a0 01 	dec  %o2
+    3e68:	12 80 00 10 	bne  3ea8 <__GI_memcpy+0x20>
+    3e6c:	90 02 20 01 	inc  %o0
+    3e70:	c4 12 40 00 	lduh  [ %o1 ], %g2
+    3e74:	92 02 60 02 	add  %o1, 2, %o1
+    3e78:	c4 32 00 00 	sth  %g2, [ %o0 ]
+    3e7c:	94 22 a0 02 	sub  %o2, 2, %o2
+    3e80:	10 80 00 0a 	b  3ea8 <__GI_memcpy+0x20>
+    3e84:	90 02 20 02 	add  %o0, 2, %o0
 
-00003e64 <__GI_memcpy>:
-    3e64:	98 22 00 09 	sub  %o0, %o1, %o4
-    3e68:	d0 23 a0 40 	st  %o0, [ %sp + 0x40 ]
-    3e6c:	9a 8b 20 03 	andcc  %o4, 3, %o5
-    3e70:	12 80 00 f4 	bne  4240 <__GI_memcpy+0x3dc>
-    3e74:	80 a2 a0 0f 	cmp  %o2, 0xf
-    3e78:	08 80 04 08 	bleu  4e98 <__GI_memcpy+0x1034>
-    3e7c:	80 8a 60 03 	btst  3, %o1
-    3e80:	12 bf ff ea 	bne  3e28 <__GI_memmove+0x5a8>
-    3e84:	80 8a 60 04 	btst  4, %o1
-    3e88:	02 80 00 07 	be  3ea4 <__GI_memcpy+0x40>
-    3e8c:	82 10 00 0a 	mov  %o2, %g1
-    3e90:	d8 02 40 00 	ld  [ %o1 ], %o4
-    3e94:	82 20 60 04 	sub  %g1, 4, %g1
-    3e98:	d8 22 00 00 	st  %o4, [ %o0 ]
-    3e9c:	92 02 60 04 	add  %o1, 4, %o1
-    3ea0:	90 02 20 04 	add  %o0, 4, %o0
-    3ea4:	8c 88 7f 80 	andcc  %g1, -128, %g6
-    3ea8:	02 80 00 37 	be  3f84 <__GI_memcpy+0x120>
-    3eac:	80 8a 20 04 	btst  4, %o0
-    3eb0:	02 80 00 84 	be  40c0 <__GI_memcpy+0x25c>
-    3eb4:	d4 1a 60 00 	ldd  [ %o1 ], %o2
-    3eb8:	d8 1a 60 08 	ldd  [ %o1 + 8 ], %o4
-    3ebc:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    3ec0:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    3ec4:	d4 22 20 00 	st  %o2, [ %o0 ]
-    3ec8:	d6 22 20 04 	st  %o3, [ %o0 + 4 ]
-    3ecc:	d8 22 20 08 	st  %o4, [ %o0 + 8 ]
-    3ed0:	da 22 20 0c 	st  %o5, [ %o0 + 0xc ]
-    3ed4:	c4 22 20 10 	st  %g2, [ %o0 + 0x10 ]
-    3ed8:	c6 22 20 14 	st  %g3, [ %o0 + 0x14 ]
-    3edc:	c8 22 20 18 	st  %g4, [ %o0 + 0x18 ]
-    3ee0:	ca 22 20 1c 	st  %g5, [ %o0 + 0x1c ]
-    3ee4:	d4 1a 60 20 	ldd  [ %o1 + 0x20 ], %o2
-    3ee8:	d8 1a 60 28 	ldd  [ %o1 + 0x28 ], %o4
-    3eec:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    3ef0:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    3ef4:	d4 22 20 20 	st  %o2, [ %o0 + 0x20 ]
-    3ef8:	d6 22 20 24 	st  %o3, [ %o0 + 0x24 ]
-    3efc:	d8 22 20 28 	st  %o4, [ %o0 + 0x28 ]
-    3f00:	da 22 20 2c 	st  %o5, [ %o0 + 0x2c ]
-    3f04:	c4 22 20 30 	st  %g2, [ %o0 + 0x30 ]
-    3f08:	c6 22 20 34 	st  %g3, [ %o0 + 0x34 ]
-    3f0c:	c8 22 20 38 	st  %g4, [ %o0 + 0x38 ]
-    3f10:	ca 22 20 3c 	st  %g5, [ %o0 + 0x3c ]
-    3f14:	d4 1a 60 40 	ldd  [ %o1 + 0x40 ], %o2
-    3f18:	d8 1a 60 48 	ldd  [ %o1 + 0x48 ], %o4
-    3f1c:	c4 1a 60 50 	ldd  [ %o1 + 0x50 ], %g2
-    3f20:	c8 1a 60 58 	ldd  [ %o1 + 0x58 ], %g4
-    3f24:	d4 22 20 40 	st  %o2, [ %o0 + 0x40 ]
-    3f28:	d6 22 20 44 	st  %o3, [ %o0 + 0x44 ]
-    3f2c:	d8 22 20 48 	st  %o4, [ %o0 + 0x48 ]
-    3f30:	da 22 20 4c 	st  %o5, [ %o0 + 0x4c ]
-    3f34:	c4 22 20 50 	st  %g2, [ %o0 + 0x50 ]
-    3f38:	c6 22 20 54 	st  %g3, [ %o0 + 0x54 ]
-    3f3c:	c8 22 20 58 	st  %g4, [ %o0 + 0x58 ]
-    3f40:	ca 22 20 5c 	st  %g5, [ %o0 + 0x5c ]
-    3f44:	d4 1a 60 60 	ldd  [ %o1 + 0x60 ], %o2
-    3f48:	d8 1a 60 68 	ldd  [ %o1 + 0x68 ], %o4
-    3f4c:	c4 1a 60 70 	ldd  [ %o1 + 0x70 ], %g2
-    3f50:	c8 1a 60 78 	ldd  [ %o1 + 0x78 ], %g4
-    3f54:	d4 22 20 60 	st  %o2, [ %o0 + 0x60 ]
-    3f58:	d6 22 20 64 	st  %o3, [ %o0 + 0x64 ]
-    3f5c:	d8 22 20 68 	st  %o4, [ %o0 + 0x68 ]
-    3f60:	da 22 20 6c 	st  %o5, [ %o0 + 0x6c ]
-    3f64:	c4 22 20 70 	st  %g2, [ %o0 + 0x70 ]
-    3f68:	c6 22 20 74 	st  %g3, [ %o0 + 0x74 ]
-    3f6c:	c8 22 20 78 	st  %g4, [ %o0 + 0x78 ]
-    3f70:	ca 22 20 7c 	st  %g5, [ %o0 + 0x7c ]
-    3f74:	8c a1 a0 80 	subcc  %g6, 0x80, %g6
-    3f78:	92 02 60 80 	add  %o1, 0x80, %o1
-    3f7c:	12 bf ff ce 	bne  3eb4 <__GI_memcpy+0x50>
-    3f80:	90 02 20 80 	add  %o0, 0x80, %o0
-    3f84:	8c 88 60 70 	andcc  %g1, 0x70, %g6
-    3f88:	02 80 00 34 	be  4058 <__GI_memcpy+0x1f4>
-    3f8c:	80 88 60 08 	btst  8, %g1
-    3f90:	99 31 a0 01 	srl  %g6, 1, %o4
-    3f94:	84 10 00 0f 	mov  %o7, %g2
-    3f98:	98 01 80 0c 	add  %g6, %o4, %o4
-    3f9c:	92 02 40 06 	add  %o1, %g6, %o1
-    3fa0:	40 00 03 ca 	call  4ec8 <__GI_memcpy+0x1064>
-    3fa4:	90 02 00 06 	add  %o0, %g6, %o0
-    3fa8:	81 c3 60 b8 	jmp  %o5 + 0xb8
-    3fac:	9e 10 00 02 	mov  %g2, %o7
-    3fb0:	c4 1a 7f 90 	ldd  [ %o1 + -112 ], %g2
-    3fb4:	c8 1a 7f 98 	ldd  [ %o1 + -104 ], %g4
-    3fb8:	c4 22 3f 90 	st  %g2, [ %o0 + -112 ]
-    3fbc:	c6 22 3f 94 	st  %g3, [ %o0 + -108 ]
-    3fc0:	c8 22 3f 98 	st  %g4, [ %o0 + -104 ]
-    3fc4:	ca 22 3f 9c 	st  %g5, [ %o0 + -100 ]
-    3fc8:	c4 1a 7f a0 	ldd  [ %o1 + -96 ], %g2
-    3fcc:	c8 1a 7f a8 	ldd  [ %o1 + -88 ], %g4
-    3fd0:	c4 22 3f a0 	st  %g2, [ %o0 + -96 ]
-    3fd4:	c6 22 3f a4 	st  %g3, [ %o0 + -92 ]
-    3fd8:	c8 22 3f a8 	st  %g4, [ %o0 + -88 ]
-    3fdc:	ca 22 3f ac 	st  %g5, [ %o0 + -84 ]
-    3fe0:	c4 1a 7f b0 	ldd  [ %o1 + -80 ], %g2
-    3fe4:	c8 1a 7f b8 	ldd  [ %o1 + -72 ], %g4
-    3fe8:	c4 22 3f b0 	st  %g2, [ %o0 + -80 ]
-    3fec:	c6 22 3f b4 	st  %g3, [ %o0 + -76 ]
-    3ff0:	c8 22 3f b8 	st  %g4, [ %o0 + -72 ]
-    3ff4:	ca 22 3f bc 	st  %g5, [ %o0 + -68 ]
-    3ff8:	c4 1a 7f c0 	ldd  [ %o1 + -64 ], %g2
-    3ffc:	c8 1a 7f c8 	ldd  [ %o1 + -56 ], %g4
-    4000:	c4 22 3f c0 	st  %g2, [ %o0 + -64 ]
-    4004:	c6 22 3f c4 	st  %g3, [ %o0 + -60 ]
-    4008:	c8 22 3f c8 	st  %g4, [ %o0 + -56 ]
-    400c:	ca 22 3f cc 	st  %g5, [ %o0 + -52 ]
-    4010:	c4 1a 7f d0 	ldd  [ %o1 + -48 ], %g2
-    4014:	c8 1a 7f d8 	ldd  [ %o1 + -40 ], %g4
-    4018:	c4 22 3f d0 	st  %g2, [ %o0 + -48 ]
-    401c:	c6 22 3f d4 	st  %g3, [ %o0 + -44 ]
-    4020:	c8 22 3f d8 	st  %g4, [ %o0 + -40 ]
-    4024:	ca 22 3f dc 	st  %g5, [ %o0 + -36 ]
-    4028:	c4 1a 7f e0 	ldd  [ %o1 + -32 ], %g2
-    402c:	c8 1a 7f e8 	ldd  [ %o1 + -24 ], %g4
-    4030:	c4 22 3f e0 	st  %g2, [ %o0 + -32 ]
-    4034:	c6 22 3f e4 	st  %g3, [ %o0 + -28 ]
-    4038:	c8 22 3f e8 	st  %g4, [ %o0 + -24 ]
-    403c:	ca 22 3f ec 	st  %g5, [ %o0 + -20 ]
-    4040:	c4 1a 7f f0 	ldd  [ %o1 + -16 ], %g2
-    4044:	c8 1a 7f f8 	ldd  [ %o1 + -8 ], %g4
-    4048:	c4 22 3f f0 	st  %g2, [ %o0 + -16 ]
-    404c:	c6 22 3f f4 	st  %g3, [ %o0 + -12 ]
-    4050:	c8 22 3f f8 	st  %g4, [ %o0 + -8 ]
-    4054:	ca 22 3f fc 	st  %g5, [ %o0 + -4 ]
-    4058:	02 80 00 07 	be  4074 <__GI_memcpy+0x210>
-    405c:	80 88 60 04 	btst  4, %g1
-    4060:	c4 1a 40 00 	ldd  [ %o1 ], %g2
-    4064:	90 02 20 08 	add  %o0, 8, %o0
-    4068:	c4 22 3f f8 	st  %g2, [ %o0 + -8 ]
-    406c:	92 02 60 08 	add  %o1, 8, %o1
-    4070:	c6 22 3f fc 	st  %g3, [ %o0 + -4 ]
-    4074:	02 80 00 06 	be  408c <__GI_memcpy+0x228>
-    4078:	80 88 60 02 	btst  2, %g1
-    407c:	c4 02 40 00 	ld  [ %o1 ], %g2
-    4080:	92 02 60 04 	add  %o1, 4, %o1
-    4084:	c4 22 00 00 	st  %g2, [ %o0 ]
-    4088:	90 02 20 04 	add  %o0, 4, %o0
-    408c:	02 80 00 06 	be  40a4 <__GI_memcpy+0x240>
-    4090:	80 88 60 01 	btst  1, %g1
-    4094:	c4 12 40 00 	lduh  [ %o1 ], %g2
-    4098:	92 02 60 02 	add  %o1, 2, %o1
-    409c:	c4 32 00 00 	sth  %g2, [ %o0 ]
-    40a0:	90 02 20 02 	add  %o0, 2, %o0
-    40a4:	02 80 00 04 	be  40b4 <__GI_memcpy+0x250>
-    40a8:	01 00 00 00 	nop 
-    40ac:	c4 0a 40 00 	ldub  [ %o1 ], %g2
-    40b0:	c4 2a 00 00 	stb  %g2, [ %o0 ]
-    40b4:	81 c3 e0 08 	retl 
-    40b8:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
-    40bc:	d4 1a 60 00 	ldd  [ %o1 ], %o2
-    40c0:	d8 1a 60 08 	ldd  [ %o1 + 8 ], %o4
-    40c4:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    40c8:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    40cc:	d4 3a 20 00 	std  %o2, [ %o0 ]
-    40d0:	d8 3a 20 08 	std  %o4, [ %o0 + 8 ]
-    40d4:	c4 3a 20 10 	std  %g2, [ %o0 + 0x10 ]
-    40d8:	c8 3a 20 18 	std  %g4, [ %o0 + 0x18 ]
-    40dc:	d4 1a 60 20 	ldd  [ %o1 + 0x20 ], %o2
-    40e0:	d8 1a 60 28 	ldd  [ %o1 + 0x28 ], %o4
-    40e4:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    40e8:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    40ec:	d4 3a 20 20 	std  %o2, [ %o0 + 0x20 ]
-    40f0:	d8 3a 20 28 	std  %o4, [ %o0 + 0x28 ]
-    40f4:	c4 3a 20 30 	std  %g2, [ %o0 + 0x30 ]
-    40f8:	c8 3a 20 38 	std  %g4, [ %o0 + 0x38 ]
-    40fc:	d4 1a 60 40 	ldd  [ %o1 + 0x40 ], %o2
-    4100:	d8 1a 60 48 	ldd  [ %o1 + 0x48 ], %o4
-    4104:	c4 1a 60 50 	ldd  [ %o1 + 0x50 ], %g2
-    4108:	c8 1a 60 58 	ldd  [ %o1 + 0x58 ], %g4
-    410c:	d4 3a 20 40 	std  %o2, [ %o0 + 0x40 ]
-    4110:	d8 3a 20 48 	std  %o4, [ %o0 + 0x48 ]
-    4114:	c4 3a 20 50 	std  %g2, [ %o0 + 0x50 ]
-    4118:	c8 3a 20 58 	std  %g4, [ %o0 + 0x58 ]
-    411c:	d4 1a 60 60 	ldd  [ %o1 + 0x60 ], %o2
-    4120:	d8 1a 60 68 	ldd  [ %o1 + 0x68 ], %o4
-    4124:	c4 1a 60 70 	ldd  [ %o1 + 0x70 ], %g2
-    4128:	c8 1a 60 78 	ldd  [ %o1 + 0x78 ], %g4
-    412c:	d4 3a 20 60 	std  %o2, [ %o0 + 0x60 ]
-    4130:	d8 3a 20 68 	std  %o4, [ %o0 + 0x68 ]
-    4134:	c4 3a 20 70 	std  %g2, [ %o0 + 0x70 ]
-    4138:	c8 3a 20 78 	std  %g4, [ %o0 + 0x78 ]
-    413c:	8c a1 a0 80 	subcc  %g6, 0x80, %g6
-    4140:	92 02 60 80 	add  %o1, 0x80, %o1
-    4144:	12 bf ff de 	bne  40bc <__GI_memcpy+0x258>
-    4148:	90 02 20 80 	add  %o0, 0x80, %o0
-    414c:	8c 88 60 70 	andcc  %g1, 0x70, %g6
-    4150:	02 80 00 24 	be  41e0 <__GI_memcpy+0x37c>
-    4154:	80 88 60 08 	btst  8, %g1
-    4158:	84 10 00 0f 	mov  %o7, %g2
-    415c:	40 00 03 5d 	call  4ed0 <__GI_memcpy+0x106c>
-    4160:	92 02 40 06 	add  %o1, %g6, %o1
-    4164:	9e 10 00 02 	mov  %g2, %o7
-    4168:	81 c3 60 84 	jmp  %o5 + 0x84
-    416c:	90 02 00 06 	add  %o0, %g6, %o0
-    4170:	c4 1a 7f 90 	ldd  [ %o1 + -112 ], %g2
-    4174:	c8 1a 7f 98 	ldd  [ %o1 + -104 ], %g4
-    4178:	c4 3a 3f 90 	std  %g2, [ %o0 + -112 ]
-    417c:	c8 3a 3f 98 	std  %g4, [ %o0 + -104 ]
-    4180:	c4 1a 7f a0 	ldd  [ %o1 + -96 ], %g2
-    4184:	c8 1a 7f a8 	ldd  [ %o1 + -88 ], %g4
-    4188:	c4 3a 3f a0 	std  %g2, [ %o0 + -96 ]
-    418c:	c8 3a 3f a8 	std  %g4, [ %o0 + -88 ]
-    4190:	c4 1a 7f b0 	ldd  [ %o1 + -80 ], %g2
-    4194:	c8 1a 7f b8 	ldd  [ %o1 + -72 ], %g4
-    4198:	c4 3a 3f b0 	std  %g2, [ %o0 + -80 ]
-    419c:	c8 3a 3f b8 	std  %g4, [ %o0 + -72 ]
-    41a0:	c4 1a 7f c0 	ldd  [ %o1 + -64 ], %g2
-    41a4:	c8 1a 7f c8 	ldd  [ %o1 + -56 ], %g4
-    41a8:	c4 3a 3f c0 	std  %g2, [ %o0 + -64 ]
-    41ac:	c8 3a 3f c8 	std  %g4, [ %o0 + -56 ]
-    41b0:	c4 1a 7f d0 	ldd  [ %o1 + -48 ], %g2
-    41b4:	c8 1a 7f d8 	ldd  [ %o1 + -40 ], %g4
-    41b8:	c4 3a 3f d0 	std  %g2, [ %o0 + -48 ]
-    41bc:	c8 3a 3f d8 	std  %g4, [ %o0 + -40 ]
-    41c0:	c4 1a 7f e0 	ldd  [ %o1 + -32 ], %g2
-    41c4:	c8 1a 7f e8 	ldd  [ %o1 + -24 ], %g4
-    41c8:	c4 3a 3f e0 	std  %g2, [ %o0 + -32 ]
-    41cc:	c8 3a 3f e8 	std  %g4, [ %o0 + -24 ]
-    41d0:	c4 1a 7f f0 	ldd  [ %o1 + -16 ], %g2
-    41d4:	c8 1a 7f f8 	ldd  [ %o1 + -8 ], %g4
-    41d8:	c4 3a 3f f0 	std  %g2, [ %o0 + -16 ]
-    41dc:	c8 3a 3f f8 	std  %g4, [ %o0 + -8 ]
-    41e0:	02 80 00 06 	be  41f8 <__GI_memcpy+0x394>
-    41e4:	80 88 60 04 	btst  4, %g1
-    41e8:	c4 1a 40 00 	ldd  [ %o1 ], %g2
-    41ec:	90 02 20 08 	add  %o0, 8, %o0
-    41f0:	c4 3a 3f f8 	std  %g2, [ %o0 + -8 ]
-    41f4:	92 02 60 08 	add  %o1, 8, %o1
-    41f8:	02 80 00 06 	be  4210 <__GI_memcpy+0x3ac>
-    41fc:	80 88 60 02 	btst  2, %g1
-    4200:	c4 02 40 00 	ld  [ %o1 ], %g2
-    4204:	92 02 60 04 	add  %o1, 4, %o1
-    4208:	c4 22 00 00 	st  %g2, [ %o0 ]
-    420c:	90 02 20 04 	add  %o0, 4, %o0
-    4210:	02 80 00 06 	be  4228 <__GI_memcpy+0x3c4>
-    4214:	80 88 60 01 	btst  1, %g1
-    4218:	c4 12 40 00 	lduh  [ %o1 ], %g2
-    421c:	92 02 60 02 	add  %o1, 2, %o1
-    4220:	c4 32 00 00 	sth  %g2, [ %o0 ]
-    4224:	90 02 20 02 	add  %o0, 2, %o0
-    4228:	02 80 00 04 	be  4238 <__GI_memcpy+0x3d4>
-    422c:	01 00 00 00 	nop 
-    4230:	c4 0a 40 00 	ldub  [ %o1 ], %g2
-    4234:	c4 2a 00 00 	stb  %g2, [ %o0 ]
-    4238:	81 c3 e0 08 	retl 
-    423c:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
-    4240:	80 a2 a0 06 	cmp  %o2, 6
-    4244:	08 80 02 ea 	bleu  4dec <__GI_memcpy+0xf88>
-    4248:	80 a2 a1 00 	cmp  %o2, 0x100
-    424c:	1a 80 00 65 	bcc  43e0 <__GI_memcpy+0x57c>
-    4250:	80 8a 20 03 	btst  3, %o0
-    4254:	02 80 00 11 	be  4298 <__GI_memcpy+0x434>
-    4258:	80 8a 20 01 	btst  1, %o0
-    425c:	02 80 00 08 	be  427c <__GI_memcpy+0x418>
-    4260:	80 8a 20 02 	btst  2, %o0
-    4264:	ca 0a 40 00 	ldub  [ %o1 ], %g5
-    4268:	92 02 60 01 	inc  %o1
-    426c:	ca 2a 00 00 	stb  %g5, [ %o0 ]
-    4270:	94 22 a0 01 	dec  %o2
-    4274:	12 80 00 09 	bne  4298 <__GI_memcpy+0x434>
-    4278:	90 02 20 01 	inc  %o0
-    427c:	c6 0a 40 00 	ldub  [ %o1 ], %g3
-    4280:	92 02 60 02 	add  %o1, 2, %o1
-    4284:	c6 2a 00 00 	stb  %g3, [ %o0 ]
-    4288:	94 22 a0 02 	sub  %o2, 2, %o2
-    428c:	c6 0a 7f ff 	ldub  [ %o1 + -1 ], %g3
-    4290:	90 02 20 02 	add  %o0, 2, %o0
-    4294:	c6 2a 3f ff 	stb  %g3, [ %o0 + -1 ]
-    4298:	84 0a 60 03 	and  %o1, 3, %g2
-    429c:	86 0a a0 0c 	and  %o2, 0xc, %g3
-    42a0:	92 0a 7f fc 	and  %o1, -4, %o1
-    42a4:	80 a0 e0 04 	cmp  %g3, 4
-    42a8:	89 28 a0 03 	sll  %g2, 3, %g4
-    42ac:	84 10 20 20 	mov  0x20, %g2
-    42b0:	02 80 00 17 	be  430c <__GI_memcpy+0x4a8>
-    42b4:	8c 20 80 04 	sub  %g2, %g4, %g6
-    42b8:	0a 80 00 0f 	bcs  42f4 <__GI_memcpy+0x490>
-    42bc:	80 a0 e0 08 	cmp  %g3, 8
-    42c0:	02 80 00 07 	be  42dc <__GI_memcpy+0x478>
-    42c4:	87 32 a0 02 	srl  %o2, 2, %g3
-    42c8:	d6 02 40 00 	ld  [ %o1 ], %o3
-    42cc:	90 02 3f f8 	add  %o0, -8, %o0
-    42d0:	d8 02 60 04 	ld  [ %o1 + 4 ], %o4
-    42d4:	10 80 00 1f 	b  4350 <__GI_memcpy+0x4ec>
-    42d8:	86 00 e0 01 	inc  %g3
-    42dc:	d8 02 40 00 	ld  [ %o1 ], %o4
-    42e0:	90 02 3f f4 	add  %o0, -12, %o0
-    42e4:	da 02 60 04 	ld  [ %o1 + 4 ], %o5
-    42e8:	86 00 e0 02 	add  %g3, 2, %g3
-    42ec:	10 80 00 1e 	b  4364 <__GI_memcpy+0x500>
-    42f0:	92 02 7f fc 	add  %o1, -4, %o1
-    42f4:	c2 02 40 00 	ld  [ %o1 ], %g1
-    42f8:	90 02 3f fc 	add  %o0, -4, %o0
-    42fc:	d6 02 60 04 	ld  [ %o1 + 4 ], %o3
-    4300:	87 32 a0 02 	srl  %o2, 2, %g3
-    4304:	10 80 00 0e 	b  433c <__GI_memcpy+0x4d8>
-    4308:	92 02 60 04 	add  %o1, 4, %o1
-    430c:	da 02 40 00 	ld  [ %o1 ], %o5
-    4310:	80 a2 a0 07 	cmp  %o2, 7
-    4314:	c2 02 60 04 	ld  [ %o1 + 4 ], %g1
-    4318:	87 32 a0 02 	srl  %o2, 2, %g3
-    431c:	08 80 00 1c 	bleu  438c <__GI_memcpy+0x528>
-    4320:	92 02 60 08 	add  %o1, 8, %o1
-    4324:	d6 02 40 00 	ld  [ %o1 ], %o3
-    4328:	86 00 ff ff 	add  %g3, -1, %g3
-    432c:	85 2b 40 04 	sll  %o5, %g4, %g2
-    4330:	8b 30 40 06 	srl  %g1, %g6, %g5
-    4334:	84 10 80 05 	or  %g2, %g5, %g2
-    4338:	c4 22 00 00 	st  %g2, [ %o0 ]
-    433c:	d8 02 60 04 	ld  [ %o1 + 4 ], %o4
-    4340:	85 28 40 04 	sll  %g1, %g4, %g2
-    4344:	8b 32 c0 06 	srl  %o3, %g6, %g5
-    4348:	84 10 80 05 	or  %g2, %g5, %g2
-    434c:	c4 22 20 04 	st  %g2, [ %o0 + 4 ]
-    4350:	da 02 60 08 	ld  [ %o1 + 8 ], %o5
-    4354:	85 2a c0 04 	sll  %o3, %g4, %g2
-    4358:	8b 33 00 06 	srl  %o4, %g6, %g5
-    435c:	84 10 80 05 	or  %g2, %g5, %g2
-    4360:	c4 22 20 08 	st  %g2, [ %o0 + 8 ]
-    4364:	c2 02 60 0c 	ld  [ %o1 + 0xc ], %g1
-    4368:	85 2b 00 04 	sll  %o4, %g4, %g2
-    436c:	8b 33 40 06 	srl  %o5, %g6, %g5
-    4370:	86 80 ff fc 	addcc  %g3, -4, %g3
-    4374:	84 10 80 05 	or  %g2, %g5, %g2
-    4378:	92 02 60 10 	add  %o1, 0x10, %o1
-    437c:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
-    4380:	90 02 20 10 	add  %o0, 0x10, %o0
-    4384:	32 bf ff ea 	bne,a   432c <__GI_memcpy+0x4c8>
-    4388:	d6 02 40 00 	ld  [ %o1 ], %o3
-    438c:	85 2b 40 04 	sll  %o5, %g4, %g2
-    4390:	8b 30 40 06 	srl  %g1, %g6, %g5
-    4394:	87 31 a0 03 	srl  %g6, 3, %g3
+00003e88 <__GI_memcpy>:
+    3e88:	98 22 00 09 	sub  %o0, %o1, %o4
+    3e8c:	d0 23 a0 40 	st  %o0, [ %sp + 0x40 ]
+    3e90:	9a 8b 20 03 	andcc  %o4, 3, %o5
+    3e94:	12 80 00 f4 	bne  4264 <__GI_memcpy+0x3dc>
+    3e98:	80 a2 a0 0f 	cmp  %o2, 0xf
+    3e9c:	08 80 04 08 	bleu  4ebc <__GI_memcpy+0x1034>
+    3ea0:	80 8a 60 03 	btst  3, %o1
+    3ea4:	12 bf ff ea 	bne  3e4c <__GI_memmove+0x5a8>
+    3ea8:	80 8a 60 04 	btst  4, %o1
+    3eac:	02 80 00 07 	be  3ec8 <__GI_memcpy+0x40>
+    3eb0:	82 10 00 0a 	mov  %o2, %g1
+    3eb4:	d8 02 40 00 	ld  [ %o1 ], %o4
+    3eb8:	82 20 60 04 	sub  %g1, 4, %g1
+    3ebc:	d8 22 00 00 	st  %o4, [ %o0 ]
+    3ec0:	92 02 60 04 	add  %o1, 4, %o1
+    3ec4:	90 02 20 04 	add  %o0, 4, %o0
+    3ec8:	8c 88 7f 80 	andcc  %g1, -128, %g6
+    3ecc:	02 80 00 37 	be  3fa8 <__GI_memcpy+0x120>
+    3ed0:	80 8a 20 04 	btst  4, %o0
+    3ed4:	02 80 00 84 	be  40e4 <__GI_memcpy+0x25c>
+    3ed8:	d4 1a 60 00 	ldd  [ %o1 ], %o2
+    3edc:	d8 1a 60 08 	ldd  [ %o1 + 8 ], %o4
+    3ee0:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    3ee4:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    3ee8:	d4 22 20 00 	st  %o2, [ %o0 ]
+    3eec:	d6 22 20 04 	st  %o3, [ %o0 + 4 ]
+    3ef0:	d8 22 20 08 	st  %o4, [ %o0 + 8 ]
+    3ef4:	da 22 20 0c 	st  %o5, [ %o0 + 0xc ]
+    3ef8:	c4 22 20 10 	st  %g2, [ %o0 + 0x10 ]
+    3efc:	c6 22 20 14 	st  %g3, [ %o0 + 0x14 ]
+    3f00:	c8 22 20 18 	st  %g4, [ %o0 + 0x18 ]
+    3f04:	ca 22 20 1c 	st  %g5, [ %o0 + 0x1c ]
+    3f08:	d4 1a 60 20 	ldd  [ %o1 + 0x20 ], %o2
+    3f0c:	d8 1a 60 28 	ldd  [ %o1 + 0x28 ], %o4
+    3f10:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    3f14:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    3f18:	d4 22 20 20 	st  %o2, [ %o0 + 0x20 ]
+    3f1c:	d6 22 20 24 	st  %o3, [ %o0 + 0x24 ]
+    3f20:	d8 22 20 28 	st  %o4, [ %o0 + 0x28 ]
+    3f24:	da 22 20 2c 	st  %o5, [ %o0 + 0x2c ]
+    3f28:	c4 22 20 30 	st  %g2, [ %o0 + 0x30 ]
+    3f2c:	c6 22 20 34 	st  %g3, [ %o0 + 0x34 ]
+    3f30:	c8 22 20 38 	st  %g4, [ %o0 + 0x38 ]
+    3f34:	ca 22 20 3c 	st  %g5, [ %o0 + 0x3c ]
+    3f38:	d4 1a 60 40 	ldd  [ %o1 + 0x40 ], %o2
+    3f3c:	d8 1a 60 48 	ldd  [ %o1 + 0x48 ], %o4
+    3f40:	c4 1a 60 50 	ldd  [ %o1 + 0x50 ], %g2
+    3f44:	c8 1a 60 58 	ldd  [ %o1 + 0x58 ], %g4
+    3f48:	d4 22 20 40 	st  %o2, [ %o0 + 0x40 ]
+    3f4c:	d6 22 20 44 	st  %o3, [ %o0 + 0x44 ]
+    3f50:	d8 22 20 48 	st  %o4, [ %o0 + 0x48 ]
+    3f54:	da 22 20 4c 	st  %o5, [ %o0 + 0x4c ]
+    3f58:	c4 22 20 50 	st  %g2, [ %o0 + 0x50 ]
+    3f5c:	c6 22 20 54 	st  %g3, [ %o0 + 0x54 ]
+    3f60:	c8 22 20 58 	st  %g4, [ %o0 + 0x58 ]
+    3f64:	ca 22 20 5c 	st  %g5, [ %o0 + 0x5c ]
+    3f68:	d4 1a 60 60 	ldd  [ %o1 + 0x60 ], %o2
+    3f6c:	d8 1a 60 68 	ldd  [ %o1 + 0x68 ], %o4
+    3f70:	c4 1a 60 70 	ldd  [ %o1 + 0x70 ], %g2
+    3f74:	c8 1a 60 78 	ldd  [ %o1 + 0x78 ], %g4
+    3f78:	d4 22 20 60 	st  %o2, [ %o0 + 0x60 ]
+    3f7c:	d6 22 20 64 	st  %o3, [ %o0 + 0x64 ]
+    3f80:	d8 22 20 68 	st  %o4, [ %o0 + 0x68 ]
+    3f84:	da 22 20 6c 	st  %o5, [ %o0 + 0x6c ]
+    3f88:	c4 22 20 70 	st  %g2, [ %o0 + 0x70 ]
+    3f8c:	c6 22 20 74 	st  %g3, [ %o0 + 0x74 ]
+    3f90:	c8 22 20 78 	st  %g4, [ %o0 + 0x78 ]
+    3f94:	ca 22 20 7c 	st  %g5, [ %o0 + 0x7c ]
+    3f98:	8c a1 a0 80 	subcc  %g6, 0x80, %g6
+    3f9c:	92 02 60 80 	add  %o1, 0x80, %o1
+    3fa0:	12 bf ff ce 	bne  3ed8 <__GI_memcpy+0x50>
+    3fa4:	90 02 20 80 	add  %o0, 0x80, %o0
+    3fa8:	8c 88 60 70 	andcc  %g1, 0x70, %g6
+    3fac:	02 80 00 34 	be  407c <__GI_memcpy+0x1f4>
+    3fb0:	80 88 60 08 	btst  8, %g1
+    3fb4:	99 31 a0 01 	srl  %g6, 1, %o4
+    3fb8:	84 10 00 0f 	mov  %o7, %g2
+    3fbc:	98 01 80 0c 	add  %g6, %o4, %o4
+    3fc0:	92 02 40 06 	add  %o1, %g6, %o1
+    3fc4:	40 00 03 ca 	call  4eec <__GI_memcpy+0x1064>
+    3fc8:	90 02 00 06 	add  %o0, %g6, %o0
+    3fcc:	81 c3 60 b8 	jmp  %o5 + 0xb8
+    3fd0:	9e 10 00 02 	mov  %g2, %o7
+    3fd4:	c4 1a 7f 90 	ldd  [ %o1 + -112 ], %g2
+    3fd8:	c8 1a 7f 98 	ldd  [ %o1 + -104 ], %g4
+    3fdc:	c4 22 3f 90 	st  %g2, [ %o0 + -112 ]
+    3fe0:	c6 22 3f 94 	st  %g3, [ %o0 + -108 ]
+    3fe4:	c8 22 3f 98 	st  %g4, [ %o0 + -104 ]
+    3fe8:	ca 22 3f 9c 	st  %g5, [ %o0 + -100 ]
+    3fec:	c4 1a 7f a0 	ldd  [ %o1 + -96 ], %g2
+    3ff0:	c8 1a 7f a8 	ldd  [ %o1 + -88 ], %g4
+    3ff4:	c4 22 3f a0 	st  %g2, [ %o0 + -96 ]
+    3ff8:	c6 22 3f a4 	st  %g3, [ %o0 + -92 ]
+    3ffc:	c8 22 3f a8 	st  %g4, [ %o0 + -88 ]
+    4000:	ca 22 3f ac 	st  %g5, [ %o0 + -84 ]
+    4004:	c4 1a 7f b0 	ldd  [ %o1 + -80 ], %g2
+    4008:	c8 1a 7f b8 	ldd  [ %o1 + -72 ], %g4
+    400c:	c4 22 3f b0 	st  %g2, [ %o0 + -80 ]
+    4010:	c6 22 3f b4 	st  %g3, [ %o0 + -76 ]
+    4014:	c8 22 3f b8 	st  %g4, [ %o0 + -72 ]
+    4018:	ca 22 3f bc 	st  %g5, [ %o0 + -68 ]
+    401c:	c4 1a 7f c0 	ldd  [ %o1 + -64 ], %g2
+    4020:	c8 1a 7f c8 	ldd  [ %o1 + -56 ], %g4
+    4024:	c4 22 3f c0 	st  %g2, [ %o0 + -64 ]
+    4028:	c6 22 3f c4 	st  %g3, [ %o0 + -60 ]
+    402c:	c8 22 3f c8 	st  %g4, [ %o0 + -56 ]
+    4030:	ca 22 3f cc 	st  %g5, [ %o0 + -52 ]
+    4034:	c4 1a 7f d0 	ldd  [ %o1 + -48 ], %g2
+    4038:	c8 1a 7f d8 	ldd  [ %o1 + -40 ], %g4
+    403c:	c4 22 3f d0 	st  %g2, [ %o0 + -48 ]
+    4040:	c6 22 3f d4 	st  %g3, [ %o0 + -44 ]
+    4044:	c8 22 3f d8 	st  %g4, [ %o0 + -40 ]
+    4048:	ca 22 3f dc 	st  %g5, [ %o0 + -36 ]
+    404c:	c4 1a 7f e0 	ldd  [ %o1 + -32 ], %g2
+    4050:	c8 1a 7f e8 	ldd  [ %o1 + -24 ], %g4
+    4054:	c4 22 3f e0 	st  %g2, [ %o0 + -32 ]
+    4058:	c6 22 3f e4 	st  %g3, [ %o0 + -28 ]
+    405c:	c8 22 3f e8 	st  %g4, [ %o0 + -24 ]
+    4060:	ca 22 3f ec 	st  %g5, [ %o0 + -20 ]
+    4064:	c4 1a 7f f0 	ldd  [ %o1 + -16 ], %g2
+    4068:	c8 1a 7f f8 	ldd  [ %o1 + -8 ], %g4
+    406c:	c4 22 3f f0 	st  %g2, [ %o0 + -16 ]
+    4070:	c6 22 3f f4 	st  %g3, [ %o0 + -12 ]
+    4074:	c8 22 3f f8 	st  %g4, [ %o0 + -8 ]
+    4078:	ca 22 3f fc 	st  %g5, [ %o0 + -4 ]
+    407c:	02 80 00 07 	be  4098 <__GI_memcpy+0x210>
+    4080:	80 88 60 04 	btst  4, %g1
+    4084:	c4 1a 40 00 	ldd  [ %o1 ], %g2
+    4088:	90 02 20 08 	add  %o0, 8, %o0
+    408c:	c4 22 3f f8 	st  %g2, [ %o0 + -8 ]
+    4090:	92 02 60 08 	add  %o1, 8, %o1
+    4094:	c6 22 3f fc 	st  %g3, [ %o0 + -4 ]
+    4098:	02 80 00 06 	be  40b0 <__GI_memcpy+0x228>
+    409c:	80 88 60 02 	btst  2, %g1
+    40a0:	c4 02 40 00 	ld  [ %o1 ], %g2
+    40a4:	92 02 60 04 	add  %o1, 4, %o1
+    40a8:	c4 22 00 00 	st  %g2, [ %o0 ]
+    40ac:	90 02 20 04 	add  %o0, 4, %o0
+    40b0:	02 80 00 06 	be  40c8 <__GI_memcpy+0x240>
+    40b4:	80 88 60 01 	btst  1, %g1
+    40b8:	c4 12 40 00 	lduh  [ %o1 ], %g2
+    40bc:	92 02 60 02 	add  %o1, 2, %o1
+    40c0:	c4 32 00 00 	sth  %g2, [ %o0 ]
+    40c4:	90 02 20 02 	add  %o0, 2, %o0
+    40c8:	02 80 00 04 	be  40d8 <__GI_memcpy+0x250>
+    40cc:	01 00 00 00 	nop 
+    40d0:	c4 0a 40 00 	ldub  [ %o1 ], %g2
+    40d4:	c4 2a 00 00 	stb  %g2, [ %o0 ]
+    40d8:	81 c3 e0 08 	retl 
+    40dc:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
+    40e0:	d4 1a 60 00 	ldd  [ %o1 ], %o2
+    40e4:	d8 1a 60 08 	ldd  [ %o1 + 8 ], %o4
+    40e8:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    40ec:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    40f0:	d4 3a 20 00 	std  %o2, [ %o0 ]
+    40f4:	d8 3a 20 08 	std  %o4, [ %o0 + 8 ]
+    40f8:	c4 3a 20 10 	std  %g2, [ %o0 + 0x10 ]
+    40fc:	c8 3a 20 18 	std  %g4, [ %o0 + 0x18 ]
+    4100:	d4 1a 60 20 	ldd  [ %o1 + 0x20 ], %o2
+    4104:	d8 1a 60 28 	ldd  [ %o1 + 0x28 ], %o4
+    4108:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    410c:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    4110:	d4 3a 20 20 	std  %o2, [ %o0 + 0x20 ]
+    4114:	d8 3a 20 28 	std  %o4, [ %o0 + 0x28 ]
+    4118:	c4 3a 20 30 	std  %g2, [ %o0 + 0x30 ]
+    411c:	c8 3a 20 38 	std  %g4, [ %o0 + 0x38 ]
+    4120:	d4 1a 60 40 	ldd  [ %o1 + 0x40 ], %o2
+    4124:	d8 1a 60 48 	ldd  [ %o1 + 0x48 ], %o4
+    4128:	c4 1a 60 50 	ldd  [ %o1 + 0x50 ], %g2
+    412c:	c8 1a 60 58 	ldd  [ %o1 + 0x58 ], %g4
+    4130:	d4 3a 20 40 	std  %o2, [ %o0 + 0x40 ]
+    4134:	d8 3a 20 48 	std  %o4, [ %o0 + 0x48 ]
+    4138:	c4 3a 20 50 	std  %g2, [ %o0 + 0x50 ]
+    413c:	c8 3a 20 58 	std  %g4, [ %o0 + 0x58 ]
+    4140:	d4 1a 60 60 	ldd  [ %o1 + 0x60 ], %o2
+    4144:	d8 1a 60 68 	ldd  [ %o1 + 0x68 ], %o4
+    4148:	c4 1a 60 70 	ldd  [ %o1 + 0x70 ], %g2
+    414c:	c8 1a 60 78 	ldd  [ %o1 + 0x78 ], %g4
+    4150:	d4 3a 20 60 	std  %o2, [ %o0 + 0x60 ]
+    4154:	d8 3a 20 68 	std  %o4, [ %o0 + 0x68 ]
+    4158:	c4 3a 20 70 	std  %g2, [ %o0 + 0x70 ]
+    415c:	c8 3a 20 78 	std  %g4, [ %o0 + 0x78 ]
+    4160:	8c a1 a0 80 	subcc  %g6, 0x80, %g6
+    4164:	92 02 60 80 	add  %o1, 0x80, %o1
+    4168:	12 bf ff de 	bne  40e0 <__GI_memcpy+0x258>
+    416c:	90 02 20 80 	add  %o0, 0x80, %o0
+    4170:	8c 88 60 70 	andcc  %g1, 0x70, %g6
+    4174:	02 80 00 24 	be  4204 <__GI_memcpy+0x37c>
+    4178:	80 88 60 08 	btst  8, %g1
+    417c:	84 10 00 0f 	mov  %o7, %g2
+    4180:	40 00 03 5d 	call  4ef4 <__GI_memcpy+0x106c>
+    4184:	92 02 40 06 	add  %o1, %g6, %o1
+    4188:	9e 10 00 02 	mov  %g2, %o7
+    418c:	81 c3 60 84 	jmp  %o5 + 0x84
+    4190:	90 02 00 06 	add  %o0, %g6, %o0
+    4194:	c4 1a 7f 90 	ldd  [ %o1 + -112 ], %g2
+    4198:	c8 1a 7f 98 	ldd  [ %o1 + -104 ], %g4
+    419c:	c4 3a 3f 90 	std  %g2, [ %o0 + -112 ]
+    41a0:	c8 3a 3f 98 	std  %g4, [ %o0 + -104 ]
+    41a4:	c4 1a 7f a0 	ldd  [ %o1 + -96 ], %g2
+    41a8:	c8 1a 7f a8 	ldd  [ %o1 + -88 ], %g4
+    41ac:	c4 3a 3f a0 	std  %g2, [ %o0 + -96 ]
+    41b0:	c8 3a 3f a8 	std  %g4, [ %o0 + -88 ]
+    41b4:	c4 1a 7f b0 	ldd  [ %o1 + -80 ], %g2
+    41b8:	c8 1a 7f b8 	ldd  [ %o1 + -72 ], %g4
+    41bc:	c4 3a 3f b0 	std  %g2, [ %o0 + -80 ]
+    41c0:	c8 3a 3f b8 	std  %g4, [ %o0 + -72 ]
+    41c4:	c4 1a 7f c0 	ldd  [ %o1 + -64 ], %g2
+    41c8:	c8 1a 7f c8 	ldd  [ %o1 + -56 ], %g4
+    41cc:	c4 3a 3f c0 	std  %g2, [ %o0 + -64 ]
+    41d0:	c8 3a 3f c8 	std  %g4, [ %o0 + -56 ]
+    41d4:	c4 1a 7f d0 	ldd  [ %o1 + -48 ], %g2
+    41d8:	c8 1a 7f d8 	ldd  [ %o1 + -40 ], %g4
+    41dc:	c4 3a 3f d0 	std  %g2, [ %o0 + -48 ]
+    41e0:	c8 3a 3f d8 	std  %g4, [ %o0 + -40 ]
+    41e4:	c4 1a 7f e0 	ldd  [ %o1 + -32 ], %g2
+    41e8:	c8 1a 7f e8 	ldd  [ %o1 + -24 ], %g4
+    41ec:	c4 3a 3f e0 	std  %g2, [ %o0 + -32 ]
+    41f0:	c8 3a 3f e8 	std  %g4, [ %o0 + -24 ]
+    41f4:	c4 1a 7f f0 	ldd  [ %o1 + -16 ], %g2
+    41f8:	c8 1a 7f f8 	ldd  [ %o1 + -8 ], %g4
+    41fc:	c4 3a 3f f0 	std  %g2, [ %o0 + -16 ]
+    4200:	c8 3a 3f f8 	std  %g4, [ %o0 + -8 ]
+    4204:	02 80 00 06 	be  421c <__GI_memcpy+0x394>
+    4208:	80 88 60 04 	btst  4, %g1
+    420c:	c4 1a 40 00 	ldd  [ %o1 ], %g2
+    4210:	90 02 20 08 	add  %o0, 8, %o0
+    4214:	c4 3a 3f f8 	std  %g2, [ %o0 + -8 ]
+    4218:	92 02 60 08 	add  %o1, 8, %o1
+    421c:	02 80 00 06 	be  4234 <__GI_memcpy+0x3ac>
+    4220:	80 88 60 02 	btst  2, %g1
+    4224:	c4 02 40 00 	ld  [ %o1 ], %g2
+    4228:	92 02 60 04 	add  %o1, 4, %o1
+    422c:	c4 22 00 00 	st  %g2, [ %o0 ]
+    4230:	90 02 20 04 	add  %o0, 4, %o0
+    4234:	02 80 00 06 	be  424c <__GI_memcpy+0x3c4>
+    4238:	80 88 60 01 	btst  1, %g1
+    423c:	c4 12 40 00 	lduh  [ %o1 ], %g2
+    4240:	92 02 60 02 	add  %o1, 2, %o1
+    4244:	c4 32 00 00 	sth  %g2, [ %o0 ]
+    4248:	90 02 20 02 	add  %o0, 2, %o0
+    424c:	02 80 00 04 	be  425c <__GI_memcpy+0x3d4>
+    4250:	01 00 00 00 	nop 
+    4254:	c4 0a 40 00 	ldub  [ %o1 ], %g2
+    4258:	c4 2a 00 00 	stb  %g2, [ %o0 ]
+    425c:	81 c3 e0 08 	retl 
+    4260:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
+    4264:	80 a2 a0 06 	cmp  %o2, 6
+    4268:	08 80 02 ea 	bleu  4e10 <__GI_memcpy+0xf88>
+    426c:	80 a2 a1 00 	cmp  %o2, 0x100
+    4270:	1a 80 00 65 	bcc  4404 <__GI_memcpy+0x57c>
+    4274:	80 8a 20 03 	btst  3, %o0
+    4278:	02 80 00 11 	be  42bc <__GI_memcpy+0x434>
+    427c:	80 8a 20 01 	btst  1, %o0
+    4280:	02 80 00 08 	be  42a0 <__GI_memcpy+0x418>
+    4284:	80 8a 20 02 	btst  2, %o0
+    4288:	ca 0a 40 00 	ldub  [ %o1 ], %g5
+    428c:	92 02 60 01 	inc  %o1
+    4290:	ca 2a 00 00 	stb  %g5, [ %o0 ]
+    4294:	94 22 a0 01 	dec  %o2
+    4298:	12 80 00 09 	bne  42bc <__GI_memcpy+0x434>
+    429c:	90 02 20 01 	inc  %o0
+    42a0:	c6 0a 40 00 	ldub  [ %o1 ], %g3
+    42a4:	92 02 60 02 	add  %o1, 2, %o1
+    42a8:	c6 2a 00 00 	stb  %g3, [ %o0 ]
+    42ac:	94 22 a0 02 	sub  %o2, 2, %o2
+    42b0:	c6 0a 7f ff 	ldub  [ %o1 + -1 ], %g3
+    42b4:	90 02 20 02 	add  %o0, 2, %o0
+    42b8:	c6 2a 3f ff 	stb  %g3, [ %o0 + -1 ]
+    42bc:	84 0a 60 03 	and  %o1, 3, %g2
+    42c0:	86 0a a0 0c 	and  %o2, 0xc, %g3
+    42c4:	92 0a 7f fc 	and  %o1, -4, %o1
+    42c8:	80 a0 e0 04 	cmp  %g3, 4
+    42cc:	89 28 a0 03 	sll  %g2, 3, %g4
+    42d0:	84 10 20 20 	mov  0x20, %g2
+    42d4:	02 80 00 17 	be  4330 <__GI_memcpy+0x4a8>
+    42d8:	8c 20 80 04 	sub  %g2, %g4, %g6
+    42dc:	0a 80 00 0f 	bcs  4318 <__GI_memcpy+0x490>
+    42e0:	80 a0 e0 08 	cmp  %g3, 8
+    42e4:	02 80 00 07 	be  4300 <__GI_memcpy+0x478>
+    42e8:	87 32 a0 02 	srl  %o2, 2, %g3
+    42ec:	d6 02 40 00 	ld  [ %o1 ], %o3
+    42f0:	90 02 3f f8 	add  %o0, -8, %o0
+    42f4:	d8 02 60 04 	ld  [ %o1 + 4 ], %o4
+    42f8:	10 80 00 1f 	b  4374 <__GI_memcpy+0x4ec>
+    42fc:	86 00 e0 01 	inc  %g3
+    4300:	d8 02 40 00 	ld  [ %o1 ], %o4
+    4304:	90 02 3f f4 	add  %o0, -12, %o0
+    4308:	da 02 60 04 	ld  [ %o1 + 4 ], %o5
+    430c:	86 00 e0 02 	add  %g3, 2, %g3
+    4310:	10 80 00 1e 	b  4388 <__GI_memcpy+0x500>
+    4314:	92 02 7f fc 	add  %o1, -4, %o1
+    4318:	c2 02 40 00 	ld  [ %o1 ], %g1
+    431c:	90 02 3f fc 	add  %o0, -4, %o0
+    4320:	d6 02 60 04 	ld  [ %o1 + 4 ], %o3
+    4324:	87 32 a0 02 	srl  %o2, 2, %g3
+    4328:	10 80 00 0e 	b  4360 <__GI_memcpy+0x4d8>
+    432c:	92 02 60 04 	add  %o1, 4, %o1
+    4330:	da 02 40 00 	ld  [ %o1 ], %o5
+    4334:	80 a2 a0 07 	cmp  %o2, 7
+    4338:	c2 02 60 04 	ld  [ %o1 + 4 ], %g1
+    433c:	87 32 a0 02 	srl  %o2, 2, %g3
+    4340:	08 80 00 1c 	bleu  43b0 <__GI_memcpy+0x528>
+    4344:	92 02 60 08 	add  %o1, 8, %o1
+    4348:	d6 02 40 00 	ld  [ %o1 ], %o3
+    434c:	86 00 ff ff 	add  %g3, -1, %g3
+    4350:	85 2b 40 04 	sll  %o5, %g4, %g2
+    4354:	8b 30 40 06 	srl  %g1, %g6, %g5
+    4358:	84 10 80 05 	or  %g2, %g5, %g2
+    435c:	c4 22 00 00 	st  %g2, [ %o0 ]
+    4360:	d8 02 60 04 	ld  [ %o1 + 4 ], %o4
+    4364:	85 28 40 04 	sll  %g1, %g4, %g2
+    4368:	8b 32 c0 06 	srl  %o3, %g6, %g5
+    436c:	84 10 80 05 	or  %g2, %g5, %g2
+    4370:	c4 22 20 04 	st  %g2, [ %o0 + 4 ]
+    4374:	da 02 60 08 	ld  [ %o1 + 8 ], %o5
+    4378:	85 2a c0 04 	sll  %o3, %g4, %g2
+    437c:	8b 33 00 06 	srl  %o4, %g6, %g5
+    4380:	84 10 80 05 	or  %g2, %g5, %g2
+    4384:	c4 22 20 08 	st  %g2, [ %o0 + 8 ]
+    4388:	c2 02 60 0c 	ld  [ %o1 + 0xc ], %g1
+    438c:	85 2b 00 04 	sll  %o4, %g4, %g2
+    4390:	8b 33 40 06 	srl  %o5, %g6, %g5
+    4394:	86 80 ff fc 	addcc  %g3, -4, %g3
     4398:	84 10 80 05 	or  %g2, %g5, %g2
-    439c:	92 22 40 03 	sub  %o1, %g3, %o1
-    43a0:	80 8a a0 02 	btst  2, %o2
-    43a4:	c4 22 00 00 	st  %g2, [ %o0 ]
-    43a8:	02 80 00 08 	be  43c8 <__GI_memcpy+0x564>
-    43ac:	80 8a a0 01 	btst  1, %o2
-    43b0:	c4 0a 40 00 	ldub  [ %o1 ], %g2
-    43b4:	92 02 60 02 	add  %o1, 2, %o1
-    43b8:	c4 2a 20 04 	stb  %g2, [ %o0 + 4 ]
-    43bc:	90 02 20 02 	add  %o0, 2, %o0
-    43c0:	c4 0a 7f ff 	ldub  [ %o1 + -1 ], %g2
-    43c4:	c4 2a 20 03 	stb  %g2, [ %o0 + 3 ]
-    43c8:	02 80 00 04 	be  43d8 <__GI_memcpy+0x574>
-    43cc:	01 00 00 00 	nop 
-    43d0:	c4 0a 40 00 	ldub  [ %o1 ], %g2
-    43d4:	c4 2a 20 04 	stb  %g2, [ %o0 + 4 ]
-    43d8:	81 c3 e0 08 	retl 
-    43dc:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
-    43e0:	80 8a 60 03 	btst  3, %o1
-    43e4:	02 80 00 11 	be  4428 <__GI_memcpy+0x5c4>
-    43e8:	80 8a 60 01 	btst  1, %o1
-    43ec:	02 80 00 08 	be  440c <__GI_memcpy+0x5a8>
-    43f0:	80 8a 60 02 	btst  2, %o1
+    439c:	92 02 60 10 	add  %o1, 0x10, %o1
+    43a0:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
+    43a4:	90 02 20 10 	add  %o0, 0x10, %o0
+    43a8:	32 bf ff ea 	bne,a   4350 <__GI_memcpy+0x4c8>
+    43ac:	d6 02 40 00 	ld  [ %o1 ], %o3
+    43b0:	85 2b 40 04 	sll  %o5, %g4, %g2
+    43b4:	8b 30 40 06 	srl  %g1, %g6, %g5
+    43b8:	87 31 a0 03 	srl  %g6, 3, %g3
+    43bc:	84 10 80 05 	or  %g2, %g5, %g2
+    43c0:	92 22 40 03 	sub  %o1, %g3, %o1
+    43c4:	80 8a a0 02 	btst  2, %o2
+    43c8:	c4 22 00 00 	st  %g2, [ %o0 ]
+    43cc:	02 80 00 08 	be  43ec <__GI_memcpy+0x564>
+    43d0:	80 8a a0 01 	btst  1, %o2
+    43d4:	c4 0a 40 00 	ldub  [ %o1 ], %g2
+    43d8:	92 02 60 02 	add  %o1, 2, %o1
+    43dc:	c4 2a 20 04 	stb  %g2, [ %o0 + 4 ]
+    43e0:	90 02 20 02 	add  %o0, 2, %o0
+    43e4:	c4 0a 7f ff 	ldub  [ %o1 + -1 ], %g2
+    43e8:	c4 2a 20 03 	stb  %g2, [ %o0 + 3 ]
+    43ec:	02 80 00 04 	be  43fc <__GI_memcpy+0x574>
+    43f0:	01 00 00 00 	nop 
     43f4:	c4 0a 40 00 	ldub  [ %o1 ], %g2
-    43f8:	92 02 60 01 	inc  %o1
-    43fc:	c4 2a 00 00 	stb  %g2, [ %o0 ]
-    4400:	94 22 a0 01 	dec  %o2
-    4404:	12 80 00 09 	bne  4428 <__GI_memcpy+0x5c4>
-    4408:	90 02 20 01 	inc  %o0
-    440c:	c4 12 40 00 	lduh  [ %o1 ], %g2
-    4410:	92 02 60 02 	add  %o1, 2, %o1
-    4414:	87 30 a0 08 	srl  %g2, 8, %g3
-    4418:	94 22 a0 02 	sub  %o2, 2, %o2
-    441c:	c6 2a 00 00 	stb  %g3, [ %o0 ]
-    4420:	90 02 20 02 	add  %o0, 2, %o0
-    4424:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
-    4428:	80 8a 60 04 	btst  4, %o1
-    442c:	12 80 00 0d 	bne  4460 <__GI_memcpy+0x5fc>
-    4430:	80 a3 60 01 	cmp  %o5, 1
-    4434:	d8 02 40 00 	ld  [ %o1 ], %o4
-    4438:	85 33 20 18 	srl  %o4, 0x18, %g2
-    443c:	c4 2a 00 00 	stb  %g2, [ %o0 ]
-    4440:	87 33 20 10 	srl  %o4, 0x10, %g3
-    4444:	c6 2a 20 01 	stb  %g3, [ %o0 + 1 ]
-    4448:	85 33 20 08 	srl  %o4, 8, %g2
-    444c:	c4 2a 20 02 	stb  %g2, [ %o0 + 2 ]
-    4450:	94 22 a0 04 	sub  %o2, 4, %o2
-    4454:	d8 2a 20 03 	stb  %o4, [ %o0 + 3 ]
-    4458:	92 02 60 04 	add  %o1, 4, %o1
-    445c:	90 02 20 04 	add  %o0, 4, %o0
-    4460:	02 80 00 da 	be  47c8 <__GI_memcpy+0x964>
-    4464:	80 a3 60 02 	cmp  %o5, 2
-    4468:	02 80 00 6e 	be  4620 <__GI_memcpy+0x7bc>
-    446c:	94 22 a0 04 	sub  %o2, 4, %o2
-    4470:	c4 02 40 00 	ld  [ %o1 ], %g2
-    4474:	92 02 60 04 	add  %o1, 4, %o1
-    4478:	87 30 a0 18 	srl  %g2, 0x18, %g3
-    447c:	8a 0a 20 07 	and  %o0, 7, %g5
-    4480:	c6 2a 00 00 	stb  %g3, [ %o0 ]
-    4484:	80 a1 60 07 	cmp  %g5, 7
-    4488:	83 28 a0 08 	sll  %g2, 8, %g1
-    448c:	90 02 20 04 	add  %o0, 4, %o0
-    4490:	02 80 01 3b 	be  497c <__GI_memcpy+0xb18>
-    4494:	96 0a bf c0 	and  %o2, -64, %o3
-    4498:	d8 02 3f f9 	ld  [ %o0 + -7 ], %o4
-    449c:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    44a0:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    44a4:	9b 30 a0 18 	srl  %g2, 0x18, %o5
-    44a8:	8d 30 e0 18 	srl  %g3, 0x18, %g6
-    44ac:	85 28 a0 08 	sll  %g2, 8, %g2
-    44b0:	9a 13 40 01 	or  %o5, %g1, %o5
-    44b4:	83 28 e0 08 	sll  %g3, 8, %g1
-    44b8:	84 11 80 02 	or  %g6, %g2, %g2
-    44bc:	87 31 20 18 	srl  %g4, 0x18, %g3
-    44c0:	8d 31 60 18 	srl  %g5, 0x18, %g6
-    44c4:	89 29 20 08 	sll  %g4, 8, %g4
-    44c8:	86 10 c0 01 	or  %g3, %g1, %g3
-    44cc:	d8 3a 3f f9 	std  %o4, [ %o0 + -7 ]
-    44d0:	c4 3a 20 01 	std  %g2, [ %o0 + 1 ]
-    44d4:	83 29 60 08 	sll  %g5, 8, %g1
-    44d8:	98 11 80 04 	or  %g6, %g4, %o4
-    44dc:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    44e0:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    44e4:	9b 30 a0 18 	srl  %g2, 0x18, %o5
-    44e8:	8d 30 e0 18 	srl  %g3, 0x18, %g6
-    44ec:	85 28 a0 08 	sll  %g2, 8, %g2
-    44f0:	9a 13 40 01 	or  %o5, %g1, %o5
-    44f4:	83 28 e0 08 	sll  %g3, 8, %g1
-    44f8:	84 11 80 02 	or  %g6, %g2, %g2
-    44fc:	87 31 20 18 	srl  %g4, 0x18, %g3
-    4500:	8d 31 60 18 	srl  %g5, 0x18, %g6
-    4504:	89 29 20 08 	sll  %g4, 8, %g4
-    4508:	86 10 c0 01 	or  %g3, %g1, %g3
-    450c:	d8 3a 20 09 	std  %o4, [ %o0 + 9 ]
-    4510:	c4 3a 20 11 	std  %g2, [ %o0 + 0x11 ]
-    4514:	83 29 60 08 	sll  %g5, 8, %g1
-    4518:	98 11 80 04 	or  %g6, %g4, %o4
-    451c:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
-    4520:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
-    4524:	9b 30 a0 18 	srl  %g2, 0x18, %o5
-    4528:	8d 30 e0 18 	srl  %g3, 0x18, %g6
-    452c:	85 28 a0 08 	sll  %g2, 8, %g2
-    4530:	9a 13 40 01 	or  %o5, %g1, %o5
-    4534:	83 28 e0 08 	sll  %g3, 8, %g1
-    4538:	84 11 80 02 	or  %g6, %g2, %g2
-    453c:	87 31 20 18 	srl  %g4, 0x18, %g3
-    4540:	8d 31 60 18 	srl  %g5, 0x18, %g6
-    4544:	89 29 20 08 	sll  %g4, 8, %g4
-    4548:	86 10 c0 01 	or  %g3, %g1, %g3
-    454c:	d8 3a 20 19 	std  %o4, [ %o0 + 0x19 ]
-    4550:	c4 3a 20 21 	std  %g2, [ %o0 + 0x21 ]
-    4554:	83 29 60 08 	sll  %g5, 8, %g1
-    4558:	98 11 80 04 	or  %g6, %g4, %o4
-    455c:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    4560:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    4564:	9b 30 a0 18 	srl  %g2, 0x18, %o5
-    4568:	8d 30 e0 18 	srl  %g3, 0x18, %g6
-    456c:	85 28 a0 08 	sll  %g2, 8, %g2
-    4570:	9a 13 40 01 	or  %o5, %g1, %o5
-    4574:	83 28 e0 08 	sll  %g3, 8, %g1
-    4578:	84 11 80 02 	or  %g6, %g2, %g2
-    457c:	87 31 20 18 	srl  %g4, 0x18, %g3
-    4580:	8d 31 60 18 	srl  %g5, 0x18, %g6
-    4584:	89 29 20 08 	sll  %g4, 8, %g4
-    4588:	86 10 c0 01 	or  %g3, %g1, %g3
-    458c:	d8 3a 20 29 	std  %o4, [ %o0 + 0x29 ]
-    4590:	c4 3a 20 31 	std  %g2, [ %o0 + 0x31 ]
-    4594:	83 29 60 08 	sll  %g5, 8, %g1
-    4598:	98 11 80 04 	or  %g6, %g4, %o4
-    459c:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
-    45a0:	92 02 60 40 	add  %o1, 0x40, %o1
-    45a4:	12 bf ff be 	bne  449c <__GI_memcpy+0x638>
-    45a8:	90 02 20 40 	add  %o0, 0x40, %o0
-    45ac:	96 8a a0 30 	andcc  %o2, 0x30, %o3
-    45b0:	22 80 00 17 	be,a   460c <__GI_memcpy+0x7a8>
-    45b4:	85 30 60 10 	srl  %g1, 0x10, %g2
-    45b8:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    45bc:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    45c0:	9b 30 a0 18 	srl  %g2, 0x18, %o5
-    45c4:	8d 30 e0 18 	srl  %g3, 0x18, %g6
-    45c8:	85 28 a0 08 	sll  %g2, 8, %g2
-    45cc:	9a 13 40 01 	or  %o5, %g1, %o5
-    45d0:	83 28 e0 08 	sll  %g3, 8, %g1
-    45d4:	84 11 80 02 	or  %g6, %g2, %g2
-    45d8:	87 31 20 18 	srl  %g4, 0x18, %g3
-    45dc:	8d 31 60 18 	srl  %g5, 0x18, %g6
-    45e0:	89 29 20 08 	sll  %g4, 8, %g4
-    45e4:	86 10 c0 01 	or  %g3, %g1, %g3
-    45e8:	d8 3a 3f f9 	std  %o4, [ %o0 + -7 ]
-    45ec:	c4 3a 20 01 	std  %g2, [ %o0 + 1 ]
-    45f0:	83 29 60 08 	sll  %g5, 8, %g1
-    45f4:	98 11 80 04 	or  %g6, %g4, %o4
-    45f8:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
-    45fc:	92 02 60 10 	add  %o1, 0x10, %o1
-    4600:	12 bf ff ee 	bne  45b8 <__GI_memcpy+0x754>
-    4604:	90 02 20 10 	add  %o0, 0x10, %o0
-    4608:	85 30 60 10 	srl  %g1, 0x10, %g2
-    460c:	d8 22 3f f9 	st  %o4, [ %o0 + -7 ]
-    4610:	c4 32 3f fd 	sth  %g2, [ %o0 + -3 ]
-    4614:	89 30 60 08 	srl  %g1, 8, %g4
-    4618:	10 80 01 f5 	b  4dec <__GI_memcpy+0xf88>
-    461c:	c8 2a 3f ff 	stb  %g4, [ %o0 + -1 ]
-    4620:	c4 02 40 00 	ld  [ %o1 ], %g2
-    4624:	92 02 60 04 	add  %o1, 4, %o1
-    4628:	87 30 a0 10 	srl  %g2, 0x10, %g3
-    462c:	8a 0a 20 07 	and  %o0, 7, %g5
-    4630:	c6 32 00 00 	sth  %g3, [ %o0 ]
-    4634:	80 a1 60 06 	cmp  %g5, 6
-    4638:	83 28 a0 10 	sll  %g2, 0x10, %g1
-    463c:	90 02 20 04 	add  %o0, 4, %o0
-    4640:	02 80 01 8e 	be  4c78 <__GI_memcpy+0xe14>
-    4644:	96 0a bf c0 	and  %o2, -64, %o3
-    4648:	d8 02 3f fa 	ld  [ %o0 + -6 ], %o4
-    464c:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4650:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4654:	9b 30 a0 10 	srl  %g2, 0x10, %o5
-    4658:	8d 30 e0 10 	srl  %g3, 0x10, %g6
-    465c:	85 28 a0 10 	sll  %g2, 0x10, %g2
-    4660:	9a 13 40 01 	or  %o5, %g1, %o5
-    4664:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    4668:	84 11 80 02 	or  %g6, %g2, %g2
-    466c:	87 31 20 10 	srl  %g4, 0x10, %g3
-    4670:	8d 31 60 10 	srl  %g5, 0x10, %g6
-    4674:	89 29 20 10 	sll  %g4, 0x10, %g4
-    4678:	86 10 c0 01 	or  %g3, %g1, %g3
-    467c:	d8 3a 3f fa 	std  %o4, [ %o0 + -6 ]
-    4680:	c4 3a 20 02 	std  %g2, [ %o0 + 2 ]
-    4684:	83 29 60 10 	sll  %g5, 0x10, %g1
-    4688:	98 11 80 04 	or  %g6, %g4, %o4
-    468c:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    4690:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    4694:	9b 30 a0 10 	srl  %g2, 0x10, %o5
-    4698:	8d 30 e0 10 	srl  %g3, 0x10, %g6
-    469c:	85 28 a0 10 	sll  %g2, 0x10, %g2
-    46a0:	9a 13 40 01 	or  %o5, %g1, %o5
-    46a4:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    46a8:	84 11 80 02 	or  %g6, %g2, %g2
-    46ac:	87 31 20 10 	srl  %g4, 0x10, %g3
-    46b0:	8d 31 60 10 	srl  %g5, 0x10, %g6
-    46b4:	89 29 20 10 	sll  %g4, 0x10, %g4
-    46b8:	86 10 c0 01 	or  %g3, %g1, %g3
-    46bc:	d8 3a 20 0a 	std  %o4, [ %o0 + 0xa ]
-    46c0:	c4 3a 20 12 	std  %g2, [ %o0 + 0x12 ]
-    46c4:	83 29 60 10 	sll  %g5, 0x10, %g1
-    46c8:	98 11 80 04 	or  %g6, %g4, %o4
-    46cc:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
-    46d0:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
-    46d4:	9b 30 a0 10 	srl  %g2, 0x10, %o5
-    46d8:	8d 30 e0 10 	srl  %g3, 0x10, %g6
-    46dc:	85 28 a0 10 	sll  %g2, 0x10, %g2
-    46e0:	9a 13 40 01 	or  %o5, %g1, %o5
-    46e4:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    46e8:	84 11 80 02 	or  %g6, %g2, %g2
-    46ec:	87 31 20 10 	srl  %g4, 0x10, %g3
-    46f0:	8d 31 60 10 	srl  %g5, 0x10, %g6
-    46f4:	89 29 20 10 	sll  %g4, 0x10, %g4
-    46f8:	86 10 c0 01 	or  %g3, %g1, %g3
-    46fc:	d8 3a 20 1a 	std  %o4, [ %o0 + 0x1a ]
-    4700:	c4 3a 20 22 	std  %g2, [ %o0 + 0x22 ]
-    4704:	83 29 60 10 	sll  %g5, 0x10, %g1
-    4708:	98 11 80 04 	or  %g6, %g4, %o4
-    470c:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    4710:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    4714:	9b 30 a0 10 	srl  %g2, 0x10, %o5
-    4718:	8d 30 e0 10 	srl  %g3, 0x10, %g6
-    471c:	85 28 a0 10 	sll  %g2, 0x10, %g2
-    4720:	9a 13 40 01 	or  %o5, %g1, %o5
-    4724:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    4728:	84 11 80 02 	or  %g6, %g2, %g2
-    472c:	87 31 20 10 	srl  %g4, 0x10, %g3
-    4730:	8d 31 60 10 	srl  %g5, 0x10, %g6
-    4734:	89 29 20 10 	sll  %g4, 0x10, %g4
-    4738:	86 10 c0 01 	or  %g3, %g1, %g3
-    473c:	d8 3a 20 2a 	std  %o4, [ %o0 + 0x2a ]
-    4740:	c4 3a 20 32 	std  %g2, [ %o0 + 0x32 ]
-    4744:	83 29 60 10 	sll  %g5, 0x10, %g1
-    4748:	98 11 80 04 	or  %g6, %g4, %o4
-    474c:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
-    4750:	92 02 60 40 	add  %o1, 0x40, %o1
-    4754:	12 bf ff be 	bne  464c <__GI_memcpy+0x7e8>
-    4758:	90 02 20 40 	add  %o0, 0x40, %o0
-    475c:	96 8a a0 30 	andcc  %o2, 0x30, %o3
-    4760:	22 80 00 17 	be,a   47bc <__GI_memcpy+0x958>
-    4764:	85 30 60 10 	srl  %g1, 0x10, %g2
-    4768:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    476c:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4770:	9b 30 a0 10 	srl  %g2, 0x10, %o5
-    4774:	8d 30 e0 10 	srl  %g3, 0x10, %g6
-    4778:	85 28 a0 10 	sll  %g2, 0x10, %g2
-    477c:	9a 13 40 01 	or  %o5, %g1, %o5
-    4780:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    4784:	84 11 80 02 	or  %g6, %g2, %g2
-    4788:	87 31 20 10 	srl  %g4, 0x10, %g3
-    478c:	8d 31 60 10 	srl  %g5, 0x10, %g6
-    4790:	89 29 20 10 	sll  %g4, 0x10, %g4
-    4794:	86 10 c0 01 	or  %g3, %g1, %g3
-    4798:	d8 3a 3f fa 	std  %o4, [ %o0 + -6 ]
-    479c:	c4 3a 20 02 	std  %g2, [ %o0 + 2 ]
-    47a0:	83 29 60 10 	sll  %g5, 0x10, %g1
-    47a4:	98 11 80 04 	or  %g6, %g4, %o4
-    47a8:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
-    47ac:	92 02 60 10 	add  %o1, 0x10, %o1
-    47b0:	12 bf ff ee 	bne  4768 <__GI_memcpy+0x904>
-    47b4:	90 02 20 10 	add  %o0, 0x10, %o0
-    47b8:	85 30 60 10 	srl  %g1, 0x10, %g2
-    47bc:	d8 22 3f fa 	st  %o4, [ %o0 + -6 ]
-    47c0:	10 80 01 8b 	b  4dec <__GI_memcpy+0xf88>
-    47c4:	c4 32 3f fe 	sth  %g2, [ %o0 + -2 ]
-    47c8:	c4 02 40 00 	ld  [ %o1 ], %g2
-    47cc:	94 22 a0 04 	sub  %o2, 4, %o2
-    47d0:	87 30 a0 18 	srl  %g2, 0x18, %g3
-    47d4:	8a 0a 20 07 	and  %o0, 7, %g5
-    47d8:	c6 2a 00 00 	stb  %g3, [ %o0 ]
-    47dc:	80 a1 60 05 	cmp  %g5, 5
-    47e0:	89 30 a0 08 	srl  %g2, 8, %g4
-    47e4:	83 28 a0 18 	sll  %g2, 0x18, %g1
-    47e8:	c8 32 20 01 	sth  %g4, [ %o0 + 1 ]
-    47ec:	92 02 60 04 	add  %o1, 4, %o1
-    47f0:	02 80 00 c3 	be  4afc <__GI_memcpy+0xc98>
-    47f4:	96 0a bf c0 	and  %o2, -64, %o3
-    47f8:	d8 02 3f ff 	ld  [ %o0 + -1 ], %o4
-    47fc:	90 02 20 04 	add  %o0, 4, %o0
-    4800:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4804:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4808:	9b 30 a0 08 	srl  %g2, 8, %o5
-    480c:	8d 30 e0 08 	srl  %g3, 8, %g6
-    4810:	85 28 a0 18 	sll  %g2, 0x18, %g2
-    4814:	9a 13 40 01 	or  %o5, %g1, %o5
-    4818:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    481c:	84 11 80 02 	or  %g6, %g2, %g2
-    4820:	87 31 20 08 	srl  %g4, 8, %g3
-    4824:	8d 31 60 08 	srl  %g5, 8, %g6
-    4828:	89 29 20 18 	sll  %g4, 0x18, %g4
-    482c:	86 10 c0 01 	or  %g3, %g1, %g3
-    4830:	d8 3a 3f fb 	std  %o4, [ %o0 + -5 ]
-    4834:	c4 3a 20 03 	std  %g2, [ %o0 + 3 ]
-    4838:	83 29 60 18 	sll  %g5, 0x18, %g1
-    483c:	98 11 80 04 	or  %g6, %g4, %o4
-    4840:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    4844:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    4848:	9b 30 a0 08 	srl  %g2, 8, %o5
-    484c:	8d 30 e0 08 	srl  %g3, 8, %g6
-    4850:	85 28 a0 18 	sll  %g2, 0x18, %g2
-    4854:	9a 13 40 01 	or  %o5, %g1, %o5
-    4858:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    485c:	84 11 80 02 	or  %g6, %g2, %g2
-    4860:	87 31 20 08 	srl  %g4, 8, %g3
-    4864:	8d 31 60 08 	srl  %g5, 8, %g6
-    4868:	89 29 20 18 	sll  %g4, 0x18, %g4
-    486c:	86 10 c0 01 	or  %g3, %g1, %g3
-    4870:	d8 3a 20 0b 	std  %o4, [ %o0 + 0xb ]
-    4874:	c4 3a 20 13 	std  %g2, [ %o0 + 0x13 ]
-    4878:	83 29 60 18 	sll  %g5, 0x18, %g1
-    487c:	98 11 80 04 	or  %g6, %g4, %o4
-    4880:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
-    4884:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
-    4888:	9b 30 a0 08 	srl  %g2, 8, %o5
-    488c:	8d 30 e0 08 	srl  %g3, 8, %g6
-    4890:	85 28 a0 18 	sll  %g2, 0x18, %g2
-    4894:	9a 13 40 01 	or  %o5, %g1, %o5
-    4898:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    489c:	84 11 80 02 	or  %g6, %g2, %g2
-    48a0:	87 31 20 08 	srl  %g4, 8, %g3
-    48a4:	8d 31 60 08 	srl  %g5, 8, %g6
-    48a8:	89 29 20 18 	sll  %g4, 0x18, %g4
-    48ac:	86 10 c0 01 	or  %g3, %g1, %g3
-    48b0:	d8 3a 20 1b 	std  %o4, [ %o0 + 0x1b ]
-    48b4:	c4 3a 20 23 	std  %g2, [ %o0 + 0x23 ]
-    48b8:	83 29 60 18 	sll  %g5, 0x18, %g1
-    48bc:	98 11 80 04 	or  %g6, %g4, %o4
-    48c0:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    48c4:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    48c8:	9b 30 a0 08 	srl  %g2, 8, %o5
-    48cc:	8d 30 e0 08 	srl  %g3, 8, %g6
-    48d0:	85 28 a0 18 	sll  %g2, 0x18, %g2
-    48d4:	9a 13 40 01 	or  %o5, %g1, %o5
-    48d8:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    48dc:	84 11 80 02 	or  %g6, %g2, %g2
-    48e0:	87 31 20 08 	srl  %g4, 8, %g3
-    48e4:	8d 31 60 08 	srl  %g5, 8, %g6
-    48e8:	89 29 20 18 	sll  %g4, 0x18, %g4
-    48ec:	86 10 c0 01 	or  %g3, %g1, %g3
-    48f0:	d8 3a 20 2b 	std  %o4, [ %o0 + 0x2b ]
-    48f4:	c4 3a 20 33 	std  %g2, [ %o0 + 0x33 ]
-    48f8:	83 29 60 18 	sll  %g5, 0x18, %g1
-    48fc:	98 11 80 04 	or  %g6, %g4, %o4
-    4900:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
-    4904:	92 02 60 40 	add  %o1, 0x40, %o1
-    4908:	12 bf ff be 	bne  4800 <__GI_memcpy+0x99c>
-    490c:	90 02 20 40 	add  %o0, 0x40, %o0
-    4910:	96 8a a0 30 	andcc  %o2, 0x30, %o3
-    4914:	22 80 00 17 	be,a   4970 <__GI_memcpy+0xb0c>
-    4918:	85 30 60 18 	srl  %g1, 0x18, %g2
-    491c:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4920:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4924:	9b 30 a0 08 	srl  %g2, 8, %o5
-    4928:	8d 30 e0 08 	srl  %g3, 8, %g6
-    492c:	85 28 a0 18 	sll  %g2, 0x18, %g2
-    4930:	9a 13 40 01 	or  %o5, %g1, %o5
-    4934:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    4938:	84 11 80 02 	or  %g6, %g2, %g2
-    493c:	87 31 20 08 	srl  %g4, 8, %g3
-    4940:	8d 31 60 08 	srl  %g5, 8, %g6
-    4944:	89 29 20 18 	sll  %g4, 0x18, %g4
-    4948:	86 10 c0 01 	or  %g3, %g1, %g3
-    494c:	d8 3a 3f fb 	std  %o4, [ %o0 + -5 ]
-    4950:	c4 3a 20 03 	std  %g2, [ %o0 + 3 ]
-    4954:	83 29 60 18 	sll  %g5, 0x18, %g1
-    4958:	98 11 80 04 	or  %g6, %g4, %o4
-    495c:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
-    4960:	92 02 60 10 	add  %o1, 0x10, %o1
-    4964:	12 bf ff ee 	bne  491c <__GI_memcpy+0xab8>
-    4968:	90 02 20 10 	add  %o0, 0x10, %o0
-    496c:	85 30 60 18 	srl  %g1, 0x18, %g2
-    4970:	d8 22 3f fb 	st  %o4, [ %o0 + -5 ]
-    4974:	10 80 01 1e 	b  4dec <__GI_memcpy+0xf88>
-    4978:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
-    497c:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4980:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4984:	99 30 a0 18 	srl  %g2, 0x18, %o4
-    4988:	9b 30 e0 18 	srl  %g3, 0x18, %o5
-    498c:	8d 28 a0 08 	sll  %g2, 8, %g6
-    4990:	84 13 00 01 	or  %o4, %g1, %g2
-    4994:	83 28 e0 08 	sll  %g3, 8, %g1
-    4998:	86 13 40 06 	or  %o5, %g6, %g3
-    499c:	99 31 20 18 	srl  %g4, 0x18, %o4
-    49a0:	9b 31 60 18 	srl  %g5, 0x18, %o5
-    49a4:	8d 29 20 08 	sll  %g4, 8, %g6
-    49a8:	88 13 00 01 	or  %o4, %g1, %g4
-    49ac:	83 29 60 08 	sll  %g5, 8, %g1
-    49b0:	8a 13 40 06 	or  %o5, %g6, %g5
-    49b4:	c4 3a 3f fd 	std  %g2, [ %o0 + -3 ]
-    49b8:	c8 3a 20 05 	std  %g4, [ %o0 + 5 ]
-    49bc:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    49c0:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    49c4:	99 30 a0 18 	srl  %g2, 0x18, %o4
-    49c8:	9b 30 e0 18 	srl  %g3, 0x18, %o5
-    49cc:	8d 28 a0 08 	sll  %g2, 8, %g6
-    49d0:	84 13 00 01 	or  %o4, %g1, %g2
-    49d4:	83 28 e0 08 	sll  %g3, 8, %g1
-    49d8:	86 13 40 06 	or  %o5, %g6, %g3
-    49dc:	99 31 20 18 	srl  %g4, 0x18, %o4
-    49e0:	9b 31 60 18 	srl  %g5, 0x18, %o5
-    49e4:	8d 29 20 08 	sll  %g4, 8, %g6
-    49e8:	88 13 00 01 	or  %o4, %g1, %g4
-    49ec:	83 29 60 08 	sll  %g5, 8, %g1
-    49f0:	8a 13 40 06 	or  %o5, %g6, %g5
-    49f4:	c4 3a 20 0d 	std  %g2, [ %o0 + 0xd ]
-    49f8:	c8 3a 20 15 	std  %g4, [ %o0 + 0x15 ]
-    49fc:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
-    4a00:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
-    4a04:	99 30 a0 18 	srl  %g2, 0x18, %o4
-    4a08:	9b 30 e0 18 	srl  %g3, 0x18, %o5
-    4a0c:	8d 28 a0 08 	sll  %g2, 8, %g6
-    4a10:	84 13 00 01 	or  %o4, %g1, %g2
-    4a14:	83 28 e0 08 	sll  %g3, 8, %g1
-    4a18:	86 13 40 06 	or  %o5, %g6, %g3
-    4a1c:	99 31 20 18 	srl  %g4, 0x18, %o4
-    4a20:	9b 31 60 18 	srl  %g5, 0x18, %o5
-    4a24:	8d 29 20 08 	sll  %g4, 8, %g6
-    4a28:	88 13 00 01 	or  %o4, %g1, %g4
-    4a2c:	83 29 60 08 	sll  %g5, 8, %g1
-    4a30:	8a 13 40 06 	or  %o5, %g6, %g5
-    4a34:	c4 3a 20 1d 	std  %g2, [ %o0 + 0x1d ]
-    4a38:	c8 3a 20 25 	std  %g4, [ %o0 + 0x25 ]
-    4a3c:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    4a40:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    4a44:	99 30 a0 18 	srl  %g2, 0x18, %o4
-    4a48:	9b 30 e0 18 	srl  %g3, 0x18, %o5
-    4a4c:	8d 28 a0 08 	sll  %g2, 8, %g6
-    4a50:	84 13 00 01 	or  %o4, %g1, %g2
-    4a54:	83 28 e0 08 	sll  %g3, 8, %g1
-    4a58:	86 13 40 06 	or  %o5, %g6, %g3
-    4a5c:	99 31 20 18 	srl  %g4, 0x18, %o4
-    4a60:	9b 31 60 18 	srl  %g5, 0x18, %o5
-    4a64:	8d 29 20 08 	sll  %g4, 8, %g6
-    4a68:	88 13 00 01 	or  %o4, %g1, %g4
-    4a6c:	83 29 60 08 	sll  %g5, 8, %g1
-    4a70:	8a 13 40 06 	or  %o5, %g6, %g5
-    4a74:	c4 3a 20 2d 	std  %g2, [ %o0 + 0x2d ]
-    4a78:	c8 3a 20 35 	std  %g4, [ %o0 + 0x35 ]
-    4a7c:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
-    4a80:	92 02 60 40 	add  %o1, 0x40, %o1
-    4a84:	12 bf ff be 	bne  497c <__GI_memcpy+0xb18>
-    4a88:	90 02 20 40 	add  %o0, 0x40, %o0
-    4a8c:	96 8a a0 30 	andcc  %o2, 0x30, %o3
-    4a90:	22 80 00 17 	be,a   4aec <__GI_memcpy+0xc88>
-    4a94:	85 30 60 10 	srl  %g1, 0x10, %g2
-    4a98:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4a9c:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4aa0:	99 30 a0 18 	srl  %g2, 0x18, %o4
-    4aa4:	9b 30 e0 18 	srl  %g3, 0x18, %o5
-    4aa8:	8d 28 a0 08 	sll  %g2, 8, %g6
-    4aac:	84 13 00 01 	or  %o4, %g1, %g2
-    4ab0:	83 28 e0 08 	sll  %g3, 8, %g1
-    4ab4:	86 13 40 06 	or  %o5, %g6, %g3
-    4ab8:	99 31 20 18 	srl  %g4, 0x18, %o4
-    4abc:	9b 31 60 18 	srl  %g5, 0x18, %o5
-    4ac0:	8d 29 20 08 	sll  %g4, 8, %g6
-    4ac4:	88 13 00 01 	or  %o4, %g1, %g4
-    4ac8:	83 29 60 08 	sll  %g5, 8, %g1
-    4acc:	8a 13 40 06 	or  %o5, %g6, %g5
-    4ad0:	c4 3a 3f fd 	std  %g2, [ %o0 + -3 ]
-    4ad4:	c8 3a 20 05 	std  %g4, [ %o0 + 5 ]
-    4ad8:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
-    4adc:	92 02 60 10 	add  %o1, 0x10, %o1
-    4ae0:	12 bf ff ee 	bne  4a98 <__GI_memcpy+0xc34>
-    4ae4:	90 02 20 10 	add  %o0, 0x10, %o0
-    4ae8:	85 30 60 10 	srl  %g1, 0x10, %g2
-    4aec:	c4 32 3f fd 	sth  %g2, [ %o0 + -3 ]
-    4af0:	89 30 60 08 	srl  %g1, 8, %g4
-    4af4:	10 80 00 be 	b  4dec <__GI_memcpy+0xf88>
-    4af8:	c8 2a 3f ff 	stb  %g4, [ %o0 + -1 ]
-    4afc:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4b00:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4b04:	99 30 a0 08 	srl  %g2, 8, %o4
-    4b08:	9b 30 e0 08 	srl  %g3, 8, %o5
-    4b0c:	8d 28 a0 18 	sll  %g2, 0x18, %g6
-    4b10:	84 13 00 01 	or  %o4, %g1, %g2
-    4b14:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    4b18:	86 13 40 06 	or  %o5, %g6, %g3
-    4b1c:	99 31 20 08 	srl  %g4, 8, %o4
-    4b20:	9b 31 60 08 	srl  %g5, 8, %o5
-    4b24:	8d 29 20 18 	sll  %g4, 0x18, %g6
-    4b28:	88 13 00 01 	or  %o4, %g1, %g4
-    4b2c:	83 29 60 18 	sll  %g5, 0x18, %g1
-    4b30:	8a 13 40 06 	or  %o5, %g6, %g5
-    4b34:	c4 3a 20 03 	std  %g2, [ %o0 + 3 ]
-    4b38:	c8 3a 20 0b 	std  %g4, [ %o0 + 0xb ]
-    4b3c:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    4b40:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    4b44:	99 30 a0 08 	srl  %g2, 8, %o4
-    4b48:	9b 30 e0 08 	srl  %g3, 8, %o5
-    4b4c:	8d 28 a0 18 	sll  %g2, 0x18, %g6
-    4b50:	84 13 00 01 	or  %o4, %g1, %g2
-    4b54:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    4b58:	86 13 40 06 	or  %o5, %g6, %g3
-    4b5c:	99 31 20 08 	srl  %g4, 8, %o4
-    4b60:	9b 31 60 08 	srl  %g5, 8, %o5
-    4b64:	8d 29 20 18 	sll  %g4, 0x18, %g6
-    4b68:	88 13 00 01 	or  %o4, %g1, %g4
-    4b6c:	83 29 60 18 	sll  %g5, 0x18, %g1
-    4b70:	8a 13 40 06 	or  %o5, %g6, %g5
-    4b74:	c4 3a 20 13 	std  %g2, [ %o0 + 0x13 ]
-    4b78:	c8 3a 20 1b 	std  %g4, [ %o0 + 0x1b ]
-    4b7c:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
-    4b80:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
-    4b84:	99 30 a0 08 	srl  %g2, 8, %o4
-    4b88:	9b 30 e0 08 	srl  %g3, 8, %o5
-    4b8c:	8d 28 a0 18 	sll  %g2, 0x18, %g6
-    4b90:	84 13 00 01 	or  %o4, %g1, %g2
-    4b94:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    4b98:	86 13 40 06 	or  %o5, %g6, %g3
-    4b9c:	99 31 20 08 	srl  %g4, 8, %o4
-    4ba0:	9b 31 60 08 	srl  %g5, 8, %o5
-    4ba4:	8d 29 20 18 	sll  %g4, 0x18, %g6
-    4ba8:	88 13 00 01 	or  %o4, %g1, %g4
-    4bac:	83 29 60 18 	sll  %g5, 0x18, %g1
-    4bb0:	8a 13 40 06 	or  %o5, %g6, %g5
-    4bb4:	c4 3a 20 23 	std  %g2, [ %o0 + 0x23 ]
-    4bb8:	c8 3a 20 2b 	std  %g4, [ %o0 + 0x2b ]
-    4bbc:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    4bc0:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    4bc4:	99 30 a0 08 	srl  %g2, 8, %o4
-    4bc8:	9b 30 e0 08 	srl  %g3, 8, %o5
-    4bcc:	8d 28 a0 18 	sll  %g2, 0x18, %g6
-    4bd0:	84 13 00 01 	or  %o4, %g1, %g2
-    4bd4:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    4bd8:	86 13 40 06 	or  %o5, %g6, %g3
-    4bdc:	99 31 20 08 	srl  %g4, 8, %o4
-    4be0:	9b 31 60 08 	srl  %g5, 8, %o5
-    4be4:	8d 29 20 18 	sll  %g4, 0x18, %g6
-    4be8:	88 13 00 01 	or  %o4, %g1, %g4
-    4bec:	83 29 60 18 	sll  %g5, 0x18, %g1
-    4bf0:	8a 13 40 06 	or  %o5, %g6, %g5
-    4bf4:	c4 3a 20 33 	std  %g2, [ %o0 + 0x33 ]
-    4bf8:	c8 3a 20 3b 	std  %g4, [ %o0 + 0x3b ]
-    4bfc:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
-    4c00:	92 02 60 40 	add  %o1, 0x40, %o1
-    4c04:	12 bf ff be 	bne  4afc <__GI_memcpy+0xc98>
-    4c08:	90 02 20 40 	add  %o0, 0x40, %o0
-    4c0c:	96 8a a0 30 	andcc  %o2, 0x30, %o3
-    4c10:	22 80 00 17 	be,a   4c6c <__GI_memcpy+0xe08>
-    4c14:	85 30 60 18 	srl  %g1, 0x18, %g2
-    4c18:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4c1c:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4c20:	99 30 a0 08 	srl  %g2, 8, %o4
-    4c24:	9b 30 e0 08 	srl  %g3, 8, %o5
-    4c28:	8d 28 a0 18 	sll  %g2, 0x18, %g6
-    4c2c:	84 13 00 01 	or  %o4, %g1, %g2
-    4c30:	83 28 e0 18 	sll  %g3, 0x18, %g1
-    4c34:	86 13 40 06 	or  %o5, %g6, %g3
-    4c38:	99 31 20 08 	srl  %g4, 8, %o4
-    4c3c:	9b 31 60 08 	srl  %g5, 8, %o5
-    4c40:	8d 29 20 18 	sll  %g4, 0x18, %g6
-    4c44:	88 13 00 01 	or  %o4, %g1, %g4
-    4c48:	83 29 60 18 	sll  %g5, 0x18, %g1
-    4c4c:	8a 13 40 06 	or  %o5, %g6, %g5
-    4c50:	c4 3a 20 03 	std  %g2, [ %o0 + 3 ]
-    4c54:	c8 3a 20 0b 	std  %g4, [ %o0 + 0xb ]
-    4c58:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
-    4c5c:	92 02 60 10 	add  %o1, 0x10, %o1
-    4c60:	12 bf ff ee 	bne  4c18 <__GI_memcpy+0xdb4>
-    4c64:	90 02 20 10 	add  %o0, 0x10, %o0
-    4c68:	85 30 60 18 	srl  %g1, 0x18, %g2
-    4c6c:	c4 2a 20 03 	stb  %g2, [ %o0 + 3 ]
-    4c70:	10 80 00 5f 	b  4dec <__GI_memcpy+0xf88>
-    4c74:	90 02 20 04 	add  %o0, 4, %o0
-    4c78:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4c7c:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4c80:	99 30 a0 10 	srl  %g2, 0x10, %o4
-    4c84:	9b 30 e0 10 	srl  %g3, 0x10, %o5
-    4c88:	8d 28 a0 10 	sll  %g2, 0x10, %g6
-    4c8c:	84 13 00 01 	or  %o4, %g1, %g2
-    4c90:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    4c94:	86 13 40 06 	or  %o5, %g6, %g3
-    4c98:	99 31 20 10 	srl  %g4, 0x10, %o4
-    4c9c:	9b 31 60 10 	srl  %g5, 0x10, %o5
-    4ca0:	8d 29 20 10 	sll  %g4, 0x10, %g6
-    4ca4:	88 13 00 01 	or  %o4, %g1, %g4
-    4ca8:	83 29 60 10 	sll  %g5, 0x10, %g1
-    4cac:	8a 13 40 06 	or  %o5, %g6, %g5
-    4cb0:	c4 3a 3f fe 	std  %g2, [ %o0 + -2 ]
-    4cb4:	c8 3a 20 06 	std  %g4, [ %o0 + 6 ]
-    4cb8:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
-    4cbc:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
-    4cc0:	99 30 a0 10 	srl  %g2, 0x10, %o4
-    4cc4:	9b 30 e0 10 	srl  %g3, 0x10, %o5
-    4cc8:	8d 28 a0 10 	sll  %g2, 0x10, %g6
-    4ccc:	84 13 00 01 	or  %o4, %g1, %g2
-    4cd0:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    4cd4:	86 13 40 06 	or  %o5, %g6, %g3
-    4cd8:	99 31 20 10 	srl  %g4, 0x10, %o4
-    4cdc:	9b 31 60 10 	srl  %g5, 0x10, %o5
-    4ce0:	8d 29 20 10 	sll  %g4, 0x10, %g6
-    4ce4:	88 13 00 01 	or  %o4, %g1, %g4
-    4ce8:	83 29 60 10 	sll  %g5, 0x10, %g1
-    4cec:	8a 13 40 06 	or  %o5, %g6, %g5
-    4cf0:	c4 3a 20 0e 	std  %g2, [ %o0 + 0xe ]
-    4cf4:	c8 3a 20 16 	std  %g4, [ %o0 + 0x16 ]
-    4cf8:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
-    4cfc:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
-    4d00:	99 30 a0 10 	srl  %g2, 0x10, %o4
-    4d04:	9b 30 e0 10 	srl  %g3, 0x10, %o5
-    4d08:	8d 28 a0 10 	sll  %g2, 0x10, %g6
-    4d0c:	84 13 00 01 	or  %o4, %g1, %g2
-    4d10:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    4d14:	86 13 40 06 	or  %o5, %g6, %g3
-    4d18:	99 31 20 10 	srl  %g4, 0x10, %o4
-    4d1c:	9b 31 60 10 	srl  %g5, 0x10, %o5
-    4d20:	8d 29 20 10 	sll  %g4, 0x10, %g6
-    4d24:	88 13 00 01 	or  %o4, %g1, %g4
-    4d28:	83 29 60 10 	sll  %g5, 0x10, %g1
-    4d2c:	8a 13 40 06 	or  %o5, %g6, %g5
-    4d30:	c4 3a 20 1e 	std  %g2, [ %o0 + 0x1e ]
-    4d34:	c8 3a 20 26 	std  %g4, [ %o0 + 0x26 ]
-    4d38:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
-    4d3c:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
-    4d40:	99 30 a0 10 	srl  %g2, 0x10, %o4
-    4d44:	9b 30 e0 10 	srl  %g3, 0x10, %o5
-    4d48:	8d 28 a0 10 	sll  %g2, 0x10, %g6
-    4d4c:	84 13 00 01 	or  %o4, %g1, %g2
-    4d50:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    4d54:	86 13 40 06 	or  %o5, %g6, %g3
-    4d58:	99 31 20 10 	srl  %g4, 0x10, %o4
-    4d5c:	9b 31 60 10 	srl  %g5, 0x10, %o5
-    4d60:	8d 29 20 10 	sll  %g4, 0x10, %g6
-    4d64:	88 13 00 01 	or  %o4, %g1, %g4
-    4d68:	83 29 60 10 	sll  %g5, 0x10, %g1
-    4d6c:	8a 13 40 06 	or  %o5, %g6, %g5
-    4d70:	c4 3a 20 2e 	std  %g2, [ %o0 + 0x2e ]
-    4d74:	c8 3a 20 36 	std  %g4, [ %o0 + 0x36 ]
-    4d78:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
-    4d7c:	92 02 60 40 	add  %o1, 0x40, %o1
-    4d80:	12 bf ff be 	bne  4c78 <__GI_memcpy+0xe14>
-    4d84:	90 02 20 40 	add  %o0, 0x40, %o0
-    4d88:	96 8a a0 30 	andcc  %o2, 0x30, %o3
-    4d8c:	22 80 00 17 	be,a   4de8 <__GI_memcpy+0xf84>
-    4d90:	85 30 60 10 	srl  %g1, 0x10, %g2
-    4d94:	c4 1a 60 00 	ldd  [ %o1 ], %g2
-    4d98:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
-    4d9c:	99 30 a0 10 	srl  %g2, 0x10, %o4
-    4da0:	9b 30 e0 10 	srl  %g3, 0x10, %o5
-    4da4:	8d 28 a0 10 	sll  %g2, 0x10, %g6
-    4da8:	84 13 00 01 	or  %o4, %g1, %g2
-    4dac:	83 28 e0 10 	sll  %g3, 0x10, %g1
-    4db0:	86 13 40 06 	or  %o5, %g6, %g3
-    4db4:	99 31 20 10 	srl  %g4, 0x10, %o4
-    4db8:	9b 31 60 10 	srl  %g5, 0x10, %o5
-    4dbc:	8d 29 20 10 	sll  %g4, 0x10, %g6
-    4dc0:	88 13 00 01 	or  %o4, %g1, %g4
-    4dc4:	83 29 60 10 	sll  %g5, 0x10, %g1
-    4dc8:	8a 13 40 06 	or  %o5, %g6, %g5
-    4dcc:	c4 3a 3f fe 	std  %g2, [ %o0 + -2 ]
-    4dd0:	c8 3a 20 06 	std  %g4, [ %o0 + 6 ]
-    4dd4:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
-    4dd8:	92 02 60 10 	add  %o1, 0x10, %o1
-    4ddc:	12 bf ff ee 	bne  4d94 <__GI_memcpy+0xf30>
-    4de0:	90 02 20 10 	add  %o0, 0x10, %o0
-    4de4:	85 30 60 10 	srl  %g1, 0x10, %g2
-    4de8:	c4 32 3f fe 	sth  %g2, [ %o0 + -2 ]
-    4dec:	96 0a a0 0e 	and  %o2, 0xe, %o3
-    4df0:	84 10 00 0f 	mov  %o7, %g2
-    4df4:	99 2a e0 03 	sll  %o3, 3, %o4
-    4df8:	90 02 00 0b 	add  %o0, %o3, %o0
-    4dfc:	40 00 00 33 	call  4ec8 <__GI_memcpy+0x1064>
-    4e00:	92 02 40 0b 	add  %o1, %o3, %o1
-    4e04:	9e 10 00 02 	mov  %g2, %o7
-    4e08:	81 c3 60 84 	jmp  %o5 + 0x84
-    4e0c:	80 8a a0 01 	btst  1, %o2
-    4e10:	c4 0a 7f f2 	ldub  [ %o1 + -14 ], %g2
-    4e14:	c6 0a 7f f3 	ldub  [ %o1 + -13 ], %g3
-    4e18:	c4 2a 3f f2 	stb  %g2, [ %o0 + -14 ]
-    4e1c:	c6 2a 3f f3 	stb  %g3, [ %o0 + -13 ]
-    4e20:	c4 0a 7f f4 	ldub  [ %o1 + -12 ], %g2
-    4e24:	c6 0a 7f f5 	ldub  [ %o1 + -11 ], %g3
-    4e28:	c4 2a 3f f4 	stb  %g2, [ %o0 + -12 ]
-    4e2c:	c6 2a 3f f5 	stb  %g3, [ %o0 + -11 ]
-    4e30:	c4 0a 7f f6 	ldub  [ %o1 + -10 ], %g2
-    4e34:	c6 0a 7f f7 	ldub  [ %o1 + -9 ], %g3
-    4e38:	c4 2a 3f f6 	stb  %g2, [ %o0 + -10 ]
-    4e3c:	c6 2a 3f f7 	stb  %g3, [ %o0 + -9 ]
-    4e40:	c4 0a 7f f8 	ldub  [ %o1 + -8 ], %g2
-    4e44:	c6 0a 7f f9 	ldub  [ %o1 + -7 ], %g3
-    4e48:	c4 2a 3f f8 	stb  %g2, [ %o0 + -8 ]
-    4e4c:	c6 2a 3f f9 	stb  %g3, [ %o0 + -7 ]
-    4e50:	c4 0a 7f fa 	ldub  [ %o1 + -6 ], %g2
-    4e54:	c6 0a 7f fb 	ldub  [ %o1 + -5 ], %g3
-    4e58:	c4 2a 3f fa 	stb  %g2, [ %o0 + -6 ]
-    4e5c:	c6 2a 3f fb 	stb  %g3, [ %o0 + -5 ]
-    4e60:	c4 0a 7f fc 	ldub  [ %o1 + -4 ], %g2
-    4e64:	c6 0a 7f fd 	ldub  [ %o1 + -3 ], %g3
-    4e68:	c4 2a 3f fc 	stb  %g2, [ %o0 + -4 ]
-    4e6c:	c6 2a 3f fd 	stb  %g3, [ %o0 + -3 ]
-    4e70:	c4 0a 7f fe 	ldub  [ %o1 + -2 ], %g2
-    4e74:	c6 0a 7f ff 	ldub  [ %o1 + -1 ], %g3
-    4e78:	c4 2a 3f fe 	stb  %g2, [ %o0 + -2 ]
-    4e7c:	c6 2a 3f ff 	stb  %g3, [ %o0 + -1 ]
-    4e80:	02 80 00 04 	be  4e90 <__GI_memcpy+0x102c>
-    4e84:	01 00 00 00 	nop 
-    4e88:	c4 0a 40 00 	ldub  [ %o1 ], %g2
-    4e8c:	c4 2a 00 00 	stb  %g2, [ %o0 ]
-    4e90:	81 c3 e0 08 	retl 
-    4e94:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
-    4e98:	12 bf ff d5 	bne  4dec <__GI_memcpy+0xf88>
-    4e9c:	80 8a a0 08 	btst  8, %o2
-    4ea0:	02 80 00 08 	be  4ec0 <__GI_memcpy+0x105c>
-    4ea4:	80 8a a0 04 	btst  4, %o2
-    4ea8:	c4 02 60 00 	ld  [ %o1 ], %g2
-    4eac:	c6 02 60 04 	ld  [ %o1 + 4 ], %g3
-    4eb0:	92 02 60 08 	add  %o1, 8, %o1
-    4eb4:	c4 22 20 00 	st  %g2, [ %o0 ]
-    4eb8:	c6 22 20 04 	st  %g3, [ %o0 + 4 ]
-    4ebc:	90 02 20 08 	add  %o0, 8, %o0
-    4ec0:	10 bf fc 6d 	b  4074 <__GI_memcpy+0x210>
-    4ec4:	82 10 00 0a 	mov  %o2, %g1
-    4ec8:	81 c3 e0 08 	retl 
-    4ecc:	9a 23 c0 0c 	sub  %o7, %o4, %o5
-    4ed0:	81 c3 e0 08 	retl 
-    4ed4:	9a 23 c0 06 	sub  %o7, %g6, %o5
+    43f8:	c4 2a 20 04 	stb  %g2, [ %o0 + 4 ]
+    43fc:	81 c3 e0 08 	retl 
+    4400:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
+    4404:	80 8a 60 03 	btst  3, %o1
+    4408:	02 80 00 11 	be  444c <__GI_memcpy+0x5c4>
+    440c:	80 8a 60 01 	btst  1, %o1
+    4410:	02 80 00 08 	be  4430 <__GI_memcpy+0x5a8>
+    4414:	80 8a 60 02 	btst  2, %o1
+    4418:	c4 0a 40 00 	ldub  [ %o1 ], %g2
+    441c:	92 02 60 01 	inc  %o1
+    4420:	c4 2a 00 00 	stb  %g2, [ %o0 ]
+    4424:	94 22 a0 01 	dec  %o2
+    4428:	12 80 00 09 	bne  444c <__GI_memcpy+0x5c4>
+    442c:	90 02 20 01 	inc  %o0
+    4430:	c4 12 40 00 	lduh  [ %o1 ], %g2
+    4434:	92 02 60 02 	add  %o1, 2, %o1
+    4438:	87 30 a0 08 	srl  %g2, 8, %g3
+    443c:	94 22 a0 02 	sub  %o2, 2, %o2
+    4440:	c6 2a 00 00 	stb  %g3, [ %o0 ]
+    4444:	90 02 20 02 	add  %o0, 2, %o0
+    4448:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
+    444c:	80 8a 60 04 	btst  4, %o1
+    4450:	12 80 00 0d 	bne  4484 <__GI_memcpy+0x5fc>
+    4454:	80 a3 60 01 	cmp  %o5, 1
+    4458:	d8 02 40 00 	ld  [ %o1 ], %o4
+    445c:	85 33 20 18 	srl  %o4, 0x18, %g2
+    4460:	c4 2a 00 00 	stb  %g2, [ %o0 ]
+    4464:	87 33 20 10 	srl  %o4, 0x10, %g3
+    4468:	c6 2a 20 01 	stb  %g3, [ %o0 + 1 ]
+    446c:	85 33 20 08 	srl  %o4, 8, %g2
+    4470:	c4 2a 20 02 	stb  %g2, [ %o0 + 2 ]
+    4474:	94 22 a0 04 	sub  %o2, 4, %o2
+    4478:	d8 2a 20 03 	stb  %o4, [ %o0 + 3 ]
+    447c:	92 02 60 04 	add  %o1, 4, %o1
+    4480:	90 02 20 04 	add  %o0, 4, %o0
+    4484:	02 80 00 da 	be  47ec <__GI_memcpy+0x964>
+    4488:	80 a3 60 02 	cmp  %o5, 2
+    448c:	02 80 00 6e 	be  4644 <__GI_memcpy+0x7bc>
+    4490:	94 22 a0 04 	sub  %o2, 4, %o2
+    4494:	c4 02 40 00 	ld  [ %o1 ], %g2
+    4498:	92 02 60 04 	add  %o1, 4, %o1
+    449c:	87 30 a0 18 	srl  %g2, 0x18, %g3
+    44a0:	8a 0a 20 07 	and  %o0, 7, %g5
+    44a4:	c6 2a 00 00 	stb  %g3, [ %o0 ]
+    44a8:	80 a1 60 07 	cmp  %g5, 7
+    44ac:	83 28 a0 08 	sll  %g2, 8, %g1
+    44b0:	90 02 20 04 	add  %o0, 4, %o0
+    44b4:	02 80 01 3b 	be  49a0 <__GI_memcpy+0xb18>
+    44b8:	96 0a bf c0 	and  %o2, -64, %o3
+    44bc:	d8 02 3f f9 	ld  [ %o0 + -7 ], %o4
+    44c0:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    44c4:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    44c8:	9b 30 a0 18 	srl  %g2, 0x18, %o5
+    44cc:	8d 30 e0 18 	srl  %g3, 0x18, %g6
+    44d0:	85 28 a0 08 	sll  %g2, 8, %g2
+    44d4:	9a 13 40 01 	or  %o5, %g1, %o5
+    44d8:	83 28 e0 08 	sll  %g3, 8, %g1
+    44dc:	84 11 80 02 	or  %g6, %g2, %g2
+    44e0:	87 31 20 18 	srl  %g4, 0x18, %g3
+    44e4:	8d 31 60 18 	srl  %g5, 0x18, %g6
+    44e8:	89 29 20 08 	sll  %g4, 8, %g4
+    44ec:	86 10 c0 01 	or  %g3, %g1, %g3
+    44f0:	d8 3a 3f f9 	std  %o4, [ %o0 + -7 ]
+    44f4:	c4 3a 20 01 	std  %g2, [ %o0 + 1 ]
+    44f8:	83 29 60 08 	sll  %g5, 8, %g1
+    44fc:	98 11 80 04 	or  %g6, %g4, %o4
+    4500:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    4504:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    4508:	9b 30 a0 18 	srl  %g2, 0x18, %o5
+    450c:	8d 30 e0 18 	srl  %g3, 0x18, %g6
+    4510:	85 28 a0 08 	sll  %g2, 8, %g2
+    4514:	9a 13 40 01 	or  %o5, %g1, %o5
+    4518:	83 28 e0 08 	sll  %g3, 8, %g1
+    451c:	84 11 80 02 	or  %g6, %g2, %g2
+    4520:	87 31 20 18 	srl  %g4, 0x18, %g3
+    4524:	8d 31 60 18 	srl  %g5, 0x18, %g6
+    4528:	89 29 20 08 	sll  %g4, 8, %g4
+    452c:	86 10 c0 01 	or  %g3, %g1, %g3
+    4530:	d8 3a 20 09 	std  %o4, [ %o0 + 9 ]
+    4534:	c4 3a 20 11 	std  %g2, [ %o0 + 0x11 ]
+    4538:	83 29 60 08 	sll  %g5, 8, %g1
+    453c:	98 11 80 04 	or  %g6, %g4, %o4
+    4540:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
+    4544:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
+    4548:	9b 30 a0 18 	srl  %g2, 0x18, %o5
+    454c:	8d 30 e0 18 	srl  %g3, 0x18, %g6
+    4550:	85 28 a0 08 	sll  %g2, 8, %g2
+    4554:	9a 13 40 01 	or  %o5, %g1, %o5
+    4558:	83 28 e0 08 	sll  %g3, 8, %g1
+    455c:	84 11 80 02 	or  %g6, %g2, %g2
+    4560:	87 31 20 18 	srl  %g4, 0x18, %g3
+    4564:	8d 31 60 18 	srl  %g5, 0x18, %g6
+    4568:	89 29 20 08 	sll  %g4, 8, %g4
+    456c:	86 10 c0 01 	or  %g3, %g1, %g3
+    4570:	d8 3a 20 19 	std  %o4, [ %o0 + 0x19 ]
+    4574:	c4 3a 20 21 	std  %g2, [ %o0 + 0x21 ]
+    4578:	83 29 60 08 	sll  %g5, 8, %g1
+    457c:	98 11 80 04 	or  %g6, %g4, %o4
+    4580:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    4584:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    4588:	9b 30 a0 18 	srl  %g2, 0x18, %o5
+    458c:	8d 30 e0 18 	srl  %g3, 0x18, %g6
+    4590:	85 28 a0 08 	sll  %g2, 8, %g2
+    4594:	9a 13 40 01 	or  %o5, %g1, %o5
+    4598:	83 28 e0 08 	sll  %g3, 8, %g1
+    459c:	84 11 80 02 	or  %g6, %g2, %g2
+    45a0:	87 31 20 18 	srl  %g4, 0x18, %g3
+    45a4:	8d 31 60 18 	srl  %g5, 0x18, %g6
+    45a8:	89 29 20 08 	sll  %g4, 8, %g4
+    45ac:	86 10 c0 01 	or  %g3, %g1, %g3
+    45b0:	d8 3a 20 29 	std  %o4, [ %o0 + 0x29 ]
+    45b4:	c4 3a 20 31 	std  %g2, [ %o0 + 0x31 ]
+    45b8:	83 29 60 08 	sll  %g5, 8, %g1
+    45bc:	98 11 80 04 	or  %g6, %g4, %o4
+    45c0:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
+    45c4:	92 02 60 40 	add  %o1, 0x40, %o1
+    45c8:	12 bf ff be 	bne  44c0 <__GI_memcpy+0x638>
+    45cc:	90 02 20 40 	add  %o0, 0x40, %o0
+    45d0:	96 8a a0 30 	andcc  %o2, 0x30, %o3
+    45d4:	22 80 00 17 	be,a   4630 <__GI_memcpy+0x7a8>
+    45d8:	85 30 60 10 	srl  %g1, 0x10, %g2
+    45dc:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    45e0:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    45e4:	9b 30 a0 18 	srl  %g2, 0x18, %o5
+    45e8:	8d 30 e0 18 	srl  %g3, 0x18, %g6
+    45ec:	85 28 a0 08 	sll  %g2, 8, %g2
+    45f0:	9a 13 40 01 	or  %o5, %g1, %o5
+    45f4:	83 28 e0 08 	sll  %g3, 8, %g1
+    45f8:	84 11 80 02 	or  %g6, %g2, %g2
+    45fc:	87 31 20 18 	srl  %g4, 0x18, %g3
+    4600:	8d 31 60 18 	srl  %g5, 0x18, %g6
+    4604:	89 29 20 08 	sll  %g4, 8, %g4
+    4608:	86 10 c0 01 	or  %g3, %g1, %g3
+    460c:	d8 3a 3f f9 	std  %o4, [ %o0 + -7 ]
+    4610:	c4 3a 20 01 	std  %g2, [ %o0 + 1 ]
+    4614:	83 29 60 08 	sll  %g5, 8, %g1
+    4618:	98 11 80 04 	or  %g6, %g4, %o4
+    461c:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
+    4620:	92 02 60 10 	add  %o1, 0x10, %o1
+    4624:	12 bf ff ee 	bne  45dc <__GI_memcpy+0x754>
+    4628:	90 02 20 10 	add  %o0, 0x10, %o0
+    462c:	85 30 60 10 	srl  %g1, 0x10, %g2
+    4630:	d8 22 3f f9 	st  %o4, [ %o0 + -7 ]
+    4634:	c4 32 3f fd 	sth  %g2, [ %o0 + -3 ]
+    4638:	89 30 60 08 	srl  %g1, 8, %g4
+    463c:	10 80 01 f5 	b  4e10 <__GI_memcpy+0xf88>
+    4640:	c8 2a 3f ff 	stb  %g4, [ %o0 + -1 ]
+    4644:	c4 02 40 00 	ld  [ %o1 ], %g2
+    4648:	92 02 60 04 	add  %o1, 4, %o1
+    464c:	87 30 a0 10 	srl  %g2, 0x10, %g3
+    4650:	8a 0a 20 07 	and  %o0, 7, %g5
+    4654:	c6 32 00 00 	sth  %g3, [ %o0 ]
+    4658:	80 a1 60 06 	cmp  %g5, 6
+    465c:	83 28 a0 10 	sll  %g2, 0x10, %g1
+    4660:	90 02 20 04 	add  %o0, 4, %o0
+    4664:	02 80 01 8e 	be  4c9c <__GI_memcpy+0xe14>
+    4668:	96 0a bf c0 	and  %o2, -64, %o3
+    466c:	d8 02 3f fa 	ld  [ %o0 + -6 ], %o4
+    4670:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4674:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    4678:	9b 30 a0 10 	srl  %g2, 0x10, %o5
+    467c:	8d 30 e0 10 	srl  %g3, 0x10, %g6
+    4680:	85 28 a0 10 	sll  %g2, 0x10, %g2
+    4684:	9a 13 40 01 	or  %o5, %g1, %o5
+    4688:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    468c:	84 11 80 02 	or  %g6, %g2, %g2
+    4690:	87 31 20 10 	srl  %g4, 0x10, %g3
+    4694:	8d 31 60 10 	srl  %g5, 0x10, %g6
+    4698:	89 29 20 10 	sll  %g4, 0x10, %g4
+    469c:	86 10 c0 01 	or  %g3, %g1, %g3
+    46a0:	d8 3a 3f fa 	std  %o4, [ %o0 + -6 ]
+    46a4:	c4 3a 20 02 	std  %g2, [ %o0 + 2 ]
+    46a8:	83 29 60 10 	sll  %g5, 0x10, %g1
+    46ac:	98 11 80 04 	or  %g6, %g4, %o4
+    46b0:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    46b4:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    46b8:	9b 30 a0 10 	srl  %g2, 0x10, %o5
+    46bc:	8d 30 e0 10 	srl  %g3, 0x10, %g6
+    46c0:	85 28 a0 10 	sll  %g2, 0x10, %g2
+    46c4:	9a 13 40 01 	or  %o5, %g1, %o5
+    46c8:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    46cc:	84 11 80 02 	or  %g6, %g2, %g2
+    46d0:	87 31 20 10 	srl  %g4, 0x10, %g3
+    46d4:	8d 31 60 10 	srl  %g5, 0x10, %g6
+    46d8:	89 29 20 10 	sll  %g4, 0x10, %g4
+    46dc:	86 10 c0 01 	or  %g3, %g1, %g3
+    46e0:	d8 3a 20 0a 	std  %o4, [ %o0 + 0xa ]
+    46e4:	c4 3a 20 12 	std  %g2, [ %o0 + 0x12 ]
+    46e8:	83 29 60 10 	sll  %g5, 0x10, %g1
+    46ec:	98 11 80 04 	or  %g6, %g4, %o4
+    46f0:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
+    46f4:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
+    46f8:	9b 30 a0 10 	srl  %g2, 0x10, %o5
+    46fc:	8d 30 e0 10 	srl  %g3, 0x10, %g6
+    4700:	85 28 a0 10 	sll  %g2, 0x10, %g2
+    4704:	9a 13 40 01 	or  %o5, %g1, %o5
+    4708:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    470c:	84 11 80 02 	or  %g6, %g2, %g2
+    4710:	87 31 20 10 	srl  %g4, 0x10, %g3
+    4714:	8d 31 60 10 	srl  %g5, 0x10, %g6
+    4718:	89 29 20 10 	sll  %g4, 0x10, %g4
+    471c:	86 10 c0 01 	or  %g3, %g1, %g3
+    4720:	d8 3a 20 1a 	std  %o4, [ %o0 + 0x1a ]
+    4724:	c4 3a 20 22 	std  %g2, [ %o0 + 0x22 ]
+    4728:	83 29 60 10 	sll  %g5, 0x10, %g1
+    472c:	98 11 80 04 	or  %g6, %g4, %o4
+    4730:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    4734:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    4738:	9b 30 a0 10 	srl  %g2, 0x10, %o5
+    473c:	8d 30 e0 10 	srl  %g3, 0x10, %g6
+    4740:	85 28 a0 10 	sll  %g2, 0x10, %g2
+    4744:	9a 13 40 01 	or  %o5, %g1, %o5
+    4748:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    474c:	84 11 80 02 	or  %g6, %g2, %g2
+    4750:	87 31 20 10 	srl  %g4, 0x10, %g3
+    4754:	8d 31 60 10 	srl  %g5, 0x10, %g6
+    4758:	89 29 20 10 	sll  %g4, 0x10, %g4
+    475c:	86 10 c0 01 	or  %g3, %g1, %g3
+    4760:	d8 3a 20 2a 	std  %o4, [ %o0 + 0x2a ]
+    4764:	c4 3a 20 32 	std  %g2, [ %o0 + 0x32 ]
+    4768:	83 29 60 10 	sll  %g5, 0x10, %g1
+    476c:	98 11 80 04 	or  %g6, %g4, %o4
+    4770:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
+    4774:	92 02 60 40 	add  %o1, 0x40, %o1
+    4778:	12 bf ff be 	bne  4670 <__GI_memcpy+0x7e8>
+    477c:	90 02 20 40 	add  %o0, 0x40, %o0
+    4780:	96 8a a0 30 	andcc  %o2, 0x30, %o3
+    4784:	22 80 00 17 	be,a   47e0 <__GI_memcpy+0x958>
+    4788:	85 30 60 10 	srl  %g1, 0x10, %g2
+    478c:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4790:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    4794:	9b 30 a0 10 	srl  %g2, 0x10, %o5
+    4798:	8d 30 e0 10 	srl  %g3, 0x10, %g6
+    479c:	85 28 a0 10 	sll  %g2, 0x10, %g2
+    47a0:	9a 13 40 01 	or  %o5, %g1, %o5
+    47a4:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    47a8:	84 11 80 02 	or  %g6, %g2, %g2
+    47ac:	87 31 20 10 	srl  %g4, 0x10, %g3
+    47b0:	8d 31 60 10 	srl  %g5, 0x10, %g6
+    47b4:	89 29 20 10 	sll  %g4, 0x10, %g4
+    47b8:	86 10 c0 01 	or  %g3, %g1, %g3
+    47bc:	d8 3a 3f fa 	std  %o4, [ %o0 + -6 ]
+    47c0:	c4 3a 20 02 	std  %g2, [ %o0 + 2 ]
+    47c4:	83 29 60 10 	sll  %g5, 0x10, %g1
+    47c8:	98 11 80 04 	or  %g6, %g4, %o4
+    47cc:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
+    47d0:	92 02 60 10 	add  %o1, 0x10, %o1
+    47d4:	12 bf ff ee 	bne  478c <__GI_memcpy+0x904>
+    47d8:	90 02 20 10 	add  %o0, 0x10, %o0
+    47dc:	85 30 60 10 	srl  %g1, 0x10, %g2
+    47e0:	d8 22 3f fa 	st  %o4, [ %o0 + -6 ]
+    47e4:	10 80 01 8b 	b  4e10 <__GI_memcpy+0xf88>
+    47e8:	c4 32 3f fe 	sth  %g2, [ %o0 + -2 ]
+    47ec:	c4 02 40 00 	ld  [ %o1 ], %g2
+    47f0:	94 22 a0 04 	sub  %o2, 4, %o2
+    47f4:	87 30 a0 18 	srl  %g2, 0x18, %g3
+    47f8:	8a 0a 20 07 	and  %o0, 7, %g5
+    47fc:	c6 2a 00 00 	stb  %g3, [ %o0 ]
+    4800:	80 a1 60 05 	cmp  %g5, 5
+    4804:	89 30 a0 08 	srl  %g2, 8, %g4
+    4808:	83 28 a0 18 	sll  %g2, 0x18, %g1
+    480c:	c8 32 20 01 	sth  %g4, [ %o0 + 1 ]
+    4810:	92 02 60 04 	add  %o1, 4, %o1
+    4814:	02 80 00 c3 	be  4b20 <__GI_memcpy+0xc98>
+    4818:	96 0a bf c0 	and  %o2, -64, %o3
+    481c:	d8 02 3f ff 	ld  [ %o0 + -1 ], %o4
+    4820:	90 02 20 04 	add  %o0, 4, %o0
+    4824:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4828:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    482c:	9b 30 a0 08 	srl  %g2, 8, %o5
+    4830:	8d 30 e0 08 	srl  %g3, 8, %g6
+    4834:	85 28 a0 18 	sll  %g2, 0x18, %g2
+    4838:	9a 13 40 01 	or  %o5, %g1, %o5
+    483c:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    4840:	84 11 80 02 	or  %g6, %g2, %g2
+    4844:	87 31 20 08 	srl  %g4, 8, %g3
+    4848:	8d 31 60 08 	srl  %g5, 8, %g6
+    484c:	89 29 20 18 	sll  %g4, 0x18, %g4
+    4850:	86 10 c0 01 	or  %g3, %g1, %g3
+    4854:	d8 3a 3f fb 	std  %o4, [ %o0 + -5 ]
+    4858:	c4 3a 20 03 	std  %g2, [ %o0 + 3 ]
+    485c:	83 29 60 18 	sll  %g5, 0x18, %g1
+    4860:	98 11 80 04 	or  %g6, %g4, %o4
+    4864:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    4868:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    486c:	9b 30 a0 08 	srl  %g2, 8, %o5
+    4870:	8d 30 e0 08 	srl  %g3, 8, %g6
+    4874:	85 28 a0 18 	sll  %g2, 0x18, %g2
+    4878:	9a 13 40 01 	or  %o5, %g1, %o5
+    487c:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    4880:	84 11 80 02 	or  %g6, %g2, %g2
+    4884:	87 31 20 08 	srl  %g4, 8, %g3
+    4888:	8d 31 60 08 	srl  %g5, 8, %g6
+    488c:	89 29 20 18 	sll  %g4, 0x18, %g4
+    4890:	86 10 c0 01 	or  %g3, %g1, %g3
+    4894:	d8 3a 20 0b 	std  %o4, [ %o0 + 0xb ]
+    4898:	c4 3a 20 13 	std  %g2, [ %o0 + 0x13 ]
+    489c:	83 29 60 18 	sll  %g5, 0x18, %g1
+    48a0:	98 11 80 04 	or  %g6, %g4, %o4
+    48a4:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
+    48a8:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
+    48ac:	9b 30 a0 08 	srl  %g2, 8, %o5
+    48b0:	8d 30 e0 08 	srl  %g3, 8, %g6
+    48b4:	85 28 a0 18 	sll  %g2, 0x18, %g2
+    48b8:	9a 13 40 01 	or  %o5, %g1, %o5
+    48bc:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    48c0:	84 11 80 02 	or  %g6, %g2, %g2
+    48c4:	87 31 20 08 	srl  %g4, 8, %g3
+    48c8:	8d 31 60 08 	srl  %g5, 8, %g6
+    48cc:	89 29 20 18 	sll  %g4, 0x18, %g4
+    48d0:	86 10 c0 01 	or  %g3, %g1, %g3
+    48d4:	d8 3a 20 1b 	std  %o4, [ %o0 + 0x1b ]
+    48d8:	c4 3a 20 23 	std  %g2, [ %o0 + 0x23 ]
+    48dc:	83 29 60 18 	sll  %g5, 0x18, %g1
+    48e0:	98 11 80 04 	or  %g6, %g4, %o4
+    48e4:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    48e8:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    48ec:	9b 30 a0 08 	srl  %g2, 8, %o5
+    48f0:	8d 30 e0 08 	srl  %g3, 8, %g6
+    48f4:	85 28 a0 18 	sll  %g2, 0x18, %g2
+    48f8:	9a 13 40 01 	or  %o5, %g1, %o5
+    48fc:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    4900:	84 11 80 02 	or  %g6, %g2, %g2
+    4904:	87 31 20 08 	srl  %g4, 8, %g3
+    4908:	8d 31 60 08 	srl  %g5, 8, %g6
+    490c:	89 29 20 18 	sll  %g4, 0x18, %g4
+    4910:	86 10 c0 01 	or  %g3, %g1, %g3
+    4914:	d8 3a 20 2b 	std  %o4, [ %o0 + 0x2b ]
+    4918:	c4 3a 20 33 	std  %g2, [ %o0 + 0x33 ]
+    491c:	83 29 60 18 	sll  %g5, 0x18, %g1
+    4920:	98 11 80 04 	or  %g6, %g4, %o4
+    4924:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
+    4928:	92 02 60 40 	add  %o1, 0x40, %o1
+    492c:	12 bf ff be 	bne  4824 <__GI_memcpy+0x99c>
+    4930:	90 02 20 40 	add  %o0, 0x40, %o0
+    4934:	96 8a a0 30 	andcc  %o2, 0x30, %o3
+    4938:	22 80 00 17 	be,a   4994 <__GI_memcpy+0xb0c>
+    493c:	85 30 60 18 	srl  %g1, 0x18, %g2
+    4940:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4944:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    4948:	9b 30 a0 08 	srl  %g2, 8, %o5
+    494c:	8d 30 e0 08 	srl  %g3, 8, %g6
+    4950:	85 28 a0 18 	sll  %g2, 0x18, %g2
+    4954:	9a 13 40 01 	or  %o5, %g1, %o5
+    4958:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    495c:	84 11 80 02 	or  %g6, %g2, %g2
+    4960:	87 31 20 08 	srl  %g4, 8, %g3
+    4964:	8d 31 60 08 	srl  %g5, 8, %g6
+    4968:	89 29 20 18 	sll  %g4, 0x18, %g4
+    496c:	86 10 c0 01 	or  %g3, %g1, %g3
+    4970:	d8 3a 3f fb 	std  %o4, [ %o0 + -5 ]
+    4974:	c4 3a 20 03 	std  %g2, [ %o0 + 3 ]
+    4978:	83 29 60 18 	sll  %g5, 0x18, %g1
+    497c:	98 11 80 04 	or  %g6, %g4, %o4
+    4980:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
+    4984:	92 02 60 10 	add  %o1, 0x10, %o1
+    4988:	12 bf ff ee 	bne  4940 <__GI_memcpy+0xab8>
+    498c:	90 02 20 10 	add  %o0, 0x10, %o0
+    4990:	85 30 60 18 	srl  %g1, 0x18, %g2
+    4994:	d8 22 3f fb 	st  %o4, [ %o0 + -5 ]
+    4998:	10 80 01 1e 	b  4e10 <__GI_memcpy+0xf88>
+    499c:	c4 2a 3f ff 	stb  %g2, [ %o0 + -1 ]
+    49a0:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    49a4:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    49a8:	99 30 a0 18 	srl  %g2, 0x18, %o4
+    49ac:	9b 30 e0 18 	srl  %g3, 0x18, %o5
+    49b0:	8d 28 a0 08 	sll  %g2, 8, %g6
+    49b4:	84 13 00 01 	or  %o4, %g1, %g2
+    49b8:	83 28 e0 08 	sll  %g3, 8, %g1
+    49bc:	86 13 40 06 	or  %o5, %g6, %g3
+    49c0:	99 31 20 18 	srl  %g4, 0x18, %o4
+    49c4:	9b 31 60 18 	srl  %g5, 0x18, %o5
+    49c8:	8d 29 20 08 	sll  %g4, 8, %g6
+    49cc:	88 13 00 01 	or  %o4, %g1, %g4
+    49d0:	83 29 60 08 	sll  %g5, 8, %g1
+    49d4:	8a 13 40 06 	or  %o5, %g6, %g5
+    49d8:	c4 3a 3f fd 	std  %g2, [ %o0 + -3 ]
+    49dc:	c8 3a 20 05 	std  %g4, [ %o0 + 5 ]
+    49e0:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    49e4:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    49e8:	99 30 a0 18 	srl  %g2, 0x18, %o4
+    49ec:	9b 30 e0 18 	srl  %g3, 0x18, %o5
+    49f0:	8d 28 a0 08 	sll  %g2, 8, %g6
+    49f4:	84 13 00 01 	or  %o4, %g1, %g2
+    49f8:	83 28 e0 08 	sll  %g3, 8, %g1
+    49fc:	86 13 40 06 	or  %o5, %g6, %g3
+    4a00:	99 31 20 18 	srl  %g4, 0x18, %o4
+    4a04:	9b 31 60 18 	srl  %g5, 0x18, %o5
+    4a08:	8d 29 20 08 	sll  %g4, 8, %g6
+    4a0c:	88 13 00 01 	or  %o4, %g1, %g4
+    4a10:	83 29 60 08 	sll  %g5, 8, %g1
+    4a14:	8a 13 40 06 	or  %o5, %g6, %g5
+    4a18:	c4 3a 20 0d 	std  %g2, [ %o0 + 0xd ]
+    4a1c:	c8 3a 20 15 	std  %g4, [ %o0 + 0x15 ]
+    4a20:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
+    4a24:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
+    4a28:	99 30 a0 18 	srl  %g2, 0x18, %o4
+    4a2c:	9b 30 e0 18 	srl  %g3, 0x18, %o5
+    4a30:	8d 28 a0 08 	sll  %g2, 8, %g6
+    4a34:	84 13 00 01 	or  %o4, %g1, %g2
+    4a38:	83 28 e0 08 	sll  %g3, 8, %g1
+    4a3c:	86 13 40 06 	or  %o5, %g6, %g3
+    4a40:	99 31 20 18 	srl  %g4, 0x18, %o4
+    4a44:	9b 31 60 18 	srl  %g5, 0x18, %o5
+    4a48:	8d 29 20 08 	sll  %g4, 8, %g6
+    4a4c:	88 13 00 01 	or  %o4, %g1, %g4
+    4a50:	83 29 60 08 	sll  %g5, 8, %g1
+    4a54:	8a 13 40 06 	or  %o5, %g6, %g5
+    4a58:	c4 3a 20 1d 	std  %g2, [ %o0 + 0x1d ]
+    4a5c:	c8 3a 20 25 	std  %g4, [ %o0 + 0x25 ]
+    4a60:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    4a64:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    4a68:	99 30 a0 18 	srl  %g2, 0x18, %o4
+    4a6c:	9b 30 e0 18 	srl  %g3, 0x18, %o5
+    4a70:	8d 28 a0 08 	sll  %g2, 8, %g6
+    4a74:	84 13 00 01 	or  %o4, %g1, %g2
+    4a78:	83 28 e0 08 	sll  %g3, 8, %g1
+    4a7c:	86 13 40 06 	or  %o5, %g6, %g3
+    4a80:	99 31 20 18 	srl  %g4, 0x18, %o4
+    4a84:	9b 31 60 18 	srl  %g5, 0x18, %o5
+    4a88:	8d 29 20 08 	sll  %g4, 8, %g6
+    4a8c:	88 13 00 01 	or  %o4, %g1, %g4
+    4a90:	83 29 60 08 	sll  %g5, 8, %g1
+    4a94:	8a 13 40 06 	or  %o5, %g6, %g5
+    4a98:	c4 3a 20 2d 	std  %g2, [ %o0 + 0x2d ]
+    4a9c:	c8 3a 20 35 	std  %g4, [ %o0 + 0x35 ]
+    4aa0:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
+    4aa4:	92 02 60 40 	add  %o1, 0x40, %o1
+    4aa8:	12 bf ff be 	bne  49a0 <__GI_memcpy+0xb18>
+    4aac:	90 02 20 40 	add  %o0, 0x40, %o0
+    4ab0:	96 8a a0 30 	andcc  %o2, 0x30, %o3
+    4ab4:	22 80 00 17 	be,a   4b10 <__GI_memcpy+0xc88>
+    4ab8:	85 30 60 10 	srl  %g1, 0x10, %g2
+    4abc:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4ac0:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    4ac4:	99 30 a0 18 	srl  %g2, 0x18, %o4
+    4ac8:	9b 30 e0 18 	srl  %g3, 0x18, %o5
+    4acc:	8d 28 a0 08 	sll  %g2, 8, %g6
+    4ad0:	84 13 00 01 	or  %o4, %g1, %g2
+    4ad4:	83 28 e0 08 	sll  %g3, 8, %g1
+    4ad8:	86 13 40 06 	or  %o5, %g6, %g3
+    4adc:	99 31 20 18 	srl  %g4, 0x18, %o4
+    4ae0:	9b 31 60 18 	srl  %g5, 0x18, %o5
+    4ae4:	8d 29 20 08 	sll  %g4, 8, %g6
+    4ae8:	88 13 00 01 	or  %o4, %g1, %g4
+    4aec:	83 29 60 08 	sll  %g5, 8, %g1
+    4af0:	8a 13 40 06 	or  %o5, %g6, %g5
+    4af4:	c4 3a 3f fd 	std  %g2, [ %o0 + -3 ]
+    4af8:	c8 3a 20 05 	std  %g4, [ %o0 + 5 ]
+    4afc:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
+    4b00:	92 02 60 10 	add  %o1, 0x10, %o1
+    4b04:	12 bf ff ee 	bne  4abc <__GI_memcpy+0xc34>
+    4b08:	90 02 20 10 	add  %o0, 0x10, %o0
+    4b0c:	85 30 60 10 	srl  %g1, 0x10, %g2
+    4b10:	c4 32 3f fd 	sth  %g2, [ %o0 + -3 ]
+    4b14:	89 30 60 08 	srl  %g1, 8, %g4
+    4b18:	10 80 00 be 	b  4e10 <__GI_memcpy+0xf88>
+    4b1c:	c8 2a 3f ff 	stb  %g4, [ %o0 + -1 ]
+    4b20:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4b24:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    4b28:	99 30 a0 08 	srl  %g2, 8, %o4
+    4b2c:	9b 30 e0 08 	srl  %g3, 8, %o5
+    4b30:	8d 28 a0 18 	sll  %g2, 0x18, %g6
+    4b34:	84 13 00 01 	or  %o4, %g1, %g2
+    4b38:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    4b3c:	86 13 40 06 	or  %o5, %g6, %g3
+    4b40:	99 31 20 08 	srl  %g4, 8, %o4
+    4b44:	9b 31 60 08 	srl  %g5, 8, %o5
+    4b48:	8d 29 20 18 	sll  %g4, 0x18, %g6
+    4b4c:	88 13 00 01 	or  %o4, %g1, %g4
+    4b50:	83 29 60 18 	sll  %g5, 0x18, %g1
+    4b54:	8a 13 40 06 	or  %o5, %g6, %g5
+    4b58:	c4 3a 20 03 	std  %g2, [ %o0 + 3 ]
+    4b5c:	c8 3a 20 0b 	std  %g4, [ %o0 + 0xb ]
+    4b60:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    4b64:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    4b68:	99 30 a0 08 	srl  %g2, 8, %o4
+    4b6c:	9b 30 e0 08 	srl  %g3, 8, %o5
+    4b70:	8d 28 a0 18 	sll  %g2, 0x18, %g6
+    4b74:	84 13 00 01 	or  %o4, %g1, %g2
+    4b78:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    4b7c:	86 13 40 06 	or  %o5, %g6, %g3
+    4b80:	99 31 20 08 	srl  %g4, 8, %o4
+    4b84:	9b 31 60 08 	srl  %g5, 8, %o5
+    4b88:	8d 29 20 18 	sll  %g4, 0x18, %g6
+    4b8c:	88 13 00 01 	or  %o4, %g1, %g4
+    4b90:	83 29 60 18 	sll  %g5, 0x18, %g1
+    4b94:	8a 13 40 06 	or  %o5, %g6, %g5
+    4b98:	c4 3a 20 13 	std  %g2, [ %o0 + 0x13 ]
+    4b9c:	c8 3a 20 1b 	std  %g4, [ %o0 + 0x1b ]
+    4ba0:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
+    4ba4:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
+    4ba8:	99 30 a0 08 	srl  %g2, 8, %o4
+    4bac:	9b 30 e0 08 	srl  %g3, 8, %o5
+    4bb0:	8d 28 a0 18 	sll  %g2, 0x18, %g6
+    4bb4:	84 13 00 01 	or  %o4, %g1, %g2
+    4bb8:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    4bbc:	86 13 40 06 	or  %o5, %g6, %g3
+    4bc0:	99 31 20 08 	srl  %g4, 8, %o4
+    4bc4:	9b 31 60 08 	srl  %g5, 8, %o5
+    4bc8:	8d 29 20 18 	sll  %g4, 0x18, %g6
+    4bcc:	88 13 00 01 	or  %o4, %g1, %g4
+    4bd0:	83 29 60 18 	sll  %g5, 0x18, %g1
+    4bd4:	8a 13 40 06 	or  %o5, %g6, %g5
+    4bd8:	c4 3a 20 23 	std  %g2, [ %o0 + 0x23 ]
+    4bdc:	c8 3a 20 2b 	std  %g4, [ %o0 + 0x2b ]
+    4be0:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    4be4:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    4be8:	99 30 a0 08 	srl  %g2, 8, %o4
+    4bec:	9b 30 e0 08 	srl  %g3, 8, %o5
+    4bf0:	8d 28 a0 18 	sll  %g2, 0x18, %g6
+    4bf4:	84 13 00 01 	or  %o4, %g1, %g2
+    4bf8:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    4bfc:	86 13 40 06 	or  %o5, %g6, %g3
+    4c00:	99 31 20 08 	srl  %g4, 8, %o4
+    4c04:	9b 31 60 08 	srl  %g5, 8, %o5
+    4c08:	8d 29 20 18 	sll  %g4, 0x18, %g6
+    4c0c:	88 13 00 01 	or  %o4, %g1, %g4
+    4c10:	83 29 60 18 	sll  %g5, 0x18, %g1
+    4c14:	8a 13 40 06 	or  %o5, %g6, %g5
+    4c18:	c4 3a 20 33 	std  %g2, [ %o0 + 0x33 ]
+    4c1c:	c8 3a 20 3b 	std  %g4, [ %o0 + 0x3b ]
+    4c20:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
+    4c24:	92 02 60 40 	add  %o1, 0x40, %o1
+    4c28:	12 bf ff be 	bne  4b20 <__GI_memcpy+0xc98>
+    4c2c:	90 02 20 40 	add  %o0, 0x40, %o0
+    4c30:	96 8a a0 30 	andcc  %o2, 0x30, %o3
+    4c34:	22 80 00 17 	be,a   4c90 <__GI_memcpy+0xe08>
+    4c38:	85 30 60 18 	srl  %g1, 0x18, %g2
+    4c3c:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4c40:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    4c44:	99 30 a0 08 	srl  %g2, 8, %o4
+    4c48:	9b 30 e0 08 	srl  %g3, 8, %o5
+    4c4c:	8d 28 a0 18 	sll  %g2, 0x18, %g6
+    4c50:	84 13 00 01 	or  %o4, %g1, %g2
+    4c54:	83 28 e0 18 	sll  %g3, 0x18, %g1
+    4c58:	86 13 40 06 	or  %o5, %g6, %g3
+    4c5c:	99 31 20 08 	srl  %g4, 8, %o4
+    4c60:	9b 31 60 08 	srl  %g5, 8, %o5
+    4c64:	8d 29 20 18 	sll  %g4, 0x18, %g6
+    4c68:	88 13 00 01 	or  %o4, %g1, %g4
+    4c6c:	83 29 60 18 	sll  %g5, 0x18, %g1
+    4c70:	8a 13 40 06 	or  %o5, %g6, %g5
+    4c74:	c4 3a 20 03 	std  %g2, [ %o0 + 3 ]
+    4c78:	c8 3a 20 0b 	std  %g4, [ %o0 + 0xb ]
+    4c7c:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
+    4c80:	92 02 60 10 	add  %o1, 0x10, %o1
+    4c84:	12 bf ff ee 	bne  4c3c <__GI_memcpy+0xdb4>
+    4c88:	90 02 20 10 	add  %o0, 0x10, %o0
+    4c8c:	85 30 60 18 	srl  %g1, 0x18, %g2
+    4c90:	c4 2a 20 03 	stb  %g2, [ %o0 + 3 ]
+    4c94:	10 80 00 5f 	b  4e10 <__GI_memcpy+0xf88>
+    4c98:	90 02 20 04 	add  %o0, 4, %o0
+    4c9c:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4ca0:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    4ca4:	99 30 a0 10 	srl  %g2, 0x10, %o4
+    4ca8:	9b 30 e0 10 	srl  %g3, 0x10, %o5
+    4cac:	8d 28 a0 10 	sll  %g2, 0x10, %g6
+    4cb0:	84 13 00 01 	or  %o4, %g1, %g2
+    4cb4:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    4cb8:	86 13 40 06 	or  %o5, %g6, %g3
+    4cbc:	99 31 20 10 	srl  %g4, 0x10, %o4
+    4cc0:	9b 31 60 10 	srl  %g5, 0x10, %o5
+    4cc4:	8d 29 20 10 	sll  %g4, 0x10, %g6
+    4cc8:	88 13 00 01 	or  %o4, %g1, %g4
+    4ccc:	83 29 60 10 	sll  %g5, 0x10, %g1
+    4cd0:	8a 13 40 06 	or  %o5, %g6, %g5
+    4cd4:	c4 3a 3f fe 	std  %g2, [ %o0 + -2 ]
+    4cd8:	c8 3a 20 06 	std  %g4, [ %o0 + 6 ]
+    4cdc:	c4 1a 60 10 	ldd  [ %o1 + 0x10 ], %g2
+    4ce0:	c8 1a 60 18 	ldd  [ %o1 + 0x18 ], %g4
+    4ce4:	99 30 a0 10 	srl  %g2, 0x10, %o4
+    4ce8:	9b 30 e0 10 	srl  %g3, 0x10, %o5
+    4cec:	8d 28 a0 10 	sll  %g2, 0x10, %g6
+    4cf0:	84 13 00 01 	or  %o4, %g1, %g2
+    4cf4:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    4cf8:	86 13 40 06 	or  %o5, %g6, %g3
+    4cfc:	99 31 20 10 	srl  %g4, 0x10, %o4
+    4d00:	9b 31 60 10 	srl  %g5, 0x10, %o5
+    4d04:	8d 29 20 10 	sll  %g4, 0x10, %g6
+    4d08:	88 13 00 01 	or  %o4, %g1, %g4
+    4d0c:	83 29 60 10 	sll  %g5, 0x10, %g1
+    4d10:	8a 13 40 06 	or  %o5, %g6, %g5
+    4d14:	c4 3a 20 0e 	std  %g2, [ %o0 + 0xe ]
+    4d18:	c8 3a 20 16 	std  %g4, [ %o0 + 0x16 ]
+    4d1c:	c4 1a 60 20 	ldd  [ %o1 + 0x20 ], %g2
+    4d20:	c8 1a 60 28 	ldd  [ %o1 + 0x28 ], %g4
+    4d24:	99 30 a0 10 	srl  %g2, 0x10, %o4
+    4d28:	9b 30 e0 10 	srl  %g3, 0x10, %o5
+    4d2c:	8d 28 a0 10 	sll  %g2, 0x10, %g6
+    4d30:	84 13 00 01 	or  %o4, %g1, %g2
+    4d34:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    4d38:	86 13 40 06 	or  %o5, %g6, %g3
+    4d3c:	99 31 20 10 	srl  %g4, 0x10, %o4
+    4d40:	9b 31 60 10 	srl  %g5, 0x10, %o5
+    4d44:	8d 29 20 10 	sll  %g4, 0x10, %g6
+    4d48:	88 13 00 01 	or  %o4, %g1, %g4
+    4d4c:	83 29 60 10 	sll  %g5, 0x10, %g1
+    4d50:	8a 13 40 06 	or  %o5, %g6, %g5
+    4d54:	c4 3a 20 1e 	std  %g2, [ %o0 + 0x1e ]
+    4d58:	c8 3a 20 26 	std  %g4, [ %o0 + 0x26 ]
+    4d5c:	c4 1a 60 30 	ldd  [ %o1 + 0x30 ], %g2
+    4d60:	c8 1a 60 38 	ldd  [ %o1 + 0x38 ], %g4
+    4d64:	99 30 a0 10 	srl  %g2, 0x10, %o4
+    4d68:	9b 30 e0 10 	srl  %g3, 0x10, %o5
+    4d6c:	8d 28 a0 10 	sll  %g2, 0x10, %g6
+    4d70:	84 13 00 01 	or  %o4, %g1, %g2
+    4d74:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    4d78:	86 13 40 06 	or  %o5, %g6, %g3
+    4d7c:	99 31 20 10 	srl  %g4, 0x10, %o4
+    4d80:	9b 31 60 10 	srl  %g5, 0x10, %o5
+    4d84:	8d 29 20 10 	sll  %g4, 0x10, %g6
+    4d88:	88 13 00 01 	or  %o4, %g1, %g4
+    4d8c:	83 29 60 10 	sll  %g5, 0x10, %g1
+    4d90:	8a 13 40 06 	or  %o5, %g6, %g5
+    4d94:	c4 3a 20 2e 	std  %g2, [ %o0 + 0x2e ]
+    4d98:	c8 3a 20 36 	std  %g4, [ %o0 + 0x36 ]
+    4d9c:	96 a2 e0 40 	subcc  %o3, 0x40, %o3
+    4da0:	92 02 60 40 	add  %o1, 0x40, %o1
+    4da4:	12 bf ff be 	bne  4c9c <__GI_memcpy+0xe14>
+    4da8:	90 02 20 40 	add  %o0, 0x40, %o0
+    4dac:	96 8a a0 30 	andcc  %o2, 0x30, %o3
+    4db0:	22 80 00 17 	be,a   4e0c <__GI_memcpy+0xf84>
+    4db4:	85 30 60 10 	srl  %g1, 0x10, %g2
+    4db8:	c4 1a 60 00 	ldd  [ %o1 ], %g2
+    4dbc:	c8 1a 60 08 	ldd  [ %o1 + 8 ], %g4
+    4dc0:	99 30 a0 10 	srl  %g2, 0x10, %o4
+    4dc4:	9b 30 e0 10 	srl  %g3, 0x10, %o5
+    4dc8:	8d 28 a0 10 	sll  %g2, 0x10, %g6
+    4dcc:	84 13 00 01 	or  %o4, %g1, %g2
+    4dd0:	83 28 e0 10 	sll  %g3, 0x10, %g1
+    4dd4:	86 13 40 06 	or  %o5, %g6, %g3
+    4dd8:	99 31 20 10 	srl  %g4, 0x10, %o4
+    4ddc:	9b 31 60 10 	srl  %g5, 0x10, %o5
+    4de0:	8d 29 20 10 	sll  %g4, 0x10, %g6
+    4de4:	88 13 00 01 	or  %o4, %g1, %g4
+    4de8:	83 29 60 10 	sll  %g5, 0x10, %g1
+    4dec:	8a 13 40 06 	or  %o5, %g6, %g5
+    4df0:	c4 3a 3f fe 	std  %g2, [ %o0 + -2 ]
+    4df4:	c8 3a 20 06 	std  %g4, [ %o0 + 6 ]
+    4df8:	96 a2 e0 10 	subcc  %o3, 0x10, %o3
+    4dfc:	92 02 60 10 	add  %o1, 0x10, %o1
+    4e00:	12 bf ff ee 	bne  4db8 <__GI_memcpy+0xf30>
+    4e04:	90 02 20 10 	add  %o0, 0x10, %o0
+    4e08:	85 30 60 10 	srl  %g1, 0x10, %g2
+    4e0c:	c4 32 3f fe 	sth  %g2, [ %o0 + -2 ]
+    4e10:	96 0a a0 0e 	and  %o2, 0xe, %o3
+    4e14:	84 10 00 0f 	mov  %o7, %g2
+    4e18:	99 2a e0 03 	sll  %o3, 3, %o4
+    4e1c:	90 02 00 0b 	add  %o0, %o3, %o0
+    4e20:	40 00 00 33 	call  4eec <__GI_memcpy+0x1064>
+    4e24:	92 02 40 0b 	add  %o1, %o3, %o1
+    4e28:	9e 10 00 02 	mov  %g2, %o7
+    4e2c:	81 c3 60 84 	jmp  %o5 + 0x84
+    4e30:	80 8a a0 01 	btst  1, %o2
+    4e34:	c4 0a 7f f2 	ldub  [ %o1 + -14 ], %g2
+    4e38:	c6 0a 7f f3 	ldub  [ %o1 + -13 ], %g3
+    4e3c:	c4 2a 3f f2 	stb  %g2, [ %o0 + -14 ]
+    4e40:	c6 2a 3f f3 	stb  %g3, [ %o0 + -13 ]
+    4e44:	c4 0a 7f f4 	ldub  [ %o1 + -12 ], %g2
+    4e48:	c6 0a 7f f5 	ldub  [ %o1 + -11 ], %g3
+    4e4c:	c4 2a 3f f4 	stb  %g2, [ %o0 + -12 ]
+    4e50:	c6 2a 3f f5 	stb  %g3, [ %o0 + -11 ]
+    4e54:	c4 0a 7f f6 	ldub  [ %o1 + -10 ], %g2
+    4e58:	c6 0a 7f f7 	ldub  [ %o1 + -9 ], %g3
+    4e5c:	c4 2a 3f f6 	stb  %g2, [ %o0 + -10 ]
+    4e60:	c6 2a 3f f7 	stb  %g3, [ %o0 + -9 ]
+    4e64:	c4 0a 7f f8 	ldub  [ %o1 + -8 ], %g2
+    4e68:	c6 0a 7f f9 	ldub  [ %o1 + -7 ], %g3
+    4e6c:	c4 2a 3f f8 	stb  %g2, [ %o0 + -8 ]
+    4e70:	c6 2a 3f f9 	stb  %g3, [ %o0 + -7 ]
+    4e74:	c4 0a 7f fa 	ldub  [ %o1 + -6 ], %g2
+    4e78:	c6 0a 7f fb 	ldub  [ %o1 + -5 ], %g3
+    4e7c:	c4 2a 3f fa 	stb  %g2, [ %o0 + -6 ]
+    4e80:	c6 2a 3f fb 	stb  %g3, [ %o0 + -5 ]
+    4e84:	c4 0a 7f fc 	ldub  [ %o1 + -4 ], %g2
+    4e88:	c6 0a 7f fd 	ldub  [ %o1 + -3 ], %g3
+    4e8c:	c4 2a 3f fc 	stb  %g2, [ %o0 + -4 ]
+    4e90:	c6 2a 3f fd 	stb  %g3, [ %o0 + -3 ]
+    4e94:	c4 0a 7f fe 	ldub  [ %o1 + -2 ], %g2
+    4e98:	c6 0a 7f ff 	ldub  [ %o1 + -1 ], %g3
+    4e9c:	c4 2a 3f fe 	stb  %g2, [ %o0 + -2 ]
+    4ea0:	c6 2a 3f ff 	stb  %g3, [ %o0 + -1 ]
+    4ea4:	02 80 00 04 	be  4eb4 <__GI_memcpy+0x102c>
+    4ea8:	01 00 00 00 	nop 
+    4eac:	c4 0a 40 00 	ldub  [ %o1 ], %g2
+    4eb0:	c4 2a 00 00 	stb  %g2, [ %o0 ]
+    4eb4:	81 c3 e0 08 	retl 
+    4eb8:	d0 03 a0 40 	ld  [ %sp + 0x40 ], %o0
+    4ebc:	12 bf ff d5 	bne  4e10 <__GI_memcpy+0xf88>
+    4ec0:	80 8a a0 08 	btst  8, %o2
+    4ec4:	02 80 00 08 	be  4ee4 <__GI_memcpy+0x105c>
+    4ec8:	80 8a a0 04 	btst  4, %o2
+    4ecc:	c4 02 60 00 	ld  [ %o1 ], %g2
+    4ed0:	c6 02 60 04 	ld  [ %o1 + 4 ], %g3
+    4ed4:	92 02 60 08 	add  %o1, 8, %o1
+    4ed8:	c4 22 20 00 	st  %g2, [ %o0 ]
+    4edc:	c6 22 20 04 	st  %g3, [ %o0 + 4 ]
+    4ee0:	90 02 20 08 	add  %o0, 8, %o0
+    4ee4:	10 bf fc 6d 	b  4098 <__GI_memcpy+0x210>
+    4ee8:	82 10 00 0a 	mov  %o2, %g1
+    4eec:	81 c3 e0 08 	retl 
+    4ef0:	9a 23 c0 0c 	sub  %o7, %o4, %o5
+    4ef4:	81 c3 e0 08 	retl 
+    4ef8:	9a 23 c0 06 	sub  %o7, %g6, %o5
 
-00004ed8 <generic_vectored_isr>:
-    4ed8:	a9 50 00 00 	rd  %wim, %l4
-    4edc:	a9 35 00 10 	srl  %l4, %l0, %l4
-    4ee0:	80 a5 20 01 	cmp  %l4, 1
-    4ee4:	12 80 00 12 	bne  4f2c <continue_with_valid_T>
-    4ee8:	01 00 00 00 	nop 
+00004efc <generic_vectored_isr>:
+    4efc:	a9 50 00 00 	rd  %wim, %l4
+    4f00:	a9 35 00 10 	srl  %l4, %l0, %l4
+    4f04:	80 a5 20 01 	cmp  %l4, 1
+    4f08:	12 80 00 12 	bne  4f50 <continue_with_valid_T>
+    4f0c:	01 00 00 00 	nop 
 
-00004eec <handle_invalid_T>:
-    4eec:	81 e0 00 00 	save 
-    4ef0:	e0 3b a0 00 	std  %l0, [ %sp ]
-    4ef4:	e4 3b a0 08 	std  %l2, [ %sp + 8 ]
-    4ef8:	e8 3b a0 10 	std  %l4, [ %sp + 0x10 ]
-    4efc:	ec 3b a0 18 	std  %l6, [ %sp + 0x18 ]
-    4f00:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
-    4f04:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
-    4f08:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
-    4f0c:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
-    4f10:	a7 50 00 00 	rd  %wim, %l3
-    4f14:	a9 2c e0 07 	sll  %l3, 7, %l4
-    4f18:	a7 34 e0 01 	srl  %l3, 1, %l3
-    4f1c:	a6 14 c0 14 	or  %l3, %l4, %l3
-    4f20:	a6 0c e0 ff 	and  %l3, 0xff, %l3
-    4f24:	81 90 00 13 	mov  %l3, %wim
-    4f28:	81 e8 00 00 	restore 
+00004f10 <handle_invalid_T>:
+    4f10:	81 e0 00 00 	save 
+    4f14:	e0 3b a0 00 	std  %l0, [ %sp ]
+    4f18:	e4 3b a0 08 	std  %l2, [ %sp + 8 ]
+    4f1c:	e8 3b a0 10 	std  %l4, [ %sp + 0x10 ]
+    4f20:	ec 3b a0 18 	std  %l6, [ %sp + 0x18 ]
+    4f24:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
+    4f28:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
+    4f2c:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
+    4f30:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
+    4f34:	a7 50 00 00 	rd  %wim, %l3
+    4f38:	a9 2c e0 07 	sll  %l3, 7, %l4
+    4f3c:	a7 34 e0 01 	srl  %l3, 1, %l3
+    4f40:	a6 14 c0 14 	or  %l3, %l4, %l3
+    4f44:	a6 0c e0 ff 	and  %l3, 0xff, %l3
+    4f48:	81 90 00 13 	mov  %l3, %wim
+    4f4c:	81 e8 00 00 	restore 
 
-00004f2c <continue_with_valid_T>:
-    4f2c:	ae 10 00 0e 	mov  %sp, %l7
-    4f30:	80 a3 a0 00 	cmp  %sp, 0
-    4f34:	22 80 00 03 	be,a   4f40 <continue_with_stack>
-    4f38:	9c 27 a0 60 	sub  %fp, 0x60, %sp
-    4f3c:	9c 23 a0 60 	sub  %sp, 0x60, %sp
+00004f50 <continue_with_valid_T>:
+    4f50:	ae 10 00 0e 	mov  %sp, %l7
+    4f54:	80 a3 a0 00 	cmp  %sp, 0
+    4f58:	22 80 00 03 	be,a   4f64 <continue_with_stack>
+    4f5c:	9c 27 a0 60 	sub  %fp, 0x60, %sp
+    4f60:	9c 23 a0 60 	sub  %sp, 0x60, %sp
 
-00004f40 <continue_with_stack>:
-    4f40:	e0 23 80 00 	st  %l0, [ %sp ]
-    4f44:	c2 23 a0 04 	st  %g1, [ %sp + 4 ]
-    4f48:	c4 3b a0 08 	std  %g2, [ %sp + 8 ]
-    4f4c:	c8 3b a0 10 	std  %g4, [ %sp + 0x10 ]
-    4f50:	cc 3b a0 18 	std  %g6, [ %sp + 0x18 ]
-    4f54:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
-    4f58:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
-    4f5c:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
-    4f60:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
-    4f64:	e2 23 a0 40 	st  %l1, [ %sp + 0x40 ]
-    4f68:	e4 23 a0 44 	st  %l2, [ %sp + 0x44 ]
-    4f6c:	ee 23 a0 48 	st  %l7, [ %sp + 0x48 ]
-    4f70:	af 40 00 00 	rd  %y, %l7
-    4f74:	ee 23 a0 4c 	st  %l7, [ %sp + 0x4c ]
-    4f78:	9c 23 a0 60 	sub  %sp, 0x60, %sp
-    4f7c:	ae 14 20 20 	or  %l0, 0x20, %l7
-    4f80:	ae 15 ef 00 	or  %l7, 0xf00, %l7
-    4f84:	81 88 00 17 	mov  %l7, %psr
-    4f88:	91 58 00 00 	rd  %tbr, %o0
-    4f8c:	7f ff f4 2c 	call  203c <ajit_generic_interrupt_handler>
-    4f90:	01 00 00 00 	nop 
-    4f94:	81 e8 00 00 	restore 
-    4f98:	81 e0 00 00 	save 
+00004f64 <continue_with_stack>:
+    4f64:	e0 23 80 00 	st  %l0, [ %sp ]
+    4f68:	c2 23 a0 04 	st  %g1, [ %sp + 4 ]
+    4f6c:	c4 3b a0 08 	std  %g2, [ %sp + 8 ]
+    4f70:	c8 3b a0 10 	std  %g4, [ %sp + 0x10 ]
+    4f74:	cc 3b a0 18 	std  %g6, [ %sp + 0x18 ]
+    4f78:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
+    4f7c:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
+    4f80:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
+    4f84:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
+    4f88:	e2 23 a0 40 	st  %l1, [ %sp + 0x40 ]
+    4f8c:	e4 23 a0 44 	st  %l2, [ %sp + 0x44 ]
+    4f90:	ee 23 a0 48 	st  %l7, [ %sp + 0x48 ]
+    4f94:	af 40 00 00 	rd  %y, %l7
+    4f98:	ee 23 a0 4c 	st  %l7, [ %sp + 0x4c ]
+    4f9c:	9c 23 a0 60 	sub  %sp, 0x60, %sp
+    4fa0:	ae 14 20 20 	or  %l0, 0x20, %l7
+    4fa4:	ae 15 ef 00 	or  %l7, 0xf00, %l7
+    4fa8:	81 88 00 17 	mov  %l7, %psr
+    4fac:	91 58 00 00 	rd  %tbr, %o0
+    4fb0:	7f ff f4 23 	call  203c <ajit_generic_interrupt_handler>
+    4fb4:	01 00 00 00 	nop 
+    4fb8:	81 e8 00 00 	restore 
+    4fbc:	81 e0 00 00 	save 
 
-00004f9c <recover_and_leave>:
-    4f9c:	9c 03 a0 60 	add  %sp, 0x60, %sp
-    4fa0:	ee 03 80 00 	ld  [ %sp ], %l7
-    4fa4:	81 88 00 17 	mov  %l7, %psr
-    4fa8:	c2 03 a0 04 	ld  [ %sp + 4 ], %g1
-    4fac:	c4 1b a0 08 	ldd  [ %sp + 8 ], %g2
-    4fb0:	c8 1b a0 10 	ldd  [ %sp + 0x10 ], %g4
-    4fb4:	cc 1b a0 18 	ldd  [ %sp + 0x18 ], %g6
-    4fb8:	f0 1b a0 20 	ldd  [ %sp + 0x20 ], %i0
-    4fbc:	f4 1b a0 28 	ldd  [ %sp + 0x28 ], %i2
-    4fc0:	f8 1b a0 30 	ldd  [ %sp + 0x30 ], %i4
-    4fc4:	fc 1b a0 38 	ldd  [ %sp + 0x38 ], %fp
-    4fc8:	e2 03 a0 40 	ld  [ %sp + 0x40 ], %l1
-    4fcc:	e4 03 a0 44 	ld  [ %sp + 0x44 ], %l2
-    4fd0:	ec 03 a0 48 	ld  [ %sp + 0x48 ], %l6
-    4fd4:	ee 03 a0 4c 	ld  [ %sp + 0x4c ], %l7
-    4fd8:	9c 10 00 16 	mov  %l6, %sp
-    4fdc:	81 80 00 17 	mov  %l7, %y
+00004fc0 <recover_and_leave>:
+    4fc0:	9c 03 a0 60 	add  %sp, 0x60, %sp
+    4fc4:	ee 03 80 00 	ld  [ %sp ], %l7
+    4fc8:	81 88 00 17 	mov  %l7, %psr
+    4fcc:	c2 03 a0 04 	ld  [ %sp + 4 ], %g1
+    4fd0:	c4 1b a0 08 	ldd  [ %sp + 8 ], %g2
+    4fd4:	c8 1b a0 10 	ldd  [ %sp + 0x10 ], %g4
+    4fd8:	cc 1b a0 18 	ldd  [ %sp + 0x18 ], %g6
+    4fdc:	f0 1b a0 20 	ldd  [ %sp + 0x20 ], %i0
+    4fe0:	f4 1b a0 28 	ldd  [ %sp + 0x28 ], %i2
+    4fe4:	f8 1b a0 30 	ldd  [ %sp + 0x30 ], %i4
+    4fe8:	fc 1b a0 38 	ldd  [ %sp + 0x38 ], %fp
+    4fec:	e2 03 a0 40 	ld  [ %sp + 0x40 ], %l1
+    4ff0:	e4 03 a0 44 	ld  [ %sp + 0x44 ], %l2
+    4ff4:	ec 03 a0 48 	ld  [ %sp + 0x48 ], %l6
+    4ff8:	ee 03 a0 4c 	ld  [ %sp + 0x4c ], %l7
+    4ffc:	9c 10 00 16 	mov  %l6, %sp
+    5000:	81 80 00 17 	mov  %l7, %y
 
-00004fe0 <jmpl_and_return>:
-    4fe0:	81 c4 40 00 	jmp  %l1
-    4fe4:	81 cc 80 00 	rett  %l2
-    4fe8:	01 00 00 00 	nop 
+00005004 <jmpl_and_return>:
+    5004:	81 c4 40 00 	jmp  %l1
+    5008:	81 cc 80 00 	rett  %l2
+    500c:	01 00 00 00 	nop 
 
-00004fec <generic_vectored_sw_trap>:
-    4fec:	a9 50 00 00 	rd  %wim, %l4
-    4ff0:	a9 35 00 10 	srl  %l4, %l0, %l4
-    4ff4:	80 a5 20 01 	cmp  %l4, 1
-    4ff8:	12 80 00 12 	bne  5040 <continue_with_valid_T>
-    4ffc:	01 00 00 00 	nop 
+00005010 <generic_vectored_sw_trap>:
+    5010:	a9 50 00 00 	rd  %wim, %l4
+    5014:	a9 35 00 10 	srl  %l4, %l0, %l4
+    5018:	80 a5 20 01 	cmp  %l4, 1
+    501c:	12 80 00 12 	bne  5064 <continue_with_valid_T>
+    5020:	01 00 00 00 	nop 
 
-00005000 <handle_invalid_T>:
-    5000:	81 e0 00 00 	save 
-    5004:	e0 3b a0 00 	std  %l0, [ %sp ]
-    5008:	e4 3b a0 08 	std  %l2, [ %sp + 8 ]
-    500c:	e8 3b a0 10 	std  %l4, [ %sp + 0x10 ]
-    5010:	ec 3b a0 18 	std  %l6, [ %sp + 0x18 ]
-    5014:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
-    5018:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
-    501c:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
-    5020:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
-    5024:	a7 50 00 00 	rd  %wim, %l3
-    5028:	a9 2c e0 07 	sll  %l3, 7, %l4
-    502c:	a7 34 e0 01 	srl  %l3, 1, %l3
-    5030:	a6 14 c0 14 	or  %l3, %l4, %l3
-    5034:	a6 0c e0 ff 	and  %l3, 0xff, %l3
-    5038:	81 90 00 13 	mov  %l3, %wim
-    503c:	81 e8 00 00 	restore 
+00005024 <handle_invalid_T>:
+    5024:	81 e0 00 00 	save 
+    5028:	e0 3b a0 00 	std  %l0, [ %sp ]
+    502c:	e4 3b a0 08 	std  %l2, [ %sp + 8 ]
+    5030:	e8 3b a0 10 	std  %l4, [ %sp + 0x10 ]
+    5034:	ec 3b a0 18 	std  %l6, [ %sp + 0x18 ]
+    5038:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
+    503c:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
+    5040:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
+    5044:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
+    5048:	a7 50 00 00 	rd  %wim, %l3
+    504c:	a9 2c e0 07 	sll  %l3, 7, %l4
+    5050:	a7 34 e0 01 	srl  %l3, 1, %l3
+    5054:	a6 14 c0 14 	or  %l3, %l4, %l3
+    5058:	a6 0c e0 ff 	and  %l3, 0xff, %l3
+    505c:	81 90 00 13 	mov  %l3, %wim
+    5060:	81 e8 00 00 	restore 
 
-00005040 <continue_with_valid_T>:
-    5040:	ae 10 00 0e 	mov  %sp, %l7
-    5044:	80 a3 a0 00 	cmp  %sp, 0
-    5048:	22 80 00 03 	be,a   5054 <continue_with_stack>
-    504c:	9c 27 a0 60 	sub  %fp, 0x60, %sp
-    5050:	9c 23 a0 60 	sub  %sp, 0x60, %sp
+00005064 <continue_with_valid_T>:
+    5064:	ae 10 00 0e 	mov  %sp, %l7
+    5068:	80 a3 a0 00 	cmp  %sp, 0
+    506c:	22 80 00 03 	be,a   5078 <continue_with_stack>
+    5070:	9c 27 a0 60 	sub  %fp, 0x60, %sp
+    5074:	9c 23 a0 60 	sub  %sp, 0x60, %sp
 
-00005054 <continue_with_stack>:
-    5054:	e0 23 80 00 	st  %l0, [ %sp ]
-    5058:	c2 23 a0 04 	st  %g1, [ %sp + 4 ]
-    505c:	c4 3b a0 08 	std  %g2, [ %sp + 8 ]
-    5060:	c8 3b a0 10 	std  %g4, [ %sp + 0x10 ]
-    5064:	cc 3b a0 18 	std  %g6, [ %sp + 0x18 ]
-    5068:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
-    506c:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
-    5070:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
-    5074:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
-    5078:	e2 23 a0 40 	st  %l1, [ %sp + 0x40 ]
-    507c:	e4 23 a0 44 	st  %l2, [ %sp + 0x44 ]
-    5080:	ee 23 a0 48 	st  %l7, [ %sp + 0x48 ]
-    5084:	af 40 00 00 	rd  %y, %l7
-    5088:	ee 23 a0 4c 	st  %l7, [ %sp + 0x4c ]
-    508c:	9c 23 a0 60 	sub  %sp, 0x60, %sp
-    5090:	ae 14 20 20 	or  %l0, 0x20, %l7
-    5094:	ae 15 ef 00 	or  %l7, 0xf00, %l7
-    5098:	81 88 00 17 	mov  %l7, %psr
-    509c:	91 58 00 00 	rd  %tbr, %o0
-    50a0:	81 e8 00 00 	restore 
-    50a4:	90 10 00 18 	mov  %i0, %o0
-    50a8:	92 10 00 19 	mov  %i1, %o1
-    50ac:	94 10 00 1a 	mov  %i2, %o2
-    50b0:	81 e0 00 00 	save 
-    50b4:	92 10 00 18 	mov  %i0, %o1
-    50b8:	94 10 00 19 	mov  %i1, %o2
-    50bc:	96 10 00 1a 	mov  %i2, %o3
-    50c0:	7f ff ed af 	call  77c <ajit_generic_sw_trap_handler>
-    50c4:	01 00 00 00 	nop 
-    50c8:	81 e8 00 00 	restore 
-    50cc:	81 e0 00 00 	save 
+00005078 <continue_with_stack>:
+    5078:	e0 23 80 00 	st  %l0, [ %sp ]
+    507c:	c2 23 a0 04 	st  %g1, [ %sp + 4 ]
+    5080:	c4 3b a0 08 	std  %g2, [ %sp + 8 ]
+    5084:	c8 3b a0 10 	std  %g4, [ %sp + 0x10 ]
+    5088:	cc 3b a0 18 	std  %g6, [ %sp + 0x18 ]
+    508c:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
+    5090:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
+    5094:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
+    5098:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
+    509c:	e2 23 a0 40 	st  %l1, [ %sp + 0x40 ]
+    50a0:	e4 23 a0 44 	st  %l2, [ %sp + 0x44 ]
+    50a4:	ee 23 a0 48 	st  %l7, [ %sp + 0x48 ]
+    50a8:	af 40 00 00 	rd  %y, %l7
+    50ac:	ee 23 a0 4c 	st  %l7, [ %sp + 0x4c ]
+    50b0:	9c 23 a0 60 	sub  %sp, 0x60, %sp
+    50b4:	ae 14 20 20 	or  %l0, 0x20, %l7
+    50b8:	ae 15 ef 00 	or  %l7, 0xf00, %l7
+    50bc:	81 88 00 17 	mov  %l7, %psr
+    50c0:	91 58 00 00 	rd  %tbr, %o0
+    50c4:	81 e8 00 00 	restore 
+    50c8:	90 10 00 18 	mov  %i0, %o0
+    50cc:	92 10 00 19 	mov  %i1, %o1
+    50d0:	94 10 00 1a 	mov  %i2, %o2
+    50d4:	81 e0 00 00 	save 
+    50d8:	92 10 00 18 	mov  %i0, %o1
+    50dc:	94 10 00 19 	mov  %i1, %o2
+    50e0:	96 10 00 1a 	mov  %i2, %o3
+    50e4:	7f ff ed a6 	call  77c <ajit_generic_sw_trap_handler>
+    50e8:	01 00 00 00 	nop 
+    50ec:	81 e8 00 00 	restore 
+    50f0:	81 e0 00 00 	save 
 
-000050d0 <recover_and_leave>:
-    50d0:	9c 03 a0 60 	add  %sp, 0x60, %sp
-    50d4:	ee 03 80 00 	ld  [ %sp ], %l7
-    50d8:	81 88 00 17 	mov  %l7, %psr
-    50dc:	c2 03 a0 04 	ld  [ %sp + 4 ], %g1
-    50e0:	c4 1b a0 08 	ldd  [ %sp + 8 ], %g2
-    50e4:	c8 1b a0 10 	ldd  [ %sp + 0x10 ], %g4
-    50e8:	cc 1b a0 18 	ldd  [ %sp + 0x18 ], %g6
-    50ec:	f0 1b a0 20 	ldd  [ %sp + 0x20 ], %i0
-    50f0:	f4 1b a0 28 	ldd  [ %sp + 0x28 ], %i2
-    50f4:	f8 1b a0 30 	ldd  [ %sp + 0x30 ], %i4
-    50f8:	fc 1b a0 38 	ldd  [ %sp + 0x38 ], %fp
-    50fc:	e2 03 a0 40 	ld  [ %sp + 0x40 ], %l1
-    5100:	e4 03 a0 44 	ld  [ %sp + 0x44 ], %l2
-    5104:	ec 03 a0 48 	ld  [ %sp + 0x48 ], %l6
-    5108:	ee 03 a0 4c 	ld  [ %sp + 0x4c ], %l7
-    510c:	9c 10 00 16 	mov  %l6, %sp
-    5110:	81 80 00 17 	mov  %l7, %y
+000050f4 <recover_and_leave>:
+    50f4:	9c 03 a0 60 	add  %sp, 0x60, %sp
+    50f8:	ee 03 80 00 	ld  [ %sp ], %l7
+    50fc:	81 88 00 17 	mov  %l7, %psr
+    5100:	c2 03 a0 04 	ld  [ %sp + 4 ], %g1
+    5104:	c4 1b a0 08 	ldd  [ %sp + 8 ], %g2
+    5108:	c8 1b a0 10 	ldd  [ %sp + 0x10 ], %g4
+    510c:	cc 1b a0 18 	ldd  [ %sp + 0x18 ], %g6
+    5110:	f0 1b a0 20 	ldd  [ %sp + 0x20 ], %i0
+    5114:	f4 1b a0 28 	ldd  [ %sp + 0x28 ], %i2
+    5118:	f8 1b a0 30 	ldd  [ %sp + 0x30 ], %i4
+    511c:	fc 1b a0 38 	ldd  [ %sp + 0x38 ], %fp
+    5120:	e2 03 a0 40 	ld  [ %sp + 0x40 ], %l1
+    5124:	e4 03 a0 44 	ld  [ %sp + 0x44 ], %l2
+    5128:	ec 03 a0 48 	ld  [ %sp + 0x48 ], %l6
+    512c:	ee 03 a0 4c 	ld  [ %sp + 0x4c ], %l7
+    5130:	9c 10 00 16 	mov  %l6, %sp
+    5134:	81 80 00 17 	mov  %l7, %y
 
-00005114 <jmpl_and_return>:
-    5114:	81 c4 80 00 	jmp  %l2
-    5118:	81 cc a0 04 	rett  %l2 + 4
-    511c:	01 00 00 00 	nop 
+00005138 <jmpl_and_return>:
+    5138:	81 c4 80 00 	jmp  %l2
+    513c:	81 cc a0 04 	rett  %l2 + 4
+    5140:	01 00 00 00 	nop 
+    5144:	00 00 00 00 	unimp  0
 
-00005120 <generic_read_asr>:
-    5120:	81 e8 00 00 	restore 
-    5124:	80 a2 20 1f 	cmp  %o0, 0x1f
-    5128:	02 80 00 62 	be  52b0 <read_31>
-    512c:	01 00 00 00 	nop 
-    5130:	80 a2 20 1e 	cmp  %o0, 0x1e
-    5134:	02 80 00 62 	be  52bc <read_30>
-    5138:	01 00 00 00 	nop 
-    513c:	80 a2 20 1d 	cmp  %o0, 0x1d
-    5140:	02 80 00 62 	be  52c8 <read_29>
-    5144:	01 00 00 00 	nop 
-    5148:	80 a2 20 1c 	cmp  %o0, 0x1c
-    514c:	02 80 00 62 	be  52d4 <read_28>
-    5150:	01 00 00 00 	nop 
-    5154:	80 a2 20 1b 	cmp  %o0, 0x1b
-    5158:	02 80 00 62 	be  52e0 <read_27>
-    515c:	01 00 00 00 	nop 
-    5160:	80 a2 20 1a 	cmp  %o0, 0x1a
-    5164:	02 80 00 62 	be  52ec <read_26>
-    5168:	01 00 00 00 	nop 
-    516c:	80 a2 20 19 	cmp  %o0, 0x19
-    5170:	02 80 00 62 	be  52f8 <read_25>
-    5174:	01 00 00 00 	nop 
-    5178:	80 a2 20 18 	cmp  %o0, 0x18
-    517c:	02 80 00 62 	be  5304 <read_24>
-    5180:	01 00 00 00 	nop 
-    5184:	80 a2 20 17 	cmp  %o0, 0x17
-    5188:	02 80 00 62 	be  5310 <read_23>
-    518c:	01 00 00 00 	nop 
-    5190:	80 a2 20 16 	cmp  %o0, 0x16
-    5194:	02 80 00 62 	be  531c <read_22>
-    5198:	01 00 00 00 	nop 
-    519c:	80 a2 20 15 	cmp  %o0, 0x15
-    51a0:	02 80 00 62 	be  5328 <read_21>
-    51a4:	01 00 00 00 	nop 
-    51a8:	80 a2 20 14 	cmp  %o0, 0x14
-    51ac:	02 80 00 62 	be  5334 <read_20>
-    51b0:	01 00 00 00 	nop 
-    51b4:	80 a2 20 13 	cmp  %o0, 0x13
-    51b8:	02 80 00 62 	be  5340 <read_19>
-    51bc:	01 00 00 00 	nop 
-    51c0:	80 a2 20 12 	cmp  %o0, 0x12
-    51c4:	02 80 00 62 	be  534c <read_18>
-    51c8:	01 00 00 00 	nop 
-    51cc:	80 a2 20 11 	cmp  %o0, 0x11
-    51d0:	02 80 00 62 	be  5358 <read_17>
-    51d4:	01 00 00 00 	nop 
-    51d8:	80 a2 20 10 	cmp  %o0, 0x10
-    51dc:	02 80 00 62 	be  5364 <read_16>
-    51e0:	01 00 00 00 	nop 
-    51e4:	80 a2 20 0f 	cmp  %o0, 0xf
-    51e8:	02 80 00 62 	be  5370 <read_15>
-    51ec:	01 00 00 00 	nop 
-    51f0:	80 a2 20 0e 	cmp  %o0, 0xe
-    51f4:	02 80 00 62 	be  537c <read_14>
-    51f8:	01 00 00 00 	nop 
-    51fc:	80 a2 20 0d 	cmp  %o0, 0xd
-    5200:	02 80 00 62 	be  5388 <read_13>
-    5204:	01 00 00 00 	nop 
-    5208:	80 a2 20 0c 	cmp  %o0, 0xc
-    520c:	02 80 00 62 	be  5394 <read_12>
-    5210:	01 00 00 00 	nop 
-    5214:	80 a2 20 0b 	cmp  %o0, 0xb
-    5218:	02 80 00 62 	be  53a0 <read_11>
-    521c:	01 00 00 00 	nop 
-    5220:	80 a2 20 0a 	cmp  %o0, 0xa
-    5224:	02 80 00 62 	be  53ac <read_10>
-    5228:	01 00 00 00 	nop 
-    522c:	80 a2 20 09 	cmp  %o0, 9
-    5230:	02 80 00 62 	be  53b8 <read_9>
-    5234:	01 00 00 00 	nop 
-    5238:	80 a2 20 08 	cmp  %o0, 8
-    523c:	02 80 00 62 	be  53c4 <read_8>
-    5240:	01 00 00 00 	nop 
-    5244:	80 a2 20 07 	cmp  %o0, 7
-    5248:	02 80 00 62 	be  53d0 <read_7>
-    524c:	01 00 00 00 	nop 
-    5250:	80 a2 20 06 	cmp  %o0, 6
-    5254:	02 80 00 62 	be  53dc <read_6>
-    5258:	01 00 00 00 	nop 
-    525c:	80 a2 20 05 	cmp  %o0, 5
-    5260:	02 80 00 62 	be  53e8 <read_5>
-    5264:	01 00 00 00 	nop 
-    5268:	80 a2 20 04 	cmp  %o0, 4
-    526c:	02 80 00 62 	be  53f4 <read_4>
-    5270:	01 00 00 00 	nop 
-    5274:	80 a2 20 03 	cmp  %o0, 3
-    5278:	02 80 00 62 	be  5400 <read_3>
-    527c:	01 00 00 00 	nop 
-    5280:	80 a2 20 02 	cmp  %o0, 2
-    5284:	02 80 00 62 	be  540c <read_2>
-    5288:	01 00 00 00 	nop 
-    528c:	80 a2 20 01 	cmp  %o0, 1
-    5290:	02 80 00 62 	be  5418 <read_1>
-    5294:	01 00 00 00 	nop 
-    5298:	80 a2 20 00 	cmp  %o0, 0
-    529c:	02 80 00 62 	be  5424 <read_0>
-    52a0:	01 00 00 00 	nop 
-    52a4:	90 10 00 00 	mov  %g0, %o0
-    52a8:	10 80 00 62 	b  5430 <ret_block>
-    52ac:	01 00 00 00 	nop 
+00005148 <generic_read_asr>:
+    5148:	81 e8 00 00 	restore 
+    514c:	80 a2 20 1f 	cmp  %o0, 0x1f
+    5150:	02 80 00 62 	be  52d8 <read_31>
+    5154:	01 00 00 00 	nop 
+    5158:	80 a2 20 1e 	cmp  %o0, 0x1e
+    515c:	02 80 00 62 	be  52e4 <read_30>
+    5160:	01 00 00 00 	nop 
+    5164:	80 a2 20 1d 	cmp  %o0, 0x1d
+    5168:	02 80 00 62 	be  52f0 <read_29>
+    516c:	01 00 00 00 	nop 
+    5170:	80 a2 20 1c 	cmp  %o0, 0x1c
+    5174:	02 80 00 62 	be  52fc <read_28>
+    5178:	01 00 00 00 	nop 
+    517c:	80 a2 20 1b 	cmp  %o0, 0x1b
+    5180:	02 80 00 62 	be  5308 <read_27>
+    5184:	01 00 00 00 	nop 
+    5188:	80 a2 20 1a 	cmp  %o0, 0x1a
+    518c:	02 80 00 62 	be  5314 <read_26>
+    5190:	01 00 00 00 	nop 
+    5194:	80 a2 20 19 	cmp  %o0, 0x19
+    5198:	02 80 00 62 	be  5320 <read_25>
+    519c:	01 00 00 00 	nop 
+    51a0:	80 a2 20 18 	cmp  %o0, 0x18
+    51a4:	02 80 00 62 	be  532c <read_24>
+    51a8:	01 00 00 00 	nop 
+    51ac:	80 a2 20 17 	cmp  %o0, 0x17
+    51b0:	02 80 00 62 	be  5338 <read_23>
+    51b4:	01 00 00 00 	nop 
+    51b8:	80 a2 20 16 	cmp  %o0, 0x16
+    51bc:	02 80 00 62 	be  5344 <read_22>
+    51c0:	01 00 00 00 	nop 
+    51c4:	80 a2 20 15 	cmp  %o0, 0x15
+    51c8:	02 80 00 62 	be  5350 <read_21>
+    51cc:	01 00 00 00 	nop 
+    51d0:	80 a2 20 14 	cmp  %o0, 0x14
+    51d4:	02 80 00 62 	be  535c <read_20>
+    51d8:	01 00 00 00 	nop 
+    51dc:	80 a2 20 13 	cmp  %o0, 0x13
+    51e0:	02 80 00 62 	be  5368 <read_19>
+    51e4:	01 00 00 00 	nop 
+    51e8:	80 a2 20 12 	cmp  %o0, 0x12
+    51ec:	02 80 00 62 	be  5374 <read_18>
+    51f0:	01 00 00 00 	nop 
+    51f4:	80 a2 20 11 	cmp  %o0, 0x11
+    51f8:	02 80 00 62 	be  5380 <read_17>
+    51fc:	01 00 00 00 	nop 
+    5200:	80 a2 20 10 	cmp  %o0, 0x10
+    5204:	02 80 00 62 	be  538c <read_16>
+    5208:	01 00 00 00 	nop 
+    520c:	80 a2 20 0f 	cmp  %o0, 0xf
+    5210:	02 80 00 62 	be  5398 <read_15>
+    5214:	01 00 00 00 	nop 
+    5218:	80 a2 20 0e 	cmp  %o0, 0xe
+    521c:	02 80 00 62 	be  53a4 <read_14>
+    5220:	01 00 00 00 	nop 
+    5224:	80 a2 20 0d 	cmp  %o0, 0xd
+    5228:	02 80 00 62 	be  53b0 <read_13>
+    522c:	01 00 00 00 	nop 
+    5230:	80 a2 20 0c 	cmp  %o0, 0xc
+    5234:	02 80 00 62 	be  53bc <read_12>
+    5238:	01 00 00 00 	nop 
+    523c:	80 a2 20 0b 	cmp  %o0, 0xb
+    5240:	02 80 00 62 	be  53c8 <read_11>
+    5244:	01 00 00 00 	nop 
+    5248:	80 a2 20 0a 	cmp  %o0, 0xa
+    524c:	02 80 00 62 	be  53d4 <read_10>
+    5250:	01 00 00 00 	nop 
+    5254:	80 a2 20 09 	cmp  %o0, 9
+    5258:	02 80 00 62 	be  53e0 <read_9>
+    525c:	01 00 00 00 	nop 
+    5260:	80 a2 20 08 	cmp  %o0, 8
+    5264:	02 80 00 62 	be  53ec <read_8>
+    5268:	01 00 00 00 	nop 
+    526c:	80 a2 20 07 	cmp  %o0, 7
+    5270:	02 80 00 62 	be  53f8 <read_7>
+    5274:	01 00 00 00 	nop 
+    5278:	80 a2 20 06 	cmp  %o0, 6
+    527c:	02 80 00 62 	be  5404 <read_6>
+    5280:	01 00 00 00 	nop 
+    5284:	80 a2 20 05 	cmp  %o0, 5
+    5288:	02 80 00 62 	be  5410 <read_5>
+    528c:	01 00 00 00 	nop 
+    5290:	80 a2 20 04 	cmp  %o0, 4
+    5294:	02 80 00 62 	be  541c <read_4>
+    5298:	01 00 00 00 	nop 
+    529c:	80 a2 20 03 	cmp  %o0, 3
+    52a0:	02 80 00 62 	be  5428 <read_3>
+    52a4:	01 00 00 00 	nop 
+    52a8:	80 a2 20 02 	cmp  %o0, 2
+    52ac:	02 80 00 62 	be  5434 <read_2>
+    52b0:	01 00 00 00 	nop 
+    52b4:	80 a2 20 01 	cmp  %o0, 1
+    52b8:	02 80 00 62 	be  5440 <read_1>
+    52bc:	01 00 00 00 	nop 
+    52c0:	80 a2 20 00 	cmp  %o0, 0
+    52c4:	02 80 00 62 	be  544c <read_0>
+    52c8:	01 00 00 00 	nop 
+    52cc:	90 10 00 00 	mov  %g0, %o0
+    52d0:	10 80 00 62 	b  5458 <ret_block>
+    52d4:	01 00 00 00 	nop 
 
-000052b0 <read_31>:
-    52b0:	91 47 c0 00 	rd  %asr31, %o0
-    52b4:	10 80 00 5f 	b  5430 <ret_block>
-    52b8:	01 00 00 00 	nop 
+000052d8 <read_31>:
+    52d8:	91 47 c0 00 	rd  %asr31, %o0
+    52dc:	10 80 00 5f 	b  5458 <ret_block>
+    52e0:	01 00 00 00 	nop 
 
-000052bc <read_30>:
-    52bc:	91 47 80 00 	rd  %asr30, %o0
-    52c0:	10 80 00 5c 	b  5430 <ret_block>
-    52c4:	01 00 00 00 	nop 
+000052e4 <read_30>:
+    52e4:	91 47 80 00 	rd  %asr30, %o0
+    52e8:	10 80 00 5c 	b  5458 <ret_block>
+    52ec:	01 00 00 00 	nop 
 
-000052c8 <read_29>:
-    52c8:	91 47 40 00 	rd  %asr29, %o0
-    52cc:	10 80 00 59 	b  5430 <ret_block>
-    52d0:	01 00 00 00 	nop 
+000052f0 <read_29>:
+    52f0:	91 47 40 00 	rd  %asr29, %o0
+    52f4:	10 80 00 59 	b  5458 <ret_block>
+    52f8:	01 00 00 00 	nop 
 
-000052d4 <read_28>:
-    52d4:	91 47 00 00 	rd  %asr28, %o0
-    52d8:	10 80 00 56 	b  5430 <ret_block>
-    52dc:	01 00 00 00 	nop 
+000052fc <read_28>:
+    52fc:	91 47 00 00 	rd  %asr28, %o0
+    5300:	10 80 00 56 	b  5458 <ret_block>
+    5304:	01 00 00 00 	nop 
 
-000052e0 <read_27>:
-    52e0:	91 46 c0 00 	rd  %asr27, %o0
-    52e4:	10 80 00 53 	b  5430 <ret_block>
-    52e8:	01 00 00 00 	nop 
+00005308 <read_27>:
+    5308:	91 46 c0 00 	rd  %asr27, %o0
+    530c:	10 80 00 53 	b  5458 <ret_block>
+    5310:	01 00 00 00 	nop 
 
-000052ec <read_26>:
-    52ec:	91 46 80 00 	rd  %asr26, %o0
-    52f0:	10 80 00 50 	b  5430 <ret_block>
-    52f4:	01 00 00 00 	nop 
+00005314 <read_26>:
+    5314:	91 46 80 00 	rd  %asr26, %o0
+    5318:	10 80 00 50 	b  5458 <ret_block>
+    531c:	01 00 00 00 	nop 
 
-000052f8 <read_25>:
-    52f8:	91 46 40 00 	rd  %asr25, %o0
-    52fc:	10 80 00 4d 	b  5430 <ret_block>
-    5300:	01 00 00 00 	nop 
+00005320 <read_25>:
+    5320:	91 46 40 00 	rd  %asr25, %o0
+    5324:	10 80 00 4d 	b  5458 <ret_block>
+    5328:	01 00 00 00 	nop 
 
-00005304 <read_24>:
-    5304:	91 46 00 00 	rd  %asr24, %o0
-    5308:	10 80 00 4a 	b  5430 <ret_block>
-    530c:	01 00 00 00 	nop 
+0000532c <read_24>:
+    532c:	91 46 00 00 	rd  %asr24, %o0
+    5330:	10 80 00 4a 	b  5458 <ret_block>
+    5334:	01 00 00 00 	nop 
 
-00005310 <read_23>:
-    5310:	91 45 c0 00 	rd  %asr23, %o0
-    5314:	10 80 00 47 	b  5430 <ret_block>
-    5318:	01 00 00 00 	nop 
+00005338 <read_23>:
+    5338:	91 45 c0 00 	rd  %asr23, %o0
+    533c:	10 80 00 47 	b  5458 <ret_block>
+    5340:	01 00 00 00 	nop 
 
-0000531c <read_22>:
-    531c:	91 45 80 00 	rd  %asr22, %o0
-    5320:	10 80 00 44 	b  5430 <ret_block>
-    5324:	01 00 00 00 	nop 
+00005344 <read_22>:
+    5344:	91 45 80 00 	rd  %asr22, %o0
+    5348:	10 80 00 44 	b  5458 <ret_block>
+    534c:	01 00 00 00 	nop 
 
-00005328 <read_21>:
-    5328:	91 45 40 00 	rd  %asr21, %o0
-    532c:	10 80 00 41 	b  5430 <ret_block>
-    5330:	01 00 00 00 	nop 
+00005350 <read_21>:
+    5350:	91 45 40 00 	rd  %asr21, %o0
+    5354:	10 80 00 41 	b  5458 <ret_block>
+    5358:	01 00 00 00 	nop 
 
-00005334 <read_20>:
-    5334:	91 45 00 00 	rd  %asr20, %o0
-    5338:	10 80 00 3e 	b  5430 <ret_block>
-    533c:	01 00 00 00 	nop 
+0000535c <read_20>:
+    535c:	91 45 00 00 	rd  %asr20, %o0
+    5360:	10 80 00 3e 	b  5458 <ret_block>
+    5364:	01 00 00 00 	nop 
 
-00005340 <read_19>:
-    5340:	91 44 c0 00 	rd  %asr19, %o0
-    5344:	10 80 00 3b 	b  5430 <ret_block>
-    5348:	01 00 00 00 	nop 
+00005368 <read_19>:
+    5368:	91 44 c0 00 	rd  %asr19, %o0
+    536c:	10 80 00 3b 	b  5458 <ret_block>
+    5370:	01 00 00 00 	nop 
 
-0000534c <read_18>:
-    534c:	91 44 80 00 	rd  %asr18, %o0
-    5350:	10 80 00 38 	b  5430 <ret_block>
-    5354:	01 00 00 00 	nop 
+00005374 <read_18>:
+    5374:	91 44 80 00 	rd  %asr18, %o0
+    5378:	10 80 00 38 	b  5458 <ret_block>
+    537c:	01 00 00 00 	nop 
 
-00005358 <read_17>:
-    5358:	91 44 40 00 	rd  %asr17, %o0
-    535c:	10 80 00 35 	b  5430 <ret_block>
-    5360:	01 00 00 00 	nop 
+00005380 <read_17>:
+    5380:	91 44 40 00 	rd  %asr17, %o0
+    5384:	10 80 00 35 	b  5458 <ret_block>
+    5388:	01 00 00 00 	nop 
 
-00005364 <read_16>:
-    5364:	91 44 00 00 	rd  %asr16, %o0
-    5368:	10 80 00 32 	b  5430 <ret_block>
-    536c:	01 00 00 00 	nop 
+0000538c <read_16>:
+    538c:	91 44 00 00 	rd  %asr16, %o0
+    5390:	10 80 00 32 	b  5458 <ret_block>
+    5394:	01 00 00 00 	nop 
 
-00005370 <read_15>:
-    5370:	91 43 c0 00 	rd  %asr15, %o0
-    5374:	10 80 00 2f 	b  5430 <ret_block>
-    5378:	01 00 00 00 	nop 
+00005398 <read_15>:
+    5398:	91 43 c0 00 	rd  %asr15, %o0
+    539c:	10 80 00 2f 	b  5458 <ret_block>
+    53a0:	01 00 00 00 	nop 
 
-0000537c <read_14>:
-    537c:	91 43 80 00 	rd  %asr14, %o0
-    5380:	10 80 00 2c 	b  5430 <ret_block>
-    5384:	01 00 00 00 	nop 
+000053a4 <read_14>:
+    53a4:	91 43 80 00 	rd  %asr14, %o0
+    53a8:	10 80 00 2c 	b  5458 <ret_block>
+    53ac:	01 00 00 00 	nop 
 
-00005388 <read_13>:
-    5388:	91 43 40 00 	rd  %asr13, %o0
-    538c:	10 80 00 29 	b  5430 <ret_block>
-    5390:	01 00 00 00 	nop 
+000053b0 <read_13>:
+    53b0:	91 43 40 00 	rd  %asr13, %o0
+    53b4:	10 80 00 29 	b  5458 <ret_block>
+    53b8:	01 00 00 00 	nop 
 
-00005394 <read_12>:
-    5394:	91 43 00 00 	rd  %asr12, %o0
-    5398:	10 80 00 26 	b  5430 <ret_block>
-    539c:	01 00 00 00 	nop 
+000053bc <read_12>:
+    53bc:	91 43 00 00 	rd  %asr12, %o0
+    53c0:	10 80 00 26 	b  5458 <ret_block>
+    53c4:	01 00 00 00 	nop 
 
-000053a0 <read_11>:
-    53a0:	91 42 c0 00 	rd  %asr11, %o0
-    53a4:	10 80 00 23 	b  5430 <ret_block>
-    53a8:	01 00 00 00 	nop 
+000053c8 <read_11>:
+    53c8:	91 42 c0 00 	rd  %asr11, %o0
+    53cc:	10 80 00 23 	b  5458 <ret_block>
+    53d0:	01 00 00 00 	nop 
 
-000053ac <read_10>:
-    53ac:	91 42 80 00 	rd  %asr10, %o0
-    53b0:	10 80 00 20 	b  5430 <ret_block>
-    53b4:	01 00 00 00 	nop 
+000053d4 <read_10>:
+    53d4:	91 42 80 00 	rd  %asr10, %o0
+    53d8:	10 80 00 20 	b  5458 <ret_block>
+    53dc:	01 00 00 00 	nop 
 
-000053b8 <read_9>:
-    53b8:	91 42 40 00 	rd  %asr9, %o0
-    53bc:	10 80 00 1d 	b  5430 <ret_block>
-    53c0:	01 00 00 00 	nop 
+000053e0 <read_9>:
+    53e0:	91 42 40 00 	rd  %asr9, %o0
+    53e4:	10 80 00 1d 	b  5458 <ret_block>
+    53e8:	01 00 00 00 	nop 
 
-000053c4 <read_8>:
-    53c4:	91 42 00 00 	rd  %asr8, %o0
-    53c8:	10 80 00 1a 	b  5430 <ret_block>
-    53cc:	01 00 00 00 	nop 
+000053ec <read_8>:
+    53ec:	91 42 00 00 	rd  %asr8, %o0
+    53f0:	10 80 00 1a 	b  5458 <ret_block>
+    53f4:	01 00 00 00 	nop 
 
-000053d0 <read_7>:
-    53d0:	91 41 c0 00 	rd  %asr7, %o0
-    53d4:	10 80 00 17 	b  5430 <ret_block>
-    53d8:	01 00 00 00 	nop 
+000053f8 <read_7>:
+    53f8:	91 41 c0 00 	rd  %asr7, %o0
+    53fc:	10 80 00 17 	b  5458 <ret_block>
+    5400:	01 00 00 00 	nop 
 
-000053dc <read_6>:
-    53dc:	91 41 80 00 	rd  %asr6, %o0
-    53e0:	10 80 00 14 	b  5430 <ret_block>
-    53e4:	01 00 00 00 	nop 
+00005404 <read_6>:
+    5404:	91 41 80 00 	rd  %asr6, %o0
+    5408:	10 80 00 14 	b  5458 <ret_block>
+    540c:	01 00 00 00 	nop 
 
-000053e8 <read_5>:
-    53e8:	91 41 40 00 	rd  %asr5, %o0
-    53ec:	10 80 00 11 	b  5430 <ret_block>
-    53f0:	01 00 00 00 	nop 
+00005410 <read_5>:
+    5410:	91 41 40 00 	rd  %asr5, %o0
+    5414:	10 80 00 11 	b  5458 <ret_block>
+    5418:	01 00 00 00 	nop 
 
-000053f4 <read_4>:
-    53f4:	91 41 00 00 	rd  %asr4, %o0
-    53f8:	10 80 00 0e 	b  5430 <ret_block>
-    53fc:	01 00 00 00 	nop 
+0000541c <read_4>:
+    541c:	91 41 00 00 	rd  %asr4, %o0
+    5420:	10 80 00 0e 	b  5458 <ret_block>
+    5424:	01 00 00 00 	nop 
 
-00005400 <read_3>:
-    5400:	91 40 c0 00 	rd  %asr3, %o0
-    5404:	10 80 00 0b 	b  5430 <ret_block>
-    5408:	01 00 00 00 	nop 
+00005428 <read_3>:
+    5428:	91 40 c0 00 	rd  %asr3, %o0
+    542c:	10 80 00 0b 	b  5458 <ret_block>
+    5430:	01 00 00 00 	nop 
 
-0000540c <read_2>:
-    540c:	91 40 80 00 	rd  %asr2, %o0
-    5410:	10 80 00 08 	b  5430 <ret_block>
-    5414:	01 00 00 00 	nop 
-
-00005418 <read_1>:
-    5418:	91 40 40 00 	rd  %asr1, %o0
-    541c:	10 80 00 05 	b  5430 <ret_block>
-    5420:	01 00 00 00 	nop 
-
-00005424 <read_0>:
-    5424:	91 40 00 00 	rd  %y, %o0
-    5428:	10 80 00 02 	b  5430 <ret_block>
-    542c:	01 00 00 00 	nop 
-
-00005430 <ret_block>:
-    5430:	81 e0 00 00 	save 
-    5434:	81 c4 80 00 	jmp  %l2
-    5438:	81 cc a0 04 	rett  %l2 + 4
+00005434 <read_2>:
+    5434:	91 40 80 00 	rd  %asr2, %o0
+    5438:	10 80 00 08 	b  5458 <ret_block>
     543c:	01 00 00 00 	nop 
 
-00005440 <ajit_sys_read_asr>:
-    5440:	91 d0 20 10 	ta  0x10
-    5444:	01 00 00 00 	nop 
-    5448:	81 c3 e0 08 	retl 
-    544c:	01 00 00 00 	nop 
+00005440 <read_1>:
+    5440:	91 40 40 00 	rd  %asr1, %o0
+    5444:	10 80 00 05 	b  5458 <ret_block>
+    5448:	01 00 00 00 	nop 
+
+0000544c <read_0>:
+    544c:	91 40 00 00 	rd  %y, %o0
+    5450:	10 80 00 02 	b  5458 <ret_block>
+    5454:	01 00 00 00 	nop 
+
+00005458 <ret_block>:
+    5458:	81 e0 00 00 	save 
+    545c:	81 c4 80 00 	jmp  %l2
+    5460:	81 cc a0 04 	rett  %l2 + 4
+    5464:	01 00 00 00 	nop 
+
+00005468 <ajit_sys_read_asr>:
+    5468:	91 d0 20 10 	ta  0x10
+    546c:	01 00 00 00 	nop 
+    5470:	81 c3 e0 08 	retl 
+    5474:	01 00 00 00 	nop 
 	...
 
 00005800 <page_table_setup>:
@@ -6549,91 +6561,91 @@ Disassembly of section .text:
 00007110 <HW_trap_0x11>:
     7110:	a1 48 00 00 	rd  %psr, %l0
     7114:	a7 58 00 00 	rd  %tbr, %l3
-    7118:	10 bf f7 70 	b  4ed8 <generic_vectored_isr>
+    7118:	10 bf f7 79 	b  4efc <generic_vectored_isr>
     711c:	01 00 00 00 	nop 
 
 00007120 <HW_trap_0x12>:
     7120:	a1 48 00 00 	rd  %psr, %l0
     7124:	a7 58 00 00 	rd  %tbr, %l3
-    7128:	10 bf f7 6c 	b  4ed8 <generic_vectored_isr>
+    7128:	10 bf f7 75 	b  4efc <generic_vectored_isr>
     712c:	01 00 00 00 	nop 
 
 00007130 <HW_trap_0x13>:
     7130:	a1 48 00 00 	rd  %psr, %l0
     7134:	a7 58 00 00 	rd  %tbr, %l3
-    7138:	10 bf f7 68 	b  4ed8 <generic_vectored_isr>
+    7138:	10 bf f7 71 	b  4efc <generic_vectored_isr>
     713c:	01 00 00 00 	nop 
 
 00007140 <HW_trap_0x14>:
     7140:	a1 48 00 00 	rd  %psr, %l0
     7144:	a7 58 00 00 	rd  %tbr, %l3
-    7148:	10 bf f7 64 	b  4ed8 <generic_vectored_isr>
+    7148:	10 bf f7 6d 	b  4efc <generic_vectored_isr>
     714c:	01 00 00 00 	nop 
 
 00007150 <HW_trap_0x15>:
     7150:	a1 48 00 00 	rd  %psr, %l0
     7154:	a7 58 00 00 	rd  %tbr, %l3
-    7158:	10 bf f7 60 	b  4ed8 <generic_vectored_isr>
+    7158:	10 bf f7 69 	b  4efc <generic_vectored_isr>
     715c:	01 00 00 00 	nop 
 
 00007160 <HW_trap_0x16>:
     7160:	a1 48 00 00 	rd  %psr, %l0
     7164:	a7 58 00 00 	rd  %tbr, %l3
-    7168:	10 bf f7 5c 	b  4ed8 <generic_vectored_isr>
+    7168:	10 bf f7 65 	b  4efc <generic_vectored_isr>
     716c:	01 00 00 00 	nop 
 
 00007170 <HW_trap_0x17>:
     7170:	a1 48 00 00 	rd  %psr, %l0
     7174:	a7 58 00 00 	rd  %tbr, %l3
-    7178:	10 bf f7 58 	b  4ed8 <generic_vectored_isr>
+    7178:	10 bf f7 61 	b  4efc <generic_vectored_isr>
     717c:	01 00 00 00 	nop 
 
 00007180 <HW_trap_0x18>:
     7180:	a1 48 00 00 	rd  %psr, %l0
     7184:	a7 58 00 00 	rd  %tbr, %l3
-    7188:	10 bf f7 54 	b  4ed8 <generic_vectored_isr>
+    7188:	10 bf f7 5d 	b  4efc <generic_vectored_isr>
     718c:	01 00 00 00 	nop 
 
 00007190 <HW_trap_0x19>:
     7190:	a1 48 00 00 	rd  %psr, %l0
     7194:	a7 58 00 00 	rd  %tbr, %l3
-    7198:	10 bf f7 50 	b  4ed8 <generic_vectored_isr>
+    7198:	10 bf f7 59 	b  4efc <generic_vectored_isr>
     719c:	01 00 00 00 	nop 
 
 000071a0 <HW_trap_0x1a>:
     71a0:	a1 48 00 00 	rd  %psr, %l0
     71a4:	a7 58 00 00 	rd  %tbr, %l3
-    71a8:	10 bf f7 4c 	b  4ed8 <generic_vectored_isr>
+    71a8:	10 bf f7 55 	b  4efc <generic_vectored_isr>
     71ac:	01 00 00 00 	nop 
 
 000071b0 <HW_trap_0x1b>:
     71b0:	a1 48 00 00 	rd  %psr, %l0
     71b4:	a7 58 00 00 	rd  %tbr, %l3
-    71b8:	10 bf f7 48 	b  4ed8 <generic_vectored_isr>
+    71b8:	10 bf f7 51 	b  4efc <generic_vectored_isr>
     71bc:	01 00 00 00 	nop 
 
 000071c0 <HW_trap_0x1c>:
     71c0:	a1 48 00 00 	rd  %psr, %l0
     71c4:	a7 58 00 00 	rd  %tbr, %l3
-    71c8:	10 bf f7 44 	b  4ed8 <generic_vectored_isr>
+    71c8:	10 bf f7 4d 	b  4efc <generic_vectored_isr>
     71cc:	01 00 00 00 	nop 
 
 000071d0 <HW_trap_0x1d>:
     71d0:	a1 48 00 00 	rd  %psr, %l0
     71d4:	a7 58 00 00 	rd  %tbr, %l3
-    71d8:	10 bf f7 40 	b  4ed8 <generic_vectored_isr>
+    71d8:	10 bf f7 49 	b  4efc <generic_vectored_isr>
     71dc:	01 00 00 00 	nop 
 
 000071e0 <HW_trap_0x1e>:
     71e0:	a1 48 00 00 	rd  %psr, %l0
     71e4:	a7 58 00 00 	rd  %tbr, %l3
-    71e8:	10 bf f7 3c 	b  4ed8 <generic_vectored_isr>
+    71e8:	10 bf f7 45 	b  4efc <generic_vectored_isr>
     71ec:	01 00 00 00 	nop 
 
 000071f0 <HW_trap_0x1f>:
     71f0:	a1 48 00 00 	rd  %psr, %l0
     71f4:	a7 58 00 00 	rd  %tbr, %l3
-    71f8:	10 bf f7 38 	b  4ed8 <generic_vectored_isr>
+    71f8:	10 bf f7 41 	b  4efc <generic_vectored_isr>
     71fc:	01 00 00 00 	nop 
 
 00007200 <HW_trap_0x20>:
@@ -7221,97 +7233,97 @@ Disassembly of section .text:
 00007810 <SW_trap_0x81>:
     7810:	a1 48 00 00 	rd  %psr, %l0
     7814:	a7 58 00 00 	rd  %tbr, %l3
-    7818:	10 bf f5 f5 	b  4fec <generic_vectored_sw_trap>
+    7818:	10 bf f5 fe 	b  5010 <generic_vectored_sw_trap>
     781c:	01 00 00 00 	nop 
 
 00007820 <SW_trap_0x82>:
     7820:	a1 48 00 00 	rd  %psr, %l0
     7824:	a7 58 00 00 	rd  %tbr, %l3
-    7828:	10 bf f5 f1 	b  4fec <generic_vectored_sw_trap>
+    7828:	10 bf f5 fa 	b  5010 <generic_vectored_sw_trap>
     782c:	01 00 00 00 	nop 
 
 00007830 <SW_trap_0x83>:
     7830:	a1 48 00 00 	rd  %psr, %l0
     7834:	a7 58 00 00 	rd  %tbr, %l3
-    7838:	10 bf f5 ed 	b  4fec <generic_vectored_sw_trap>
+    7838:	10 bf f5 f6 	b  5010 <generic_vectored_sw_trap>
     783c:	01 00 00 00 	nop 
 
 00007840 <SW_trap_0x84>:
     7840:	a1 48 00 00 	rd  %psr, %l0
     7844:	a7 58 00 00 	rd  %tbr, %l3
-    7848:	10 bf f5 e9 	b  4fec <generic_vectored_sw_trap>
+    7848:	10 bf f5 f2 	b  5010 <generic_vectored_sw_trap>
     784c:	01 00 00 00 	nop 
 
 00007850 <SW_trap_0x85>:
     7850:	a1 48 00 00 	rd  %psr, %l0
     7854:	a7 58 00 00 	rd  %tbr, %l3
-    7858:	10 bf f5 e5 	b  4fec <generic_vectored_sw_trap>
+    7858:	10 bf f5 ee 	b  5010 <generic_vectored_sw_trap>
     785c:	01 00 00 00 	nop 
 
 00007860 <SW_trap_0x86>:
     7860:	a1 48 00 00 	rd  %psr, %l0
     7864:	a7 58 00 00 	rd  %tbr, %l3
-    7868:	10 bf f5 e1 	b  4fec <generic_vectored_sw_trap>
+    7868:	10 bf f5 ea 	b  5010 <generic_vectored_sw_trap>
     786c:	01 00 00 00 	nop 
 
 00007870 <SW_trap_0x87>:
     7870:	a1 48 00 00 	rd  %psr, %l0
     7874:	a7 58 00 00 	rd  %tbr, %l3
-    7878:	10 bf f5 dd 	b  4fec <generic_vectored_sw_trap>
+    7878:	10 bf f5 e6 	b  5010 <generic_vectored_sw_trap>
     787c:	01 00 00 00 	nop 
 
 00007880 <SW_trap_0x88>:
     7880:	a1 48 00 00 	rd  %psr, %l0
     7884:	a7 58 00 00 	rd  %tbr, %l3
-    7888:	10 bf f5 d9 	b  4fec <generic_vectored_sw_trap>
+    7888:	10 bf f5 e2 	b  5010 <generic_vectored_sw_trap>
     788c:	01 00 00 00 	nop 
 
 00007890 <SW_trap_0x89>:
     7890:	a1 48 00 00 	rd  %psr, %l0
     7894:	a7 58 00 00 	rd  %tbr, %l3
-    7898:	10 bf f5 d5 	b  4fec <generic_vectored_sw_trap>
+    7898:	10 bf f5 de 	b  5010 <generic_vectored_sw_trap>
     789c:	01 00 00 00 	nop 
 
 000078a0 <SW_trap_0x8a>:
     78a0:	a1 48 00 00 	rd  %psr, %l0
     78a4:	a7 58 00 00 	rd  %tbr, %l3
-    78a8:	10 bf f5 d1 	b  4fec <generic_vectored_sw_trap>
+    78a8:	10 bf f5 da 	b  5010 <generic_vectored_sw_trap>
     78ac:	01 00 00 00 	nop 
 
 000078b0 <SW_trap_0x8b>:
     78b0:	a1 48 00 00 	rd  %psr, %l0
     78b4:	a7 58 00 00 	rd  %tbr, %l3
-    78b8:	10 bf f5 cd 	b  4fec <generic_vectored_sw_trap>
+    78b8:	10 bf f5 d6 	b  5010 <generic_vectored_sw_trap>
     78bc:	01 00 00 00 	nop 
 
 000078c0 <SW_trap_0x8c>:
     78c0:	a1 48 00 00 	rd  %psr, %l0
     78c4:	a7 58 00 00 	rd  %tbr, %l3
-    78c8:	10 bf f5 c9 	b  4fec <generic_vectored_sw_trap>
+    78c8:	10 bf f5 d2 	b  5010 <generic_vectored_sw_trap>
     78cc:	01 00 00 00 	nop 
 
 000078d0 <SW_trap_0x8d>:
     78d0:	a1 48 00 00 	rd  %psr, %l0
     78d4:	a7 58 00 00 	rd  %tbr, %l3
-    78d8:	10 bf f5 c5 	b  4fec <generic_vectored_sw_trap>
+    78d8:	10 bf f5 ce 	b  5010 <generic_vectored_sw_trap>
     78dc:	01 00 00 00 	nop 
 
 000078e0 <SW_trap_0x8e>:
     78e0:	a1 48 00 00 	rd  %psr, %l0
     78e4:	a7 58 00 00 	rd  %tbr, %l3
-    78e8:	10 bf f5 c1 	b  4fec <generic_vectored_sw_trap>
+    78e8:	10 bf f5 ca 	b  5010 <generic_vectored_sw_trap>
     78ec:	01 00 00 00 	nop 
 
 000078f0 <SW_trap_0x8f>:
     78f0:	a1 48 00 00 	rd  %psr, %l0
     78f4:	a7 58 00 00 	rd  %tbr, %l3
-    78f8:	10 bf f5 bd 	b  4fec <generic_vectored_sw_trap>
+    78f8:	10 bf f5 c6 	b  5010 <generic_vectored_sw_trap>
     78fc:	01 00 00 00 	nop 
 
 00007900 <SW_trap_0x90>:
     7900:	a1 48 00 00 	rd  %psr, %l0
     7904:	a7 58 00 00 	rd  %tbr, %l3
-    7908:	10 bf f6 06 	b  5120 <generic_read_asr>
+    7908:	10 bf f6 10 	b  5148 <generic_read_asr>
     790c:	01 00 00 00 	nop 
 
 00007910 <SW_trap_0x91>:
@@ -7979,123 +7991,146 @@ Disassembly of section .text:
     7ffc:	01 00 00 00 	nop 
 
 00008000 <main>:
-    8000:	9d e3 bf 88 	save  %sp, -120, %sp
+    8000:	9d e3 bf 78 	save  %sp, -136, %sp
     8004:	7f ff ea b6 	call  2adc <__ajit_write_serial_control_register__>
     8008:	90 10 20 03 	mov  3, %o0
     800c:	11 00 00 28 	sethi  %hi(0xa000), %o0
     8010:	7f ff e6 45 	call  1924 <ee_printf>
     8014:	90 12 21 88 	or  %o0, 0x188, %o0	! a188 <main+0x2188>
-    8018:	7f ff ed 92 	call  3660 <readNicRegs>
-    801c:	35 00 00 28 	sethi  %hi(0xa000), %i2
-    8020:	92 10 20 08 	mov  8, %o1
-    8024:	94 10 20 01 	mov  1, %o2
-    8028:	7f ff e7 46 	call  1d40 <cortos_reserveQueue>
-    802c:	90 10 20 04 	mov  4, %o0
-    8030:	92 10 20 08 	mov  8, %o1
-    8034:	b0 10 00 08 	mov  %o0, %i0
-    8038:	94 10 20 01 	mov  1, %o2
-    803c:	7f ff e7 41 	call  1d40 <cortos_reserveQueue>
-    8040:	90 10 20 04 	mov  4, %o0
-    8044:	92 10 20 08 	mov  8, %o1
-    8048:	94 10 20 01 	mov  1, %o2
-    804c:	ba 10 00 08 	mov  %o0, %i5
-    8050:	7f ff e7 3c 	call  1d40 <cortos_reserveQueue>
-    8054:	90 10 20 04 	mov  4, %o0
-    8058:	b8 10 00 08 	mov  %o0, %i4
-    805c:	7f ff e8 7d 	call  2250 <cortos_bget_ncram>
-    8060:	90 10 20 b4 	mov  0xb4, %o0
-    8064:	d0 27 bf f4 	st  %o0, [ %fp + -12 ]
-    8068:	7f ff e8 7a 	call  2250 <cortos_bget_ncram>
-    806c:	90 10 20 b4 	mov  0xb4, %o0
-    8070:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
-    8074:	7f ff e8 77 	call  2250 <cortos_bget_ncram>
-    8078:	90 10 20 b4 	mov  0xb4, %o0
-    807c:	98 10 00 1d 	mov  %i5, %o4
-    8080:	96 10 00 08 	mov  %o0, %o3
-    8084:	9a 10 00 1c 	mov  %i4, %o5
-    8088:	d2 07 bf f4 	ld  [ %fp + -12 ], %o1
-    808c:	d4 07 bf f8 	ld  [ %fp + -8 ], %o2
-    8090:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
-    8094:	f0 23 a0 5c 	st  %i0, [ %sp + 0x5c ]
-    8098:	11 00 00 28 	sethi  %hi(0xa000), %o0
-    809c:	7f ff e6 22 	call  1924 <ee_printf>
-    80a0:	90 12 21 98 	or  %o0, 0x198, %o0	! a198 <main+0x2198>
-    80a4:	92 07 bf f4 	add  %fp, -12, %o1
-    80a8:	94 10 20 03 	mov  3, %o2
-    80ac:	7f ff e7 4c 	call  1ddc <cortos_writeMessages>
-    80b0:	90 10 00 18 	mov  %i0, %o0
-    80b4:	7f ff ed c6 	call  37cc <printMemory>
-    80b8:	37 00 00 28 	sethi  %hi(0xa000), %i3
-    80bc:	92 10 00 1d 	mov  %i5, %o1
-    80c0:	94 10 00 1c 	mov  %i4, %o2
-    80c4:	7f ff ed 80 	call  36c4 <nicRegConfig>
-    80c8:	90 10 00 18 	mov  %i0, %o0
-    80cc:	7f ff ed 65 	call  3660 <readNicRegs>
-    80d0:	27 00 00 28 	sethi  %hi(0xa000), %l3
-    80d4:	7f ff ed be 	call  37cc <printMemory>
-    80d8:	25 00 00 28 	sethi  %hi(0xa000), %l2
-    80dc:	11 00 00 28 	sethi  %hi(0xa000), %o0
-    80e0:	7f ff e6 11 	call  1924 <ee_printf>
-    80e4:	90 12 22 18 	or  %o0, 0x218, %o0	! a218 <main+0x2218>
-    80e8:	7f ff ed b9 	call  37cc <printMemory>
-    80ec:	23 00 00 28 	sethi  %hi(0xa000), %l1
-    80f0:	7f ff ed 5c 	call  3660 <readNicRegs>
-    80f4:	21 00 00 28 	sethi  %hi(0xa000), %l0
-    80f8:	b4 16 a2 40 	or  %i2, 0x240, %i2
-    80fc:	b6 16 e2 50 	or  %i3, 0x250, %i3
-    8100:	a6 14 e2 78 	or  %l3, 0x278, %l3
-    8104:	a4 14 a2 b0 	or  %l2, 0x2b0, %l2
-    8108:	a2 14 62 c8 	or  %l1, 0x2c8, %l1
-    810c:	a0 14 22 f0 	or  %l0, 0x2f0, %l0
-    8110:	7f ff e6 05 	call  1924 <ee_printf>
-    8114:	90 10 00 1a 	mov  %i2, %o0
-    8118:	7f ff ed 52 	call  3660 <readNicRegs>
-    811c:	01 00 00 00 	nop 
-    8120:	7f ff ed ab 	call  37cc <printMemory>
-    8124:	01 00 00 00 	nop 
-    8128:	90 10 00 1d 	mov  %i5, %o0
-    812c:	92 07 bf f0 	add  %fp, -16, %o1
-    8130:	7f ff e7 5c 	call  1ea0 <cortos_readMessages>
-    8134:	94 10 20 01 	mov  1, %o2
-    8138:	80 a2 20 00 	cmp  %o0, 0
-    813c:	02 80 00 1c 	be  81ac <main+0x1ac>
-    8140:	90 10 00 1b 	mov  %i3, %o0
-    8144:	7f ff e5 f8 	call  1924 <ee_printf>
-    8148:	d2 07 bf f4 	ld  [ %fp + -12 ], %o1
-    814c:	92 07 bf f0 	add  %fp, -16, %o1
-    8150:	94 10 20 01 	mov  1, %o2
-    8154:	7f ff e7 22 	call  1ddc <cortos_writeMessages>
-    8158:	90 10 00 1c 	mov  %i4, %o0
-    815c:	b2 10 00 08 	mov  %o0, %i1
-    8160:	7f ff ed 38 	call  3640 <readNicReg>
-    8164:	90 10 20 15 	mov  0x15, %o0
-    8168:	92 10 00 19 	mov  %i1, %o1
-    816c:	94 10 00 08 	mov  %o0, %o2
-    8170:	7f ff e5 ed 	call  1924 <ee_printf>
-    8174:	90 10 00 13 	mov  %l3, %o0
-    8178:	7f ff e5 eb 	call  1924 <ee_printf>
-    817c:	90 10 00 1a 	mov  %i2, %o0
-    8180:	7f ff ed 38 	call  3660 <readNicRegs>
-    8184:	01 00 00 00 	nop 
-    8188:	7f ff ed 91 	call  37cc <printMemory>
-    818c:	01 00 00 00 	nop 
-    8190:	90 10 00 1d 	mov  %i5, %o0
-    8194:	92 07 bf f0 	add  %fp, -16, %o1
-    8198:	7f ff e7 42 	call  1ea0 <cortos_readMessages>
-    819c:	94 10 20 01 	mov  1, %o2
-    81a0:	80 a2 20 00 	cmp  %o0, 0
-    81a4:	12 bf ff e8 	bne  8144 <main+0x144>
-    81a8:	90 10 00 1b 	mov  %i3, %o0
-    81ac:	7f ff e5 de 	call  1924 <ee_printf>
-    81b0:	90 10 00 12 	mov  %l2, %o0
-    81b4:	7f ff ed 23 	call  3640 <readNicReg>
-    81b8:	90 10 20 15 	mov  0x15, %o0
-    81bc:	92 10 00 08 	mov  %o0, %o1
-    81c0:	7f ff e5 d9 	call  1924 <ee_printf>
-    81c4:	90 10 00 11 	mov  %l1, %o0
-    81c8:	90 10 00 10 	mov  %l0, %o0
-    81cc:	92 10 00 18 	mov  %i0, %o1
-    81d0:	94 10 00 1d 	mov  %i5, %o2
+    8018:	92 10 20 08 	mov  8, %o1
+    801c:	94 10 20 01 	mov  1, %o2
+    8020:	7f ff e7 48 	call  1d40 <cortos_reserveQueue>
+    8024:	90 10 20 04 	mov  4, %o0
+    8028:	92 10 20 08 	mov  8, %o1
+    802c:	b0 10 00 08 	mov  %o0, %i0
+    8030:	94 10 20 01 	mov  1, %o2
+    8034:	7f ff e7 43 	call  1d40 <cortos_reserveQueue>
+    8038:	90 10 20 04 	mov  4, %o0
+    803c:	92 10 20 08 	mov  8, %o1
+    8040:	94 10 20 01 	mov  1, %o2
+    8044:	ba 10 00 08 	mov  %o0, %i5
+    8048:	7f ff e7 3e 	call  1d40 <cortos_reserveQueue>
+    804c:	90 10 20 04 	mov  4, %o0
+    8050:	b8 10 00 08 	mov  %o0, %i4
+    8054:	7f ff e8 7f 	call  2250 <cortos_bget_ncram>
+    8058:	90 10 20 b4 	mov  0xb4, %o0
+    805c:	d0 27 bf e4 	st  %o0, [ %fp + -28 ]
+    8060:	7f ff e8 7c 	call  2250 <cortos_bget_ncram>
+    8064:	90 10 20 b4 	mov  0xb4, %o0
+    8068:	d0 27 bf e8 	st  %o0, [ %fp + -24 ]
+    806c:	7f ff e8 79 	call  2250 <cortos_bget_ncram>
+    8070:	90 10 20 b4 	mov  0xb4, %o0
+    8074:	98 10 00 1d 	mov  %i5, %o4
+    8078:	96 10 00 08 	mov  %o0, %o3
+    807c:	9a 10 00 1c 	mov  %i4, %o5
+    8080:	d2 07 bf e4 	ld  [ %fp + -28 ], %o1
+    8084:	d4 07 bf e8 	ld  [ %fp + -24 ], %o2
+    8088:	d0 27 bf ec 	st  %o0, [ %fp + -20 ]
+    808c:	f0 23 a0 5c 	st  %i0, [ %sp + 0x5c ]
+    8090:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    8094:	7f ff e6 24 	call  1924 <ee_printf>
+    8098:	90 12 21 98 	or  %o0, 0x198, %o0	! a198 <main+0x2198>
+    809c:	92 07 bf e4 	add  %fp, -28, %o1
+    80a0:	94 10 20 03 	mov  3, %o2
+    80a4:	7f ff e7 4e 	call  1ddc <cortos_writeMessages>
+    80a8:	90 10 00 18 	mov  %i0, %o0
+    80ac:	94 10 00 1c 	mov  %i4, %o2
+    80b0:	92 10 00 1d 	mov  %i5, %o1
+    80b4:	7f ff ed 8d 	call  36e8 <nicRegConfig>
+    80b8:	90 10 00 18 	mov  %i0, %o0
+    80bc:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    80c0:	7f ff e6 19 	call  1924 <ee_printf>
+    80c4:	90 12 22 18 	or  %o0, 0x218, %o0	! a218 <main+0x2218>
+    80c8:	7f ff ed ca 	call  37f0 <printMemory>
+    80cc:	35 00 00 28 	sethi  %hi(0xa000), %i2
+    80d0:	92 07 bf f0 	add  %fp, -16, %o1
+    80d4:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    80d8:	7f ff e6 13 	call  1924 <ee_printf>
+    80dc:	90 12 22 40 	or  %o0, 0x240, %o0	! a240 <main+0x2240>
+    80e0:	c2 06 00 00 	ld  [ %i0 ], %g1
+    80e4:	c8 06 20 04 	ld  [ %i0 + 4 ], %g4
+    80e8:	c6 06 20 08 	ld  [ %i0 + 8 ], %g3
+    80ec:	c4 06 20 0c 	ld  [ %i0 + 0xc ], %g2
+    80f0:	92 10 00 01 	mov  %g1, %o1
+    80f4:	c2 27 bf f0 	st  %g1, [ %fp + -16 ]
+    80f8:	c8 27 bf f4 	st  %g4, [ %fp + -12 ]
+    80fc:	c6 27 bf f8 	st  %g3, [ %fp + -8 ]
+    8100:	c4 27 bf fc 	st  %g2, [ %fp + -4 ]
+    8104:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    8108:	7f ff e6 07 	call  1924 <ee_printf>
+    810c:	90 12 22 50 	or  %o0, 0x250, %o0	! a250 <main+0x2250>
+    8110:	d2 07 bf f4 	ld  [ %fp + -12 ], %o1
+    8114:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    8118:	7f ff e6 03 	call  1924 <ee_printf>
+    811c:	90 12 22 68 	or  %o0, 0x268, %o0	! a268 <main+0x2268>
+    8120:	d2 07 bf f8 	ld  [ %fp + -8 ], %o1
+    8124:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    8128:	7f ff e5 ff 	call  1924 <ee_printf>
+    812c:	90 12 22 80 	or  %o0, 0x280, %o0	! a280 <main+0x2280>
+    8130:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
+    8134:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    8138:	90 12 22 98 	or  %o0, 0x298, %o0	! a298 <main+0x2298>
+    813c:	37 00 00 28 	sethi  %hi(0xa000), %i3
+    8140:	27 00 00 28 	sethi  %hi(0xa000), %l3
+    8144:	25 00 00 28 	sethi  %hi(0xa000), %l2
+    8148:	23 00 00 28 	sethi  %hi(0xa000), %l1
+    814c:	7f ff e5 f6 	call  1924 <ee_printf>
+    8150:	21 00 00 28 	sethi  %hi(0xa000), %l0
+    8154:	b4 16 a2 b0 	or  %i2, 0x2b0, %i2
+    8158:	b6 16 e2 c0 	or  %i3, 0x2c0, %i3
+    815c:	a6 14 e2 e8 	or  %l3, 0x2e8, %l3
+    8160:	a4 14 a3 20 	or  %l2, 0x320, %l2
+    8164:	a2 14 63 38 	or  %l1, 0x338, %l1
+    8168:	a0 14 23 60 	or  %l0, 0x360, %l0
+    816c:	7f ff e5 ee 	call  1924 <ee_printf>
+    8170:	90 10 00 1a 	mov  %i2, %o0
+    8174:	7f ff ed 44 	call  3684 <readNicRegs>
+    8178:	01 00 00 00 	nop 
+    817c:	7f ff ed 9d 	call  37f0 <printMemory>
+    8180:	01 00 00 00 	nop 
+    8184:	90 10 00 1d 	mov  %i5, %o0
+    8188:	92 07 bf e0 	add  %fp, -32, %o1
+    818c:	7f ff e7 45 	call  1ea0 <cortos_readMessages>
+    8190:	94 10 20 01 	mov  1, %o2
+    8194:	80 a2 20 00 	cmp  %o0, 0
+    8198:	02 80 00 1c 	be  8208 <main+0x208>
+    819c:	90 10 00 1b 	mov  %i3, %o0
+    81a0:	7f ff e5 e1 	call  1924 <ee_printf>
+    81a4:	d2 07 bf e4 	ld  [ %fp + -28 ], %o1
+    81a8:	92 07 bf e0 	add  %fp, -32, %o1
+    81ac:	94 10 20 01 	mov  1, %o2
+    81b0:	7f ff e7 0b 	call  1ddc <cortos_writeMessages>
+    81b4:	90 10 00 1c 	mov  %i4, %o0
+    81b8:	b2 10 00 08 	mov  %o0, %i1
+    81bc:	7f ff ed 2a 	call  3664 <readNicReg>
+    81c0:	90 10 20 15 	mov  0x15, %o0
+    81c4:	92 10 00 19 	mov  %i1, %o1
+    81c8:	94 10 00 08 	mov  %o0, %o2
+    81cc:	7f ff e5 d6 	call  1924 <ee_printf>
+    81d0:	90 10 00 13 	mov  %l3, %o0
     81d4:	7f ff e5 d4 	call  1924 <ee_printf>
-    81d8:	96 10 00 1c 	mov  %i4, %o3
-    81dc:	30 bf ff cd 	b,a   8110 <main+0x110>
+    81d8:	90 10 00 1a 	mov  %i2, %o0
+    81dc:	7f ff ed 2a 	call  3684 <readNicRegs>
+    81e0:	01 00 00 00 	nop 
+    81e4:	7f ff ed 83 	call  37f0 <printMemory>
+    81e8:	01 00 00 00 	nop 
+    81ec:	90 10 00 1d 	mov  %i5, %o0
+    81f0:	92 07 bf e0 	add  %fp, -32, %o1
+    81f4:	7f ff e7 2b 	call  1ea0 <cortos_readMessages>
+    81f8:	94 10 20 01 	mov  1, %o2
+    81fc:	80 a2 20 00 	cmp  %o0, 0
+    8200:	12 bf ff e8 	bne  81a0 <main+0x1a0>
+    8204:	90 10 00 1b 	mov  %i3, %o0
+    8208:	7f ff e5 c7 	call  1924 <ee_printf>
+    820c:	90 10 00 12 	mov  %l2, %o0
+    8210:	7f ff ed 15 	call  3664 <readNicReg>
+    8214:	90 10 20 15 	mov  0x15, %o0
+    8218:	92 10 00 08 	mov  %o0, %o1
+    821c:	7f ff e5 c2 	call  1924 <ee_printf>
+    8220:	90 10 00 11 	mov  %l1, %o0
+    8224:	90 10 00 10 	mov  %l0, %o0
+    8228:	92 10 00 18 	mov  %i0, %o1
+    822c:	94 10 00 1d 	mov  %i5, %o2
+    8230:	7f ff e5 bd 	call  1924 <ee_printf>
+    8234:	96 10 00 1c 	mov  %i4, %o3
+    8238:	30 bf ff cd 	b,a   816c <main+0x16c>

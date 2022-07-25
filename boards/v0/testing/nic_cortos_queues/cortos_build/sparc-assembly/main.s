@@ -1,6 +1,21 @@
 	.file	"main.c"
 	.section	".text"
 	.align 4
+	.global loadEthernetHeader
+	.type	loadEthernetHeader, #function
+	.proc	020
+loadEthernetHeader:
+	ld	[%o0], %g1
+	st	%g1, [%o1]
+	ld	[%o0+4], %g1
+	st	%g1, [%o1+4]
+	ld	[%o0+8], %g1
+	st	%g1, [%o1+8]
+	ld	[%o0+12], %g1
+	jmp	%o7+8
+	 st	%g1, [%o1+12]
+	.size	loadEthernetHeader, .-loadEthernetHeader
+	.align 4
 	.global readNicReg
 	.type	readNicReg, #function
 	.proc	016
@@ -28,7 +43,7 @@ readNicRegs:
 	sethi	%hi(.LC0), %i4
 	mov	0, %i5
 	or	%i4, %lo(.LC0), %i4
-.L3:
+.L4:
 	call	readNicReg, 0
 	 mov	%i5, %o0
 	mov	%i5, %o1
@@ -37,7 +52,7 @@ readNicRegs:
 	 mov	%i4, %o0
 	add	%i5, 1, %i5
 	cmp	%i5, 64
-	bne	.L3
+	bne	.L4
 	 nop
 	jmp	%i7+8
 	 restore
@@ -173,7 +188,7 @@ printMemory:
 	or	%i1, %lo(MEM), %i1
 	or	%i2, %lo(.LC4), %i2
 	or	%i3, %lo(.LC5), %i3
-.L10:
+.L11:
 	mov	%i4, %o1
 	call	ee_printf, 0
 	 mov	%i2, %o0
@@ -185,7 +200,7 @@ printMemory:
 	 ld	[%o1+4], %o3
 	add	%i4, 2, %i4
 	cmp	%i4, 256
-	bne	.L10
+	bne	.L11
 	 add	%i5, 8, %i5
 	jmp	%i7+8
 	 restore
@@ -202,21 +217,36 @@ printMemory:
 	.asciz	"Configuration Done. NIC has started\n"
 	.align 8
 .LC9:
-	.asciz	"In the loop.\n"
+	.asciz	"eth_hdr = 0x%x\n"
 	.align 8
 .LC10:
-	.asciz	"Got buffer pointer from Rx_queue=0x%x\n"
+	.asciz	"eth_hdr[0] = 0x%x\n"
 	.align 8
 .LC11:
-	.asciz	"Written to Tx queue.mags_written=%u\nNIC_REG[21]=0x%x\n"
+	.asciz	"eth_hdr[1] = 0x%x\n"
 	.align 8
 .LC12:
-	.asciz	"Reading Rx_Queue\n"
+	.asciz	"eth_hdr[2] = 0x%x\n"
 	.align 8
 .LC13:
-	.asciz	"Nothing in Rx queue.\nNIC_REG[21]=0x%x\n"
+	.asciz	"eth_hdr[3] = 0x%x\n"
 	.align 8
 .LC14:
+	.asciz	"In the loop.\n"
+	.align 8
+.LC15:
+	.asciz	"Got buffer pointer from Rx_queue=0x%x\n"
+	.align 8
+.LC16:
+	.asciz	"Written to Tx queue.mags_written=%u\nNIC_REG[21]=0x%x\n"
+	.align 8
+.LC17:
+	.asciz	"Reading Rx_Queue\n"
+	.align 8
+.LC18:
+	.asciz	"Nothing in Rx queue.\nNIC_REG[21]=0x%x\n"
+	.align 8
+.LC19:
 	.asciz	"Free Queue = 0x%x, rx_queue = 0x%x, tx_queue = 0x%x\n"
 	.section	.text.startup,"ax",@progbits
 	.align 4
@@ -224,14 +254,12 @@ printMemory:
 	.type	main, #function
 	.proc	04
 main:
-	save	%sp, -120, %sp
+	save	%sp, -136, %sp
 	call	__ajit_write_serial_control_register__, 0
 	 mov	3, %o0
 	sethi	%hi(.LC6), %o0
 	call	ee_printf, 0
 	 or	%o0, %lo(.LC6), %o0
-	call	readNicRegs, 0
-	 sethi	%hi(.LC9), %i2
 	mov	8, %o1
 	mov	1, %o2
 	call	cortos_reserveQueue, 0
@@ -249,50 +277,75 @@ main:
 	mov	%o0, %i4
 	call	cortos_bget_ncram, 0
 	 mov	180, %o0
-	st	%o0, [%fp-12]
+	st	%o0, [%fp-28]
 	call	cortos_bget_ncram, 0
 	 mov	180, %o0
-	st	%o0, [%fp-8]
+	st	%o0, [%fp-24]
 	call	cortos_bget_ncram, 0
 	 mov	180, %o0
 	mov	%i5, %o4
 	mov	%o0, %o3
 	mov	%i4, %o5
-	ld	[%fp-12], %o1
-	ld	[%fp-8], %o2
-	st	%o0, [%fp-4]
+	ld	[%fp-28], %o1
+	ld	[%fp-24], %o2
+	st	%o0, [%fp-20]
 	st	%i0, [%sp+92]
 	sethi	%hi(.LC7), %o0
 	call	ee_printf, 0
 	 or	%o0, %lo(.LC7), %o0
-	add	%fp, -12, %o1
+	add	%fp, -28, %o1
 	mov	3, %o2
 	call	cortos_writeMessages, 0
 	 mov	%i0, %o0
-	call	printMemory, 0
-	 sethi	%hi(.LC10), %i3
-	mov	%i5, %o1
 	mov	%i4, %o2
+	mov	%i5, %o1
 	call	nicRegConfig, 0
 	 mov	%i0, %o0
-	call	readNicRegs, 0
-	 sethi	%hi(.LC11), %l3
-	call	printMemory, 0
-	 sethi	%hi(.LC12), %l2
 	sethi	%hi(.LC8), %o0
 	call	ee_printf, 0
 	 or	%o0, %lo(.LC8), %o0
 	call	printMemory, 0
-	 sethi	%hi(.LC13), %l1
-	call	readNicRegs, 0
-	 sethi	%hi(.LC14), %l0
-	or	%i2, %lo(.LC9), %i2
-	or	%i3, %lo(.LC10), %i3
-	or	%l3, %lo(.LC11), %l3
-	or	%l2, %lo(.LC12), %l2
-	or	%l1, %lo(.LC13), %l1
-	or	%l0, %lo(.LC14), %l0
-.L16:
+	 sethi	%hi(.LC14), %i2
+	add	%fp, -16, %o1
+	sethi	%hi(.LC9), %o0
+	call	ee_printf, 0
+	 or	%o0, %lo(.LC9), %o0
+	ld	[%i0], %g1
+	ld	[%i0+4], %g4
+	ld	[%i0+8], %g3
+	ld	[%i0+12], %g2
+	mov	%g1, %o1
+	st	%g1, [%fp-16]
+	st	%g4, [%fp-12]
+	st	%g3, [%fp-8]
+	st	%g2, [%fp-4]
+	sethi	%hi(.LC10), %o0
+	call	ee_printf, 0
+	 or	%o0, %lo(.LC10), %o0
+	ld	[%fp-12], %o1
+	sethi	%hi(.LC11), %o0
+	call	ee_printf, 0
+	 or	%o0, %lo(.LC11), %o0
+	ld	[%fp-8], %o1
+	sethi	%hi(.LC12), %o0
+	call	ee_printf, 0
+	 or	%o0, %lo(.LC12), %o0
+	ld	[%fp-4], %o1
+	sethi	%hi(.LC13), %o0
+	or	%o0, %lo(.LC13), %o0
+	sethi	%hi(.LC15), %i3
+	sethi	%hi(.LC16), %l3
+	sethi	%hi(.LC17), %l2
+	sethi	%hi(.LC18), %l1
+	call	ee_printf, 0
+	 sethi	%hi(.LC19), %l0
+	or	%i2, %lo(.LC14), %i2
+	or	%i3, %lo(.LC15), %i3
+	or	%l3, %lo(.LC16), %l3
+	or	%l2, %lo(.LC17), %l2
+	or	%l1, %lo(.LC18), %l1
+	or	%l0, %lo(.LC19), %l0
+.L17:
 	call	ee_printf, 0
 	 mov	%i2, %o0
 	call	readNicRegs, 0
@@ -300,16 +353,16 @@ main:
 	call	printMemory, 0
 	 nop
 	mov	%i5, %o0
-	add	%fp, -16, %o1
+	add	%fp, -32, %o1
 	call	cortos_readMessages, 0
 	 mov	1, %o2
 	cmp	%o0, 0
-	be	.L13
+	be	.L14
 	 mov	%i3, %o0
-.L17:
+.L18:
 	call	ee_printf, 0
-	 ld	[%fp-12], %o1
-	add	%fp, -16, %o1
+	 ld	[%fp-28], %o1
+	add	%fp, -32, %o1
 	mov	1, %o2
 	call	cortos_writeMessages, 0
 	 mov	%i4, %o0
@@ -327,13 +380,13 @@ main:
 	call	printMemory, 0
 	 nop
 	mov	%i5, %o0
-	add	%fp, -16, %o1
+	add	%fp, -32, %o1
 	call	cortos_readMessages, 0
 	 mov	1, %o2
 	cmp	%o0, 0
-	bne	.L17
+	bne	.L18
 	 mov	%i3, %o0
-.L13:
+.L14:
 	call	ee_printf, 0
 	 mov	%l2, %o0
 	call	readNicReg, 0
@@ -346,7 +399,7 @@ main:
 	mov	%i5, %o2
 	call	ee_printf, 0
 	 mov	%i4, %o3
-	b,a	.L16
+	b,a	.L17
 	.size	main, .-main
 	.global NIC_REG
 	.section	".data"

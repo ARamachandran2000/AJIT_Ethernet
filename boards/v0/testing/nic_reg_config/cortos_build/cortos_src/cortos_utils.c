@@ -11,7 +11,7 @@ uint8_t* printingLockAddr = 0;
 
 void cortos_init_printing() {
   // allocate lock
-  uint8_t* lockStartAddrNc = (uint8_t*)63967232; // non-cacheable
+  uint8_t* lockStartAddrNc = (uint8_t*)53248; // non-cacheable
   allocatedLocksNc[PRINTING_LOCK_INDEX] = 1;
   printingLockAddr = lockStartAddrNc + PRINTING_LOCK_INDEX;
 }
@@ -45,7 +45,7 @@ char cortos_get_thread_id() {
 }
 
 uint8_t cortos_IsNcRamAddr(void* addr) {
-  return (addr >= 4194304 && addr <= 4251647);
+  return (addr >= 16777216 && addr <= 73400319);
 }
 
 // defined in cortos_ee_printf.c

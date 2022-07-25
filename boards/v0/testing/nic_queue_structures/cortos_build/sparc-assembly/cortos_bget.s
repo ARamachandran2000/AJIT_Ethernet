@@ -10,9 +10,9 @@ __cortos_bpool:
 	ld	[%i5+%lo(bgetLockAddr)], %g1
 	cmp	%g1, 0
 	bne	.L5
-	 sethi	%hi(16777216), %o0
+	 sethi	%hi(57344), %o0
 	call	bpool, 0
-	 sethi	%hi(524288000), %o1
+	 sethi	%hi(102400), %o1
 	sethi	%hi(allocatedLocksNc), %g1
 	or	%g1, %lo(allocatedLocksNc), %g1
 	mov	1, %g2

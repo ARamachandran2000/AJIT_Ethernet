@@ -67,7 +67,7 @@ SETUP_THREAD_0_0:
 
 
   !!!!!!!!!!!!!!!!!!!   START: thread (0,0) setup section !!!!!!!!!!!!!!!!!!
-  set 0x60ffffa0, %sp  ! set stack address
+  set 0x2bfa0, %sp  ! set stack address
   clr %fp
 
   ! zero initialization of memory regions and flags
@@ -99,6 +99,15 @@ SETUP_THREAD_0_0:
   ld [%l6], %l6
   mov 1, %l7
   st %l7, [%l6]
+
+  ! block start: setup the mmu
+  call set_context_table_pointer
+  nop
+
+  ! enable mmu.. write 0x1 into mmu control register.
+  set 0x1, %o0
+  sta %o0, [%g0] 0x4
+  ! block end  : setup the mmu
 
   call cortos_init_locks
   nop
@@ -143,9 +152,11 @@ SETUP_THREAD_0_0:
   ! Read CORE,THREAD IDs into %l1 (required for 0,0 here, as l1 gets corrupted)
   rd %asr29, %l1
 
-  !  Thread (0,0) jumps to AFTER_PTABLE_SETUP.
-  ba AFTER_PTABLE_SETUP
+  !  Thread (0,0) jumps to start running user code.
+  ba CORTOS_START_THREADS
   nop
+  ! ba AFTER_PTABLE_SETUP
+  ! nop
   !!!!!!!!!!!!!!!!!!!   END  : thread (0,0) setup section !!!!!!!!!!!!!!!!!!
 
 

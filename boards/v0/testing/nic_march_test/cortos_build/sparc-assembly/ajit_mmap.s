@@ -271,14 +271,16 @@ ajit_mmap_operation:
 	add	%fp, -21, %o4
 	call	ajit_lookup_mmap, 0
 	 add	%fp, -8, %o5
-	ldub	[%fp-21], %g1
+	cmp	%o0, 1
+	be	.L51
+	 ldub	[%fp-21], %g1
 	cmp	%g1, %i4
 	bne	.L56
 	 mov	1, %i0
 	cmp	%i2, 1
-	be	.L53
-	 cmp	%i2, 2
 	be	.L54
+	 cmp	%i2, 2
+	be	.L55
 	 ld	[%fp-20], %o0
 .L49:
 	ld	[%fp-16], %o1
@@ -289,21 +291,20 @@ ajit_mmap_operation:
 	jmp	%i7+8
 	 restore
 .L54:
+	sll	%i5, 2, %i5
+	ld	[%fp+96], %g1
+	or	%i5, 2, %o0
+	srl	%g1, 12, %g1
+	or	%o0, %g1, %o0
+	b	.L49
+	 st	%o0, [%fp-20]
+.L51:
+	jmp	%i7+8
+	 restore %g0, 1, %o0
+.L55:
 	st	%g0, [%fp-20]
 	b	.L49
 	 mov	0, %o0
-.L53:
-	ld	[%fp+96], %g1
-	srl	%g1, 12, %g1
-	sll	%i5, 2, %i5
-	ld	[%fp-16], %o1
-	or	%i5, 2, %o0
-	ld	[%fp-12], %o2
-	or	%o0, %g1, %o0
-	mov	0, %i0
-	call	__ajit_store_word_to_physical_address__, 0
-	 st	%o0, [%fp-20]
-	b,a	.L56
 	.size	ajit_mmap_operation, .-ajit_mmap_operation
 	.ident	"GCC: (Buildroot 2014.08-ge7c9750) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits

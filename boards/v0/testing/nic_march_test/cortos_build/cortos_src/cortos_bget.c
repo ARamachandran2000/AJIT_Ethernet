@@ -16,7 +16,7 @@ uint8_t* bgetNcramLockAddr = 0;
 void __cortos_bpool() {
   if (bgetLockAddr == 0) {
 
-    bpool(16777216, 524288000);
+    bpool(57344, 102400);
 
     // allocate lock
     uint8_t* lockStartAddrNc = (uint8_t*)53248; // non-cacheable

@@ -95,12 +95,12 @@ Software:
   #   CortosLoopCalls:
   #     - main1
       StackSize:
-        SizeInKiloBytes: 1048576
+        SizeInKiloBytes: 16 #1048576
 
   DynamicMemory: # Dynamic Memory Configuration.
     # SizeInBytes: ...
-    # SizeInKiloBytes: 50
-    SizeInMegaBytes: 500
+    SizeInKiloBytes: 100
+    # SizeInMegaBytes: 500
 
   Locks: # Locks for synchronization between threads.
 #      Cacheable: 32

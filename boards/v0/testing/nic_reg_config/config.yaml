@@ -23,7 +23,7 @@ Hardware:
       # EndAddr: ...
       # SizeInBytes: ...
       # SizeInKiloBytes: ...
-      SizeInMegaBytes: 4
+      SizeInMegaBytes: 2
       Permissions: RWXC
     MMIO: # Memory Mapped IO
       StartAddr: 0xFFFF0000  # physical address
@@ -33,11 +33,11 @@ Hardware:
       # SizeInKiloBytes: 4
       Permissions: RW
     NCRAM: # Memory Mapped IO
-      StartAddr: 0x000400000  # physical address
+      StartAddr: 0x000200000  # physical address
       # EndAddr:   0xFFFFFFFF
       # SizeInBytes: ...
       # SizeInKiloBytes: ...
-      SizeInKiloBytes: 54
+      SizeInMegaBytes: 54
       Permissions: RW
 
   # see ./AjitPublicResources/tools/ajit_access_routines_mt/include/device_addresses.h
@@ -91,12 +91,12 @@ Software:
   #   CortosLoopCalls:
   #     - main1
       StackSize:
-        SizeInKiloBytes: 1048576
+        SizeInKiloBytes: 16 #1048576
 
   DynamicMemory: # Dynamic Memory Configuration.
     # SizeInBytes: ...
-    # SizeInKiloBytes: 50
-    SizeInMegaBytes: 500
+    SizeInKiloBytes: 100
+    # SizeInMegaBytes: 500
 
   Locks: # Locks for synchronization between threads.
 #      Cacheable: 32

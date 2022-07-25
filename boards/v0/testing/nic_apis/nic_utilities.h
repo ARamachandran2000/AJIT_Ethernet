@@ -1,6 +1,10 @@
 #ifndef NIC_UTILITIES_H
 #define NIC_UTILITIES_H
 
+#include "ajit_access_routines.h"
+#include "core_portme.h"
+#include <cortos.h>
+
 /*
 ***********************************************************
   All functions are written considering signle NIC system

@@ -93,7 +93,7 @@ int main()
 	//readNicRegs();
 
 	uint32_t eth_hdr[4];
-        loadEthernetHeader(free_queue,&eth_hdr);
+        loadEthernetHeader(Buffers[0],&eth_hdr);
         
 	ee_printf("eth_hdr[0] = 0x%x\n", eth_hdr[0]);
 	ee_printf("eth_hdr[1] = 0x%x\n", eth_hdr[1]);

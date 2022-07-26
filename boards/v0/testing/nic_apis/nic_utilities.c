@@ -25,6 +25,14 @@ void nicRegInit(CortosQueueHeader* Free_Queue, CortosQueueHeader* Rx_Queue,Corto
 	writeNicReg(0,1); 				//			      0 -> stops NIC);
 }
 
+// to load Ethernet header
+void loadEthernetHeader(uint32_t* buffer_addr, uint32_t* eth_hdr)
+{
+	eth_hdr[0] = buffer_addr[2];
+	eth_hdr[1] = buffer_addr[3];
+	eth_hdr[2] = buffer_addr[4];
+	eth_hdr[3] = buffer_addr[5];
+}
 	
 // to read control data of the buffer
 void readBufControlData(uint32_t *buffer_addr, uint16_t *packetSize, uint8_t *lastTkeep)

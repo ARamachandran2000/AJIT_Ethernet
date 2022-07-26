@@ -37,8 +37,6 @@ void nicRegInit(CortosQueueHeader* Free_Queue, CortosQueueHeader* Rx_Queue,Corto
 //		ethernet header is written to eth_hdr array.
 void loadEthernetHeader(uint32_t *buffer_addr, uint32_t *eth_hdr);
 
-// to load payload
-void loadPayload(uint32_t *buffer_addr , uint64_t *payload);
 
 // to read control data of the buffer
 void readBufControlData(uint32_t *buffer_addr, uint16_t *packetSize, uint8_t *lastTkeep);

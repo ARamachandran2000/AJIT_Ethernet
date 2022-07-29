@@ -32,12 +32,12 @@ Disassembly of section .text:
       40:	9c 13 a3 a0 	or  %sp, 0x3a0, %sp	! 2bfa0 <ajit_global_interrupt_handlers+0x20cf8>
       44:	bc 10 00 00 	mov  %g0, %fp
       48:	05 00 00 28 	sethi  %hi(0xa000), %g2
-      4c:	84 10 a3 a0 	or  %g2, 0x3a0, %g2	! a3a0 <INIT_BY_00_DONE>
+      4c:	84 10 a3 90 	or  %g2, 0x390, %g2	! a390 <INIT_BY_00_DONE>
       50:	c4 00 80 00 	ld  [ %g2 ], %g2
       54:	86 10 20 00 	clr  %g3
       58:	c6 20 80 00 	st  %g3, [ %g2 ]
       5c:	05 00 00 28 	sethi  %hi(0xa000), %g2
-      60:	84 10 a3 9c 	or  %g2, 0x39c, %g2	! a39c <PT_FLAG>
+      60:	84 10 a3 8c 	or  %g2, 0x38c, %g2	! a38c <PT_FLAG>
       64:	c4 00 80 00 	ld  [ %g2 ], %g2
       68:	86 10 20 00 	clr  %g3
       6c:	c6 20 80 00 	st  %g3, [ %g2 ]
@@ -46,7 +46,7 @@ Disassembly of section .text:
       78:	40 00 15 e2 	call  5800 <page_table_setup>
       7c:	01 00 00 00 	nop 
       80:	2d 00 00 28 	sethi  %hi(0xa000), %l6
-      84:	ac 15 a3 9c 	or  %l6, 0x39c, %l6	! a39c <PT_FLAG>
+      84:	ac 15 a3 8c 	or  %l6, 0x38c, %l6	! a38c <PT_FLAG>
       88:	ec 05 80 00 	ld  [ %l6 ], %l6
       8c:	ae 10 20 01 	mov  1, %l7
       90:	ee 25 80 00 	st  %l7, [ %l6 ]
@@ -71,7 +71,7 @@ Disassembly of section .text:
       dc:	40 00 01 bd 	call  7d0 <cortos_init_logging>
       e0:	01 00 00 00 	nop 
       e4:	05 00 00 28 	sethi  %hi(0xa000), %g2
-      e8:	84 10 a3 a0 	or  %g2, 0x3a0, %g2	! a3a0 <INIT_BY_00_DONE>
+      e8:	84 10 a3 90 	or  %g2, 0x390, %g2	! a390 <INIT_BY_00_DONE>
       ec:	c4 00 80 00 	ld  [ %g2 ], %g2
       f0:	86 10 20 01 	mov  1, %g3
       f4:	c6 20 80 00 	st  %g3, [ %g2 ]
@@ -81,7 +81,7 @@ Disassembly of section .text:
 
 00000104 <AFTER_PTABLE_SETUP>:
      104:	2d 00 00 28 	sethi  %hi(0xa000), %l6
-     108:	ac 15 a3 9c 	or  %l6, 0x39c, %l6	! a39c <PT_FLAG>
+     108:	ac 15 a3 8c 	or  %l6, 0x38c, %l6	! a38c <PT_FLAG>
      10c:	ec 05 80 00 	ld  [ %l6 ], %l6
      110:	ee 05 80 00 	ld  [ %l6 ], %l7
      114:	b0 10 20 01 	mov  1, %i0
@@ -174,7 +174,7 @@ Disassembly of section .text:
 
 00000230 <__cortos_wait_for_init_by_00>:
      230:	2d 00 00 28 	sethi  %hi(0xa000), %l6
-     234:	ac 15 a3 a0 	or  %l6, 0x3a0, %l6	! a3a0 <INIT_BY_00_DONE>
+     234:	ac 15 a3 90 	or  %l6, 0x390, %l6	! a390 <INIT_BY_00_DONE>
      238:	ec 05 80 00 	ld  [ %l6 ], %l6
 
 0000023c <_CORTOS_WAIT_FOR_INIT_BY_00>:
@@ -283,7 +283,7 @@ Disassembly of section .text:
      35c:	03 00 00 28 	sethi  %hi(0xa000), %g1
      360:	03 00 00 28 	sethi  %hi(0xa000), %g1
      364:	39 00 00 2c 	sethi  %hi(0xb000), %i4
-     368:	f0 00 63 a8 	ld  [ %g1 + 0x3a8 ], %i0
+     368:	f0 00 63 98 	ld  [ %g1 + 0x398 ], %i0
      36c:	b8 17 20 68 	or  %i4, 0x68, %i4
      370:	3b 00 00 2c 	sethi  %hi(0xb000), %i5
      374:	7f ff ff d0 	call  2b4 <cortos_lock_acquire_buzy>
@@ -307,7 +307,7 @@ Disassembly of section .text:
      3bc:	81 c7 e0 08 	ret 
      3c0:	81 e8 00 00 	restore 
      3c4:	39 00 00 2c 	sethi  %hi(0xb000), %i4
-     3c8:	f0 00 63 ac 	ld  [ %g1 + 0x3ac ], %i0
+     3c8:	f0 00 63 9c 	ld  [ %g1 + 0x39c ], %i0
      3cc:	10 bf ff e9 	b  370 <cortos_reserveLock+0x20>
      3d0:	b8 17 21 68 	or  %i4, 0x168, %i4
      3d4:	b8 10 21 00 	mov  0x100, %i4
@@ -320,7 +320,7 @@ Disassembly of section .text:
 000003ec <cortos_freeLock>:
      3ec:	9d e3 bf a0 	save  %sp, -96, %sp
      3f0:	3b 00 00 28 	sethi  %hi(0xa000), %i5
-     3f4:	c2 07 63 ac 	ld  [ %i5 + 0x3ac ], %g1	! a3ac <lockStartAddr>
+     3f4:	c2 07 63 9c 	ld  [ %i5 + 0x39c ], %g1	! a39c <lockStartAddr>
      3f8:	80 a0 40 18 	cmp  %g1, %i0
      3fc:	18 80 00 05 	bgu  410 <cortos_freeLock+0x24>
      400:	82 00 61 00 	add  %g1, 0x100, %g1
@@ -332,7 +332,7 @@ Disassembly of section .text:
      418:	d0 07 60 60 	ld  [ %i5 + 0x60 ], %o0	! b060 <cortos_reservedLockAddr>
      41c:	03 00 00 28 	sethi  %hi(0xa000), %g1
      420:	05 00 00 2c 	sethi  %hi(0xb000), %g2
-     424:	c2 00 63 a8 	ld  [ %g1 + 0x3a8 ], %g1
+     424:	c2 00 63 98 	ld  [ %g1 + 0x398 ], %g1
      428:	84 10 a0 68 	or  %g2, 0x68, %g2
      42c:	82 26 00 01 	sub  %i0, %g1, %g1
      430:	f0 07 60 60 	ld  [ %i5 + 0x60 ], %i0
@@ -341,7 +341,7 @@ Disassembly of section .text:
      43c:	81 e8 00 00 	restore 
      440:	7f ff ff 9d 	call  2b4 <cortos_lock_acquire_buzy>
      444:	d0 07 20 60 	ld  [ %i4 + 0x60 ], %o0
-     448:	c2 07 63 ac 	ld  [ %i5 + 0x3ac ], %g1
+     448:	c2 07 63 9c 	ld  [ %i5 + 0x39c ], %g1
      44c:	05 00 00 2c 	sethi  %hi(0xb000), %g2
      450:	82 26 00 01 	sub  %i0, %g1, %g1
      454:	84 10 a1 68 	or  %g2, 0x168, %g2
@@ -453,7 +453,7 @@ Disassembly of section .text:
      5b4:	88 01 20 08 	add  %g4, 8, %g4
      5b8:	86 10 00 04 	mov  %g4, %g3
      5bc:	05 00 00 28 	sethi  %hi(0xa000), %g2
-     5c0:	84 10 a3 b0 	or  %g2, 0x3b0, %g2	! a3b0 <freelist_ncram>
+     5c0:	84 10 a3 a0 	or  %g2, 0x3a0, %g2	! a3a0 <freelist_ncram>
      5c4:	d0 00 a0 08 	ld  [ %g2 + 8 ], %o0
      5c8:	80 a2 00 02 	cmp  %o0, %g2
      5cc:	32 80 00 08 	bne,a   5ec <bget_ncram+0x64>
@@ -496,7 +496,7 @@ Disassembly of section .text:
 
 00000660 <bpool_ncram>:
      660:	03 00 00 28 	sethi  %hi(0xa000), %g1
-     664:	82 10 63 b0 	or  %g1, 0x3b0, %g1	! a3b0 <freelist_ncram>
+     664:	82 10 63 a0 	or  %g1, 0x3a0, %g1	! a3a0 <freelist_ncram>
      668:	c4 00 60 0c 	ld  [ %g1 + 0xc ], %g2
      66c:	c2 22 20 08 	st  %g1, [ %o0 + 8 ]
      670:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
@@ -539,7 +539,7 @@ Disassembly of section .text:
      6fc:	81 c3 e0 08 	retl 
      700:	c2 20 c0 00 	st  %g1, [ %g3 ]
      704:	07 00 00 28 	sethi  %hi(0xa000), %g3
-     708:	86 10 e3 b0 	or  %g3, 0x3b0, %g3	! a3b0 <freelist_ncram>
+     708:	86 10 e3 a0 	or  %g3, 0x3a0, %g3	! a3a0 <freelist_ncram>
      70c:	c2 00 e0 0c 	ld  [ %g3 + 0xc ], %g1
      710:	c6 22 00 00 	st  %g3, [ %o0 ]
      714:	c2 22 20 04 	st  %g1, [ %o0 + 4 ]
@@ -655,7 +655,7 @@ Disassembly of section .text:
      8a4:	01 00 00 00 	nop 
      8a8:	11 00 00 28 	sethi  %hi(0xa000), %o0
      8ac:	40 00 04 1e 	call  1924 <ee_printf>
-     8b0:	90 12 23 30 	or  %o0, 0x330, %o0	! a330 <main+0x2330>
+     8b0:	90 12 23 20 	or  %o0, 0x320, %o0	! a320 <main+0x2320>
      8b4:	b0 02 00 18 	add  %o0, %i0, %i0
      8b8:	7f ff fe 99 	call  31c <cortos_lock_release>
      8bc:	d0 04 20 04 	ld  [ %l0 + 4 ], %o0
@@ -2393,7 +2393,7 @@ Disassembly of section .text:
     22b4:	88 01 20 08 	add  %g4, 8, %g4
     22b8:	86 10 00 04 	mov  %g4, %g3
     22bc:	05 00 00 28 	sethi  %hi(0xa000), %g2
-    22c0:	84 10 a3 c0 	or  %g2, 0x3c0, %g2	! a3c0 <freelist>
+    22c0:	84 10 a3 b0 	or  %g2, 0x3b0, %g2	! a3b0 <freelist>
     22c4:	d0 00 a0 08 	ld  [ %g2 + 8 ], %o0
     22c8:	80 a2 00 02 	cmp  %o0, %g2
     22cc:	32 80 00 08 	bne,a   22ec <bget+0x4c>
@@ -2436,7 +2436,7 @@ Disassembly of section .text:
 
 00002360 <bpool>:
     2360:	03 00 00 28 	sethi  %hi(0xa000), %g1
-    2364:	82 10 63 c0 	or  %g1, 0x3c0, %g1	! a3c0 <freelist>
+    2364:	82 10 63 b0 	or  %g1, 0x3b0, %g1	! a3b0 <freelist>
     2368:	c4 00 60 0c 	ld  [ %g1 + 0xc ], %g2
     236c:	c2 22 20 08 	st  %g1, [ %o0 + 8 ]
     2370:	c4 22 20 0c 	st  %g2, [ %o0 + 0xc ]
@@ -2479,7 +2479,7 @@ Disassembly of section .text:
     23fc:	81 c3 e0 08 	retl 
     2400:	c2 20 c0 00 	st  %g1, [ %g3 ]
     2404:	07 00 00 28 	sethi  %hi(0xa000), %g3
-    2408:	86 10 e3 c0 	or  %g3, 0x3c0, %g3	! a3c0 <freelist>
+    2408:	86 10 e3 b0 	or  %g3, 0x3b0, %g3	! a3b0 <freelist>
     240c:	c2 00 e0 0c 	ld  [ %g3 + 0xc ], %g1
     2410:	c6 22 00 00 	st  %g3, [ %o0 ]
     2414:	c2 22 20 04 	st  %g1, [ %o0 + 4 ]
@@ -3831,20 +3831,20 @@ Disassembly of section .text:
     363c:	01 00 00 00 	nop 
 
 00003640 <loadEthernetHeader>:
-    3640:	c2 02 00 00 	ld  [ %o0 ], %g1
+    3640:	c2 02 20 08 	ld  [ %o0 + 8 ], %g1
     3644:	c2 22 40 00 	st  %g1, [ %o1 ]
-    3648:	c2 02 20 04 	ld  [ %o0 + 4 ], %g1
+    3648:	c2 02 20 0c 	ld  [ %o0 + 0xc ], %g1
     364c:	c2 22 60 04 	st  %g1, [ %o1 + 4 ]
-    3650:	c2 02 20 08 	ld  [ %o0 + 8 ], %g1
+    3650:	c2 02 20 10 	ld  [ %o0 + 0x10 ], %g1
     3654:	c2 22 60 08 	st  %g1, [ %o1 + 8 ]
-    3658:	c2 02 20 0c 	ld  [ %o0 + 0xc ], %g1
+    3658:	c2 02 20 14 	ld  [ %o0 + 0x14 ], %g1
     365c:	81 c3 e0 08 	retl 
     3660:	c2 22 60 0c 	st  %g1, [ %o1 + 0xc ]
 
 00003664 <readNicReg>:
     3664:	91 2a 20 02 	sll  %o0, 2, %o0
     3668:	03 00 00 28 	sethi  %hi(0xa000), %g1
-    366c:	d2 00 63 d0 	ld  [ %g1 + 0x3d0 ], %o1	! a3d0 <NIC_REG>
+    366c:	d2 00 63 c0 	ld  [ %g1 + 0x3c0 ], %o1	! a3c0 <NIC_REG>
     3670:	92 02 40 08 	add  %o1, %o0, %o1
     3674:	91 3a 60 1f 	sra  %o1, 0x1f, %o0
     3678:	82 13 c0 00 	mov  %o7, %g1
@@ -3873,7 +3873,7 @@ Disassembly of section .text:
     36c4:	83 2a 20 02 	sll  %o0, 2, %g1
     36c8:	05 00 00 28 	sethi  %hi(0xa000), %g2
     36cc:	90 10 00 09 	mov  %o1, %o0
-    36d0:	d4 00 a3 d0 	ld  [ %g2 + 0x3d0 ], %o2
+    36d0:	d4 00 a3 c0 	ld  [ %g2 + 0x3c0 ], %o2
     36d4:	94 02 80 01 	add  %o2, %g1, %o2
     36d8:	93 3a a0 1f 	sra  %o2, 0x1f, %o1
     36dc:	82 13 c0 00 	mov  %o7, %g1
@@ -3960,7 +3960,7 @@ Disassembly of section .text:
     3808:	7f ff f8 47 	call  1924 <ee_printf>
     380c:	ba 10 20 00 	clr  %i5
     3810:	b8 10 20 00 	clr  %i4
-    3814:	b2 16 63 d4 	or  %i1, 0x3d4, %i1
+    3814:	b2 16 63 c4 	or  %i1, 0x3c4, %i1
     3818:	b4 16 a1 58 	or  %i2, 0x158, %i2
     381c:	b6 16 e1 60 	or  %i3, 0x160, %i3
     3820:	92 10 00 1c 	mov  %i4, %o1
@@ -7991,7 +7991,7 @@ Disassembly of section .text:
     7ffc:	01 00 00 00 	nop 
 
 00008000 <main>:
-    8000:	9d e3 bf 78 	save  %sp, -136, %sp
+    8000:	9d e3 bf 88 	save  %sp, -120, %sp
     8004:	7f ff ea b6 	call  2adc <__ajit_write_serial_control_register__>
     8008:	90 10 20 03 	mov  3, %o0
     800c:	11 00 00 28 	sethi  %hi(0xa000), %o0
@@ -8014,23 +8014,23 @@ Disassembly of section .text:
     8050:	b8 10 00 08 	mov  %o0, %i4
     8054:	7f ff e8 7f 	call  2250 <cortos_bget_ncram>
     8058:	90 10 20 b4 	mov  0xb4, %o0
-    805c:	d0 27 bf e4 	st  %o0, [ %fp + -28 ]
+    805c:	d0 27 bf f4 	st  %o0, [ %fp + -12 ]
     8060:	7f ff e8 7c 	call  2250 <cortos_bget_ncram>
     8064:	90 10 20 b4 	mov  0xb4, %o0
-    8068:	d0 27 bf e8 	st  %o0, [ %fp + -24 ]
+    8068:	d0 27 bf f8 	st  %o0, [ %fp + -8 ]
     806c:	7f ff e8 79 	call  2250 <cortos_bget_ncram>
     8070:	90 10 20 b4 	mov  0xb4, %o0
     8074:	98 10 00 1d 	mov  %i5, %o4
     8078:	96 10 00 08 	mov  %o0, %o3
     807c:	9a 10 00 1c 	mov  %i4, %o5
-    8080:	d2 07 bf e4 	ld  [ %fp + -28 ], %o1
-    8084:	d4 07 bf e8 	ld  [ %fp + -24 ], %o2
-    8088:	d0 27 bf ec 	st  %o0, [ %fp + -20 ]
+    8080:	d2 07 bf f4 	ld  [ %fp + -12 ], %o1
+    8084:	d4 07 bf f8 	ld  [ %fp + -8 ], %o2
+    8088:	d0 27 bf fc 	st  %o0, [ %fp + -4 ]
     808c:	f0 23 a0 5c 	st  %i0, [ %sp + 0x5c ]
     8090:	11 00 00 28 	sethi  %hi(0xa000), %o0
     8094:	7f ff e6 24 	call  1924 <ee_printf>
     8098:	90 12 21 98 	or  %o0, 0x198, %o0	! a198 <main+0x2198>
-    809c:	92 07 bf e4 	add  %fp, -28, %o1
+    809c:	92 07 bf f4 	add  %fp, -12, %o1
     80a0:	94 10 20 03 	mov  3, %o2
     80a4:	7f ff e7 4e 	call  1ddc <cortos_writeMessages>
     80a8:	90 10 00 18 	mov  %i0, %o0
@@ -8042,95 +8042,87 @@ Disassembly of section .text:
     80c0:	7f ff e6 19 	call  1924 <ee_printf>
     80c4:	90 12 22 18 	or  %o0, 0x218, %o0	! a218 <main+0x2218>
     80c8:	7f ff ed ca 	call  37f0 <printMemory>
-    80cc:	35 00 00 28 	sethi  %hi(0xa000), %i2
-    80d0:	92 07 bf f0 	add  %fp, -16, %o1
+    80cc:	27 00 00 28 	sethi  %hi(0xa000), %l3
+    80d0:	c2 07 bf f4 	ld  [ %fp + -12 ], %g1
     80d4:	11 00 00 28 	sethi  %hi(0xa000), %o0
-    80d8:	7f ff e6 13 	call  1924 <ee_printf>
-    80dc:	90 12 22 40 	or  %o0, 0x240, %o0	! a240 <main+0x2240>
-    80e0:	c2 06 00 00 	ld  [ %i0 ], %g1
-    80e4:	c8 06 20 04 	ld  [ %i0 + 4 ], %g4
-    80e8:	c6 06 20 08 	ld  [ %i0 + 8 ], %g3
-    80ec:	c4 06 20 0c 	ld  [ %i0 + 0xc ], %g2
-    80f0:	92 10 00 01 	mov  %g1, %o1
-    80f4:	c2 27 bf f0 	st  %g1, [ %fp + -16 ]
-    80f8:	c8 27 bf f4 	st  %g4, [ %fp + -12 ]
-    80fc:	c6 27 bf f8 	st  %g3, [ %fp + -8 ]
-    8100:	c4 27 bf fc 	st  %g2, [ %fp + -4 ]
+    80d8:	f4 00 60 10 	ld  [ %g1 + 0x10 ], %i2
+    80dc:	f6 00 60 14 	ld  [ %g1 + 0x14 ], %i3
+    80e0:	f2 00 60 0c 	ld  [ %g1 + 0xc ], %i1
+    80e4:	d2 00 60 08 	ld  [ %g1 + 8 ], %o1
+    80e8:	7f ff e6 0f 	call  1924 <ee_printf>
+    80ec:	90 12 22 40 	or  %o0, 0x240, %o0
+    80f0:	92 10 00 19 	mov  %i1, %o1
+    80f4:	11 00 00 28 	sethi  %hi(0xa000), %o0
+    80f8:	7f ff e6 0b 	call  1924 <ee_printf>
+    80fc:	90 12 22 58 	or  %o0, 0x258, %o0	! a258 <main+0x2258>
+    8100:	92 10 00 1a 	mov  %i2, %o1
     8104:	11 00 00 28 	sethi  %hi(0xa000), %o0
     8108:	7f ff e6 07 	call  1924 <ee_printf>
-    810c:	90 12 22 50 	or  %o0, 0x250, %o0	! a250 <main+0x2250>
-    8110:	d2 07 bf f4 	ld  [ %fp + -12 ], %o1
+    810c:	90 12 22 70 	or  %o0, 0x270, %o0	! a270 <main+0x2270>
+    8110:	92 10 00 1b 	mov  %i3, %o1
     8114:	11 00 00 28 	sethi  %hi(0xa000), %o0
-    8118:	7f ff e6 03 	call  1924 <ee_printf>
-    811c:	90 12 22 68 	or  %o0, 0x268, %o0	! a268 <main+0x2268>
-    8120:	d2 07 bf f8 	ld  [ %fp + -8 ], %o1
-    8124:	11 00 00 28 	sethi  %hi(0xa000), %o0
-    8128:	7f ff e5 ff 	call  1924 <ee_printf>
-    812c:	90 12 22 80 	or  %o0, 0x280, %o0	! a280 <main+0x2280>
-    8130:	d2 07 bf fc 	ld  [ %fp + -4 ], %o1
-    8134:	11 00 00 28 	sethi  %hi(0xa000), %o0
-    8138:	90 12 22 98 	or  %o0, 0x298, %o0	! a298 <main+0x2298>
-    813c:	37 00 00 28 	sethi  %hi(0xa000), %i3
-    8140:	27 00 00 28 	sethi  %hi(0xa000), %l3
-    8144:	25 00 00 28 	sethi  %hi(0xa000), %l2
-    8148:	23 00 00 28 	sethi  %hi(0xa000), %l1
+    8118:	35 00 00 28 	sethi  %hi(0xa000), %i2
+    811c:	90 12 22 88 	or  %o0, 0x288, %o0
+    8120:	37 00 00 28 	sethi  %hi(0xa000), %i3
+    8124:	25 00 00 28 	sethi  %hi(0xa000), %l2
+    8128:	23 00 00 28 	sethi  %hi(0xa000), %l1
+    812c:	7f ff e5 fe 	call  1924 <ee_printf>
+    8130:	21 00 00 28 	sethi  %hi(0xa000), %l0
+    8134:	b4 16 a2 a0 	or  %i2, 0x2a0, %i2
+    8138:	b6 16 e2 b0 	or  %i3, 0x2b0, %i3
+    813c:	a6 14 e2 d8 	or  %l3, 0x2d8, %l3
+    8140:	a4 14 a3 10 	or  %l2, 0x310, %l2
+    8144:	a2 14 63 28 	or  %l1, 0x328, %l1
+    8148:	a0 14 23 50 	or  %l0, 0x350, %l0
     814c:	7f ff e5 f6 	call  1924 <ee_printf>
-    8150:	21 00 00 28 	sethi  %hi(0xa000), %l0
-    8154:	b4 16 a2 b0 	or  %i2, 0x2b0, %i2
-    8158:	b6 16 e2 c0 	or  %i3, 0x2c0, %i3
-    815c:	a6 14 e2 e8 	or  %l3, 0x2e8, %l3
-    8160:	a4 14 a3 20 	or  %l2, 0x320, %l2
-    8164:	a2 14 63 38 	or  %l1, 0x338, %l1
-    8168:	a0 14 23 60 	or  %l0, 0x360, %l0
-    816c:	7f ff e5 ee 	call  1924 <ee_printf>
-    8170:	90 10 00 1a 	mov  %i2, %o0
-    8174:	7f ff ed 44 	call  3684 <readNicRegs>
-    8178:	01 00 00 00 	nop 
-    817c:	7f ff ed 9d 	call  37f0 <printMemory>
-    8180:	01 00 00 00 	nop 
-    8184:	90 10 00 1d 	mov  %i5, %o0
-    8188:	92 07 bf e0 	add  %fp, -32, %o1
-    818c:	7f ff e7 45 	call  1ea0 <cortos_readMessages>
-    8190:	94 10 20 01 	mov  1, %o2
-    8194:	80 a2 20 00 	cmp  %o0, 0
-    8198:	02 80 00 1c 	be  8208 <main+0x208>
-    819c:	90 10 00 1b 	mov  %i3, %o0
-    81a0:	7f ff e5 e1 	call  1924 <ee_printf>
-    81a4:	d2 07 bf e4 	ld  [ %fp + -28 ], %o1
-    81a8:	92 07 bf e0 	add  %fp, -32, %o1
-    81ac:	94 10 20 01 	mov  1, %o2
-    81b0:	7f ff e7 0b 	call  1ddc <cortos_writeMessages>
-    81b4:	90 10 00 1c 	mov  %i4, %o0
-    81b8:	b2 10 00 08 	mov  %o0, %i1
-    81bc:	7f ff ed 2a 	call  3664 <readNicReg>
-    81c0:	90 10 20 15 	mov  0x15, %o0
-    81c4:	92 10 00 19 	mov  %i1, %o1
-    81c8:	94 10 00 08 	mov  %o0, %o2
-    81cc:	7f ff e5 d6 	call  1924 <ee_printf>
-    81d0:	90 10 00 13 	mov  %l3, %o0
-    81d4:	7f ff e5 d4 	call  1924 <ee_printf>
-    81d8:	90 10 00 1a 	mov  %i2, %o0
-    81dc:	7f ff ed 2a 	call  3684 <readNicRegs>
-    81e0:	01 00 00 00 	nop 
-    81e4:	7f ff ed 83 	call  37f0 <printMemory>
-    81e8:	01 00 00 00 	nop 
-    81ec:	90 10 00 1d 	mov  %i5, %o0
-    81f0:	92 07 bf e0 	add  %fp, -32, %o1
-    81f4:	7f ff e7 2b 	call  1ea0 <cortos_readMessages>
-    81f8:	94 10 20 01 	mov  1, %o2
-    81fc:	80 a2 20 00 	cmp  %o0, 0
-    8200:	12 bf ff e8 	bne  81a0 <main+0x1a0>
-    8204:	90 10 00 1b 	mov  %i3, %o0
-    8208:	7f ff e5 c7 	call  1924 <ee_printf>
-    820c:	90 10 00 12 	mov  %l2, %o0
-    8210:	7f ff ed 15 	call  3664 <readNicReg>
-    8214:	90 10 20 15 	mov  0x15, %o0
-    8218:	92 10 00 08 	mov  %o0, %o1
-    821c:	7f ff e5 c2 	call  1924 <ee_printf>
-    8220:	90 10 00 11 	mov  %l1, %o0
-    8224:	90 10 00 10 	mov  %l0, %o0
-    8228:	92 10 00 18 	mov  %i0, %o1
-    822c:	94 10 00 1d 	mov  %i5, %o2
-    8230:	7f ff e5 bd 	call  1924 <ee_printf>
-    8234:	96 10 00 1c 	mov  %i4, %o3
-    8238:	30 bf ff cd 	b,a   816c <main+0x16c>
+    8150:	90 10 00 1a 	mov  %i2, %o0
+    8154:	7f ff ed 4c 	call  3684 <readNicRegs>
+    8158:	01 00 00 00 	nop 
+    815c:	7f ff ed a5 	call  37f0 <printMemory>
+    8160:	01 00 00 00 	nop 
+    8164:	90 10 00 1d 	mov  %i5, %o0
+    8168:	92 07 bf f0 	add  %fp, -16, %o1
+    816c:	7f ff e7 4d 	call  1ea0 <cortos_readMessages>
+    8170:	94 10 20 01 	mov  1, %o2
+    8174:	80 a2 20 00 	cmp  %o0, 0
+    8178:	02 80 00 1c 	be  81e8 <main+0x1e8>
+    817c:	90 10 00 1b 	mov  %i3, %o0
+    8180:	7f ff e5 e9 	call  1924 <ee_printf>
+    8184:	d2 07 bf f4 	ld  [ %fp + -12 ], %o1
+    8188:	92 07 bf f0 	add  %fp, -16, %o1
+    818c:	94 10 20 01 	mov  1, %o2
+    8190:	7f ff e7 13 	call  1ddc <cortos_writeMessages>
+    8194:	90 10 00 1c 	mov  %i4, %o0
+    8198:	b2 10 00 08 	mov  %o0, %i1
+    819c:	7f ff ed 32 	call  3664 <readNicReg>
+    81a0:	90 10 20 15 	mov  0x15, %o0
+    81a4:	92 10 00 19 	mov  %i1, %o1
+    81a8:	94 10 00 08 	mov  %o0, %o2
+    81ac:	7f ff e5 de 	call  1924 <ee_printf>
+    81b0:	90 10 00 13 	mov  %l3, %o0
+    81b4:	7f ff e5 dc 	call  1924 <ee_printf>
+    81b8:	90 10 00 1a 	mov  %i2, %o0
+    81bc:	7f ff ed 32 	call  3684 <readNicRegs>
+    81c0:	01 00 00 00 	nop 
+    81c4:	7f ff ed 8b 	call  37f0 <printMemory>
+    81c8:	01 00 00 00 	nop 
+    81cc:	90 10 00 1d 	mov  %i5, %o0
+    81d0:	92 07 bf f0 	add  %fp, -16, %o1
+    81d4:	7f ff e7 33 	call  1ea0 <cortos_readMessages>
+    81d8:	94 10 20 01 	mov  1, %o2
+    81dc:	80 a2 20 00 	cmp  %o0, 0
+    81e0:	12 bf ff e8 	bne  8180 <main+0x180>
+    81e4:	90 10 00 1b 	mov  %i3, %o0
+    81e8:	7f ff e5 cf 	call  1924 <ee_printf>
+    81ec:	90 10 00 12 	mov  %l2, %o0
+    81f0:	7f ff ed 1d 	call  3664 <readNicReg>
+    81f4:	90 10 20 15 	mov  0x15, %o0
+    81f8:	92 10 00 08 	mov  %o0, %o1
+    81fc:	7f ff e5 ca 	call  1924 <ee_printf>
+    8200:	90 10 00 11 	mov  %l1, %o0
+    8204:	90 10 00 10 	mov  %l0, %o0
+    8208:	92 10 00 18 	mov  %i0, %o1
+    820c:	94 10 00 1d 	mov  %i5, %o2
+    8210:	7f ff e5 c5 	call  1924 <ee_printf>
+    8214:	96 10 00 1c 	mov  %i4, %o3
+    8218:	30 bf ff cd 	b,a   814c <main+0x14c>

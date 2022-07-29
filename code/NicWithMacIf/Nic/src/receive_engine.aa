@@ -117,7 +117,7 @@ $is
 		$volatile rx_queue_pointer_36 :=  ($concat $zero<4> rx_queue_pointer_32)	
 		$rreport(populateRxQueue got_rx_queue_pointer_pushing_to_rx_queue rx_queue_pointer_32 rx_queue_pointer_36 NUMBER_OF_SERVERS)	
 		
-		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 31 0)) (push_status)
+		$call pushIntoQueue ($one<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 31 0)) (push_status)
 		//$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
 
 		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
@@ -172,7 +172,7 @@ $is
 // Write Ethernet Header to Buffer
 $module [writeEthernetHeaderToMem]
 $in (buf_pointer : $uint<36>)
-$out(buf_position : $uint<36>)
+$out(buf_position_out : $uint<36>)
 $is
 {
 	
@@ -204,7 +204,9 @@ $is
 		$volatile nbuf_position := (buf_position + 8)
 	// If 2 words are stored, then end
 		$while (nI <= 1)
-	}
+	}(buf_position => buf_position)
+	
+	buf_position_out := buf_position
 
 	$attribute delay 4
 }

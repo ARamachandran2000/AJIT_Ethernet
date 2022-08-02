@@ -215,7 +215,7 @@ $module [writePayloadToMem]
 	// Base buffer pointer is used to calculate the packet size
 	// buf_pointer -> Consists of last written buffer location
 $in (base_buf_pointer : $uint<36> buf_pointer : $uint<36>)
-$out(packet_size_32:$uint<8> bad_packet_identifier : $uint<1> last_keep : $uint<8>)
+$out(packet_size_32:$uint<11> bad_packet_identifier : $uint<1> last_keep : $uint<8>)
 $is
 {
 	$branchblock[loop] {
@@ -250,9 +250,9 @@ $is
 	// Calculate packet size which is in multiples of 8-bit words stored
 	// Can divide by 8 to get size in 64-bit word multiples
 	// Divide by 4 to get size in 32-bit word multiples	
-	$volatile packet_size_8 := ($bitcast ($uint<8>) (buf_position - base_buf_pointer) )
-	$volatile packet_size_32 := packet_size_8
-	$rreport(writePayloadToMem packet_size_is packet_size_8 packet_size_32)
+	$volatile packet_size_11 := ($bitcast ($uint<11>) (buf_position - base_buf_pointer) )
+	$volatile packet_size_32 := packet_size_11
+	$rreport(writePayloadToMem packet_size_is packet_size_11 packet_size_32)
 	
 	// bmask of last word is wkeep
 	$volatile last_keep := tkeep
@@ -261,7 +261,7 @@ $is
 
 // Write the Control Information of stored packet into buffer location 0
 $module [writeControlInformationToMem]
-$in (base_buffer_pointer : $uint<36> packet_size:$uint<8>  last_keep : $uint<8>)
+$in (base_buffer_pointer : $uint<36> packet_size:$uint<11>  last_keep : $uint<8>)
 $out()
 $is
 {

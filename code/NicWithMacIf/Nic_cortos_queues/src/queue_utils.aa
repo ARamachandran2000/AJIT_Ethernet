@@ -33,7 +33,7 @@ $is
 		$volatile q_emptyI := (total_msgsI == 0)
 
 		$volatile misc_one := (misc == 1)
-		$if((~misc_one) & q_emptyI) $then
+		$if(misc_one & q_emptyI) $then
 			$place[loopback]
 		$endif
 	}
@@ -96,8 +96,8 @@ $is
 		$call getTotalMessages(q_base_address) (total_msgsI)
 		$volatile q_emptyI := (total_msgsI == 0)
 
-		$volatile misc_one := (misc == 1)
-		$if((~misc_one) & (~q_emptyI)) $then
+		$volatile misc_one := (misc == 1) // if misc = 1 misc_one = 1
+		$if(misc_one & (~q_emptyI)) $then
 			$place[loopback]
 		$endif
 	}

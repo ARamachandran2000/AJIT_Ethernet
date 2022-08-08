@@ -13,7 +13,33 @@ $module [popFromQueue]
 	$in (lock : $uint<1> q_base_address : $uint<36>) $out (q_r_data: $uint<32> status: $uint<1>)
 $is
 {
-	$guard (lock) $call acquireLock(q_base_address) (m_ok)
+	// check if misc is 1,
+	// if 1 check if total_msgs is 0
+	//  if yes wait for total_msgs to be 1
+	//   when 1 pop data
+	// if misc is 0 
+	// follow old method
+
+	$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
+				 (q_base_address + 24 ) $zero<64>) (ba_and_misc)
+
+	$volatile misc := ($slice ba_and_misc 31 0)
+
+	$branchblock[loop]
+	{
+		$merge $entry loopback $endmerge
+
+		$call getTotalMessages(q_base_address) (total_msgsI)
+		$volatile q_emptyI := (total_msgsI == 0)
+
+		$volatile misc_one := (misc == 1)
+		$if((~misc_one) & q_emptyI) $then
+			$place[loopback]
+		$endif
+	}
+	$volatile lock_n  := (misc == $zero<32>)
+
+	$guard (lock_n) $call acquireLock(q_base_address) (m_ok)
 	$barrier
 	
 	$call getQueuePointers (q_base_address) (write_index read_index)
@@ -31,7 +57,7 @@ $is
 	$rreport(popFromQueue pop_data q_base_address q_r_data q_empty write_index read_index next_ri)
 
 	$barrier
-	$guard(lock) $call releaseLock (q_base_address) ()
+	$guard(lock_n) $call releaseLock (q_base_address) ()
 	status := q_empty // 0 = success, 1 = Fail
 	
 }
@@ -52,7 +78,32 @@ $module [pushIntoQueue]
 	$in  (lock : $uint<1> q_base_address : $uint<36> q_w_data: $uint<32>) $out (status: $uint<1>)
 $is
 {
-	$guard (lock) $call acquireLock (q_base_address) (m_ok) 
+	// check if misc is 1,
+	// if 1 check if total_msgs is 1
+	//  if yes wait for total_msgs to be 0
+	//   when 0 push data
+	// if misc is 0 
+	// follow old method
+
+	$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
+				 (q_base_address + 24 ) $zero<64>) (ba_and_misc)
+	$volatile misc := ($slice ba_and_misc 31 0)
+
+	$branchblock[loop]
+	{
+		$merge $entry loopback $endmerge
+
+		$call getTotalMessages(q_base_address) (total_msgsI)
+		$volatile q_emptyI := (total_msgsI == 0)
+
+		$volatile misc_one := (misc == 1)
+		$if((~misc_one) & (~q_emptyI)) $then
+			$place[loopback]
+		$endif
+	}
+	$volatile lock_n  := (misc == $zero<32>)
+
+	$guard (lock_n) $call acquireLock (q_base_address) (m_ok) 
 	$barrier
 	$rreport(pushIntoQueue pushing_to_queue q_w_data q_base_address)
 	$call getQueuePointers (q_base_address) (write_index read_index)
@@ -70,7 +121,7 @@ $is
 
 
 	$barrier
-	$guard (lock) $call releaseLock (q_base_address) ()
+	$guard (lock_n) $call releaseLock (q_base_address) ()
 	status := (~q_full)
 }
 
@@ -241,7 +292,7 @@ $module  [getQueueElement]
 	$out (q_r_data : $uint<32>)
 $is
 {
-	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 24) )
+	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 32) )
 	$volatile element_pair_address := (buffer_address + ($bitcast ($uint<36>) ($concat ($slice read_index 31 1) $zero<3>)))
 	
 	$call accessMemory ($zero<1> $one<1>  (~$zero<8>) element_pair_address $zero<64>) (element_pair)
@@ -263,7 +314,7 @@ $module  [setQueueElement]
 	$out () 
 $is
 {
-	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 24) )
+	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 32) )
 	$volatile element_pair_address := 
 		(buffer_address + ($bitcast ($uint<36>) ($concat ($slice write_index 31 1) $zero<3>)))
 

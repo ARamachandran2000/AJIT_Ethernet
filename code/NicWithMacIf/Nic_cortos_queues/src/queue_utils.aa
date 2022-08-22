@@ -25,35 +25,35 @@ $is
 
 	$volatile misc := ($slice ba_and_misc 31 0)
 
-	$branchblock[loop]
-	{
-		$merge $entry loopback $endmerge
-
-		$call getTotalMessages(q_base_address) (total_msgsI)
-		$volatile q_emptyI := (total_msgsI == 0)
-
-		$volatile misc_one := (misc == 1)
-		$if(misc_one & q_emptyI) $then
-			$place[loopback]
-		$endif
-	}
+	//$branchblock[loop]
+	//{
+	//	$merge $entry loopback $endmerge
+	//
+	//	$call getTotalMessages(q_base_address) (total_msgsI)
+	//	$volatile q_emptyI := (total_msgsI == 0)
+	//
+	//	$volatile misc_one := (misc == 1)
+	//	$if(misc_one & q_emptyI) $then
+	//		$place[loopback]
+	//	$endif
+	//}
 	$volatile lock_n  := (misc == $zero<32>)
 
 	$guard (lock_n) $call acquireLock(q_base_address) (m_ok)
 	$barrier
 	
 	$call getQueuePointers (q_base_address) (write_index read_index)
-	//$volatile q_empty := (write_index == read_index)
+	$volatile q_empty := (write_index == read_index)
 
 	$call getQueueLength(q_base_address) (Queue_Length)
-	$call getTotalMessages(q_base_address) (total_msgs)
-	$volatile q_empty := (total_msgs == 0)
+	//$call getTotalMessages(q_base_address) (total_msgs)
+	//$volatile q_empty := (total_msgs == 0)
 	$volatile round_off := (read_index == (Queue_Length - 1))
 	$volatile next_ri := ($mux round_off 0 (read_index + 1))
 	
 	$guard (~q_empty) $call getQueueElement (q_base_address read_index) (q_r_data)
 	$guard (~q_empty) $call setQueuePointers (q_base_address write_index next_ri) ()
-	$guard (~q_empty) $call updateTotalMessages (q_base_address (total_msgs - $one<32>)) ()
+	//$guard (~q_empty) $call updateTotalMessages (q_base_address (total_msgs - $one<32>)) ()
 	$rreport(popFromQueue pop_data q_base_address q_r_data q_empty write_index read_index next_ri)
 
 	$barrier
@@ -89,18 +89,18 @@ $is
 				 (q_base_address + 24 ) $zero<64>) (ba_and_misc)
 	$volatile misc := ($slice ba_and_misc 31 0)
 
-	$branchblock[loop]
-	{
-		$merge $entry loopback $endmerge
-
-		$call getTotalMessages(q_base_address) (total_msgsI)
-		$volatile q_emptyI := (total_msgsI == 0)
-
-		$volatile misc_one := (misc == 1) // if misc = 1 misc_one = 1
-		$if(misc_one & (~q_emptyI)) $then
-			$place[loopback]
-		$endif
-	}
+	//$branchblock[loop]
+	//{
+	//	$merge $entry loopback $endmerge
+	//
+	//	$call getTotalMessages(q_base_address) (total_msgsI)
+	//	$volatile q_emptyI := (total_msgsI == 0)
+	//
+	//	$volatile misc_one := (misc == 1) // if misc = 1 misc_one = 1
+	//	$if(misc_one & (~q_emptyI)) $then
+	//		$place[loopback]
+	//	$endif
+	//}
 	$volatile lock_n  := (misc == $zero<32>)
 
 	$guard (lock_n) $call acquireLock (q_base_address) (m_ok) 
@@ -109,7 +109,7 @@ $is
 	$call getQueuePointers (q_base_address) (write_index read_index)
 	
 	$call getQueueLength(q_base_address) (Queue_Length)
-	$call getTotalMessages(q_base_address) (total_msgs)
+	//$call getTotalMessages(q_base_address) (total_msgs)
 	$volatile round_off := (write_index == (Queue_Length - 1))
 	$volatile next_wi := ($mux round_off 0 (write_index + 1))
 	
@@ -117,7 +117,7 @@ $is
 	$rreport(pushIntoQueue pushing_to_queue q_w_data write_index read_index next_wi q_full)
 	$guard (~q_full) $call setQueueElement (q_base_address write_index q_w_data) ()
 	$guard (~q_full) $call setQueuePointers (q_base_address next_wi read_index) ()
-	$guard (~q_full) $call updateTotalMessages (q_base_address (total_msgs + $one<32>)) ()
+	//$guard (~q_full) $call updateTotalMessages (q_base_address (total_msgs + $one<32>)) ()
 
 
 	$barrier

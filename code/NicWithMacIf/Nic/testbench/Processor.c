@@ -1,5 +1,6 @@
 // Configs the Registers, Creates Free Buffers, swaps MAC addresses and pushes to the Queues
 
+void readNicReg(void);
 // all these will be moved to header.h
 void cpu_model()
 {
@@ -19,10 +20,10 @@ void cpu_model()
 	
 
 	// Push Buffer Pointers to Free Queue for access by NIC
-	push(FREE_QUEUE , BUF_0);
-	push(FREE_QUEUE , BUF_1);
-	push(FREE_QUEUE , BUF_2);
-	int ret_val = push(FREE_QUEUE , BUF_3);
+	push(FREE_QUEUE , (BUF_0<<4));
+	push(FREE_QUEUE , (BUF_1<<4));
+	push(FREE_QUEUE , (BUF_2<<4));
+	int ret_val = push(FREE_QUEUE , (BUF_3<<4));
 	
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD : pushed buffers to free queue last_ret_val = %d\n",ret_val);
 	// Config NIC Registers
@@ -50,7 +51,7 @@ void cpu_model()
 			//sleep(1);	
 			int k;
 			for(k = 0 ; k < 250000000; k++);
-			//readNicReg();
+			readNicReg();
 		}
 	}
 }

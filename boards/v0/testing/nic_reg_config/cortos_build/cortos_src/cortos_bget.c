@@ -16,10 +16,10 @@ uint8_t* bgetNcramLockAddr = 0;
 void __cortos_bpool() {
   if (bgetLockAddr == 0) {
 
-    bpool(67108864, 524288000);
+    bpool(57344, 102400);
 
     // allocate lock
-    uint8_t* lockStartAddrNc = (uint8_t*)63967232; // non-cacheable
+    uint8_t* lockStartAddrNc = (uint8_t*)53248; // non-cacheable
     allocatedLocksNc[BGET_LOCK_INDEX] = 1;
     bgetLockAddr = lockStartAddrNc + BGET_LOCK_INDEX;
   }
@@ -55,10 +55,10 @@ void cortos_brel(void *buf) {
 
 void __cortos_bpool_ncram() {
   if (bgetNcramLockAddr == 0) {
-    bpool_ncram(4194304, 57343);
+    bpool_ncram(16777216, 56623103);
 
     // allocate lock
-    uint8_t* lockStartAddrNc = (uint8_t*)63967232; // non-cacheable
+    uint8_t* lockStartAddrNc = (uint8_t*)53248; // non-cacheable
     allocatedLocksNc[BGET_NC_LOCK_INDEX] = 1;
     bgetNcramLockAddr = lockStartAddrNc + BGET_NC_LOCK_INDEX;
   }

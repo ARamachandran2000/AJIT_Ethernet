@@ -1,10 +1,11 @@
-// Write Memory related threads, functions here
-//#include "InterfaceDataStructures_Utils.h"
-//#include<pthreadUtils.h>
-// 
-#define NUMBER_OF_LOCKS 8 // should be multiple of 8
-#define MEM_SIZE (QUEUE_LENGTH * 3) + (BUF_SIZE*NUM_OF_BUFFERS) + (2*NUMBER_OF_LOCKS) + 256 // 256 extra bytes
 
+
+#define NUMBER_OF_LOCKS 8 // should be multiple of 8
+
+//			64		80		8		8	
+#define MEM_SIZE ((QUEUE_LENGTH*3) + (BUF_SIZE*NUM_OF_BUFFERS) + (2*NUMBER_OF_LOCKS) + 256) // 256 extra bytes
+//			48		320				16		256
+// 728
 // 3 queues(free_q, tx_q, rx_q)
 // and 16 buffers.
 uint8_t memory_array[MEM_SIZE]; // 
@@ -12,11 +13,14 @@ uint8_t memory_array[MEM_SIZE]; //
 // keep last 8*NUMBER_OF_LOCKS bytes for NUMBER_OF_LOCKS locks, 
 //			i.e. last NUMBER_OF_LOCKS index of memory_array
 //	memory_array[MEM_SIZE-NUMBER_OF_LOCKS] : memory_array[MEM_SIZE-1] 
-int lock_index = (MEM_SIZE - 2*NUMBER_OF_LOCKS);
+//
+//	mem_end-1	0xl0l1l2l3l4l5l6l7
+//	mem_end 	0x0000000000000000 00
+int lock_index = (MEM_SIZE - 2*NUMBER_OF_LOCKS); //2*
 uint32_t reserve_lock()
 {
 	uint32_t lock_ptr = lock_index;
-	lock_index++;
+	lock_index += 1;
 	return lock_ptr;
 }
 
@@ -39,11 +43,19 @@ uint32_t reserve_lock()
 uint64_t read64(uint64_t addr)
 {
 	uint64_t rdata = 0;
-	int i;	
+	int i,k;	
 	for(i =56 ; i>=0; i-=8 )
 	{
 		rdata = setSliceOfWord_64(rdata,i+7,i,memory_array[addr]);
 		addr = addr + 1;
+	}
+	(DEBUG == 1) && fprintf(stderr,"****Reading Memory[%d] = 0x%08x ****\n",addr,rdata);
+
+	for(k = 0; k < MEM_SIZE;k = k + 8)
+	{
+		(DEBUG == 1) && fprintf(stderr,"reading MEMORY contents[%d:%d] : "
+			"0x%02x %02x %02x %02x %02x %02x %02x %02x\n",k,k+7,memory_array[k],memory_array[k+1],memory_array[k+2],
+			memory_array[k+3],memory_array[k+4],memory_array[k+5],memory_array[k+6],memory_array[k+7]);
 	}
 	return rdata;
 }
@@ -79,11 +91,12 @@ void write64(uint64_t addr, uint64_t wval, uint8_t bmask)
 			j = j - 8;
 	}
 	uint64_t k;
-	(DEBUG == 1) && fprintf(stderr,"****Written Memory[%d] = 0x%x****\n",addr,wval);
+	(DEBUG == 1) && fprintf(stderr,"****Written Memory[%d] = 0x%08x with bmsk = 0x%02x****\n",addr,wval,bmask);
+
 	for(k = 0; k < MEM_SIZE;k = k + 8)
 	{
-		(DEBUG == 1) && fprintf(stderr,"MEMORY contents[%d:%d] : ,"
-			"0x%x%x%x%x%x%x%x%x\n",k,k+7,memory_array[k],memory_array[k+1],memory_array[k+2],
+		(DEBUG == 1) && fprintf(stderr,"writing MEMORY contents[%d:%d] : "
+			"0x%02x %02x %02x %02x %02x %02x %02x %02x\n",k,k+7,memory_array[k],memory_array[k+1],memory_array[k+2],
 			memory_array[k+3],memory_array[k+4],memory_array[k+5],memory_array[k+6],memory_array[k+7]);
 	}
 }
@@ -150,8 +163,6 @@ int accessMemory(uint8_t requester_id,
 					
 			write64(addr,wdata,byte_mask);
 			
-			(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [AccessMemory] : Free buffers,"
-					" are - buf[0,1] = %lx, buf[2,?] = %lx",read64(16),read64(24));
 			(DEBUG == 1) && fprintf(stderr,"CPU_THREAD [AccessMemory] : %d Address = %lx,"
 					" Write Data = %lx, Memory Data = %lx, Byte Mask = %lx, Addr = %lx. \n",requester_id,
 					addr,wdata,read64(72),byte_mask,addr);
@@ -174,16 +185,7 @@ void getReqFromTester(  uint8_t requester_id,
 	// pipes
 	char req_pipe0[30], req_pipe1[30];
 	sprintf(req_pipe0,"mem_req%d_pipe0",(int)requester_id);//64 bit wide
-	sprintf(req_pipe1,"mem_req%d_pipe1",(int)requester_id);//64 bit wide
-
-	// wait for lock if not available
-	/*while(memory_lock_status[0] || memory_lock_status[1]){
-		if(memory_lock_status[requester_id])
-			break;
-		(DEBUG == 1) && fprintf(stderr,"Memory locked for requester = %d,,"
-		" lost_status = {0:%d,1:%d}\n",requester_id,memory_lock_status[0],memory_lock_status[1]);
-	}*/
-	
+	sprintf(req_pipe1,"mem_req%d_pipe1",(int)requester_id);//64 bit wide	
 	
 	uint64_t req1;
 	// read pipes
@@ -195,16 +197,12 @@ void getReqFromTester(  uint8_t requester_id,
 			" req1 = %lx from pipe = %s\n",requester_id,req1,req_pipe1);
 	*(lock)  = (req1 >> 45) & 0x01; 
 	*(rwbar) = (req1 >> 44) & 0x01;
-	*(addr) = req1 & 0xfffffffff;
+	*(addr) = (req1 & 0xffffffff8) ;
 	*(bmask) = (req1 >> 36) & 0xff;
 	(DEBUG == 1) && fprintf(stderr, "CPU_THREAD [getReqFromTester] : Req_id:%d"
 			" req1 = %lx\t wdata = 0x%lx,lock = %lx,rwbar = %lx, addr = %lx,"
 			" bmask=%lx.\n",requester_id,req1,*(wdata),*(lock),*(rwbar),*(addr),*(bmask));
 
-	// assign lock bit
-	//pthread_mutex_lock(&mutex_acb_mux);
-	//memory_lock_status[requester_id] = *(lock);
-	//pthread_mutex_unlock(&mutex_acb_mux);
 }
 
 // sends response to pipes(corresping to requester_id)
@@ -257,8 +255,8 @@ void cpuMemoryServiceDaemon()
 
 	uint8_t cpu_id = 0;
 	uint64_t i;
-	(DEBUG == 1) && fprintf(stderr, "Queue_length = %d for Num. of buffers = %d\n",QUEUE_LENGTH,NUM_OF_BUFFERS);
-	(DEBUG == 1) && fprintf(stderr, "Rx_Queue = %d, Tx_QUEUE = %d,Buffers= %d\t%d\t%d\n",RX_QUEUE,TX_QUEUE,BUF_0,BUF_1,BUF_2);
+	(DEBUG == 0) && fprintf(stderr, "Queue_length = %d for Num. of buffers = %d\n",QUEUE_LENGTH,NUM_OF_BUFFERS);
+	(DEBUG == 0) && fprintf(stderr, "Rx_Queue = %d, Tx_QUEUE = %d,Buffers= %d\t%d\t%d\n",RX_QUEUE,TX_QUEUE,BUF_0,BUF_1,BUF_2);
 	for(i = 0; i < MEM_SIZE; i++ )
 	{
 		memory_array[i] = 0;

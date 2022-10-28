@@ -34,6 +34,8 @@ $module [transmitEngineDaemon] $in () $out () $is
 			// Read tx_queue[tx_q_index]
 			$call getTxPacketPointerFromServer (tx_q_index) (pkt_pointer tx_flag)
 			
+			$guard(~tx_flag)
+				$call AccessRegister ($zero<1> (~$zero<4>) 26 pkt_pointer) (ignore_resp0)
 			
 				
 			// if tx_flag 
@@ -44,6 +46,7 @@ $module [transmitEngineDaemon] $in () $out () $is
 			$volatile push_pointer_back_to_free_Q := ((~tx_flag) & transmitted_flag)
 			
 			$rreport(transmitEngineDaemon pushing_back_to_free_queue push_pointer_back_to_free_Q pkt_pointer)
+			$call AccessRegister ($zero<1> (~$zero<4>) 39 ($bitcast ($uint<32>) push_pointer_back_to_free_Q)) (ignore_resp1)
 			// push packet pointer to free queue
 			$guard (push_pointer_back_to_free_Q)
 				$call pushIntoQueue ($one<1> FREE_Q pkt_pointer) (push_status)
@@ -87,7 +90,8 @@ $module [getTxPacketPointerFromServer]
 	//		     ( rwbar  bmask       index	       wdata  ) (pointerToBuffer    )
 	$call AccessRegister ($one<1> (~$zero<4>) register_index $zero<32>) (tx_queue_pointer_32)
 	
-	$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
+	$volatile tx_queue_pointer_36 :=  ($concat $zero<4> tx_queue_pointer_32) 
+	//$volatile tx_queue_pointer_36 :=  ($concat tx_queue_pointer_32 $zero<4>) 
 	
 	$call popFromQueue ($one<1> tx_queue_pointer_36) (pkt_pointer status)
 
@@ -103,10 +107,13 @@ $module [transmitPacket]
 	$in (packet_pointer: $uint<32>) $out (status: $uint<1>) $is
 {
 	// read packet information from packet buffer.
-	$volatile control_data_addr := ($bitcast ($uint<36>) ($concat ($slice packet_pointer 31 0) $zero<4>)) 
+	$volatile control_data_addr := ($concat $zero<4> packet_pointer) 
+	//$volatile control_data_addr := ($bitcast ($uint<36>) ($concat ($slice packet_pointer 31 0) $zero<4>)) 
 	$rreport(transmitPacket control_data_addr_is packet_pointer control_data_addr)	
 	$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK control_data_addr $zero<64>) (control_data)
 	
+	$call AccessRegister ($zero<1> (~$zero<4>) 40 ($slice control_data 31 0)) (ignore_resp1)
+
 	// get packet_size and tkeep(bytemask) of last word
 	$volatile $split (control_data 44 8 8 ) (unused packet_size last_tkeep)
 	$rreport(transmitPacket control_data_received_is packet_size last_tkeep)	
@@ -117,14 +124,20 @@ $module [transmitPacket]
 			$phi count_down := (packet_size - 16) $on $entry ncount_down $on $loopback
 			//packet starts after 3 words(64 bit) in buffer
 			$phi mem_addr := (control_data_addr + 24) $on $entry nmem_addr $on $loopback
+			$phi chunk_cnt := $zero<6> $on $entry nchunk_cnt $on $loopback
 		$endmerge
 		// read packet data
 		$call accessMemory ($zero<1> $one<1> FULL_BYTE_MASK mem_addr $zero<64>) (data)
 		
+		//DEBUG
+		//$call AccessRegister ($zero<1> (~$zero<4>) (42+chunk_cnt) ($slice data 31 0)) (ignore_resp3)
+		//$call AccessRegister ($zero<1> (~$zero<4>) (41+chunk_cnt) ($slice data 63 32)) (ignore_resp4)
 		// will require to calculate IP-header checksum in future
  
 		// transmit packet to MAC.
 		nic_to_mac_transmit_pipe := ($concat $zero<1> data FULL_BYTE_MASK)
+
+		$call AccessRegister ($zero<1> (~$zero<4>) 53 ($slice mem_addr 31 0)) (ignore_resp5)
 	
 		// compute next count down and next memory address.
 		$volatile ncount_down := (count_down - 8)
@@ -132,6 +145,9 @@ $module [transmitPacket]
 		
 		$rreport(transmitPacket count_down_ data count_down ncount_down mem_addr nmem_addr)
 		$volatile not_last_word := (ncount_down > 8)
+
+
+		$volatile nchunk_cnt := (chunk_cnt + 2)
 		// loop till last word
 		$while not_last_word
 		

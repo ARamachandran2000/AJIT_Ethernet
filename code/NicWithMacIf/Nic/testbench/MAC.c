@@ -5,8 +5,8 @@
 #define MAX_PACKET_LENGTH_IN_BYTES	1500
 
 // lets have static address for now
-uint64_t destination_mac_address = 1;
-uint64_t source_mac_address = 2;
+uint64_t destination_mac_address = 111;
+uint64_t source_mac_address = 222;
 
 int __err_flag_ = 0; 
 // This function genreates and transmits packet from MAC to NIC

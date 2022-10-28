@@ -23,29 +23,36 @@ $is
 		$rreport(ReceiveEngineDaemon waiting_for_control)
 		$merge $entry not_enabled_yet_loopback disable_loopback $endmerge
 		
-		// If not enabled yet -> Loopback
-		$if (~(CONTROL_REGISTER [] 0)) $then
-			$place [not_enabled_yet_loopback]
+			// If not enabled yet -> Loopback
+			$if (~(CONTROL_REGISTER [] 0)) $then
+				$place [not_enabled_yet_loopback]
 		$endif
 
 		$rreport(ReceiveEngineDaemon got_the__control )
 
 		// Once enabled start processing
 		$dopipeline $depth 31 $fullrate
-		$merge $entry $loopback $endmerge
+		$merge $entry $loopback 
+				// for Debug
+				$phi pkt_cnt := $zero<32> $on $entry npkt_cnt $on $loopback
+		$endmerge
 
 		// Step 1 : Pop From Free Queue -> If not empty (Success indicated by status) 
 		$rreport(ReceiveEngineDaemon called_pop_From_queue )
 		$call popFromQueue ($one<1> FREE_Q) (rx_buffer_pointer_32 status)
 		$rreport(ReceiveEngineDaemon rx_buffer rx_buffer_pointer_32) 
-		
+
+				// DEBUG purpose
+				$guard(~status)
+					$call AccessRegister ($zero<1> (~$zero<4>) 24 rx_buffer_pointer_32) (ignore_resp0)
+
 		// convert 32 bit 16-byte aligned address to 36 bit physical address.
-		$volatile rx_buffer_pointer_36 :=  ($concat rx_buffer_pointer_32 $zero<4>)
+		$volatile rx_buffer_pointer_36 :=  ($concat $zero<4> rx_buffer_pointer_32)
 		$rreport(ReceiveEngineDaemon rx_buffer_val rx_buffer_pointer_36)
 		
 		// Step 2 : If pop was successful then start loading the buffer
 		$rreport(ReceiveEngineDaemon calling_loadBuffer status rx_buffer_pointer_36 rx_buffer_pointer_32)
-		
+		$barrier
 		$guard (~status)// 0 = success
 			$call loadBuffer (rx_buffer_pointer_36) (bad_packet_identifier)
 
@@ -56,15 +63,21 @@ $is
 		$volatile free_flag := ((~status) & bad_packet_identifier)
 		$volatile cond := (ok_flag == 1)
 		
-		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag cond)		
-		$rreport(ReceiveEngineDaemon running_ok_flag)	
 		
+				// for Debug
+				$guard(ok_flag)
+					$call AccessRegister ($zero<1> (~$zero<4>) 25 pkt_cnt) (ignore_resp1)
+					$volatile npkt_cnt := ($mux ok_flag (pkt_cnt + $one<32>)  pkt_cnt) 
+
+		$rreport(ReceiveEngineDaemon populating_rx_queue ok_flag cond)		
+		$rreport(ReceiveEngineDaemon running_ok_flag)
+	
 		$guard (ok_flag) 
 			$call populateRxQueue (rx_buffer_pointer_36) ()
 
 		$rreport(ReceiveEngineDaemon pushing_into_free_q free_flag )
 		$guard (free_flag) 
-			$call pushIntoQueue ($one<1> FREE_Q ($slice rx_buffer_pointer_36 35 4)) (push_status) 
+			$call pushIntoQueue ($one<1> FREE_Q ($slice rx_buffer_pointer_36 31 0)) (push_status) 
 
 		$rreport(ReceiveEngineDaemon completed_iteration_in_receive_engine )
 		
@@ -100,10 +113,10 @@ $is
 	
 	
 
-		$volatile rx_queue_pointer_36 :=  ($concat rx_queue_pointer_32 $zero<4>)	
+		$volatile rx_queue_pointer_36 :=  ($concat $zero<4> rx_queue_pointer_32)	
 		$rreport(populateRxQueue got_rx_queue_pointer_pushing_to_rx_queue rx_queue_pointer_32 rx_queue_pointer_36 NUMBER_OF_SERVERS)	
 		
-		$call pushIntoQueue ($zero<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 35 4)) (push_status)
+		$call pushIntoQueue ($one<1> rx_queue_pointer_36 ($slice rx_buffer_pointer 31 0)) (push_status)
 
 		n_q_index := ((q_index + 1) & ($bitcast ($uint<6>) (NUMBER_OF_SERVERS - 1)))
 		$rreport(populateRxQueue written_to_rx_queue n_q_index push_status)
@@ -157,18 +170,17 @@ $is
 // Write Ethernet Header to Buffer
 $module [writeEthernetHeaderToMem]
 $in (buf_pointer : $uint<36>)
-$out(buf_position : $uint<36>)
+$out(buf_position_out : $uint<36>)
 $is
 {
-	
 	$branchblock [main]
 	{
-		$dopipeline $depth 15
+		$dopipeline $depth 15 $fullrate
 		$merge $entry $loopback
 			// Write from buffer index 1 i.e (buf_pointer + 8), since ...
 			// index = 0 i.e location buf_pointer is reserved for control
 			//information
-			$phi buf_position := (buf_pointer + 8) $on $entry
+			$phi buf_position :=  (buf_pointer + 8) $on $entry
 				     	 nbuf_position $on $loopback
 					// After storing a packet increment buf_position to
 					// next index
@@ -189,9 +201,12 @@ $is
 		$volatile nbuf_position := (buf_position + 8)
 	// If 2 words are stored, then end
 		$while (nI <= 1)
-	}
+		
+	}(buf_position => buf_position)
+	
+	buf_position_out := buf_position
 
-	$attribute delay 4
+	//$attribute delay 4
 }
 
 
@@ -200,17 +215,16 @@ $module [writePayloadToMem]
 	// Base buffer pointer is used to calculate the packet size
 	// buf_pointer -> Consists of last written buffer location
 $in (base_buf_pointer : $uint<36> buf_pointer : $uint<36>)
-$out(packet_size_32:$uint<8> bad_packet_identifier : $uint<1> last_keep : $uint<8>)
+$out(packet_size_32:$uint<11> bad_packet_identifier : $uint<1> last_keep : $uint<8>)
 $is
 {
-
 	$branchblock[loop] {
 		$dopipeline $depth 15 $fullrate
 			$merge $entry $loopback
 				// Begin loading from buf_pointer + 8 since buf_pointer
 				// has already been written into by Ethernet Header 
 				$phi buf_position := (buf_pointer + 8) $on $entry
-				     		(buf_position + 8) $on $loopback
+				     		nbuf_position $on $loopback //(buf_position + 8) $on $loopback
 
 				// Read Data from Payload Pipe
 				$phi payload_data := nic_rx_to_packet $on $entry, $loopback
@@ -224,6 +238,7 @@ $is
 			$rreport(writePayloadToMem writing_payload_to_mem last_bit wdata wkeep buf_position)
 			$call accessMemory ($zero<1> $zero<1> wkeep buf_position wdata) 
 									   (ignore_return) 
+			$volatile nbuf_position := (buf_position + 8)
 		$while (~last_bit)
 
 	} (wdata => tdata wkeep => tkeep buf_position => buf_position)
@@ -235,10 +250,10 @@ $is
 	// Calculate packet size which is in multiples of 8-bit words stored
 	// Can divide by 8 to get size in 64-bit word multiples
 	// Divide by 4 to get size in 32-bit word multiples	
-	$volatile packet_size_8 := ($bitcast ($uint<8>) (buf_position - base_buf_pointer) )
-	$volatile packet_size_32 := packet_size_8
-	$rreport(writePayloadToMem packet_size_is packet_size_8 packet_size_32)
-
+	$volatile packet_size_11 := ($bitcast ($uint<11>) (buf_position - base_buf_pointer) )
+	$volatile packet_size_32 := packet_size_11
+	$rreport(writePayloadToMem packet_size_is packet_size_11 packet_size_32)
+	
 	// bmask of last word is wkeep
 	$volatile last_keep := tkeep
 	
@@ -246,7 +261,7 @@ $is
 
 // Write the Control Information of stored packet into buffer location 0
 $module [writeControlInformationToMem]
-$in (base_buffer_pointer : $uint<36> packet_size:$uint<8>  last_keep : $uint<8>)
+$in (base_buffer_pointer : $uint<36> packet_size:$uint<11>  last_keep : $uint<8>)
 $out()
 $is
 {

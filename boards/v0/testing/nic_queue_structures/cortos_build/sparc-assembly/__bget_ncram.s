@@ -5,11 +5,17 @@
 	.type	bget_ncram, #function
 	.proc	0120
 bget_ncram:
-	cmp	%o0, 7
+	sra	%o0, 31, %g1
+	srl	%g1, 28, %g1
+	add	%o0, %g1, %g2
+	and	%g2, 15, %g2
+	sub	%g2, %g1, %g1
+	add	%g1, %o0, %o0
+	cmp	%o0, 15
 	bleu	.L9
-	 mov	16, %g3
-	add	%o0, 7, %g4
-	and	%g4, -8, %g4
+	 mov	24, %g3
+	add	%o0, 15, %g4
+	and	%g4, -16, %g4
 	add	%g4, 8, %g4
 	mov	%g4, %g3
 .L2:
@@ -31,7 +37,7 @@ bget_ncram:
 	bl,a	.L11
 	 ld	[%o0+8], %o0
 	sub	%g1, %g3, %g2
-	cmp	%g2, 16
+	cmp	%g2, 24
 	bleu,a	.L7
 	 ld	[%o0+8], %g3
 	st	%g2, [%o0+4]
@@ -47,7 +53,7 @@ bget_ncram:
 	 mov	0, %o0
 .L9:
 	b	.L2
-	 mov	16, %g4
+	 mov	24, %g4
 .L7:
 	ld	[%o0+12], %g2
 	st	%g3, [%g2+8]
@@ -73,7 +79,7 @@ bpool_ncram:
 	st	%o0, [%g1+12]
 	st	%g0, [%o0]
 	ld	[%o0+12], %g1
-	and	%o1, -8, %o1
+	and	%o1, -16, %o1
 	st	%o0, [%g1+8]
 	add	%o1, -8, %o1
 	st	%o1, [%o0+4]

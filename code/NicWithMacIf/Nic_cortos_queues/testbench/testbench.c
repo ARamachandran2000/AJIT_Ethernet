@@ -94,6 +94,7 @@ int main(int argc, char *argv[])
 	// comment this while compiling only c code.	
 	//register_pipes();
 	// declare threads
+	PTHREAD_DECL(mac_enable_checker);
 	PTHREAD_DECL(cpu_thread);
 	PTHREAD_DECL(nicMemoryServiceDaemon);
 	PTHREAD_DECL(cpuMemoryServiceDaemon);
@@ -101,6 +102,7 @@ int main(int argc, char *argv[])
 	PTHREAD_DECL(mac_rx_thread);
 	
 	// create threads
+	PTHREAD_CREATE(mac_enable_checker);
 	PTHREAD_CREATE(cpu_thread);
 	PTHREAD_CREATE(nicMemoryServiceDaemon);
 	PTHREAD_CREATE(cpuMemoryServiceDaemon);
@@ -109,10 +111,12 @@ int main(int argc, char *argv[])
 	
 	// wait 
 	PTHREAD_JOIN(mac_rx_thread);
+	fprintf(stderr,"mac_rx breaked\n");
+	return;
 	PTHREAD_JOIN(nicMemoryServiceDaemon);
 	PTHREAD_JOIN(cpuMemoryServiceDaemon);
 	PTHREAD_JOIN(cpu_thread);
-	PTHREAD_JOIN(mac_rx_thread);
+	PTHREAD_JOIN(mac_tx_thread);
 
 	if(!__err_flg_){
 		fprintf(stderr,"\n\nSUCCESS...!!!\n\n");

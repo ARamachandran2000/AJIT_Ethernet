@@ -46,6 +46,7 @@ module mac_engine (
     m_rx_axis_tvalid,
     m_rx_axis_tuser,
     m_rx_axis_tlast,
+    m_rx_axis_tready,
 
     s_tx_axis_resetn,
     s_tx_axis_tdata,
@@ -69,6 +70,7 @@ output reg [KEEP_WIDTH - 1 : 0] m_rx_axis_tkeep;
 output reg m_rx_axis_tvalid;
 output reg m_rx_axis_tuser;
 output reg m_rx_axis_tlast; 
+input m_rx_axis_tready;
 
 input s_tx_axis_resetn;
 input [DATA_WIDTH - 1 : 0] s_tx_axis_tdata;
@@ -123,26 +125,47 @@ begin
         case (rx_state)
         ETH_0:
                 begin
+		if(m_rx_axis_tready == 1)
+		begin
                     m_rx_axis_tvalid <= 1;
                     m_rx_axis_tdata <= {source_mac_address[15:0],destination_mac_address};
                     m_rx_axis_tkeep <= 8'hFF;
                     m_rx_axis_tuser <= 0;
                     m_rx_axis_tlast <= 0;
-                    rx_state <= ETH_1;                  
+                    rx_state <= ETH_1;
+		end
+	
+		else
+		begin
+		   m_rx_axis_tvalid <= 0;
+		   rx_state <= ETH_0;
+		end               
                 end 
         
         ETH_1:
                 begin
+		if(m_rx_axis_tready == 1)
+		begin
                     m_rx_axis_tvalid <= 1;
                     m_rx_axis_tdata <= {8'h0,IHL,version,length_in_bytes,source_mac_address[47 : 16]};
                     m_rx_axis_tkeep <= 8'hFF;
                     m_rx_axis_tuser <= 0;
                     m_rx_axis_tlast <= 0;
-                    rx_state <= DATA;          
+                    rx_state <= DATA;
+		end
+
+		else
+		begin
+		   m_rx_axis_tvalid <= 0;
+		   rx_state <= ETH_1;
+		end 
+          
                 end
 
         DATA:
-                begin
+            begin
+		    if(m_rx_axis_tready == 1)
+		    begin
                     
                     if(pkt_cnt < (length_in_bytes - 8))
                     begin
@@ -151,23 +174,40 @@ begin
                         m_rx_axis_tkeep <= 8'hFF;
                         m_rx_axis_tuser <= 0;
                         m_rx_axis_tlast <= 0;
-                        pkt_cnt <= pkt_cnt + 8;
+                        pkt_cnt = pkt_cnt + 8;
 
                         if(pkt_cnt >= (length_in_bytes - 8))
                             rx_state <= LAST;               
                     end
+		   end
+
+		else
+		begin
+		   m_rx_axis_tvalid <= 0;
+		   rx_state <= DATA;
+		end 
 
                     
                 end
 
         LAST:
                 begin
+		if(m_rx_axis_tready == 1)
+		begin
                     m_rx_axis_tvalid <= 1;
                     m_rx_axis_tdata <= {8'h0,pkt_cnt};
                     m_rx_axis_tkeep <= (last_tkeep - 1);
                     m_rx_axis_tuser <= 1; //Good Packet
                     m_rx_axis_tlast <= 1;
-                    pkt_cnt <= 0;   
+                    pkt_cnt <= 0;
+                    rx_state <= ETH_0;
+		end
+
+		else
+		begin
+		   m_rx_axis_tvalid <= 0;
+		   rx_state <= LAST;
+		end    
                 end
 
         default: ;

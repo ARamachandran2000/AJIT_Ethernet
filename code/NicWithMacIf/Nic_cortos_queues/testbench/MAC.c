@@ -1,12 +1,9 @@
 
-// add includes
-//#include "header.h"
-
 #define MAX_PACKET_LENGTH_IN_BYTES	1500
 
 // lets have static address for now
-uint64_t destination_mac_address = 1;
-uint64_t source_mac_address = 2;
+uint64_t destination_mac_address = 1;//0x8000207A3F3E;
+uint64_t source_mac_address = 2;//0x800020203AAE;
 
 int __err_flag_ = 0; 
 // This function genreates and transmits packet from MAC to NIC
@@ -80,7 +77,8 @@ void macToNicData(void)
 		{
 			// send dummy data (1 to packet_len)
 			// will be usefull while checking back
-			data_64 = ((i+pkt_cnt) << 8) | (0xff);
+			data_64 = (i << 8) | (0xff); 
+			//data_64 = ((i+pkt_cnt) << 8) | (0xff);
 			data_16 = 0; 
 			write_uint64(pipe_to_send0, data_64);
 			write_uint16(pipe_to_send1, data_16);	
@@ -89,7 +87,8 @@ void macToNicData(void)
 		// for last 64 bit word , tlast = 1;
 		// clear all bits
 		data_64 = 0; data_16 = 0;
-		data_64 = ((i+pkt_cnt) << 8) |(uint8_t)((2<<(length_in_bytes - i - 1)) - 1);
+		data_64 = (i << 8) |(uint8_t)((2<<(length_in_bytes - i - 1)) - 1);
+		//data_64 = ((i+pkt_cnt) << 8) |(uint8_t)((2<<(length_in_bytes - i - 1)) - 1);
 		
 		// tlast = 1
 		data_16 = (1 << 8); 
@@ -157,12 +156,12 @@ void nicToMacData(void)
 			data_64 = read_uint64(pipe_to_recv0);
 			data_16 = read_uint16(pipe_to_recv1);
 			//fprintf(stderr,"MAC_RX: Pipe read complete\n");
-			if(((data_64 >> 8) & 0xffffffffffffffff) != (i+pkt_cnt)){
+			if(((data_64 >> 8) & 0xffffffffffffffff) != i){ //(i+pkt_cnt)
 				fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch, Expected = %d,"
-						" Received = %d\n",pkt_cnt, (i+pkt_cnt),data_64);
-				__err_flag_ = 1;
+						" Received = %d or 0x%lx\n",pkt_cnt, (i+pkt_cnt),(data_64>>8),(data_64>>8));
+				//__err_flag_ = 1;
 				i += 8;
-				break;
+				//break;
 			}
 		}
 		// read last word
@@ -170,15 +169,32 @@ void nicToMacData(void)
 		data_64 = read_uint64(pipe_to_recv0);
 		data_16 = read_uint16(pipe_to_recv1);
 		
-		if(((data_64 >> 8) & 0xffffffffffffffff) != (i+pkt_cnt))
+		if(((data_64 >> 8) & 0xffffffffffffffff) != i) // (i+pkt_cnt)
 		{	
 			fprintf(stderr,"MAC_RX : Packet[%d], Data Missmatch Expected = %d,"
-					" Received = %d or 0x%lx\n",pkt_cnt, (i+pkt_cnt),data_64,data_64);
-			__err_flag_ = 1;
-			break;
+					" Received = %d or 0x%lx\n",pkt_cnt, (i+pkt_cnt),(data_64>>8),(data_64>>8));
+			//__err_flag_ = 1;
+			//break;
 		}
 		fprintf(stderr,"MAC_RX : Recived Packet[%d]\n",pkt_cnt);
 		pkt_cnt++;
 	}
 	}
 }
+
+
+void mac_enable_checker()
+{
+
+	fprintf(stderr,"reading mac_enable\n");
+	uint8_t mac_enable = 0;
+	while(1)
+	{
+		fprintf(stderr,"reading mac_enable\n");
+		mac_enable= read_uint8("mac_test_data");
+		fprintf(stderr,"mac_enable = %d\n",mac_enable);
+		MAC_ENABLE = mac_enable;	
+
+	}
+	
+}DEFINE_THREAD(mac_enable_checker);

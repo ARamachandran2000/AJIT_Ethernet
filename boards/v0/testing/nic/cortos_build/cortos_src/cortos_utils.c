@@ -45,7 +45,7 @@ char cortos_get_thread_id() {
 }
 
 uint8_t cortos_IsNcRamAddr(void* addr) {
-  return (addr >= 2097152 && addr <= 4194303);
+  return (addr >= 3145728 && addr <= 4194303);
 }
 
 // defined in cortos_ee_printf.c

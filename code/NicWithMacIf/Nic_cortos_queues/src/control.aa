@@ -66,9 +66,6 @@
 //22		  0x58		NIC got the control
 //				(0 -> no control, 1-> got control)
 //
-//23	    	  0x5c		--
-//.
-//.
 //.
 //63		  0xfc		--
 //
@@ -80,6 +77,8 @@
 // Request Packet Format -> rwbar (1) bmask(4) index (6) wdata(32)
 // Response Packet Format -> Error-bit(1) rdata(32)
 $storage nic_registers: $array [64] $of $uint<32>
+
+
 
 // Updates the value in the register based on the byte-mask -> If a particular
 //bit in the byte mask is 1, then corresponding byte in register is updated with new value 
@@ -112,6 +111,16 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 {
 	$rreport(SoftwareRegisterAccessDaemon started_SoftwareRegisterAccessDaemon)
 	$branchblock[loop] {
+
+		$merge $entry not_mac_enable_loopback
+
+		$endmerge
+		$rreport(SoftwareRegisterAccessDaemon mac_not_enabled MAC_ENABLE)
+		$if(MAC_ENABLE == 0) $then 
+			$place[not_mac_enable_loopback]
+		$endif	
+
+
 		$dopipeline $depth 31 $fullrate 
 		$merge $entry $loopback 
 
@@ -141,13 +150,16 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			$guard (update_control_register_pipe)
 				CONTROL_REGISTER := nic_registers[0]
 
+			$guard (update_control_register_pipe)
+				enable_mac := (nic_registers[0]  == $one<32>)
+				
 			// Get 32 bit address
 			$guard(update_free_q_pipe)
 				FREE_Q_32 := nic_registers[18]
 
 			// Convert Pointer to 36-bit physical address
 			$guard(update_free_q_pipe)
-				FREE_Q := ($bitcast ($uint<36>) ($concat FREE_Q_32 $zero<3>))
+				FREE_Q := ($bitcast ($uint<36>) FREE_Q_32)
 
 			$guard(update_server_num)
 				NUMBER_OF_SERVERS := nic_registers[1]
@@ -180,7 +192,7 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 
 			$volatile rdata := ($mux rwbar rval $zero<32>)
 			$volatile resp  := ($concat $zero<1> rdata) // zero<1> -> No error
-
+	
 			
 			// Send response
 			AFB_NIC_RESPONSE := resp
@@ -192,7 +204,27 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 
 $module [NicRegisterAccessDaemon] $in () $out () $is
 {
+	
+	$branchblock[loop1]{
+		$merge $entry loopback
+			$phi I := $zero<7> $on $entry nI $on loopback
+		$endmerge
+
+		nic_registers[I] := $zero<32>
+		$volatile nI := (I + 1)
+		
+		MAC_ENABLE := ($mux (I == 63) 1 0)
+		
+		$if(I < 63) $then
+			$place [loopback]
+		//$else
+		//	MAC_ENABLE := 1
+		$endif
+	}
+	$barrier
+
 	$branchblock[loop] {
+
 		$dopipeline $depth 31 $fullrate
 		$merge $entry $loopback $endmerge
 

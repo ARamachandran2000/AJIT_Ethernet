@@ -17,7 +17,7 @@ $is
 		response := MEMORY_TO_NIC_RESPONSE
 		$volatile $split (response 1 64) (err rdata)
 		$rreport(accessMemory byte_mask bmask rwbar addr wdata err)
-		
+
 		$while(err == 1)
 	}
 }

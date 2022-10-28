@@ -1,6 +1,6 @@
 //
 // Utilities
-//    Pop a uint32_t from the queue.  Return status = 1 on success.
+//    Pop a uint32_t from the queue.  Return status = 0 on success.
 // 
 $module [popFromQueue] 
 	$in  (lock : $uint<1> q_base_address : $uint<36> ) $out (q_r_data: $uint<32>  status: $uint<1>)
@@ -136,6 +136,7 @@ $module  [getQueueElement]
 $is
 {
 	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16) )
+	// RESTORE
 	$volatile element_pair_address := (buffer_address + ($bitcast ($uint<36>) ($concat ($slice read_pointer 31 1) $zero<3>)))
 	$call accessMemory ($zero<1> $one<1>  (~$zero<8>) element_pair_address $zero<64>) (element_pair)
 
@@ -157,6 +158,7 @@ $module  [setQueueElement]
 $is
 {
 	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 16) )
+	// RESTORE
 	$volatile element_pair_address := 
 		(buffer_address + ($bitcast ($uint<36>) ($concat ($slice write_pointer 31 1) $zero<3>)))
 

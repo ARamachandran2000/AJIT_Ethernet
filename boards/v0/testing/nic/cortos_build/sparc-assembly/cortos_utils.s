@@ -59,9 +59,9 @@ cortos_get_thread_id:
 	.type	cortos_IsNcRamAddr, #function
 	.proc	014
 cortos_IsNcRamAddr:
-	sethi	%hi(-2097152), %g1
+	sethi	%hi(-3145728), %g1
 	add	%o0, %g1, %o0
-	sethi	%hi(2096128), %g2
+	sethi	%hi(1047552), %g2
 	or	%g2, 1023, %g2
 	cmp	%g2, %o0
 	jmp	%o7+8

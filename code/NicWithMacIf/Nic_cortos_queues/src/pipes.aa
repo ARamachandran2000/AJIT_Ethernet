@@ -1,5 +1,6 @@
 // Memory Access Pipe
 
+$pipe enable_mac : $uint<1> $depth 1	//16
 
 $pipe NIC_TO_MEMORY_REQUEST : $uint<110> $depth 2//16
 $pipe MEMORY_TO_NIC_RESPONSE : $uint<65> $depth 2//16

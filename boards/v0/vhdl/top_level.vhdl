@@ -125,6 +125,7 @@ architecture structure of top_level is
 		rx_axis_tvalid : in std_logic;
 		rx_axis_tuser : in std_logic;
 		rx_axis_tlast : in std_logic;
+		rx_axis_tready : out std_logic;
                
 		RX_FIFO_pipe_read_data : out std_logic_vector(72 downto 0);
 		RX_FIFO_pipe_read_req : in std_logic;
@@ -156,6 +157,7 @@ architecture structure of top_level is
 		m_rx_axis_tvalid : out std_logic;
 		m_rx_axis_tuser : out std_logic;
 		m_rx_axis_tlast : out std_logic;
+		m_rx_axis_tready : in std_logic;
 
 		s_tx_axis_resetn : in std_logic;
 		s_tx_axis_tdata : in std_logic_vector(63 downto 0);
@@ -327,6 +329,7 @@ architecture structure of top_level is
    signal rx_axis_tvalid : std_logic;
    signal rx_axis_tuser : std_logic;
    signal rx_axis_tlast : std_logic;
+   signal rx_axis_tready : std_logic;
    
    signal tx_axis_resetn : std_logic;
    signal tx_axis_tdata : std_logic_vector (63 downto 0);
@@ -336,9 +339,12 @@ architecture structure of top_level is
    signal tx_axis_tlast : std_logic;
    signal tx_axis_tready : std_logic;
    
+   signal one_bit_one : std_logic_vector(0 downto 0);
    -- ADDITIONAL SIGNALS FOR MAC + NIC + SWITCH 
 begin
 
+	-- make '1'
+   one_bit_one(0) <= '1';
 
    -- tie it off for this board.
    INVALIDATE_REQUEST_pipe_write_req(0) <= '0'; 
@@ -577,6 +583,8 @@ begin
                rx_axis_tvalid => rx_axis_tvalid, -- in
                rx_axis_tuser => rx_axis_tuser, -- in
                rx_axis_tlast => rx_axis_tlast, -- in
+	       rx_axis_tready => rx_axis_tready,
+
                RX_FIFO_pipe_read_data => RX_FIFO_pipe_read_data, -- out
                RX_FIFO_pipe_read_req => RX_FIFO_pipe_read_req(0), -- in
                RX_FIFO_pipe_read_ack => RX_FIFO_pipe_read_ack(0) -- out
@@ -605,6 +613,7 @@ begin
 		m_rx_axis_tvalid => rx_axis_tvalid, -- out
 		m_rx_axis_tuser => rx_axis_tuser, -- out
 		m_rx_axis_tlast => rx_axis_tlast, -- out
+		m_rx_axis_tready => rx_axis_tready,
 
 		s_tx_axis_resetn => tx_axis_resetn, -- in
 		s_tx_axis_tdata => tx_axis_tdata, -- in
@@ -700,7 +709,7 @@ begin
 		mac_to_nic_data_pipe_write_req => RX_FIFO_pipe_read_ack, -- in
 		mac_to_nic_data_pipe_write_ack => RX_FIFO_pipe_read_req, -- out
 		nic_to_mac_transmit_pipe_pipe_read_data => TX_FIFO_pipe_write_data, --out
-		nic_to_mac_transmit_pipe_pipe_read_req => TX_FIFO_pipe_write_req, -- in
+		nic_to_mac_transmit_pipe_pipe_read_req => one_bit_one,--TX_FIFO_pipe_write_req, -- in
 		nic_to_mac_transmit_pipe_pipe_read_ack => TX_FIFO_pipe_write_ack -- out
 	); 
 

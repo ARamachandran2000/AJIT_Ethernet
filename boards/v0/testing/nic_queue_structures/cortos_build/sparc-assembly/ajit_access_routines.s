@@ -262,6 +262,7 @@ ajit_configure_i2c_master:
 	sethi	%hi(-52224), %g1
 	srl	%o1, 2, %o1
 	or	%g1, 512, %g1
+	mov	0, %o0
 	jmp	%o7+8
 	 st	%o1, [%g1]
 	.size	ajit_configure_i2c_master, .-ajit_configure_i2c_master
@@ -333,7 +334,7 @@ ajit_i2c_master_access_slave_memory_device:
 	.proc	016
 __ajit_read_core_thread_id_word__:
 #APP
-! 149 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 150 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr29, %o0 
 ! 0 "" 2
 #NO_APP
@@ -341,12 +342,89 @@ __ajit_read_core_thread_id_word__:
 	 nop
 	.size	__ajit_read_core_thread_id_word__, .-__ajit_read_core_thread_id_word__
 	.align 4
+	.global ajit_read_thread_descriptor
+	.type	ajit_read_thread_descriptor, #function
+	.proc	020
+ajit_read_thread_descriptor:
+	save	%sp, -96, %sp
+#APP
+! 161 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	rd %asr28, %g1 
+! 0 "" 2
+#NO_APP
+	srl	%g1, 30, %g3
+	cmp	%g3, 3
+	be	.L28
+	 mov	32, %g2
+	cmp	%g3, 2
+	be	.L28
+	 mov	16, %g2
+	xor	%g3, 1, %g3
+	subcc	%g0, %g3, %g0
+	subx	%g0, 0, %g2
+	and	%g2, 252, %g2
+	add	%g2, 8, %g2
+.L28:
+	srl	%g1, 28, %g3
+	and	%g3, 3, %g3
+	cmp	%g3, 3
+	be	.L33
+	 stb	%g2, [%i0]
+	cmp	%g3, 2
+	be	.L29
+	 mov	16, %g2
+	xor	%g3, 1, %g3
+	subcc	%g0, %g3, %g0
+	subx	%g0, 0, %g2
+	and	%g2, 252, %g2
+	add	%g2, 8, %g2
+.L29:
+	srl	%g1, 26, %o4
+	srl	%g1, 24, %o5
+	srl	%g1, 20, %o7
+	srl	%g1, 16, %i1
+	srl	%g1, 12, %i2
+	srl	%g1, 9, %i3
+	srl	%g1, 7, %i4
+	srl	%g1, 5, %i5
+	srl	%g1, 2, %g4
+	srl	%g1, 1, %g3
+	and	%o4, 3, %o4
+	and	%o5, 3, %o5
+	and	%o7, 15, %o7
+	and	%i1, 15, %i1
+	and	%i2, 15, %i2
+	and	%i3, 7, %i3
+	and	%i4, 3, %i4
+	and	%i5, 3, %i5
+	and	%g4, 1, %g4
+	and	%g3, 1, %g3
+	and	%g1, 1, %g1
+	stb	%g2, [%i0+1]
+	stb	%o4, [%i0+2]
+	stb	%o5, [%i0+3]
+	stb	%o7, [%i0+4]
+	stb	%i1, [%i0+5]
+	stb	%i2, [%i0+6]
+	stb	%i3, [%i0+7]
+	stb	%i4, [%i0+8]
+	stb	%i5, [%i0+9]
+	stb	%g4, [%i0+10]
+	stb	%g3, [%i0+11]
+	stb	%g1, [%i0+12]
+	jmp	%i7+8
+	 restore
+.L33:
+	b	.L29
+	 mov	32, %g2
+	.size	ajit_read_thread_descriptor, .-ajit_read_thread_descriptor
+	.align 4
 	.global ajit_get_core_and_thread_id
 	.type	ajit_get_core_and_thread_id, #function
 	.proc	020
 ajit_get_core_and_thread_id:
 #APP
-! 149 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 150 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr29, %g1 
 ! 0 "" 2
 #NO_APP
@@ -361,7 +439,7 @@ ajit_get_core_and_thread_id:
 	.proc	016
 __ajit_read_cycle_count_register_high__:
 #APP
-! 173 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 203 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr30, %o0 
 ! 0 "" 2
 #NO_APP
@@ -374,7 +452,7 @@ __ajit_read_cycle_count_register_high__:
 	.proc	016
 __ajit_read_cycle_count_register_low__:
 #APP
-! 180 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 210 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr31, %o0 
 ! 0 "" 2
 #NO_APP
@@ -387,10 +465,10 @@ __ajit_read_cycle_count_register_low__:
 	.proc	017
 __ajit_get_clock_time:
 #APP
-! 180 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 210 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr31, %o4 
 ! 0 "" 2
-! 173 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 203 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr30, %g1 
 ! 0 "" 2
 #NO_APP
@@ -409,10 +487,10 @@ __ajit_get_clock_time:
 	.proc	020
 __ajit_sleep__:
 #APP
-! 180 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 210 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr31, %o2 
 ! 0 "" 2
-! 173 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 203 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr30, %g1 
 ! 0 "" 2
 #NO_APP
@@ -424,14 +502,14 @@ __ajit_sleep__:
 	or	%g1, %o2, %o4
 	addx	%o4, 0, %o0
 	cmp	%o0, %o4
-	bleu	.L42
+	bleu	.L54
 	 nop
-.L39:
+.L51:
 #APP
-! 180 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 210 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr31, %o4 
 ! 0 "" 2
-! 173 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 203 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	rd %asr30, %g1 
 ! 0 "" 2
 #NO_APP
@@ -440,15 +518,15 @@ __ajit_sleep__:
 	mov	0, %o4
 	or	%g1, %o4, %o4
 	cmp	%o0, %o4
-	bgu	.L39
+	bgu	.L51
 	 or	%g3, %o5, %o5
 	cmp	%o0, %o4
-.L42:
-	bne	.L43
+.L54:
+	bne	.L55
 	 cmp	%o1, %o5
-	bgu	.L39
+	bgu	.L51
 	 nop
-.L43:
+.L55:
 	jmp	%o7+8
 	 nop
 	.size	__ajit_sleep__, .-__ajit_sleep__
@@ -462,7 +540,7 @@ __ajit_set_mmu_default_cacheable_bit__:
 	addx	%g0, 0, %g1
 	sll	%g1, 8, %g1
 #APP
-! 247 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 277 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g1, [%g2] 4
 	
 ! 0 "" 2
@@ -476,7 +554,7 @@ __ajit_set_mmu_default_cacheable_bit__:
 	.proc	020
 __ajit_store_word_mmu_reg__:
 #APP
-! 258 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 288 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%o1] 4
 	
 ! 0 "" 2
@@ -490,7 +568,7 @@ __ajit_store_word_mmu_reg__:
 	.proc	020
 __ajit_store_word_mmu_bypass__:
 #APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 295 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%o1] 32
 	
 ! 0 "" 2
@@ -505,146 +583,38 @@ __ajit_store_word_mmu_bypass__:
 __ajit_store_word_to_physical_address__:
 	and	%o1, 15, %g3
 	cmp	%g3, 15
-	bleu	.L68
+	bleu	.L80
 	 sll	%g3, 2, %g1
-.L50:
+.L62:
 #APP
-! 280 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 310 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%o2] 32
 	
 ! 0 "" 2
 #NO_APP
 	jmp	%o7+8
 	 nop
-.L68:
-	sethi	%hi(.L66), %g2
-	or	%g2, %lo(.L66), %g2
+.L80:
+	sethi	%hi(.L78), %g2
+	or	%g2, %lo(.L78), %g2
 	ld	[%g2+%g1], %g1
 	jmp	%g1
 	 nop
 	.section	".rodata"
 	.section	".text"
-.L64:
+.L76:
 #APP
-! 322 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 352 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%o2] 46
 	
 ! 0 "" 2
 #NO_APP
 	jmp	%o7+8
 	 nop
-.L65:
+.L77:
 #APP
-! 325 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 355 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%o2] 47
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L51:
-#APP
-! 283 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 33
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L52:
-#APP
-! 286 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 34
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L53:
-#APP
-! 289 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 35
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L54:
-#APP
-! 292 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 36
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L55:
-#APP
-! 295 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 37
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L56:
-#APP
-! 298 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 38
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L57:
-#APP
-! 301 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 39
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L58:
-#APP
-! 304 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 40
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L59:
-#APP
-! 307 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 41
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L60:
-#APP
-! 310 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 42
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L61:
-#APP
-! 313 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 43
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L62:
-#APP
-! 316 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%o2] 44
 	
 ! 0 "" 2
 #NO_APP
@@ -652,7 +622,115 @@ __ajit_store_word_to_physical_address__:
 	 nop
 .L63:
 #APP
+! 313 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 33
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L64:
+#APP
+! 316 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 34
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L65:
+#APP
 ! 319 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 35
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L66:
+#APP
+! 322 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 36
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L67:
+#APP
+! 325 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 37
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L68:
+#APP
+! 328 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 38
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L69:
+#APP
+! 331 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 39
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L70:
+#APP
+! 334 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 40
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L71:
+#APP
+! 337 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 41
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L72:
+#APP
+! 340 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 42
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L73:
+#APP
+! 343 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 43
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L74:
+#APP
+! 346 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%o2] 44
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L75:
+#APP
+! 349 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%o2] 45
 	
 ! 0 "" 2
@@ -662,23 +740,23 @@ __ajit_store_word_to_physical_address__:
 	.align 4
 	.subsection	-1
 	.align 4
-.L66:
-	.word	.L50
-	.word	.L51
-	.word	.L52
-	.word	.L53
-	.word	.L54
-	.word	.L55
-	.word	.L56
-	.word	.L57
-	.word	.L58
-	.word	.L59
-	.word	.L60
-	.word	.L61
+.L78:
 	.word	.L62
 	.word	.L63
 	.word	.L64
 	.word	.L65
+	.word	.L66
+	.word	.L67
+	.word	.L68
+	.word	.L69
+	.word	.L70
+	.word	.L71
+	.word	.L72
+	.word	.L73
+	.word	.L74
+	.word	.L75
+	.word	.L76
+	.word	.L77
 	.previous
 	.size	__ajit_store_word_to_physical_address__, .-__ajit_store_word_to_physical_address__
 	.align 4
@@ -688,146 +766,38 @@ __ajit_store_word_to_physical_address__:
 __ajit_load_word_from_physical_address__:
 	and	%o0, 15, %g3
 	cmp	%g3, 15
-	bleu	.L88
+	bleu	.L100
 	 sll	%g3, 2, %g1
-.L70:
+.L82:
 #APP
-! 344 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 374 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o1] 32, %o0
 	
 ! 0 "" 2
 #NO_APP
 	jmp	%o7+8
 	 nop
-.L88:
-	sethi	%hi(.L86), %g2
-	or	%g2, %lo(.L86), %g2
+.L100:
+	sethi	%hi(.L98), %g2
+	or	%g2, %lo(.L98), %g2
 	ld	[%g2+%g1], %g1
 	jmp	%g1
 	 nop
 	.section	".rodata"
 	.section	".text"
-.L84:
+.L96:
 #APP
-! 386 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 416 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o1] 46, %o0
 	
 ! 0 "" 2
 #NO_APP
 	jmp	%o7+8
 	 nop
-.L85:
+.L97:
 #APP
-! 389 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 419 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o1] 47, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L71:
-#APP
-! 347 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 33, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L72:
-#APP
-! 350 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 34, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L73:
-#APP
-! 353 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 35, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L74:
-#APP
-! 356 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 36, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L75:
-#APP
-! 359 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 37, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L76:
-#APP
-! 362 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 38, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L77:
-#APP
-! 365 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 39, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L78:
-#APP
-! 368 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 40, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L79:
-#APP
-! 371 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 41, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L80:
-#APP
-! 374 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 42, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L81:
-#APP
-! 377 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 43, %o0
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L82:
-#APP
-! 380 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%o1] 44, %o0
 	
 ! 0 "" 2
 #NO_APP
@@ -835,7 +805,115 @@ __ajit_load_word_from_physical_address__:
 	 nop
 .L83:
 #APP
+! 377 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 33, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L84:
+#APP
+! 380 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 34, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L85:
+#APP
 ! 383 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 35, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L86:
+#APP
+! 386 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 36, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L87:
+#APP
+! 389 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 37, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L88:
+#APP
+! 392 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 38, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L89:
+#APP
+! 395 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 39, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L90:
+#APP
+! 398 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 40, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L91:
+#APP
+! 401 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 41, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L92:
+#APP
+! 404 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 42, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L93:
+#APP
+! 407 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 43, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L94:
+#APP
+! 410 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o1] 44, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L95:
+#APP
+! 413 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o1] 45, %o0
 	
 ! 0 "" 2
@@ -845,23 +923,23 @@ __ajit_load_word_from_physical_address__:
 	.align 4
 	.subsection	-1
 	.align 4
-.L86:
-	.word	.L70
-	.word	.L71
-	.word	.L72
-	.word	.L73
-	.word	.L74
-	.word	.L75
-	.word	.L76
-	.word	.L77
-	.word	.L78
-	.word	.L79
-	.word	.L80
-	.word	.L81
+.L98:
 	.word	.L82
 	.word	.L83
 	.word	.L84
 	.word	.L85
+	.word	.L86
+	.word	.L87
+	.word	.L88
+	.word	.L89
+	.word	.L90
+	.word	.L91
+	.word	.L92
+	.word	.L93
+	.word	.L94
+	.word	.L95
+	.word	.L96
+	.word	.L97
 	.previous
 	.size	__ajit_load_word_from_physical_address__, .-__ajit_load_word_from_physical_address__
 	.align 4
@@ -870,7 +948,7 @@ __ajit_load_word_from_physical_address__:
 	.proc	016
 __ajit_load_word_mmu_reg__:
 #APP
-! 407 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 437 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o0] 4, %o0
 	
 ! 0 "" 2
@@ -884,7 +962,7 @@ __ajit_load_word_mmu_reg__:
 	.proc	016
 __ajit_load_word_mmu_bypass__:
 #APP
-! 416 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 446 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o0] 32, %o0
 	
 ! 0 "" 2
@@ -898,7 +976,7 @@ __ajit_load_word_mmu_bypass__:
 	.proc	020
 __ajit_flush_icache__:
 #APP
-! 430 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 460 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	 flush 
 ! 0 "" 2
 #NO_APP
@@ -911,7 +989,7 @@ __ajit_flush_icache__:
 	.proc	020
 __ajit_flush_dcache__:
 #APP
-! 439 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 469 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g0, [%g0] 19
 	
 ! 0 "" 2
@@ -927,7 +1005,7 @@ __ajit_write_timer_control_register__:
 	sethi	%hi(-53248), %g1
 	or	%g1, 256, %g1
 #APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 295 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%g1] 32
 	
 ! 0 "" 2
@@ -943,7 +1021,7 @@ __ajit_read_timer_control_register__:
 	sethi	%hi(-53248), %o0
 	or	%o0, 256, %o0
 #APP
-! 416 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 446 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o0] 32, %o0
 	
 ! 0 "" 2
@@ -979,7 +1057,7 @@ __ajit_write_serial_control_register__:
 	sethi	%hi(-53248), %g1
 	or	%g1, 512, %g1
 #APP
-! 484 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 514 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%g1] 32
 	
 ! 0 "" 2
@@ -988,273 +1066,6 @@ __ajit_write_serial_control_register__:
 	 nop
 	.size	__ajit_write_serial_control_register__, .-__ajit_write_serial_control_register__
 	.align 4
-	.global __ajit_serial_configure__
-	.type	__ajit_serial_configure__, #function
-	.proc	020
-__ajit_serial_configure__:
-	sethi	%hi(-53248), %g2
-	or	%g2, 512, %g2
-#APP
-! 490 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%g2] 32, %g2
-	
-! 0 "" 2
-#NO_APP
-	cmp	%o0, 0
-	be	.L100
-	 and	%g2, -2, %g1
-	or	%g2, 1, %g1
-.L100:
-	cmp	%o1, 0
-	be	.L102
-	 and	%g1, -3, %g2
-	or	%g1, 2, %g2
-.L102:
-	cmp	%o2, 0
-	be	.L104
-	 and	%g2, -5, %g1
-	or	%g2, 4, %g1
-.L104:
-	sethi	%hi(-53248), %g2
-	or	%g2, 512, %g2
-#APP
-! 518 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %g1, [%g2] 32
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-	.size	__ajit_serial_configure__, .-__ajit_serial_configure__
-	.align 4
-	.global __ajit_serial_set_baudrate__
-	.type	__ajit_serial_set_baudrate__, #function
-	.proc	020
-__ajit_serial_set_baudrate__:
-	sll	%o0, 4, %o0
-	cmp	%o0, %o1
-	bgeu	.L119
-	 mov	0, %g1
-	cmp	%o0, 0
-	be,a	.L120
-	 sethi	%hi(-52224), %g2
-	mov	%o1, %g2
-	b	.L110
-	 mov	%o0, %g1
-.L112:
-	mov	%g3, %g1
-.L110:
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%g2, %g1, %g3
-	smul	%g3, %g1, %g3
-	sub	%g2, %g3, %g3
-	cmp	%g3, 0
-	bne	.L112
-	 mov	%g1, %g2
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%o0, %g1, %g2
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%o1, %g1, %g4
-	and	%g2, 4095, %g3
-	sub	%g4, %g2, %g1
-	sethi	%hi(-52224), %g2
-	sll	%g1, 16, %g1
-	or	%g2, 8, %g2
-	or	%g1, %g3, %g1
-#APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %g1, [%g2] 32
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-.L119:
-	sethi	%hi(-52224), %g2
-.L120:
-	or	%g2, 8, %g2
-#APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %g1, [%g2] 32
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-	.size	__ajit_serial_set_baudrate__, .-__ajit_serial_set_baudrate__
-	.align 4
-	.global __ajit_serial_set_baudrate_via_vmap__
-	.type	__ajit_serial_set_baudrate_via_vmap__, #function
-	.proc	020
-__ajit_serial_set_baudrate_via_vmap__:
-	sll	%o0, 4, %o0
-	cmp	%o0, %o1
-	bgeu	.L132
-	 mov	0, %g2
-	cmp	%o0, 0
-	be,a	.L133
-	 sethi	%hi(-52224), %g1
-	mov	%o1, %g2
-	b	.L123
-	 mov	%o0, %g1
-.L125:
-	mov	%g3, %g1
-.L123:
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%g2, %g1, %g3
-	smul	%g3, %g1, %g3
-	sub	%g2, %g3, %g3
-	cmp	%g3, 0
-	bne	.L125
-	 mov	%g1, %g2
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%o0, %g1, %g3
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%o1, %g1, %g2
-	and	%g3, 4095, %g1
-	sub	%g2, %g3, %g2
-	sll	%g2, 16, %g2
-	or	%g2, %g1, %g2
-	sethi	%hi(-52224), %g1
-	or	%g1, 8, %g1
-	jmp	%o7+8
-	 st	%g2, [%g1]
-.L132:
-	sethi	%hi(-52224), %g1
-.L133:
-	or	%g1, 8, %g1
-	jmp	%o7+8
-	 st	%g2, [%g1]
-	.size	__ajit_serial_set_baudrate_via_vmap__, .-__ajit_serial_set_baudrate_via_vmap__
-	.align 4
-	.global calculate_baud_control_word_for_uart
-	.type	calculate_baud_control_word_for_uart, #function
-	.proc	016
-calculate_baud_control_word_for_uart:
-	sll	%o0, 4, %o0
-	cmp	%o0, %o1
-	bgeu	.L137
-	 cmp	%o0, 0
-	be	.L137
-	 mov	%o1, %g2
-	b	.L136
-	 mov	%o0, %g1
-.L138:
-	mov	%g3, %g1
-.L136:
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%g2, %g1, %g3
-	smul	%g3, %g1, %g3
-	sub	%g2, %g3, %g3
-	cmp	%g3, 0
-	bne	.L138
-	 mov	%g1, %g2
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%o0, %g1, %g2
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%o1, %g1, %o0
-	and	%g2, 4095, %g1
-	sub	%o0, %g2, %o0
-	sll	%o0, 16, %o0
-	jmp	%o7+8
-	 or	%o0, %g1, %o0
-.L137:
-	jmp	%o7+8
-	 mov	0, %o0
-	.size	calculate_baud_control_word_for_uart, .-calculate_baud_control_word_for_uart
-	.align 4
-	.global __ajit_serial_set_baudrate_inner__
-	.type	__ajit_serial_set_baudrate_inner__, #function
-	.proc	020
-__ajit_serial_set_baudrate_inner__:
-	sll	%o1, 4, %o1
-	cmp	%o1, %o2
-	bgeu	.L159
-	 sethi	%hi(-52224), %g2
-	cmp	%o1, 0
-	be,a	.L160
-	 mov	0, %g1
-	mov	%o2, %g2
-	b	.L147
-	 mov	%o1, %g1
-.L151:
-	mov	%g3, %g1
-.L147:
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%g2, %g1, %g3
-	smul	%g3, %g1, %g3
-	sub	%g2, %g3, %g3
-	cmp	%g3, 0
-	bne	.L151
-	 mov	%g1, %g2
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%o1, %g1, %g2
-	wr	%g0, 0, %y
-	nop
-	nop
-	nop
-	udiv	%o2, %g1, %g4
-	and	%g2, 4095, %g3
-	sub	%g4, %g2, %g1
-	cmp	%o0, 0
-	sll	%g1, 16, %g1
-	sethi	%hi(-52224), %g2
-	or	%g1, %g3, %g1
-	be	.L148
-	 or	%g2, 8, %g2
-.L158:
-	jmp	%o7+8
-	 st	%g1, [%g2]
-.L159:
-	mov	0, %g1
-.L160:
-	cmp	%o0, 0
-	bne	.L158
-	 or	%g2, 8, %g2
-.L148:
-#APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %g1, [%g2] 32
-	
-! 0 "" 2
-#NO_APP
-	jmp	%o7+8
-	 nop
-	.size	__ajit_serial_set_baudrate_inner__, .-__ajit_serial_set_baudrate_inner__
-	.align 4
 	.global __ajit_read_serial_control_register__
 	.type	__ajit_read_serial_control_register__, #function
 	.proc	016
@@ -1262,7 +1073,7 @@ __ajit_read_serial_control_register__:
 	sethi	%hi(-53248), %o0
 	or	%o0, 512, %o0
 #APP
-! 593 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 521 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o0] 32, %o0
 	
 ! 0 "" 2
@@ -1278,7 +1089,7 @@ __ajit_write_serial_tx_register__:
 	sethi	%hi(-53248), %g1
 	or	%g1, 516, %g1
 #APP
-! 601 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 528 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	stuba %o0, [%g1] 32
 	
 ! 0 "" 2
@@ -1294,7 +1105,7 @@ __ajit_read_serial_tx_register__:
 	sethi	%hi(-53248), %o0
 	or	%o0, 516, %o0
 #APP
-! 608 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 535 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lduba [%o0] 32, %o0
 	
 ! 0 "" 2
@@ -1310,7 +1121,7 @@ __ajit_read_serial_rx_register__:
 	sethi	%hi(-53248), %o0
 	or	%o0, 520, %o0
 #APP
-! 616 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 543 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lduba [%o0] 32, %o0
 	
 ! 0 "" 2
@@ -1319,149 +1130,128 @@ __ajit_read_serial_rx_register__:
 	 and	%o0, 0xff, %o0
 	.size	__ajit_read_serial_rx_register__, .-__ajit_read_serial_rx_register__
 	.align 4
-	.global __ajit_serial_putchar__
-	.type	__ajit_serial_putchar__, #function
-	.proc	04
-__ajit_serial_putchar__:
-	sethi	%hi(-53248), %g2
-	or	%g2, 512, %g1
-#APP
-! 625 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%g1] 32, %g1
-	
-! 0 "" 2
-#NO_APP
-	andcc	%g1, 1, %g0
-	be	.L166
-	 mov	0, %g3
-	andcc	%g1, 8, %g0
-	bne	.L166
-	 or	%g2, 516, %g2
-#APP
-! 632 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	stuba %o0, [%g2] 32
-	
-! 0 "" 2
-#NO_APP
-	mov	%o0, %g3
-.L166:
-	jmp	%o7+8
-	 mov	%g3, %o0
-	.size	__ajit_serial_putchar__, .-__ajit_serial_putchar__
-	.align 4
-	.global __ajit_serial_getchar__
-	.type	__ajit_serial_getchar__, #function
-	.proc	04
-__ajit_serial_getchar__:
+	.global __ajit_write_serial_baud_limit_register__
+	.type	__ajit_write_serial_baud_limit_register__, #function
+	.proc	020
+__ajit_write_serial_baud_limit_register__:
 	sethi	%hi(-53248), %g1
-	or	%g1, 512, %g2
+	or	%g1, 524, %g1
 #APP
-! 593 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%g2] 32, %g2
+! 549 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%g1] 32
 	
 ! 0 "" 2
 #NO_APP
-	and	%g2, 18, %g2
-	cmp	%g2, 18
-	bne	.L173
-	 mov	0, %o0
-	or	%g1, 520, %o0
-#APP
-! 651 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lduba [%o0] 32, %o0
-	
-! 0 "" 2
-#NO_APP
-.L173:
 	jmp	%o7+8
 	 nop
-	.size	__ajit_serial_getchar__, .-__ajit_serial_getchar__
+	.size	__ajit_write_serial_baud_limit_register__, .-__ajit_write_serial_baud_limit_register__
 	.align 4
-	.global __ajit_serial_puts__
-	.type	__ajit_serial_puts__, #function
-	.proc	020
-__ajit_serial_puts__:
-	sethi	%hi(-53248), %o4
-	mov	0, %o5
-	or	%o4, 512, %g2
-	mov	0, %g4
-	cmp	%o1, 0
-	be	.L195
-	 or	%o4, 516, %o4
-.L192:
-	ldub	[%o0+%o5], %g3
-.L187:
+	.global __ajit_read_serial_baud_limit_register__
+	.type	__ajit_read_serial_baud_limit_register__, #function
+	.proc	016
+__ajit_read_serial_baud_limit_register__:
+	sethi	%hi(-53248), %o0
+	or	%o0, 524, %o0
 #APP
-! 625 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%g2] 32, %g1
+! 555 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o0] 32, %o0
 	
 ! 0 "" 2
 #NO_APP
-	andcc	%g1, 1, %g0
-	be	.L187
-	 andcc	%g1, 8, %g0
-	bne	.L187
+	jmp	%o7+8
 	 nop
+	.size	__ajit_read_serial_baud_limit_register__, .-__ajit_read_serial_baud_limit_register__
+	.align 4
+	.global __ajit_write_serial_baud_frequency_register__
+	.type	__ajit_write_serial_baud_frequency_register__, #function
+	.proc	020
+__ajit_write_serial_baud_frequency_register__:
+	sethi	%hi(-53248), %g1
+	or	%g1, 528, %g1
 #APP
-! 632 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	stuba %g3, [%o4] 32
+! 562 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%g1] 32
 	
 ! 0 "" 2
 #NO_APP
-	sll	%g3, 24, %g3
+	jmp	%o7+8
+	 nop
+	.size	__ajit_write_serial_baud_frequency_register__, .-__ajit_write_serial_baud_frequency_register__
+	.align 4
+	.global __ajit_read_serial_baud_frequency_register__
+	.type	__ajit_read_serial_baud_frequency_register__, #function
+	.proc	016
+__ajit_read_serial_baud_frequency_register__:
+	sethi	%hi(-53248), %o0
+	or	%o0, 528, %o0
+#APP
+! 568 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o0] 32, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+	.size	__ajit_read_serial_baud_frequency_register__, .-__ajit_read_serial_baud_frequency_register__
+	.align 4
+	.global __ajit_serial_set_baudrate__
+	.type	__ajit_serial_set_baudrate__, #function
+	.proc	020
+__ajit_serial_set_baudrate__:
+	sll	%o0, 4, %o0
+	cmp	%o0, %o1
+	bgeu	.L128
+	 sethi	%hi(-53248), %g1
+	cmp	%o0, 0
+	be	.L129
+	 or	%g1, 524, %g3
+	mov	%o1, %g2
+	b	.L120
+	 mov	%o0, %g1
+.L121:
+	mov	%g3, %g1
+.L120:
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%g2, %g1, %g3
+	smul	%g3, %g1, %g3
+	sub	%g2, %g3, %g3
 	cmp	%g3, 0
-	be,a	.L187
-	 ldub	[%o0+%o5], %g3
-	add	%g4, 1, %g4
-	cmp	%g4, %o1
-	bne	.L192
-	 mov	%g4, %o5
-.L195:
-	jmp	%o7+8
-	 nop
-	.size	__ajit_serial_puts__, .-__ajit_serial_puts__
-	.align 4
-	.global __ajit_serial_gets__
-	.type	__ajit_serial_gets__, #function
-	.proc	020
-__ajit_serial_gets__:
-	cmp	%o1, 0
-	be	.L217
-	 sethi	%hi(-53248), %g4
-	mov	0, %o5
-	or	%g4, 512, %g2
-	mov	0, %g3
-	or	%g4, 520, %g4
-.L210:
+	bne	.L121
+	 mov	%g1, %g2
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%o0, %g1, %g2
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%o1, %g1, %g4
+	sub	%g4, %g2, %g4
+	sethi	%hi(-53248), %g1
+.L128:
+	or	%g1, 524, %g3
+.L129:
 #APP
-! 593 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%g2] 32, %g1
+! 824 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %g4, [%g3] 32
 	
 ! 0 "" 2
 #NO_APP
-	andcc	%g1, 2, %g0
-	be	.L210
-	 andcc	%g1, 16, %g0
-	be	.L210
-	 nop
+	or	%g1, 528, %g1
 #APP
-! 651 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lduba [%g4] 32, %g1
+! 825 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %g2, [%g1] 32
 	
 ! 0 "" 2
 #NO_APP
-	cmp	%g1, 0
-	be	.L210
-	 nop
-	stb	%g1, [%o0+%o5]
-	add	%g3, 1, %g3
-	cmp	%g3, %o1
-	bne	.L210
-	 mov	%g3, %o5
-.L217:
 	jmp	%o7+8
 	 nop
-	.size	__ajit_serial_gets__, .-__ajit_serial_gets__
+	.size	__ajit_serial_set_baudrate__, .-__ajit_serial_set_baudrate__
 	.align 4
 	.global __ajit_write_serial_control_register_via_vmap__
 	.type	__ajit_write_serial_control_register_via_vmap__, #function
@@ -1513,202 +1303,657 @@ __ajit_read_serial_rx_register_via_vmap__:
 	 ldub	[%g1], %o0
 	.size	__ajit_read_serial_rx_register_via_vmap__, .-__ajit_read_serial_rx_register_via_vmap__
 	.align 4
-	.global __ajit_serial_putchar_via_vmap__
-	.type	__ajit_serial_putchar_via_vmap__, #function
-	.proc	04
-__ajit_serial_putchar_via_vmap__:
-	sethi	%hi(-53248), %g2
-	or	%g2, 512, %g1
-	ld	[%g1], %g1
-	andcc	%g1, 1, %g0
-	be	.L224
-	 mov	0, %g3
-	andcc	%g1, 8, %g0
-	bne	.L224
-	 or	%g2, 516, %g2
-	mov	%o0, %g3
-	stb	%o0, [%g2]
-.L224:
-	jmp	%o7+8
-	 mov	%g3, %o0
-	.size	__ajit_serial_putchar_via_vmap__, .-__ajit_serial_putchar_via_vmap__
-	.align 4
-	.global __ajit_serial_getchar_via_vmap__
-	.type	__ajit_serial_getchar_via_vmap__, #function
-	.proc	04
-__ajit_serial_getchar_via_vmap__:
+	.global __ajit_serial_set_baudrate_via_vmap__
+	.type	__ajit_serial_set_baudrate_via_vmap__, #function
+	.proc	020
+__ajit_serial_set_baudrate_via_vmap__:
+	sll	%o0, 4, %o0
+	cmp	%o0, %o1
+	bgeu	.L145
+	 sethi	%hi(-53248), %g1
+	cmp	%o0, 0
+	be	.L146
+	 or	%g1, 524, %g3
+	mov	%o1, %g2
+	b	.L137
+	 mov	%o0, %g1
+.L138:
+	mov	%g3, %g1
+.L137:
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%g2, %g1, %g3
+	smul	%g3, %g1, %g3
+	sub	%g2, %g3, %g3
+	cmp	%g3, 0
+	bne	.L138
+	 mov	%g1, %g2
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%o0, %g1, %g2
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%o1, %g1, %g4
+	sub	%g4, %g2, %g4
 	sethi	%hi(-53248), %g1
-	or	%g1, 512, %g2
-	ld	[%g2], %g2
-	and	%g2, 18, %g2
-	cmp	%g2, 18
-	bne	.L231
-	 mov	0, %o0
-	or	%g1, 520, %g1
-	ldub	[%g1], %o0
-.L231:
+.L145:
+	or	%g1, 524, %g3
+.L146:
+	st	%g4, [%g3]
+	or	%g1, 528, %g1
 	jmp	%o7+8
-	 nop
-	.size	__ajit_serial_getchar_via_vmap__, .-__ajit_serial_getchar_via_vmap__
+	 st	%g2, [%g1]
+	.size	__ajit_serial_set_baudrate_via_vmap__, .-__ajit_serial_set_baudrate_via_vmap__
 	.align 4
-	.global __ajit_serial_puts_via_vmap__
-	.type	__ajit_serial_puts_via_vmap__, #function
-	.proc	020
-__ajit_serial_puts_via_vmap__:
-	sethi	%hi(-53248), %o4
-	mov	0, %g4
-	or	%o4, 512, %o5
-	mov	0, %g3
-	cmp	%o1, 0
-	be	.L252
-	 or	%o4, 516, %o4
-.L245:
-	ld	[%o5], %g2
-.L250:
-	andcc	%g2, 1, %g0
-	bne	.L248
-	 ldub	[%o0+%g4], %g1
-.L235:
-	b,a	.L235
-.L248:
-	and	%g2, 8, %g2
-	cmp	%g2, 0
-.L249:
-	bne	.L249
-	 nop
-	stb	%g1, [%o4]
-	sll	%g1, 24, %g1
-	cmp	%g1, 0
-	be,a	.L250
-	 ld	[%o5], %g2
-	add	%g3, 1, %g3
-	cmp	%g3, %o1
-	bne	.L245
-	 mov	%g3, %g4
-.L252:
+	.global __ajit_read_serial_baud_limit_register_via_vmap__
+	.type	__ajit_read_serial_baud_limit_register_via_vmap__, #function
+	.proc	016
+__ajit_read_serial_baud_limit_register_via_vmap__:
+	sethi	%hi(-53248), %g1
+	or	%g1, 524, %g1
 	jmp	%o7+8
-	 nop
-	.size	__ajit_serial_puts_via_vmap__, .-__ajit_serial_puts_via_vmap__
+	 ld	[%g1], %o0
+	.size	__ajit_read_serial_baud_limit_register_via_vmap__, .-__ajit_read_serial_baud_limit_register_via_vmap__
 	.align 4
-	.global __ajit_serial_gets_via_vmap__
-	.type	__ajit_serial_gets_via_vmap__, #function
+	.global __ajit_write_serial_baud_limit_register_via_vmap__
+	.type	__ajit_write_serial_baud_limit_register_via_vmap__, #function
 	.proc	020
-__ajit_serial_gets_via_vmap__:
-	sethi	%hi(-53248), %g4
-	mov	0, %o5
-	or	%g4, 512, %g3
-	mov	0, %g2
-	cmp	%o1, 0
-	be	.L276
-	 or	%g4, 520, %g4
-.L267:
-	ld	[%g3], %g1
-.L274:
-	andcc	%g1, 2, %g0
-	bne	.L272
-	 andcc	%g1, 16, %g0
-.L258:
-	b,a	.L258
-.L272:
-	bne,a	.L273
-	 ldub	[%g4], %g1
-.L268:
-	b,a	.L268
-.L273:
-	cmp	%g1, 0
-	be,a	.L274
-	 ld	[%g3], %g1
-	stb	%g1, [%o0+%o5]
-	add	%g2, 1, %g2
-	cmp	%g2, %o1
-	bne	.L267
-	 mov	%g2, %o5
-.L276:
+__ajit_write_serial_baud_limit_register_via_vmap__:
+	sethi	%hi(-53248), %g1
+	or	%g1, 524, %g1
+	jmp	%o7+8
+	 st	%o0, [%g1]
+	.size	__ajit_write_serial_baud_limit_register_via_vmap__, .-__ajit_write_serial_baud_limit_register_via_vmap__
+	.align 4
+	.global __ajit_read_serial_baud_frequency_register_via_vmap__
+	.type	__ajit_read_serial_baud_frequency_register_via_vmap__, #function
+	.proc	016
+__ajit_read_serial_baud_frequency_register_via_vmap__:
+	sethi	%hi(-53248), %g1
+	or	%g1, 528, %g1
+	jmp	%o7+8
+	 ld	[%g1], %o0
+	.size	__ajit_read_serial_baud_frequency_register_via_vmap__, .-__ajit_read_serial_baud_frequency_register_via_vmap__
+	.align 4
+	.global __ajit_write_serial_baud_frequency_register_via_vmap__
+	.type	__ajit_write_serial_baud_frequency_register_via_vmap__, #function
+	.proc	020
+__ajit_write_serial_baud_frequency_register_via_vmap__:
+	sethi	%hi(-53248), %g1
+	or	%g1, 528, %g1
+	jmp	%o7+8
+	 st	%o0, [%g1]
+	.size	__ajit_write_serial_baud_frequency_register_via_vmap__, .-__ajit_write_serial_baud_frequency_register_via_vmap__
+	.align 4
+	.global calculate_baud_control_values_for_uart
+	.type	calculate_baud_control_values_for_uart, #function
+	.proc	020
+calculate_baud_control_values_for_uart:
+	sll	%o0, 4, %o0
+	cmp	%o0, %o1
+	bgeu	.L161
+	 cmp	%o0, 0
+	be	.L161
+	 mov	%o1, %g2
+	b	.L153
+	 mov	%o0, %g1
+.L154:
+	mov	%g3, %g1
+.L153:
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%g2, %g1, %g3
+	smul	%g3, %g1, %g3
+	sub	%g2, %g3, %g3
+	cmp	%g3, 0
+	bne	.L154
+	 mov	%g1, %g2
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%o0, %g1, %g2
+	st	%g2, [%o3]
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%o1, %g1, %g3
+	sub	%g3, %g2, %g2
+	st	%g2, [%o2]
+.L161:
 	jmp	%o7+8
 	 nop
-	.size	__ajit_serial_gets_via_vmap__, .-__ajit_serial_gets_via_vmap__
+	.size	calculate_baud_control_values_for_uart, .-calculate_baud_control_values_for_uart
+	.align 4
+	.global __ajit_serial_configure_inner__
+	.type	__ajit_serial_configure_inner__, #function
+	.proc	020
+__ajit_serial_configure_inner__:
+	sethi	%hi(-53248), %g2
+	cmp	%o1, 0
+	bne	.L163
+	 or	%g2, 576, %g1
+	or	%g2, 512, %g1
+.L163:
+	cmp	%o0, 0
+	be	.L164
+	 nop
+	ld	[%g1], %g2
+	cmp	%o2, 0
+.L179:
+	be	.L167
+	 and	%g2, -2, %g3
+	or	%g2, 1, %g3
+.L167:
+	cmp	%o3, 0
+	be	.L169
+	 and	%g3, -3, %g2
+	or	%g3, 2, %g2
+.L169:
+	cmp	%o4, 0
+	be	.L171
+	 and	%g2, -5, %g3
+	or	%g2, 4, %g3
+.L171:
+	cmp	%o0, 0
+	bne	.L178
+	 nop
+#APP
+! 794 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %g3, [%g1] 32
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L164:
+#APP
+! 762 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%g1] 32, %g2
+	
+! 0 "" 2
+#NO_APP
+	b	.L179
+	 cmp	%o2, 0
+.L178:
+	jmp	%o7+8
+	 st	%g3, [%g1]
+	.size	__ajit_serial_configure_inner__, .-__ajit_serial_configure_inner__
 	.align 4
 	.global __ajit_serial_configure_via_vmap__
 	.type	__ajit_serial_configure_via_vmap__, #function
 	.proc	020
 __ajit_serial_configure_via_vmap__:
-	sethi	%hi(-53248), %g1
-	or	%g1, 512, %g1
-	cmp	%o0, 0
-	ld	[%g1], %g2
-	be	.L279
-	 and	%g2, -2, %g1
-	or	%g2, 1, %g1
-.L279:
-	cmp	%o1, 0
-	be	.L281
-	 and	%g1, -3, %g2
-	or	%g1, 2, %g2
-.L281:
-	cmp	%o2, 0
-	be	.L283
-	 and	%g2, -5, %g1
-	or	%g2, 4, %g1
-.L283:
-	sethi	%hi(-53248), %g2
-	or	%g2, 512, %g2
-	jmp	%o7+8
-	 st	%g1, [%g2]
+	mov	%o0, %g1
+	mov	%o1, %o3
+	mov	%o2, %o4
+	mov	1, %o0
+	mov	0, %o1
+	mov	%g1, %o2
+	or	%o7, %g0, %g1
+	call	__ajit_serial_configure_inner__, 0
+	 or	%g1, %g0, %o7
 	.size	__ajit_serial_configure_via_vmap__, .-__ajit_serial_configure_via_vmap__
 	.align 4
-	.global __ajit_serial_uart_reset_via_vmap__
-	.type	__ajit_serial_uart_reset_via_vmap__, #function
+	.global __ajit_serial_configure__
+	.type	__ajit_serial_configure__, #function
 	.proc	020
-__ajit_serial_uart_reset_via_vmap__:
-	sethi	%hi(-53248), %g1
-	or	%g1, 512, %g1
-	ldub	[%g1], %g2
-	jmp	%o7+8
-	 st	%g2, [%g1]
-	.size	__ajit_serial_uart_reset_via_vmap__, .-__ajit_serial_uart_reset_via_vmap__
+__ajit_serial_configure__:
+	mov	%o0, %g1
+	mov	%o1, %o3
+	mov	%o2, %o4
+	mov	0, %o0
+	mov	0, %o1
+	mov	%g1, %o2
+	or	%o7, %g0, %g1
+	call	__ajit_serial_configure_inner__, 0
+	 or	%g1, %g0, %o7
+	.size	__ajit_serial_configure__, .-__ajit_serial_configure__
 	.align 4
-	.global __ajit_serial_uart_reset_inner__
-	.type	__ajit_serial_uart_reset_inner__, #function
+	.global __ajit_serial_set_baudrate_inner__
+	.type	__ajit_serial_set_baudrate_inner__, #function
 	.proc	020
-__ajit_serial_uart_reset_inner__:
-	sethi	%hi(-53248), %g1
+__ajit_serial_set_baudrate_inner__:
+	sll	%o2, 4, %o2
+	cmp	%o2, %o3
+	bgeu	.L199
+	 cmp	%o1, 0
+	cmp	%o2, 0
+	bne,a	.L196
+	 mov	%o3, %g2
+	cmp	%o1, 0
+.L199:
+	be	.L189
+	 sethi	%hi(-53248), %g1
+.L198:
+	or	%g1, 588, %g3
 	cmp	%o0, 0
-	bne	.L291
-	 or	%g1, 512, %g1
+	bne	.L197
+	 or	%g1, 592, %g1
+.L186:
 #APP
-! 593 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	lda [%g1] 32, %g2
+! 824 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %g4, [%g3] 32
 	
 ! 0 "" 2
-#NO_APP
-	mov	8, %g3
-#APP
-! 484 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %g3, [%g1] 32
-	
-! 0 "" 2
-! 484 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 825 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %g2, [%g1] 32
 	
 ! 0 "" 2
 #NO_APP
 	jmp	%o7+8
 	 nop
-.L291:
-	ldub	[%g1], %g2
+.L196:
+	b	.L184
+	 mov	%o2, %g1
+.L188:
+	mov	%g3, %g1
+.L184:
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%g2, %g1, %g3
+	smul	%g3, %g1, %g3
+	sub	%g2, %g3, %g3
+	cmp	%g3, 0
+	bne	.L188
+	 mov	%g1, %g2
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%o2, %g1, %g2
+	wr	%g0, 0, %y
+	nop
+	nop
+	nop
+	udiv	%o3, %g1, %g4
+	cmp	%o1, 0
+	sub	%g4, %g2, %g4
+	bne	.L198
+	 sethi	%hi(-53248), %g1
+.L189:
+	or	%g1, 524, %g3
+	cmp	%o0, 0
+	be	.L186
+	 or	%g1, 528, %g1
+.L197:
+	st	%g4, [%g3]
 	jmp	%o7+8
 	 st	%g2, [%g1]
-	.size	__ajit_serial_uart_reset_inner__, .-__ajit_serial_uart_reset_inner__
+	.size	__ajit_serial_set_baudrate_inner__, .-__ajit_serial_set_baudrate_inner__
 	.align 4
-	.global __ajit_serial_uart_reset__
-	.type	__ajit_serial_uart_reset__, #function
-	.proc	020
-__ajit_serial_uart_reset__:
+	.global __ajit_serial_putchar_inner__
+	.type	__ajit_serial_putchar_inner__, #function
+	.proc	04
+__ajit_serial_putchar_inner__:
+	mov	%o0, %g2
+	cmp	%o1, 0
+	be	.L206
+	 sethi	%hi(-53248), %g3
+	or	%g3, 576, %g1
+	or	%g3, 580, %g3
+.L201:
+	cmp	%g2, 0
+	be	.L202
+	 nop
+	ld	[%g1], %g1
+	andcc	%g1, 1, %g0
+.L211:
+	be	.L212
+	 mov	0, %o0
+	andcc	%g1, 8, %g0
+	bne	.L212
+	 cmp	%g2, 0
+	bne,a	.L210
+	 stb	%o2, [%g3]
+#APP
+! 853 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	stuba %o2, [%g3] 32
+	
+! 0 "" 2
+#NO_APP
+	mov	1, %o0
+.L212:
+	jmp	%o7+8
+	 nop
+.L202:
+#APP
+! 843 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%g1] 32, %g1
+	
+! 0 "" 2
+#NO_APP
+	b	.L211
+	 andcc	%g1, 1, %g0
+.L206:
+	or	%g3, 512, %g1
+	b	.L201
+	 or	%g3, 516, %g3
+.L210:
+	jmp	%o7+8
+	 mov	1, %o0
+	.size	__ajit_serial_putchar_inner__, .-__ajit_serial_putchar_inner__
+	.align 4
+	.global __ajit_serial_putchar_via_vmap__
+	.type	__ajit_serial_putchar_via_vmap__, #function
+	.proc	04
+__ajit_serial_putchar_via_vmap__:
+	mov	%o0, %o2
+	mov	0, %o1
+	mov	1, %o0
+	or	%o7, %g0, %g1
+	call	__ajit_serial_putchar_inner__, 0
+	 or	%g1, %g0, %o7
+	.size	__ajit_serial_putchar_via_vmap__, .-__ajit_serial_putchar_via_vmap__
+	.align 4
+	.global __ajit_serial_putchar__
+	.type	__ajit_serial_putchar__, #function
+	.proc	04
+__ajit_serial_putchar__:
+	mov	%o0, %o2
+	mov	0, %o1
 	mov	0, %o0
 	or	%o7, %g0, %g1
-	call	__ajit_serial_uart_reset_inner__, 0
+	call	__ajit_serial_putchar_inner__, 0
 	 or	%g1, %g0, %o7
-	.size	__ajit_serial_uart_reset__, .-__ajit_serial_uart_reset__
+	.size	__ajit_serial_putchar__, .-__ajit_serial_putchar__
+	.align 4
+	.global __ajit_serial_getchar_inner__
+	.type	__ajit_serial_getchar_inner__, #function
+	.proc	04
+__ajit_serial_getchar_inner__:
+	cmp	%o1, 0
+	be	.L221
+	 sethi	%hi(-53248), %g2
+	or	%g2, 576, %g1
+	cmp	%o0, 0
+	be	.L217
+	 or	%g2, 584, %g2
+.L223:
+	ld	[%g1], %g1
+	and	%g1, 18, %g1
+	cmp	%g1, 18
+	bne	.L222
+	 nop
+	ldub	[%g2], %g1
+	mov	1, %o0
+	jmp	%o7+8
+	 stb	%g1, [%o2]
+.L221:
+	or	%g2, 512, %g1
+	cmp	%o0, 0
+	bne	.L223
+	 or	%g2, 520, %g2
+.L217:
+#APP
+! 876 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%g1] 32, %g1
+	
+! 0 "" 2
+#NO_APP
+	and	%g1, 18, %g1
+	cmp	%g1, 18
+	bne	.L222
+	 nop
+#APP
+! 887 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lduba [%g2] 32, %g2
+	
+! 0 "" 2
+#NO_APP
+	mov	1, %o0
+	jmp	%o7+8
+	 stb	%g2, [%o2]
+.L222:
+	jmp	%o7+8
+	 mov	0, %o0
+	.size	__ajit_serial_getchar_inner__, .-__ajit_serial_getchar_inner__
+	.align 4
+	.global __ajit_serial_getchar_via_vmap__
+	.type	__ajit_serial_getchar_via_vmap__, #function
+	.proc	04
+__ajit_serial_getchar_via_vmap__:
+	save	%sp, -104, %sp
+	mov	1, %o0
+.L230:
+	mov	0, %o1
+	call	__ajit_serial_getchar_inner__, 0
+	 add	%fp, -1, %o2
+	cmp	%o0, 0
+	be,a	.L230
+	 mov	1, %o0
+	ldsb	[%fp-1], %i0
+	jmp	%i7+8
+	 restore
+	.size	__ajit_serial_getchar_via_vmap__, .-__ajit_serial_getchar_via_vmap__
+	.align 4
+	.global __ajit_serial_getchar__
+	.type	__ajit_serial_getchar__, #function
+	.proc	04
+__ajit_serial_getchar__:
+	save	%sp, -104, %sp
+	mov	0, %o0
+.L237:
+	mov	0, %o1
+	call	__ajit_serial_getchar_inner__, 0
+	 add	%fp, -1, %o2
+	cmp	%o0, 0
+	be,a	.L237
+	 mov	0, %o0
+	ldsb	[%fp-1], %i0
+	jmp	%i7+8
+	 restore
+	.size	__ajit_serial_getchar__, .-__ajit_serial_getchar__
+	.align 4
+	.global __ajit_serial_puts_inner__
+	.type	__ajit_serial_puts_inner__, #function
+	.proc	020
+__ajit_serial_puts_inner__:
+	save	%sp, -96, %sp
+	cmp	%i3, 0
+	be	.L254
+	 nop
+	ldub	[%i2], %o2
+	sll	%o2, 24, %o2
+	cmp	%o2, 0
+	be	.L254
+	 add	%i2, 1, %i5
+	b	.L251
+	 add	%i2, %i3, %i4
+.L252:
+	sll	%o2, 24, %o2
+.L251:
+	sra	%o2, 24, %o2
+.L253:
+	mov	%i0, %o0
+	call	__ajit_serial_putchar_inner__, 0
+	 mov	%i1, %o1
+	cmp	%o0, 0
+	be,a	.L252
+	 ldub	[%i2], %o2
+	cmp	%i5, %i4
+	be	.L254
+	 mov	%i5, %i2
+	add	%i5, 1, %i5
+	ldub	[%i5-1], %o2
+	sll	%o2, 24, %o2
+	cmp	%o2, 0
+	bne	.L253
+	 sra	%o2, 24, %o2
+.L254:
+	jmp	%i7+8
+	 restore
+	.size	__ajit_serial_puts_inner__, .-__ajit_serial_puts_inner__
+	.align 4
+	.global __ajit_serial_puts_via_vmap__
+	.type	__ajit_serial_puts_via_vmap__, #function
+	.proc	020
+__ajit_serial_puts_via_vmap__:
+	mov	%o0, %o2
+	mov	%o1, %o3
+	mov	1, %o0
+	mov	0, %o1
+	or	%o7, %g0, %g1
+	call	__ajit_serial_puts_inner__, 0
+	 or	%g1, %g0, %o7
+	.size	__ajit_serial_puts_via_vmap__, .-__ajit_serial_puts_via_vmap__
+	.align 4
+	.global __ajit_serial_puts__
+	.type	__ajit_serial_puts__, #function
+	.proc	020
+__ajit_serial_puts__:
+	mov	%o0, %o2
+	mov	%o1, %o3
+	mov	0, %o0
+	mov	0, %o1
+	or	%o7, %g0, %g1
+	call	__ajit_serial_puts_inner__, 0
+	 or	%g1, %g0, %o7
+	.size	__ajit_serial_puts__, .-__ajit_serial_puts__
+	.align 4
+	.global __ajit_serial_gets_inner__
+	.type	__ajit_serial_gets_inner__, #function
+	.proc	020
+__ajit_serial_gets_inner__:
+	save	%sp, -104, %sp
+	cmp	%i3, 1
+	be,a	.L272
+	 add	%i2, %i3, %i3
+	add	%i3, -1, %l0
+	mov	0, %i4
+	mov	0, %i5
+.L262:
+	stb	%g0, [%fp-1]
+	mov	%i0, %o0
+.L273:
+	mov	%i1, %o1
+	call	__ajit_serial_getchar_inner__, 0
+	 add	%fp, -1, %o2
+	cmp	%o0, 0
+	be,a	.L273
+	 mov	%i0, %o0
+	ldub	[%fp-1], %g1
+	stb	%g1, [%i2+%i4]
+	sll	%g1, 24, %g1
+	cmp	%g1, 0
+	be,a	.L272
+	 add	%i2, %i3, %i3
+	add	%i5, 1, %i5
+	cmp	%i5, %l0
+	bne	.L262
+	 mov	%i5, %i4
+	add	%i2, %i3, %i3
+.L272:
+	stb	%g0, [%i3-1]
+	jmp	%i7+8
+	 restore
+	.size	__ajit_serial_gets_inner__, .-__ajit_serial_gets_inner__
+	.align 4
+	.global __ajit_serial_gets_via_vmap__
+	.type	__ajit_serial_gets_via_vmap__, #function
+	.proc	020
+__ajit_serial_gets_via_vmap__:
+	mov	%o0, %o2
+	mov	%o1, %o3
+	mov	1, %o0
+	mov	0, %o1
+	or	%o7, %g0, %g1
+	call	__ajit_serial_gets_inner__, 0
+	 or	%g1, %g0, %o7
+	.size	__ajit_serial_gets_via_vmap__, .-__ajit_serial_gets_via_vmap__
+	.align 4
+	.global __ajit_serial_gets__
+	.type	__ajit_serial_gets__, #function
+	.proc	020
+__ajit_serial_gets__:
+	mov	%o0, %o2
+	mov	%o1, %o3
+	mov	0, %o0
+	mov	0, %o1
+	or	%o7, %g0, %g1
+	call	__ajit_serial_gets_inner__, 0
+	 or	%g1, %g0, %o7
+	.size	__ajit_serial_gets__, .-__ajit_serial_gets__
+	.align 4
+	.global __ajit_serial_set_uart_reset_inner__
+	.type	__ajit_serial_set_uart_reset_inner__, #function
+	.proc	020
+__ajit_serial_set_uart_reset_inner__:
+	sethi	%hi(-53248), %g2
+	cmp	%o1, 0
+	bne	.L277
+	 or	%g2, 576, %g1
+	or	%g2, 512, %g1
+.L277:
+	cmp	%o0, 0
+	be	.L278
+	 nop
+	ld	[%g1], %g3
+	cmp	%o2, 0
+.L286:
+	bne	.L281
+	 or	%g3, 32, %g2
+	and	%g3, -33, %g2
+.L281:
+	cmp	%o0, 0
+	bne	.L285
+	 nop
+#APP
+! 952 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %g2, [%g1] 32
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+.L278:
+#APP
+! 942 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%g1] 32, %g3
+	
+! 0 "" 2
+#NO_APP
+	b	.L286
+	 cmp	%o2, 0
+.L285:
+	jmp	%o7+8
+	 st	%g2, [%g1]
+	.size	__ajit_serial_set_uart_reset_inner__, .-__ajit_serial_set_uart_reset_inner__
+	.align 4
+	.global __ajit_serial_set_uart_reset_via_vmap__
+	.type	__ajit_serial_set_uart_reset_via_vmap__, #function
+	.proc	020
+__ajit_serial_set_uart_reset_via_vmap__:
+	mov	%o0, %o2
+	mov	0, %o1
+	mov	1, %o0
+	or	%o7, %g0, %g1
+	call	__ajit_serial_set_uart_reset_inner__, 0
+	 or	%g1, %g0, %o7
+	.size	__ajit_serial_set_uart_reset_via_vmap__, .-__ajit_serial_set_uart_reset_via_vmap__
+	.align 4
+	.global __ajit_serial_set_uart_reset__
+	.type	__ajit_serial_set_uart_reset__, #function
+	.proc	020
+__ajit_serial_set_uart_reset__:
+	mov	%o0, %o2
+	mov	0, %o1
+	mov	0, %o0
+	or	%o7, %g0, %g1
+	call	__ajit_serial_set_uart_reset_inner__, 0
+	 or	%g1, %g0, %o7
+	.size	__ajit_serial_set_uart_reset__, .-__ajit_serial_set_uart_reset__
 	.align 4
 	.global __ajit_write_irc_control_register__
 	.type	__ajit_write_irc_control_register__, #function
@@ -1716,7 +1961,7 @@ __ajit_serial_uart_reset__:
 __ajit_write_irc_control_register__:
 	sethi	%hi(-53248), %g1
 #APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 295 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o0, [%g1] 32
 	
 ! 0 "" 2
@@ -1731,7 +1976,7 @@ __ajit_write_irc_control_register__:
 __ajit_read_irc_control_register__:
 	sethi	%hi(-53248), %o0
 #APP
-! 416 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 446 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o0] 32, %o0
 	
 ! 0 "" 2
@@ -1767,7 +2012,7 @@ __ajit_write_spi_master_register__:
 	or	%g1, 768, %g1
 	add	%o0, %g1, %o0
 #APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 295 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	sta %o1, [%o0] 32
 	
 ! 0 "" 2
@@ -1796,7 +2041,7 @@ __ajit_read_spi_master_register__:
 	or	%g1, 768, %g1
 	add	%o0, %g1, %o0
 #APP
-! 416 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 446 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o0] 32, %o0
 	
 ! 0 "" 2
@@ -1816,6 +2061,160 @@ __ajit_read_spi_master_register_via_vmap__:
 	 ldub	[%o0+%g1], %o0
 	.size	__ajit_read_spi_master_register_via_vmap__, .-__ajit_read_spi_master_register_via_vmap__
 	.align 4
+	.global __ajit_do_spi_transfer__
+	.type	__ajit_do_spi_transfer__, #function
+	.proc	014
+__ajit_do_spi_transfer__:
+	sethi	%hi(-53248), %g3
+	or	%g3, 768, %g1
+#APP
+! 1080 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o1, [%g1] 32
+	
+! 0 "" 2
+#NO_APP
+	and	%o0, 7, %g1
+	and	%o2, 1, %o2
+	sll	%g1, 3, %g1
+	add	%o2, %o2, %o2
+	or	%g1, 1, %g1
+	or	%g3, 776, %g3
+	or	%o2, %g1, %o2
+#APP
+! 1081 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o2, [%g3] 32
+	
+! 0 "" 2
+#NO_APP
+	b	.L299
+	 sethi	%hi(8192), %g1
+.L304:
+	be	.L305
+	 sethi	%hi(-53248), %o0
+.L299:
+#APP
+! 1092 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%g3] 32, %g2
+	
+! 0 "" 2
+#NO_APP
+	andcc	%g2, 1, %g0
+	bne,a	.L304
+	 addcc	%g1, -1, %g1
+	sethi	%hi(-53248), %o0
+.L305:
+	or	%o0, 768, %o0
+#APP
+! 1108 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o0] 32, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 and	%o0, 0xff, %o0
+	.size	__ajit_do_spi_transfer__, .-__ajit_do_spi_transfer__
+	.align 4
+	.global __ajit_do_spi_transfer_via_vmap__
+	.type	__ajit_do_spi_transfer_via_vmap__, #function
+	.proc	014
+__ajit_do_spi_transfer_via_vmap__:
+	sethi	%hi(-53248), %g1
+	and	%o0, 7, %o0
+	or	%g1, 768, %g2
+	sll	%o0, 3, %o0
+	st	%o1, [%g2]
+	or	%o0, 1, %o0
+	or	%g1, 776, %g1
+	and	%o2, 1, %o2
+	add	%o2, %o2, %o2
+	or	%o2, %o0, %o2
+	mov	%o1, %o0
+	jmp	%o7+8
+	 st	%o2, [%g1]
+	.size	__ajit_do_spi_transfer_via_vmap__, .-__ajit_do_spi_transfer_via_vmap__
+	.align 4
+	.global __ajit_do_spi_transfer_inner__
+	.type	__ajit_do_spi_transfer_inner__, #function
+	.proc	014
+__ajit_do_spi_transfer_inner__:
+	and	%o1, 7, %o1
+	sll	%o1, 3, %g1
+	or	%g1, 1, %g1
+	and	%o3, 1, %o3
+	cmp	%o0, 0
+	add	%o3, %o3, %o3
+	or	%o3, %g1, %o3
+	be	.L308
+	 sethi	%hi(-53248), %g1
+	or	%g1, 768, %g2
+	st	%o2, [%g2]
+	and	%o3, 0xff, %o3
+	or	%g1, 776, %g1
+	st	%o3, [%g1]
+	sethi	%hi(-53248), %g3
+.L323:
+	sethi	%hi(8192), %g1
+	b	.L313
+	 or	%g3, 776, %g3
+.L320:
+	andcc	%g2, 1, %g0
+	be	.L324
+	 cmp	%o0, 0
+	addcc	%g1, -1, %g1
+.L325:
+	be	.L324
+	 cmp	%o0, 0
+.L313:
+	cmp	%o0, 0
+	bne,a	.L320
+	 ld	[%g3], %g2
+#APP
+! 1092 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%g3] 32, %g2
+	
+! 0 "" 2
+#NO_APP
+	andcc	%g2, 1, %g0
+	bne,a	.L325
+	 addcc	%g1, -1, %g1
+	cmp	%o0, 0
+.L324:
+	bne,a	.L322
+	 sethi	%hi(-53248), %g1
+	sethi	%hi(-53248), %o0
+	or	%o0, 768, %o0
+#APP
+! 1108 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o0] 32, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 and	%o0, 0xff, %o0
+.L308:
+	or	%g1, 768, %g2
+#APP
+! 1080 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o2, [%g2] 32
+	
+! 0 "" 2
+#NO_APP
+	or	%g1, 776, %g1
+#APP
+! 1081 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o3, [%g1] 32
+	
+! 0 "" 2
+#NO_APP
+	b	.L323
+	 sethi	%hi(-53248), %g3
+.L322:
+	or	%g1, 768, %g1
+	ld	[%g1], %o0
+	jmp	%o7+8
+	 and	%o0, 0xff, %o0
+	.size	__ajit_do_spi_transfer_inner__, .-__ajit_do_spi_transfer_inner__
+	.align 4
 	.global __ajit_gpio_xfer__
 	.type	__ajit_gpio_xfer__, #function
 	.proc	016
@@ -1823,23 +2222,25 @@ __ajit_gpio_xfer__:
 	sethi	%hi(-53248), %g4
 	or	%g4, 768, %g1
 #APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %o0, [%g1] 32
+! 295 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o1, [%g1] 32
 	
 ! 0 "" 2
 #NO_APP
-	mov	19, %g1
+	and	%o0, 7, %o0
 	or	%g4, 776, %g4
+	sll	%o0, 3, %o0
+	or	%o0, 3, %o0
 #APP
-! 265 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
-	sta %g1, [%g4] 32
+! 295 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%g4] 32
 	
 ! 0 "" 2
 #NO_APP
 	mov	256, %g1
-.L302:
+.L327:
 #APP
-! 416 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 446 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%g4] 32, %g2
 	
 ! 0 "" 2
@@ -1849,11 +2250,11 @@ __ajit_gpio_xfer__:
 	sub	%g3, %g1, %g3
 	srl	%g3, 31, %g3
 	andcc	%g3, %g2, %g0
-	bne	.L302
+	bne	.L327
 	 sethi	%hi(-53248), %o0
 	or	%o0, 768, %o0
 #APP
-! 416 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 446 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	lda [%o0] 32, %o0
 	
 ! 0 "" 2
@@ -1867,20 +2268,85 @@ __ajit_gpio_xfer__:
 	.proc	016
 __ajit_gpio_xfer_via_vmap__:
 	sethi	%hi(-53248), %g1
-	or	%g1, 768, %g2
-	stb	%o0, [%g2]
+	and	%o0, 7, %o0
+	or	%g1, 768, %g4
+	sll	%o0, 3, %g3
 	or	%g1, 776, %g1
-	mov	19, %g2
+	stb	%o1, [%g4]
+	or	%g3, 3, %g2
+	stb	%g2, [%g1]
+	mov	%g2, %g3
+	mov	256, %g1
+	add	%g1, -1, %g1
+.L332:
+	sra	%g1, 31, %g2
+	sub	%g2, %g1, %g2
+	srl	%g2, 31, %g2
+	andcc	%g3, %g2, %g0
+	bne	.L332
+	 add	%g1, -1, %g1
+	sethi	%hi(-53248), %g1
+	or	%g1, 768, %g1
 	jmp	%o7+8
-	 stb	%g2, [%g1]
+	 ldub	[%g1], %o0
 	.size	__ajit_gpio_xfer_via_vmap__, .-__ajit_gpio_xfer_via_vmap__
+	.align 4
+	.global __ajit_read_gpio_32__
+	.type	__ajit_read_gpio_32__, #function
+	.proc	016
+__ajit_read_gpio_32__:
+	sethi	%hi(-52224), %g1
+	or	%g1, 4, %g1
+	jmp	%o7+8
+	 ld	[%g1], %o0
+	.size	__ajit_read_gpio_32__, .-__ajit_read_gpio_32__
+	.align 4
+	.global __ajit_write_gpio_32__
+	.type	__ajit_write_gpio_32__, #function
+	.proc	020
+__ajit_write_gpio_32__:
+	sethi	%hi(-52224), %g1
+	jmp	%o7+8
+	 st	%o0, [%g1]
+	.size	__ajit_write_gpio_32__, .-__ajit_write_gpio_32__
+	.align 4
+	.global __ajit_read_gpio_32_via_vmap__
+	.type	__ajit_read_gpio_32_via_vmap__, #function
+	.proc	016
+__ajit_read_gpio_32_via_vmap__:
+	sethi	%hi(-52224), %o0
+	or	%o0, 4, %o0
+#APP
+! 1199 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	lda [%o0] 32, %o0
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+	.size	__ajit_read_gpio_32_via_vmap__, .-__ajit_read_gpio_32_via_vmap__
+	.align 4
+	.global __ajit_write_gpio_32_via_vmap__
+	.type	__ajit_write_gpio_32_via_vmap__, #function
+	.proc	020
+__ajit_write_gpio_32_via_vmap__:
+	sethi	%hi(-52224), %g1
+#APP
+! 1204 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+	sta %o0, [%g1] 32
+	
+! 0 "" 2
+#NO_APP
+	jmp	%o7+8
+	 nop
+	.size	__ajit_write_gpio_32_via_vmap__, .-__ajit_write_gpio_32_via_vmap__
 	.align 4
 	.global __ajit_ta_0__
 	.type	__ajit_ta_0__, #function
 	.proc	020
 __ajit_ta_0__:
 #APP
-! 987 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 1212 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ta 0; nop; nop;
 ! 0 "" 2
 #NO_APP
@@ -1893,7 +2359,7 @@ __ajit_ta_0__:
 	.proc	020
 __ajit_fsqrtd__:
 #APP
-! 992 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 1217 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ldd [%o0], %f0; fsqrtd %f0, %f2; std %f2, [%o1];
 ! 0 "" 2
 #NO_APP
@@ -1906,7 +2372,7 @@ __ajit_fsqrtd__:
 	.proc	020
 __ajit_fsqrts__:
 #APP
-! 997 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 1222 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ld [%o0], %f0; fsqrts %f0, %f1; st %f1, [%o1];
 ! 0 "" 2
 #NO_APP
@@ -1919,7 +2385,7 @@ __ajit_fsqrts__:
 	.proc	020
 __ajit_fitod__:
 #APP
-! 1002 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 1227 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ld [%o0], %f0; fitod %f0, %f2; std %f2, [%o1];
 ! 0 "" 2
 #NO_APP
@@ -1932,7 +2398,7 @@ __ajit_fitod__:
 	.proc	020
 __ajit_fitos__:
 #APP
-! 1007 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 1232 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ld [%o0], %f0; fitos %f0, %f1; st %f1, [%o1];
 ! 0 "" 2
 #NO_APP
@@ -1945,7 +2411,7 @@ __ajit_fitos__:
 	.proc	020
 __ajit_fdtoi__:
 #APP
-! 1012 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 1237 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ldd [%o0], %f0; fdtoi %f0, %f2; st %f2, [%o1];
 ! 0 "" 2
 #NO_APP
@@ -1958,7 +2424,7 @@ __ajit_fdtoi__:
 	.proc	020
 __ajit_fstoi__:
 #APP
-! 1017 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
+! 1242 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_access_routines.c" 1
 	ld [%o0], %f0; fstoi %f0, %f1; st %f1, [%o1];
 ! 0 "" 2
 #NO_APP

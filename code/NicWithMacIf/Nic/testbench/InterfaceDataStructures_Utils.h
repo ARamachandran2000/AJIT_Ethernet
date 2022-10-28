@@ -10,7 +10,7 @@ uint64_t setSliceOfWord_64(uint64_t, uint8_t, uint8_t, uint64_t);
 // Indicates Offsets of Queues in Memory
 
 // For number of buffer
-// if you change NUM_OF_BUFFERS then make same change to QUEUE_SIZE_MESK in ../src/decls.aa
+// if you change NUM_OF_BUFFERS then make same change to QUEUE_SIZE_MASK in ../src/decls.aa
 
 #define NUM_OF_BUFFERS	4 // should be miltiple of 4 
 

@@ -35,8 +35,6 @@ __cortos_log_printf:
 	 ld	[%l0+%lo(loggingLockAddr)], %o0
 	call	cortos_get_clock_time, 0
 	 nop
-	sethi	%hi(64512), %o2
-	std	%o0, [%fp-1032]
 #APP
 ! 34 "cortos_src/cortos_logging.c" 1
 	  rd %asr29, %l1
@@ -44,9 +42,9 @@ __cortos_log_printf:
 
 ! 0 "" 2
 #NO_APP
-	or	%o2, 768, %o2
+	std	%o0, [%fp-1032]
 	and	%g1, 0xff, %o3
-	and	%g1, %o2, %o2
+	srl	%g1, 8, %o2
 	ld	[%fp-1032], %g1
 	st	%g1, [%sp+96]
 	ld	[%fp-1028], %g1
@@ -54,6 +52,7 @@ __cortos_log_printf:
 	st	%g1, [%sp+100]
 	mov	%i1, %o4
 	mov	%i3, %o5
+	and	%o2, 0xff, %o2
 	st	%i2, [%sp+92]
 	sethi	%hi(.LC0), %o0
 	call	ee_printf, 0

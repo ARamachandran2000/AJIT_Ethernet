@@ -69,11 +69,11 @@ Hardware:
         StartAddr: 0xFFFF2C00
         SizeInBytes: 1024
         Permissions: RW
-    - Name: NIC
-      MemoryRegion:
-        StartAddr: 0xFFFF5000
-        SizeInBytes: 256
-        Permissions: RW
+    #- Name: NIC
+    #  MemoryRegion:
+    #    StartAddr: 0xFFFF5000
+    #    SizeInBytes: 256
+    #    Permissions: RW
 Software:
   BuildAndExecute:
     # Optional: Specify the log level. Default is NONE.
@@ -95,12 +95,12 @@ Software:
   #   CortosLoopCalls:
   #     - main1
       StackSize:
-        SizeInKiloBytes: 1048576
+        SizeInKiloBytes: 16 #1048576
 
   DynamicMemory: # Dynamic Memory Configuration.
     # SizeInBytes: ...
-    # SizeInKiloBytes: 50
-    SizeInMegaBytes: 500
+    SizeInKiloBytes: 100
+    # SizeInMegaBytes: 500
 
   Locks: # Locks for synchronization between threads.
 #      Cacheable: 32

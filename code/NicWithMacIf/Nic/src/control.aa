@@ -61,16 +61,40 @@
 //19              0x4C            MAC_ADDR[31:0]
 //20              0x50            {unused,MAC_ADDR[47:32]}
 //---------------------------------------------------
-//21		0x54		Count of packets transmitted
+//21		  0x54		Count of packets transmitted
 //				by NIC
-//22		0x58		NIC got the control
+//22		  0x58		NIC got the control
 //				(0 -> no control, 1-> got control)
 //
-//23		0x5c		--
+//23		  0x5c		number of pkts parsed by parser
+//
+//24		  0x60		rx_buffer_pointer
+//.
+//25		  0x64		number of packets sent to rx queue
+//
+//26		  0x68		tx_buffer_pointer received by trenasmit engine
+//
+//27		  0x6c
+//.		       \
+//.			->	chuncks received by parser from mac.	
+//.                    /
+//38		  0x98
+//.
+//39		  0x9c		transmit_engine -> push_pointer_back_to_free_Q
+//.
+//40		  0xa0		transmit_engine -> control_data
+//.
+//41		  0xa4
+//.		       \
+//.			->	chunks read by transmit engine
+//.                    /
+//52		  0xb0
 //.
 //.
+//53		  0xb4		number of chunks written to nic_to_mac_pipe
 //.
-//63		0xfc		--
+//.
+//63		  0xfc		--
 //
 // Register file (depth = 64) (width = 32)
 
@@ -146,9 +170,14 @@ $module [SoftwareRegisterAccessDaemon] $in () $out () $is
 			$guard(update_free_q_pipe)
 				FREE_Q_32 := nic_registers[18]
 
+			// address modifications
 			// Convert Pointer to 36-bit physical address
 			$guard(update_free_q_pipe)
-				FREE_Q := ($bitcast ($uint<36>) ($concat FREE_Q_32 $zero<3>))
+				FREE_Q := ($bitcast ($uint<36>) FREE_Q_32)
+
+			// Convert Pointer to 36-bit physical address
+			//$guard(update_free_q_pipe)
+			//	FREE_Q := ($bitcast ($uint<36>) ($concat FREE_Q_32 $zero<3>))
 
 			$guard(update_server_num)
 				NUMBER_OF_SERVERS := nic_registers[1]

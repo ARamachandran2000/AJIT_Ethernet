@@ -125,7 +125,7 @@ ajit_generic_interrupt_handler:
 	call	enableInterruptController, 0
 	 ldub	[%fp-1], %o1
 #APP
-! 52 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_mt_irc.c" 1
+! 51 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_mt_irc.c" 1
 	ta 0;
 ! 0 "" 2
 #NO_APP

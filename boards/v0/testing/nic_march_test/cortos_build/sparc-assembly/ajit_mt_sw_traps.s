@@ -57,7 +57,7 @@ ajit_generic_sw_trap_handler:
 	 restore
 .L10:
 #APP
-! 47 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_mt_sw_traps.c" 1
+! 45 "/home/tools_shared/ajit-toolchain/AjitPublicResources/tools/ajit_access_routines_mt/src/ajit_mt_sw_traps.c" 1
 	ta 0;
 ! 0 "" 2
 #NO_APP

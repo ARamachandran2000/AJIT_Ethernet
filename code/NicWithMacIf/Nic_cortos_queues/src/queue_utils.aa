@@ -1,6 +1,6 @@
 //
 // Utilities
-//    Pop a uint32_t from the queue.  Return status = 1 on success.
+//    Pop a uint32_t from the queue.  Return status = 0 on success.
 //
 //	1. acquire lock
 // 	2. Get read write indexs
@@ -13,22 +13,51 @@ $module [popFromQueue]
 	$in (lock : $uint<1> q_base_address : $uint<36>) $out (q_r_data: $uint<32> status: $uint<1>)
 $is
 {
-	$guard (lock) $call acquireLock(q_base_address) (m_ok)
+	// check if misc is 1,
+	// if 1 check if total_msgs is 0
+	//  if yes wait for total_msgs to be 1
+	//   when 1 pop data
+	// if misc is 0 
+	// follow old method
+
+	$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
+				 (q_base_address + 24 ) $zero<64>) (ba_and_misc)
+
+	$volatile misc := ($slice ba_and_misc 31 0)
+
+	//$branchblock[loop]
+	//{
+	//	$merge $entry loopback $endmerge
+	//
+	//	$call getTotalMessages(q_base_address) (total_msgsI)
+	//	$volatile q_emptyI := (total_msgsI == 0)
+	//
+	//	$volatile misc_one := (misc == 1)
+	//	$if(misc_one & q_emptyI) $then
+	//		$place[loopback]
+	//	$endif
+	//}
+	$volatile lock_n  := (misc == $zero<32>)
+
+	$guard (lock_n) $call acquireLock(q_base_address) (m_ok)
 	$barrier
 	
 	$call getQueuePointers (q_base_address) (write_index read_index)
 	$volatile q_empty := (write_index == read_index)
 
 	$call getQueueLength(q_base_address) (Queue_Length)
+	//$call getTotalMessages(q_base_address) (total_msgs)
+	//$volatile q_empty := (total_msgs == 0)
 	$volatile round_off := (read_index == (Queue_Length - 1))
 	$volatile next_ri := ($mux round_off 0 (read_index + 1))
 	
 	$guard (~q_empty) $call getQueueElement (q_base_address read_index) (q_r_data)
 	$guard (~q_empty) $call setQueuePointers (q_base_address write_index next_ri) ()
+	//$guard (~q_empty) $call updateTotalMessages (q_base_address (total_msgs - $one<32>)) ()
 	$rreport(popFromQueue pop_data q_base_address q_r_data q_empty write_index read_index next_ri)
 
 	$barrier
-	$guard(lock) $call releaseLock (q_base_address) ()
+	$guard(lock_n) $call releaseLock (q_base_address) ()
 	status := q_empty // 0 = success, 1 = Fail
 	
 }
@@ -49,23 +78,50 @@ $module [pushIntoQueue]
 	$in  (lock : $uint<1> q_base_address : $uint<36> q_w_data: $uint<32>) $out (status: $uint<1>)
 $is
 {
-	$guard (lock) $call acquireLock (q_base_address) (m_ok) 
+	// check if misc is 1,
+	// if 1 check if total_msgs is 1
+	//  if yes wait for total_msgs to be 0
+	//   when 0 push data
+	// if misc is 0 
+	// follow old method
+
+	$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
+				 (q_base_address + 24 ) $zero<64>) (ba_and_misc)
+	$volatile misc := ($slice ba_and_misc 31 0)
+
+	//$branchblock[loop]
+	//{
+	//	$merge $entry loopback $endmerge
+	//
+	//	$call getTotalMessages(q_base_address) (total_msgsI)
+	//	$volatile q_emptyI := (total_msgsI == 0)
+	//
+	//	$volatile misc_one := (misc == 1) // if misc = 1 misc_one = 1
+	//	$if(misc_one & (~q_emptyI)) $then
+	//		$place[loopback]
+	//	$endif
+	//}
+	$volatile lock_n  := (misc == $zero<32>)
+
+	$guard (lock_n) $call acquireLock (q_base_address) (m_ok) 
 	$barrier
 	$rreport(pushIntoQueue pushing_to_queue q_w_data q_base_address)
 	$call getQueuePointers (q_base_address) (write_index read_index)
 	
 	$call getQueueLength(q_base_address) (Queue_Length)
-	$volatile round_off := (read_index == (Queue_Length - 1))
+	//$call getTotalMessages(q_base_address) (total_msgs)
+	$volatile round_off := (write_index == (Queue_Length - 1))
 	$volatile next_wi := ($mux round_off 0 (write_index + 1))
 	
 	$volatile q_full := (next_wi == read_index)
 	$rreport(pushIntoQueue pushing_to_queue q_w_data write_index read_index next_wi q_full)
 	$guard (~q_full) $call setQueueElement (q_base_address write_index q_w_data) ()
 	$guard (~q_full) $call setQueuePointers (q_base_address next_wi read_index) ()
+	//$guard (~q_full) $call updateTotalMessages (q_base_address (total_msgs + $one<32>)) ()
 
 
 	$barrier
-	$guard (lock) $call releaseLock (q_base_address) ()
+	$guard (lock_n) $call releaseLock (q_base_address) ()
 	status := (~q_full)
 }
 
@@ -85,17 +141,17 @@ $is
 //
 // lock read  modify write (aka LDSTUB), spin till lock acquired.
 //
-//	1. read lock_pointer(address) from qeue(locked read)
+//	1. read lock_pointer(address) from queue(locked read)
 //	2. read data at lock_pointer(address)
-//	3. get 8bit lock data from 64bit read data (how?)
-//	4. if lock = FF -> keep checking
-//	     else set lock(queue) = FF and release memory lock
+//	3. get 8bit lock data from 64bit read data
+//	4. if lock = FF -> keep checking (release mem lock and acquire again)
+//	     else set lock(queue) = FF aalong with releasing memory lock
 $module [acquireLock] $in (q_base_address: $uint<36>) $out (m_ok: $uint<1>) 
 $is
 {
 	$branchblock[loop] {
 
-		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 20) )
+		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 16) )
 
 		$merge $entry loopback $endmerge
 		
@@ -108,23 +164,7 @@ $is
 		$call accessMemory ($one<1> $one<1> (~$zero<8>) ($concat $zero<4> lock_addr_32) $zero<64>) (lock_values)
 		
 		$volatile $split (lock_values 8 8 8 8 8 8 8 8) (l0 l1 l2 l3 l4 l5 l6 l7)
-
-		$volatile lock_val := ($excmux
-					(sel == 0) l0
-					(sel == 1) l1
-					(sel == 2) l2
-                                        (sel == 3) l3
-					(sel == 4) l4
-                                        (sel == 5) l5
-					(sel == 6) l6
-                                        (sel == 7) l7) 
 		
-		$if (lock_val == (~$zero<8>)) $then
-			// release memory lock
-			$call accessMemory ($zero<1> $one<1> (~$zero<8>) lock_address_pointer $zero<64>)(err)
-			$place [loopback]
-		$endif
-		//logic_for_bmask which will set perticular lock to 11111111		
 		$volatile s0 := (sel == 0)
 		$volatile s1 := (sel == 1)
 		$volatile s2 := (sel == 2)
@@ -133,6 +173,24 @@ $is
 		$volatile s5 := (sel == 5)
 		$volatile s6 := (sel == 6)
 		$volatile s7 := (sel == 7)
+		 
+		$volatile lock_val := ($excmux
+					s0 l0
+					s1 l1
+					s2 l2
+					s3 l3
+					s4 l4
+					s5 l5
+					s6 l6
+					s7 l7) 
+		
+		
+		$if (lock_val == (~$zero<8>)) $then
+			// release memory lock
+			$call accessMemory ($zero<1> $one<1> (~$zero<8>) lock_address_pointer $zero<64>)(err)
+			$place [loopback]
+		$endif
+		//logic_for_bmask which will set perticular lock to 11111111		
 		$volatile new_bmask := ($concat
 						($mux s0 $one<1> $zero<1> )
 						($mux s1 $one<1> $zero<1> )
@@ -142,7 +200,10 @@ $is
 						($mux s5 $one<1> $zero<1> )
 						($mux s6 $one<1> $zero<1> )
 						($mux s7 $one<1> $zero<1> ))
-
+						
+		// l0 l1 l2 l3 l4 l5 l6 l7
+		// 	0	0		0	1  0   0  0  0 
+	
 		$call accessMemory ($zero<1> $zero<1> new_bmask ($concat $zero<4> lock_addr_32) (~$zero<64>))
 						(ignore)
 	}
@@ -159,8 +220,8 @@ $is
 //	3. write 0 to lock address with bamsk.
 $module [releaseLock] $in (q_base_address: $uint<36>) $out () $is
 {
-		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 20) )
-		$call accessMemory ($zero<1> $one<1> 
+		$volatile lock_address_pointer := (q_base_address + ($bitcast ($uint<36>) 16) )
+		$call accessMemory ($one<1> $one<1> 
 					(~$zero<8>) 
 					 lock_address_pointer $zero<64>) (msg_size_plus_lock)
 		
@@ -174,7 +235,8 @@ $module [releaseLock] $in (q_base_address: $uint<36>) $out () $is
                 $volatile s5 := (sel == 5)
                 $volatile s6 := (sel == 6)
                 $volatile s7 := (sel == 7)
-		//logic_for_bmask which will set perticular lock to 00000000
+                
+		//logic_for_bmask which will set perticular lock to _b00000000
                 $volatile new_bmask := ($concat
                                                 ($mux s0 $one<1> $zero<1> )
                                                 ($mux s1 $one<1> $zero<1> )
@@ -184,7 +246,7 @@ $module [releaseLock] $in (q_base_address: $uint<36>) $out () $is
                                                 ($mux s5 $one<1> $zero<1> )
                                                 ($mux s6 $one<1> $zero<1> )
                                                 ($mux s7 $one<1> $zero<1> ))
-		$call accessMemory ($one<1> $zero<1> new_bmask ($concat $zero<4> lock_addr_32) $zero<64>) (ignore)
+		$call accessMemory ($zero<1> $zero<1> new_bmask ($concat $zero<4> lock_addr_32) $zero<64>) (ignore)
 }
 
 	
@@ -197,9 +259,13 @@ $module [getQueuePointers] $in (q_base_address: $uint<36>)
 {
 		
 		$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
-					 (q_base_address + 4) $zero<64>) (wp_rp)
+					 q_base_address $zero<64>) (msgs_rp)
 
-		$volatile $split (wp_rp 32 32) (rp wp)
+		$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
+					 (q_base_address + 8) $zero<64>) (wp_len)
+
+		$volatile $split (msgs_rp 32 32) (ignore rp)
+		$volatile $split (wp_len 32 32) (wp len)
 		$rreport(getQueuePointers set q_base_address wp rp)
 }
 
@@ -210,8 +276,10 @@ $module [setQueuePointers] $in (q_base_address: $uint<36> wp rp: $uint<32>) $out
 {
 
 		$rreport(setQueuePointers set q_base_address wp rp)
-		$call accessMemory ($zero<1> $zero<1>  (~$zero<8>)
-					 (q_base_address + 4) ($concat rp wp)) (ignore)
+		$call accessMemory ($zero<1> $zero<1>  ($concat $zero<4> (~$zero<4>))
+					 q_base_address ($concat rp rp)) (ignore)
+		$call accessMemory ($zero<1> $zero<1>  ($concat (~$zero<4>) $zero<4>)
+					 (q_base_address + 8) ($concat wp wp)) (ignore_1)
 }
 
 	
@@ -224,8 +292,9 @@ $module  [getQueueElement]
 	$out (q_r_data : $uint<32>)
 $is
 {
-	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 24) )
+	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 32) )
 	$volatile element_pair_address := (buffer_address + ($bitcast ($uint<36>) ($concat ($slice read_index 31 1) $zero<3>)))
+	
 	$call accessMemory ($zero<1> $one<1>  (~$zero<8>) element_pair_address $zero<64>) (element_pair)
 
 	$volatile $split (element_pair 32 32) (e0 e1)
@@ -245,7 +314,7 @@ $module  [setQueueElement]
 	$out () 
 $is
 {
-	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 24) )
+	$volatile buffer_address := (q_base_address + ($bitcast ($uint<36>) 32) )
 	$volatile element_pair_address := 
 		(buffer_address + ($bitcast ($uint<36>) ($concat ($slice write_index 31 1) $zero<3>)))
 
@@ -263,5 +332,23 @@ $is
 	$call accessMemory ($zero<1> $zero<1>  bmask
 					 element_pair_address wval) (ignore)
 
+}
+$module [getTotalMessages]
+	$in (q_base_address : $uint<36>)
+	$out(total_msgs : $uint<32>)
+$is
+{	
+	$call accessMemory ($zero<1> $one<1>  (~$zero<8>)
+					 q_base_address $zero<64>) (rdata)
+	$split (rdata 32 32) (total_msgs readIndex)
+}
+
+$module [updateTotalMessages]
+	$in (q_base_address : $uint<36> updated_total_msgs : $uint<32>)
+	$out()
+$is
+{	
+	$call accessMemory ($zero<1> $zero<1>  ($concat (~$zero<4>) $zero<4>)
+					 q_base_address ($concat updated_total_msgs updated_total_msgs)) (rdata)
 }
 

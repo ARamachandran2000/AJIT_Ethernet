@@ -8,7 +8,7 @@ uint8_t* loggingLockAddr = 0;
 
 void cortos_init_logging() {
   // allocate lock
-  uint8_t* lockStartAddrNc = (uint8_t*)63967232; // non-cacheable
+  uint8_t* lockStartAddrNc = (uint8_t*)53248; // non-cacheable
   allocatedLocksNc[LOGGING_LOCK_INDEX] = 1;
   loggingLockAddr = lockStartAddrNc + LOGGING_LOCK_INDEX;
 }
@@ -47,7 +47,7 @@ int __cortos_log_printf(
 
   n += ee_printf(
    "CoRTOS:LOG: %s: (%d,%d): %s:%d, %s() [%lu,%lu]. ",
-   levelName, asrValue & 0xFF00, asrValue & 0xFF,
+   levelName, (asrValue & 0xFF00) >> 8, asrValue & 0xFF,
    fileName, lineNum, funcName, *time, *(time+1));
 
   va_start(args, fmt);

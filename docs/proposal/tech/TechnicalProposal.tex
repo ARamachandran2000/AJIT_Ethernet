@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
 \title{A proposal for the development of the networking device  for implementation of  private 5G networks}
-\author{Madhav Desai, D. Manjunath, L. Somappa, Gaurav Kasbekar\\ IIT Bombay\\ Abhijit Chaudhary \\ Niral Networks}
+\author{D. Manjunath, Madhav Desai,  L. Somappa, Gaurav Kasbekar\\ IIT Bombay\\ Abhijit Chaudhary \\ Niral Networks \\ Reapan Tikoo \\ Powai Labs}
 \begin{document}
 \maketitle
 
@@ -25,10 +25,15 @@
 	to user inspection and oversight.   The software is based on open source
 	computations and will be ported to the hardware platform.
 
+	The project will be executed under the supervision of IIT Bombay, 
+	with contributions from IIT Bombay, Niral Networks, and Powai Lab
+	Technologies Pvt. Ltd.
+
 
 \section{Novelty of the proposed project}
 
-	The novelty of the project can be summarized in three ways
+	The novelty of the project can be summarized in four ways: trust,
+	indigenous-ness, open software, scalability.
 	
 	\begin{itemize}
 	\item Trust:
@@ -46,9 +51,14 @@
 	\item Non-proprietary software:
 		Completely auditable, based on open standards, and with source
 		code completely visible and shared.
+
+	\item Scalability:
+		The number of processor cores can be scaled to 64 and higher
+		by introducing clustering of processor cores, and with a
+		custom on-chip processor-NIC-memory network.
 	\end{itemize}
 
-	With that background, we propose a program of developing and deploying  private 5G subsystems.
+	With this background, we propose a program of developing and deploying  private 5G subsystems.
 	Our target deployment is the critical national infrastructure such as military establishments, 
 	power grids, refineries, railways, shipyards, ordnance and armament factories, etc. 
 
@@ -73,7 +83,7 @@
 
 \begin{figure}
   \centering
-  \includegraphics[width=10cm]{figs/Router_I.pdf}
+  \includegraphics[width=12cm]{figs/Router_I.pdf}
   \caption{Router platform: phase 1}
   \label{fig:Phase1}
 \end{figure}
@@ -93,7 +103,7 @@ The features of this platform are as follows:
 
 \begin{figure}
   \centering
-  \includegraphics[width=10cm]{figs/Router_II.pdf}
+  \includegraphics[width=12cm]{figs/Router_II.pdf}
   \caption{Router platform: phase 2}
   \label{fig:Phase2}
 \end{figure}
@@ -117,7 +127,7 @@ These enhancements aim at a 5X improvement over the Phase 1 router.
 \subsection{Phase 3}
 \begin{figure}
   \centering
-  \includegraphics[width=10cm]{figs/Router_III.pdf}
+  \includegraphics[width=12cm]{figs/Router_III.pdf}
   \caption{Router platform: phase 3}
    \label{fig:Phase3}
 \end{figure}
@@ -154,34 +164,52 @@ improvement over the Phase 2 router.
 
 \section{Detailed Description of the project: software platform}
 
-The software platform will be Release-15 compliant 5G Core for 
-Private 5G Deployment, with support for
+The software platform will support Layer-2 and Layer-3 features, with support for
 \begin{itemize}
-\item User Plane Private 5G Network Functions: UPF  
-\item IPv4, IPv6, MPLS and L3-VPN Forwarding.
-\item Private 5G Control Plane functions: AMF, SMF, AUSF.
-\item Routing Protocols like OSPF, ISIS, BGP, LDP
+\item Layer-2 Processing including Ethernet, VLAN and ARP.
+\item IPv4/IPv6 Packet Forwarding and Route Lookup.
+\item MPLS/L3-VPN Forwarding and Label Management.
+\item Centralized control plane to configure the IP routes or MPLS labels.
 \end{itemize}
 
-The software platform will be developed in two phases.
+The software platform will be developed in three phases.
 
 \subsection{Phase 1}
 
-Integrate the User Plane of 5G Core and IP MPLS Router in the AJIT Hardware. 
-At this point, the platform contains the 5G UPF and IP/ MPLS Packet Forwarding.
+Development of the Layer 2, IPv4 and IPv6 forwarding stack and its integration to the AJIT Hardware. 
 
 \subsection{Phase 2}
 
-Integrate the Control Plane of 5G Core and IP MPLS Router in the AJIT Hardware. 
-So, it contains the 5G control plane component such as SMF, AMF, AUSF, etc. and 
-the IP/ MPLS Routing Protocols.
+Development of the MPLS and L3-VPN forwarding stack and its integration to the AJIT Hardware.
 
-\subsection{Prototype deployment}
+\subsection{Phase 3}
 
-A prototype 5G router platform will be deployed on the FPGA platform of 
-the hardware outlined above.  Use plane processing will be deployed as
-part of phase 1, and control plane processing as part of phase 2.
+Development of the Centralized Controller to remotely configure static IP routes or MPLS labels 
+in the AJIT Hardware.
 
+\section{Prototype deployment, validation and ASIC design}
+
+A prototype router platform for use in private 5G networks will be deployed on the FPGA platform of 
+the hardware outlined above. IPv4/IPv6 packet processing will be deployed as
+part of phase 1, MPLS/L3-VPN will be deployed as part of Phase 2 and remote control plane 
+configuration as part of Phase 3.  Concurrently engagement with potential end-users
+(RailNet, Jio) will be initiated in order to identify a test-bed for prototype validation.
+
+The ASIC design will be initiated at the end of the prototype validation phase.   The
+target technology is currently 22nm UMC/TSMC, with a target core frequency of 1.2GHz.
+
+
+
+\section{Responsibilities of the three institutions}
+
+The participating institutions will have the following
+responsibilities:
+\begin{itemize}
+\item IIT Bombay:  hardware design and validation, porting of software, ASIC design.
+\item Niral Networks:  software development, customization, optimization, integration.
+\item Powai Labs:  Management of ASIC production, system integration and validation with
+potential end users.
+\end{itemize}
 
 \end{document}
 

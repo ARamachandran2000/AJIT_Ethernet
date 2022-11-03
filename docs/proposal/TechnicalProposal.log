@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2019.10.10)  28 OCT 2022 10:40
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2019.10.10)  29 OCT 2022 06:28
 entering extended mode
  %&-line parsing enabled.
 **tech/TechnicalProposal.tex
@@ -86,43 +86,43 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 6.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 6.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 34.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 39.
  (/usr/share/texmf/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
  [1
 
 {/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] <figs/Router_I.pdf, id=1
-1, 853.1875pt x 491.8375pt>
+0, 822.07124pt x 491.8375pt>
 File: figs/Router_I.pdf Graphic file (type pdf)
 
-<use figs/Router_I.pdf> [2 <./figs/Router_I.pdf>]
-<figs/Router_II.pdf, id=19, 853.1875pt x 491.8375pt>
+<use figs/Router_I.pdf> <figs/Router_II.pdf, id=11, 853.1875pt x 491.8375pt>
 File: figs/Router_II.pdf Graphic file (type pdf)
- <use figs/Router_II.pdf>
-<figs/Router_III.pdf, id=20, 853.1875pt x 491.8375pt>
+
+<use figs/Router_II.pdf> [2] [3 <./figs/Router_I.pdf> <./figs/Router_II.pdf>]
+<figs/Router_III.pdf, id=28, 853.1875pt x 491.8375pt>
 File: figs/Router_III.pdf Graphic file (type pdf)
 
-<use figs/Router_III.pdf> [3 <./figs/Router_II.pdf>] [4 <./figs/Router_III.pdf>
-] [5] (./TechnicalProposal.aux) ) 
+<use figs/Router_III.pdf> [4 <./figs/Router_III.pdf>] [5] [6]
+(./TechnicalProposal.aux) ) 
 Here is how much of TeX's memory you used:
  908 strings out of 256214
  11287 string characters out of 1916999
- 59319 words of memory out of 3000000
+ 60347 words of memory out of 3000000
  4235 multiletter control sequences out of 10000+200000
  7895 words of font info for 28 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  25i,6n,19p,306b,231s stack positions out of 5000i,500n,6000p,200000b,15000s
-</usr/share/texmf/fonts/type1/bluesky/cm/cmbx1
-0.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fon
-ts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr12.pf
-b></usr/share/texmf/fonts/type1/bluesky/cm/cmr17.pfb></usr/share/texmf/fonts/ty
-pe1/bluesky/cm/cmsy10.pfb>
-Output written on TechnicalProposal.pdf (5 pages, 54977 bytes).
+</usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb>
+</usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/typ
+e1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></us
+r/share/texmf/fonts/type1/bluesky/cm/cmr17.pfb></usr/share/texmf/fonts/type1/bl
+uesky/cm/cmsy10.pfb>
+Output written on TechnicalProposal.pdf (6 pages, 58927 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
+ 61 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

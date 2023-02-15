@@ -18,7 +18,7 @@ module mac_rx_interface
 	parameter TKEEP_WIDTH = 1; //N/8
 	parameter NIC_WIDTH = MAC_WIDTH + TKEEP_WIDTH + 1; 
 
-	parameter Q = 2047;
+	parameter Q = 1023;
 
 	input clk;
 	input reset;
@@ -36,21 +36,24 @@ module mac_rx_interface
     
     
 
-	(* mark_debug = "true" *)reg  [10:0] read_pointer;
-	(* mark_debug = "true" *)reg  [10:0] write_pointer;
+	(* mark_debug = "true" *)reg  [9:0] read_pointer;
+	(* mark_debug = "true" *)reg  [9:0] write_pointer;
+	
+	reg [9:0] write_pointer_next;
 
 	(* mark_debug = "true" *)reg [NIC_WIDTH - 1 : 0] queue [Q : 0];
 	reg ack_reg;
+	reg [NIC_WIDTH-1:0] RX_FIFO_pipe_read_data_reg;
 
 	   
 	// 1 only iff reset = 0 and Q not full
-	assign rx_axis_tready = (reset != 1 && (((write_pointer + 1) & Q) != read_pointer)) ? 1'b1 : 1'b0;
+	assign rx_axis_tready = (reset != 1 && ((write_pointer_next) != read_pointer)) ? 1'b1 : 1'b0;
 	// 1 only iff reset = 0 and Q not empty
-	assign RX_FIFO_pipe_read_ack = (reset != 1 && (read_pointer != write_pointer)) ? 1'b1 : 1'b0;
+	assign RX_FIFO_pipe_read_ack = ((reset != 1) && (read_pointer != write_pointer))  ? 1'b1 : 1'b0;
 	//assign RX_FIFO_pipe_read_ack = ack_reg;
 	// data from queue
-	assign RX_FIFO_pipe_read_data = queue [read_pointer];
-
+	//assign RX_FIFO_pipe_read_data = queue [read_pointer];
+    assign RX_FIFO_pipe_read_data = RX_FIFO_pipe_read_data_reg;
 
 	//
 	//  push data to queue
@@ -61,15 +64,17 @@ module mac_rx_interface
 		$display (" RX %t :  wp =%d, rp =%d, rx_axis_tdata = %x \n",$time, write_pointer, read_pointer, rx_axis_tdata);
 		if(reset == 1'b1)
 			begin
-			     write_pointer <= 11'd0;
+			     write_pointer = 10'b0;
+			     write_pointer_next = 10'b1;
 			end
 		else
 			begin
 			
-			if((((write_pointer + 1) & Q) != read_pointer) && (rx_axis_tvalid == 1))
+			if((write_pointer_next != read_pointer) && (rx_axis_tvalid == 1'b1))
 				begin
 					queue[write_pointer]  <= {rx_axis_tlast ,rx_axis_tdata ,rx_axis_tkeep};
-					write_pointer <= (write_pointer + 1) & Q;	
+					write_pointer <= write_pointer + 10'b1;
+					write_pointer_next <= write_pointer_next + 1;	
 				end
 			end
 			
@@ -82,15 +87,21 @@ module mac_rx_interface
 		$display (" Send RX %t :  wp =%d, rp =%d \n",$time, write_pointer, read_pointer);
 		if(reset == 1'b1)
 			begin
-				read_pointer <= 11'd0;			
+				read_pointer <= 10'b0;	
+				//ack_reg <= 1'b0;		
 			end
 		else
 			begin
 			
 				if((read_pointer != write_pointer) && (RX_FIFO_pipe_read_req == 1'b1))
 					begin
-						read_pointer <= (read_pointer + 1 ) & Q;
+					    //ack_reg <= 1'b1;
+					    RX_FIFO_pipe_read_data_reg <= queue[read_pointer];
+					    //ack_reg <= 1'b1;
+						read_pointer <= read_pointer + 10'b1 ;
 					end
+			    //else
+			         //ack_reg <= 1'b0;
 			end
 		end
 endmodule

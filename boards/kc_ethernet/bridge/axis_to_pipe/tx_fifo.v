@@ -18,10 +18,12 @@ module mac_tx_interface
                TX_FIFO_pipe_write_ack
 );  
 
+
+
     parameter MAC_WIDTH = 8;
     parameter TKEEP_WIDTH = 1; //N/8
     parameter NIC_WIDTH = MAC_WIDTH + TKEEP_WIDTH + 1; 
-    parameter DEPTH = 2047;
+    parameter DEPTH = 1023;
     
     input clk;
     input reset; 
@@ -35,30 +37,47 @@ module mac_tx_interface
     input     [NIC_WIDTH-1:0]  TX_FIFO_pipe_write_data;
     input                      TX_FIFO_pipe_write_req;
     output                     TX_FIFO_pipe_write_ack;
+ 
 
-	(* mark_debug = "true" *)reg [10:0] read_pointer;
-	(* mark_debug = "true" *)reg [10:0] write_pointer;
+
+
+	(* mark_debug = "true" *)reg [9:0] read_pointer;
+	(* mark_debug = "true" *)reg [9:0] write_pointer;
+	
+	reg [9:0] write_pointer_next;
 
 	(* mark_debug = "true" *)reg [NIC_WIDTH - 1 : 0] queue [DEPTH : 0]; // 511
 
+    reg TX_FIFO_pipe_write_ack_reg;
+    reg tx_axis_tvalid_reg;
+
 
     assign tx_axis_tvalid = ((reset != 1'b1) && (read_pointer != write_pointer)) ? 1'b1 : 1'b0;
-    assign TX_FIFO_pipe_write_ack = ((reset != 1'b1) && (((write_pointer + 1) & DEPTH) != read_pointer))? 1'b1 : 1'b0;
-
+    //assign TX_FIFO_pipe_write_ack = ((reset != 1'b1) && (((write_pointer + 1) & DEPTH) != read_pointer))? 1'b1 : 1'b0;
+    
+    //assign tx_axis_tvalid = tx_axis_tvalid_reg;
+    assign TX_FIFO_pipe_write_ack = TX_FIFO_pipe_write_ack_reg;
+    
 	always @ (posedge clk)
 	   begin
 
             if(reset == 1'b1)
                 begin
-                    write_pointer <= 11'd0;
+                    write_pointer <= 10'b0;
+                    write_pointer_next <= 10'b1;
+                    TX_FIFO_pipe_write_ack_reg <= 1'b0;
                 end
             else
                 begin
-                    if ((TX_FIFO_pipe_write_req == 1'b1) && (((write_pointer + 1) & DEPTH) != read_pointer))
+                    if ((TX_FIFO_pipe_write_req == 1'b1) && (write_pointer_next != read_pointer))
                         begin
                             queue[write_pointer]  <= TX_FIFO_pipe_write_data;
-                            write_pointer <= ((write_pointer + 1) & DEPTH);
+                            TX_FIFO_pipe_write_ack_reg <= 1'b1;
+                            write_pointer <= write_pointer + 10'b1;
+                            write_pointer_next <= write_pointer_next + 1;
                         end
+                    else
+                        TX_FIFO_pipe_write_ack_reg <= 1'b0;
                 end
 	   end
 	   
@@ -67,7 +86,8 @@ module mac_tx_interface
             
             if(reset == 1'b1)
                 begin
-                    read_pointer <= 11'd0;
+                    read_pointer <= 10'b0;
+                    //tx_axis_tvalid_reg <= 1'b0;
                 end
             else
                 begin
@@ -76,27 +96,22 @@ module mac_tx_interface
                             tx_axis_tdata  <= queue[read_pointer][NIC_WIDTH-2:TKEEP_WIDTH];
                             tx_axis_tkeep  <= queue[read_pointer][TKEEP_WIDTH-1:0];
                             tx_axis_tlast  <= queue[read_pointer][NIC_WIDTH-1];
-                            read_pointer <= ((read_pointer + 1) & DEPTH);
+                            //tx_axis_tvalid_reg <= 1'b1;
+                            read_pointer <= read_pointer + 10'b1;
                         end
+                    //else
+                        //tx_axis_tvalid_reg <= 1'b0;
                 end      
         end
 	
+	
+	
+          
 endmodule
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-	/*always@(posedge clk)
+/*always@(posedge clk)
 	begin
 		if(reset == 1'b1)
 		begin

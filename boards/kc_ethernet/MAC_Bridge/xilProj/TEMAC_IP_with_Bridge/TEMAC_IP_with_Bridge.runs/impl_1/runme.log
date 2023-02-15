@@ -1,0 +1,529 @@
+
+*** Running vivado
+    with args -log top_level.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source top_level.tcl -notrace
+
+
+****** Vivado v2017.1 (64-bit)
+  **** SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+  **** IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source top_level.tcl -notrace
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Project 1-454] Reading design checkpoint '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/tri_mode_ethernet_mac_0.dcp' for cell 'TEMAC_0'
+INFO: [Netlist 29-17] Analyzing 317 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.1
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_board.xdc] for cell 'TEMAC_0/inst'
+Finished Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_board.xdc] for cell 'TEMAC_0/inst'
+Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0.xdc] for cell 'TEMAC_0/inst'
+Finished Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0.xdc] for cell 'TEMAC_0/inst'
+Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc]
+INFO: [Timing 38-35] Done setting XDC timing constraints. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc:184]
+INFO: [Timing 38-2] Deriving generated clocks [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc:184]
+Finished Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc]
+Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc] for cell 'TEMAC_0/inst'
+INFO: [Vivado 12-3272] Current instance is the top level cell 'TEMAC_0/inst' of design 'design_1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'TEMAC_0/inst_rgmii_rx_clk' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Vivado 12-3272] Current instance is the top level cell 'TEMAC_0/inst' of design 'design_1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:30]
+INFO: [Vivado 12-3272] Current instance is the top level cell 'TEMAC_0/inst' of design 'design_1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:53]
+INFO: [Vivado 12-3272] Current instance is the top level cell 'TEMAC_0/inst' of design 'design_1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:54]
+Finished Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc] for cell 'TEMAC_0/inst'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 225 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instances
+  RAM64M => RAM64M (RAMD64E, RAMD64E, RAMD64E, RAMD64E): 48 instances
+  RAM64X1D => RAM64X1D (RAMD64E, RAMD64E): 176 instances
+
+link_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:28 . Memory (MB): peak = 2074.359 ; gain = 973.285 ; free physical = 27445 ; free virtual = 79168
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-1223] The version limit for your license is '2017.07' and will expire in -2025 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+Command: report_drc (run_mandatory_drcs) for: opt_checks
+INFO: [DRC 23-27] Running DRC with 8 threads
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:00.85 ; elapsed = 00:00:00.31 . Memory (MB): peak = 2138.391 ; gain = 64.031 ; free physical = 27458 ; free virtual = 79162
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'TEMAC_0/inst_rgmii_rx_clk' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 15ff02ac9
+
+Time (s): cpu = 00:00:00.29 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2138.391 ; gain = 0.000 ; free physical = 27456 ; free virtual = 79160
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 64 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+Phase 2 Constant propagation | Checksum: ec6d72a0
+
+Time (s): cpu = 00:00:00.36 ; elapsed = 00:00:00.17 . Memory (MB): peak = 2138.391 ; gain = 0.000 ; free physical = 27456 ; free virtual = 79160
+INFO: [Opt 31-389] Phase Constant propagation created 27 cells and removed 55 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 19ac26f27
+
+Time (s): cpu = 00:00:00.40 ; elapsed = 00:00:00.22 . Memory (MB): peak = 2138.391 ; gain = 0.000 ; free physical = 27456 ; free virtual = 79160
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 47 cells
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: 19ac26f27
+
+Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2138.391 ; gain = 0.000 ; free physical = 27456 ; free virtual = 79160
+INFO: [Opt 31-389] Phase BUFG optimization created 0 cells and removed 0 cells
+
+Phase 5 Shift Register Optimization
+Phase 5 Shift Register Optimization | Checksum: 19ac26f27
+
+Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2138.391 ; gain = 0.000 ; free physical = 27456 ; free virtual = 79160
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2138.391 ; gain = 0.000 ; free physical = 27456 ; free virtual = 79160
+Ending Logic Optimization Task | Checksum: 19ac26f27
+
+Time (s): cpu = 00:00:00.47 ; elapsed = 00:00:00.28 . Memory (MB): peak = 2138.391 ; gain = 0.000 ; free physical = 27456 ; free virtual = 79160
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'TEMAC_0/inst_rgmii_rx_clk' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Designutils 20-266] Invalid Voltage Source VCCINTIO for the family kintex7. Ignoring the voltage setting.
+WARNING: [Designutils 20-266] Invalid Voltage Source VCCINTIO for the family kintex7. Ignoring the voltage setting.
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 1 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 1 newly gated: 0 Total Ports: 2
+Ending PowerOpt Patch Enables Task | Checksum: 14f7bee0d
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27451 ; free virtual = 79155
+Ending Power Optimization Task | Checksum: 14f7bee0d
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.62 . Memory (MB): peak = 2383.477 ; gain = 245.086 ; free physical = 27459 ; free virtual = 79163
+37 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:03 ; elapsed = 00:00:42 . Memory (MB): peak = 2383.477 ; gain = 309.117 ; free physical = 27459 ; free virtual = 79163
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27458 ; free virtual = 79162
+INFO: [Common 17-1381] The checkpoint '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/impl_1/top_level_opt.dcp' has been generated.
+Command: report_drc -file top_level_drc_opted.rpt
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/impl_1/top_level_drc_opted.rpt.
+report_drc completed successfully
+INFO: [Chipscope 16-241] No debug cores found in the current design.
+Before running the implement_debug_core command, either use the Set Up Debug wizard (GUI mode)
+or use the create_debug_core and connect_debug_core Tcl commands to insert debug cores into the design.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-1223] The version limit for your license is '2017.07' and will expire in -2025 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Command: report_drc (run_mandatory_drcs) for: incr_eco_checks
+INFO: [DRC 23-27] Running DRC with 8 threads
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+Command: report_drc (run_mandatory_drcs) for: placer_checks
+INFO: [DRC 23-27] Running DRC with 8 threads
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27378 ; free virtual = 79140
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: b72b4af6
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27378 ; free virtual = 79140
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'TEMAC_0/inst_rgmii_rx_clk' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27380 ; free virtual = 79143
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'TEMAC_0/inst_rgmii_rx_clk' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: eec92111
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27422 ; free virtual = 79140
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: f7c8e958
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27406 ; free virtual = 79124
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: f7c8e958
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27406 ; free virtual = 79124
+Phase 1 Placer Initialization | Checksum: f7c8e958
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27406 ; free virtual = 79124
+
+Phase 2 Global Placement
+Phase 2 Global Placement | Checksum: fc5b1402
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:04 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27345 ; free virtual = 79060
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: fc5b1402
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:04 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27345 ; free virtual = 79060
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: f6821573
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:04 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27342 ; free virtual = 79061
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: b6810196
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:04 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27342 ; free virtual = 79061
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 27223c56
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:04 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27342 ; free virtual = 79061
+
+Phase 3.5 Timing Path Optimizer
+Phase 3.5 Timing Path Optimizer | Checksum: 5dcd3c08
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:04 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27342 ; free virtual = 79061
+
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: 1a40cfe41
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:05 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27314 ; free virtual = 79049
+
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: ba735144
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:05 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27314 ; free virtual = 79049
+
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: ba735144
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:05 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27314 ; free virtual = 79049
+Phase 3 Detail Placement | Checksum: ba735144
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:05 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27314 ; free virtual = 79049
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'TEMAC_0/inst_rgmii_rx_clk' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 15954451f
+
+Phase 4.1.1.1 BUFG Insertion
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 8 CPUs
+INFO: [Place 46-41] BUFG insertion identified 0 candidate nets, 0 success, 0 skipped for placement/routing, 0 skipped for timing, 0 skipped for netlist change reason.
+Phase 4.1.1.1 BUFG Insertion | Checksum: 15954451f
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:05 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27323 ; free virtual = 79054
+INFO: [Place 30-746] Post Placement Timing Summary WNS=0.624. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: f979e1fe
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:05 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27323 ; free virtual = 79054
+Phase 4.1 Post Commit Optimization | Checksum: f979e1fe
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:06 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27323 ; free virtual = 79054
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: f979e1fe
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:06 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27329 ; free virtual = 79060
+
+Phase 4.3 Placer Reporting
+Phase 4.3 Placer Reporting | Checksum: f979e1fe
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:06 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27329 ; free virtual = 79060
+
+Phase 4.4 Final Placement Cleanup
+Phase 4.4 Final Placement Cleanup | Checksum: 113a0183c
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:06 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27315 ; free virtual = 79059
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 113a0183c
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:06 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27315 ; free virtual = 79059
+Ending Placer Task | Checksum: e907fc57
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:06 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27359 ; free virtual = 79104
+60 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:26 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27359 ; free virtual = 79104
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.15 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27360 ; free virtual = 79111
+INFO: [Common 17-1381] The checkpoint '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/impl_1/top_level_placed.dcp' has been generated.
+report_io: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.12 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27358 ; free virtual = 79097
+report_utilization: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27376 ; free virtual = 79116
+report_control_sets: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.08 . Memory (MB): peak = 2383.477 ; gain = 0.000 ; free physical = 27370 ; free virtual = 79109
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-1223] The version limit for your license is '2017.07' and will expire in -2025 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+Running DRC as a precondition to command route_design
+Command: report_drc (run_mandatory_drcs) for: router_checks
+INFO: [DRC 23-27] Running DRC with 8 threads
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
+Checksum: PlaceDB: 14134260 ConstDB: 0 ShapeSum: d4f4b9f7 RouteDB: 0
+
+Phase 1 Build RT Design
+Phase 1 Build RT Design | Checksum: 17464c995
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 2467.562 ; gain = 84.086 ; free physical = 27117 ; free virtual = 78858
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: 17464c995
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 2467.562 ; gain = 84.086 ; free physical = 27117 ; free virtual = 78858
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: 17464c995
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 2467.562 ; gain = 84.086 ; free physical = 27076 ; free virtual = 78817
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: 17464c995
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 2467.562 ; gain = 84.086 ; free physical = 27076 ; free virtual = 78817
+ Number of Nodes with overlaps = 0
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 20cb3f1ce
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:09 . Memory (MB): peak = 2474.434 ; gain = 90.957 ; free physical = 27046 ; free virtual = 78798
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.566  | TNS=0.000  | WHS=-3.125 | THS=-1494.181|
+
+Phase 2 Router Initialization | Checksum: 193cb702f
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:09 . Memory (MB): peak = 2474.434 ; gain = 90.957 ; free physical = 27041 ; free virtual = 78803
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 158b217b5
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:12 . Memory (MB): peak = 2519.418 ; gain = 135.941 ; free physical = 27050 ; free virtual = 78766
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 469
+ Number of Nodes with overlaps = 22
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.566  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.1 Global Iteration 0 | Checksum: 1d4fd9d6d
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:23 . Memory (MB): peak = 2519.418 ; gain = 135.941 ; free physical = 27038 ; free virtual = 78776
+Phase 4 Rip-up And Reroute | Checksum: 1d4fd9d6d
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:23 . Memory (MB): peak = 2519.418 ; gain = 135.941 ; free physical = 27038 ; free virtual = 78776
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: 1d4fd9d6d
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:23 . Memory (MB): peak = 2519.418 ; gain = 135.941 ; free physical = 27038 ; free virtual = 78776
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 1d4fd9d6d
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:23 . Memory (MB): peak = 2519.418 ; gain = 135.941 ; free physical = 27038 ; free virtual = 78776
+Phase 5 Delay and Skew Optimization | Checksum: 1d4fd9d6d
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:23 . Memory (MB): peak = 2519.418 ; gain = 135.941 ; free physical = 27038 ; free virtual = 78776
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 283fef459
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:23 . Memory (MB): peak = 2519.418 ; gain = 135.941 ; free physical = 27038 ; free virtual = 78776
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.353  | TNS=0.000  | WHS=-1.229 | THS=-359.139|
+
+
+Phase 6.1.2 Lut RouteThru Assignment for hold
+Phase 6.1.2 Lut RouteThru Assignment for hold | Checksum: 18dbe51fa
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:33 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 27002 ; free virtual = 78729
+Phase 6.1 Hold Fix Iter | Checksum: 18dbe51fa
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:33 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 27002 ; free virtual = 78729
+
+Phase 6.2 Additional Hold Fix
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.353  | TNS=0.000  | WHS=-0.463 | THS=-3.300 |
+
+Phase 6.2 Additional Hold Fix | Checksum: 1e3abc45a
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:37 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 26929 ; free virtual = 78736
+Phase 6 Post Hold Fix | Checksum: 1e3abc45a
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:37 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 26929 ; free virtual = 78736
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.348159 %
+  Global Horizontal Routing Utilization  = 0.363872 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: 1d260120f
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:37 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 26929 ; free virtual = 78736
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 1d260120f
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:37 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 26929 ; free virtual = 78736
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 22c41e99b
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:37 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 26929 ; free virtual = 78736
+
+Phase 10 Post Router Timing
+
+Phase 10.1 Update Timing
+Phase 10.1 Update Timing | Checksum: 22f5458d2
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:37 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 26929 ; free virtual = 78736
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.353  | TNS=0.000  | WHS=0.050  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: 22f5458d2
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:37 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 26929 ; free virtual = 78736
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:37 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 27028 ; free virtual = 78836
+
+Routing Is Done.
+74 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:01:12 ; elapsed = 00:00:58 . Memory (MB): peak = 3042.418 ; gain = 658.941 ; free physical = 27028 ; free virtual = 78836
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.47 ; elapsed = 00:00:00.15 . Memory (MB): peak = 3066.430 ; gain = 0.000 ; free physical = 27069 ; free virtual = 78847
+INFO: [Common 17-1381] The checkpoint '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/impl_1/top_level_routed.dcp' has been generated.
+Command: report_drc -file top_level_drc_routed.rpt -pb top_level_drc_routed.pb -rpx top_level_drc_routed.rpx
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/impl_1/top_level_drc_routed.rpt.
+report_drc completed successfully
+Command: report_methodology -file top_level_methodology_drc_routed.rpt -rpx top_level_methodology_drc_routed.rpx
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'TEMAC_0/inst_rgmii_rx_clk' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 8 threads
+INFO: [Coretcl 2-1520] The results of Report Methodology are in file /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/impl_1/top_level_methodology_drc_routed.rpt.
+report_methodology completed successfully
+Command: report_power -file top_level_power_routed.rpt -pb top_level_power_summary_routed.pb -rpx top_level_power_routed.rpx
+INFO: [Constraints 18-483] create_clock: no pin(s)/port(s)/net(s) specified as objects, only virtual clock 'TEMAC_0/inst_rgmii_rx_clk' will be created. If you don't want this, please specify pin(s)/ports(s)/net(s) as objects to the command. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clocks.xdc:29]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Designutils 20-266] Invalid Voltage Source VCCINTIO for the family kintex7. Ignoring the voltage setting.
+WARNING: [Designutils 20-266] Invalid Voltage Source VCCINTIO for the family kintex7. Ignoring the voltage setting.
+83 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+Command: write_bitstream -force top_level.bit
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-1223] The version limit for your license is '2017.07' and will expire in -2025 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+CRITICAL WARNING: [Vivado 12-1790] Evaluation License Warning: This design contains one or more IP cores that use separately licensed features. If the design has been configured to make use of evaluation features, please note that these features will cease to function after a certain period of time. Please consult the core datasheet to determine whether the core which you have configured will be affected. Evaluation features should NOT be used in production systems.
+
+Evaluation cores found in this design:
+    IP core 'tri_mode_ethernet_mac_0' (tri_mode_ethernet_mac_0_support) was generated with multiple features:
+        IP feature 'eth_avb_endpoint@2015.04' was enabled using a design_linking license.
+        IP feature 'tri_mode_eth_mac@2015.04' was enabled using a hardware_evaluation license.
+
+Resolution: If a new IP Core license was added, in order for the new license to be picked up, the current netlist needs to be updated by resetting and re-generating the IP output products before bitstream generation.
+Running DRC as a precondition to command write_bitstream
+Command: report_drc (run_mandatory_drcs) for: bitstream_checks
+INFO: [DRC 23-27] Running DRC with 8 threads
+WARNING: [DRC CFGBVS-1] Missing CFGBVS and CONFIG_VOLTAGE Design Properties: Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+WARNING: [DRC RTSTAT-10] No routable loads: 2 net(s) have no routable loads. The problem bus(es) and/or net(s) are example_resets/chk_reset_gen/reset_out, and example_resets/gtx_reset_gen/reset_out.
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 2 Warnings
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+INFO: [Project 1-821] Please set project.enableDesignId to be 'true'.
+INFO: [Designutils 20-2272] Running write_bitstream with 8 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream ./top_level.bit...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Project 1-118] WebTalk data collection is enabled (User setting is ON. Install Setting is ON.).
+94 Infos, 6 Warnings, 1 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:00:11 ; elapsed = 00:00:28 . Memory (MB): peak = 3162.477 ; gain = 0.000 ; free physical = 26952 ; free virtual = 78768
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 15 14:18:19 2023...

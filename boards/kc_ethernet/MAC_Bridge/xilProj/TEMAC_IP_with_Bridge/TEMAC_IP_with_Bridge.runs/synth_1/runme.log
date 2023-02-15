@@ -1,0 +1,1702 @@
+
+*** Running vivado
+    with args -log top_level.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_level.tcl
+
+
+****** Vivado v2017.1 (64-bit)
+  **** SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+  **** IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source top_level.tcl -notrace
+Command: synth_design -top top_level -part xc7k325tffg900-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325t-ffg900'
+INFO: [Common 17-1223] The version limit for your license is '2017.07' and will expire in -2025 days. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 962355 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1187.383 ; gain = 69.000 ; free physical = 28133 ; free virtual = 79834
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'top_level' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:3]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:67]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:68]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:69]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:70]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:71]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:72]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:75]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:76]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:77]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:78]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:81]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:82]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:83]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:84]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:85]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:181]
+INFO: [Synth 8-638] synthesizing module 'clocks_gen' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/clocks_gen.v:56]
+INFO: [Synth 8-638] synthesizing module 'IBUFDS' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:14485]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter DIFF_TERM bound to: FALSE - type: string 
+	Parameter DQS_BIAS bound to: FALSE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-256] done synthesizing module 'IBUFDS' (1#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:14485]
+INFO: [Synth 8-638] synthesizing module 'BUFGCE' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:617]
+	Parameter CE_TYPE bound to: SYNC - type: string 
+	Parameter IS_CE_INVERTED bound to: 1'b0 
+	Parameter IS_I_INVERTED bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'BUFGCE' (2#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:617]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_sync_block' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/imports/tri_mode_ethernet_mac_0_sync_block.v:63]
+	Parameter INITIALISE bound to: 1'b0 
+	Parameter DEPTH bound to: 5 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'FDRE' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:3964]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'FDRE' (3#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:3964]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_sync_block' (4#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/imports/tri_mode_ethernet_mac_0_sync_block.v:63]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_reset_sync' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/imports/tri_mode_ethernet_mac_0_reset_sync.v:66]
+	Parameter INITIALISE bound to: 1'b1 
+	Parameter DEPTH bound to: 5 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'FDPE' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:3904]
+	Parameter INIT bound to: 1'b1 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_PRE_INVERTED bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'FDPE' (5#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:3904]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_reset_sync' (6#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/imports/tri_mode_ethernet_mac_0_reset_sync.v:66]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_clk_wiz' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/imports/tri_mode_ethernet_mac_0_clk_wiz.v:72]
+INFO: [Synth 8-638] synthesizing module 'MMCME2_ADV' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20759]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 5.000000 - type: float 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKFBOUT_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKIN1_PERIOD bound to: 5.000000 - type: float 
+	Parameter CLKIN2_PERIOD bound to: 0.000000 - type: float 
+	Parameter CLKOUT0_DIVIDE_F bound to: 8.000000 - type: float 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT0_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT1_DIVIDE bound to: 10 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT1_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT2_DIVIDE bound to: 5 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT2_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT3_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT4_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT5_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT6_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter COMPENSATION bound to: ZHOLD - type: string 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter IS_CLKINSEL_INVERTED bound to: 1'b0 
+	Parameter IS_PSEN_INVERTED bound to: 1'b0 
+	Parameter IS_PSINCDEC_INVERTED bound to: 1'b0 
+	Parameter IS_PWRDWN_INVERTED bound to: 1'b0 
+	Parameter IS_RST_INVERTED bound to: 1'b0 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: float 
+	Parameter REF_JITTER2 bound to: 0.010000 - type: float 
+	Parameter SS_EN bound to: FALSE - type: string 
+	Parameter SS_MODE bound to: CENTER_HIGH - type: string 
+	Parameter SS_MOD_PERIOD bound to: 10000 - type: integer 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-256] done synthesizing module 'MMCME2_ADV' (7#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20759]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_clk_wiz' (8#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/imports/tri_mode_ethernet_mac_0_clk_wiz.v:72]
+INFO: [Synth 8-256] done synthesizing module 'clocks_gen' (9#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/clocks_gen.v:56]
+INFO: [Synth 8-638] synthesizing module 'reset_gen' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/reset_gen.v:54]
+INFO: [Synth 8-256] done synthesizing module 'reset_gen' (10#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/reset_gen.v:54]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/realtime/tri_mode_ethernet_mac_0_stub.v:6]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0' (11#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/realtime/tri_mode_ethernet_mac_0_stub.v:6]
+INFO: [Synth 8-638] synthesizing module 'axi_lite_controller' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:64]
+	Parameter STARTUP bound to: 0 - type: integer 
+	Parameter UPDATE_SPEED bound to: 1 - type: integer 
+	Parameter MDIO_RD bound to: 2 - type: integer 
+	Parameter MDIO_POLL_CHECK bound to: 3 - type: integer 
+	Parameter MDIO_1G bound to: 4 - type: integer 
+	Parameter MDIO_10_100 bound to: 5 - type: integer 
+	Parameter MDIO_RGMII_RD bound to: 6 - type: integer 
+	Parameter MDIO_RGMII_RD_POLL bound to: 7 - type: integer 
+	Parameter MDIO_RGMII bound to: 8 - type: integer 
+	Parameter MDIO_DELAY_RD bound to: 9 - type: integer 
+	Parameter MDIO_DELAY_RD_POLL bound to: 10 - type: integer 
+	Parameter MDIO_DELAY bound to: 11 - type: integer 
+	Parameter MDIO_RESTART bound to: 12 - type: integer 
+	Parameter MDIO_LOOPBACK bound to: 13 - type: integer 
+	Parameter MDIO_STATS bound to: 14 - type: integer 
+	Parameter MDIO_STATS_POLL_CHECK bound to: 15 - type: integer 
+	Parameter RESET_MAC_TX bound to: 16 - type: integer 
+	Parameter RESET_MAC_RX bound to: 17 - type: integer 
+	Parameter CNFG_MDIO bound to: 18 - type: integer 
+	Parameter CNFG_FLOW bound to: 19 - type: integer 
+	Parameter CNFG_FILTER bound to: 22 - type: integer 
+	Parameter CNFG_FRM_FILTER_1 bound to: 31 - type: integer 
+	Parameter CNFG_FRM_FILTER_2 bound to: 32 - type: integer 
+	Parameter CNFG_FRM_FILTER_3 bound to: 33 - type: integer 
+	Parameter CNFG_FRM_FILTER_MASK_1 bound to: 34 - type: integer 
+	Parameter CNFG_FRM_FILTER_MASK_2 bound to: 35 - type: integer 
+	Parameter CNFG_FRM_FILTER_MASK_3 bound to: 36 - type: integer 
+	Parameter CHECK_SPEED bound to: 25 - type: integer 
+	Parameter IDLE bound to: 0 - type: integer 
+	Parameter SET_DATA bound to: 1 - type: integer 
+	Parameter INIT bound to: 32'sb00000000000000000000000000000010 
+	Parameter POLL bound to: 3 - type: integer 
+	Parameter READ bound to: 1 - type: integer 
+	Parameter WRITE bound to: 2 - type: integer 
+	Parameter DONE bound to: 3 - type: integer 
+	Parameter CONFIG_MANAGEMENT_ADD bound to: 17'b00000010100000000 
+	Parameter CONFIG_FLOW_CTRL_ADD bound to: 17'b00000010000001100 
+	Parameter RECEIVER_ADD bound to: 17'b00000010000000100 
+	Parameter TRANSMITTER_ADD bound to: 17'b00000010000001000 
+	Parameter SPEED_CONFIG_ADD bound to: 17'b00000010000010000 
+	Parameter CONFIG_UNI0_CTRL_ADD bound to: 17'b00000011100000000 
+	Parameter CONFIG_UNI1_CTRL_ADD bound to: 17'b00000011100000100 
+	Parameter CONFIG_ADDR_CTRL_ADD bound to: 17'b00000011100001000 
+	Parameter CONFIG_FRAME_FILTER_1 bound to: 17'b00000011100010000 
+	Parameter CONFIG_FRAME_FILTER_2 bound to: 17'b00000011100010100 
+	Parameter CONFIG_FRAME_FILTER_3 bound to: 17'b00000011100011000 
+	Parameter CONFIG_FRAME_FILTER_MASK_1 bound to: 17'b00000011101010000 
+	Parameter CONFIG_FRAME_FILTER_MASK_2 bound to: 17'b00000011101010100 
+	Parameter CONFIG_FRAME_FILTER_MASK_3 bound to: 17'b00000011101011000 
+	Parameter MDIO_CONTROL bound to: 17'b00000010100000100 
+	Parameter MDIO_TX_DATA bound to: 17'b00000010100001000 
+	Parameter MDIO_RX_DATA bound to: 17'b00000010100001100 
+	Parameter MDIO_OP_RD bound to: 2'b10 
+	Parameter MDIO_OP_WR bound to: 2'b01 
+	Parameter PHY_ADDR bound to: 8'b00000111 
+	Parameter PHY_CONTROL_REG bound to: 8'b00000000 
+	Parameter PHY_STATUS_REG bound to: 8'b00000001 
+	Parameter PHY_ABILITY_REG bound to: 8'b00000100 
+	Parameter PHY_1000BASET_CONTROL_REG bound to: 8'b00001001 
+	Parameter PHY_MODE_CTL_REG bound to: 8'b00010100 
+	Parameter PHY_MODE_STS_REG bound to: 8'b00011011 
+WARNING: [Synth 8-6014] Unused sequential element axi_status_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:691]
+WARNING: [Synth 8-6014] Unused sequential element axi_status_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:719]
+WARNING: [Synth 8-6014] Unused sequential element axi_status_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:747]
+WARNING: [Synth 8-6014] Unused sequential element axi_status_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:777]
+WARNING: [Synth 8-6014] Unused sequential element axi_status_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:803]
+INFO: [Synth 8-256] done synthesizing module 'axi_lite_controller' (12#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:64]
+INFO: [Synth 8-638] synthesizing module 'axi_ahir_pipe_bridge' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_ahir_pipe_bridge.v:3]
+INFO: [Synth 8-638] synthesizing module 'mac_rx_interface' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/rx_fifo.v:1]
+	Parameter MAC_WIDTH bound to: 8 - type: integer 
+	Parameter TKEEP_WIDTH bound to: 1 - type: integer 
+	Parameter NIC_WIDTH bound to: 10 - type: integer 
+	Parameter Q bound to: 1023 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/rx_fifo.v:39]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/rx_fifo.v:40]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/rx_fifo.v:44]
+WARNING: [Synth 8-6026] Ignoring keep related attribute (keep/mark_debug/dont_touch) applied on memory [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/rx_fifo.v:44]
+INFO: [Synth 8-256] done synthesizing module 'mac_rx_interface' (13#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/rx_fifo.v:1]
+WARNING: [Synth 8-350] instance 'rx_fifo_inst' of module 'mac_rx_interface' requires 10 connections, but only 9 given [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_ahir_pipe_bridge.v:38]
+INFO: [Synth 8-638] synthesizing module 'mac_tx_interface' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:1]
+	Parameter MAC_WIDTH bound to: 8 - type: integer 
+	Parameter TKEEP_WIDTH bound to: 1 - type: integer 
+	Parameter NIC_WIDTH bound to: 10 - type: integer 
+	Parameter DEPTH bound to: 1023 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:44]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:45]
+INFO: [Synth 8-5534] Detected attribute (* mark_debug = "true" *) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:49]
+WARNING: [Synth 8-6026] Ignoring keep related attribute (keep/mark_debug/dont_touch) applied on memory [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:49]
+INFO: [Synth 8-256] done synthesizing module 'mac_tx_interface' (14#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:1]
+INFO: [Synth 8-256] done synthesizing module 'axi_ahir_pipe_bridge' (15#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_ahir_pipe_bridge.v:3]
+INFO: [Synth 8-638] synthesizing module 'nic' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:440]
+	Parameter tag_length bound to: 2 - type: integer 
+INFO: [Synth 8-3491] module 'loopback_Daemon' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:22' bound to instance 'loopback_Daemon_instance' of component 'loopback_Daemon' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:481]
+INFO: [Synth 8-638] synthesizing module 'loopback_Daemon' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:42]
+	Parameter tag_length bound to: 2 - type: integer 
+	Parameter name bound to: loopback_Daemon_input_buffer - type: string 
+	Parameter buffer_size bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+	Parameter use_unload_register bound to: 1 - type: bool 
+INFO: [Synth 8-3491] module 'UnloadBuffer' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:21396' bound to instance 'in_buffer' of component 'UnloadBuffer' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:79]
+INFO: [Synth 8-638] synthesizing module 'UnloadBuffer' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:21419]
+	Parameter name bound to: loopback_Daemon_input_buffer - type: string 
+	Parameter buffer_size bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+	Parameter use_unload_register bound to: 1 - type: bool 
+	Parameter name bound to: loopback_Daemon_input_buffer-unload-register - type: string 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'UnloadRegister' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30051' bound to instance 'ulReg' of component 'UnloadRegister' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:21552]
+INFO: [Synth 8-638] synthesizing module 'UnloadRegister' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30066]
+	Parameter name bound to: loopback_Daemon_input_buffer-unload-register - type: string 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+WARNING: [Synth 8-6014] Unused sequential element noBypass.nstate_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30086]
+WARNING: [Synth 8-6014] Unused sequential element noBypass.write_ack_v_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30087]
+WARNING: [Synth 8-6014] Unused sequential element noBypass.load_v_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30088]
+WARNING: [Synth 8-6014] Unused sequential element noBypass.data_v_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30089]
+INFO: [Synth 8-256] done synthesizing module 'UnloadRegister' (16#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30066]
+INFO: [Synth 8-256] done synthesizing module 'UnloadBuffer' (17#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:21419]
+	Parameter number_of_predecessors bound to: 2 - type: integer 
+	Parameter name bound to: in_buffer_unload_req_symbol_join - type: string 
+	Parameter place_capacities bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_markings bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_delays bound to: 64'b0000000000000000000000000000000000000000000000000000000000000001 
+INFO: [Synth 8-3491] module 'generic_join' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13441' bound to instance 'gj_in_buffer_unload_req_symbol_join' of component 'generic_join' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:103]
+INFO: [Synth 8-638] synthesizing module 'generic_join' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13449]
+	Parameter number_of_predecessors bound to: 2 - type: integer 
+	Parameter name bound to: in_buffer_unload_req_symbol_join - type: string 
+	Parameter place_capacities bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_markings bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_delays bound to: 64'b0000000000000000000000000000000000000000000000000000000000000001 
+	Parameter name bound to: in_buffer_unload_req_symbol_join-placegen-dly-1 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: in_buffer_unload_req_symbol_join-placegen-dly-1 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element' (18#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: in_buffer_unload_req_symbol_join-placegen-pI-1 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: in_buffer_unload_req_symbol_join-placegen-pI-1 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass' (19#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter name bound to: in_buffer_unload_req_symbol_join-placegen-dly-2 - type: string 
+	Parameter delay_value bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: in_buffer_unload_req_symbol_join-placegen-dly-2 - type: string 
+	Parameter delay_value bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized1' (19#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: in_buffer_unload_req_symbol_join-placegen-pI-2 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: in_buffer_unload_req_symbol_join-placegen-pI-2 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized1' (19#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+INFO: [Synth 8-256] done synthesizing module 'generic_join' (20#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13449]
+	Parameter name bound to: loopback_Daemon_out_buffer - type: string 
+	Parameter buffer_size bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter full_rate bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'ReceiveBuffer' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27963' bound to instance 'out_buffer' of component 'ReceiveBuffer' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:109]
+INFO: [Synth 8-638] synthesizing module 'ReceiveBuffer' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27975]
+	Parameter name bound to: loopback_Daemon_out_buffer - type: string 
+	Parameter buffer_size bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter full_rate bound to: 0 - type: bool 
+	Parameter name bound to: loopback_Daemon_out_buffer-bufPipe - type: string 
+	Parameter num_reads bound to: 1 - type: integer 
+	Parameter num_writes bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter lifo_mode bound to: 0 - type: bool 
+	Parameter depth bound to: 1 - type: integer 
+	Parameter signal_mode bound to: 0 - type: bool 
+	Parameter shift_register_mode bound to: 0 - type: bool 
+	Parameter save_slot bound to: 0 - type: bool 
+	Parameter bypass bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'PipeBase' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17722' bound to instance 'bufPipe' of component 'PipeBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27994]
+INFO: [Synth 8-638] synthesizing module 'PipeBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17745]
+	Parameter name bound to: loopback_Daemon_out_buffer-bufPipe - type: string 
+	Parameter num_reads bound to: 1 - type: integer 
+	Parameter num_writes bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter lifo_mode bound to: 0 - type: bool 
+	Parameter depth bound to: 1 - type: integer 
+	Parameter signal_mode bound to: 0 - type: bool 
+	Parameter shift_register_mode bound to: 0 - type: bool 
+	Parameter save_slot bound to: 0 - type: bool 
+	Parameter bypass bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+	Parameter name bound to: loopback_Daemon_out_buffer-bufPipe-queue - type: string 
+	Parameter queue_depth bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter save_one_slot bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'QueueBase' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18133' bound to instance 'queue' of component 'QueueBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17866]
+INFO: [Synth 8-638] synthesizing module 'QueueBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18146]
+	Parameter name bound to: loopback_Daemon_out_buffer-bufPipe-queue - type: string 
+	Parameter queue_depth bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter save_one_slot bound to: 0 - type: bool 
+WARNING: [Synth 8-6014] Unused sequential element qD1.RB.next_full_flag_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18179]
+WARNING: [Synth 8-6014] Unused sequential element qD1.RB.next_data_reg_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18180]
+INFO: [Synth 8-256] done synthesizing module 'QueueBase' (21#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18146]
+WARNING: [Synth 8-6014] Unused sequential element debugGen.wvar_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17778]
+WARNING: [Synth 8-6014] Unused sequential element debugGen.rvar_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17785]
+INFO: [Synth 8-256] done synthesizing module 'PipeBase' (22#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17745]
+WARNING: [Synth 8-6014] Unused sequential element wackv_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28039]
+WARNING: [Synth 8-6014] Unused sequential element pushreqv_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28040]
+WARNING: [Synth 8-6014] Unused sequential element nstate_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28042]
+INFO: [Synth 8-256] done synthesizing module 'ReceiveBuffer' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27975]
+	Parameter number_of_predecessors bound to: 3 - type: integer 
+	Parameter name bound to: out_buffer_write_req_symbol_join - type: string 
+	Parameter place_capacities bound to: 96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_markings bound to: 96'b000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000 
+	Parameter place_delays bound to: 96'b000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000 
+INFO: [Synth 8-3491] module 'generic_join' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13441' bound to instance 'gj_out_buffer_write_req_symbol_join' of component 'generic_join' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:131]
+INFO: [Synth 8-638] synthesizing module 'generic_join__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13449]
+	Parameter number_of_predecessors bound to: 3 - type: integer 
+	Parameter name bound to: out_buffer_write_req_symbol_join - type: string 
+	Parameter place_capacities bound to: 96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_markings bound to: 96'b000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000 
+	Parameter place_delays bound to: 96'b000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000 
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-dly-1 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized3' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-dly-1 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized3' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 0 - type: integer 
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-pI-1 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized3' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 0 - type: integer 
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-pI-1 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized3' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-dly-2 - type: string 
+	Parameter delay_value bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized5' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-dly-2 - type: string 
+	Parameter delay_value bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized5' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-pI-2 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized5' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-pI-2 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized5' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-dly-3 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized7' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-dly-3 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized7' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 0 - type: integer 
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-pI-3 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized7' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 0 - type: integer 
+	Parameter name bound to: out_buffer_write_req_symbol_join-placegen-pI-3 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized7' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+INFO: [Synth 8-256] done synthesizing module 'generic_join__parameterized1' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13449]
+	Parameter name bound to: tag-interlock-buffer - type: string 
+	Parameter buffer_size bound to: 1 - type: integer 
+	Parameter in_data_width bound to: 2 - type: integer 
+	Parameter out_data_width bound to: 2 - type: integer 
+	Parameter flow_through bound to: 0 - type: bool 
+	Parameter cut_through bound to: 0 - type: bool 
+	Parameter bypass_flag bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'InterlockBuffer' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26842' bound to instance 'tagIlock' of component 'InterlockBuffer' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:141]
+INFO: [Synth 8-638] synthesizing module 'InterlockBuffer' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26859]
+	Parameter name bound to: tag-interlock-buffer - type: string 
+	Parameter buffer_size bound to: 1 - type: integer 
+	Parameter in_data_width bound to: 2 - type: integer 
+	Parameter out_data_width bound to: 2 - type: integer 
+	Parameter flow_through bound to: 0 - type: bool 
+	Parameter cut_through bound to: 0 - type: bool 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter name bound to: tag-interlock-buffer buffer  - type: string 
+	Parameter buffer_size bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+	Parameter use_unload_register bound to: 1 - type: bool 
+INFO: [Synth 8-3491] module 'UnloadBuffer' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:21396' bound to instance 'buf' of component 'UnloadBuffer' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26955]
+INFO: [Synth 8-638] synthesizing module 'UnloadBuffer__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:21419]
+	Parameter name bound to: tag-interlock-buffer buffer  - type: string 
+	Parameter buffer_size bound to: 1 - type: integer 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+	Parameter use_unload_register bound to: 1 - type: bool 
+	Parameter name bound to: tag-interlock-buffer buffer -unload-register - type: string 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'UnloadRegister' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30051' bound to instance 'ulReg' of component 'UnloadRegister' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:21552]
+INFO: [Synth 8-638] synthesizing module 'UnloadRegister__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30066]
+	Parameter name bound to: tag-interlock-buffer buffer -unload-register - type: string 
+	Parameter data_width bound to: 2 - type: integer 
+	Parameter bypass_flag bound to: 0 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+WARNING: [Synth 8-6014] Unused sequential element noBypass.nstate_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30086]
+WARNING: [Synth 8-6014] Unused sequential element noBypass.write_ack_v_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30087]
+WARNING: [Synth 8-6014] Unused sequential element noBypass.load_v_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30088]
+WARNING: [Synth 8-6014] Unused sequential element noBypass.data_v_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30089]
+INFO: [Synth 8-256] done synthesizing module 'UnloadRegister__parameterized1' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30066]
+INFO: [Synth 8-256] done synthesizing module 'UnloadBuffer__parameterized1' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:21419]
+WARNING: [Synth 8-6014] Unused sequential element NoFlowThrough.interlockBuf.nstate_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26925]
+INFO: [Synth 8-256] done synthesizing module 'InterlockBuffer' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26859]
+	Parameter number_of_predecessors bound to: 2 - type: integer 
+	Parameter name bound to: tag_ilock_write_req_symbol_join - type: string 
+	Parameter place_capacities bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_markings bound to: 64'b0000000000000000000000000000000000000000000000000000000000000001 
+	Parameter place_delays bound to: 64'b0000000000000000000000000000000000000000000000000000000000000001 
+INFO: [Synth 8-3491] module 'generic_join' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13441' bound to instance 'gj_tag_ilock_write_req_symbol_join' of component 'generic_join' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:163]
+INFO: [Synth 8-638] synthesizing module 'generic_join__parameterized3' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13449]
+	Parameter number_of_predecessors bound to: 2 - type: integer 
+	Parameter name bound to: tag_ilock_write_req_symbol_join - type: string 
+	Parameter place_capacities bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_markings bound to: 64'b0000000000000000000000000000000000000000000000000000000000000001 
+	Parameter place_delays bound to: 64'b0000000000000000000000000000000000000000000000000000000000000001 
+	Parameter name bound to: tag_ilock_write_req_symbol_join-placegen-dly-1 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized9' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: tag_ilock_write_req_symbol_join-placegen-dly-1 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized9' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 0 - type: integer 
+	Parameter name bound to: tag_ilock_write_req_symbol_join-placegen-pI-1 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized9' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 0 - type: integer 
+	Parameter name bound to: tag_ilock_write_req_symbol_join-placegen-pI-1 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized9' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter name bound to: tag_ilock_write_req_symbol_join-placegen-dly-2 - type: string 
+	Parameter delay_value bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized11' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: tag_ilock_write_req_symbol_join-placegen-dly-2 - type: string 
+	Parameter delay_value bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized11' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: tag_ilock_write_req_symbol_join-placegen-pI-2 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized11' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: tag_ilock_write_req_symbol_join-placegen-pI-2 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized11' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+INFO: [Synth 8-256] done synthesizing module 'generic_join__parameterized3' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13449]
+	Parameter number_of_predecessors bound to: 3 - type: integer 
+	Parameter name bound to: tag_ilock_read_req_symbol_join - type: string 
+	Parameter place_capacities bound to: 96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_markings bound to: 96'b000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_delays bound to: 96'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
+INFO: [Synth 8-3491] module 'generic_join' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13441' bound to instance 'gj_tag_ilock_read_req_symbol_join' of component 'generic_join' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:174]
+INFO: [Synth 8-638] synthesizing module 'generic_join__parameterized5' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13449]
+	Parameter number_of_predecessors bound to: 3 - type: integer 
+	Parameter name bound to: tag_ilock_read_req_symbol_join - type: string 
+	Parameter place_capacities bound to: 96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_markings bound to: 96'b000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000001 
+	Parameter place_delays bound to: 96'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-dly-1 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized13' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-dly-1 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized13' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 0 - type: integer 
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-pI-1 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized13' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 0 - type: integer 
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-pI-1 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized13' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-dly-2 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized15' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-dly-2 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized15' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-pI-2 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized15' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-pI-2 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized15' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-dly-3 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'dly' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13466]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized17' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-dly-3 - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized17' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-pI-3 - type: string 
+INFO: [Synth 8-3491] module 'place_with_bypass' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14812' bound to instance 'pI' of component 'place_with_bypass' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13468]
+INFO: [Synth 8-638] synthesizing module 'place_with_bypass__parameterized17' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+	Parameter capacity bound to: 1 - type: integer 
+	Parameter marking bound to: 1 - type: integer 
+	Parameter name bound to: tag_ilock_read_req_symbol_join-placegen-pI-3 - type: string 
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.incr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14917]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.decr_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14918]
+WARNING: [Synth 8-6014] Unused sequential element CapEqOne.next_non_zero_var_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14920]
+INFO: [Synth 8-256] done synthesizing module 'place_with_bypass__parameterized17' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:14828]
+INFO: [Synth 8-256] done synthesizing module 'generic_join__parameterized5' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13449]
+	Parameter name bound to:  2_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'ra_27_symbol_link_from_dp' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:221]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized19' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  2_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized19' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  cr_31_symbol_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'cr_31_symbol_link_to_dp' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:224]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized21' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  cr_31_symbol_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized21' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  3_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'ca_32_symbol_link_from_dp' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:240]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized23' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  3_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized23' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  req_40_symbol_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'req_40_symbol_link_to_dp' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:243]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized25' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  req_40_symbol_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized25' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  4_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'ack_41_symbol_link_from_dp' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:259]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized27' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  4_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized27' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  req_45_symbol_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'req_45_symbol_link_to_dp' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:262]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized29' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  req_45_symbol_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized29' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  5_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'ack_46_symbol_link_from_dp' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:280]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized31' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  5_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized31' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  rr_26_symbol_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'control_delay_element' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13340' bound to instance 'rr_26_symbol_link_to_dp' of component 'control_delay_element' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:301]
+INFO: [Synth 8-638] synthesizing module 'control_delay_element__parameterized33' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to:  rr_26_symbol_delay - type: string 
+	Parameter delay_value bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'control_delay_element__parameterized33' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13350]
+	Parameter name bound to: rx_pipe_read_0_gI - type: string 
+	Parameter nreqs bound to: 1 - type: integer 
+	Parameter buffering bound to: 32'b00000000000000000000000000000010 
+	Parameter use_guards bound to: 1'b0 
+	Parameter sample_only bound to: 0 - type: bool 
+	Parameter update_only bound to: 1 - type: bool 
+INFO: [Synth 8-3491] module 'SplitGuardInterface' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28705' bound to instance 'rx_pipe_read_0_gI' of component 'SplitGuardInterface' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:332]
+INFO: [Synth 8-638] synthesizing module 'SplitGuardInterface' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28722]
+	Parameter name bound to: rx_pipe_read_0_gI - type: string 
+	Parameter nreqs bound to: 1 - type: integer 
+	Parameter buffering bound to: 32'b00000000000000000000000000000010 
+	Parameter use_guards bound to: 1'b0 
+	Parameter sample_only bound to: 0 - type: bool 
+	Parameter update_only bound to: 1 - type: bool 
+INFO: [Synth 8-256] done synthesizing module 'SplitGuardInterface' (25#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28722]
+	Parameter name bound to: rx_pipe_read_0 - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter output_buffering bound to: 32'b00000000000000000000000000000001 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+	Parameter no_arbitration bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'InputPortRevised' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26679' bound to instance 'rx_pipe_read_0' of component 'InputPortRevised' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:343]
+INFO: [Synth 8-638] synthesizing module 'InputPortRevised' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26701]
+	Parameter name bound to: rx_pipe_read_0 - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter output_buffering bound to: 32'b00000000000000000000000000000001 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+	Parameter no_arbitration bound to: 0 - type: bool 
+	Parameter name bound to: rx_pipe_read_0-unload-reg - type: string 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter bypass_flag bound to: 1 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'UnloadRegister' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30051' bound to instance 'ulreg' of component 'UnloadRegister' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26751]
+INFO: [Synth 8-638] synthesizing module 'UnloadRegister__parameterized3' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30066]
+	Parameter name bound to: rx_pipe_read_0-unload-reg - type: string 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter bypass_flag bound to: 1 - type: bool 
+	Parameter nonblocking_read_flag bound to: 0 - type: bool 
+WARNING: [Synth 8-6014] Unused sequential element yesBypassBlocking.bypassBlock.nstate_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30226]
+WARNING: [Synth 8-6014] Unused sequential element yesBypassBlocking.bypassBlock.write_ackv_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30227]
+WARNING: [Synth 8-6014] Unused sequential element yesBypassBlocking.bypassBlock.loadv_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30229]
+WARNING: [Synth 8-6014] Unused sequential element yesBypassBlocking.bypassBlock.datav_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30230]
+INFO: [Synth 8-256] done synthesizing module 'UnloadRegister__parameterized3' (25#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30066]
+	Parameter name bound to: rx_pipe_read_0-demux - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter no_arbitration bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'InputPortLevel' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:16098' bound to instance 'demux' of component 'InputPortLevel' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26765]
+INFO: [Synth 8-638] synthesizing module 'InputPortLevel' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:16117]
+	Parameter name bound to: rx_pipe_read_0-demux - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter no_arbitration bound to: 0 - type: bool 
+WARNING: [Synth 8-6014] Unused sequential element data_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:16145]
+INFO: [Synth 8-256] done synthesizing module 'InputPortLevel' (26#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:16117]
+WARNING: [Synth 8-6014] Unused sequential element data_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26789]
+INFO: [Synth 8-256] done synthesizing module 'InputPortRevised' (27#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:26701]
+	Parameter name bound to: tx_pipe_write_0_gI - type: string 
+	Parameter nreqs bound to: 1 - type: integer 
+	Parameter buffering bound to: 32'b00000000000000000000000000000010 
+	Parameter use_guards bound to: 1'b0 
+	Parameter sample_only bound to: 1 - type: bool 
+	Parameter update_only bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'SplitGuardInterface' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28705' bound to instance 'tx_pipe_write_0_gI' of component 'SplitGuardInterface' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:377]
+INFO: [Synth 8-638] synthesizing module 'SplitGuardInterface__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28722]
+	Parameter name bound to: tx_pipe_write_0_gI - type: string 
+	Parameter nreqs bound to: 1 - type: integer 
+	Parameter buffering bound to: 32'b00000000000000000000000000000010 
+	Parameter use_guards bound to: 1'b0 
+	Parameter sample_only bound to: 1 - type: bool 
+	Parameter update_only bound to: 0 - type: bool 
+INFO: [Synth 8-256] done synthesizing module 'SplitGuardInterface__parameterized1' (27#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28722]
+	Parameter name bound to: tx_pipe - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter no_arbitration bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+	Parameter input_buffering bound to: 32'b00000000000000000000000000000000 
+INFO: [Synth 8-3491] module 'OutputPortRevised' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27368' bound to instance 'tx_pipe_write_0' of component 'OutputPortRevised' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:388]
+INFO: [Synth 8-638] synthesizing module 'OutputPortRevised' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27387]
+	Parameter name bound to: tx_pipe - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter no_arbitration bound to: 0 - type: bool 
+	Parameter input_buffering bound to: 32'b00000000000000000000000000000000 
+	Parameter full_rate bound to: 0 - type: bool 
+	Parameter name bound to: tx_pipe-rxB0 - type: string 
+	Parameter buffer_size bound to: 0 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter full_rate bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'ReceiveBuffer' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27963' bound to instance 'rxB' of component 'ReceiveBuffer' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27431]
+INFO: [Synth 8-638] synthesizing module 'ReceiveBuffer__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27975]
+	Parameter name bound to: tx_pipe-rxB0 - type: string 
+	Parameter buffer_size bound to: 0 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter full_rate bound to: 0 - type: bool 
+	Parameter name bound to: tx_pipe-rxB0-bufPipe - type: string 
+	Parameter num_reads bound to: 1 - type: integer 
+	Parameter num_writes bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter lifo_mode bound to: 0 - type: bool 
+	Parameter depth bound to: 0 - type: integer 
+	Parameter signal_mode bound to: 0 - type: bool 
+	Parameter shift_register_mode bound to: 0 - type: bool 
+	Parameter save_slot bound to: 0 - type: bool 
+	Parameter bypass bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'PipeBase' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17722' bound to instance 'bufPipe' of component 'PipeBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27994]
+INFO: [Synth 8-638] synthesizing module 'PipeBase__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17745]
+	Parameter name bound to: tx_pipe-rxB0-bufPipe - type: string 
+	Parameter num_reads bound to: 1 - type: integer 
+	Parameter num_writes bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter lifo_mode bound to: 0 - type: bool 
+	Parameter depth bound to: 0 - type: integer 
+	Parameter signal_mode bound to: 0 - type: bool 
+	Parameter shift_register_mode bound to: 0 - type: bool 
+	Parameter save_slot bound to: 0 - type: bool 
+	Parameter bypass bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+	Parameter name bound to: tx_pipe-rxB0-bufPipe-queue - type: string 
+	Parameter queue_depth bound to: 0 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter save_one_slot bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'QueueBase' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18133' bound to instance 'queue' of component 'QueueBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17866]
+INFO: [Synth 8-638] synthesizing module 'QueueBase__parameterized1' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18146]
+	Parameter name bound to: tx_pipe-rxB0-bufPipe-queue - type: string 
+	Parameter queue_depth bound to: 0 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter save_one_slot bound to: 0 - type: bool 
+INFO: [Synth 8-256] done synthesizing module 'QueueBase__parameterized1' (27#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18146]
+WARNING: [Synth 8-6014] Unused sequential element debugGen.wvar_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17778]
+WARNING: [Synth 8-6014] Unused sequential element debugGen.rvar_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17785]
+INFO: [Synth 8-256] done synthesizing module 'PipeBase__parameterized1' (27#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17745]
+WARNING: [Synth 8-6014] Unused sequential element wackv_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28039]
+WARNING: [Synth 8-6014] Unused sequential element pushreqv_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28040]
+WARNING: [Synth 8-6014] Unused sequential element nstate_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:28042]
+INFO: [Synth 8-256] done synthesizing module 'ReceiveBuffer__parameterized1' (27#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27975]
+	Parameter name bound to: tx_pipe-mux - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter no_arbitration bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'OutputPortLevel' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17390' bound to instance 'mux' of component 'OutputPortLevel' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27455]
+INFO: [Synth 8-638] synthesizing module 'OutputPortLevel' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17404]
+	Parameter name bound to: tx_pipe-mux - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter no_arbitration bound to: 0 - type: bool 
+	Parameter name bound to: tx_pipe-mux-fairify - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'NobodyLeftBehind' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:16631' bound to instance 'fairify' of component 'NobodyLeftBehind' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17412]
+INFO: [Synth 8-638] synthesizing module 'NobodyLeftBehind' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:16642]
+	Parameter name bound to: tx_pipe-mux-fairify - type: string 
+	Parameter num_reqs bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'NobodyLeftBehind' (28#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:16642]
+WARNING: [Synth 8-6014] Unused sequential element var_odata_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17432]
+INFO: [Synth 8-256] done synthesizing module 'OutputPortLevel' (29#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17404]
+INFO: [Synth 8-256] done synthesizing module 'OutputPortRevised' (30#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:27387]
+INFO: [Synth 8-256] done synthesizing module 'loopback_Daemon' (31#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:42]
+	Parameter use_delay bound to: 1 - type: bool 
+INFO: [Synth 8-3491] module 'auto_run' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13175' bound to instance 'loopback_Daemon_auto_run' of component 'auto_run' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:501]
+INFO: [Synth 8-638] synthesizing module 'auto_run' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13186]
+	Parameter use_delay bound to: 1 - type: bool 
+INFO: [Synth 8-4471] merging register 'fin_req_reg' into 'start_req_reg' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13195]
+WARNING: [Synth 8-6014] Unused sequential element fin_req_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13195]
+INFO: [Synth 8-256] done synthesizing module 'auto_run' (32#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13186]
+	Parameter name bound to: pipe rx_pipe - type: string 
+	Parameter num_reads bound to: 1 - type: integer 
+	Parameter num_writes bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter lifo_mode bound to: 0 - type: bool 
+	Parameter depth bound to: 0 - type: integer 
+	Parameter signal_mode bound to: 0 - type: bool 
+	Parameter shift_register_mode bound to: 0 - type: bool 
+	Parameter save_slot bound to: 0 - type: bool 
+	Parameter bypass bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'PipeBase' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17722' bound to instance 'rx_pipe_Pipe' of component 'PipeBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:502]
+INFO: [Synth 8-638] synthesizing module 'PipeBase__parameterized3' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17745]
+	Parameter name bound to: pipe rx_pipe - type: string 
+	Parameter num_reads bound to: 1 - type: integer 
+	Parameter num_writes bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter lifo_mode bound to: 0 - type: bool 
+	Parameter depth bound to: 0 - type: integer 
+	Parameter signal_mode bound to: 0 - type: bool 
+	Parameter shift_register_mode bound to: 0 - type: bool 
+	Parameter save_slot bound to: 0 - type: bool 
+	Parameter bypass bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+	Parameter name bound to: pipe rx_pipe-queue - type: string 
+	Parameter queue_depth bound to: 0 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter save_one_slot bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'QueueBase' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18133' bound to instance 'queue' of component 'QueueBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17866]
+INFO: [Synth 8-638] synthesizing module 'QueueBase__parameterized3' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18146]
+	Parameter name bound to: pipe rx_pipe-queue - type: string 
+	Parameter queue_depth bound to: 0 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter save_one_slot bound to: 0 - type: bool 
+INFO: [Synth 8-256] done synthesizing module 'QueueBase__parameterized3' (32#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18146]
+WARNING: [Synth 8-6014] Unused sequential element debugGen.wvar_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17778]
+WARNING: [Synth 8-6014] Unused sequential element debugGen.rvar_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17785]
+INFO: [Synth 8-256] done synthesizing module 'PipeBase__parameterized3' (32#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17745]
+	Parameter name bound to: pipe tx_pipe - type: string 
+	Parameter num_reads bound to: 1 - type: integer 
+	Parameter num_writes bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter lifo_mode bound to: 0 - type: bool 
+	Parameter depth bound to: 0 - type: integer 
+	Parameter signal_mode bound to: 0 - type: bool 
+	Parameter shift_register_mode bound to: 0 - type: bool 
+	Parameter save_slot bound to: 0 - type: bool 
+	Parameter bypass bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'PipeBase' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17722' bound to instance 'tx_pipe_Pipe' of component 'PipeBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:523]
+INFO: [Synth 8-638] synthesizing module 'PipeBase__parameterized5' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17745]
+	Parameter name bound to: pipe tx_pipe - type: string 
+	Parameter num_reads bound to: 1 - type: integer 
+	Parameter num_writes bound to: 1 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter lifo_mode bound to: 0 - type: bool 
+	Parameter depth bound to: 0 - type: integer 
+	Parameter signal_mode bound to: 0 - type: bool 
+	Parameter shift_register_mode bound to: 0 - type: bool 
+	Parameter save_slot bound to: 0 - type: bool 
+	Parameter bypass bound to: 0 - type: bool 
+	Parameter full_rate bound to: 0 - type: bool 
+	Parameter name bound to: pipe tx_pipe-queue - type: string 
+	Parameter queue_depth bound to: 0 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter save_one_slot bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'QueueBase' declared at '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18133' bound to instance 'queue' of component 'QueueBase' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17866]
+INFO: [Synth 8-638] synthesizing module 'QueueBase__parameterized5' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18146]
+	Parameter name bound to: pipe tx_pipe-queue - type: string 
+	Parameter queue_depth bound to: 0 - type: integer 
+	Parameter data_width bound to: 10 - type: integer 
+	Parameter save_one_slot bound to: 0 - type: bool 
+INFO: [Synth 8-256] done synthesizing module 'QueueBase__parameterized5' (32#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18146]
+WARNING: [Synth 8-6014] Unused sequential element debugGen.wvar_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17778]
+WARNING: [Synth 8-6014] Unused sequential element debugGen.rvar_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17785]
+INFO: [Synth 8-256] done synthesizing module 'PipeBase__parameterized5' (32#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:17745]
+INFO: [Synth 8-256] done synthesizing module 'nic' (33#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/loopback_module.vhdl:440]
+WARNING: [Synth 8-6014] Unused sequential element enable_address_swap_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:496]
+WARNING: [Synth 8-3848] Net gtx_clk_bufg_out in module/entity top_level does not have driver. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:12]
+WARNING: [Synth 8-3848] Net serOut in module/entity top_level does not have driver. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:20]
+WARNING: [Synth 8-3848] Net frame_error in module/entity top_level does not have driver. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:58]
+WARNING: [Synth 8-3848] Net frame_errorn in module/entity top_level does not have driver. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:59]
+WARNING: [Synth 8-3848] Net activity_flash in module/entity top_level does not have driver. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:60]
+WARNING: [Synth 8-3848] Net activity_flashn in module/entity top_level does not have driver. [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:61]
+INFO: [Synth 8-256] done synthesizing module 'top_level' (34#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/top_level.v:3]
+WARNING: [Synth 8-3331] design QueueBase__parameterized5 has unconnected port clk
+WARNING: [Synth 8-3331] design QueueBase__parameterized5 has unconnected port reset
+WARNING: [Synth 8-3331] design QueueBase__parameterized3 has unconnected port clk
+WARNING: [Synth 8-3331] design QueueBase__parameterized3 has unconnected port reset
+WARNING: [Synth 8-3331] design auto_run has unconnected port start_ack
+WARNING: [Synth 8-3331] design auto_run has unconnected port fin_ack
+WARNING: [Synth 8-3331] design QueueBase__parameterized1 has unconnected port clk
+WARNING: [Synth 8-3331] design QueueBase__parameterized1 has unconnected port reset
+WARNING: [Synth 8-3331] design NobodyLeftBehind has unconnected port clk
+WARNING: [Synth 8-3331] design NobodyLeftBehind has unconnected port reset
+WARNING: [Synth 8-3331] design SplitGuardInterface__parameterized1 has unconnected port guards[0]
+WARNING: [Synth 8-3331] design SplitGuardInterface__parameterized1 has unconnected port clk
+WARNING: [Synth 8-3331] design SplitGuardInterface__parameterized1 has unconnected port reset
+WARNING: [Synth 8-3331] design InputPortLevel has unconnected port clk
+WARNING: [Synth 8-3331] design InputPortLevel has unconnected port reset
+WARNING: [Synth 8-3331] design SplitGuardInterface has unconnected port guards[0]
+WARNING: [Synth 8-3331] design SplitGuardInterface has unconnected port clk
+WARNING: [Synth 8-3331] design SplitGuardInterface has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized33 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized33 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized31 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized31 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized29 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized29 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized27 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized27 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized25 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized25 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized23 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized23 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized21 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized21 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized19 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized19 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized17 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized17 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized15 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized15 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized13 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized13 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized9 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized9 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized7 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized7 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element__parameterized3 has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element__parameterized3 has unconnected port reset
+WARNING: [Synth 8-3331] design control_delay_element has unconnected port clk
+WARNING: [Synth 8-3331] design control_delay_element has unconnected port reset
+WARNING: [Synth 8-3331] design axi_ahir_pipe_bridge has unconnected port rx_axis_mac_tuser
+WARNING: [Synth 8-3331] design axi_lite_controller has unconnected port s_axi_bresp[1]
+WARNING: [Synth 8-3331] design axi_lite_controller has unconnected port s_axi_bresp[0]
+WARNING: [Synth 8-3331] design axi_lite_controller has unconnected port s_axi_rresp[1]
+WARNING: [Synth 8-3331] design axi_lite_controller has unconnected port s_axi_rresp[0]
+WARNING: [Synth 8-3331] design top_level has unconnected port gtx_clk_bufg_out
+WARNING: [Synth 8-3331] design top_level has unconnected port serOut
+WARNING: [Synth 8-3331] design top_level has unconnected port frame_error
+WARNING: [Synth 8-3331] design top_level has unconnected port frame_errorn
+WARNING: [Synth 8-3331] design top_level has unconnected port activity_flash
+WARNING: [Synth 8-3331] design top_level has unconnected port activity_flashn
+WARNING: [Synth 8-3331] design top_level has unconnected port serIn
+WARNING: [Synth 8-3331] design top_level has unconnected port gen_tx_data
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1244.883 ; gain = 126.500 ; free physical = 28125 ; free virtual = 79828
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+WARNING: [Synth 8-3295] tying undriven pin rx_fifo_inst:rx_axis_tkeep[0] to constant 0 [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_ahir_pipe_bridge.v:38]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1244.883 ; gain = 126.500 ; free physical = 28129 ; free virtual = 79831
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc] for cell 'TEMAC_0'
+Finished Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc] for cell 'TEMAC_0'
+Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc]
+INFO: [Timing 38-2] Deriving generated clocks [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc:184]
+Finished Parsing XDC File [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_level_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_level_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 4 instances were transformed.
+  BUFGCE => BUFGCTRL: 4 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1631.758 ; gain = 0.000 ; free physical = 27846 ; free virtual = 79548
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:17 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27914 ; free virtual = 79627
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7k325tffg900-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:17 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27914 ; free virtual = 79627
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for mdc. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 7).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for mdc. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 8).
+Applied set_property IO_BUFFER_TYPE = NONE for mdio. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 9).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for mdio. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 10).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_rx_ctl. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 11).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_rx_ctl. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 12).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_rxc. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 13).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_rxc. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 14).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_rxd[0]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 15).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_rxd[0]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 16).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_rxd[1]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 17).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_rxd[1]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 18).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_rxd[2]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 19).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_rxd[2]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 20).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_rxd[3]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 21).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_rxd[3]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 22).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_tx_ctl. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 23).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_tx_ctl. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 24).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_txc. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 25).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_txc. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 26).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_txd[0]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 27).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_txd[0]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 28).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_txd[1]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 29).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_txd[1]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 30).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_txd[2]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 31).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_txd[2]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 32).
+Applied set_property IO_BUFFER_TYPE = NONE for rgmii_txd[3]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 33).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rgmii_txd[3]. (constraint file  /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/.Xil/Vivado-962296-ajit-System-Product-Name/dcp3/tri_mode_ethernet_mac_0_in_context.xdc, line 34).
+Applied set_property DONT_TOUCH = true for TEMAC_0. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:17 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27914 ; free virtual = 79627
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6014] Unused sequential element phy_reset_count_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/reset_gen.v:206]
+INFO: [Synth 8-802] inferred FSM for state register 'axi_state_reg' in module 'axi_lite_controller'
+WARNING: [Synth 8-6014] Unused sequential element axi_state_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:273]
+INFO: [Synth 8-5546] ROM "design_on_board" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "mdio_access_sm" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "axi_access_sm" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "axi_access_sm" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "s_axi_arvalid" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "axi_status" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "s_axi_awaddr" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "s_axi_awvalid" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "axi_status" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5587] ROM size for "start_mdio" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "drive_mdio" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "design_on_board" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "axi_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "axi_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "axi_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+WARNING: [Synth 8-6014] Unused sequential element write_pointer_next_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:67]
+INFO: [Synth 8-802] inferred FSM for state register 'yesBypassBlocking.bypassBlock.fsm_state_bypass_reg' in module 'UnloadRegister__parameterized3'
+WARNING: [Synth 8-6014] Unused sequential element yesBypassBlocking.bypassBlock.fsm_state_bypass_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30226]
+WARNING: [Synth 8-6014] Unused sequential element axi_state_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:273]
+WARNING: [Synth 8-6014] Unused sequential element axi_state_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:273]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 STARTUP |                            00000 |                           000000
+            UPDATE_SPEED |                            00001 |                           000001
+                 MDIO_RD |                            00010 |                           000010
+         MDIO_POLL_CHECK |                            00011 |                           000011
+                 MDIO_1G |                            00100 |                           000100
+             MDIO_10_100 |                            00101 |                           000101
+           MDIO_RGMII_RD |                            00110 |                           000110
+      MDIO_RGMII_RD_POLL |                            00111 |                           000111
+              MDIO_RGMII |                            01000 |                           001000
+           MDIO_DELAY_RD |                            01001 |                           001001
+      MDIO_DELAY_RD_POLL |                            01010 |                           001010
+              MDIO_DELAY |                            01011 |                           001011
+            MDIO_RESTART |                            01100 |                           001100
+           MDIO_LOOPBACK |                            01101 |                           001101
+              MDIO_STATS |                            01110 |                           001110
+   MDIO_STATS_POLL_CHECK |                            01111 |                           001111
+            RESET_MAC_RX |                            10000 |                           010001
+            RESET_MAC_TX |                            10001 |                           010000
+               CNFG_MDIO |                            10010 |                           010010
+               CNFG_FLOW |                            10011 |                           010011
+             CNFG_FILTER |                            10100 |                           010110
+       CNFG_FRM_FILTER_1 |                            10101 |                           011111
+  CNFG_FRM_FILTER_MASK_1 |                            10110 |                           100010
+       CNFG_FRM_FILTER_2 |                            10111 |                           100000
+  CNFG_FRM_FILTER_MASK_2 |                            11000 |                           100011
+       CNFG_FRM_FILTER_3 |                            11001 |                           100001
+  CNFG_FRM_FILTER_MASK_3 |                            11010 |                           100100
+             CHECK_SPEED |                            11011 |                           011001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'axi_state_reg' using encoding 'sequential' in module 'axi_lite_controller'
+WARNING: [Synth 8-6014] Unused sequential element axi_state_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/axi_lite_controller.v:273]
+WARNING: [Synth 8-6014] Unused sequential element yesBypassBlocking.bypassBlock.fsm_state_bypass_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30226]
+WARNING: [Synth 8-6014] Unused sequential element yesBypassBlocking.bypassBlock.fsm_state_bypass_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30226]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                               00 |                               00
+               waiting_1 |                               01 |                               01
+               waiting_2 |                               10 |                               10
+                  iSTATE |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'yesBypassBlocking.bypassBlock.fsm_state_bypass_reg' using encoding 'sequential' in module 'UnloadRegister__parameterized3'
+WARNING: [Synth 8-6014] Unused sequential element yesBypassBlocking.bypassBlock.fsm_state_bypass_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30226]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:18 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27907 ; free virtual = 79620
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 6     
+	   2 Input      6 Bit       Adders := 1     
++---Registers : 
+	               37 Bit    Registers := 1     
+	               34 Bit    Registers := 1     
+	               32 Bit    Registers := 5     
+	               30 Bit    Registers := 1     
+	               28 Bit    Registers := 1     
+	               21 Bit    Registers := 1     
+	               19 Bit    Registers := 1     
+	               17 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	               12 Bit    Registers := 2     
+	               10 Bit    Registers := 8     
+	                8 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
+	                2 Bit    Registers := 7     
+	                1 Bit    Registers := 64    
++---RAMs : 
+	              10K Bit         RAMs := 2     
++---Muxes : 
+	   2 Input     37 Bit        Muxes := 1     
+	   2 Input     34 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 4     
+	  28 Input     32 Bit        Muxes := 1     
+	   4 Input     32 Bit        Muxes := 1     
+	   2 Input     30 Bit        Muxes := 1     
+	  28 Input     17 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 10    
+	   5 Input     12 Bit        Muxes := 1     
+	   2 Input     11 Bit        Muxes := 2     
+	   2 Input     10 Bit        Muxes := 4     
+	  28 Input      8 Bit        Muxes := 1     
+	  32 Input      5 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   6 Input      2 Bit        Muxes := 1     
+	  28 Input      2 Bit        Muxes := 1     
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 63    
+	   4 Input      1 Bit        Muxes := 5     
+	   5 Input      1 Bit        Muxes := 1     
+	  28 Input      1 Bit        Muxes := 12    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module top_level 
+Detailed RTL Component Info : 
++---Registers : 
+	               34 Bit    Registers := 1     
+	               32 Bit    Registers := 1     
+	               30 Bit    Registers := 1     
+	               28 Bit    Registers := 1     
+	               19 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   2 Input     34 Bit        Muxes := 1     
+	   2 Input     30 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module clocks_gen 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
+Module reset_gen 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      6 Bit       Adders := 1     
++---Registers : 
+	                6 Bit    Registers := 1     
+	                1 Bit    Registers := 7     
+Module axi_lite_controller 
+Detailed RTL Component Info : 
++---Registers : 
+	               37 Bit    Registers := 1     
+	               32 Bit    Registers := 4     
+	               21 Bit    Registers := 1     
+	               17 Bit    Registers := 1     
+	               12 Bit    Registers := 2     
+	                8 Bit    Registers := 1     
+	                2 Bit    Registers := 4     
+	                1 Bit    Registers := 21    
++---Muxes : 
+	   2 Input     37 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 4     
+	  28 Input     32 Bit        Muxes := 1     
+	   4 Input     32 Bit        Muxes := 1     
+	  28 Input     17 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 10    
+	   5 Input     12 Bit        Muxes := 1     
+	   2 Input     11 Bit        Muxes := 2     
+	  28 Input      8 Bit        Muxes := 1     
+	  32 Input      5 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   6 Input      2 Bit        Muxes := 1     
+	  28 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 28    
+	   4 Input      1 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+	  28 Input      1 Bit        Muxes := 12    
+Module mac_rx_interface 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 3     
++---Registers : 
+	               10 Bit    Registers := 4     
++---RAMs : 
+	              10K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 2     
+Module mac_tx_interface 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 3     
++---Registers : 
+	               10 Bit    Registers := 3     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	              10K Bit         RAMs := 1     
+Module UnloadRegister 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module QueueBase 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module ReceiveBuffer 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module UnloadRegister__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module InterlockBuffer 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module place_with_bypass 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module control_delay_element__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module place_with_bypass__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module place_with_bypass__parameterized3 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module control_delay_element__parameterized5 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module place_with_bypass__parameterized5 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module place_with_bypass__parameterized7 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module place_with_bypass__parameterized9 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module control_delay_element__parameterized11 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module place_with_bypass__parameterized11 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module place_with_bypass__parameterized13 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module place_with_bypass__parameterized15 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module place_with_bypass__parameterized17 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module UnloadRegister__parameterized3 
+Detailed RTL Component Info : 
++---Registers : 
+	               10 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 1     
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 3     
+Module ReceiveBuffer__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module OutputPortRevised 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module auto_run 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 840 (col length:140)
+BRAMs: 890 (col length: RAMB18 140 RAMB36 70)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6014] Unused sequential element tx_fifo_inst/write_pointer_next_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:67]
+INFO: [Synth 8-4471] merging register 'loopback_Daemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[2].placeBlock.dly/UnitDelay.ack_reg' into 'loopback_Daemon_instance/in_buffer_unload_req_symbol_join.gj_in_buffer_unload_req_symbol_join/placegen[2].placeBlock.dly/UnitDelay.ack_reg' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13367]
+WARNING: [Synth 8-6014] Unused sequential element loopback_Daemon_instance/in_buffer/NotRevisedCase.ShallowCase.ulReg/noBypass.read_data_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30118]
+WARNING: [Synth 8-6014] Unused sequential element loopback_Daemon_instance/out_buffer/notFRR.bufPipe/Shallow.notSaveSlot.queue/qD1.RB.data_reg_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:18173]
+WARNING: [Synth 8-6014] Unused sequential element loopback_Daemon_instance/tagIlock/NoFlowThrough.interlockBuf.buf/NotRevisedCase.ShallowCase.ulReg/noBypass.read_data_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:30118]
+WARNING: [Synth 8-6014] Unused sequential element loopback_Daemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[2].placeBlock.dly/UnitDelay.ack_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/tmp/hw/ahir.vhdl:13367]
+WARNING: [Synth 8-6014] Unused sequential element example_resets/gtx_pre_resetn_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/reset_gen.v:162]
+WARNING: [Synth 8-6014] Unused sequential element example_resets/gtx_resetn_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/reset_gen.v:163]
+WARNING: [Synth 8-6014] Unused sequential element example_resets/chk_pre_resetn_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/reset_gen.v:188]
+WARNING: [Synth 8-6014] Unused sequential element example_resets/chk_resetn_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/reset_gen.v:189]
+INFO: [Synth 8-5544] ROM "axi_lite_controller/s_axi_awaddr" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "axi_lite_controller/design_on_board" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element example_resets/phy_reset_count_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/new/reset_gen.v:206]
+WARNING: [Synth 8-3331] design axi_ahir_pipe_bridge has unconnected port rx_axis_mac_tuser
+WARNING: [Synth 8-3331] design top_level has unconnected port gtx_clk_bufg_out
+WARNING: [Synth 8-3331] design top_level has unconnected port serOut
+WARNING: [Synth 8-3331] design top_level has unconnected port frame_error
+WARNING: [Synth 8-3331] design top_level has unconnected port frame_errorn
+WARNING: [Synth 8-3331] design top_level has unconnected port activity_flash
+WARNING: [Synth 8-3331] design top_level has unconnected port activity_flashn
+WARNING: [Synth 8-3331] design top_level has unconnected port serIn
+WARNING: [Synth 8-3331] design top_level has unconnected port gen_tx_data
+INFO: [Synth 8-5784] Optimized 0 bits of RAM "rx_fifo_inst/queue_reg" due to constant propagation. Old ram width 10 bits, new ram width 10 bits.
+WARNING: [Synth 8-6014] Unused sequential element tx_fifo_inst/tx_axis_tkeep_reg was removed.  [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/imports/harshad/Project/kc705/tri_mode_ethernet_mac_0_ex _backup/tri_mode_ethernet_mac_0_ex.srcs/sources_1/imports/Project/git/AJIT_Ethernet/code/NicWithMacIf/MacIf/axis_to_pipe/tx_fifo.v:97]
+INFO: [Synth 8-3886] merging instance 'axi_lite_controller/mdio_reg_addr_reg[5]' (FDRE) to 'axi_lite_controller/mdio_reg_addr_reg[6]'
+INFO: [Synth 8-3886] merging instance 'axi_lite_controller/mdio_reg_addr_reg[6]' (FDRE) to 'axi_lite_controller/mdio_reg_addr_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\axi_lite_controller/mdio_reg_addr_reg[7] )
+WARNING: [Synth 8-3332] Sequential element (axi_lite_controller/addr_reg[16]) is unused and will be removed from module top_level.
+WARNING: [Synth 8-3332] Sequential element (axi_lite_controller/addr_reg[15]) is unused and will be removed from module top_level.
+WARNING: [Synth 8-3332] Sequential element (axi_lite_controller/addr_reg[14]) is unused and will be removed from module top_level.
+WARNING: [Synth 8-3332] Sequential element (axi_lite_controller/addr_reg[13]) is unused and will be removed from module top_level.
+WARNING: [Synth 8-3332] Sequential element (axi_lite_controller/addr_reg[12]) is unused and will be removed from module top_level.
+WARNING: [Synth 8-3332] Sequential element (axi_lite_controller/mdio_reg_addr_reg[7]) is unused and will be removed from module top_level.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (loopback_module/\loopback_Daemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[1].placeBlock.pI/CapEqOne.non_zero_reg )
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/out_buffer/notFRR.bufPipe/Shallow.notSaveSlot.queue/qD1.RB.full_flag_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/out_buffer/fsm_state_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tagIlock/NoFlowThrough.interlockBuf.buf/NotRevisedCase.ShallowCase.ulReg/noBypass.fsm_state_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tagIlock/NoFlowThrough.interlockBuf.buf/NotRevisedCase.ShallowCase.ulReg/noBypass.unload_ack_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tagIlock/NoFlowThrough.interlockBuf.l_fsm_state_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/in_buffer_unload_req_symbol_join.gj_in_buffer_unload_req_symbol_join/placegen[2].placeBlock.dly/UnitDelay.ack_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[1].placeBlock.pI/CapEqOne.non_zero_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[2].placeBlock.pI/CapEqOne.non_zero_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/out_buffer_write_req_symbol_join.gj_out_buffer_write_req_symbol_join/placegen[3].placeBlock.pI/CapEqOne.non_zero_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tag_ilock_write_req_symbol_join.gj_tag_ilock_write_req_symbol_join/placegen[1].placeBlock.pI/CapEqOne.non_zero_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tag_ilock_write_req_symbol_join.gj_tag_ilock_write_req_symbol_join/placegen[2].placeBlock.dly/UnitDelay.ack_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tag_ilock_write_req_symbol_join.gj_tag_ilock_write_req_symbol_join/placegen[2].placeBlock.pI/CapEqOne.non_zero_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tag_ilock_read_req_symbol_join.gj_tag_ilock_read_req_symbol_join/placegen[1].placeBlock.pI/CapEqOne.non_zero_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tag_ilock_read_req_symbol_join.gj_tag_ilock_read_req_symbol_join/placegen[2].placeBlock.pI/CapEqOne.non_zero_reg) is unused and will be removed from module nic.
+WARNING: [Synth 8-3332] Sequential element (loopback_Daemon_instance/tag_ilock_read_req_symbol_join.gj_tag_ilock_read_req_symbol_join/placegen[3].placeBlock.pI/CapEqOne.non_zero_reg) is unused and will be removed from module nic.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:19 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27900 ; free virtual = 79603
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++------------+----------------------+---------------+----------------+
+|Module Name | RTL Object           | Depth x Width | Implemented As | 
++------------+----------------------+---------------+----------------+
+|top_level   | axi_lite_controller/ | 32x8          | LUT            | 
++------------+----------------------+---------------+----------------+
+
+
+Block RAM: Preliminary Mapping  Report (see note below)
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name       | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|mac_rx_interface: | queue_reg  | 1 K x 10(READ_FIRST)   | W |   | 1 K x 10(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++------------+------------------------+-----------+----------------------+------------------------------+
+|Module Name | RTL Object             | Inference | Size (Depth x Width) | Primitives                   | 
++------------+------------------------+-----------+----------------------+------------------------------+
+|bridge_inst | tx_fifo_inst/queue_reg | Implied   | 1 K x 10             | RAM64X1D x 16  RAM64M x 48   | 
++------------+------------------------+-----------+----------------------+------------------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'TEMAC_0/rgmii_txc' to pin 'TEMAC_0/bbstub_rgmii_txc/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'TEMAC_0/rx_mac_aclk' to pin 'TEMAC_0/bbstub_rx_mac_aclk/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'TEMAC_0/gtx_clk90_out' to pin 'TEMAC_0/bbstub_gtx_clk90_out/O'
+INFO: [Synth 8-5783] Moving clock source from hierarchical pin 'TEMAC_0/gtx_clk' to 'i_35/example_resets/phy_reset_count_reg[0]/C'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'TEMAC_0/gtx_clk_out' to pin 'TEMAC_0/bbstub_gtx_clk_out/O'
+INFO: [Synth 8-5783] Moving clock source from hierarchical pin 'TEMAC_0/gtx_clk' to 'i_35/example_resets/phy_reset_count_reg[0]/C'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'TEMAC_0/tx_mac_aclk' to pin 'TEMAC_0/bbstub_tx_mac_aclk/O'
+INFO: [Synth 8-5783] Moving clock source from hierarchical pin 'TEMAC_0/gtx_clk' to 'i_35/example_resets/phy_reset_count_reg[0]/C'
+INFO: [Synth 8-5819] Moved 6 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:21 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27783 ; free virtual = 79485
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27781 ; free virtual = 79483
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4480] The timing for the instance bridge_inst/rx_fifo_inst/queue_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27777 ; free virtual = 79479
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:11 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27777 ; free virtual = 79480
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:11 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27777 ; free virtual = 79480
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:12 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27777 ; free virtual = 79480
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:12 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27777 ; free virtual = 79480
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27777 ; free virtual = 79480
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:12 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27777 ; free virtual = 79480
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++------------+-----------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name | RTL Name                                | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++------------+-----------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|top_level   | axi_lite_controller/count_shift_reg[20] | 21     | 1     | NO           | NO                 | YES               | 0      | 1       | 
++------------+-----------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+------------------------+----------+
+|      |BlackBox name           |Instances |
++------+------------------------+----------+
+|1     |tri_mode_ethernet_mac_0 |         1|
++------+------------------------+----------+
+
+Report Cell Usage: 
++------+------------------------+------+
+|      |Cell                    |Count |
++------+------------------------+------+
+|1     |tri_mode_ethernet_mac_0 |     1|
+|2     |BUFGCE                  |     4|
+|3     |CARRY4                  |     4|
+|4     |LUT1                    |    14|
+|5     |LUT2                    |    91|
+|6     |LUT3                    |   126|
+|7     |LUT4                    |    92|
+|8     |LUT5                    |    85|
+|9     |LUT6                    |   170|
+|10    |MMCME2_ADV              |     1|
+|11    |MUXF7                   |    18|
+|12    |MUXF8                   |     9|
+|13    |RAM64M                  |    48|
+|14    |RAM64X1D                |    16|
+|15    |RAMB18E1                |     1|
+|16    |SRLC32E                 |     1|
+|17    |FDPE                    |    25|
+|18    |FDRE                    |   525|
+|19    |FDSE                    |     8|
+|20    |IBUF                    |     8|
+|21    |IBUFDS                  |     1|
+|22    |OBUF                    |     4|
+|23    |OBUFT                   |     6|
++------+------------------------+------+
+
+Report Instance Areas: 
++------+-----------------------------------------------------------------------------+--------------------------------------+------+
+|      |Instance                                                                     |Module                                |Cells |
++------+-----------------------------------------------------------------------------+--------------------------------------+------+
+|1     |top                                                                          |                                      |  1399|
+|2     |  bridge_inst                                                                |axi_ahir_pipe_bridge                  |   313|
+|3     |    rx_fifo_inst                                                             |mac_rx_interface                      |    82|
+|4     |    tx_fifo_inst                                                             |mac_tx_interface                      |   231|
+|5     |  loopback_module                                                            |nic                                   |    40|
+|6     |    loopback_Daemon_auto_run                                                 |auto_run                              |     1|
+|7     |    loopback_Daemon_instance                                                 |loopback_Daemon                       |    39|
+|8     |      \data_path.InportGroup_0.rx_pipe_read_0                                |InputPortRevised                      |    28|
+|9     |        \ProTx[0].ulreg                                                      |UnloadRegister__parameterized3        |    28|
+|10    |      \data_path.OutportGroup_0.tx_pipe_write_0                              |OutputPortRevised                     |     3|
+|11    |        \BufGen[0].rxB                                                       |ReceiveBuffer__parameterized1         |     2|
+|12    |      in_buffer                                                              |UnloadBuffer                          |     4|
+|13    |        \NotRevisedCase.ShallowCase.ulReg                                    |UnloadRegister                        |     4|
+|14    |      \in_buffer_unload_req_symbol_join.gj_in_buffer_unload_req_symbol_join  |generic_join                          |     4|
+|15    |        \placegen[1].placeBlock.pI                                           |place_with_bypass                     |     1|
+|16    |        \placegen[2].placeBlock.pI                                           |place_with_bypass__parameterized1     |     3|
+|17    |  rx_stats_sync                                                              |tri_mode_ethernet_mac_0_sync_block__4 |     5|
+|18    |  tx_stats_sync                                                              |tri_mode_ethernet_mac_0_sync_block    |     5|
+|19    |  axi_lite_controller                                                        |axi_lite_controller                   |   570|
+|20    |    update_speed_sync_inst                                                   |tri_mode_ethernet_mac_0_sync_block__3 |     5|
+|21    |  example_clocks                                                             |clocks_gen                            |    20|
+|22    |    lock_sync                                                                |tri_mode_ethernet_mac_0_sync_block__1 |     5|
+|23    |    mmcm_reset_gen                                                           |tri_mode_ethernet_mac_0_reset_sync__1 |     5|
+|24    |    clock_generator                                                          |tri_mode_ethernet_mac_0_clk_wiz       |     4|
+|25    |  example_resets                                                             |reset_gen                             |    49|
+|26    |    dcm_sync                                                                 |tri_mode_ethernet_mac_0_sync_block__2 |     5|
+|27    |    glbl_reset_gen                                                           |tri_mode_ethernet_mac_0_reset_sync__2 |     5|
+|28    |    axi_lite_reset_gen                                                       |tri_mode_ethernet_mac_0_reset_sync__3 |     5|
+|29    |    gtx_reset_gen                                                            |tri_mode_ethernet_mac_0_reset_sync__4 |     5|
+|30    |    chk_reset_gen                                                            |tri_mode_ethernet_mac_0_reset_sync    |     5|
++------+-----------------------------------------------------------------------------+--------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27777 ; free virtual = 79480
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 51 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1631.758 ; gain = 126.500 ; free physical = 27828 ; free virtual = 79530
+Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:22 . Memory (MB): peak = 1631.758 ; gain = 513.375 ; free physical = 27831 ; free virtual = 79534
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 83 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 68 instances were transformed.
+  BUFGCE => BUFGCTRL: 4 instances
+  RAM64M => RAM64M (RAMD64E, RAMD64E, RAMD64E, RAMD64E): 48 instances
+  RAM64X1D => RAM64X1D (RAMD64E, RAMD64E): 16 instances
+
+280 Infos, 191 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:14 ; elapsed = 00:01:05 . Memory (MB): peak = 1631.758 ; gain = 530.688 ; free physical = 27795 ; free virtual = 79498
+INFO: [Common 17-1381] The checkpoint '/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/synth_1/top_level.dcp' has been generated.
+report_utilization: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1655.770 ; gain = 0.000 ; free physical = 27797 ; free virtual = 79500
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 15 14:15:08 2023...

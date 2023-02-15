@@ -1,0 +1,149 @@
+
+*** Running vivado
+    with args -log tri_mode_ethernet_mac_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source tri_mode_ethernet_mac_0.tcl
+
+
+****** Vivado v2017.1 (64-bit)
+  **** SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+  **** IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source tri_mode_ethernet_mac_0.tcl -notrace
+config_ip_cache: Time (s): cpu = 00:00:00.27 ; elapsed = 00:03:01 . Memory (MB): peak = 1109.477 ; gain = 8.402 ; free physical = 31943 ; free virtual = 80761
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1184.387 ; gain = 74.910 ; free physical = 31829 ; free virtual = 80648
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0.v:67]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_support' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_support.v:66]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_support_clocking' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_support_clocking.v:67]
+INFO: [Synth 8-638] synthesizing module 'MMCME2_ADV' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20759]
+INFO: [Synth 8-256] done synthesizing module 'MMCME2_ADV' (1#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20759]
+INFO: [Synth 8-638] synthesizing module 'BUFGCE' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:617]
+INFO: [Synth 8-256] done synthesizing module 'BUFGCE' (2#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:617]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_support_clocking' (3#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_support_clocking.v:67]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_support_resets' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_support_resets.v:57]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_block_reset_sync' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/common/tri_mode_ethernet_mac_0_block_reset_sync.v:66]
+INFO: [Synth 8-638] synthesizing module 'FDPE' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:3904]
+INFO: [Synth 8-256] done synthesizing module 'FDPE' (4#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:3904]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_block_reset_sync' (5#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/common/tri_mode_ethernet_mac_0_block_reset_sync.v:66]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_block_sync_block' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/common/tri_mode_ethernet_mac_0_block_sync_block.v:63]
+INFO: [Synth 8-638] synthesizing module 'FDRE' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:3964]
+INFO: [Synth 8-256] done synthesizing module 'FDRE' (6#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:3964]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_block_sync_block' (7#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/common/tri_mode_ethernet_mac_0_block_sync_block.v:63]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_support_resets' (8#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_support_resets.v:57]
+INFO: [Synth 8-638] synthesizing module 'IDELAYCTRL' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:16506]
+INFO: [Synth 8-256] done synthesizing module 'IDELAYCTRL' (9#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:16506]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_block' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_block.v:117]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_clk_en_gen' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clk_en_gen.v:65]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_clk_en_gen' (10#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_clk_en_gen.v:65]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_rgmii_v2_0_if' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/physical/tri_mode_ethernet_mac_0_rgmii_v2_0_if.v:70]
+INFO: [Synth 8-638] synthesizing module 'OBUF' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:22272]
+INFO: [Synth 8-256] done synthesizing module 'OBUF' (11#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:22272]
+INFO: [Synth 8-638] synthesizing module 'IBUF' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:14470]
+INFO: [Synth 8-256] done synthesizing module 'IBUF' (12#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:14470]
+INFO: [Synth 8-638] synthesizing module 'ODDR' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:25650]
+INFO: [Synth 8-256] done synthesizing module 'ODDR' (13#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:25650]
+INFO: [Synth 8-638] synthesizing module 'IDELAYE2' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:16519]
+INFO: [Synth 8-256] done synthesizing module 'IDELAYE2' (14#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:16519]
+INFO: [Synth 8-638] synthesizing module 'IDDR' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:16384]
+INFO: [Synth 8-256] done synthesizing module 'IDDR' (15#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:16384]
+INFO: [Synth 8-638] synthesizing module 'IOBUF' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:17657]
+INFO: [Synth 8-256] done synthesizing module 'IOBUF' (16#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:17657]
+INFO: [Synth 8-638] synthesizing module 'BUFIO' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:831]
+INFO: [Synth 8-256] done synthesizing module 'BUFIO' (17#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:831]
+INFO: [Synth 8-638] synthesizing module 'BUFR' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:884]
+INFO: [Synth 8-256] done synthesizing module 'BUFR' (18#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:884]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_rgmii_v2_0_if' (19#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/physical/tri_mode_ethernet_mac_0_rgmii_v2_0_if.v:70]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_axi4_lite_ipif_wrapper' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_axi4_lite_ipif_wrapper.v:75]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_axi4_lite_ipif_top' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_axi4_lite_ipif_top.vhd:107]
+INFO: [Synth 8-638] synthesizing module 'axi_lite_ipif' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
+INFO: [Synth 8-638] synthesizing module 'slave_attachment' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
+INFO: [Synth 8-638] synthesizing module 'address_decoder' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
+INFO: [Synth 8-256] done synthesizing module 'address_decoder' (20#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
+INFO: [Synth 8-256] done synthesizing module 'slave_attachment' (21#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
+INFO: [Synth 8-256] done synthesizing module 'axi_lite_ipif' (22#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_axi4_lite_ipif_top' (23#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_axi4_lite_ipif_top.vhd:107]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_axi4_lite_ipif_wrapper' (24#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_axi4_lite_ipif_wrapper.v:75]
+INFO: [Synth 8-638] synthesizing module 'tri_mode_ethernet_mac_0_vector_decode' [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/statistics/tri_mode_ethernet_mac_0_vector_decode.v:70]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_vector_decode' (25#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/statistics/tri_mode_ethernet_mac_0_vector_decode.v:70]
+INFO: [Synth 8-638] synthesizing module 'LUT4' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4' (41#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'LUT4__parameterized0' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4__parameterized0' (41#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'LUT4__parameterized1' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4__parameterized1' (41#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'LUT4__parameterized2' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4__parameterized2' (41#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'LUT4__parameterized3' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4__parameterized3' (41#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'RAM64X1D' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-256] done synthesizing module 'RAM64X1D' (57#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-638] synthesizing module 'RAM64X1D__parameterized0' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-256] done synthesizing module 'RAM64X1D__parameterized0' (57#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-638] synthesizing module 'RAM64X1D__parameterized1' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-256] done synthesizing module 'RAM64X1D__parameterized1' (58#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-638] synthesizing module 'LUT3' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-256] done synthesizing module 'LUT3' (59#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-638] synthesizing module 'LUT3__parameterized0' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-256] done synthesizing module 'LUT3__parameterized0' (59#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-638] synthesizing module 'LUT3__parameterized1' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-256] done synthesizing module 'LUT3__parameterized1' (59#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-638] synthesizing module 'LUT3__parameterized2' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-256] done synthesizing module 'LUT3__parameterized2' (59#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-638] synthesizing module 'SRL16E' [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:43673]
+INFO: [Synth 8-256] done synthesizing module 'SRL16E' (60#1) [/home/aiml/my-xil-dir/Vivado/2017.1/scripts/rt/data/unisim_comp.v:43673]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_block' (64#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_block.v:117]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0_support' (65#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0_support.v:66]
+INFO: [Synth 8-256] done synthesizing module 'tri_mode_ethernet_mac_0' (66#1) [/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0.v:67]
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.887 ; gain = 171.410 ; free physical = 31787 ; free virtual = 80607
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.887 ; gain = 171.410 ; free physical = 31800 ; free virtual = 80619
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1664.973 ; gain = 0.000 ; free physical = 31516 ; free virtual = 80335
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:19 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31606 ; free virtual = 80425
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:19 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31606 ; free virtual = 80425
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:19 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31606 ; free virtual = 80425
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:20 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31597 ; free virtual = 80417
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:24 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31575 ; free virtual = 80394
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:27 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31461 ; free virtual = 80279
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:28 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31444 ; free virtual = 80263
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31437 ; free virtual = 80255
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31435 ; free virtual = 80255
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31435 ; free virtual = 80255
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31430 ; free virtual = 80251
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31430 ; free virtual = 80251
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:29 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31426 ; free virtual = 80247
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:29 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31424 ; free virtual = 80245
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |BUFGCE     |     2|
+|2     |BUFIO      |     1|
+|3     |BUFR       |     1|
+|4     |CARRY4     |    33|
+|5     |IDDR       |     5|
+|6     |IDELAYCTRL |     1|
+|7     |IDELAYE2   |     5|
+|8     |LUT1       |    90|
+|9     |LUT2       |   368|
+|10    |LUT3       |   242|
+|11    |LUT4       |   283|
+|12    |LUT5       |   358|
+|13    |LUT6       |   583|
+|14    |MMCME2_ADV |     1|
+|15    |MUXCY      |    70|
+|16    |MUXF7      |    13|
+|17    |MUXF8      |     2|
+|18    |ODDR       |     6|
+|19    |RAM64X1D   |   160|
+|20    |SRL16E     |    27|
+|21    |XORCY      |    70|
+|22    |FDCE       |   108|
+|23    |FDPE       |    50|
+|24    |FDRE       |  2778|
+|25    |FDSE       |   114|
+|26    |IBUF       |     6|
+|27    |IOBUF      |     1|
+|28    |OBUF       |     7|
++------+-----------+------+
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:29 . Memory (MB): peak = 1664.973 ; gain = 555.496 ; free physical = 31423 ; free virtual = 80244
+synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:01:11 . Memory (MB): peak = 1675.559 ; gain = 566.082 ; free physical = 31472 ; free virtual = 80293

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Tue Feb  7 15:36:11 2023
+# Process ID: 439491
+# Current directory: /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/tri_mode_ethernet_mac_0_synth_1
+# Command line: vivado -log tri_mode_ethernet_mac_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source tri_mode_ethernet_mac_0.tcl
+# Log file: /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/tri_mode_ethernet_mac_0_synth_1/tri_mode_ethernet_mac_0.vds
+# Journal file: /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.runs/tri_mode_ethernet_mac_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source tri_mode_ethernet_mac_0.tcl -notrace

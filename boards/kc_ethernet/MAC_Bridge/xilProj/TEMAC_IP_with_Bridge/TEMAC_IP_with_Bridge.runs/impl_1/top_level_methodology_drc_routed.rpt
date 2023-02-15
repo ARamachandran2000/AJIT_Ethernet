@@ -1,0 +1,1070 @@
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
+| Date         : Wed Feb 15 14:17:49 2023
+| Host         : ajit-System-Product-Name running 64-bit Ubuntu 20.04.5 LTS
+| Command      : report_methodology -file top_level_methodology_drc_routed.rpt -rpx top_level_methodology_drc_routed.rpx
+| Design       : top_level
+| Device       : xc7k325tffg900-2
+| Speed File   : -2
+| Design State : Routed
+-------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 204
++-----------+----------+---------------------------------------------------+------------+
+| Rule      | Severity | Description                                       | Violations |
++-----------+----------+---------------------------------------------------+------------+
+| PDRC-190  | Warning  | Suboptimally placed synchronized register chain   | 26         |
+| SYNTH-6   | Warning  | Timing of a block RAM might be sub-optimal        | 1          |
+| TIMING-6  | Warning  | No common primary clock between related clocks    | 2          |
+| TIMING-7  | Warning  | No common node between related clocks             | 2          |
+| TIMING-9  | Warning  | Unknown CDC Logic                                 | 1          |
+| TIMING-11 | Warning  | Inappropriate max delay with datapath only option | 160        |
+| TIMING-18 | Warning  | Missing input or output delay                     | 6          |
+| XDCB-5    | Warning  | Runtime inefficient way to find pin objects       | 5          |
+| XDCH-2    | Warning  | Same min and max delay values on IO port          | 1          |
++-----------+----------+---------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+PDRC-190#1 Warning
+Suboptimally placed synchronized register chain  
+The FDCE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/man_reset.sync_glbl_rstn_bus2ip_clk/async_rst4_reg in site SLICE_X0Y152 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/man_reset.sync_glbl_rstn_bus2ip_clk/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#2 Warning
+Suboptimally placed synchronized register chain  
+The FDCE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_axi_rx_rstn_rx_clk/async_rst4_reg in site SLICE_X1Y147 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_axi_rx_rstn_rx_clk/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#3 Warning
+Suboptimally placed synchronized register chain  
+The FDCE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_glbl_rstn_rx_clk/async_rst4_reg in site SLICE_X1Y144 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_glbl_rstn_rx_clk/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#4 Warning
+Suboptimally placed synchronized register chain  
+The FDCE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_glbl_rstn_tx_clk/async_rst4_reg in site SLICE_X2Y152 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_glbl_rstn_tx_clk/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#5 Warning
+Suboptimally placed synchronized register chain  
+The FDCE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_tx_axi_rstn_tx_clk/async_rst4_reg in site SLICE_X1Y153 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_tx_axi_rstn_tx_clk/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#6 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/man_reset.sync_bus2ip_reset_bus2ip_clk/async_rst4_reg in site SLICE_X0Y156 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/man_reset.sync_bus2ip_reset_bus2ip_clk/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#7 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_byte_counter/SYNC_STATS_RESET/async_rst4_reg in site SLICE_X17Y143 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_byte_counter/SYNC_STATS_RESET/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#8 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_fragment_counter/SYNC_STATS_RESET/async_rst4_reg in site SLICE_X21Y144 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_fragment_counter/SYNC_STATS_RESET/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#9 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_undersized_counter/SYNC_STATS_RESET/async_rst4_reg in site SLICE_X23Y144 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_undersized_counter/SYNC_STATS_RESET/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#10 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/tx_byte_counter/SYNC_STATS_RESET/async_rst4_reg in site SLICE_X46Y159 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/tx_byte_counter/SYNC_STATS_RESET/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#11 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_int_rx_rst_mgmt_rx_clk/async_rst4_reg in site SLICE_X0Y147 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_int_rx_rst_mgmt_rx_clk/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#12 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_int_tx_rst_mgmt_tx_clk/async_rst4_reg in site SLICE_X3Y153 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_int_tx_rst_mgmt_tx_clk/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#13 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_stats_reset/async_rst4_reg in site SLICE_X3Y130 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_stats_reset/sync_rst0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#14 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/man_reset.sync_bus2ip_reset_bus2ip_clk/sync_rst0_reg in site SLICE_X0Y157 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/man_reset.sync_bus2ip_reset_bus2ip_clk/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#15 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/man_reset.sync_glbl_rstn_bus2ip_clk/sync_rst0_reg in site SLICE_X0Y153 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/man_reset.sync_glbl_rstn_bus2ip_clk/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#16 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_byte_counter/SYNC_STATS_RESET/sync_rst0_reg in site SLICE_X17Y144 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_byte_counter/SYNC_STATS_RESET/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#17 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_fragment_counter/SYNC_STATS_RESET/sync_rst0_reg in site SLICE_X21Y145 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_fragment_counter/SYNC_STATS_RESET/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#18 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_undersized_counter/SYNC_STATS_RESET/sync_rst0_reg in site SLICE_X23Y145 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rx_undersized_counter/SYNC_STATS_RESET/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#19 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/tx_byte_counter/SYNC_STATS_RESET/sync_rst0_reg in site SLICE_X46Y160 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/tx_byte_counter/SYNC_STATS_RESET/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#20 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_axi_rx_rstn_rx_clk/sync_rst0_reg in site SLICE_X1Y148 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_axi_rx_rstn_rx_clk/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#21 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_glbl_rstn_rx_clk/sync_rst0_reg in site SLICE_X1Y145 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_glbl_rstn_rx_clk/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#22 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_glbl_rstn_tx_clk/sync_rst0_reg in site SLICE_X2Y153 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_glbl_rstn_tx_clk/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#23 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_int_rx_rst_mgmt_rx_clk/sync_rst0_reg in site SLICE_X0Y148 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_int_rx_rst_mgmt_rx_clk/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#24 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_int_tx_rst_mgmt_tx_clk/sync_rst0_reg in site SLICE_X3Y154 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_int_tx_rst_mgmt_tx_clk/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#25 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_stats_reset/sync_rst0_reg in site SLICE_X3Y131 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_stats_reset/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#26 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_tx_axi_rstn_tx_clk/sync_rst0_reg in site SLICE_X1Y154 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/sync_tx_axi_rstn_tx_clk/sync_rst1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+SYNTH-6#1 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance bridge_inst/rx_fifo_inst/queue_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+TIMING-6#1 Warning
+No common primary clock between related clocks  
+The clocks clkout0_1 and rgmii_rxc are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clkout0_1] -to [get_clocks rgmii_rxc]
+Related violations: <none>
+
+TIMING-6#2 Warning
+No common primary clock between related clocks  
+The clocks rgmii_rxc and clkout0_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks rgmii_rxc] -to [get_clocks clkout0_1]
+Related violations: <none>
+
+TIMING-7#1 Warning
+No common node between related clocks  
+The clocks clkout0_1 and rgmii_rxc are related (timed together) but they have no common node. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clkout0_1] -to [get_clocks rgmii_rxc]
+Related violations: <none>
+
+TIMING-7#2 Warning
+No common node between related clocks  
+The clocks rgmii_rxc and clkout0_1 are related (timed together) but they have no common node. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks rgmii_rxc] -to [get_clocks clkout0_1]
+Related violations: <none>
+
+TIMING-9#1 Warning
+Unknown CDC Logic  
+One or more asynchronous Clock Domain Crossing has been detected between 2 clock domains through a set_false_path or a set_clock_groups or set_max_delay -datapath_only constraint but no double-registers logic synchronizer has been found on the side of the capture clock. It is recommended to run report_cdc for a complete and detailed CDC coverage. Please consider using XPM_CDC to avoid Critical severities
+Related violations: <none>
+
+TIMING-11#1 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[0]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[0]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#2 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[10]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[10]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#3 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[10]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[3]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#4 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[11]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[11]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#5 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[11]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[4]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#6 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[12]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[12]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#7 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[12]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[5]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#8 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[13]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[13]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#9 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[13]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[6]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#10 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[14]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[14]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#11 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[14]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[7]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#12 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[15]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[15]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#13 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[15]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[8]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#14 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[16]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[16]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#15 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[16]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[9]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#16 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[17]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[10]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#17 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[17]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[17]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#18 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[18]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[11]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#19 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[18]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[18]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#20 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[19]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[12]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#21 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[19]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[19]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#22 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[1]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[1]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#23 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[20]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[13]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#24 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[20]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[20]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#25 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[21]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[14]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#26 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[21]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[21]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#27 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[22]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[15]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#28 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[22]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[22]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#29 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[23]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[16]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#30 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[23]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[23]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#31 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[24]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[17]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#32 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[24]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[24]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#33 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[25]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[18]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#34 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[25]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[25]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#35 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[26]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[19]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#36 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[26]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[26]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#37 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[27]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[20]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#38 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[27]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[27]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#39 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[28]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[21]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#40 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[28]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[28]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#41 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[29]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[22]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#42 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[29]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[29]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#43 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[2]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[2]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#44 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[30]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[23]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#45 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[30]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[30]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#46 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[31]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[24]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#47 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[31]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[31]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#48 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[32]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[0]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#49 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[32]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[25]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#50 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[33]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[1]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#51 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[33]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[26]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#52 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[34]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[27]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#53 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[34]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[2]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#54 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[35]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[28]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#55 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[35]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[3]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#56 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[36]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[29]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#57 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[36]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[4]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#58 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[37]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[30]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#59 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[37]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[5]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#60 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[38]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[31]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#61 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[38]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[6]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#62 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[39]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[0]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#63 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[39]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[7]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#64 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[3]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[3]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#65 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[40]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[1]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#66 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[40]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[8]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#67 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[41]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[2]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#68 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[41]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[9]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#69 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[42]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[10]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#70 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[42]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[3]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#71 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[43]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[11]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#72 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[43]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[4]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#73 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[44]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[12]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#74 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[44]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[5]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#75 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[45]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[13]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#76 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[45]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[6]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#77 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[46]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[14]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#78 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[46]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[7]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#79 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[47]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[15]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#80 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[47]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[8]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#81 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[48]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[16]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#82 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[48]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[9]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#83 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[49]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[10]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#84 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[49]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[17]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#85 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[4]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[4]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#86 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[50]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[11]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#87 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[50]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[18]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#88 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[51]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[12]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#89 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[51]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[19]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#90 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[52]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[13]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#91 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[52]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[20]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#92 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[53]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[14]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#93 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[53]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[21]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#94 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[54]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[15]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#95 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[54]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[22]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#96 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[55]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[16]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#97 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[55]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[23]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#98 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[56]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[17]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#99 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[56]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[24]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#100 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[57]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[18]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#101 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[57]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[25]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#102 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[58]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[19]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#103 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[58]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[26]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#104 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[59]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[20]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#105 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[59]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[27]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#106 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[5]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[5]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#107 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[60]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[21]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#108 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[60]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[28]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#109 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[61]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[22]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#110 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[61]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[29]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#111 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[62]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[23]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#112 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[62]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[30]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#113 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[63]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[24]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#114 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[63]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[31]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#115 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[64]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[25]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#116 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[65]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[26]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#117 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[66]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[27]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#118 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[67]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[28]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#119 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[68]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[29]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#120 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[69]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[30]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#121 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[6]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[6]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#122 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[70]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[31]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#123 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[0]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#124 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[10]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#125 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[11]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#126 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[12]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#127 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[13]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#128 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[14]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#129 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[15]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#130 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[16]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#131 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[17]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#132 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[18]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#133 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[19]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#134 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[1]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#135 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[20]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#136 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[21]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#137 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[22]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#138 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[23]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#139 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[24]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#140 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[25]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#141 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[26]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#142 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[27]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#143 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[28]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#144 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[29]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#145 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[2]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#146 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[30]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#147 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[31]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#148 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[3]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#149 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[4]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#150 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[5]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#151 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[6]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#152 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[7]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#153 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[8]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#154 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[71]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[9]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#155 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[7]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[0]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#156 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[7]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[7]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#157 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[8]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[1]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#158 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[8]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[8]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#159 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[9]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[2]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-11#160 Warning
+Inappropriate max delay with datapath only option  
+A max delay constraint with -datapath_only has been applied between TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/rd_data_ref_reg[9]/C and TEMAC_0/inst/tri_mode_ethernet_mac_i/tri_mode_ethernet_mac_0_core/stats_block.statistics_counters/ip2bus_data_reg[9]/D. The startpoint(s) and endpoint(s) either belong to the same clock domain or belong to two clock domains that can safely be timed together (without valid synchronizer). It is only recommended to use the -datapath_only option on paths between clocks that do not have a known phase relationship. This DRC is waived when a synchronizer is found on the path endpoint
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on mdio relative to clock(s) VIRTUAL_clkout1 
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An output delay is missing on rgmii_tx_ctl relative to clock(s) TEMAC_0/inst_rgmii_rx_clk 
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An output delay is missing on rgmii_txd[0] relative to clock(s) TEMAC_0/inst_rgmii_rx_clk 
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An output delay is missing on rgmii_txd[1] relative to clock(s) TEMAC_0/inst_rgmii_rx_clk 
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An output delay is missing on rgmii_txd[2] relative to clock(s) TEMAC_0/inst_rgmii_rx_clk 
+Related violations: <none>
+
+TIMING-18#6 Warning
+Missing input or output delay  
+An output delay is missing on rgmii_txd[3] relative to clock(s) TEMAC_0/inst_rgmii_rx_clk 
+Related violations: <none>
+
+XDCB-5#1 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hier -filter {NAME =~ */*_sync*/D}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '53' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc (Line: 205)
+Related violations: <none>
+
+XDCB-5#2 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hier -filter {NAME =~ */async_rst*/CLR}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '14' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0.xdc (Line: 93)
+Related violations: <none>
+
+XDCB-5#3 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hier -filter {NAME =~ */async_rst*/PRE}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '13' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0.xdc (Line: 92)
+Related violations: <none>
+
+XDCB-5#4 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hier -filter {NAME =~ */reset_sync*/PRE}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '15' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/sources_1/ip/tri_mode_ethernet_mac_0/synth/tri_mode_ethernet_mac_0.xdc (Line: 94)
+Related violations: <none>
+
+XDCB-5#5 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hier -filter {NAME =~ */reset_sync*/PRE}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '52' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc (Line: 204)
+Related violations: <none>
+
+XDCH-2#1 Warning
+Same min and max delay values on IO port  
+The same output delay of 1.000 ns has been defined on port 'mdc' relative to clock clkout1 for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock [get_clocks -of [get_pins example_clocks/clock_generator/mmcm_adv_inst/CLKOUT1]] 1.000 [get_ports mdc]
+/home/harshad/Project/Eth_on_KC705/hw/MAC/Project/TEMAC_IP_with_Bridge/TEMAC_IP_with_Bridge.srcs/constrs_1/new/kc_705_eth.xdc (Line: 184)
+Related violations: <none>
+
+

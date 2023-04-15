@@ -82,7 +82,32 @@ module top_level(
             
         .control_valid(control_valid),
         .control_data(control_data),
-        .start_config(start_config)
+        .start_config(start_config),
+        
+         /// ip data
+        .s_axis_txc_tdata(s_axis_txc_tdata)    , 
+        .s_axis_txc_tkeep(s_axis_txc_tkeep)    , 
+        .s_axis_txc_tlast(s_axis_txc_tlast)    , 
+        .s_axis_txc_tready(s_axis_txc_tready)   , 
+        .s_axis_txc_tvalid(s_axis_txc_tvalid)   , 
+        
+        .s_axis_txd_tdata(s_axis_txd_tdata)    , 
+        .s_axis_txd_tkeep(s_axis_txd_tkeep)    , 
+        .s_axis_txd_tlast(s_axis_txd_tlast)    , 
+        .s_axis_txd_tready(s_axis_txd_tready)   , 
+        .s_axis_txd_tvalid(s_axis_txd_tvalid)   , 
+         
+        .m_axis_rxd_tdata(m_axis_rxd_tdata)    , 
+        .m_axis_rxd_tkeep(m_axis_rxd_tkeep)    , 
+        .m_axis_rxd_tlast(m_axis_rxd_tlast)    , 
+        .m_axis_rxd_tready(m_axis_rxd_tready)   , 
+        .m_axis_rxd_tvalid(m_axis_rxd_tvalid)   , 
+            
+        .m_axis_rxs_tdata(m_axis_rxs_tdata)    , 
+        .m_axis_rxs_tkeep(m_axis_rxs_tkeep)    , 
+        .m_axis_rxs_tlast(m_axis_rxs_tlast)    , 
+        .m_axis_rxs_tready(m_axis_rxs_tready)   , 
+        .m_axis_rxs_tvalid(m_axis_rxs_tvalid)  
     );
     
     axi_ethernet_0_clocks_resets example_clocks_resets
@@ -107,5 +132,6 @@ module top_level(
         .axis_clk_bufg     (axis_clk       ),
         .axi_lite_clk_bufg (axi_lite_clk   )
     );
+    
 endmodule
 

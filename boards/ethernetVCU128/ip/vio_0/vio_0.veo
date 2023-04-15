@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: xilinx.com:ip:vio:3.0
-// IP Revision: 20
+// IP Revision: 15
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -59,7 +59,7 @@ vio_0 your_instance_name (
   .probe_in0(probe_in0),    // input wire [0 : 0] probe_in0
   .probe_in1(probe_in1),    // input wire [0 : 0] probe_in1
   .probe_in2(probe_in2),    // input wire [0 : 0] probe_in2
-  .probe_out0(probe_out0),  // output wire [3 : 0] probe_out0
+  .probe_out0(probe_out0),  // output wire [0 : 0] probe_out0
   .probe_out1(probe_out1),  // output wire [0 : 0] probe_out1
   .probe_out2(probe_out2),  // output wire [0 : 0] probe_out2
   .probe_out3(probe_out3),  // output wire [0 : 0] probe_out3

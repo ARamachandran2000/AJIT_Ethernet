@@ -11,6 +11,7 @@ read_vhdl -library ahir_system_global_packagelib ../vhdl_libs/ahir_system_global
 #read_vhdl -library rx_concat_system_global_package ../vhdl_libs/rx_concat_system_global_package.vhdl
 #read_vhdl -library tx_deconcat_system_global_package ../vhdl_libs/tx_deconcat_system_global_package.vhdl
 read_vhdl -library DualClockedQueuelib ../vhdl_libs/DualClockedQueuelib.vhdl
+read_vhdl -library simpleI2clib ../vhdl_libs/simpleI2CLib.vhdl
 
 read_vhdl ../vhdl/DualClockedQueue.vhd
 read_vhdl ../vhdl/nic.vhdl
@@ -27,7 +28,7 @@ read_verilog ../verilog/clocks_and_reset_gen.v
 read_verilog ../verilog/mac_support.v
 read_verilog ../verilog/reset_sync.v
 read_verilog ../verilog/ethernet.v
-read_verilog ../verilog/ETH_TOP.v
+#read_verilog ../verilog/ETH_TOP.v
 
 ############# CONSTRAINT FILE ###########
 read_xdc ../constraints/vcu128_Ethernet.xdc
@@ -41,34 +42,25 @@ read_ip ../ip/fifo_generator_acb_resp/fifo_generator_acb_resp.xci
 read_ip ../ip/fifo_generator_acb_req/fifo_generator_acb_req.xci
 read_ip ../ip/fifo_generator_afb_req/fifo_generator_afb_req.xci
 read_ip ../ip/fifo_generator_afb_resp/fifo_generator_afb_resp.xci
-read_ip ../ip/tri_mode_ethernet_mac_0/tri_mode_ethernet_mac_0.xci
+read_ip ../ip/axi_ethernet_0/axi_ethernet_0.xci
 read_ip ../ip/vio_0/vio_0.xci
-read_ip ../ip/vio_1/vio_1.xci
-read_ip ../ip/fifo_generator_0/fifo_generator_0.xci
-read_ip ../ip/fifo_generator_1/fifo_generator_1.xci
+#read_ip ../ip/vio_1/vio_1.xci
+#read_ip ../ip/fifo_generator_0/fifo_generator_0.xci
+#read_ip ../ip/fifo_generator_1/fifo_generator_1.xci
 
 ## core edif file
-read_edif ./processor_1x1x32.edn 
+read_edif ./processor_1x1x32.edn
 
 ############### SYNTHESIZE ##############
-synth_design -fsm_extraction off  -top top_level -part xc7k325tffg900-2
+synth_design -fsm_extraction off  -top top_level -part xcvu37p-fsvh2892-2L-e
 write_checkpoint -force PostSynthCheckpoint.dcp
 report_timing_summary -file timing.postsynth.rpt -nworst 4
-
 report_utilization -file utilization_post_synth.rpt
 report_utilization -hierarchical -file utilization_post_synth.hierarchical.rpt
+
 opt_design
 place_design -directive Explore
 route_design -directive Explore
-phys_opt_design
-phys_opt_design
-phys_opt_design
-phys_opt_design
-phys_opt_design
-phys_opt_design
-phys_opt_design
-phys_opt_design
-phys_opt_design
 phys_opt_design
 phys_opt_design
 phys_opt_design
@@ -76,4 +68,5 @@ write_checkpoint -force PostPlaceRouteCheckpoint.dcp
 report_timing_summary -file timing.rpt -nworst 10 -verbose
 report_utilization -file utilization_post_place_and_route.rpt
 report_utilization -hierarchical -file utilization_post_place_and_route.hierarchical.rpt
-write_bitstream -force processor_1x1x32.Ethernet.kc705.bit
+write_bitstream -force processor_1x1x32.Ethernet.vcu128.bit
+write_debug_probes -force ./probes.ltx

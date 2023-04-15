@@ -61,7 +61,7 @@ module axi_ethernet_0_example
     inout          mdio                 ,
     output         mdc                  ,
     
-     input soft_rst,
+    output soft_rst,
     
     // from reset and clock generator
     input axi_lite_resetn ,
@@ -83,13 +83,38 @@ module axi_ethernet_0_example
     
     input control_valid,
     input [3:0] control_data,
-    input start_config
+    input start_config,
+    
+    /// ip data
+    input   [31 : 0]  s_axis_txc_tdata    , 
+    input   [3 : 0]   s_axis_txc_tkeep    , 
+    input             s_axis_txc_tlast    , 
+    output            s_axis_txc_tready   , 
+    input             s_axis_txc_tvalid   , 
+ 
+    input   [31 : 0]  s_axis_txd_tdata    , 
+    input   [3 : 0]   s_axis_txd_tkeep    , 
+    input             s_axis_txd_tlast    , 
+    output            s_axis_txd_tready   , 
+    input             s_axis_txd_tvalid   , 
+ 
+    output  [31 : 0]  m_axis_rxd_tdata    , 
+    output  [3 : 0]   m_axis_rxd_tkeep    , 
+    output            m_axis_rxd_tlast    , 
+    input             m_axis_rxd_tready   , 
+    output            m_axis_rxd_tvalid   , 
+    
+    output  [31 : 0]  m_axis_rxs_tdata    , 
+    output  [3 : 0]   m_axis_rxs_tkeep    , 
+    output            m_axis_rxs_tlast    , 
+    input             m_axis_rxs_tready   , 
+    output            m_axis_rxs_tvalid    
 );
 
-wire [31:0] m_axis_rxd_tdata, m_axis_rxs_tdata, s_axis_txc_tdata, s_axis_txd_tdata;
-wire [3:0]  m_axis_rxd_tkeep, m_axis_rxs_tkeep, s_axis_txc_tkeep, s_axis_txd_tkeep;
+//wire [31:0] m_axis_rxd_tdata, m_axis_rxs_tdata, s_axis_txc_tdata, s_axis_txd_tdata;
+//wire [3:0]  m_axis_rxd_tkeep, m_axis_rxs_tkeep, s_axis_txc_tkeep, s_axis_txd_tkeep;
 
-wire axi_lite_clk, axi_lite_resetn, s_axi_arready, s_axi_arvalid, s_axi_awready, s_axi_awvalid, s_axi_bready, s_axi_bvalid;
+wire  s_axi_arready, s_axi_arvalid, s_axi_awready, s_axi_awvalid, s_axi_bready, s_axi_bvalid;
 wire s_axi_rvalid, s_axi_rready, s_axi_wready, s_axi_wvalid;
 wire [ 1 : 0] s_axi_bresp, s_axi_rresp;
 wire [17 : 0] s_axi_araddr, s_axi_awaddr;
@@ -100,7 +125,6 @@ wire        cmnd_data_valid, cmnd_data_ready;
 
 wire     signal_detect;
 assign   signal_detect  = 1'b1;
-wire     sys_out_rst, axis_rstn;
 
 wire pat_chk_ctrl, ex_des_cl,ex_des_blink_on_tx;
 wire loopback_master_slaven, slvlb_en_l2_addr_swap, mtrlb_en_packet_gen, mtrlb_en_packet_chk, mtrlb_en_pkt_drop_chk, mtrlb_reset_error;
@@ -140,7 +164,7 @@ assign      mtrlb_config_max_size             = 16'h0500           ;
 assign      mtrlb_da_sa_swap_en               = 1'b0               ;
 
 
-ila_1 ILA_1 (
+/*ila_1 ILA_1 (
 	.clk(axis_clk), // input wire clk
 	.probe0(axis_rstn), // input wire [0:0]  probe0  
 	.probe1(m_axis_rxs_tdata), // input wire [31:0]  probe1 
@@ -170,7 +194,7 @@ ila_1 ILA_2 (
 	.probe9(s_axis_txd_tlast), // input wire [0:0]  probe9 
 	.probe10(s_axis_txd_tready), // input wire [0:0]  probe10 
 	.probe11(s_axis_txd_tvalid) // input wire [0:0]  probe11
-);
+);*/
 
 
 axi_ethernet_0_support   axi_ethernet_0_support
@@ -242,7 +266,7 @@ axi_ethernet_0_support   axi_ethernet_0_support
 
     .s_axi_lite_clk      (axi_lite_clk      )
 );
-
+/*
 //----------------------------------------------------------------------------
 //  Instantiate the AXI Streaming pattern generator and checker
 //----------------------------------------------------------------------------
@@ -304,7 +328,7 @@ axi_ethernet_0_streaming_generator axi_streaming_gen_inst
 
     .axis_clk                   (axis_clk                  )
 );
-
+*/
 
 axi_ethernet_0_axi_lite_ctrl axi_lite_ctrl_inst
 (

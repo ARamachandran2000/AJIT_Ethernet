@@ -61,7 +61,7 @@ input [0 : 0] probe_in0;
 input [0 : 0] probe_in1;
 input [0 : 0] probe_in2;
 
-output reg [3 : 0] probe_out0 = 'h0 ;
+output reg [0 : 0] probe_out0 = 'h0 ;
 output reg [0 : 0] probe_out1 = 'h0 ;
 output reg [0 : 0] probe_out2 = 'h0 ;
 output reg [0 : 0] probe_out3 = 'h0 ;

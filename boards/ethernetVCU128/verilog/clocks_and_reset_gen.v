@@ -96,11 +96,11 @@ BUFG   clkf_buf   (.I(mmcm_clkfbout), .O(mmcm_clkfbout_buf));
     .CLKFBOUT_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD         (10.000000),
     .CLKIN2_PERIOD         (0.000000),
-    .CLKOUT0_DIVIDE_F      (5.000),
+    .CLKOUT0_DIVIDE_F      (20.000), // 12 
     .CLKOUT0_DUTY_CYCLE    (0.500000),
     .CLKOUT0_PHASE         (0.000000),
     .CLKOUT0_USE_FINE_PS   ("FALSE"),
-    .CLKOUT1_DIVIDE        (12.00),
+    .CLKOUT1_DIVIDE        (5.00), 
     .CLKOUT1_DUTY_CYCLE    (0.500000),
     .CLKOUT1_PHASE         (0.000000),
     .CLKOUT1_USE_FINE_PS   ("FALSE"),
@@ -135,8 +135,8 @@ BUFG   clkf_buf   (.I(mmcm_clkfbout), .O(mmcm_clkfbout_buf));
     .STARTUP_WAIT          ("FALSE")
 ) mmcm_adv_inst
 (
-    .CLKOUT0(clk_300),
-    .CLKOUT1(clk_125),
+    .CLKOUT0(clk_125), // 120
+    .CLKOUT1(clk_300),
     .CLKOUT2(clk_100),
     .CLKOUT3(clk_166),
     .CLKOUT4(clk_50 ),

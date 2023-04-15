@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:vio:3.0
--- IP Revision: 20
+-- IP Revision: 15
 
 -- The following code must appear in the VHDL architecture header.
 
@@ -58,7 +58,7 @@ COMPONENT vio_0
     probe_in0 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe_in1 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe_in2 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    probe_out0 : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    probe_out0 : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe_out1 : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe_out2 : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe_out3 : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);

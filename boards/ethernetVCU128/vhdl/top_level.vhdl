@@ -49,53 +49,26 @@ port(
       DEBUG_UART_TX : out std_logic_vector(0 downto 0);
       SERIAL_UART_RX : in std_logic_vector(0 downto 0);
       SERIAL_UART_TX : out std_logic_vector(0 downto 0);
+
+      scl : inout std_logic_vector(0 downto 0);
+      sda : inout std_logic_vector(0 downto 0);
       -- TODO:
-      -- 125 MHz clock from MMCM
-             glbl_rst : in std_logic;
-             gtx_clk_bufg_out : out std_logic;
-        
-             phy_resetn : out std_logic;
-        
-             -- RGMII Interface
-             ------------------
-             rgmii_txd : out std_logic_vector(3 downto 0);
-             rgmii_tx_ctl : out std_logic;
-             rgmii_txc : out std_logic;
-             rgmii_rxd : in std_logic_vector(3 downto 0);
-             rgmii_rx_ctl : in std_logic;
-             rgmii_rxc : in std_logic;
-        
-             
-             -- MDIO Interface
-             -----------------
-             mdio : inout std_logic;
-             mdc : out std_logic;
-        
-        
-             -- Serialised statistics vectors
-             --------------------------------
-             tx_statistics_s : out std_logic;
-             rx_statistics_s : out std_logic;
-        
-             -- Serialised Pause interface controls
-             --------------------------------------
-             pause_req_s : in std_logic;
-        
-             -- Main example design controls
-             -------------------------------
-             mac_speed : in std_logic_vector(1 downto 0);
-             update_speed : in std_logic;
-             config_board : in std_logic;
-             serial_response : out std_logic;
-             gen_tx_data : in std_logic;
-             chk_tx_data : in std_logic;
-             reset_error : in std_logic;
-             frame_error : out std_logic;
-             frame_errorn : out std_logic;
-             activity_flash : out std_logic;
-             activity_flashn : out std_logic;
       -- SGMIII interface ports (mapped to PHY on the board)
-      -- ENABLE FOR MAC+FIFO (mapped to a switch on the board)
+		    phy_rst_n : out std_logic;
+		
+		    sgmii_rxn : in std_logic;
+		    sgmii_rxp : in std_logic;
+		    sgmii_txn : out std_logic;
+		    sgmii_txp : out std_logic;
+		
+		    mgt_clk_n : in std_logic;
+		    mgt_clk_p : in std_logic;
+		    dummy_port_in : in std_logic;
+		
+		    -- MDIO Interface
+		    -----------------
+		    mdio : inout std_logic;
+		    mdc : out std_logic;
       clk_in_p : in std_logic;
       clk_in_n : in std_logic
 	);
@@ -165,38 +138,6 @@ architecture structure of top_level is
     -- 
   end component;
   
-  component mac_rx_interface is
-	port(
-		clk : in std_logic;
-		reset : in std_logic;
-		--rx_axis_resetn : out std_logic;
-		rx_axis_tdata : in std_logic_vector(63 downto 0);
-		rx_axis_tkeep : in std_logic_vector(7 downto 0);
-		rx_axis_tvalid : in std_logic;
-		--rx_axis_tuser : in std_logic;
-		rx_axis_tlast : in std_logic;
-		rx_axis_tready : out std_logic;
-               
-		RX_FIFO_pipe_read_data : out std_logic_vector(72 downto 0);
-		RX_FIFO_pipe_read_req : in std_logic;
-		RX_FIFO_pipe_read_ack : out std_logic);
-  end component;
-  
-  component mac_tx_interface is
-	port(
-		clk : in std_logic;
-		reset : in std_logic;
-		tx_axis_tready : in std_logic;
-		--tx_axis_resetn : out std_logic;
-		tx_axis_tdata : out std_logic_vector(63 downto 0);
-		tx_axis_tkeep : out std_logic_vector(7 downto 0);
-		tx_axis_tvalid : out std_logic;
-		--tx_axis_tuser : out std_logic;
-		tx_axis_tlast : out std_logic;
-		TX_FIFO_pipe_write_data : in std_logic_vector(72 downto 0);
-		TX_FIFO_pipe_write_req : in std_logic;
-		TX_FIFO_pipe_write_ack : out std_logic);
-  end component;
 
   component nic_mac_pipe_reset is
 	port(
@@ -208,28 +149,6 @@ architecture structure of top_level is
 
 		reset : out std_logic);
   end component;
-
-  component mac_engine is
-  	port(
-		clk : in std_logic;
-		reset : in std_logic;
-		--m_rx_axis_resetn : in std_logic;
-		m_rx_axis_tdata : out std_logic_vector(63 downto 0);
-		m_rx_axis_tkeep : out std_logic_vector(7 downto 0);
-		m_rx_axis_tvalid : out std_logic;
-		--m_rx_axis_tuser : out std_logic;
-		m_rx_axis_tlast : out std_logic;
-		m_rx_axis_tready : in std_logic;
-
-		--s_tx_axis_resetn : in std_logic;
-		s_tx_axis_tdata : in std_logic_vector(63 downto 0);
-		s_tx_axis_tkeep : in std_logic_vector(7 downto 0);
-		s_tx_axis_tvalid : in std_logic;
-		--s_tx_axis_tuser : in std_logic;
-		s_tx_axis_tlast : in std_logic;
-		s_tx_axis_tready : out std_logic);
-   end component;
-
 
   signal PROCESSOR_MODE: std_logic_vector(15 downto 0);
 
@@ -267,127 +186,108 @@ architecture structure of top_level is
   );
   end component;
   
-  COMPONENT vio_1
-    PORT (
-      clk : IN STD_LOGIC;
-      probe_in0 : IN STD_LOGIC;
-      probe_out0 : OUT STD_LOGIC
-    );
-  END COMPONENT;
-  
-  component ETH_KC is
-  port
-  (
-      
-       --asynchronous reset
-       glbl_rst : in std_logic;
-       
-       gtx_clk_bufg : in std_logic;
-       refclk_bufg : in std_logic;
-       s_axi_aclk : in std_logic;
-       
-       -- 125 MHz clock from MMCM
-       gtx_clk_bufg_out : out std_logic;
-  
-       phy_resetn : out std_logic;
-  
-       -- RGMII Interface
-       ------------------
-       rgmii_txd : out std_logic_vector(3 downto 0);
-       rgmii_tx_ctl : out std_logic;
-       rgmii_txc : out std_logic;
-       rgmii_rxd : in std_logic_vector(3 downto 0);
-       rgmii_rx_ctl : in std_logic;
-       rgmii_rxc : in std_logic;
-  
-       
-       -- MDIO Interface
-       -----------------
-       mdio : inout std_logic;
-       mdc : out std_logic;
-  
-       -- NIC side interfaces
-       rx_pipe_data : out std_logic_vector(9 downto 0);
-       rx_pipe_ack : out std_logic_vector(0 downto 0);
-       rx_pipe_req : in std_logic_vector(0 downto 0);
-         
-       tx_pipe_data : in std_logic_vector(9 downto 0);
-       tx_pipe_ack : in std_logic_vector(0 downto 0);
-       tx_pipe_req : out std_logic_vector(0 downto 0);
-       
-       gtx_clk_reset : out std_logic;
-       dcm_locked : in std_logic;
-            
-  
-       -- Serialised statistics vectors
-       --------------------------------
-       tx_statistics_s : out std_logic;
-       rx_statistics_s : out std_logic;
-  
-       -- Serialised Pause interface controls
-       --------------------------------------
-       pause_req_s : in std_logic;
-  
-       -- Main example design controls
-       -------------------------------
-       mac_speed : in std_logic_vector(1 downto 0);
-       update_speed : in std_logic;
-       config_board : in std_logic;
-       serial_response : out std_logic;
-       gen_tx_data : in std_logic;
-       chk_tx_data : in std_logic;
-       reset_error : in std_logic;
-       frame_error : out std_logic;
-       frame_errorn : out std_logic;
-       activity_flash : out std_logic;
-       activity_flashn : out std_logic
-       );
-       end component;  
-        component rx_concat_system is -- 
-           port (-- 
-             clk : in std_logic;
-             reset : in std_logic;
-             rx_in_pipe_pipe_write_data: in std_logic_vector(9 downto 0);
-             rx_in_pipe_pipe_write_req : in std_logic_vector(0 downto 0);
-             rx_in_pipe_pipe_write_ack : out std_logic_vector(0 downto 0);
-             rx_out_pipe_pipe_read_data: out std_logic_vector(72 downto 0);
-             rx_out_pipe_pipe_read_req : in std_logic_vector(0 downto 0);
-             rx_out_pipe_pipe_read_ack : out std_logic_vector(0 downto 0)); -- 
-           -- 
-         end component;
-            
-            component tx_deconcat_system is -- 
-             port (-- 
-               clk : in std_logic;
-               reset : in std_logic;
-               tx_in_pipe_pipe_write_data: in std_logic_vector(72 downto 0);
-               tx_in_pipe_pipe_write_req : in std_logic_vector(0 downto 0);
-               tx_in_pipe_pipe_write_ack : out std_logic_vector(0 downto 0);
-               tx_out_pipe_pipe_read_data: out std_logic_vector(9 downto 0);
-               tx_out_pipe_pipe_read_req : in std_logic_vector(0 downto 0);
-               tx_out_pipe_pipe_read_ack : out std_logic_vector(0 downto 0)); -- 
-             -- 
-           end component;   
-           
-         component clocks_gen is
-           port(
-              -- differential clock inputs
-              clk_in_p : in std_logic;
-              clk_in_n : in std_logic;
-           
-              -- asynchronous control/resets
-              glbl_rst : in std_logic;
-              dcm_locked : out std_logic;
-           
-              -- clock outputs
-              gtx_clk_bufg : out std_logic;
-              
-              refclk_bufg : out std_logic;
-              s_axi_aclk : out std_logic;
-              clock : out std_logic);
-           end component;
-           
+  --COMPONENT vio_1
+    --PORT (
+      --clk : IN STD_LOGIC;
+      --probe_in0 : IN STD_LOGIC;
+      --probe_out0 : OUT STD_LOGIC
+    --);
+  --END COMPONENT;
+  	component axi_ethernet_0_clocks_resets is
+	port (
+		   -- System clock
+		   clk_in_p : in std_logic;
+		   clk_in_n : in std_logic;
+		
+		   -- asynchronous control/resets
+		   clk_rst : in std_logic;
+		   sys_rst : in std_logic;
+		   soft_rst : in std_logic;
+		
+		   -- locked status signal
+		   mmcm_locked_out : out std_logic;
+		
+		   --reset
+		   axi_lite_resetn : out std_logic;
+		   axis_rstn : out std_logic;
+		   sys_out_rst : out std_logic;
+			
+		   -- clocks
+		   gtx_clk_bufg : out std_logic;
+		   ref_clk_bufg : out std_logic;
+		   ref_clk_50_bufg : out std_logic;
+		   axis_clk_bufg : out std_logic;
+		   axi_lite_clk_bufg : out std_logic);
+	end component;
 
+	component axi_ethernet_0_example is
+		port(
+		    phy_rst_n : out std_logic;
+		
+		    sgmii_rxn : in std_logic;
+		    sgmii_rxp : in std_logic;
+		    sgmii_txn : out std_logic;
+		    sgmii_txp : out std_logic;
+		
+		    mgt_clk_n : in std_logic;
+		    mgt_clk_p : in std_logic;
+		    dummy_port_in : in std_logic;
+		
+		    -- MDIO Interface
+		    -----------------
+		    mdio : inout std_logic;
+		    mdc : out std_logic;
+			
+		    soft_rst : out std_logic;
+		
+		    -- from reset and clock generator
+		    axi_lite_resetn : in std_logic;
+		    axis_rstn : in std_logic;
+		    sys_out_rst : in std_logic;
+		
+		    -- clock outputs
+		    clkgen_gtx_clk : in std_logic;
+		    ref_clk : in std_logic;
+		    ref_clk_50_bufg : in std_logic;
+		    axis_clk : in std_logic;
+		    axi_lite_clk : in std_logic;
+		
+		    -- control signals
+		
+		    mtrlb_activity_flash : out std_logic;
+		    mtrlb_pktchk_error : out std_logic;
+		    control_ready : out std_logic;
+		
+		    control_valid : in std_logic;
+		    control_data : in std_logic_vector(3 downto 0);
+		    start_config : in std_logic;
+		
+		    -- ip data
+		    s_axis_txc_tdata : in std_logic_vector(31 downto 0);
+		    s_axis_txc_tkeep : in std_logic_vector(3 downto 0);
+		    s_axis_txc_tlast : in std_logic;
+		    s_axis_txc_tready : out std_logic;
+		    s_axis_txc_tvalid : in std_logic;
+		
+		    s_axis_txd_tdata : in std_logic_vector(31 downto 0);
+		    s_axis_txd_tkeep: in std_logic_vector(3 downto 0);
+		    s_axis_txd_tlast : in std_logic;
+		    s_axis_txd_tready : out std_logic;
+		    s_axis_txd_tvalid : in std_logic;
+		
+		    m_axis_rxd_tdata : out std_logic_vector(31 downto 0);
+		    m_axis_rxd_tkeep : out std_logic_vector(3 downto 0);
+		    m_axis_rxd_tlast : out std_logic;
+		    m_axis_rxd_tready : in std_logic;
+		    m_axis_rxd_tvalid : out std_logic;
+
+		    m_axis_rxs_tdata : out std_logic_vector(31 downto 0);
+		    m_axis_rxs_tkeep : out std_logic_vector(3 downto 0);
+		    m_axis_rxs_tlast : out std_logic;
+		    m_axis_rxs_tready : in std_logic;
+		    m_axis_rxs_tvalid : out std_logic);
+	end component;
+  
    signal MAIN_MEM_RESPONSE_pipe_write_data:std_logic_vector(64 downto 0);
    signal MAIN_MEM_RESPONSE_pipe_write_req:std_logic_vector(0 downto 0);
    signal MAIN_MEM_RESPONSE_pipe_write_ack:std_logic_vector(0 downto 0);
@@ -453,7 +353,7 @@ architecture structure of top_level is
    signal reset1_mac,reset2_mac, reset_sync_pre_buf_mac, reset_sync_mac: std_logic;
    signal EXTERNAL_INTERRUPT : std_logic_vector(0 downto 0);
    signal LOGGER_MODE : std_logic_vector(0 downto 0);
-   signal clock,clock_mac,lock:std_logic;
+   signal clock,clock_mac,clock_100Mhz,lock:std_logic;
 
    signal MONITOR_to_DEBUG_pipe_write_data : std_logic_vector(7 downto 0);
    signal MONITOR_to_DEBUG_pipe_write_req  : std_logic_vector(0  downto 0);
@@ -520,8 +420,21 @@ architecture structure of top_level is
    
 
    
+   signal afb_nic_request_tap_pipe_write_data : std_logic_vector(73 downto 0);
+   signal afb_nic_request_tap_pipe_write_req : std_logic_vector(0 downto 0);
+   signal afb_nic_request_tap_pipe_write_ack : std_logic_vector(0 downto 0);
    
+   signal afb_i2c_request_through_data : std_logic_vector(73 downto 0);
+   signal afb_i2c_request_through_req : std_logic_vector(0 downto 0);
+   signal afb_i2c_request_through_ack : std_logic_vector(0 downto 0);
    
+   signal response_out_pipe_read_data : std_logic_vector(32 downto 0);
+   signal response_out_pipe_read_req : std_logic_vector(0 downto 0);
+   signal response_out_pipe_read_ack : std_logic_vector(0 downto 0);
+   
+   signal afb_i2c_response_through_data : std_logic_vector(32 downto 0);
+   signal afb_i2c_response_through_req : std_logic_vector(0 downto 0);
+   signal afb_i2c_response_through_ack : std_logic_vector(0 downto 0);
    
    signal RX_FIFO_pipe_read_data : std_logic_vector (72 downto 0);
    signal RX_FIFO_pipe_read_req : std_logic_vector (0 downto 0);
@@ -535,30 +448,7 @@ architecture structure of top_level is
    signal TX_FIFO_pipe_write_req : std_logic_vector (0 downto 0);
    signal TX_FIFO_pipe_write_ack : std_logic_vector (0 downto 0);
 
-   attribute mark_debug : string;
-   attribute mark_debug of RX_FIFO_pipe_read_data  : signal is "true";
 
-
-    --attribute mark_debug : string;
-    attribute mark_debug of RX_FIFO_pipe_read_req: signal is "true";
-
-    --attribute mark_debug : string;
-    attribute mark_debug of RX_FIFO_pipe_read_ack: signal is "true";
-
-    --attribute mark_debug : string;
-    attribute mark_debug of TX_FIFO_pipe_write_data: signal is "true";
-
-    --attribute mark_debug : string;
-    attribute mark_debug of TX_FIFO_pipe_write_req: signal is "true";
-
-    --attribute mark_debug : string;
-    attribute mark_debug of TX_FIFO_pipe_write_ack: signal is "true";
-
-
---   signal TX_FIFO_BUF_pipe_write_data : std_logic_vector (72 downto 0);
---   signal TX_FIFO_BUF_pipe_write_req : std_logic_vector (0 downto 0);
---   signal TX_FIFO_BUF_pipe_write_ack : std_logic_vector (0 downto 0);
-   
    signal enable_mac_pipe_read_data: std_logic_vector (0 downto 0);
    signal enable_mac_pipe_read_req : std_logic_vector (0 downto 0);
    signal enable_mac_pipe_read_ack : std_logic_vector (0 downto 0);
@@ -608,8 +498,17 @@ architecture structure of top_level is
     signal gtx_clk_reset : std_logic;
     
     signal dcm_locked : std_logic;
-   
-   
+    signal clkgen_gtx_clk : std_logic;
+  
+    signal clk_rst, soft_rst, mmcm_locked_out, axis_rstn, axi_lite_resetn, sys_out_rst, ref_clk, ref_clk_50_bufg : std_logic;
+    signal mtrlb_activity_flash, mtrlb_pktchk_error,control_ready, control_valid, start_config : std_logic; 
+    signal s_axis_txc_tlast, s_axis_txc_tready, s_axis_txc_tvalid, s_axis_txd_tlast, s_axis_txd_tready : std_logic;
+    signal s_axis_txd_tvalid, m_axis_rxd_tlast, m_axis_rxd_tready, m_axis_rxd_tvalid, m_axis_rxs_tvalid, m_axis_rxs_tlast, m_axis_rxs_tready : std_logic;
+    signal control_data : std_logic_vector(3 downto 0);
+    signal s_axis_txc_tdata, s_axis_txd_tdata, m_axis_rxd_tdata, m_axis_rxs_tdata : std_logic_Vector(31 downto 0);
+    signal s_axis_txc_tkeep,s_axis_txd_tkeep,m_axis_rxs_tkeep, m_axis_rxd_tkeep : std_logic_vector(3 downto 0);
+    signal resolved_scl, resolved_sda, sda_pull_down, scl_pull_down : std_logic_vector(0 downto 0);
+
    -- ADDITIONAL SIGNALS FOR MAC + NIC + SWITCH 
 begin
 
@@ -623,10 +522,13 @@ begin
    -- Info: Baudrate 115200 ClkFreq 65000000:  Baud-freq = 1152, Baud-limit= 39473 Baud-control=0x9a310480
    -- Info: Baudrate 115200 ClkFreq 70000000:  Baud-freq = 576, Baud-limit= 21299 Baud-control=0x53330240
    -- Info: Baudrate 115200 ClkFreq 75000000:  Baud-freq = 384, Baud-limit= 15241 Baud-control=0x3b890180
-   -- clock freq = 80MHz, baud-rate=115200.
-   CONFIG_UART_BAUD_CONTROL_WORD <= X"0bed0048";
-   -- CONFIG_UART_BAUD_CONTROL_WORD <= X"3b890180";
+   -- Info: Baudrate 115200 ClkFreq 120000000:  Baud-control=0x0c050030
+   
+   -- clock freq = 80MHz, baud-rate=115200. CONFIG_UART_BAUD_CONTROL_WORD <= X"0bed0048";
+   -- clock freq = 75MHz, baud-rate=115200. 
+   CONFIG_UART_BAUD_CONTROL_WORD <= X"3b890180";
 
+   -- clock freq = 120MHz, baud-rate=115200. CONFIG_UART_BAUD_CONTROL_WORD <= X"0c050030";
 
        
    -- 80  & 125 & 100 & 200 MHz generator
@@ -644,24 +546,30 @@ begin
 --         clk_in1_p => clk_in_p,
 --         clk_in1_n => clk_in_n
 --       );
-    clock_gen_inst : clocks_gen
-        port map(
-        -- differential clock inputs
-        clk_in_p => clk_in_p,--in std_logic;
-        clk_in_n => clk_in_n,--in_std_logic;
 
-         -- asynchronous control/resets
-        glbl_rst => glbl_rst,--in std_logic;
-        dcm_locked => dcm_locked,--out std_logic;
+   
+   example_clocks_resets_inst : axi_ethernet_0_clocks_resets
+      port map (
+        clk_in_p            => clk_in_p        ,
+        clk_in_n            => clk_in_n        ,
+        -- asynchronous control/resets
+        sys_rst             => reset_sync         ,
+        clk_rst             => clk_rst         ,
+        soft_rst            => soft_rst        ,
+        mmcm_locked_out     => mmcm_locked_out ,
+
+        --reset outputs
+        axi_lite_resetn     => axi_lite_resetn ,
+        axis_rstn           => axis_rstn       ,
+        sys_out_rst         => sys_out_rst     ,
 
         -- clock outputs
-        gtx_clk_bufg => clock_mac,--out std_logic;
-   
-        refclk_bufg => refclk_bufg,--out std_logic;
-        s_axi_aclk => s_axi_aclk,--out std_logic;
-        clock => clock --out std_logic	
-        );      
-       
+        gtx_clk_bufg        => clock  , -- 80 MHz -- 125MHz
+        ref_clk_bufg        => ref_clk         , -- 300MHz
+        ref_clk_50_bufg     => ref_clk_50_bufg , -- 50MHz
+        axis_clk_bufg       => clock_mac        , -- 100MHz
+        axi_lite_clk_bufg   => clock_100MHz); --  100MHz
+
     -- VIO for reset 
     virtual_reset : vio_0
         port map (
@@ -675,13 +583,13 @@ begin
                         probe_out3 => DEBUG_MODE(0),
                         probe_out4 => SINGLE_STEP_MODE(0)
                 );
-    virtual_reset_nic : vio_1
-                        port map (
-                                        clk => clock_mac,
-                                        probe_in0 =>  dcm_locked,
-                                        probe_out0 => reset_nic
-                                       
-                                );
+--    virtual_reset_nic : vio_1
+--                        port map (
+--                                        clk => clock_mac,
+--                                        probe_in0 =>  dcm_locked,
+--                                        probe_out0 => reset_nic
+--                                       
+--                                );
 
  
     EXTERNAL_INTERRUPT(0) <= '0';
@@ -922,97 +830,69 @@ begin
 		reset => enable_reset(0)
 	);
 
-    ETH_KC_inst : ETH_KC
-    port map
-    (
-    
-     --asynchronous reset
-     glbl_rst => enable_reset(0), --in std_logic;
-     
-     gtx_clk_bufg => clock_mac, --in std_logic;
-     refclk_bufg => refclk_bufg , --in std_logic;
-     s_axi_aclk => s_axi_aclk, --in std_logic;
-     
-     -- 125 MHz clock from MMCM
-     gtx_clk_bufg_out => gtx_clk_bufg_out, --out std_logic;
-
-     phy_resetn => phy_resetn, --out std_logic;
-
-     -- RGMII Interface
-     ------------------
-     rgmii_txd => rgmii_txd, --out std_logic_vector(3 downto 0);
-     rgmii_tx_ctl => rgmii_tx_ctl, --out std_logic;
-     rgmii_txc => rgmii_txc, --out std_logic;
-     rgmii_rxd => rgmii_rxd, --in std_logic_vector(3 downto 0);
-     rgmii_rx_ctl => rgmii_rx_ctl, --in std_logic;
-     rgmii_rxc => rgmii_rxc, --in std_logic;
-
-     
-     -- MDIO Interface
-     -----------------
-     mdio => mdio, --in std_logic;
-     mdc => mdc, --out std_logic;
-
-    -- nic side
-    rx_pipe_data => rx_pipe_data, --out std_logic_vector(9 downto 0);
-    rx_pipe_ack => rx_pipe_ack, --out std_logic;
-    rx_pipe_req => rx_pipe_req, --in std_logic;
-         
-    tx_pipe_data => tx_pipe_data, --in std_logic_vector(9 downto 0);
-    tx_pipe_ack => tx_pipe_ack, --in std_logic;
-    tx_pipe_req => tx_pipe_req, --out std_logic;
-    
-    gtx_clk_reset => gtx_clk_reset, -- out std logic;
-    dcm_locked => dcm_locked,
-
-     -- Serialised statistics vectors
-     --------------------------------
-     tx_statistics_s => tx_statistics_s, --out std_logic;
-     rx_statistics_s => rx_statistics_s, --out std_logic;
-
-     -- Serialised Pause interface controls
-     --------------------------------------
-     pause_req_s => pause_req_s, --in std_logic;
-
-     -- Main example design controls
-     -------------------------------
-     mac_speed => mac_speed, --in std_logic_vector(1 ownto 0);
-     update_speed => update_speed, --in std_logic;
-     config_board => config_board, --in std_logic;
-     serial_response => serial_response, --out std_logic;
-     gen_tx_data => gen_tx_data, --in std_logic;
-     chk_tx_data => chk_tx_data, --in std_logic;
-     reset_error => reset_error, --in std_logic;
-     frame_error => frame_error, --out std_logic;
-     frame_errorn => frame_errorn, --out std_logic;
-     activity_flash => activity_flash, --out std_logic;
-     activity_flashn => activity_flashn --out std_logic
-);
-
-
-     rx_concat_inst : rx_concat_system 
-           port map(--
-                 clk => clock_mac, --in std_logic;
-                 reset => enable_reset(0),--gtx_clk_reset, --in std_logic;
-                 rx_in_pipe_pipe_write_data => rx_pipe_data, --in std_logic_vector(9 downto 0);
-                 rx_in_pipe_pipe_write_req => rx_pipe_ack, --in std_logic_vector(0 downto 0);
-                 rx_in_pipe_pipe_write_ack => rx_pipe_req, --out std_logic_vector(0 downto 0);
-                 rx_out_pipe_pipe_read_data => RX_FIFO_pipe_read_data, --out std_logic_vector(72 downto 0);
-                 rx_out_pipe_pipe_read_req => RX_FIFO_pipe_read_req, --in std_logic_vector(0 downto 0);
-                 rx_out_pipe_pipe_read_ack => RX_FIFO_pipe_read_ack --out std_logic_vector(0 downto 0)
-                 );
-            
-      tx_deconcat_inst : tx_deconcat_system
-             port map(-- 
-             clk => clock_mac, --in std_logic;
-             reset => enable_reset(0), --gtx_clk_reset, --in std_logic;
-             tx_in_pipe_pipe_write_data => TX_FIFO_pipe_write_data, --in std_logic_vector(72 downto 0);
-             tx_in_pipe_pipe_write_req => TX_FIFO_pipe_write_ack, --in std_logic_vector(0 downto 0);
-             tx_in_pipe_pipe_write_ack => TX_FIFO_pipe_write_req, --out std_logic_vector(0 downto 0);
-             tx_out_pipe_pipe_read_data => tx_pipe_data, --out std_logic_vector(9 downto 0);
-             tx_out_pipe_pipe_read_req =>  tx_pipe_req, --in std_logic_vector(0 downto 0);
-             tx_out_pipe_pipe_read_ack => tx_pipe_ack --out std_logic_vector(0 downto 0)
-             );   
+	mac_support_inst : axi_ethernet_0_example
+	    port map(
+        	phy_rst_n => phy_rst_n,
+	        sgmii_rxn => sgmii_rxn,
+	        sgmii_rxp =>sgmii_rxp ,
+	        sgmii_txn =>sgmii_txn ,
+	        sgmii_txp =>sgmii_txp ,
+	        
+	        mgt_clk_n=>mgt_clk_n ,
+	        mgt_clk_p=>mgt_clk_p ,
+	        
+	        dummy_port_in => dummy_port_in ,
+	        mdio => mdio ,
+	        mdc => mdc ,
+	        
+	        soft_rst => soft_rst ,
+	    
+	        -- from reset and clock generator
+	        axi_lite_resetn => axi_lite_resetn  ,
+	        axis_rstn => axis_rstn        ,
+	        sys_out_rst => sys_out_rst      ,
+        
+	        -- clock inputs
+        	clkgen_gtx_clk => clkgen_gtx_clk   ,
+	        ref_clk => ref_clk   ,
+	        ref_clk_50_bufg => ref_clk_50_bufg ,
+	        axis_clk => clock_mac ,
+	        axi_lite_clk => clock,
+        	    
+	        -- control signals
+        	    
+        	mtrlb_activity_flash => mtrlb_activity_flash ,
+	        mtrlb_pktchk_error => mtrlb_pktchk_error ,
+	        control_ready => control_ready ,
+	            
+	        control_valid => control_valid ,
+        	control_data => control_data ,
+	        start_config => start_config ,
+        
+	         -- ip data
+        	s_axis_txc_tdata => s_axis_txc_tdata     , 
+	        s_axis_txc_tkeep => s_axis_txc_tkeep     , 
+        	s_axis_txc_tlast => s_axis_txc_tlast     , 
+	        s_axis_txc_tready => s_axis_txc_tready    , 
+	        s_axis_txc_tvalid => s_axis_txc_tvalid    , 
+        	
+	        s_axis_txd_tdata => s_axis_txd_tdata     , 
+	        s_axis_txd_tkeep => s_axis_txd_tkeep     , 
+	        s_axis_txd_tlast => s_axis_txd_tlast     , 
+	        s_axis_txd_tready => s_axis_txd_tready    , 
+        	s_axis_txd_tvalid => s_axis_txd_tvalid    , 
+	         
+	        m_axis_rxd_tdata => m_axis_rxd_tdata     , 
+	        m_axis_rxd_tkeep => m_axis_rxd_tkeep     , 
+	        m_axis_rxd_tlast => m_axis_rxd_tlast     , 
+	        m_axis_rxd_tready => m_axis_rxd_tready    , 
+	        m_axis_rxd_tvalid => m_axis_rxd_tvalid    , 
+	            
+	        m_axis_rxs_tdata => m_axis_rxs_tdata     , 
+	        m_axis_rxs_tkeep => m_axis_rxs_tkeep     , 
+	        m_axis_rxs_tlast => m_axis_rxs_tlast     , 
+	        m_axis_rxs_tready => m_axis_rxs_tready    , 
+	        m_axis_rxs_tvalid => m_axis_rxs_tvalid);
 
    DualClockedQueue_ACB_req_instance: DualClockedQueue_ACB_req  -- done
 	port map( 
@@ -1069,29 +949,33 @@ begin
 		    read_data_out => AFB_NIC_RESPONSE_DFIFO_pipe_write_data,
 		    read_ack_out => AFB_NIC_RESPONSE_DFIFO_pipe_write_ack(0),
 		    -- write 
-		    write_req_out => AFB_NIC_RESPONSE_pipe_read_req(0),
-		    write_data_in => AFB_NIC_RESPONSE_pipe_read_data,
-		    write_ack_in => AFB_NIC_RESPONSE_pipe_read_ack(0),
+		    write_req_out => RESPONSE_OUT_pipe_read_req(0),
+		    write_data_in => RESPONSE_OUT_pipe_read_data,
+		    write_ack_in => RESPONSE_OUT_pipe_read_ack(0),
 		
 		    read_clk => clock,
 		    write_clk => clock_mac,
 		    
 		    reset => reset);
  
+	resolved_scl <= (not scl_pull_down) and scl;
+	resolved_sda <= (not sda_pull_down) and sda;
+
+
         I2c_master_inst : afb_i2c_master
         	port map(
-                	AFB_BUS_REQUEST_pipe_write_data =>, --in std_logic_vector(73 downto 0);
-	                AFB_BUS_REQUEST_pipe_write_req  =>, --in std_logic_vector(0  downto 0);
-	                AFB_BUS_REQUEST_pipe_write_ack  =>, --out std_logic_vector(0  downto 0);
-	                AFB_BUS_RESPONSE_pipe_read_data =>, --out std_logic_vector(32 downto 0);
-	                AFB_BUS_RESPONSE_pipe_read_req  =>, --in std_logic_vector(0  downto 0);
-        	        AFB_BUS_RESPONSE_pipe_read_ack  =>, --out std_logic_vector(0  downto 0);
-                	sda_pull_down       =>, --out  std_logic_vector(0 downto 0);
-	                sda_in              =>, --in  std_logic_vector(0 downto 0);
-	                scl_pull_down       =>, --out std_logic_vector(0 downto 0);
-	                scl_in              =>,  --in  std_logic_vector(0 downto 0);
-	                clk=>, -- in std_logic;
-			reset=> --in std_logic
+                	AFB_BUS_REQUEST_pipe_write_data => AFB_I2C_REQUEST_through_data, --in std_logic_vector(73 downto 0);
+	                AFB_BUS_REQUEST_pipe_write_req  => AFB_I2C_REQUEST_through_ack, --in std_logic_vector(0  downto 0);
+	                AFB_BUS_REQUEST_pipe_write_ack  => AFB_I2C_REQUEST_through_req, --out std_logic_vector(0  downto 0);
+	                AFB_BUS_RESPONSE_pipe_read_data => AFB_I2C_RESPONSE_through_data, --out std_logic_vector(32 downto 0);
+	                AFB_BUS_RESPONSE_pipe_read_req  => AFB_I2C_RESPONSE_through_req, --in std_logic_vector(0  downto 0);
+        	        AFB_BUS_RESPONSE_pipe_read_ack  => AFB_I2C_RESPONSE_through_ack, --out std_logic_vector(0  downto 0);
+                	sda_pull_down       => sda_pull_down, --out  std_logic_vector(0 downto 0);
+	                sda_in              => resolved_sda, --in  std_logic_vector(0 downto 0);
+	                scl_pull_down       => scl_pull_down, --out std_logic_vector(0 downto 0);
+	                scl_in              => resolved_scl,  --in  std_logic_vector(0 downto 0);
+	                clk=> clock_mac, -- in std_logic;
+			reset=> reset_sync_mac --in std_logic
 			);
 	afb_tap_inst : afb_fast_tap
 		port map(
@@ -1101,22 +985,22 @@ begin
 			AFB_BUS_RESPONSE_TAP_pipe_write_data => AFB_NIC_RESPONSE_pipe_read_data, --in std_logic_vector(32 downto 0);
 			AFB_BUS_RESPONSE_TAP_pipe_write_req  => AFB_NIC_RESPONSE_pipe_read_ack, --in std_logic_vector(0  downto 0);
 			AFB_BUS_RESPONSE_TAP_pipe_write_ack  => AFB_NIC_RESPONSE_pipe_read_req, --out std_logic_vector(0  downto 0);
-			AFB_BUS_RESPONSE_THROUGH_pipe_write_data => --in std_logic_vector(32 downto 0);
-			AFB_BUS_RESPONSE_THROUGH_pipe_write_req  => --in std_logic_vector(0  downto 0);
-			AFB_BUS_RESPONSE_THROUGH_pipe_write_ack  => --out std_logic_vector(0  downto 0);
-			MAX_ADDR_TAP => --in std_logic_vector(35 downto 0);
-			MIN_ADDR_TAP => --in std_logic_vector(35 downto 0);
+			AFB_BUS_RESPONSE_THROUGH_pipe_write_data => AFB_I2C_RESPONSE_through_data, --in std_logic_vector(32 downto 0);
+			AFB_BUS_RESPONSE_THROUGH_pipe_write_req  => AFB_I2C_RESPONSE_through_ack, --in std_logic_vector(0  downto 0);
+			AFB_BUS_RESPONSE_THROUGH_pipe_write_ack  => AFB_I2C_RESPONSE_through_req, --out std_logic_vector(0  downto 0);
+			MAX_ADDR_TAP => MAX_ADDR_TAP_afb, --in std_logic_vector(35 downto 0);
+			MIN_ADDR_TAP => MIN_ADDR_TAP_afb, --in std_logic_vector(35 downto 0);
 			AFB_BUS_REQUEST_TAP_pipe_read_data => AFB_NIC_REQUEST_tap_pipe_write_data,--out std_logic_vector(73 downto 0);
 			AFB_BUS_REQUEST_TAP_pipe_read_req  => AFB_NIC_REQUEST_tap_pipe_write_ack,--in std_logic_vector(0  downto 0);
 			AFB_BUS_REQUEST_TAP_pipe_read_ack  => AFB_NIC_REQUEST_tap_pipe_write_req,--out std_logic_vector(0  downto 0);
-			AFB_BUS_REQUEST_THROUGH_pipe_read_data => --out std_logic_vector(73 downto 0);
-			AFB_BUS_REQUEST_THROUGH_pipe_read_req  => --in std_logic_vector(0  downto 0);
-			AFB_BUS_REQUEST_THROUGH_pipe_read_ack  => --out std_logic_vector(0  downto 0);
-			AFB_BUS_RESPONSE_pipe_read_data => AFB_NIC_RESPONSE_pipe_read_data, --out std_logic_vector(32 downto 0);
-			AFB_BUS_RESPONSE_pipe_read_req  => AFB_NIC_RESPONSE_pipe_read_req, --in std_logic_vector(0  downto 0);
-			AFB_BUS_RESPONSE_pipe_read_ack  => AFB_NIC_RESPONSE_pipe_read_ack, --out std_logic_vector(0  downto 0);
-			clk =>, --in std_logic;
-		       	reset => --in std_logic
+			AFB_BUS_REQUEST_THROUGH_pipe_read_data => AFB_I2C_REQUEST_through_data, --out std_logic_vector(73 downto 0);
+			AFB_BUS_REQUEST_THROUGH_pipe_read_req  => AFB_I2C_REQUEST_through_req, --in std_logic_vector(0  downto 0);
+			AFB_BUS_REQUEST_THROUGH_pipe_read_ack  => AFB_I2C_REQUEST_through_ack, --out std_logic_vector(0  downto 0);
+			AFB_BUS_RESPONSE_pipe_read_data => RESPONSE_OUT_pipe_read_data, --out std_logic_vector(32 downto 0);
+			AFB_BUS_RESPONSE_pipe_read_req  => RESPONSE_OUT_pipe_read_req, --in std_logic_vector(0  downto 0);
+			AFB_BUS_RESPONSE_pipe_read_ack  => RESPONSE_OUT_pipe_read_ack, --out std_logic_vector(0  downto 0);
+			clk => clock_mac,--in std_logic;
+		       	reset => reset_sync_mac --in std_logic
 			);
 
 	-- I2C master reg start at X"011000000" 

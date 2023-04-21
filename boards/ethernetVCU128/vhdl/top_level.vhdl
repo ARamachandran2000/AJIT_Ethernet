@@ -508,6 +508,7 @@ architecture structure of top_level is
     signal s_axis_txc_tdata, s_axis_txd_tdata, m_axis_rxd_tdata, m_axis_rxs_tdata : std_logic_Vector(31 downto 0);
     signal s_axis_txc_tkeep,s_axis_txd_tkeep,m_axis_rxs_tkeep, m_axis_rxd_tkeep : std_logic_vector(3 downto 0);
     signal resolved_scl, resolved_sda, sda_pull_down, scl_pull_down : std_logic_vector(0 downto 0);
+    signal driven_scl_out, driven_sda_out: std_logic;
 
    -- ADDITIONAL SIGNALS FOR MAC + NIC + SWITCH 
 begin
@@ -958,8 +959,16 @@ begin
 		    
 		    reset => reset);
  
-	resolved_scl <= (not scl_pull_down) and scl;
-	resolved_sda <= (not sda_pull_down) and sda;
+	resolved_scl <= '0' when (scl_pull_down or (not scl)) else '1';
+	resolved_sda <= '0' whdn (sda_pull_down or (not sda)) else '1';
+
+	driven_scl_out <= '0' when scl_pull_down else 'Z';
+	driven_sda_out <= '0' when sda_pull_down else 'Z';
+
+	scl <= driven_scl_out;
+	sda <= driven_sda_out;
+
+
 
 
         I2c_master_inst : afb_i2c_master

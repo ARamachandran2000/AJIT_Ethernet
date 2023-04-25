@@ -240,6 +240,16 @@ architecture structure of top_level is
 	        probe_out2 : OUT STD_LOGIC_VECTOR(0 DOWNTO 0)
 		  );
   END COMPONENT;
+  component ila_0 is 
+	  port(
+	  	clk : in std_logic ;
+	  	probe0 : in std_logic_vector(73 downto 0); 
+	  	probe1 : in std_logic_vector(0 downto 0);
+	  	probe2 : in std_logic_vector(0 downto 0);
+	  	probe3 : in std_logic_vector(32 downto 0);
+	  	probe4 : in std_logic_vector(0 downto 0);
+	  	probe5 : in std_logic_vector(0 downto 0));
+  end component;
 
   component axi_ethernet_0_example is
     port(
@@ -980,6 +990,26 @@ begin
                 	scl_in               =>  scl_in,  -- in  std_logic_vector(0 downto 0);
                 	clk => clock_mac,
                 	reset =>  reset_sync_mac);  -- in std_logic
+	ila_0_inst : ila_0 
+		port map(
+			clk => clock_mac,
+			probe0 => AFB_BUS_REQUEST_pipe_write_data,
+			probe1 => AFB_BUS_REQUEST_pipe_write_req,
+			probe2 => AFB_BUS_REQUEST_pipe_write_ack,
+			probe3 => AFB_BUS_RESPONSE_pipe_read_data,
+			probe4 => AFB_BUS_RESPONSE_pipe_read_req,
+			probe5 => AFB_BUS_RESPONSE_pipe_read_ack);
+
+	ila_0_inst1 : ila_0 
+		port map(
+			clk => clock_mac,
+			probe0 => AFB_NIC_REQUEST_tap_pipe_read_data,
+			probe1 => AFB_NIC_REQUEST_tap_pipe_read_req,
+			probe2 => AFB_NIC_REQUEST_tap_pipe_read_ack,
+			probe3 => AFB_NIC_RESPONSE_pipe_read_data,
+			probe4 => AFB_NIC_RESPONSE_pipe_read_ack,
+			probe5 => AFB_NIC_RESPONSE_pipe_read_req);
+
 	afb_tap_inst : afb_fast_tap
 	  port map( -- 
 		    AFB_BUS_REQUEST_pipe_write_data  => AFB_NIC_REQUEST_DFIFO_pipe_write_data ,  -- in std_logic_vector(73 downto 0);
@@ -1005,7 +1035,10 @@ begin
 		    clk => clock_mac, 
 		    reset =>  reset_sync_mac);  -- in std_logic
 
-	MAX_ADDR_TAP_AFB <= X"010FFFFFF";
+	--MAX_ADDR_TAP_AFB <= X"010FFFFFF";
+	--MIN_ADDR_TAP_AFB <= X"010000000";
+	  -- i2c reg start at 0x010000400
+	MAX_ADDR_TAP_AFB <= X"0100003ff";
 	MIN_ADDR_TAP_AFB <= X"010000000";
 
 
@@ -1094,19 +1127,19 @@ begin
 	
 	ILA_inst2 : ila_1  
 		port map(  
-	         clk =>  clock_mac , -- input wire clk
-	         probe0 =>  axis_rstn , -- input wire [0:0]  probe0  
+	         clk =>  scl_in(0) , -- input wire clk
+	         probe0 =>  scl_in(0) , -- input wire [0:0]  probe0  
 	         probe1 =>  s_axis_txc_tdata , -- input wire [31:0]  probe1 
 	         probe2 =>  s_axis_txc_tkeep , -- input wire [3:0]  probe2 
-	         probe3 =>  m_axis_rxs_tlast , -- input wire [0:0]  probe3 
-	         probe4 =>  m_axis_rxs_tready , -- input wire [0:0]  probe4 
-	         probe5 =>  s_axis_txc_tvalid , -- input wire [0:0]  probe5 
-	         probe6 =>  axis_rstn , -- input wire [0:0]  probe6 
+	         probe3 =>  sda_in(0) , -- input wire [0:0]  probe3 
+	         probe4 =>  scl_pull_down(0) , -- input wire [0:0]  probe4 
+	         probe5 =>  sda_pull_down(0) , -- input wire [0:0]  probe5 
+	         probe6 =>  driven_sda_out(0), -- input wire [0:0]  probe6 
 	         probe7 =>  s_axis_txd_tdata , -- input wire [31:0]  probe7 
 	         probe8 =>  s_axis_txd_tkeep , -- input wire [3:0]  probe8 
-        	 probe9 =>  s_axis_txd_tlast , -- input wire [0:0]  probe9 
-	         probe10 =>  s_axis_txd_tready , -- input wire [0:0]  probe10 
-	         probe11 =>  s_axis_txd_tvalid  -- input wire [0:0]  probe11
+        	 probe9 =>  driven_scl_out(0) , -- input wire [0:0]  probe9 
+	         probe10 =>  scl(0) , -- input wire [0:0]  probe10 
+	         probe11 =>  sda(0)  -- input wire [0:0]  probe11
 	 	 );
   
 

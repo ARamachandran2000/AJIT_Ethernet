@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Fri Apr 14 18:04:03 2023
+# Process ID: 1358839
+# Current directory: /home/harshad/Project/git/AJIT_Ethernet/boards/ethernetVCU128/vivado_synth
+# Command line: vivado -mode batch -source bitgen.tcl
+# Log file: /home/harshad/Project/git/AJIT_Ethernet/boards/ethernetVCU128/vivado_synth/vivado.log
+# Journal file: /home/harshad/Project/git/AJIT_Ethernet/boards/ethernetVCU128/vivado_synth/vivado.jou
+#-----------------------------------------------------------
+source bitgen.tcl

@@ -1,0 +1,8 @@
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|                  clk_125 |                  clk_100 |nic_instance/SoftwareRegisterAccessDaemon_instance/data_path.InportGroup_0.AFB_NIC_REQUEST_read_0/ProTx[0].ulreg/yesBypassBlocking.bypassBlock.fsm_state_bypass_reg[1]/D|
+|                  clk_125 |                  clk_100 |nic_instance/SoftwareRegisterAccessDaemon_instance/data_path.InportGroup_0.AFB_NIC_REQUEST_read_0/ProTx[0].ulreg/yesBypassBlocking.bypassBlock.fsm_state_bypass_reg[0]/D|
+|                  clk_125 |                  clk_100 |nic_instance/SoftwareRegisterAccessDaemon_instance/data_path.InportGroup_0.AFB_NIC_REQUEST_read_0/ProTx[0].ulreg/yesBypassBlocking.bypassBlock.fsm_state_bypass_reg[1]/CE|
+|                  clk_125 |                  clk_100 |nic_instance/SoftwareRegisterAccessDaemon_instance/data_path.InportGroup_0.AFB_NIC_REQUEST_read_0/ProTx[0].ulreg/yesBypassBlocking.bypassBlock.fsm_state_bypass_reg[0]/CE|
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+

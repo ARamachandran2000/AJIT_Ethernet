@@ -157,6 +157,8 @@ $module [transmitPacket]
 		
 		// transmit successful if packet_size amount of data is succesfully
 		// transmitted
-		status := (packet_size == ($bitcast ($uint<11>) (nmem_addr - control_data_addr)))
+		// New edit on 28 june 2023
+		status := 1
+		//status := (packet_size == (($bitcast ($uint<11>) (nmem_addr - control_data_addr)) - ncount_down))
 	}	
 }

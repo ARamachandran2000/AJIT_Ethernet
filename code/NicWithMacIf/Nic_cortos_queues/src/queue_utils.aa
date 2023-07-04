@@ -53,6 +53,8 @@ $is
 	
 	$guard (~q_empty) $call getQueueElement (q_base_address read_index) (q_r_data)
 	$guard (~q_empty) $call setQueuePointers (q_base_address write_index next_ri) ()
+	
+	$barrier
 	$guard (~q_empty) $call updateTotalMessages (q_base_address (total_msgs - $one<32>)) ()
 	$rreport(popFromQueue pop_data q_base_address q_r_data q_empty write_index read_index next_ri)
 
@@ -114,10 +116,16 @@ $is
 	$volatile next_wi := ($mux round_off 0 (write_index + 1))
 	
 	//$volatile q_full := (next_wi == read_index)
-	$volatile q_full := (total_msgs == Queue_Length)
+
+	// bug fix for eingle reader writer queue
+	$volatile q_full := ($mux lock_n 
+					(total_msgs == Queue_Length)
+					(total_msgs > 0)) 
 	$rreport(pushIntoQueue pushing_to_queue q_w_data write_index read_index next_wi q_full)
 	$guard (~q_full) $call setQueueElement (q_base_address write_index q_w_data) ()
 	$guard (~q_full) $call setQueuePointers (q_base_address next_wi read_index) ()
+	
+	$barrier
 	$guard (~q_full) $call updateTotalMessages (q_base_address (total_msgs + $one<32>)) ()
 
 
